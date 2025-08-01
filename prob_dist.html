@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>19. Distributions and Probabilities &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
@@ -70,15 +69,15 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=bd0785fbb14d8d2bd4d9ae501d79ed8d3bc089ec" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.5ea377869091fd0449014c60fc090103.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=4c010e0d" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -86,23 +85,22 @@
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script src="_static/scripts/quantecon-book-theme.js?digest=d9faaf6c4b57726f74ba012412af1f5681bdff87"></script>
+    <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
+    <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QDS1YRJNGM"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -111,12 +109,20 @@
                 gtag('config', 'G-QDS1YRJNGM');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QDS1YRJNGM');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"argmax": "arg\\,max", "argmin": "arg\\,min"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'prob_dist';</script>
     <link rel="canonical" href="https://intro.quantecon.org/prob_dist.html" />
-    <link rel="shortcut icon" href="_static/lectures-favicon.ico"/>
+    <link rel="icon" href="_static/lectures-favicon.ico"/>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -260,9 +266,9 @@
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="distributions-and-probabilities">
-<h1><span class="section-number">19. </span>Distributions and Probabilities<a class="headerlink" href="#distributions-and-probabilities" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">19. </span>Distributions and Probabilities<a class="headerlink" href="#distributions-and-probabilities" title="Link to this heading">#</a></h1>
 <section id="outline">
-<span id="index-0"></span><h2><span class="section-number">19.1. </span>Outline<a class="headerlink" href="#outline" title="Permalink to this heading">#</a></h2>
+<span id="index-0"></span><h2><span class="section-number">19.1. </span>Outline<a class="headerlink" href="#outline" title="Link to this heading">#</a></h2>
 <p>In this lecture we give a quick introduction to data and probability distributions using Python.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
@@ -270,13 +276,13 @@
 </pre></div>
 </div>
 </div>
-<details class="hide below-input">
+<details class="admonition hide below-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show output</span>
-<span class="expanded">Hide code cell output</span>
+<p class="collapsed admonition-title">Show output</p>
+<p class="expanded admonition-title">Hide code cell output</p>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: yfinance in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (0.2.56)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: yfinance in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (0.2.63)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pandas&gt;=1.3.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from yfinance) (2.2.2)
@@ -286,15 +292,20 @@ Requirement already satisfied: multitasking&gt;=0.0.7 in /home/runner/miniconda3
 Requirement already satisfied: platformdirs&gt;=2.0.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from yfinance) (3.10.0)
 Requirement already satisfied: pytz&gt;=2022.5 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from yfinance) (2024.1)
 Requirement already satisfied: frozendict&gt;=2.3.4 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from yfinance) (2.4.6)
-Requirement already satisfied: peewee&gt;=3.16.2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from yfinance) (3.17.9)
+Requirement already satisfied: peewee&gt;=3.16.2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from yfinance) (3.18.1)
 Requirement already satisfied: beautifulsoup4&gt;=4.11.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from yfinance) (4.12.3)
+Requirement already satisfied: curl_cffi&gt;=0.7 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from yfinance) (0.11.3)
+Requirement already satisfied: protobuf&gt;=3.19.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from yfinance) (6.31.1)
+Requirement already satisfied: websockets&gt;=13.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from yfinance) (15.0.1)
 Requirement already satisfied: soupsieve&gt;1.2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from beautifulsoup4&gt;=4.11.1-&gt;yfinance) (2.5)
+Requirement already satisfied: cffi&gt;=1.12.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from curl_cffi&gt;=0.7-&gt;yfinance) (1.17.1)
+Requirement already satisfied: certifi&gt;=2024.2.2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from curl_cffi&gt;=0.7-&gt;yfinance) (2024.8.30)
 Requirement already satisfied: python-dateutil&gt;=2.8.2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas&gt;=1.3.0-&gt;yfinance) (2.9.0.post0)
 Requirement already satisfied: tzdata&gt;=2022.7 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas&gt;=1.3.0-&gt;yfinance) (2023.3)
 Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests&gt;=2.31-&gt;yfinance) (3.3.2)
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests&gt;=2.31-&gt;yfinance) (3.7)
 Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests&gt;=2.31-&gt;yfinance) (2.2.3)
-Requirement already satisfied: certifi&gt;=2017.4.17 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests&gt;=2.31-&gt;yfinance) (2024.8.30)
+Requirement already satisfied: pycparser in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from cffi&gt;=1.12.0-&gt;curl_cffi&gt;=0.7-&gt;yfinance) (2.21)
 Requirement already satisfied: six&gt;=1.5 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas&gt;=1.3.0-&gt;yfinance) (1.16.0)
 </pre></div>
 </div>
@@ -303,22 +314,22 @@ Requirement already satisfied: six&gt;=1.5 in /home/runner/miniconda3/envs/quant
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">yfinance</span> <span class="k">as</span> <span class="nn">yf</span>
-<span class="kn">import</span> <span class="nn">scipy.stats</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">yfinance</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">yf</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy.stats</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="common-distributions">
-<h2><span class="section-number">19.2. </span>Common distributions<a class="headerlink" href="#common-distributions" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">19.2. </span>Common distributions<a class="headerlink" href="#common-distributions" title="Link to this heading">#</a></h2>
 <p>In this section we recall the definitions of some well-known distributions and explore how to manipulate them with SciPy.</p>
 <section id="discrete-distributions">
-<h3><span class="section-number">19.2.1. </span>Discrete distributions<a class="headerlink" href="#discrete-distributions" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">19.2.1. </span>Discrete distributions<a class="headerlink" href="#discrete-distributions" title="Link to this heading">#</a></h3>
 <p>Let’s start with discrete distributions.</p>
 <p>A discrete distribution is defined by a set of numbers <span class="math notranslate nohighlight">\(S = \{x_1, \ldots, x_n\}\)</span> and a <strong>probability mass function</strong> (PMF) on <span class="math notranslate nohighlight">\(S\)</span>, which is a function <span class="math notranslate nohighlight">\(p\)</span> from <span class="math notranslate nohighlight">\(S\)</span> to <span class="math notranslate nohighlight">\([0,1]\)</span> with the property</p>
 <div class="math notranslate nohighlight">
@@ -353,7 +364,7 @@ F(x) = \mathbb{P}\{X \leq x\}
 <p>Here <span class="math notranslate nohighlight">\(\mathbb 1\{ \textrm{statement} \} = 1\)</span> if “statement” is true and zero otherwise.</p>
 <p>Hence the second term takes all <span class="math notranslate nohighlight">\(x_i \leq x\)</span> and sums their probabilities.</p>
 <section id="uniform-distribution">
-<h4><span class="section-number">19.2.1.1. </span>Uniform distribution<a class="headerlink" href="#uniform-distribution" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">19.2.1.1. </span>Uniform distribution<a class="headerlink" href="#uniform-distribution" title="Link to this heading">#</a></h4>
 <p>One simple example is the <strong>uniform distribution</strong>, where <span class="math notranslate nohighlight">\(p(x_i) = 1/n\)</span> for all <span class="math notranslate nohighlight">\(i\)</span>.</p>
 <p>We can import the uniform distribution on <span class="math notranslate nohighlight">\(S = \{1, \ldots, n\}\)</span>  from SciPy like so:</p>
 <div class="cell docutils container">
@@ -418,7 +429,8 @@ F(x) = \mathbb{P}\{X \leq x\}
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/5977a163e334a895153fa4e6e317457ebff88e2a1db01f7a876e16fcbaf7bd9f.png"><img alt="_images/5977a163e334a895153fa4e6e317457ebff88e2a1db01f7a876e16fcbaf7bd9f.png" src="_images/5977a163e334a895153fa4e6e317457ebff88e2a1db01f7a876e16fcbaf7bd9f.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/5977a163e334a895153fa4e6e317457ebff88e2a1db01f7a876e16fcbaf7bd9f.png"><img alt="_images/5977a163e334a895153fa4e6e317457ebff88e2a1db01f7a876e16fcbaf7bd9f.png" src="_images/5977a163e334a895153fa4e6e317457ebff88e2a1db01f7a876e16fcbaf7bd9f.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>Here’s a plot of the CDF:</p>
@@ -436,7 +448,8 @@ F(x) = \mathbb{P}\{X \leq x\}
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/7d73f65633d026a5e6f42fee0e26c81ab138e1b75834d0b0712bf2e0cb02d16d.png"><img alt="_images/7d73f65633d026a5e6f42fee0e26c81ab138e1b75834d0b0712bf2e0cb02d16d.png" src="_images/7d73f65633d026a5e6f42fee0e26c81ab138e1b75834d0b0712bf2e0cb02d16d.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/7d73f65633d026a5e6f42fee0e26c81ab138e1b75834d0b0712bf2e0cb02d16d.png"><img alt="_images/7d73f65633d026a5e6f42fee0e26c81ab138e1b75834d0b0712bf2e0cb02d16d.png" src="_images/7d73f65633d026a5e6f42fee0e26c81ab138e1b75834d0b0712bf2e0cb02d16d.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>The CDF jumps up by <span class="math notranslate nohighlight">\(p(x_i)\)</span> at <span class="math notranslate nohighlight">\(x_i\)</span>.</p>
@@ -451,7 +464,7 @@ directly from the PMF, using the expressions given above.</p>
 </div>
 </section>
 <section id="bernoulli-distribution">
-<h4><span class="section-number">19.2.1.2. </span>Bernoulli distribution<a class="headerlink" href="#bernoulli-distribution" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">19.2.1.2. </span>Bernoulli distribution<a class="headerlink" href="#bernoulli-distribution" title="Link to this heading">#</a></h4>
 <p>Another useful distribution is the Bernoulli distribution on <span class="math notranslate nohighlight">\(S = \{0,1\}\)</span>, which has PMF:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -503,7 +516,7 @@ probability <span class="math notranslate nohighlight">\(1-\theta\)</span></p></
 </div>
 </section>
 <section id="binomial-distribution">
-<h4><span class="section-number">19.2.1.3. </span>Binomial distribution<a class="headerlink" href="#binomial-distribution" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">19.2.1.3. </span>Binomial distribution<a class="headerlink" href="#binomial-distribution" title="Link to this heading">#</a></h4>
 <p>Another useful (and more interesting) distribution is the <strong>binomial distribution</strong> on <span class="math notranslate nohighlight">\(S=\{0, \ldots, n\}\)</span>, which has PMF:</p>
 <div class="math notranslate nohighlight">
 \[ 
@@ -576,7 +589,8 @@ p(i) = \binom{n}{i} \theta^i (1-\theta)^{n-i}
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/7fc31d160c3b479539f9506591c6ca02857149604a6ab80ebd1fbdf112781d0c.png"><img alt="_images/7fc31d160c3b479539f9506591c6ca02857149604a6ab80ebd1fbdf112781d0c.png" src="_images/7fc31d160c3b479539f9506591c6ca02857149604a6ab80ebd1fbdf112781d0c.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/7fc31d160c3b479539f9506591c6ca02857149604a6ab80ebd1fbdf112781d0c.png"><img alt="_images/7fc31d160c3b479539f9506591c6ca02857149604a6ab80ebd1fbdf112781d0c.png" src="_images/7fc31d160c3b479539f9506591c6ca02857149604a6ab80ebd1fbdf112781d0c.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>Here’s the CDF:</p>
@@ -594,7 +608,8 @@ p(i) = \binom{n}{i} \theta^i (1-\theta)^{n-i}
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/45ed557909199fd34b33e57aea41cfe4fe097015416adbf25c4966483edb869b.png"><img alt="_images/45ed557909199fd34b33e57aea41cfe4fe097015416adbf25c4966483edb869b.png" src="_images/45ed557909199fd34b33e57aea41cfe4fe097015416adbf25c4966483edb869b.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/45ed557909199fd34b33e57aea41cfe4fe097015416adbf25c4966483edb869b.png"><img alt="_images/45ed557909199fd34b33e57aea41cfe4fe097015416adbf25c4966483edb869b.png" src="_images/45ed557909199fd34b33e57aea41cfe4fe097015416adbf25c4966483edb869b.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <div class="exercise admonition" id="prob_ex3">
@@ -624,7 +639,8 @@ p(i) = \binom{n}{i} \theta^i (1-\theta)^{n-i}
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/c322ca5f8178fa145efac993eb946e300c834ace47a7801640b0fb4eb01d19fd.png"><img alt="_images/c322ca5f8178fa145efac993eb946e300c834ace47a7801640b0fb4eb01d19fd.png" src="_images/c322ca5f8178fa145efac993eb946e300c834ace47a7801640b0fb4eb01d19fd.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/c322ca5f8178fa145efac993eb946e300c834ace47a7801640b0fb4eb01d19fd.png"><img alt="_images/c322ca5f8178fa145efac993eb946e300c834ace47a7801640b0fb4eb01d19fd.png" src="_images/c322ca5f8178fa145efac993eb946e300c834ace47a7801640b0fb4eb01d19fd.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>We can see that the output graph is the same as the one above.</p>
@@ -632,7 +648,7 @@ p(i) = \binom{n}{i} \theta^i (1-\theta)^{n-i}
 </div>
 </section>
 <section id="geometric-distribution">
-<h4><span class="section-number">19.2.1.4. </span>Geometric distribution<a class="headerlink" href="#geometric-distribution" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">19.2.1.4. </span>Geometric distribution<a class="headerlink" href="#geometric-distribution" title="Link to this heading">#</a></h4>
 <p>The geometric distribution has infinite support <span class="math notranslate nohighlight">\(S = \{0, 1, 2, \ldots\}\)</span> and its PMF is given by</p>
 <div class="math notranslate nohighlight">
 \[
@@ -674,12 +690,13 @@ p(i) = (1 - \theta)^i \theta
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/e44a623a699bef27f8264ef6cf3cd4008c933e4f239509f05be755996d43a659.png"><img alt="_images/e44a623a699bef27f8264ef6cf3cd4008c933e4f239509f05be755996d43a659.png" src="_images/e44a623a699bef27f8264ef6cf3cd4008c933e4f239509f05be755996d43a659.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/e44a623a699bef27f8264ef6cf3cd4008c933e4f239509f05be755996d43a659.png"><img alt="_images/e44a623a699bef27f8264ef6cf3cd4008c933e4f239509f05be755996d43a659.png" src="_images/e44a623a699bef27f8264ef6cf3cd4008c933e4f239509f05be755996d43a659.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 </section>
 <section id="poisson-distribution">
-<h4><span class="section-number">19.2.1.5. </span>Poisson distribution<a class="headerlink" href="#poisson-distribution" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">19.2.1.5. </span>Poisson distribution<a class="headerlink" href="#poisson-distribution" title="Link to this heading">#</a></h4>
 <p>The Poisson distribution on <span class="math notranslate nohighlight">\(S = \{0, 1, \ldots\}\)</span> with parameter <span class="math notranslate nohighlight">\(\lambda &gt; 0\)</span> has PMF</p>
 <div class="math notranslate nohighlight">
 \[
@@ -729,13 +746,14 @@ p(i) = \frac{\lambda^i}{i!} e^{-\lambda}
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/62a25d6e59cdaa36e8dd1fe11368ec8ea874c894692118d617737e99d387f15f.png"><img alt="_images/62a25d6e59cdaa36e8dd1fe11368ec8ea874c894692118d617737e99d387f15f.png" src="_images/62a25d6e59cdaa36e8dd1fe11368ec8ea874c894692118d617737e99d387f15f.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/62a25d6e59cdaa36e8dd1fe11368ec8ea874c894692118d617737e99d387f15f.png"><img alt="_images/62a25d6e59cdaa36e8dd1fe11368ec8ea874c894692118d617737e99d387f15f.png" src="_images/62a25d6e59cdaa36e8dd1fe11368ec8ea874c894692118d617737e99d387f15f.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 </section>
 </section>
 <section id="continuous-distributions">
-<h3><span class="section-number">19.2.2. </span>Continuous distributions<a class="headerlink" href="#continuous-distributions" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">19.2.2. </span>Continuous distributions<a class="headerlink" href="#continuous-distributions" title="Link to this heading">#</a></h3>
 <p>A continuous distribution is represented by a <strong>probability density function</strong>, which is a function <span class="math notranslate nohighlight">\(p\)</span> over <span class="math notranslate nohighlight">\(\mathbb R\)</span> (the set of all real numbers) such that <span class="math notranslate nohighlight">\(p(x) \geq 0\)</span> for all <span class="math notranslate nohighlight">\(x\)</span> and</p>
 <div class="math notranslate nohighlight">
 \[ 
@@ -760,7 +778,7 @@ F(x) = \mathbb P\{X \leq x\}
         = \int_{-\infty}^x p(x) dx
 \]</div>
 <section id="normal-distribution">
-<h4><span class="section-number">19.2.2.1. </span>Normal distribution<a class="headerlink" href="#normal-distribution" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">19.2.2.1. </span>Normal distribution<a class="headerlink" href="#normal-distribution" title="Link to this heading">#</a></h4>
 <p>Perhaps the most famous distribution is the <strong>normal distribution</strong>, which has density</p>
 <div class="math notranslate nohighlight">
 \[
@@ -811,7 +829,8 @@ p(x) = \frac{1}{\sqrt{2\pi}\sigma}
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/531528715437cff8d80d5061e185526055ecf589d55fb25a195255d01f40599e.png"><img alt="_images/531528715437cff8d80d5061e185526055ecf589d55fb25a195255d01f40599e.png" src="_images/531528715437cff8d80d5061e185526055ecf589d55fb25a195255d01f40599e.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/531528715437cff8d80d5061e185526055ecf589d55fb25a195255d01f40599e.png"><img alt="_images/531528715437cff8d80d5061e185526055ecf589d55fb25a195255d01f40599e.png" src="_images/531528715437cff8d80d5061e185526055ecf589d55fb25a195255d01f40599e.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>Here’s a plot of the CDF:</p>
@@ -832,12 +851,13 @@ p(x) = \frac{1}{\sqrt{2\pi}\sigma}
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/b3838826b50365b34cb2c301e8151db6b20091b5779986e9fa584166388b5fd6.png"><img alt="_images/b3838826b50365b34cb2c301e8151db6b20091b5779986e9fa584166388b5fd6.png" src="_images/b3838826b50365b34cb2c301e8151db6b20091b5779986e9fa584166388b5fd6.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/b3838826b50365b34cb2c301e8151db6b20091b5779986e9fa584166388b5fd6.png"><img alt="_images/b3838826b50365b34cb2c301e8151db6b20091b5779986e9fa584166388b5fd6.png" src="_images/b3838826b50365b34cb2c301e8151db6b20091b5779986e9fa584166388b5fd6.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 </section>
 <section id="lognormal-distribution">
-<h4><span class="section-number">19.2.2.2. </span>Lognormal distribution<a class="headerlink" href="#lognormal-distribution" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">19.2.2.2. </span>Lognormal distribution<a class="headerlink" href="#lognormal-distribution" title="Link to this heading">#</a></h4>
 <p>The <strong>lognormal distribution</strong> is a distribution on <span class="math notranslate nohighlight">\(\left(0, \infty\right)\)</span> with density</p>
 <div class="math notranslate nohighlight">
 \[
@@ -892,7 +912,8 @@ p(x) = \frac{1}{\sigma x \sqrt{2\pi}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/34d4f51e6b6509cac624c87ddf2b3e789a278beee11ae5a0894c3e79c12b6a0e.png"><img alt="_images/34d4f51e6b6509cac624c87ddf2b3e789a278beee11ae5a0894c3e79c12b6a0e.png" src="_images/34d4f51e6b6509cac624c87ddf2b3e789a278beee11ae5a0894c3e79c12b6a0e.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/34d4f51e6b6509cac624c87ddf2b3e789a278beee11ae5a0894c3e79c12b6a0e.png"><img alt="_images/34d4f51e6b6509cac624c87ddf2b3e789a278beee11ae5a0894c3e79c12b6a0e.png" src="_images/34d4f51e6b6509cac624c87ddf2b3e789a278beee11ae5a0894c3e79c12b6a0e.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <div class="cell docutils container">
@@ -914,12 +935,13 @@ p(x) = \frac{1}{\sigma x \sqrt{2\pi}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/916afb64b3932ec276d53db091178a587505d8935431aaab692a5512133c0f62.png"><img alt="_images/916afb64b3932ec276d53db091178a587505d8935431aaab692a5512133c0f62.png" src="_images/916afb64b3932ec276d53db091178a587505d8935431aaab692a5512133c0f62.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/916afb64b3932ec276d53db091178a587505d8935431aaab692a5512133c0f62.png"><img alt="_images/916afb64b3932ec276d53db091178a587505d8935431aaab692a5512133c0f62.png" src="_images/916afb64b3932ec276d53db091178a587505d8935431aaab692a5512133c0f62.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 </section>
 <section id="exponential-distribution">
-<h4><span class="section-number">19.2.2.3. </span>Exponential distribution<a class="headerlink" href="#exponential-distribution" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">19.2.2.3. </span>Exponential distribution<a class="headerlink" href="#exponential-distribution" title="Link to this heading">#</a></h4>
 <p>The <strong>exponential distribution</strong> is a distribution supported on <span class="math notranslate nohighlight">\(\left(0, \infty\right)\)</span> with density</p>
 <div class="math notranslate nohighlight">
 \[
@@ -969,7 +991,8 @@ p(x) = \lambda \exp \left( - \lambda x \right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/361a471d1627af11c97bace5e12ddaaff909b01b012d022f18d38e69febce298.png"><img alt="_images/361a471d1627af11c97bace5e12ddaaff909b01b012d022f18d38e69febce298.png" src="_images/361a471d1627af11c97bace5e12ddaaff909b01b012d022f18d38e69febce298.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/361a471d1627af11c97bace5e12ddaaff909b01b012d022f18d38e69febce298.png"><img alt="_images/361a471d1627af11c97bace5e12ddaaff909b01b012d022f18d38e69febce298.png" src="_images/361a471d1627af11c97bace5e12ddaaff909b01b012d022f18d38e69febce298.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <div class="cell docutils container">
@@ -989,12 +1012,13 @@ p(x) = \lambda \exp \left( - \lambda x \right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/2a2175d95bb9d955b415239edb173e1c48a66e76a125f0274a8ca6dc6f241ca1.png"><img alt="_images/2a2175d95bb9d955b415239edb173e1c48a66e76a125f0274a8ca6dc6f241ca1.png" src="_images/2a2175d95bb9d955b415239edb173e1c48a66e76a125f0274a8ca6dc6f241ca1.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/2a2175d95bb9d955b415239edb173e1c48a66e76a125f0274a8ca6dc6f241ca1.png"><img alt="_images/2a2175d95bb9d955b415239edb173e1c48a66e76a125f0274a8ca6dc6f241ca1.png" src="_images/2a2175d95bb9d955b415239edb173e1c48a66e76a125f0274a8ca6dc6f241ca1.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 </section>
 <section id="beta-distribution">
-<h4><span class="section-number">19.2.2.4. </span>Beta distribution<a class="headerlink" href="#beta-distribution" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">19.2.2.4. </span>Beta distribution<a class="headerlink" href="#beta-distribution" title="Link to this heading">#</a></h4>
 <p>The <strong>beta distribution</strong> is a distribution on <span class="math notranslate nohighlight">\((0, 1)\)</span> with density</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1048,7 +1072,8 @@ the variance is <span class="math notranslate nohighlight">\(\alpha \beta / (\al
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/2a63bb76f58428cc00b4931c40fd5d38a80e146595f1f8cd0aabd0d359590de7.png"><img alt="_images/2a63bb76f58428cc00b4931c40fd5d38a80e146595f1f8cd0aabd0d359590de7.png" src="_images/2a63bb76f58428cc00b4931c40fd5d38a80e146595f1f8cd0aabd0d359590de7.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/2a63bb76f58428cc00b4931c40fd5d38a80e146595f1f8cd0aabd0d359590de7.png"><img alt="_images/2a63bb76f58428cc00b4931c40fd5d38a80e146595f1f8cd0aabd0d359590de7.png" src="_images/2a63bb76f58428cc00b4931c40fd5d38a80e146595f1f8cd0aabd0d359590de7.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <div class="cell docutils container">
@@ -1068,12 +1093,13 @@ the variance is <span class="math notranslate nohighlight">\(\alpha \beta / (\al
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/e5a450de2af4bcf1c022f490e273821acb4e775d4f05085268d400de5479d2a3.png"><img alt="_images/e5a450de2af4bcf1c022f490e273821acb4e775d4f05085268d400de5479d2a3.png" src="_images/e5a450de2af4bcf1c022f490e273821acb4e775d4f05085268d400de5479d2a3.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/e5a450de2af4bcf1c022f490e273821acb4e775d4f05085268d400de5479d2a3.png"><img alt="_images/e5a450de2af4bcf1c022f490e273821acb4e775d4f05085268d400de5479d2a3.png" src="_images/e5a450de2af4bcf1c022f490e273821acb4e775d4f05085268d400de5479d2a3.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 </section>
 <section id="gamma-distribution">
-<h4><span class="section-number">19.2.2.5. </span>Gamma distribution<a class="headerlink" href="#gamma-distribution" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">19.2.2.5. </span>Gamma distribution<a class="headerlink" href="#gamma-distribution" title="Link to this heading">#</a></h4>
 <p>The <strong>gamma distribution</strong> is a distribution on <span class="math notranslate nohighlight">\(\left(0, \infty\right)\)</span> with density</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1127,7 +1153,8 @@ random variables with mean <span class="math notranslate nohighlight">\(1/\beta\
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/8b5986be40cba5f9deb001db81c44857cf7b02f2f1d31eb364cee64dd900c4e3.png"><img alt="_images/8b5986be40cba5f9deb001db81c44857cf7b02f2f1d31eb364cee64dd900c4e3.png" src="_images/8b5986be40cba5f9deb001db81c44857cf7b02f2f1d31eb364cee64dd900c4e3.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/8b5986be40cba5f9deb001db81c44857cf7b02f2f1d31eb364cee64dd900c4e3.png"><img alt="_images/8b5986be40cba5f9deb001db81c44857cf7b02f2f1d31eb364cee64dd900c4e3.png" src="_images/8b5986be40cba5f9deb001db81c44857cf7b02f2f1d31eb364cee64dd900c4e3.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <div class="cell docutils container">
@@ -1147,14 +1174,15 @@ random variables with mean <span class="math notranslate nohighlight">\(1/\beta\
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/cc064bc6d61bb8ab531cc279cfba95cd44fbbe527e0d2d4fb550d64ddd5f3319.png"><img alt="_images/cc064bc6d61bb8ab531cc279cfba95cd44fbbe527e0d2d4fb550d64ddd5f3319.png" src="_images/cc064bc6d61bb8ab531cc279cfba95cd44fbbe527e0d2d4fb550d64ddd5f3319.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/cc064bc6d61bb8ab531cc279cfba95cd44fbbe527e0d2d4fb550d64ddd5f3319.png"><img alt="_images/cc064bc6d61bb8ab531cc279cfba95cd44fbbe527e0d2d4fb550d64ddd5f3319.png" src="_images/cc064bc6d61bb8ab531cc279cfba95cd44fbbe527e0d2d4fb550d64ddd5f3319.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 </section>
 </section>
 </section>
 <section id="observed-distributions">
-<h2><span class="section-number">19.3. </span>Observed distributions<a class="headerlink" href="#observed-distributions" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">19.3. </span>Observed distributions<a class="headerlink" href="#observed-distributions" title="Link to this heading">#</a></h2>
 <p>Sometimes we refer to observed data or measurements as “distributions”.</p>
 <p>For example, let’s say we observe the income of 10 people over a year:</p>
 <div class="cell docutils container">
@@ -1260,7 +1288,7 @@ random variables with mean <span class="math notranslate nohighlight">\(1/\beta\
 numbers like the income distribution above) and probability distributions.</p>
 <p>Below we explore some observed distributions.</p>
 <section id="summary-statistics">
-<h3><span class="section-number">19.3.1. </span>Summary statistics<a class="headerlink" href="#summary-statistics" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">19.3.1. </span>Summary statistics<a class="headerlink" href="#summary-statistics" title="Link to this heading">#</a></h3>
 <p>Suppose we have an observed distribution with values <span class="math notranslate nohighlight">\(\{x_1, \ldots, x_n\}\)</span></p>
 <p>The <strong>sample mean</strong> of this distribution is defined as</p>
 <div class="math notranslate nohighlight">
@@ -1299,7 +1327,7 @@ Confirm.</p>
 </div>
 </section>
 <section id="visualization">
-<h3><span class="section-number">19.3.2. </span>Visualization<a class="headerlink" href="#visualization" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">19.3.2. </span>Visualization<a class="headerlink" href="#visualization" title="Link to this heading">#</a></h3>
 <p>Let’s look at different ways that we can visualize one or more observed distributions.</p>
 <p>We will cover</p>
 <ul class="simple">
@@ -1308,7 +1336,7 @@ Confirm.</p>
 <li><p>violin plots</p></li>
 </ul>
 <section id="histograms">
-<h4><span class="section-number">19.3.2.1. </span>Histograms<a class="headerlink" href="#histograms" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">19.3.2.1. </span>Histograms<a class="headerlink" href="#histograms" title="Link to this heading">#</a></h4>
 <p>We can histogram the income distribution we just constructed as follows</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1321,7 +1349,8 @@ Confirm.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/05c12e4604731d4f382aa8604c9d2dc40d7996fcf5dbce7de9c4f8792d774e29.png"><img alt="_images/05c12e4604731d4f382aa8604c9d2dc40d7996fcf5dbce7de9c4f8792d774e29.png" src="_images/05c12e4604731d4f382aa8604c9d2dc40d7996fcf5dbce7de9c4f8792d774e29.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/05c12e4604731d4f382aa8604c9d2dc40d7996fcf5dbce7de9c4f8792d774e29.png"><img alt="_images/05c12e4604731d4f382aa8604c9d2dc40d7996fcf5dbce7de9c4f8792d774e29.png" src="_images/05c12e4604731d4f382aa8604c9d2dc40d7996fcf5dbce7de9c4f8792d774e29.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>Let’s look at a distribution from real data.</p>
@@ -1337,16 +1366,16 @@ Confirm.</p>
 </pre></div>
 </div>
 </div>
-<details class="hide below-input">
+<details class="admonition hide below-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show output</span>
-<span class="expanded">Hide code cell output</span>
+<p class="collapsed admonition-title">Show output</p>
+<p class="expanded admonition-title">Hide code cell output</p>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[*********************100%***********************]  1 of 1 completed
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>YF.download() has changed argument auto_adjust default to True
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_8617/2398610503.py:1: FutureWarning: YF.download() has changed argument auto_adjust default to True
+  df = yf.download(&#39;AMZN&#39;, &#39;2000-1-1&#39;, &#39;2024-1-1&#39;, interval=&#39;1mo&#39;)
+
+[*********************100%***********************]  1 of 1 completed
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1430,12 +1459,13 @@ Name: 2000-02-01 00:00:00, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/5d48767550cf2599c5d42ec075d8bd7787b8ca9d67f123cb68e60c27e024ce8f.png"><img alt="_images/5d48767550cf2599c5d42ec075d8bd7787b8ca9d67f123cb68e60c27e024ce8f.png" src="_images/5d48767550cf2599c5d42ec075d8bd7787b8ca9d67f123cb68e60c27e024ce8f.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/5d48767550cf2599c5d42ec075d8bd7787b8ca9d67f123cb68e60c27e024ce8f.png"><img alt="_images/5d48767550cf2599c5d42ec075d8bd7787b8ca9d67f123cb68e60c27e024ce8f.png" src="_images/5d48767550cf2599c5d42ec075d8bd7787b8ca9d67f123cb68e60c27e024ce8f.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 </section>
 <section id="kernel-density-estimates">
-<h4><span class="section-number">19.3.2.2. </span>Kernel density estimates<a class="headerlink" href="#kernel-density-estimates" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">19.3.2.2. </span>Kernel density estimates<a class="headerlink" href="#kernel-density-estimates" title="Link to this heading">#</a></h4>
 <p>Kernel density estimates (KDE) provide a simple way to estimate and visualize the density of a distribution.</p>
 <p>If you are not familiar with KDEs, you can think of them as a smoothed
 histogram.</p>
@@ -1451,7 +1481,8 @@ histogram.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/5147c7198de81a440c747151df0107d9bab45451856c9726d5a6e572f0c99c6a.png"><img alt="_images/5147c7198de81a440c747151df0107d9bab45451856c9726d5a6e572f0c99c6a.png" src="_images/5147c7198de81a440c747151df0107d9bab45451856c9726d5a6e572f0c99c6a.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/5147c7198de81a440c747151df0107d9bab45451856c9726d5a6e572f0c99c6a.png"><img alt="_images/5147c7198de81a440c747151df0107d9bab45451856c9726d5a6e572f0c99c6a.png" src="_images/5147c7198de81a440c747151df0107d9bab45451856c9726d5a6e572f0c99c6a.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>The smoothness of the KDE is dependent on how we choose the bandwidth.</p>
@@ -1469,14 +1500,15 @@ histogram.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/b0c32857c2ede7d6bef5820285a6bf189b9394d8e1e2dea42419ef03b6b89a2d.png"><img alt="_images/b0c32857c2ede7d6bef5820285a6bf189b9394d8e1e2dea42419ef03b6b89a2d.png" src="_images/b0c32857c2ede7d6bef5820285a6bf189b9394d8e1e2dea42419ef03b6b89a2d.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/b0c32857c2ede7d6bef5820285a6bf189b9394d8e1e2dea42419ef03b6b89a2d.png"><img alt="_images/b0c32857c2ede7d6bef5820285a6bf189b9394d8e1e2dea42419ef03b6b89a2d.png" src="_images/b0c32857c2ede7d6bef5820285a6bf189b9394d8e1e2dea42419ef03b6b89a2d.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>When we use a larger bandwidth, the KDE is smoother.</p>
 <p>A suitable bandwidth is not too smooth (underfitting) or too wiggly (overfitting).</p>
 </section>
 <section id="violin-plots">
-<h4><span class="section-number">19.3.2.3. </span>Violin plots<a class="headerlink" href="#violin-plots" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">19.3.2.3. </span>Violin plots<a class="headerlink" href="#violin-plots" title="Link to this heading">#</a></h4>
 <p>Another way to display an observed distribution is via a violin plot.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1489,7 +1521,8 @@ histogram.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/41514c7c742fcb8364509cdd8d8d2b0ad19dff4a4ee8b3dc05f7d9ca688f846e.png"><img alt="_images/41514c7c742fcb8364509cdd8d8d2b0ad19dff4a4ee8b3dc05f7d9ca688f846e.png" src="_images/41514c7c742fcb8364509cdd8d8d2b0ad19dff4a4ee8b3dc05f7d9ca688f846e.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/41514c7c742fcb8364509cdd8d8d2b0ad19dff4a4ee8b3dc05f7d9ca688f846e.png"><img alt="_images/41514c7c742fcb8364509cdd8d8d2b0ad19dff4a4ee8b3dc05f7d9ca688f846e.png" src="_images/41514c7c742fcb8364509cdd8d8d2b0ad19dff4a4ee8b3dc05f7d9ca688f846e.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>Violin plots are particularly useful when we want to compare different distributions.</p>
@@ -1502,13 +1535,16 @@ histogram.</p>
 </pre></div>
 </div>
 </div>
-<details class="hide below-input">
+<details class="admonition hide below-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show output</span>
-<span class="expanded">Hide code cell output</span>
+<p class="collapsed admonition-title">Show output</p>
+<p class="expanded admonition-title">Hide code cell output</p>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[*********************100%***********************]  1 of 1 completed
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_8617/3281800956.py:1: FutureWarning: YF.download() has changed argument auto_adjust default to True
+  df = yf.download(&#39;COST&#39;, &#39;2000-1-1&#39;, &#39;2024-1-1&#39;, interval=&#39;1mo&#39;)
+
+[*********************100%***********************]  1 of 1 completed
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1531,13 +1567,14 @@ histogram.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/6fbdf7b5703c92f46ee9412cb5c200cd9030e7b9f799e25bdce98e3e46ddb992.png"><img alt="_images/6fbdf7b5703c92f46ee9412cb5c200cd9030e7b9f799e25bdce98e3e46ddb992.png" src="_images/6fbdf7b5703c92f46ee9412cb5c200cd9030e7b9f799e25bdce98e3e46ddb992.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/57bea903c8207088f0377a64f7f8ccd6d6d318f88102d95e1068d5ff19cf884e.png"><img alt="_images/57bea903c8207088f0377a64f7f8ccd6d6d318f88102d95e1068d5ff19cf884e.png" src="_images/57bea903c8207088f0377a64f7f8ccd6d6d318f88102d95e1068d5ff19cf884e.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 </section>
 </section>
 <section id="connection-to-probability-distributions">
-<h3><span class="section-number">19.3.3. </span>Connection to probability distributions<a class="headerlink" href="#connection-to-probability-distributions" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">19.3.3. </span>Connection to probability distributions<a class="headerlink" href="#connection-to-probability-distributions" title="Link to this heading">#</a></h3>
 <p>Let’s discuss the connection between observed distributions and probability distributions.</p>
 <p>Sometimes it’s helpful to imagine that an observed distribution is generated by a particular probability distribution.</p>
 <p>For example, we might look at the returns from Amazon above and imagine that they were generated by a normal distribution.</p>
@@ -1569,7 +1606,8 @@ to the variance.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/0b9a2cc8b01404da55f594e9d8796e5a72961eceee47b8deaba13f8c700475e7.png"><img alt="_images/0b9a2cc8b01404da55f594e9d8796e5a72961eceee47b8deaba13f8c700475e7.png" src="_images/0b9a2cc8b01404da55f594e9d8796e5a72961eceee47b8deaba13f8c700475e7.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/0b9a2cc8b01404da55f594e9d8796e5a72961eceee47b8deaba13f8c700475e7.png"><img alt="_images/0b9a2cc8b01404da55f594e9d8796e5a72961eceee47b8deaba13f8c700475e7.png" src="_images/0b9a2cc8b01404da55f594e9d8796e5a72961eceee47b8deaba13f8c700475e7.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>The match between the histogram and the density is not bad but also not very good.</p>
@@ -1597,7 +1635,8 @@ to the variance.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/b5ee9d37b9c39c622c20cbfcce754742f1218dbc5dc492ccedf533d9b181ec2b.png"><img alt="_images/b5ee9d37b9c39c622c20cbfcce754742f1218dbc5dc492ccedf533d9b181ec2b.png" src="_images/b5ee9d37b9c39c622c20cbfcce754742f1218dbc5dc492ccedf533d9b181ec2b.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/da3f8c9f1d4e4e2249bb0780a32ff4469d4c7b8a6b182680de922e3f2b64a898.png"><img alt="_images/da3f8c9f1d4e4e2249bb0780a32ff4469d4c7b8a6b182680de922e3f2b64a898.png" src="_images/da3f8c9f1d4e4e2249bb0780a32ff4469d4c7b8a6b182680de922e3f2b64a898.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>Note that if you keep increasing <span class="math notranslate nohighlight">\(N\)</span>, which is the number of observations, the fit will get better and better.</p>

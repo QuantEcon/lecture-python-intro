@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>39. The Perron-Frobenius Theorem &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
@@ -70,15 +69,15 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=bd0785fbb14d8d2bd4d9ae501d79ed8d3bc089ec" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.5ea377869091fd0449014c60fc090103.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=4c010e0d" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -86,23 +85,22 @@
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script src="_static/scripts/quantecon-book-theme.js?digest=d9faaf6c4b57726f74ba012412af1f5681bdff87"></script>
+    <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
+    <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QDS1YRJNGM"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -111,12 +109,20 @@
                 gtag('config', 'G-QDS1YRJNGM');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QDS1YRJNGM');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"argmax": "arg\\,max", "argmin": "arg\\,min"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'eigen_II';</script>
     <link rel="canonical" href="https://intro.quantecon.org/eigen_II.html" />
-    <link rel="shortcut icon" href="_static/lectures-favicon.ico"/>
+    <link rel="icon" href="_static/lectures-favicon.ico"/>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -244,7 +250,7 @@
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="the-perron-frobenius-theorem">
-<h1><span class="section-number">39. </span>The Perron-Frobenius Theorem<a class="headerlink" href="#the-perron-frobenius-theorem" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">39. </span>The Perron-Frobenius Theorem<a class="headerlink" href="#the-perron-frobenius-theorem" title="Link to this heading">#</a></h1>
 <p id="index-0">In addition to what’s in Anaconda, this lecture will need the following libraries:</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
@@ -252,34 +258,36 @@
 </pre></div>
 </div>
 </div>
-<details class="hide below-input">
+<details class="admonition hide below-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show output</span>
-<span class="expanded">Hide code cell output</span>
+<p class="collapsed admonition-title">Show output</p>
+<p class="expanded admonition-title">Hide code cell output</p>
 </summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting quantecon
-  Downloading quantecon-0.8.0-py3-none-any.whl.metadata (5.2 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading quantecon-0.8.1-py3-none-any.whl.metadata (5.2 kB)
 Requirement already satisfied: numba&gt;=0.49.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon) (0.60.0)
 Requirement already satisfied: numpy&gt;=1.17.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon) (1.26.4)
 Requirement already satisfied: requests in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon) (2.32.3)
 Requirement already satisfied: scipy&gt;=1.5.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon) (1.13.1)
 Requirement already satisfied: sympy in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon) (1.13.2)
 Requirement already satisfied: llvmlite&lt;0.44,&gt;=0.43.0dev0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from numba&gt;=0.49.0-&gt;quantecon) (0.43.0)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests-&gt;quantecon) (3.3.2)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests-&gt;quantecon) (3.3.2)
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests-&gt;quantecon) (3.7)
 Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests-&gt;quantecon) (2.2.3)
 Requirement already satisfied: certifi&gt;=2017.4.17 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests-&gt;quantecon) (2024.8.30)
 Requirement already satisfied: mpmath&lt;1.4,&gt;=1.1.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from sympy-&gt;quantecon) (1.3.0)
-Downloading quantecon-0.8.0-py3-none-any.whl (322 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading quantecon-0.8.1-py3-none-any.whl (322 kB)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: quantecon
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed quantecon-0.8.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed quantecon-0.8.1
 </pre></div>
 </div>
 </div>
@@ -290,16 +298,16 @@ Downloading quantecon-0.8.0-py3-none-any.whl (322 kB)
 <p>We will use the following imports:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">eig</span>
-<span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
-<span class="kn">import</span> <span class="nn">quantecon</span> <span class="k">as</span> <span class="nn">qe</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numpy.linalg</span><span class="w"> </span><span class="kn">import</span> <span class="n">eig</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sp</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">quantecon</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">qe</span>
 </pre></div>
 </div>
 </div>
 </div>
 <section id="nonnegative-matrices">
-<h2><span class="section-number">39.1. </span>Nonnegative matrices<a class="headerlink" href="#nonnegative-matrices" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">39.1. </span>Nonnegative matrices<a class="headerlink" href="#nonnegative-matrices" title="Link to this heading">#</a></h2>
 <p>Often, in economics, the matrix that we are dealing with is nonnegative.</p>
 <p>Nonnegative matrices have several special and useful properties.</p>
 <p>In this section we will discuss some of them — in particular, the connection
@@ -308,7 +316,7 @@ between nonnegativity and eigenvalues.</p>
 is nonnegative, i.e., <span class="math notranslate nohighlight">\(a_{ij} \geq 0\)</span> for every <span class="math notranslate nohighlight">\(i,j\)</span>.</p>
 <p>We denote this as <span class="math notranslate nohighlight">\(A \geq 0\)</span>.</p>
 <section id="irreducible-matrices">
-<span id="irreducible"></span><h3><span class="section-number">39.1.1. </span>Irreducible matrices<a class="headerlink" href="#irreducible-matrices" title="Permalink to this heading">#</a></h3>
+<span id="irreducible"></span><h3><span class="section-number">39.1.1. </span>Irreducible matrices<a class="headerlink" href="#irreducible-matrices" title="Link to this heading">#</a></h3>
 <p>We introduced irreducible matrices in the <a class="reference internal" href="markov_chains_II.html#mc-irreducible"><span class="std std-ref">Markov chain lecture</span></a>.</p>
 <p>Here we generalize this concept:</p>
 <p>Let <span class="math notranslate nohighlight">\(a^{k}_{ij}\)</span> be element <span class="math notranslate nohighlight">\((i,j)\)</span> of <span class="math notranslate nohighlight">\(A^k\)</span>.</p>
@@ -347,7 +355,7 @@ C = \begin{bmatrix} 1 &amp; 0 \\
 </section>
 </div></section>
 <section id="left-eigenvectors">
-<h3><span class="section-number">39.1.2. </span>Left eigenvectors<a class="headerlink" href="#left-eigenvectors" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">39.1.2. </span>Left eigenvectors<a class="headerlink" href="#left-eigenvectors" title="Link to this heading">#</a></h3>
 <p>Recall that we previously discussed eigenvectors in <a class="reference internal" href="eigen_I.html#la-eigenvalues"><span class="std std-ref">Eigenvalues and Eigenvectors</span></a>.</p>
 <p>In particular, <span class="math notranslate nohighlight">\(\lambda\)</span> is an eigenvalue of <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(v\)</span> is an eigenvector of <span class="math notranslate nohighlight">\(A\)</span> if <span class="math notranslate nohighlight">\(v\)</span> is nonzero and satisfy</p>
 <div class="math notranslate nohighlight">
@@ -423,7 +431,7 @@ The corresponding left eigenvectors are:
 <p>This is a more common expression and where the name left eigenvectors originates.</p>
 </section>
 <section id="perron-frobe">
-<span id="id1"></span><h3><span class="section-number">39.1.3. </span>The Perron-Frobenius theorem<a class="headerlink" href="#perron-frobe" title="Permalink to this heading">#</a></h3>
+<span id="id1"></span><h3><span class="section-number">39.1.3. </span>The Perron-Frobenius theorem<a class="headerlink" href="#perron-frobe" title="Link to this heading">#</a></h3>
 <p>For a square nonnegative matrix <span class="math notranslate nohighlight">\(A\)</span>, the behavior of <span class="math notranslate nohighlight">\(A^k\)</span> as <span class="math notranslate nohighlight">\(k \to \infty\)</span> is controlled by the eigenvalue with the largest
 absolute value, often called the <strong>dominant eigenvalue</strong>.</p>
 <p>For any such matrix <span class="math notranslate nohighlight">\(A\)</span>, the Perron-Frobenius theorem characterizes certain
@@ -450,7 +458,7 @@ properties of the dominant eigenvalue and its corresponding eigenvector.</p>
 <p>Let’s build our intuition for the theorem using a simple example we have seen <a class="reference internal" href="markov_chains_I.html#mc-eg1"><span class="std std-ref">before</span></a>.</p>
 <p>Now let’s consider examples for each case.</p>
 <section id="example-irreducible-matrix">
-<h4><span class="section-number">39.1.3.1. </span>Example: irreducible matrix<a class="headerlink" href="#example-irreducible-matrix" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">39.1.3.1. </span>Example: irreducible matrix<a class="headerlink" href="#example-irreducible-matrix" title="Link to this heading">#</a></h4>
 <p>Consider the following irreducible matrix <span class="math notranslate nohighlight">\(A\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -487,7 +495,7 @@ properties of the dominant eigenvalue and its corresponding eigenvector.</p>
 </section>
 </section>
 <section id="primitive-matrices">
-<span id="prim-matrices"></span><h3><span class="section-number">39.1.4. </span>Primitive matrices<a class="headerlink" href="#primitive-matrices" title="Permalink to this heading">#</a></h3>
+<span id="prim-matrices"></span><h3><span class="section-number">39.1.4. </span>Primitive matrices<a class="headerlink" href="#primitive-matrices" title="Link to this heading">#</a></h3>
 <p>We know that in real world situations it’s hard for a matrix to be everywhere positive (although they have nice properties).</p>
 <p>The primitive matrices, however, can still give us helpful properties with looser definitions.</p>
 <p>Let <span class="math notranslate nohighlight">\(A\)</span> be a square nonnegative matrix and let <span class="math notranslate nohighlight">\(A^k\)</span> be the <span class="math notranslate nohighlight">\(k^{th}\)</span> power of <span class="math notranslate nohighlight">\(A\)</span>.</p>
@@ -502,7 +510,7 @@ A = \begin{bmatrix} 0.5 &amp; 0.1 \\
                     0.2 &amp; 0.2 
 \end{bmatrix}
 \end{split}\]</div>
-<p><span class="math notranslate nohighlight">\(A\)</span> here is also a primitive matrix since <span class="math notranslate nohighlight">\(A^k\)</span> is everywhere nonnegative for <span class="math notranslate nohighlight">\(k \in \mathbb{N}\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(A\)</span> here is also a primitive matrix since <span class="math notranslate nohighlight">\(A^k\)</span> is everywhere positive for some <span class="math notranslate nohighlight">\(k \in \mathbb{N}\)</span>.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 B = \begin{bmatrix} 0 &amp; 1 \\ 
@@ -528,7 +536,7 @@ B^2 = \begin{bmatrix} 1 &amp; 0 \\
 </ol>
 </section>
 </div><section id="example-1-primitive-matrix">
-<h4><span class="section-number">39.1.4.1. </span>Example 1: primitive matrix<a class="headerlink" href="#example-1-primitive-matrix" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">39.1.4.1. </span>Example 1: primitive matrix<a class="headerlink" href="#example-1-primitive-matrix" title="Link to this heading">#</a></h4>
 <p>Consider the following primitive matrix <span class="math notranslate nohighlight">\(B\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -575,7 +583,7 @@ B^2 = \begin{bmatrix} 1 &amp; 0 \\
 <p>Furthermore, we can verify the convergence property (7) of the theorem on the following examples:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_perron_projection</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">compute_perron_projection</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
 
     <span class="n">eigval</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">eig</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
     <span class="n">eigval</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">eig</span><span class="p">(</span><span class="n">M</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
@@ -597,7 +605,7 @@ B^2 = \begin{bmatrix} 1 &amp; 0 \\
     <span class="n">P</span> <span class="o">=</span> <span class="n">v_norm</span> <span class="o">@</span> <span class="n">w_P</span><span class="o">.</span><span class="n">T</span>
     <span class="k">return</span> <span class="n">P</span><span class="p">,</span> <span class="n">r</span>
 
-<span class="k">def</span> <span class="nf">check_convergence</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">check_convergence</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
     <span class="n">P</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">compute_perron_projection</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Perron projection:&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
@@ -737,10 +745,10 @@ n = 10000, error = 1.0000000000
 <p>In fact we have already seen the theorem in action before in <a class="reference internal" href="markov_chains_I.html#mc1_ex_1"><span class="std std-ref">the Markov chain lecture</span></a>.</p>
 </section>
 <section id="example-2-connection-to-markov-chains">
-<span id="spec-markov"></span><h4><span class="section-number">39.1.4.2. </span>Example 2: connection to Markov chains<a class="headerlink" href="#example-2-connection-to-markov-chains" title="Permalink to this heading">#</a></h4>
+<span id="spec-markov"></span><h4><span class="section-number">39.1.4.2. </span>Example 2: connection to Markov chains<a class="headerlink" href="#example-2-connection-to-markov-chains" title="Link to this heading">#</a></h4>
 <p>We are now prepared to bridge the languages spoken in the two lectures.</p>
 <p>A primitive matrix is both irreducible and aperiodic.</p>
-<p>So Perron-Frobenius theorem explains why both <a class="reference internal" href="markov_chains_I.html#mc-eg3"><span class="std std-ref">Imam and Temple matrix</span></a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Hamiltonian_matrix">Hamilton matrix</a> converge to a stationary distribution, which is the Perron projection of the two matrices</p>
+<p>So Perron-Frobenius theorem explains why both <a class="reference internal" href="markov_chains_I.html#mc-eg3"><span class="std std-ref">Imam and Temple matrix</span></a> and <a class="reference internal" href="markov_chains_I.html#mc-eg2"><span class="std std-ref">Hamilton matrix</span></a> converge to a stationary distribution, which is the Perron projection of the two matrices</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.68</span><span class="p">,</span> <span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">],</span>
@@ -837,7 +845,7 @@ but it is out of the scope of this lecture.</p>
 </section>
 </section>
 <section id="exercises">
-<h2><span class="section-number">39.2. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">39.2. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
 <div class="exercise admonition" id="eig_ex1">
 
 <p class="admonition-title"><span class="caption-number">Exercise 39.1 </span> (Leontief’s Input-Output Model)</p>
@@ -846,14 +854,14 @@ but it is out of the scope of this lecture.</p>
 <p>Under this model some of the output is consumed internally by the industries and the rest is consumed by external consumers.</p>
 <p>We define a simple model with 3 sectors - agriculture, industry, and service.</p>
 <p>The following table describes how output is distributed within the economy:</p>
-<div class="pst-scrollable-table-container"><table class="colwidths-auto table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="text-center head"><p></p></th>
-<th class="text-center head"><p>Total output</p></th>
-<th class="text-center head"><p>Agriculture</p></th>
-<th class="text-center head"><p>Industry</p></th>
-<th class="text-center head"><p>Service</p></th>
-<th class="text-center head"><p>Consumer</p></th>
+<tr class="row-odd"><th class="head text-center"><p></p></th>
+<th class="head text-center"><p>Total output</p></th>
+<th class="head text-center"><p>Agriculture</p></th>
+<th class="head text-center"><p>Industry</p></th>
+<th class="head text-center"><p>Service</p></th>
+<th class="head text-center"><p>Consumer</p></th>
 </tr>
 </thead>
 <tbody>

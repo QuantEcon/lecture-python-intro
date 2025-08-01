@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>31. Inflation Rate Laffer Curves &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
@@ -70,15 +69,15 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=bd0785fbb14d8d2bd4d9ae501d79ed8d3bc089ec" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.5ea377869091fd0449014c60fc090103.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=4c010e0d" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -86,23 +85,22 @@
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script src="_static/scripts/quantecon-book-theme.js?digest=d9faaf6c4b57726f74ba012412af1f5681bdff87"></script>
+    <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
+    <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QDS1YRJNGM"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -111,12 +109,20 @@
                 gtag('config', 'G-QDS1YRJNGM');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QDS1YRJNGM');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"argmax": "arg\\,max", "argmin": "arg\\,min"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'money_inflation_nonlinear';</script>
     <link rel="canonical" href="https://intro.quantecon.org/money_inflation_nonlinear.html" />
-    <link rel="shortcut icon" href="_static/lectures-favicon.ico"/>
+    <link rel="icon" href="_static/lectures-favicon.ico"/>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -239,9 +245,9 @@
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="inflation-rate-laffer-curves">
-<h1><span class="section-number">31. </span>Inflation Rate Laffer Curves<a class="headerlink" href="#inflation-rate-laffer-curves" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">31. </span>Inflation Rate Laffer Curves<a class="headerlink" href="#inflation-rate-laffer-curves" title="Link to this heading">#</a></h1>
 <section id="overview">
-<h2><span class="section-number">31.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">31.1. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
 <p>We study stationary and dynamic <em>Laffer curves</em> in the inflation tax rate in a non-linear version of the model studied in <a class="reference internal" href="money_inflation.html"><span class="doc">Money Financed Government Deficits and Price Levels</span></a>.</p>
 <p>We use the log-linear version of the demand function for money that  <span id="id1">[<a class="reference internal" href="zreferences.html#id112" title="Philip Cagan. The monetary dynamics of hyperinflation. In Milton Friedman, editor, Studies in the Quantity Theory of Money, pages 25–117. University of Chicago Press, Chicago, 1956.">Cagan, 1956</a>]</span>
 used in his classic paper in place of the linear demand function used in <a class="reference internal" href="money_inflation.html"><span class="doc">Money Financed Government Deficits and Price Levels</span></a>.</p>
@@ -266,7 +272,7 @@ used in his classic paper in place of the linear demand function used in <a clas
 </ul>
 </section>
 <section id="the-model">
-<h2><span class="section-number">31.2. </span>The Model<a class="headerlink" href="#the-model" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">31.2. </span>The Model<a class="headerlink" href="#the-model" title="Link to this heading">#</a></h2>
 <p>Let</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(m_t\)</span> be the log of the money supply at the beginning of time <span class="math notranslate nohighlight">\(t\)</span></p></li>
@@ -274,13 +280,13 @@ used in his classic paper in place of the linear demand function used in <a clas
 </ul>
 <p>The demand function for money is</p>
 <div class="math notranslate nohighlight" id="equation-eq-mdemand">
-<span class="eqno">(31.1)<a class="headerlink" href="#equation-eq-mdemand" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(31.1)<a class="headerlink" href="#equation-eq-mdemand" title="Link to this equation">#</a></span>\[
 m_{t+1} - p_t = -\alpha (p_{t+1} - p_t) 
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\alpha \geq 0\)</span>.</p>
 <p>The law of motion of the money supply is</p>
 <div class="math notranslate nohighlight" id="equation-eq-msupply">
-<span class="eqno">(31.2)<a class="headerlink" href="#equation-eq-msupply" title="Permalink to this equation">#</a></span>\[ 
+<span class="eqno">(31.2)<a class="headerlink" href="#equation-eq-msupply" title="Link to this equation">#</a></span>\[ 
 \exp(m_{t+1}) - \exp(m_t) = g \exp(p_t) 
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(g\)</span> is the part of government expenditures financed by printing money.</p>
@@ -291,7 +297,7 @@ m_{t+1} - p_t = -\alpha (p_{t+1} - p_t)
 </section>
 </div></section>
 <section id="limiting-values-of-inflation-rate">
-<h2><span class="section-number">31.3. </span>Limiting Values of Inflation Rate<a class="headerlink" href="#limiting-values-of-inflation-rate" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">31.3. </span>Limiting Values of Inflation Rate<a class="headerlink" href="#limiting-values-of-inflation-rate" title="Link to this heading">#</a></h2>
 <p>We can compute the two prospective limiting values for <span class="math notranslate nohighlight">\(\overline \pi\)</span> by studying the steady-state Laffer curve.</p>
 <p>Thus, in a  <em>steady state</em></p>
 <div class="math notranslate nohighlight">
@@ -301,12 +307,12 @@ m_{t+1} - m_t = p_{t+1} - p_t =  x \quad \forall t ,
 <p>where <span class="math notranslate nohighlight">\(x &gt; 0 \)</span> is a common rate of growth of logarithms of the money supply and price level.</p>
 <p>A few lines of algebra yields the following equation that <span class="math notranslate nohighlight">\(x\)</span> satisfies</p>
 <div class="math notranslate nohighlight" id="equation-eq-steadypi">
-<span class="eqno">(31.3)<a class="headerlink" href="#equation-eq-steadypi" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(31.3)<a class="headerlink" href="#equation-eq-steadypi" title="Link to this equation">#</a></span>\[
 \exp(-\alpha x) - \exp(-(1 + \alpha) x) = g 
 \]</div>
 <p>where we require that</p>
 <div class="math notranslate nohighlight" id="equation-eq-revmax">
-<span class="eqno">(31.4)<a class="headerlink" href="#equation-eq-revmax" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(31.4)<a class="headerlink" href="#equation-eq-revmax" title="Link to this equation">#</a></span>\[
 g \leq \max_{x \geq 0} \{\exp(-\alpha x) - \exp(-(1 + \alpha) x) \},  
 \]</div>
 <p>so that it is feasible to finance <span class="math notranslate nohighlight">\(g\)</span> by printing money.</p>
@@ -318,11 +324,11 @@ g \leq \max_{x \geq 0} \{\exp(-\alpha x) - \exp(-(1 + \alpha) x) \},
 <p>Let’s start by importing some  libraries</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">matplotlib.ticker</span> <span class="kn">import</span> <span class="n">MaxNLocator</span>
-<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">fsolve</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">namedtuple</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.ticker</span><span class="w"> </span><span class="kn">import</span> <span class="n">MaxNLocator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">fsolve</span> 
 </pre></div>
 </div>
 </div>
@@ -337,7 +343,7 @@ g \leq \max_{x \geq 0} \{\exp(-\alpha x) - \exp(-(1 + \alpha) x) \},
                          <span class="s2">&quot;g&quot;</span> <span class="p">])</span>
 
 <span class="c1"># Create a Cagan Laffer model</span>
-<span class="k">def</span> <span class="nf">create_model</span><span class="p">(</span><span class="n">α</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">m0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">g</span><span class="o">=</span><span class="mf">0.35</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_model</span><span class="p">(</span><span class="n">α</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">m0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">g</span><span class="o">=</span><span class="mf">0.35</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">CaganLaffer</span><span class="p">(</span><span class="n">α</span><span class="o">=</span><span class="n">α</span><span class="p">,</span> <span class="n">m0</span><span class="o">=</span><span class="n">m0</span><span class="p">,</span> <span class="n">λ</span><span class="o">=</span><span class="n">α</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">α</span><span class="p">),</span> <span class="n">g</span><span class="o">=</span><span class="n">g</span><span class="p">)</span>
 
 <span class="n">model</span> <span class="o">=</span> <span class="n">create_model</span><span class="p">()</span>
@@ -349,10 +355,10 @@ g \leq \max_{x \geq 0} \{\exp(-\alpha x) - \exp(-(1 + \alpha) x) \},
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define formula for π_bar</span>
-<span class="k">def</span> <span class="nf">solve_π</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">α</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">solve_π</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">α</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">α</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">α</span><span class="p">)</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">g</span>
 
-<span class="k">def</span> <span class="nf">solve_π_bar</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">x0</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">solve_π_bar</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">x0</span><span class="p">):</span>
     <span class="n">π_bar</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">solve_π</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="n">x0</span><span class="p">,</span> <span class="n">xtol</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">α</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">g</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">π_bar</span>
 
@@ -372,14 +378,14 @@ g \leq \max_{x \geq 0} \{\exp(-\alpha x) - \exp(-(1 + \alpha) x) \},
 <p>We find two steady state <span class="math notranslate nohighlight">\(\overline \pi\)</span> values.</p>
 </section>
 <section id="steady-state-laffer-curve">
-<h2><span class="section-number">31.4. </span>Steady State Laffer curve<a class="headerlink" href="#steady-state-laffer-curve" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">31.4. </span>Steady State Laffer curve<a class="headerlink" href="#steady-state-laffer-curve" title="Link to this heading">#</a></h2>
 <p>The following figure plots the steady state Laffer curve together with the two stationary inflation rates.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_seign</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">α</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">compute_seign</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">α</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">α</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">α</span><span class="p">)</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span> 
 
-<span class="k">def</span> <span class="nf">plot_laffer</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">πs</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_laffer</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">πs</span><span class="p">):</span>
     <span class="n">α</span><span class="p">,</span> <span class="n">g</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">α</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">g</span>
     
     <span class="c1"># Generate π values</span>
@@ -410,26 +416,27 @@ g \leq \max_{x \geq 0} \{\exp(-\alpha x) - \exp(-(1 + \alpha) x) \},
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="laffer-curve-nonlinear">
-<a class="reference internal image-reference" href="_images/7a2927967b99512dbdfb2ec6bee0fc94fdc8388c5c1fba0d8a650cc9260e6170.png"><img alt="_images/7a2927967b99512dbdfb2ec6bee0fc94fdc8388c5c1fba0d8a650cc9260e6170.png" src="_images/7a2927967b99512dbdfb2ec6bee0fc94fdc8388c5c1fba0d8a650cc9260e6170.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/7a2927967b99512dbdfb2ec6bee0fc94fdc8388c5c1fba0d8a650cc9260e6170.png"><img alt="_images/7a2927967b99512dbdfb2ec6bee0fc94fdc8388c5c1fba0d8a650cc9260e6170.png" src="_images/7a2927967b99512dbdfb2ec6bee0fc94fdc8388c5c1fba0d8a650cc9260e6170.png" style="width: 80%;" />
+</a>
 <figcaption>
-<p><span class="caption-number">Fig. 31.1 </span><span class="caption-text">Seigniorage as function of steady state inflation. The dashed brown lines indicate <span class="math notranslate nohighlight">\(\pi_l\)</span> and <span class="math notranslate nohighlight">\(\pi_u\)</span>.</span><a class="headerlink" href="#laffer-curve-nonlinear" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 31.1 </span><span class="caption-text">Seigniorage as function of steady state inflation. The dashed brown lines indicate <span class="math notranslate nohighlight">\(\pi_l\)</span> and <span class="math notranslate nohighlight">\(\pi_u\)</span>.</span><a class="headerlink" href="#laffer-curve-nonlinear" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
 </div>
 </section>
 <section id="initial-price-levels">
-<h2><span class="section-number">31.5. </span>Initial Price Levels<a class="headerlink" href="#initial-price-levels" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">31.5. </span>Initial Price Levels<a class="headerlink" href="#initial-price-levels" title="Link to this heading">#</a></h2>
 <p>Now that we have our hands on the two possible steady states, we can compute two functions  <span class="math notranslate nohighlight">\(\underline p(m_0)\)</span> and
 <span class="math notranslate nohighlight">\(\overline p(m_0)\)</span>, which as initial conditions for <span class="math notranslate nohighlight">\(p_t\)</span> at time <span class="math notranslate nohighlight">\(t\)</span>, imply that <span class="math notranslate nohighlight">\(\pi_t = \overline \pi \)</span> for all <span class="math notranslate nohighlight">\(t \geq 0\)</span>.</p>
 <p>The function <span class="math notranslate nohighlight">\(\underline p(m_0)\)</span> will be associated with <span class="math notranslate nohighlight">\(\pi_l\)</span> the lower steady-state inflation rate.</p>
 <p>The function <span class="math notranslate nohighlight">\(\overline p(m_0)\)</span> will be associated with <span class="math notranslate nohighlight">\(\pi_u\)</span> the lower steady-state inflation rate.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">solve_p0</span><span class="p">(</span><span class="n">p0</span><span class="p">,</span> <span class="n">m0</span><span class="p">,</span> <span class="n">α</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">π</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">solve_p0</span><span class="p">(</span><span class="n">p0</span><span class="p">,</span> <span class="n">m0</span><span class="p">,</span> <span class="n">α</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">π</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">m0</span><span class="p">)</span> <span class="o">+</span> <span class="n">g</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">p0</span><span class="p">))</span> <span class="o">+</span> <span class="n">α</span> <span class="o">*</span> <span class="n">π</span> <span class="o">-</span> <span class="n">p0</span>
 
-<span class="k">def</span> <span class="nf">solve_p0_bar</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">π_bar</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">solve_p0_bar</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">π_bar</span><span class="p">):</span>
     <span class="n">p0_bar</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">solve_p0</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="n">x0</span><span class="p">,</span> <span class="n">xtol</span><span class="o">=</span><span class="mf">1e-20</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">m0</span><span class="p">,</span> 
                                                        <span class="n">model</span><span class="o">.</span><span class="n">α</span><span class="p">,</span> 
                                                        <span class="n">model</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> 
@@ -454,14 +461,14 @@ g \leq \max_{x \geq 0} \{\exp(-\alpha x) - \exp(-(1 + \alpha) x) \},
 </div>
 </div>
 <section id="verification">
-<h3><span class="section-number">31.5.1. </span>Verification<a class="headerlink" href="#verification" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">31.5.1. </span>Verification<a class="headerlink" href="#verification" title="Link to this heading">#</a></h3>
 <p>To start, let’s write some code to verify that if the initial log price level <span class="math notranslate nohighlight">\(p_0\)</span> takes one
 of the two values we just calculated, the inflation rate <span class="math notranslate nohighlight">\(\pi_t\)</span> will be constant for all <span class="math notranslate nohighlight">\(t \geq 0\)</span>.</p>
 <p>The following code verifies this.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Implement pseudo-code above</span>
-<span class="k">def</span> <span class="nf">simulate_seq</span><span class="p">(</span><span class="n">p0</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">simulate_seq</span><span class="p">(</span><span class="n">p0</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">):</span>
     <span class="n">λ</span><span class="p">,</span> <span class="n">g</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">λ</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">g</span>
     <span class="n">π_seq</span><span class="p">,</span> <span class="n">μ_seq</span><span class="p">,</span> <span class="n">m_seq</span><span class="p">,</span> <span class="n">p_seq</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">m0</span><span class="p">],</span> <span class="p">[</span><span class="n">p0</span><span class="p">]</span>
 
@@ -508,7 +515,7 @@ eq_g == g: True
 </section>
 </section>
 <section id="computing-an-equilibrium-sequence">
-<h2><span class="section-number">31.6. </span>Computing an Equilibrium Sequence<a class="headerlink" href="#computing-an-equilibrium-sequence" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">31.6. </span>Computing an Equilibrium Sequence<a class="headerlink" href="#computing-an-equilibrium-sequence" title="Link to this heading">#</a></h2>
 <p>We’ll deploy a method similar to <em>Method 2</em> used in <a class="reference internal" href="money_inflation.html"><span class="doc">Money Financed Government Deficits and Price Levels</span></a>.</p>
 <p>We’ll take the time <span class="math notranslate nohighlight">\(t\)</span> state vector to be the pair <span class="math notranslate nohighlight">\((m_t, p_t)\)</span>.</p>
 <p>We’ll treat <span class="math notranslate nohighlight">\(m_t\)</span> as a <code class="docutils literal notranslate"><span class="pre">natural</span> <span class="pre">state</span> <span class="pre">variable</span></code> and <span class="math notranslate nohighlight">\(p_t\)</span> as a <code class="docutils literal notranslate"><span class="pre">jump</span></code> variable.</p>
@@ -519,7 +526,7 @@ eq_g == g: True
 \]</div>
 <p>Let’s rewrite equation <a class="reference internal" href="#equation-eq-mdemand">(31.1)</a>  as</p>
 <div class="math notranslate nohighlight" id="equation-eq-mdemand2">
-<span class="eqno">(31.5)<a class="headerlink" href="#equation-eq-mdemand2" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(31.5)<a class="headerlink" href="#equation-eq-mdemand2" title="Link to this equation">#</a></span>\[
 p_t = (1-\lambda) m_{t+1} + \lambda p_{t+1} 
 \]</div>
 <p>We’ll summarize our algorithm with the following pseudo-code.</p>
@@ -557,16 +564,16 @@ the higher value</p></li>
 </ul>
 </section>
 <section id="slippery-side-of-laffer-curve-dynamics">
-<h2><span class="section-number">31.7. </span>Slippery Side of Laffer Curve Dynamics<a class="headerlink" href="#slippery-side-of-laffer-curve-dynamics" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">31.7. </span>Slippery Side of Laffer Curve Dynamics<a class="headerlink" href="#slippery-side-of-laffer-curve-dynamics" title="Link to this heading">#</a></h2>
 <p>We are now equipped  to compute  time series starting from different <span class="math notranslate nohighlight">\(p_0\)</span> settings, like those in <a class="reference internal" href="money_inflation.html"><span class="doc">Money Financed Government Deficits and Price Levels</span></a>.</p>
 <div class="cell tag_hide-cell docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show content</span>
-<span class="expanded">Hide code cell content</span>
+<p class="collapsed admonition-title">Show content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">draw_iterations</span><span class="p">(</span><span class="n">p0s</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">line_params</span><span class="p">,</span> <span class="n">p0_bars</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">draw_iterations</span><span class="p">(</span><span class="n">p0s</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">line_params</span><span class="p">,</span> <span class="n">p0_bars</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">):</span>
 
     <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     
@@ -634,9 +641,10 @@ the higher value</p></li>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="p0-path-nonlin">
-<a class="reference internal image-reference" href="_images/8770a5de511c4617d5a67576f21fda1f5d7983e6387fa48d27d032b2b17b9ca1.png"><img alt="_images/8770a5de511c4617d5a67576f21fda1f5d7983e6387fa48d27d032b2b17b9ca1.png" src="_images/8770a5de511c4617d5a67576f21fda1f5d7983e6387fa48d27d032b2b17b9ca1.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/8770a5de511c4617d5a67576f21fda1f5d7983e6387fa48d27d032b2b17b9ca1.png"><img alt="_images/8770a5de511c4617d5a67576f21fda1f5d7983e6387fa48d27d032b2b17b9ca1.png" src="_images/8770a5de511c4617d5a67576f21fda1f5d7983e6387fa48d27d032b2b17b9ca1.png" style="width: 80%;" />
+</a>
 <figcaption>
-<p><span class="caption-number">Fig. 31.2 </span><span class="caption-text">Starting from different initial values of <span class="math notranslate nohighlight">\(p_0\)</span>, paths of <span class="math notranslate nohighlight">\(m_t\)</span> (top panel, log scale for <span class="math notranslate nohighlight">\(m\)</span>), <span class="math notranslate nohighlight">\(p_t\)</span> (second panel, log scale for <span class="math notranslate nohighlight">\(p\)</span>),  <span class="math notranslate nohighlight">\(\pi_t\)</span> (third panel), and <span class="math notranslate nohighlight">\(\mu_t\)</span> (bottom panel)</span><a class="headerlink" href="#p0-path-nonlin" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 31.2 </span><span class="caption-text">Starting from different initial values of <span class="math notranslate nohighlight">\(p_0\)</span>, paths of <span class="math notranslate nohighlight">\(m_t\)</span> (top panel, log scale for <span class="math notranslate nohighlight">\(m\)</span>), <span class="math notranslate nohighlight">\(p_t\)</span> (second panel, log scale for <span class="math notranslate nohighlight">\(p\)</span>),  <span class="math notranslate nohighlight">\(\pi_t\)</span> (third panel), and <span class="math notranslate nohighlight">\(\mu_t\)</span> (bottom panel)</span><a class="headerlink" href="#p0-path-nonlin" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </div>

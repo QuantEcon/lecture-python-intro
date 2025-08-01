@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>43. Supply and Demand with Many Goods &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
@@ -70,15 +69,15 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=bd0785fbb14d8d2bd4d9ae501d79ed8d3bc089ec" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.5ea377869091fd0449014c60fc090103.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=4c010e0d" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -86,23 +85,22 @@
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script src="_static/scripts/quantecon-book-theme.js?digest=d9faaf6c4b57726f74ba012412af1f5681bdff87"></script>
+    <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
+    <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QDS1YRJNGM"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -111,12 +109,20 @@
                 gtag('config', 'G-QDS1YRJNGM');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QDS1YRJNGM');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"argmax": "arg\\,max", "argmin": "arg\\,min"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'supply_demand_multiple_goods';</script>
     <link rel="canonical" href="https://intro.quantecon.org/supply_demand_multiple_goods.html" />
-    <link rel="shortcut icon" href="_static/lectures-favicon.ico"/>
+    <link rel="icon" href="_static/lectures-favicon.ico"/>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -263,9 +269,9 @@
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="supply-and-demand-with-many-goods">
-<span id="supply-demand-multiple-goods"></span><h1><span class="section-number">43. </span>Supply and Demand with Many Goods<a class="headerlink" href="#supply-and-demand-with-many-goods" title="Permalink to this heading">#</a></h1>
+<span id="supply-demand-multiple-goods"></span><h1><span class="section-number">43. </span>Supply and Demand with Many Goods<a class="headerlink" href="#supply-and-demand-with-many-goods" title="Link to this heading">#</a></h1>
 <section id="overview">
-<h2><span class="section-number">43.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">43.1. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
 <p>In a <a class="reference internal" href="intro_supply_demand.html"><span class="doc">previous lecture</span></a> we studied supply, demand
 and welfare in a market with a single consumption good.</p>
 <p>In this lecture, we study a setting with <span class="math notranslate nohighlight">\(n\)</span> goods and <span class="math notranslate nohighlight">\(n\)</span> corresponding prices.</p>
@@ -302,16 +308,16 @@ and welfare in a market with a single consumption good.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import some packages</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">inv</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.linalg</span><span class="w"> </span><span class="kn">import</span> <span class="n">inv</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="formulas-from-linear-algebra">
-<h2><span class="section-number">43.2. </span>Formulas from linear algebra<a class="headerlink" href="#formulas-from-linear-algebra" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">43.2. </span>Formulas from linear algebra<a class="headerlink" href="#formulas-from-linear-algebra" title="Link to this heading">#</a></h2>
 <p>We shall apply formulas from linear algebra that</p>
 <ul class="simple">
 <li><p>differentiate an inner product with respect to each vector</p></li>
@@ -333,7 +339,7 @@ and welfare in a market with a single consumption good.</p>
 \]</div>
 </section>
 <section id="from-utility-function-to-demand-curve">
-<h2><span class="section-number">43.3. </span>From utility function to demand curve<a class="headerlink" href="#from-utility-function-to-demand-curve" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">43.3. </span>From utility function to demand curve<a class="headerlink" href="#from-utility-function-to-demand-curve" title="Link to this heading">#</a></h2>
 <p>Our study of consumers will use the following primitives</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\Pi\)</span> be an <span class="math notranslate nohighlight">\(m \times n\)</span> matrix,</p></li>
@@ -357,23 +363,23 @@ and welfare in a market with a single consumption good.</p>
 \]</div>
 <p>A consumer faces <span class="math notranslate nohighlight">\(p\)</span> as a price taker and chooses <span class="math notranslate nohighlight">\(c\)</span> to maximize the utility function</p>
 <div class="math notranslate nohighlight" id="equation-eq-old0">
-<span class="eqno">(43.1)<a class="headerlink" href="#equation-eq-old0" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(43.1)<a class="headerlink" href="#equation-eq-old0" title="Link to this equation">#</a></span>\[
     - \frac{1}{2} (\Pi c -b) ^\top (\Pi c -b )
 \]</div>
 <p>subject to the budget constraint</p>
 <div class="math notranslate nohighlight" id="equation-eq-old2">
-<span class="eqno">(43.2)<a class="headerlink" href="#equation-eq-old2" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(43.2)<a class="headerlink" href="#equation-eq-old2" title="Link to this equation">#</a></span>\[
     p^\top (c -e ) = 0
 \]</div>
 <p>We shall specify examples in which <span class="math notranslate nohighlight">\(\Pi\)</span> and <span class="math notranslate nohighlight">\(b\)</span> are such that it typically happens that</p>
 <div class="math notranslate nohighlight" id="equation-eq-bversusc">
-<span class="eqno">(43.3)<a class="headerlink" href="#equation-eq-bversusc" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(43.3)<a class="headerlink" href="#equation-eq-bversusc" title="Link to this equation">#</a></span>\[
     \Pi c \ll b
 \]</div>
 <p>This means that the consumer has much less of each good than he wants.</p>
 <p>The deviation in <a class="reference internal" href="#equation-eq-bversusc">(43.3)</a> will ultimately assure us that competitive equilibrium prices are positive.</p>
 <section id="demand-curve-implied-by-constrained-utility-maximization">
-<h3><span class="section-number">43.3.1. </span>Demand curve implied by constrained utility maximization<a class="headerlink" href="#demand-curve-implied-by-constrained-utility-maximization" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">43.3.1. </span>Demand curve implied by constrained utility maximization<a class="headerlink" href="#demand-curve-implied-by-constrained-utility-maximization" title="Link to this heading">#</a></h3>
 <p>For now, we assume that the budget constraint is <a class="reference internal" href="#equation-eq-old2">(43.2)</a>.</p>
 <p>So we’ll be deriving what is known as  a <strong>Marshallian</strong> demand curve.</p>
 <p>Our aim is to maximize <a class="reference internal" href="#equation-eq-old0">(43.1)</a> subject to <a class="reference internal" href="#equation-eq-old2">(43.2)</a>.</p>
@@ -390,12 +396,12 @@ and welfare in a market with a single consumption good.</p>
 \]</div>
 <p>so that, given <span class="math notranslate nohighlight">\(\mu\)</span>, the consumer chooses</p>
 <div class="math notranslate nohighlight" id="equation-eq-old3">
-<span class="eqno">(43.4)<a class="headerlink" href="#equation-eq-old3" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(43.4)<a class="headerlink" href="#equation-eq-old3" title="Link to this equation">#</a></span>\[
     c = (\Pi^\top \Pi )^{-1}(\Pi^\top b -  \mu p )
 \]</div>
 <p>Substituting <a class="reference internal" href="#equation-eq-old3">(43.4)</a> into budget constraint <a class="reference internal" href="#equation-eq-old2">(43.2)</a> and solving for <span class="math notranslate nohighlight">\(\mu\)</span> gives</p>
 <div class="math notranslate nohighlight" id="equation-eq-old4">
-<span class="eqno">(43.5)<a class="headerlink" href="#equation-eq-old4" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(43.5)<a class="headerlink" href="#equation-eq-old4" title="Link to this equation">#</a></span>\[
     \mu(p,e) = \frac{p^\top ( \Pi^\top \Pi )^{-1} \Pi^\top b - p^\top e}{p^\top (\Pi^\top \Pi )^{-1} p}.
 \]</div>
 <p>Equation <a class="reference internal" href="#equation-eq-old4">(43.5)</a> tells how marginal utility of wealth depends on the endowment vector <span class="math notranslate nohighlight">\(e\)</span> and the price vector <span class="math notranslate nohighlight">\(p\)</span>.</p>
@@ -408,7 +414,7 @@ and welfare in a market with a single consumption good.</p>
 </section>
 </section>
 <section id="endowment-economy">
-<h2><span class="section-number">43.4. </span>Endowment economy<a class="headerlink" href="#endowment-economy" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">43.4. </span>Endowment economy<a class="headerlink" href="#endowment-economy" title="Link to this heading">#</a></h2>
 <p>We now study a pure-exchange economy, or what is sometimes called an endowment economy.</p>
 <p>Consider a single-consumer, multiple-goods economy without production.</p>
 <p>The only source of goods is the single consumer’s endowment vector <span class="math notranslate nohighlight">\(e\)</span>.</p>
@@ -440,9 +446,9 @@ p = \mu^{-1} (\Pi^\top b - \Pi^\top \Pi e)
 <p>Here is a class that computes competitive equilibria for our economy.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ExchangeEconomy</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">ExchangeEconomy</span><span class="p">:</span>
     
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> 
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> 
                  <span class="n">Π</span><span class="p">,</span> 
                  <span class="n">b</span><span class="p">,</span> 
                  <span class="n">e</span><span class="p">,</span>
@@ -465,7 +471,7 @@ p = \mu^{-1} (\Pi^\top b - \Pi^\top \Pi e)
         <span class="bp">self</span><span class="o">.</span><span class="n">Π</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">e</span> <span class="o">=</span> <span class="n">Π</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">e</span>
 
     
-    <span class="k">def</span> <span class="nf">competitive_equilibrium</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">competitive_equilibrium</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compute the competitive equilibrium prices and allocation</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -490,11 +496,11 @@ p = \mu^{-1} (\Pi^\top b - \Pi^\top \Pi e)
 </div>
 </section>
 <section id="digression-marshallian-and-hicksian-demand-curves">
-<h2><span class="section-number">43.5. </span>Digression: Marshallian and Hicksian demand curves<a class="headerlink" href="#digression-marshallian-and-hicksian-demand-curves" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">43.5. </span>Digression: Marshallian and Hicksian demand curves<a class="headerlink" href="#digression-marshallian-and-hicksian-demand-curves" title="Link to this heading">#</a></h2>
 <p>Sometimes we’ll use budget constraint <a class="reference internal" href="#equation-eq-old2">(43.2)</a> in situations in which a consumer’s endowment vector <span class="math notranslate nohighlight">\(e\)</span> is his <strong>only</strong> source of income.</p>
 <p>Other times we’ll instead assume that the consumer has another source of income (positive or negative) and write his budget constraint as</p>
 <div class="math notranslate nohighlight" id="equation-eq-old2p">
-<span class="eqno">(43.6)<a class="headerlink" href="#equation-eq-old2p" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(43.6)<a class="headerlink" href="#equation-eq-old2p" title="Link to this equation">#</a></span>\[
 p ^\top (c -e ) = w
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(w\)</span> is measured in “dollars” (or some other <strong>numeraire</strong>) and component <span class="math notranslate nohighlight">\(p_i\)</span> of the price vector is measured in dollars per unit of good <span class="math notranslate nohighlight">\(i\)</span>.</p>
@@ -517,7 +523,7 @@ p ^\top (c -e ) = w
 <p>We’ll discuss these distinct demand curves more below.</p>
 </section>
 <section id="dynamics-and-risk-as-special-cases">
-<h2><span class="section-number">43.6. </span>Dynamics and risk as special cases<a class="headerlink" href="#dynamics-and-risk-as-special-cases" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">43.6. </span>Dynamics and risk as special cases<a class="headerlink" href="#dynamics-and-risk-as-special-cases" title="Link to this heading">#</a></h2>
 <p>Special cases of our <span class="math notranslate nohighlight">\(n\)</span>-good pure exchange model can be created to represent</p>
 <ul class="simple">
 <li><p><strong>dynamics</strong> — by putting different dates on different commodities</p></li>
@@ -525,7 +531,7 @@ p ^\top (c -e ) = w
 </ul>
 <p>Let’s illustrate how.</p>
 <section id="dynamics">
-<h3><span class="section-number">43.6.1. </span>Dynamics<a class="headerlink" href="#dynamics" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">43.6.1. </span>Dynamics<a class="headerlink" href="#dynamics" title="Link to this heading">#</a></h3>
 <p>Suppose that we want to represent a utility function</p>
 <div class="math notranslate nohighlight">
 \[
@@ -591,7 +597,7 @@ Competitive equilibrium allocation: [1. 1.]
 </div>
 </section>
 <section id="risk-and-state-contingent-claims">
-<h3><span class="section-number">43.6.2. </span>Risk and state-contingent claims<a class="headerlink" href="#risk-and-state-contingent-claims" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">43.6.2. </span>Risk and state-contingent claims<a class="headerlink" href="#risk-and-state-contingent-claims" title="Link to this heading">#</a></h3>
 <p>We study risk in the context of a <strong>static</strong> environment, meaning that there is only one period.</p>
 <p>By <strong>risk</strong> we mean that an outcome is not known in advance, but that it is governed by a known probability distribution.</p>
 <p>As an example, our consumer confronts <strong>risk</strong> means in particular that</p>
@@ -754,10 +760,10 @@ Competitive equilibrium allocation: [1. 1.]
 </section>
 </section>
 <section id="economies-with-endogenous-supplies-of-goods">
-<h2><span class="section-number">43.7. </span>Economies with endogenous supplies of goods<a class="headerlink" href="#economies-with-endogenous-supplies-of-goods" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">43.7. </span>Economies with endogenous supplies of goods<a class="headerlink" href="#economies-with-endogenous-supplies-of-goods" title="Link to this heading">#</a></h2>
 <p>Up to now we have described a pure exchange economy in which endowments of goods are exogenous, meaning that they are taken as given from outside the model.</p>
 <section id="supply-curve-of-a-competitive-firm">
-<h3><span class="section-number">43.7.1. </span>Supply curve of a competitive firm<a class="headerlink" href="#supply-curve-of-a-competitive-firm" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">43.7.1. </span>Supply curve of a competitive firm<a class="headerlink" href="#supply-curve-of-a-competitive-firm" title="Link to this heading">#</a></h3>
 <p>A competitive firm that can produce goods takes a price vector <span class="math notranslate nohighlight">\(p\)</span> as given and chooses a quantity <span class="math notranslate nohighlight">\(q\)</span>
 to maximize total revenue minus total costs.</p>
 <p>The firm’s total revenue equals <span class="math notranslate nohighlight">\(p^\top q\)</span> and its total cost equals <span class="math notranslate nohighlight">\(C(q)\)</span> where <span class="math notranslate nohighlight">\(C(q)\)</span> is a total cost function</p>
@@ -768,7 +774,7 @@ C(q) = h ^\top q +  \frac{1}{2} q^\top J q
 <p>and <span class="math notranslate nohighlight">\(J\)</span> is a positive definite matrix.</p>
 <p>So the firm’s profits are</p>
 <div class="math notranslate nohighlight" id="equation-eq-compprofits">
-<span class="eqno">(43.7)<a class="headerlink" href="#equation-eq-compprofits" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(43.7)<a class="headerlink" href="#equation-eq-compprofits" title="Link to this equation">#</a></span>\[
 p^\top q - C(q)
 \]</div>
 <p>An <span class="math notranslate nohighlight">\(n\times 1\)</span> vector of <strong>marginal costs</strong> is</p>
@@ -792,11 +798,11 @@ p = h + H q
 \]</div>
 </section>
 <section id="competitive-equilibrium">
-<h3><span class="section-number">43.7.2. </span>Competitive equilibrium<a class="headerlink" href="#competitive-equilibrium" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">43.7.2. </span>Competitive equilibrium<a class="headerlink" href="#competitive-equilibrium" title="Link to this heading">#</a></h3>
 <p>To compute a competitive equilibrium for a production economy where demand curve is pinned down by the marginal utility of wealth <span class="math notranslate nohighlight">\(\mu\)</span>, we first compute an allocation by solving a planning problem.</p>
 <p>Then we compute the equilibrium price vector using the inverse demand or supply curve.</p>
 <section id="mu-1-warmup">
-<h4><span class="section-number">43.7.2.1. </span><span class="math notranslate nohighlight">\(\mu=1\)</span> warmup<a class="headerlink" href="#mu-1-warmup" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">43.7.2.1. </span><span class="math notranslate nohighlight">\(\mu=1\)</span> warmup<a class="headerlink" href="#mu-1-warmup" title="Link to this heading">#</a></h4>
 <p>As a special case, let’s pin down a demand curve by setting the marginal utility of wealth <span class="math notranslate nohighlight">\(\mu =1\)</span>.</p>
 <p>Equating supply price to demand price and letting <span class="math notranslate nohighlight">\(q=c\)</span> we get</p>
 <div class="math notranslate nohighlight">
@@ -805,30 +811,30 @@ p = h + H c = \Pi^\top b - \Pi^\top \Pi c ,
 \]</div>
 <p>which implies the equilibrium quantity vector</p>
 <div class="math notranslate nohighlight" id="equation-eq-old5">
-<span class="eqno">(43.8)<a class="headerlink" href="#equation-eq-old5" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(43.8)<a class="headerlink" href="#equation-eq-old5" title="Link to this equation">#</a></span>\[
 c = (\Pi^\top \Pi + H )^{-1} ( \Pi^\top b - h)
 \]</div>
 <p>This equation is the counterpart of equilibrium quantity <a class="reference internal" href="intro_supply_demand.html#equation-eq-old1">(7.3)</a> for the scalar <span class="math notranslate nohighlight">\(n=1\)</span> model with which we began.</p>
 </section>
 <section id="general-mu-neq-1-case">
-<h4><span class="section-number">43.7.2.2. </span>General <span class="math notranslate nohighlight">\(\mu\neq 1\)</span> case<a class="headerlink" href="#general-mu-neq-1-case" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">43.7.2.2. </span>General <span class="math notranslate nohighlight">\(\mu\neq 1\)</span> case<a class="headerlink" href="#general-mu-neq-1-case" title="Link to this heading">#</a></h4>
 <p>Now let’s extend the preceding analysis to a more
 general case by allowing <span class="math notranslate nohighlight">\(\mu \neq 1\)</span>.</p>
 <p>Then the inverse demand curve is</p>
 <div class="math notranslate nohighlight" id="equation-eq-old5pa">
-<span class="eqno">(43.9)<a class="headerlink" href="#equation-eq-old5pa" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(43.9)<a class="headerlink" href="#equation-eq-old5pa" title="Link to this equation">#</a></span>\[
 p = \mu^{-1} [\Pi^\top b - \Pi^\top \Pi c]
 \]</div>
 <p>Equating this to the inverse supply curve, letting <span class="math notranslate nohighlight">\(q=c\)</span> and solving
 for <span class="math notranslate nohighlight">\(c\)</span> gives</p>
 <div class="math notranslate nohighlight" id="equation-eq-old5p">
-<span class="eqno">(43.10)<a class="headerlink" href="#equation-eq-old5p" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(43.10)<a class="headerlink" href="#equation-eq-old5p" title="Link to this equation">#</a></span>\[
 c = [\Pi^\top \Pi + \mu H]^{-1} [ \Pi^\top b - \mu h]
 \]</div>
 </section>
 </section>
 <section id="implementation">
-<h3><span class="section-number">43.7.3. </span>Implementation<a class="headerlink" href="#implementation" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">43.7.3. </span>Implementation<a class="headerlink" href="#implementation" title="Link to this heading">#</a></h3>
 <p>A Production Economy will consist of</p>
 <ul class="simple">
 <li><p>a single <strong>person</strong> that we’ll interpret as a representative consumer</p></li>
@@ -842,9 +848,9 @@ c = [\Pi^\top \Pi + \mu H]^{-1} [ \Pi^\top b - \mu h]
 <p>Here we define a class <code class="docutils literal notranslate"><span class="pre">ProductionEconomy</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ProductionEconomy</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">ProductionEconomy</span><span class="p">:</span>
     
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> 
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> 
                  <span class="n">Π</span><span class="p">,</span> 
                  <span class="n">b</span><span class="p">,</span> 
                  <span class="n">h</span><span class="p">,</span> 
@@ -863,7 +869,7 @@ c = [\Pi^\top \Pi + \mu H]^{-1} [ \Pi^\top b - \mu h]
         <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">Π</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">J</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">μ</span> <span class="o">=</span> <span class="n">Π</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">J</span><span class="p">,</span> <span class="n">μ</span>
         
-    <span class="k">def</span> <span class="nf">competitive_equilibrium</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">competitive_equilibrium</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compute a competitive equilibrium of the production economy</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -882,7 +888,7 @@ c = [\Pi^\top \Pi + \mu H]^{-1} [ \Pi^\top b - \mu h]
 
         <span class="k">return</span> <span class="n">c</span><span class="p">,</span> <span class="n">p</span>
 
-    <span class="k">def</span> <span class="nf">compute_surplus</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_surplus</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compute consumer and producer surplus for single good case</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -909,13 +915,13 @@ c = [\Pi^\top \Pi + \mu H]^{-1} [ \Pi^\top b - \mu h]
 </div>
 <p>Then define a function that plots demand and supply curves and labels surpluses and equilibrium.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_competitive_equilibrium</span><span class="p">(</span><span class="n">PE</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_competitive_equilibrium</span><span class="p">(</span><span class="n">PE</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plot demand and supply curves, producer/consumer surpluses, and equilibrium for</span>
 <span class="sd">    a single good production economy</span>
@@ -964,7 +970,7 @@ c = [\Pi^\top \Pi + \mu H]^{-1} [ \Pi^\top b - \mu h]
 </details>
 </div>
 <section id="example-single-agent-with-one-good-and-production">
-<h4><span class="section-number">43.7.3.1. </span>Example: single agent with one good and production<a class="headerlink" href="#example-single-agent-with-one-good-and-production" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">43.7.3.1. </span>Example: single agent with one good and production<a class="headerlink" href="#example-single-agent-with-one-good-and-production" title="Link to this heading">#</a></h4>
 <p>Now let’s construct an example of a production economy with one good.</p>
 <p>To do this we</p>
 <ul class="simple">
@@ -997,7 +1003,8 @@ c = [\Pi^\top \Pi + \mu H]^{-1} [ \Pi^\top b - \mu h]
 Competitive equilibrium allocation: 4.75
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/96897faebba8afbb228863d109792bb11fd7881dfed120bee32ee49d63b646a2.png"><img alt="_images/96897faebba8afbb228863d109792bb11fd7881dfed120bee32ee49d63b646a2.png" src="_images/96897faebba8afbb228863d109792bb11fd7881dfed120bee32ee49d63b646a2.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/96897faebba8afbb228863d109792bb11fd7881dfed120bee32ee49d63b646a2.png"><img alt="_images/96897faebba8afbb228863d109792bb11fd7881dfed120bee32ee49d63b646a2.png" src="_images/96897faebba8afbb228863d109792bb11fd7881dfed120bee32ee49d63b646a2.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <div class="cell docutils container">
@@ -1035,7 +1042,8 @@ Producer surplus: 11.28125
 Competitive equilibrium allocation: 3.0
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/90fe371a5b53f7c48b031991e2eb0509757ad3cc68989c6a02c01cb787f4703b.png"><img alt="_images/90fe371a5b53f7c48b031991e2eb0509757ad3cc68989c6a02c01cb787f4703b.png" src="_images/90fe371a5b53f7c48b031991e2eb0509757ad3cc68989c6a02c01cb787f4703b.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/90fe371a5b53f7c48b031991e2eb0509757ad3cc68989c6a02c01cb787f4703b.png"><img alt="_images/90fe371a5b53f7c48b031991e2eb0509757ad3cc68989c6a02c01cb787f4703b.png" src="_images/90fe371a5b53f7c48b031991e2eb0509757ad3cc68989c6a02c01cb787f4703b.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <div class="cell docutils container">
@@ -1074,13 +1082,14 @@ Producer surplus: 4.5
 Competitive equilibrium allocation: 7.25
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/018103974d95955694974354fefca608d9064d849c74cc0179feb9fb80827d83.png"><img alt="_images/018103974d95955694974354fefca608d9064d849c74cc0179feb9fb80827d83.png" src="_images/018103974d95955694974354fefca608d9064d849c74cc0179feb9fb80827d83.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/018103974d95955694974354fefca608d9064d849c74cc0179feb9fb80827d83.png"><img alt="_images/018103974d95955694974354fefca608d9064d849c74cc0179feb9fb80827d83.png" src="_images/018103974d95955694974354fefca608d9064d849c74cc0179feb9fb80827d83.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>This raises both the equilibrium price and quantity.</p>
 </section>
 <section id="example-single-agent-two-good-economy-with-production">
-<h4><span class="section-number">43.7.3.2. </span>Example: single agent two-good economy with production<a class="headerlink" href="#example-single-agent-two-good-economy-with-production" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">43.7.3.2. </span>Example: single agent two-good economy with production<a class="headerlink" href="#example-single-agent-two-good-economy-with-production" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p>we’ll do some experiments like those above</p></li>
 <li><p>we can do experiments with a <strong>diagonal</strong> <span class="math notranslate nohighlight">\(\Pi\)</span> and also with a <strong>non-diagonal</strong> <span class="math notranslate nohighlight">\(\Pi\)</span> matrices to study how cross-slopes affect responses of <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(c\)</span> to various shifts in <span class="math notranslate nohighlight">\(b\)</span> (TODO)</p></li>
@@ -1172,7 +1181,7 @@ Competitive equilibrium allocation: [4.93333333 3.6       ]
 </section>
 </section>
 <section id="digression-a-supplier-who-is-a-monopolist">
-<h3><span class="section-number">43.7.4. </span>Digression: a supplier who is a monopolist<a class="headerlink" href="#digression-a-supplier-who-is-a-monopolist" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">43.7.4. </span>Digression: a supplier who is a monopolist<a class="headerlink" href="#digression-a-supplier-who-is-a-monopolist" title="Link to this heading">#</a></h3>
 <p>A competitive firm is a <strong>price-taker</strong> who regards the price and therefore its marginal revenue as being beyond its control.</p>
 <p>A monopolist knows that it has no competition and can influence the price and its marginal revenue by
 setting quantity.</p>
@@ -1181,14 +1190,14 @@ setting quantity.</p>
 <a class="reference internal" href="#equation-eq-old5pa">(43.9)</a>.</p>
 <p>So the monopolist’s total profits as a function of its output <span class="math notranslate nohighlight">\(q\)</span> is</p>
 <div class="math notranslate nohighlight" id="equation-eq-monopprof">
-<span class="eqno">(43.11)<a class="headerlink" href="#equation-eq-monopprof" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(43.11)<a class="headerlink" href="#equation-eq-monopprof" title="Link to this equation">#</a></span>\[
 [\mu^{-1} \Pi^\top (b - \Pi q)]^\top  q - h^\top q -  \frac{1}{2} q^\top J q
 \]</div>
 <p>After finding
 first-order necessary conditions for maximizing monopoly profits with respect to <span class="math notranslate nohighlight">\(q\)</span>
 and solving them for <span class="math notranslate nohighlight">\(q\)</span>, we find that the monopolist sets</p>
 <div class="math notranslate nohighlight" id="equation-eq-qmonop">
-<span class="eqno">(43.12)<a class="headerlink" href="#equation-eq-qmonop" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(43.12)<a class="headerlink" href="#equation-eq-qmonop" title="Link to this equation">#</a></span>\[
 q = (H + 2 \mu^{-1} \Pi^\top \Pi)^{-1} (\mu^{-1} \Pi^\top b - h)
 \]</div>
 <p>We’ll soon see that a monopolist sets a <strong>lower output</strong> <span class="math notranslate nohighlight">\(q\)</span> than does either a</p>
@@ -1205,7 +1214,7 @@ q = (H + 2 \mu^{-1} \Pi^\top \Pi)^{-1} (\mu^{-1} \Pi^\top b - h)
 </div>
 </section>
 <section id="a-monopolist">
-<h3><span class="section-number">43.7.5. </span>A monopolist<a class="headerlink" href="#a-monopolist" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">43.7.5. </span>A monopolist<a class="headerlink" href="#a-monopolist" title="Link to this heading">#</a></h3>
 <p>Let’s consider a monopolist supplier.</p>
 <p>We have included a method in our <code class="docutils literal notranslate"><span class="pre">ProductionEconomy</span></code> class to compute an equilibrium price and allocation when the supplier is a monopolist.</p>
 <p>Since the supplier now has the price-setting power</p>
@@ -1227,9 +1236,9 @@ MR(q) = -2\mu^{-1}\Pi^{\top}\Pi q+\mu^{-1}\Pi^{\top}b,
 <p>In a single good case, this equilibrium is associated with a higher price of the good.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Monopoly</span><span class="p">(</span><span class="n">ProductionEconomy</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Monopoly</span><span class="p">(</span><span class="n">ProductionEconomy</span><span class="p">):</span>
     
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> 
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> 
                  <span class="n">Π</span><span class="p">,</span> 
                  <span class="n">b</span><span class="p">,</span> 
                  <span class="n">h</span><span class="p">,</span> 
@@ -1241,7 +1250,7 @@ MR(q) = -2\mu^{-1}\Pi^{\top}\Pi q+\mu^{-1}\Pi^{\top}b,
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">Π</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">J</span><span class="p">,</span> <span class="n">μ</span><span class="p">)</span>
         
 
-    <span class="k">def</span> <span class="nf">equilibrium_with_monopoly</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">equilibrium_with_monopoly</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compute the equilibrium price and allocation when there is a monopolist supplier</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1264,13 +1273,13 @@ MR(q) = -2\mu^{-1}\Pi^{\top}\Pi q+\mu^{-1}\Pi^{\top}b,
 </div>
 <p>Define a function that plots the demand, marginal cost and marginal revenue curves with surpluses and equilibrium labelled.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_monopoly</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_monopoly</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plot demand curve, marginal production cost and revenue, surpluses and the</span>
 <span class="sd">    equilibrium in a monopolist supplier economy with a single good</span>
@@ -1329,7 +1338,7 @@ MR(q) = -2\mu^{-1}\Pi^{\top}\Pi q+\mu^{-1}\Pi^{\top}b,
 </details>
 </div>
 <section id="a-multiple-good-example">
-<h4><span class="section-number">43.7.5.1. </span>A multiple good example<a class="headerlink" href="#a-multiple-good-example" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">43.7.5.1. </span>A multiple good example<a class="headerlink" href="#a-multiple-good-example" title="Link to this heading">#</a></h4>
 <p>Let’s compare competitive equilibrium and monopoly outcomes in a multiple goods economy.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1367,7 +1376,7 @@ Equilibrium with monopolist supplier allocation: [2.73134328 2.6119403 ]
 </div>
 </section>
 <section id="a-single-good-example">
-<h4><span class="section-number">43.7.5.2. </span>A single-good example<a class="headerlink" href="#a-single-good-example" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">43.7.5.2. </span>A single-good example<a class="headerlink" href="#a-single-good-example" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Π</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">]])</span>  <span class="c1"># the matrix now is a singleton</span>
@@ -1398,14 +1407,15 @@ Equilibrium with monopolist supplier price: 6.833333333333334
 Equilibrium with monopolist supplier allocation: 3.1666666666666665
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/0b8fae210f018b6c88f0c052e385d50d50bfefa6b6d4ebbb2eed55c1a3b96515.png"><img alt="_images/0b8fae210f018b6c88f0c052e385d50d50bfefa6b6d4ebbb2eed55c1a3b96515.png" src="_images/0b8fae210f018b6c88f0c052e385d50d50bfefa6b6d4ebbb2eed55c1a3b96515.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/0b8fae210f018b6c88f0c052e385d50d50bfefa6b6d4ebbb2eed55c1a3b96515.png"><img alt="_images/0b8fae210f018b6c88f0c052e385d50d50bfefa6b6d4ebbb2eed55c1a3b96515.png" src="_images/0b8fae210f018b6c88f0c052e385d50d50bfefa6b6d4ebbb2eed55c1a3b96515.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 </section>
 </section>
 </section>
 <section id="multi-good-welfare-maximization-problem">
-<h2><span class="section-number">43.8. </span>Multi-good welfare maximization problem<a class="headerlink" href="#multi-good-welfare-maximization-problem" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">43.8. </span>Multi-good welfare maximization problem<a class="headerlink" href="#multi-good-welfare-maximization-problem" title="Link to this heading">#</a></h2>
 <p>Our welfare maximization problem – also sometimes called a social planning problem  – is to choose <span class="math notranslate nohighlight">\(c\)</span> to maximize</p>
 <div class="math notranslate nohighlight">
 \[

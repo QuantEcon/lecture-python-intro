@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>27. The Overlapping Generations Model &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
@@ -70,15 +69,15 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=bd0785fbb14d8d2bd4d9ae501d79ed8d3bc089ec" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.5ea377869091fd0449014c60fc090103.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=4c010e0d" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -86,23 +85,22 @@
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script src="_static/scripts/quantecon-book-theme.js?digest=d9faaf6c4b57726f74ba012412af1f5681bdff87"></script>
+    <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
+    <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QDS1YRJNGM"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -111,12 +109,20 @@
                 gtag('config', 'G-QDS1YRJNGM');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QDS1YRJNGM');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"argmax": "arg\\,max", "argmin": "arg\\,min"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'olg';</script>
     <link rel="canonical" href="https://intro.quantecon.org/olg.html" />
-    <link rel="shortcut icon" href="_static/lectures-favicon.ico"/>
+    <link rel="icon" href="_static/lectures-favicon.ico"/>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -259,7 +265,7 @@
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="the-overlapping-generations-model">
-<h1><span class="section-number">27. </span>The Overlapping Generations Model<a class="headerlink" href="#the-overlapping-generations-model" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">27. </span>The Overlapping Generations Model<a class="headerlink" href="#the-overlapping-generations-model" title="Link to this heading">#</a></h1>
 <p>In this lecture we study the famous overlapping generations (OLG) model, which
 is used by policy makers and researchers to examine</p>
 <ul class="simple">
@@ -273,7 +279,7 @@ is used by policy makers and researchers to examine</p>
 <p>Our aim is to gain a good understanding of a simple version of the OLG
 model.</p>
 <section id="overview">
-<h2><span class="section-number">27.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">27.1. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
 <p>The dynamics of the OLG model are quite similar to those of the <a class="reference external" href="https://intro.quantecon.org/solow.html">Solow-Swan
 growth model</a>.</p>
 <p>At the same time, the OLG model adds an important new feature: the choice of
@@ -296,17 +302,17 @@ problem of households and studies the implications for long-run growth.</p>
 <p>Let’s start with some imports.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">optimize</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">optimize</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">namedtuple</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="environment">
-<h2><span class="section-number">27.2. </span>Environment<a class="headerlink" href="#environment" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">27.2. </span>Environment<a class="headerlink" href="#environment" title="Link to this heading">#</a></h2>
 <p>We assume that time is discrete, so that <span class="math notranslate nohighlight">\(t=0, 1, \ldots\)</span>.</p>
 <p>An individual born at time <span class="math notranslate nohighlight">\(t\)</span> lives for two periods, <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(t + 1\)</span>.</p>
 <p>We call an agent</p>
@@ -328,13 +334,13 @@ population size.</p>
 labor supply is 1.</p>
 </section>
 <section id="supply-of-capital">
-<h2><span class="section-number">27.3. </span>Supply of capital<a class="headerlink" href="#supply-of-capital" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">27.3. </span>Supply of capital<a class="headerlink" href="#supply-of-capital" title="Link to this heading">#</a></h2>
 <p>First let’s consider the household side.</p>
 <section id="consumers-problem">
-<h3><span class="section-number">27.3.1. </span>Consumer’s problem<a class="headerlink" href="#consumers-problem" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">27.3.1. </span>Consumer’s problem<a class="headerlink" href="#consumers-problem" title="Link to this heading">#</a></h3>
 <p>Suppose that utility for individuals born at time <span class="math notranslate nohighlight">\(t\)</span> takes the form</p>
 <div class="math notranslate nohighlight" id="equation-eq-crra">
-<span class="eqno">(27.1)<a class="headerlink" href="#equation-eq-crra" title="Permalink to this equation">#</a></span>\[    U_t = u(c_t) + \beta u(c_{t+1})\]</div>
+<span class="eqno">(27.1)<a class="headerlink" href="#equation-eq-crra" title="Link to this equation">#</a></span>\[    U_t = u(c_t) + \beta u(c_{t+1})\]</div>
 <p>Here</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(u: \mathbb R_+ \to \mathbb R\)</span> is called the “flow” utility function</p></li>
@@ -345,7 +351,7 @@ labor supply is 1.</p>
 <p>We assume that <span class="math notranslate nohighlight">\(u\)</span> is strictly increasing.</p>
 <p>Savings behavior is determined by the optimization problem</p>
 <div class="math notranslate nohighlight" id="equation-max-sav-olg">
-<span class="eqno">(27.2)<a class="headerlink" href="#equation-max-sav-olg" title="Permalink to this equation">#</a></span>\[    \max_{c_t, c_{t+1}} 
+<span class="eqno">(27.2)<a class="headerlink" href="#equation-max-sav-olg" title="Link to this equation">#</a></span>\[    \max_{c_t, c_{t+1}} 
     \,  \left \{ u(c_t) + \beta u(c_{t+1}) \right \} \]</div>
 <p>subject to</p>
 <div class="math notranslate nohighlight">
@@ -368,17 +374,17 @@ by plugging <span class="math notranslate nohighlight">\(c_{t+1}\)</span> into t
 with respect to <span class="math notranslate nohighlight">\(c_t\)</span>, and setting it to zero.</p>
 <p>This leads to the <strong>Euler equation</strong> of the OLG model, which describes the optimal intertemporal consumption dynamics:</p>
 <div class="math notranslate nohighlight" id="equation-euler-1-olg">
-<span class="eqno">(27.3)<a class="headerlink" href="#equation-euler-1-olg" title="Permalink to this equation">#</a></span>\[    u'(c_t) = \beta R_{t+1}  u'( R_{t+1} (w_t - c_t))\]</div>
+<span class="eqno">(27.3)<a class="headerlink" href="#equation-euler-1-olg" title="Link to this equation">#</a></span>\[    u'(c_t) = \beta R_{t+1}  u'( R_{t+1} (w_t - c_t))\]</div>
 <p>From the first constraint we get <span class="math notranslate nohighlight">\(c_t = w_t - s_t\)</span>, so the Euler equation
 can also be expressed as</p>
 <div class="math notranslate nohighlight" id="equation-euler-2-olg">
-<span class="eqno">(27.4)<a class="headerlink" href="#equation-euler-2-olg" title="Permalink to this equation">#</a></span>\[    u'(w_t - s_t) = \beta R_{t+1}  u'( R_{t+1} s_t)\]</div>
+<span class="eqno">(27.4)<a class="headerlink" href="#equation-euler-2-olg" title="Link to this equation">#</a></span>\[    u'(w_t - s_t) = \beta R_{t+1}  u'( R_{t+1} s_t)\]</div>
 <p>Suppose that, for each <span class="math notranslate nohighlight">\(w_t\)</span> and <span class="math notranslate nohighlight">\(R_{t+1}\)</span>, there is exactly one <span class="math notranslate nohighlight">\(s_t\)</span> that
 solves <a class="reference internal" href="#equation-euler-2-olg">(27.4)</a>.</p>
 <p>Then savings can be written as a fixed function of <span class="math notranslate nohighlight">\(w_t\)</span> and <span class="math notranslate nohighlight">\(R_{t+1}\)</span>.</p>
 <p>We write this as</p>
 <div class="math notranslate nohighlight" id="equation-saving-1-olg">
-<span class="eqno">(27.5)<a class="headerlink" href="#equation-saving-1-olg" title="Permalink to this equation">#</a></span>\[    s_t = s(w_t, R_{t+1})\]</div>
+<span class="eqno">(27.5)<a class="headerlink" href="#equation-saving-1-olg" title="Link to this equation">#</a></span>\[    s_t = s(w_t, R_{t+1})\]</div>
 <p>The precise form of the function <span class="math notranslate nohighlight">\(s\)</span> will depend on the choice of flow utility
 function <span class="math notranslate nohighlight">\(u\)</span>.</p>
 <p>Together, <span class="math notranslate nohighlight">\(w_t\)</span> and <span class="math notranslate nohighlight">\(R_{t+1}\)</span> represent the <em>prices</em> in the economy (price of
@@ -386,16 +392,16 @@ labor and rental rate of capital).</p>
 <p>Thus, <a class="reference internal" href="#equation-saving-1-olg">(27.5)</a> states the quantity of savings given prices.</p>
 </section>
 <section id="example-log-preferences">
-<h3><span class="section-number">27.3.2. </span>Example: log preferences<a class="headerlink" href="#example-log-preferences" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">27.3.2. </span>Example: log preferences<a class="headerlink" href="#example-log-preferences" title="Link to this heading">#</a></h3>
 <p>In the special case <span class="math notranslate nohighlight">\(u(c) = \log c\)</span>, the Euler equation simplifies to
 <span class="math notranslate nohighlight">\(s_t= \beta (w_t - s_t)\)</span>.</p>
 <p>Solving for saving, we get</p>
 <div class="math notranslate nohighlight" id="equation-saving-log-2-olg">
-<span class="eqno">(27.6)<a class="headerlink" href="#equation-saving-log-2-olg" title="Permalink to this equation">#</a></span>\[    s_t = s(w_t, R_{t+1}) = \frac{\beta}{1+\beta} w_t\]</div>
+<span class="eqno">(27.6)<a class="headerlink" href="#equation-saving-log-2-olg" title="Link to this equation">#</a></span>\[    s_t = s(w_t, R_{t+1}) = \frac{\beta}{1+\beta} w_t\]</div>
 <p>In this special case, savings does not depend on the interest rate.</p>
 </section>
 <section id="savings-and-investment">
-<h3><span class="section-number">27.3.3. </span>Savings and investment<a class="headerlink" href="#savings-and-investment" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">27.3.3. </span>Savings and investment<a class="headerlink" href="#savings-and-investment" title="Link to this heading">#</a></h3>
 <p>Since the population size is normalized to 1, <span class="math notranslate nohighlight">\(s_t\)</span> is also total savings in
 the economy at time <span class="math notranslate nohighlight">\(t\)</span>.</p>
 <p>In our closed economy, there is no foreign investment, so net savings equals
@@ -406,20 +412,20 @@ economy.</p>
 </section>
 </section>
 <section id="demand-for-capital">
-<h2><span class="section-number">27.4. </span>Demand for capital<a class="headerlink" href="#demand-for-capital" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">27.4. </span>Demand for capital<a class="headerlink" href="#demand-for-capital" title="Link to this heading">#</a></h2>
 <p>First we describe the firm’s problem and then we write down an equation
 describing demand for capital given prices.</p>
 <section id="firms-problem">
-<h3><span class="section-number">27.4.1. </span>Firm’s problem<a class="headerlink" href="#firms-problem" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">27.4.1. </span>Firm’s problem<a class="headerlink" href="#firms-problem" title="Link to this heading">#</a></h3>
 <p>For each integer <span class="math notranslate nohighlight">\(t \geq 0\)</span>, output <span class="math notranslate nohighlight">\(y_t\)</span> in period <span class="math notranslate nohighlight">\(t\)</span> is given by the
 <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Cobb%E2%80%93Douglas_production_function">Cobb-Douglas production function</a></strong></p>
 <div class="math notranslate nohighlight" id="equation-cobb-douglas">
-<span class="eqno">(27.7)<a class="headerlink" href="#equation-cobb-douglas" title="Permalink to this equation">#</a></span>\[    y_t = k_t^{\alpha} \ell_t^{1-\alpha}\]</div>
+<span class="eqno">(27.7)<a class="headerlink" href="#equation-cobb-douglas" title="Link to this equation">#</a></span>\[    y_t = k_t^{\alpha} \ell_t^{1-\alpha}\]</div>
 <p>Here <span class="math notranslate nohighlight">\(k_t\)</span> is capital, <span class="math notranslate nohighlight">\(\ell_t\)</span> is labor, and  <span class="math notranslate nohighlight">\(\alpha\)</span> is a parameter
 (sometimes called the “output elasticity of capital”).</p>
 <p>The profit maximization problem of the firm is</p>
 <div class="math notranslate nohighlight" id="equation-opt-profit-olg">
-<span class="eqno">(27.8)<a class="headerlink" href="#equation-opt-profit-olg" title="Permalink to this equation">#</a></span>\[    \max_{k_t, \ell_t} \{ k^{\alpha}_t \ell_t^{1-\alpha} - R_t k_t -w_t \ell_t  \}\]</div>
+<span class="eqno">(27.8)<a class="headerlink" href="#equation-opt-profit-olg" title="Link to this equation">#</a></span>\[    \max_{k_t, \ell_t} \{ k^{\alpha}_t \ell_t^{1-\alpha} - R_t k_t -w_t \ell_t  \}\]</div>
 <p>The first-order conditions are obtained by taking the derivative of the
 objective function with respect to capital and labor respectively and setting
 them to zero:</p>
@@ -429,23 +435,23 @@ them to zero:</p>
     \alpha (k_t / \ell_t)^{\alpha - 1} = R_t\]</div>
 </section>
 <section id="demand">
-<h3><span class="section-number">27.4.2. </span>Demand<a class="headerlink" href="#demand" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">27.4.2. </span>Demand<a class="headerlink" href="#demand" title="Link to this heading">#</a></h3>
 <p>Using our assumption <span class="math notranslate nohighlight">\(\ell_t = 1\)</span> allows us to write</p>
 <div class="math notranslate nohighlight" id="equation-wage-one">
-<span class="eqno">(27.9)<a class="headerlink" href="#equation-wage-one" title="Permalink to this equation">#</a></span>\[    w_t = (1-\alpha)k_t^\alpha \]</div>
+<span class="eqno">(27.9)<a class="headerlink" href="#equation-wage-one" title="Link to this equation">#</a></span>\[    w_t = (1-\alpha)k_t^\alpha \]</div>
 <p>and</p>
 <div class="math notranslate nohighlight" id="equation-interest-rate-one">
-<span class="eqno">(27.10)<a class="headerlink" href="#equation-interest-rate-one" title="Permalink to this equation">#</a></span>\[    R_t =
+<span class="eqno">(27.10)<a class="headerlink" href="#equation-interest-rate-one" title="Link to this equation">#</a></span>\[    R_t =
     \alpha k_t^{\alpha - 1} \]</div>
 <p>Rearranging <a class="reference internal" href="#equation-interest-rate-one">(27.10)</a> gives the aggregate demand for capital
 at time <span class="math notranslate nohighlight">\(t+1\)</span></p>
 <div class="math notranslate nohighlight" id="equation-aggregate-demand-capital-olg">
-<span class="eqno">(27.11)<a class="headerlink" href="#equation-aggregate-demand-capital-olg" title="Permalink to this equation">#</a></span>\[    k^d (R_{t+1}) 
+<span class="eqno">(27.11)<a class="headerlink" href="#equation-aggregate-demand-capital-olg" title="Link to this equation">#</a></span>\[    k^d (R_{t+1}) 
     := \left (\frac{\alpha}{R_{t+1}} \right )^{1/(1-\alpha)}\]</div>
 <p>In Python code this is</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">capital_demand</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">α</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">capital_demand</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">α</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">α</span><span class="o">/</span><span class="n">R</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">α</span><span class="p">))</span> 
 </pre></div>
 </div>
@@ -453,7 +459,7 @@ at time <span class="math notranslate nohighlight">\(t+1\)</span></p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">capital_supply</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">β</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">capital_supply</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">β</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
     <span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">R</span> <span class="o">*</span> <span class="p">(</span><span class="n">β</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">β</span><span class="p">))</span> <span class="o">*</span> <span class="n">w</span>
 </pre></div>
@@ -465,15 +471,15 @@ at time <span class="math notranslate nohighlight">\(t+1\)</span></p>
 </section>
 </section>
 <section id="equilibrium">
-<h2><span class="section-number">27.5. </span>Equilibrium<a class="headerlink" href="#equilibrium" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">27.5. </span>Equilibrium<a class="headerlink" href="#equilibrium" title="Link to this heading">#</a></h2>
 <p>In this section we derive equilibrium conditions and investigate an example.</p>
 <section id="equilibrium-conditions">
-<h3><span class="section-number">27.5.1. </span>Equilibrium conditions<a class="headerlink" href="#equilibrium-conditions" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">27.5.1. </span>Equilibrium conditions<a class="headerlink" href="#equilibrium-conditions" title="Link to this heading">#</a></h3>
 <p>In equilibrium, savings at time <span class="math notranslate nohighlight">\(t\)</span> equals investment at time <span class="math notranslate nohighlight">\(t\)</span>, which
 equals capital supply at time <span class="math notranslate nohighlight">\(t+1\)</span>.</p>
 <p>Equilibrium is computed by equating these quantities, setting</p>
 <div class="math notranslate nohighlight" id="equation-equilibrium-1">
-<span class="eqno">(27.12)<a class="headerlink" href="#equation-equilibrium-1" title="Permalink to this equation">#</a></span>\[    s(w_t, R_{t+1}) 
+<span class="eqno">(27.12)<a class="headerlink" href="#equation-equilibrium-1" title="Link to this equation">#</a></span>\[    s(w_t, R_{t+1}) 
     = k^d(R_{t+1})
     = \left (\frac{\alpha}{R_{t+1}} \right )^{1/(1-\alpha)}\]</div>
 <p>In principle, we can now solve for the equilibrium price <span class="math notranslate nohighlight">\(R_{t+1}\)</span> given <span class="math notranslate nohighlight">\(w_t\)</span>.</p>
@@ -484,14 +490,14 @@ equals capital supply at time <span class="math notranslate nohighlight">\(t+1\)
 the equilibrium quantity <span class="math notranslate nohighlight">\(k_{t+1}\)</span>.</p>
 </section>
 <section id="example-log-utility">
-<h3><span class="section-number">27.5.2. </span>Example: log utility<a class="headerlink" href="#example-log-utility" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">27.5.2. </span>Example: log utility<a class="headerlink" href="#example-log-utility" title="Link to this heading">#</a></h3>
 <p>In the case of log utility, we can use <a class="reference internal" href="#equation-equilibrium-1">(27.12)</a> and <a class="reference internal" href="#equation-saving-log-2-olg">(27.6)</a> to obtain</p>
 <div class="math notranslate nohighlight" id="equation-equilibrium-2">
-<span class="eqno">(27.13)<a class="headerlink" href="#equation-equilibrium-2" title="Permalink to this equation">#</a></span>\[    \frac{\beta}{1+\beta} w_t
+<span class="eqno">(27.13)<a class="headerlink" href="#equation-equilibrium-2" title="Link to this equation">#</a></span>\[    \frac{\beta}{1+\beta} w_t
     = \left( \frac{\alpha}{R_{t+1}} \right)^{1/(1-\alpha)}\]</div>
 <p>Solving for the equilibrium interest rate gives</p>
 <div class="math notranslate nohighlight" id="equation-equilibrium-price">
-<span class="eqno">(27.14)<a class="headerlink" href="#equation-equilibrium-price" title="Permalink to this equation">#</a></span>\[    R_{t+1} = 
+<span class="eqno">(27.14)<a class="headerlink" href="#equation-equilibrium-price" title="Link to this equation">#</a></span>\[    R_{t+1} = 
     \alpha 
     \left( 
         \frac{\beta}{1+\beta} w_t
@@ -499,7 +505,7 @@ the equilibrium quantity <span class="math notranslate nohighlight">\(k_{t+1}\)<
 <p>In Python we can compute this via</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">equilibrium_R_log_utility</span><span class="p">(</span><span class="n">α</span><span class="p">,</span> <span class="n">β</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">equilibrium_R_log_utility</span><span class="p">(</span><span class="n">α</span><span class="p">,</span> <span class="n">β</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
     <span class="n">R</span> <span class="o">=</span> <span class="n">α</span> <span class="o">*</span> <span class="p">(</span> <span class="p">(</span><span class="n">β</span> <span class="o">*</span> <span class="n">w</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">β</span><span class="p">))</span><span class="o">**</span><span class="p">(</span><span class="n">α</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">R</span>
 </pre></div>
@@ -509,7 +515,7 @@ the equilibrium quantity <span class="math notranslate nohighlight">\(k_{t+1}\)<
 <p>In the case of log utility, since capital supply does not depend on the interest rate, the equilibrium quantity is fixed by supply.</p>
 <p>That is,</p>
 <div class="math notranslate nohighlight" id="equation-equilibrium-quantity">
-<span class="eqno">(27.15)<a class="headerlink" href="#equation-equilibrium-quantity" title="Permalink to this equation">#</a></span>\[    k_{t+1} = s(w_t, R_{t+1}) = \frac{\beta }{1+\beta} w_t\]</div>
+<span class="eqno">(27.15)<a class="headerlink" href="#equation-equilibrium-quantity" title="Link to this equation">#</a></span>\[    k_{t+1} = s(w_t, R_{t+1}) = \frac{\beta }{1+\beta} w_t\]</div>
 <p>Let’s redo our plot above but now inserting the equilibrium quantity and price.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -537,22 +543,23 @@ the equilibrium quantity <span class="math notranslate nohighlight">\(k_{t+1}\)<
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/5b073331b7d6f731685e50d8033d6a301f2a0fbcb9f195ac1a55e83a3904a6ad.png"><img alt="_images/5b073331b7d6f731685e50d8033d6a301f2a0fbcb9f195ac1a55e83a3904a6ad.png" src="_images/5b073331b7d6f731685e50d8033d6a301f2a0fbcb9f195ac1a55e83a3904a6ad.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/5b073331b7d6f731685e50d8033d6a301f2a0fbcb9f195ac1a55e83a3904a6ad.png"><img alt="_images/5b073331b7d6f731685e50d8033d6a301f2a0fbcb9f195ac1a55e83a3904a6ad.png" src="_images/5b073331b7d6f731685e50d8033d6a301f2a0fbcb9f195ac1a55e83a3904a6ad.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 </section>
 </section>
 <section id="dynamics">
-<h2><span class="section-number">27.6. </span>Dynamics<a class="headerlink" href="#dynamics" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">27.6. </span>Dynamics<a class="headerlink" href="#dynamics" title="Link to this heading">#</a></h2>
 <p>In this section we discuss dynamics.</p>
 <p>For now we will focus on the case of log utility, so that the equilibrium is determined by <a class="reference internal" href="#equation-equilibrium-quantity">(27.15)</a>.</p>
 <section id="evolution-of-capital">
-<h3><span class="section-number">27.6.1. </span>Evolution of capital<a class="headerlink" href="#evolution-of-capital" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">27.6.1. </span>Evolution of capital<a class="headerlink" href="#evolution-of-capital" title="Link to this heading">#</a></h3>
 <p>The discussion above shows how equilibrium <span class="math notranslate nohighlight">\(k_{t+1}\)</span> is obtained given <span class="math notranslate nohighlight">\(w_t\)</span>.</p>
 <p>From <a class="reference internal" href="#equation-wage-one">(27.9)</a> we can translate this into <span class="math notranslate nohighlight">\(k_{t+1}\)</span> as a function of <span class="math notranslate nohighlight">\(k_t\)</span></p>
 <p>In particular, since <span class="math notranslate nohighlight">\(w_t = (1-\alpha)k_t^\alpha\)</span>, we have</p>
 <div class="math notranslate nohighlight" id="equation-law-of-motion-capital">
-<span class="eqno">(27.16)<a class="headerlink" href="#equation-law-of-motion-capital" title="Permalink to this equation">#</a></span>\[    k_{t+1} = \frac{\beta}{1+\beta} (1-\alpha)(k_t)^{\alpha}\]</div>
+<span class="eqno">(27.16)<a class="headerlink" href="#equation-law-of-motion-capital" title="Link to this equation">#</a></span>\[    k_{t+1} = \frac{\beta}{1+\beta} (1-\alpha)(k_t)^{\alpha}\]</div>
 <p>If we iterate on this equation, we get a sequence for capital stock.</p>
 <p>Let’s plot the 45-degree diagram of these dynamics, which we write as</p>
 <div class="math notranslate nohighlight">
@@ -563,7 +570,7 @@ the equilibrium quantity <span class="math notranslate nohighlight">\(k_{t+1}\)<
 \]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">k_update</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">α</span><span class="p">,</span> <span class="n">β</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">k_update</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">α</span><span class="p">,</span> <span class="n">β</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">β</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">α</span><span class="p">)</span> <span class="o">*</span> <span class="n">k</span><span class="o">**</span><span class="n">α</span> <span class="o">/</span>  <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">β</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -594,20 +601,21 @@ the equilibrium quantity <span class="math notranslate nohighlight">\(k_{t+1}\)<
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/0f1898ef66e0733f0d20d39608772e9930d74a63e35d27cc0f1e655b38e59cfb.png"><img alt="_images/0f1898ef66e0733f0d20d39608772e9930d74a63e35d27cc0f1e655b38e59cfb.png" src="_images/0f1898ef66e0733f0d20d39608772e9930d74a63e35d27cc0f1e655b38e59cfb.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/0f1898ef66e0733f0d20d39608772e9930d74a63e35d27cc0f1e655b38e59cfb.png"><img alt="_images/0f1898ef66e0733f0d20d39608772e9930d74a63e35d27cc0f1e655b38e59cfb.png" src="_images/0f1898ef66e0733f0d20d39608772e9930d74a63e35d27cc0f1e655b38e59cfb.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 </section>
 <section id="steady-state-log-case">
-<h3><span class="section-number">27.6.2. </span>Steady state (log case)<a class="headerlink" href="#steady-state-log-case" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">27.6.2. </span>Steady state (log case)<a class="headerlink" href="#steady-state-log-case" title="Link to this heading">#</a></h3>
 <p>The diagram shows that the model has a unique positive steady state, which we
 denote by <span class="math notranslate nohighlight">\(k^*\)</span>.</p>
 <p>We can solve for <span class="math notranslate nohighlight">\(k^*\)</span> by setting <span class="math notranslate nohighlight">\(k^* = g(k^*)\)</span>, or</p>
 <div class="math notranslate nohighlight" id="equation-steady-state-1">
-<span class="eqno">(27.17)<a class="headerlink" href="#equation-steady-state-1" title="Permalink to this equation">#</a></span>\[    k^* = \frac{\beta (1-\alpha) (k^*)^{\alpha}}{(1+\beta)}\]</div>
+<span class="eqno">(27.17)<a class="headerlink" href="#equation-steady-state-1" title="Link to this equation">#</a></span>\[    k^* = \frac{\beta (1-\alpha) (k^*)^{\alpha}}{(1+\beta)}\]</div>
 <p>Solving this equation yields</p>
 <div class="math notranslate nohighlight" id="equation-steady-state-2">
-<span class="eqno">(27.18)<a class="headerlink" href="#equation-steady-state-2" title="Permalink to this equation">#</a></span>\[    k^* = \left (\frac{\beta (1-\alpha)}{1+\beta} \right )^{1/(1-\alpha)}\]</div>
+<span class="eqno">(27.18)<a class="headerlink" href="#equation-steady-state-2" title="Link to this equation">#</a></span>\[    k^* = \left (\frac{\beta (1-\alpha)}{1+\beta} \right )^{1/(1-\alpha)}\]</div>
 <p>We can get the steady state interest rate from <a class="reference internal" href="#equation-interest-rate-one">(27.10)</a>, which yields</p>
 <div class="math notranslate nohighlight">
 \[
@@ -625,7 +633,7 @@ denote by <span class="math notranslate nohighlight">\(k^*\)</span>.</p>
 </div>
 </section>
 <section id="time-series">
-<h3><span class="section-number">27.6.3. </span>Time series<a class="headerlink" href="#time-series" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">27.6.3. </span>Time series<a class="headerlink" href="#time-series" title="Link to this heading">#</a></h3>
 <p>The 45-degree diagram above shows that time series of capital with positive initial conditions converge to this steady state.</p>
 <p>Let’s plot some time series that visualize this.</p>
 <div class="cell docutils container">
@@ -648,7 +656,8 @@ denote by <span class="math notranslate nohighlight">\(k^*\)</span>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/54c855db23a33540a2547f647d28fba9a34b83c2e5a053348954ec8ef3fae343.png"><img alt="_images/54c855db23a33540a2547f647d28fba9a34b83c2e5a053348954ec8ef3fae343.png" src="_images/54c855db23a33540a2547f647d28fba9a34b83c2e5a053348954ec8ef3fae343.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/54c855db23a33540a2547f647d28fba9a34b83c2e5a053348954ec8ef3fae343.png"><img alt="_images/54c855db23a33540a2547f647d28fba9a34b83c2e5a053348954ec8ef3fae343.png" src="_images/54c855db23a33540a2547f647d28fba9a34b83c2e5a053348954ec8ef3fae343.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>If you experiment with different positive initial conditions, you will see that the series always converges to <span class="math notranslate nohighlight">\(k^*\)</span>.</p>
@@ -669,14 +678,15 @@ denote by <span class="math notranslate nohighlight">\(k^*\)</span>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/cc545fdd9883261b7bf5ecb6f2a6696fce1db5917e0a665cf29fb7d8b7ba9ddc.png"><img alt="_images/cc545fdd9883261b7bf5ecb6f2a6696fce1db5917e0a665cf29fb7d8b7ba9ddc.png" src="_images/cc545fdd9883261b7bf5ecb6f2a6696fce1db5917e0a665cf29fb7d8b7ba9ddc.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/cc545fdd9883261b7bf5ecb6f2a6696fce1db5917e0a665cf29fb7d8b7ba9ddc.png"><img alt="_images/cc545fdd9883261b7bf5ecb6f2a6696fce1db5917e0a665cf29fb7d8b7ba9ddc.png" src="_images/cc545fdd9883261b7bf5ecb6f2a6696fce1db5917e0a665cf29fb7d8b7ba9ddc.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>The interest rate reflects the marginal product of capital, which is high when capital stock is low.</p>
 </section>
 </section>
 <section id="crra-preferences">
-<h2><span class="section-number">27.7. </span>CRRA preferences<a class="headerlink" href="#crra-preferences" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">27.7. </span>CRRA preferences<a class="headerlink" href="#crra-preferences" title="Link to this heading">#</a></h2>
 <p>Previously, in our examples, we looked at the case of log utility.</p>
 <p>Log utility is a rather special case of CRRA utility with <span class="math notranslate nohighlight">\(\gamma \to 1\)</span>.</p>
 <p>In this section, we are going to assume that <span class="math notranslate nohighlight">\(u(c) = \frac{ c^{1-
@@ -686,7 +696,7 @@ denote by <span class="math notranslate nohighlight">\(k^*\)</span>.</p>
 <p>Below we define the utility function in Python and construct a <code class="docutils literal notranslate"><span class="pre">namedtuple</span></code> to store the parameters.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">crra</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">γ</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">crra</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">γ</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">c</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">γ</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">γ</span><span class="p">)</span>
 
 <span class="n">Model</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;Model&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;α&#39;</span><span class="p">,</span>        <span class="c1"># Cobb-Douglas parameter</span>
@@ -694,7 +704,7 @@ denote by <span class="math notranslate nohighlight">\(k^*\)</span>.</p>
                              <span class="s1">&#39;γ&#39;</span><span class="p">]</span>        <span class="c1"># parameter in CRRA utility</span>
                    <span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">create_olg_model</span><span class="p">(</span><span class="n">α</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">β</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">γ</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_olg_model</span><span class="p">(</span><span class="n">α</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">β</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">γ</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">Model</span><span class="p">(</span><span class="n">α</span><span class="o">=</span><span class="n">α</span><span class="p">,</span> <span class="n">β</span><span class="o">=</span><span class="n">β</span><span class="p">,</span> <span class="n">γ</span><span class="o">=</span><span class="n">γ</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -703,20 +713,20 @@ denote by <span class="math notranslate nohighlight">\(k^*\)</span>.</p>
 <p>Let’s also redefine the capital demand function to work with this <code class="docutils literal notranslate"><span class="pre">namedtuple</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">capital_demand</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">capital_demand</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">α</span><span class="o">/</span><span class="n">R</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">model</span><span class="o">.</span><span class="n">α</span><span class="p">))</span> 
 </pre></div>
 </div>
 </div>
 </div>
 <section id="supply">
-<h3><span class="section-number">27.7.1. </span>Supply<a class="headerlink" href="#supply" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">27.7.1. </span>Supply<a class="headerlink" href="#supply" title="Link to this heading">#</a></h3>
 <p>For households, the Euler equation becomes</p>
 <div class="math notranslate nohighlight" id="equation-euler-crra">
-<span class="eqno">(27.19)<a class="headerlink" href="#equation-euler-crra" title="Permalink to this equation">#</a></span>\[    (w_t - s_t)^{-\gamma} = \beta R^{1-\gamma}_{t+1}  (s_t)^{-\gamma}\]</div>
+<span class="eqno">(27.19)<a class="headerlink" href="#equation-euler-crra" title="Link to this equation">#</a></span>\[    (w_t - s_t)^{-\gamma} = \beta R^{1-\gamma}_{t+1}  (s_t)^{-\gamma}\]</div>
 <p>Solving for savings, we have</p>
 <div class="math notranslate nohighlight" id="equation-saving-crra">
-<span class="eqno">(27.20)<a class="headerlink" href="#equation-saving-crra" title="Permalink to this equation">#</a></span>\[    s_t 
+<span class="eqno">(27.20)<a class="headerlink" href="#equation-saving-crra" title="Link to this equation">#</a></span>\[    s_t 
     = s(w_t, R_{t+1}) 
     = w_t \left [ 
         1 + \beta^{-1/\gamma} R_{t+1}^{(\gamma-1)/\gamma} 
@@ -724,7 +734,7 @@ denote by <span class="math notranslate nohighlight">\(k^*\)</span>.</p>
 <p>Notice how, unlike the log case, savings now depends on the interest rate.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">savings_crra</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">savings_crra</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
     <span class="n">α</span><span class="p">,</span> <span class="n">β</span><span class="p">,</span> <span class="n">γ</span> <span class="o">=</span> <span class="n">model</span>
     <span class="k">return</span> <span class="n">w</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">β</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">γ</span><span class="p">)</span> <span class="o">*</span> <span class="n">R</span><span class="o">**</span><span class="p">((</span><span class="n">γ</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">γ</span><span class="p">))</span> 
 </pre></div>
@@ -751,28 +761,29 @@ denote by <span class="math notranslate nohighlight">\(k^*\)</span>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/d75e3259312d101023a63225d8cdaba7b3f0fe3c3e22195538660639899548ac.png"><img alt="_images/d75e3259312d101023a63225d8cdaba7b3f0fe3c3e22195538660639899548ac.png" src="_images/d75e3259312d101023a63225d8cdaba7b3f0fe3c3e22195538660639899548ac.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/d75e3259312d101023a63225d8cdaba7b3f0fe3c3e22195538660639899548ac.png"><img alt="_images/d75e3259312d101023a63225d8cdaba7b3f0fe3c3e22195538660639899548ac.png" src="_images/d75e3259312d101023a63225d8cdaba7b3f0fe3c3e22195538660639899548ac.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 </section>
 <section id="id2">
-<h3><span class="section-number">27.7.2. </span>Equilibrium<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">27.7.2. </span>Equilibrium<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
 <p>Equating aggregate demand for capital  (see <a class="reference internal" href="#equation-aggregate-demand-capital-olg">(27.11)</a>)
 with our new aggregate supply function yields equilibrium capital.</p>
 <p>Thus, we set</p>
 <div class="math notranslate nohighlight" id="equation-equilibrium-crra-2">
-<span class="eqno">(27.21)<a class="headerlink" href="#equation-equilibrium-crra-2" title="Permalink to this equation">#</a></span>\[    w_t \left [ 1 + \beta^{-1/\gamma} R_{t+1}^{(\gamma-1)/\gamma} \right ]^{-1} 
+<span class="eqno">(27.21)<a class="headerlink" href="#equation-equilibrium-crra-2" title="Link to this equation">#</a></span>\[    w_t \left [ 1 + \beta^{-1/\gamma} R_{t+1}^{(\gamma-1)/\gamma} \right ]^{-1} 
     = \left (\frac{R_{t+1}}{\alpha} \right )^{1/(\alpha - 1)}\]</div>
 <p>This expression is quite complex and we cannot solve for <span class="math notranslate nohighlight">\(R_{t+1}\)</span> analytically.</p>
 <p>Combining <a class="reference internal" href="#equation-interest-rate-one">(27.10)</a> and <a class="reference internal" href="#equation-equilibrium-crra-2">(27.21)</a> yields</p>
 <div class="math notranslate nohighlight" id="equation-law-of-motion-capital-crra">
-<span class="eqno">(27.22)<a class="headerlink" href="#equation-law-of-motion-capital-crra" title="Permalink to this equation">#</a></span>\[    k_{t+1} = \left [ 1 + \beta^{-1/\gamma} (\alpha k^{\alpha - 1}_{t+1})^{(\gamma-1)/\gamma} \right ]^{-1} (1-\alpha)(k_t)^{\alpha}\]</div>
+<span class="eqno">(27.22)<a class="headerlink" href="#equation-law-of-motion-capital-crra" title="Link to this equation">#</a></span>\[    k_{t+1} = \left [ 1 + \beta^{-1/\gamma} (\alpha k^{\alpha - 1}_{t+1})^{(\gamma-1)/\gamma} \right ]^{-1} (1-\alpha)(k_t)^{\alpha}\]</div>
 <p>Again, with this equation and <span class="math notranslate nohighlight">\(k_t\)</span> as given, we cannot solve for <span class="math notranslate nohighlight">\(k_{t+1}\)</span> by pencil and paper.</p>
 <p>In the exercise below, you will be asked to solve these equations numerically.</p>
 </section>
 </section>
 <section id="exercises">
-<h2><span class="section-number">27.8. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">27.8. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
 <div class="exercise admonition" id="olg_ex1">
 
 <p class="admonition-title"><span class="caption-number">Exercise 27.1 </span></p>
@@ -788,7 +799,7 @@ with our new aggregate supply function yields equilibrium capital.</p>
 <p>To solve for <span class="math notranslate nohighlight">\(k_{t+1}\)</span> given <span class="math notranslate nohighlight">\(k_t\)</span> we use <a class="reference external" href="https://python.quantecon.org/newton_method.html">Newton’s method</a>.</p>
 <p>Let</p>
 <div class="math notranslate nohighlight" id="equation-crra-newton-1">
-<span class="eqno">(27.23)<a class="headerlink" href="#equation-crra-newton-1" title="Permalink to this equation">#</a></span>\[    f(k_{t+1}, k_t)
+<span class="eqno">(27.23)<a class="headerlink" href="#equation-crra-newton-1" title="Link to this equation">#</a></span>\[    f(k_{t+1}, k_t)
     =
     k_{t+1} 
     \left[ 
@@ -802,7 +813,7 @@ with our new aggregate supply function yields equilibrium capital.</p>
 <p>First let’s define <span class="math notranslate nohighlight">\(f\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">k_prime</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">k_prime</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
     <span class="n">α</span><span class="p">,</span> <span class="n">β</span><span class="p">,</span> <span class="n">γ</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">α</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">β</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">γ</span>
     <span class="n">z</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">α</span><span class="p">)</span> <span class="o">*</span> <span class="n">k</span><span class="o">**</span><span class="n">α</span>
     <span class="n">a</span> <span class="o">=</span> <span class="n">α</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">γ</span><span class="p">)</span>
@@ -816,7 +827,7 @@ with our new aggregate supply function yields equilibrium capital.</p>
 <p>Now let’s define a function that finds the value of <span class="math notranslate nohighlight">\(k_{t+1}\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">k_update</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">k_update</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">optimize</span><span class="o">.</span><span class="n">newton</span><span class="p">(</span><span class="k">lambda</span> <span class="n">k_prime</span><span class="p">:</span> <span class="n">f</span><span class="p">(</span><span class="n">k_prime</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">model</span><span class="p">),</span> <span class="mf">0.1</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -850,7 +861,8 @@ with our new aggregate supply function yields equilibrium capital.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/4783594ea94df124be914c4b1c8e65e3e338d1aacb8bac65059e7f5b36ec1362.png"><img alt="_images/4783594ea94df124be914c4b1c8e65e3e338d1aacb8bac65059e7f5b36ec1362.png" src="_images/4783594ea94df124be914c4b1c8e65e3e338d1aacb8bac65059e7f5b36ec1362.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/4783594ea94df124be914c4b1c8e65e3e338d1aacb8bac65059e7f5b36ec1362.png"><img alt="_images/4783594ea94df124be914c4b1c8e65e3e338d1aacb8bac65059e7f5b36ec1362.png" src="_images/4783594ea94df124be914c4b1c8e65e3e338d1aacb8bac65059e7f5b36ec1362.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 </section>
@@ -880,14 +892,14 @@ cannot be obtained analytically.</p>
 <p>We introduce a function <span class="math notranslate nohighlight">\(h\)</span> such that
 positive steady state is the root of <span class="math notranslate nohighlight">\(h\)</span>.</p>
 <div class="math notranslate nohighlight" id="equation-crra-newton-2">
-<span class="eqno">(27.24)<a class="headerlink" href="#equation-crra-newton-2" title="Permalink to this equation">#</a></span>\[    h(k^*) = k^*  
+<span class="eqno">(27.24)<a class="headerlink" href="#equation-crra-newton-2" title="Link to this equation">#</a></span>\[    h(k^*) = k^*  
     \left [ 
         1 + \beta^{-1/\gamma} (\alpha (k^*)^{\alpha-1})^{(\gamma-1)/\gamma} 
     \right ] - (1-\alpha)(k^*)^{\alpha}\]</div>
 <p>Here it is in Python</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">h</span><span class="p">(</span><span class="n">k_star</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">h</span><span class="p">(</span><span class="n">k_star</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
     <span class="n">α</span><span class="p">,</span> <span class="n">β</span><span class="p">,</span> <span class="n">γ</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">α</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">β</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">γ</span>
     <span class="n">z</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">α</span><span class="p">)</span> <span class="o">*</span> <span class="n">k_star</span><span class="o">**</span><span class="n">α</span>
     <span class="n">R1</span> <span class="o">=</span> <span class="n">α</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">γ</span><span class="p">)</span>
@@ -938,7 +950,7 @@ three distinct initial conditions, under the parameterization listed above.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">simulate_ts</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">k0_values</span><span class="p">,</span> <span class="n">ts_length</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">simulate_ts</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">k0_values</span><span class="p">,</span> <span class="n">ts_length</span><span class="p">):</span>
 
     <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 
@@ -970,7 +982,8 @@ three distinct initial conditions, under the parameterization listed above.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/f66670404f7b826b7a35be7056b859841d47529c7e81a011f965094795ab2bf5.png"><img alt="_images/f66670404f7b826b7a35be7056b859841d47529c7e81a011f965094795ab2bf5.png" src="_images/f66670404f7b826b7a35be7056b859841d47529c7e81a011f965094795ab2bf5.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/f66670404f7b826b7a35be7056b859841d47529c7e81a011f965094795ab2bf5.png"><img alt="_images/f66670404f7b826b7a35be7056b859841d47529c7e81a011f965094795ab2bf5.png" src="_images/f66670404f7b826b7a35be7056b859841d47529c7e81a011f965094795ab2bf5.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 </section>

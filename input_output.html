@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>40. Input-Output Models &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
@@ -70,15 +69,15 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=bd0785fbb14d8d2bd4d9ae501d79ed8d3bc089ec" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.5ea377869091fd0449014c60fc090103.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=4c010e0d" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -86,23 +85,22 @@
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script src="_static/scripts/quantecon-book-theme.js?digest=d9faaf6c4b57726f74ba012412af1f5681bdff87"></script>
+    <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
+    <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QDS1YRJNGM"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -111,12 +109,20 @@
                 gtag('config', 'G-QDS1YRJNGM');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QDS1YRJNGM');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"argmax": "arg\\,max", "argmin": "arg\\,min"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'input_output';</script>
     <link rel="canonical" href="https://intro.quantecon.org/input_output.html" />
-    <link rel="shortcut icon" href="_static/lectures-favicon.ico"/>
+    <link rel="icon" href="_static/lectures-favicon.ico"/>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -247,9 +253,9 @@
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="input-output-models">
-<h1><span class="section-number">40. </span>Input-Output Models<a class="headerlink" href="#input-output-models" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">40. </span>Input-Output Models<a class="headerlink" href="#input-output-models" title="Link to this heading">#</a></h1>
 <section id="overview">
-<h2><span class="section-number">40.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">40.1. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
 <p>This lecture requires the following imports and installs before we proceed.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
@@ -259,26 +265,25 @@
 </pre></div>
 </div>
 </div>
-<details class="hide below-input">
+<details class="admonition hide below-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show output</span>
-<span class="expanded">Hide code cell output</span>
+<p class="collapsed admonition-title">Show output</p>
+<p class="expanded admonition-title">Hide code cell output</p>
 </summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting quantecon_book_networks
-  Downloading quantecon_book_networks-1.4-py2.py3-none-any.whl.metadata (1.6 kB)
-Requirement already satisfied: numpy in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon_book_networks) (1.26.4)
+  Downloading quantecon_book_networks-1.5-py2.py3-none-any.whl.metadata (1.7 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numpy in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon_book_networks) (1.26.4)
 Requirement already satisfied: scipy in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon_book_networks) (1.13.1)
 Requirement already satisfied: pandas in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon_book_networks) (2.2.2)
 Requirement already satisfied: matplotlib in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon_book_networks) (3.9.2)
-Requirement already satisfied: pandas-datareader in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon_book_networks) (0.10.0)
 Requirement already satisfied: networkx in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon_book_networks) (3.3)
 Requirement already satisfied: wbgapi in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon_book_networks) (1.0.12)
 Requirement already satisfied: contourpy&gt;=1.0.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from matplotlib-&gt;quantecon_book_networks) (1.2.0)
 Requirement already satisfied: cycler&gt;=0.10 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from matplotlib-&gt;quantecon_book_networks) (0.11.0)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: fonttools&gt;=4.22.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from matplotlib-&gt;quantecon_book_networks) (4.51.0)
+Requirement already satisfied: fonttools&gt;=4.22.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from matplotlib-&gt;quantecon_book_networks) (4.51.0)
 Requirement already satisfied: kiwisolver&gt;=1.3.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from matplotlib-&gt;quantecon_book_networks) (1.4.4)
 Requirement already satisfied: packaging&gt;=20.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from matplotlib-&gt;quantecon_book_networks) (24.1)
 Requirement already satisfied: pillow&gt;=8 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from matplotlib-&gt;quantecon_book_networks) (10.4.0)
@@ -286,25 +291,26 @@ Requirement already satisfied: pyparsing&gt;=2.3.1 in /home/runner/miniconda3/en
 Requirement already satisfied: python-dateutil&gt;=2.7 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from matplotlib-&gt;quantecon_book_networks) (2.9.0.post0)
 Requirement already satisfied: pytz&gt;=2020.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas-&gt;quantecon_book_networks) (2024.1)
 Requirement already satisfied: tzdata&gt;=2022.7 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas-&gt;quantecon_book_networks) (2023.3)
-Requirement already satisfied: lxml in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas-datareader-&gt;quantecon_book_networks) (5.2.1)
-Requirement already satisfied: requests&gt;=2.19.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from pandas-datareader-&gt;quantecon_book_networks) (2.32.3)
+Requirement already satisfied: requests in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from wbgapi-&gt;quantecon_book_networks) (2.32.3)
 Requirement already satisfied: PyYAML in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from wbgapi-&gt;quantecon_book_networks) (6.0.1)
 Requirement already satisfied: tabulate in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from wbgapi-&gt;quantecon_book_networks) (0.9.0)
 Requirement already satisfied: six&gt;=1.5 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib-&gt;quantecon_book_networks) (1.16.0)
-Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader-&gt;quantecon_book_networks) (3.3.2)
-Requirement already satisfied: idna&lt;4,&gt;=2.5 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader-&gt;quantecon_book_networks) (3.7)
-Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader-&gt;quantecon_book_networks) (2.2.3)
-Requirement already satisfied: certifi&gt;=2017.4.17 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests&gt;=2.19.0-&gt;pandas-datareader-&gt;quantecon_book_networks) (2024.8.30)
-Downloading quantecon_book_networks-1.4-py2.py3-none-any.whl (365 kB)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests-&gt;wbgapi-&gt;quantecon_book_networks) (3.3.2)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests-&gt;wbgapi-&gt;quantecon_book_networks) (3.7)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests-&gt;wbgapi-&gt;quantecon_book_networks) (2.2.3)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from requests-&gt;wbgapi-&gt;quantecon_book_networks) (2024.8.30)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading quantecon_book_networks-1.5-py2.py3-none-any.whl (514 kB)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: quantecon_book_networks
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed quantecon_book_networks-1.4
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed quantecon_book_networks-1.5
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: quantecon in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (0.8.0)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: quantecon in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (0.8.1)
 Requirement already satisfied: numba&gt;=0.49.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon) (0.60.0)
 Requirement already satisfied: numpy&gt;=1.17.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon) (1.26.4)
 Requirement already satisfied: requests in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon) (2.32.3)
@@ -338,15 +344,15 @@ Requirement already satisfied: six&gt;=1.5 in /home/runner/miniconda3/envs/quant
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">quantecon_book_networks</span>
-<span class="kn">import</span> <span class="nn">quantecon_book_networks.input_output</span> <span class="k">as</span> <span class="nn">qbn_io</span>
-<span class="kn">import</span> <span class="nn">quantecon_book_networks.plotting</span> <span class="k">as</span> <span class="nn">qbn_plt</span>
-<span class="kn">import</span> <span class="nn">quantecon_book_networks.data</span> <span class="k">as</span> <span class="nn">qbn_data</span>
-<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
-<span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Polygon</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">networkx</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nx</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">quantecon_book_networks</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">quantecon_book_networks.input_output</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">qbn_io</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">quantecon_book_networks.plotting</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">qbn_plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">quantecon_book_networks.data</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">qbn_data</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpl</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="kn">import</span> <span class="n">Polygon</span>
 
 <span class="n">quantecon_book_networks</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;matplotlib&quot;</span><span class="p">)</span>
 <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">mpl</span><span class="o">.</span><span class="n">rcParamsDefault</span><span class="p">)</span>
@@ -358,13 +364,13 @@ Requirement already satisfied: six&gt;=1.5 in /home/runner/miniconda3/envs/quant
 obtained from the US Bureau of Economic Analysis’s 2021 Input-Output Accounts
 Data.</p>
 <div class="cell tag_hide-cell docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show content</span>
-<span class="expanded">Hide code cell content</span>
+<p class="collapsed admonition-title">Show content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">build_coefficient_matrices</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">build_coefficient_matrices</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Build coefficient matrices A and F from Z and X via</span>
 
@@ -392,10 +398,10 @@ Data.</p>
 </details>
 </div>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">centrality</span> <span class="o">=</span> <span class="n">qbn_io</span><span class="o">.</span><span class="n">eigenvector_centrality</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
@@ -421,21 +427,22 @@ Data.</p>
 </details>
 <div class="cell_output docutils container">
 <figure class="align-default" id="us-15sectors">
-<a class="reference internal image-reference" href="_images/a09cc809a4350b89f92871d5d0fe9e24fc415d8db079c0b0e9e1481709251a91.png"><img alt="_images/a09cc809a4350b89f92871d5d0fe9e24fc415d8db079c0b0e9e1481709251a91.png" src="_images/a09cc809a4350b89f92871d5d0fe9e24fc415d8db079c0b0e9e1481709251a91.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/a09cc809a4350b89f92871d5d0fe9e24fc415d8db079c0b0e9e1481709251a91.png"><img alt="_images/a09cc809a4350b89f92871d5d0fe9e24fc415d8db079c0b0e9e1481709251a91.png" src="_images/a09cc809a4350b89f92871d5d0fe9e24fc415d8db079c0b0e9e1481709251a91.png" style="width: 80%;" />
+</a>
 <figcaption>
-<p><span class="caption-number">Fig. 40.1 </span><span class="caption-text">US 15 sector production network</span><a class="headerlink" href="#us-15sectors" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 40.1 </span><span class="caption-text">US 15 sector production network</span><a class="headerlink" href="#us-15sectors" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
 </div>
-<div class="pst-scrollable-table-container"><table class="colwidths-auto table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="text-center head"><p>Label</p></th>
-<th class="text-center head"><p>Sector</p></th>
-<th class="text-center head"><p>Label</p></th>
-<th class="text-center head"><p>Sector</p></th>
-<th class="text-center head"><p>Label</p></th>
-<th class="text-center head"><p>Sector</p></th>
+<tr class="row-odd"><th class="head text-center"><p>Label</p></th>
+<th class="head text-center"><p>Sector</p></th>
+<th class="head text-center"><p>Label</p></th>
+<th class="head text-center"><p>Sector</p></th>
+<th class="head text-center"><p>Label</p></th>
+<th class="head text-center"><p>Sector</p></th>
 </tr>
 </thead>
 <tbody>
@@ -484,7 +491,7 @@ Data.</p>
 <p>After  introducing the input-output model, we describe some of its connections to <a class="reference internal" href="lp_intro.html"><span class="doc">linear programming lecture</span></a>.</p>
 </section>
 <section id="input-output-analysis">
-<h2><span class="section-number">40.2. </span>Input-output analysis<a class="headerlink" href="#input-output-analysis" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">40.2. </span>Input-output analysis<a class="headerlink" href="#input-output-analysis" title="Link to this heading">#</a></h2>
 <p>Let</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(x_0\)</span> be the amount of a single exogenous input to production, say labor</p></li>
@@ -502,14 +509,14 @@ Data.</p>
     x_j = \min_{i \in \{0, \ldots , n \}} \left( \frac{z_{ij}}{a_{ij}}\right)
 \]</div>
 <section id="two-goods">
-<h3><span class="section-number">40.2.1. </span>Two goods<a class="headerlink" href="#two-goods" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">40.2.1. </span>Two goods<a class="headerlink" href="#two-goods" title="Link to this heading">#</a></h3>
 <p>To illustrate, we begin by setting <span class="math notranslate nohighlight">\(n =2\)</span> and formulating
 the following network.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
@@ -550,7 +557,8 @@ the following network.</p>
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/c9c282cdc521360a6f44f1e3ec33143bdb1a166a775e621dbd013479195b960f.png"><img alt="_images/c9c282cdc521360a6f44f1e3ec33143bdb1a166a775e621dbd013479195b960f.png" src="_images/c9c282cdc521360a6f44f1e3ec33143bdb1a166a775e621dbd013479195b960f.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/c9c282cdc521360a6f44f1e3ec33143bdb1a166a775e621dbd013479195b960f.png"><img alt="_images/c9c282cdc521360a6f44f1e3ec33143bdb1a166a775e621dbd013479195b960f.png" src="_images/c9c282cdc521360a6f44f1e3ec33143bdb1a166a775e621dbd013479195b960f.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p><em>Feasible allocations must satisfy</em></p>
@@ -564,10 +572,10 @@ a_{01} x_1 + a_{02} x_2 &amp; \leq x_0
 \]</div>
 <p>This can be graphically represented as follows.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
@@ -602,12 +610,13 @@ a_{01} x_1 + a_{02} x_2 &amp; \leq x_0
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/4cc66d3103f7d85d80a7102140273e830eb53fc96a9419811e3948853cbf9da4.png"><img alt="_images/4cc66d3103f7d85d80a7102140273e830eb53fc96a9419811e3948853cbf9da4.png" src="_images/4cc66d3103f7d85d80a7102140273e830eb53fc96a9419811e3948853cbf9da4.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/4cc66d3103f7d85d80a7102140273e830eb53fc96a9419811e3948853cbf9da4.png"><img alt="_images/4cc66d3103f7d85d80a7102140273e830eb53fc96a9419811e3948853cbf9da4.png" src="_images/4cc66d3103f7d85d80a7102140273e830eb53fc96a9419811e3948853cbf9da4.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>More generally,   constraints on production are</p>
 <div class="math notranslate nohighlight" id="equation-eq-inout-1">
-<span class="eqno">(40.1)<a class="headerlink" href="#equation-eq-inout-1" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(40.1)<a class="headerlink" href="#equation-eq-inout-1" title="Link to this equation">#</a></span>\[
 \begin{aligned}
 (I - A) x &amp;  \geq d \cr
 a_0^\top x &amp; \leq x_0
@@ -616,7 +625,7 @@ a_0^\top x &amp; \leq x_0
 <p>where <span class="math notranslate nohighlight">\(A\)</span> is the <span class="math notranslate nohighlight">\(n \times n\)</span> matrix with typical element <span class="math notranslate nohighlight">\(a_{ij}\)</span> and <span class="math notranslate nohighlight">\(a_0^\top = \begin{bmatrix} a_{01} &amp; \cdots &amp; a_{0n} \end{bmatrix}\)</span>.</p>
 <p>If we solve the first block of equations of <a class="reference internal" href="#equation-eq-inout-1">(40.1)</a> for gross output <span class="math notranslate nohighlight">\(x\)</span> we get</p>
 <div class="math notranslate nohighlight" id="equation-eq-inout-2">
-<span class="eqno">(40.2)<a class="headerlink" href="#equation-eq-inout-2" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(40.2)<a class="headerlink" href="#equation-eq-inout-2" title="Link to this equation">#</a></span>\[
 x = (I -A)^{-1} d \equiv L d
 \]</div>
 <p>where the matrix <span class="math notranslate nohighlight">\(L = (I-A)^{-1}\)</span> is sometimes called  a <strong>Leontief Inverse</strong>.</p>
@@ -633,7 +642,7 @@ x = (I -A)^{-1} d \equiv L d
 <section class="example-content" id="proof-content">
 <p>For example a two-good economy described by</p>
 <div class="math notranslate nohighlight" id="equation-eq-inout-ex">
-<span class="eqno">(40.3)<a class="headerlink" href="#equation-eq-inout-ex" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(40.3)<a class="headerlink" href="#equation-eq-inout-ex" title="Link to this equation">#</a></span>\[\begin{split}
 A =
 \begin{bmatrix}
     0.1 &amp; 40 \\
@@ -716,7 +725,7 @@ d =
 </section>
 </section>
 <section id="production-possibility-frontier">
-<h2><span class="section-number">40.3. </span>Production possibility frontier<a class="headerlink" href="#production-possibility-frontier" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">40.3. </span>Production possibility frontier<a class="headerlink" href="#production-possibility-frontier" title="Link to this heading">#</a></h2>
 <p>The second equation of <a class="reference internal" href="#equation-eq-inout-1">(40.1)</a> can be written</p>
 <div class="math notranslate nohighlight">
 \[
@@ -724,7 +733,7 @@ a_0^\top x = x_0
 \]</div>
 <p>or</p>
 <div class="math notranslate nohighlight" id="equation-eq-inout-frontier">
-<span class="eqno">(40.4)<a class="headerlink" href="#equation-eq-inout-frontier" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(40.4)<a class="headerlink" href="#equation-eq-inout-frontier" title="Link to this equation">#</a></span>\[
 A_0^\top d = x_0
 \]</div>
 <p>where</p>
@@ -768,7 +777,7 @@ a_0^\top = \begin{bmatrix}
 \]</div>
 </section>
 <section id="prices">
-<h2><span class="section-number">40.4. </span>Prices<a class="headerlink" href="#prices" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">40.4. </span>Prices<a class="headerlink" href="#prices" title="Link to this heading">#</a></h2>
 <p><span id="id1">[<a class="reference internal" href="zreferences.html#id59" title="Robert Dorfman, Paul A. Samuelson, and Robert M. Solow. Linear Programming and Economic Analysis: Revised Edition. McGraw Hill, New York, 1958.">Dorfman <em>et al.</em>, 1958</a>]</span> argue that relative prices of the <span class="math notranslate nohighlight">\(n\)</span> produced goods must satisfy</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -787,7 +796,7 @@ of production, which consists of costs of intermediate inputs <span class="math 
 plus costs of labor <span class="math notranslate nohighlight">\(a_0 w\)</span>.</p>
 <p>This equation can be written as</p>
 <div class="math notranslate nohighlight" id="equation-eq-inout-price">
-<span class="eqno">(40.5)<a class="headerlink" href="#equation-eq-inout-price" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(40.5)<a class="headerlink" href="#equation-eq-inout-price" title="Link to this equation">#</a></span>\[
 (I - A^\top) p = a_0 w
 \]</div>
 <p>which implies</p>
@@ -801,7 +810,7 @@ that are transposes of one another.</p>
 <p>This connection surfaces again in a classic linear program and its dual.</p>
 </section>
 <section id="linear-programs">
-<h2><span class="section-number">40.5. </span>Linear programs<a class="headerlink" href="#linear-programs" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">40.5. </span>Linear programs<a class="headerlink" href="#linear-programs" title="Link to this heading">#</a></h2>
 <p>A <strong>primal</strong> problem is</p>
 <div class="math notranslate nohighlight">
 \[
@@ -833,10 +842,10 @@ w a_0^\top x^* = p^* d
 <p>where <span class="math notranslate nohighlight">\(^*\)</span>’s denote optimal choices for the primal and dual problems.</p>
 <p>The dual problem can be graphically represented as follows.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
@@ -870,12 +879,13 @@ w a_0^\top x^* = p^* d
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/ef9d944904d52d5ce0fcb6ccea74b3245633be365287f4cd8d05af257e761a53.png"><img alt="_images/ef9d944904d52d5ce0fcb6ccea74b3245633be365287f4cd8d05af257e761a53.png" src="_images/ef9d944904d52d5ce0fcb6ccea74b3245633be365287f4cd8d05af257e761a53.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/ef9d944904d52d5ce0fcb6ccea74b3245633be365287f4cd8d05af257e761a53.png"><img alt="_images/ef9d944904d52d5ce0fcb6ccea74b3245633be365287f4cd8d05af257e761a53.png" src="_images/ef9d944904d52d5ce0fcb6ccea74b3245633be365287f4cd8d05af257e761a53.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 </section>
 <section id="leontief-inverse">
-<h2><span class="section-number">40.6. </span>Leontief inverse<a class="headerlink" href="#leontief-inverse" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">40.6. </span>Leontief inverse<a class="headerlink" href="#leontief-inverse" title="Link to this heading">#</a></h2>
 <p>We have discussed that gross output <span class="math notranslate nohighlight">\(x\)</span> is given by <a class="reference internal" href="#equation-eq-inout-2">(40.2)</a>, where <span class="math notranslate nohighlight">\(L\)</span> is called the Leontief Inverse.</p>
 <p>Recall the <a class="reference internal" href="eigen_II.html"><span class="doc">Neumann Series Lemma</span></a> which states that <span class="math notranslate nohighlight">\(L\)</span> exists if the spectral radius <span class="math notranslate nohighlight">\(r(A)&lt;1\)</span>.</p>
 <p>In fact</p>
@@ -884,7 +894,7 @@ w a_0^\top x^* = p^* d
 L = \sum_{i=0}^{\infty} A^i
 \]</div>
 <section id="demand-shocks">
-<h3><span class="section-number">40.6.1. </span>Demand shocks<a class="headerlink" href="#demand-shocks" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">40.6.1. </span>Demand shocks<a class="headerlink" href="#demand-shocks" title="Link to this heading">#</a></h3>
 <p>Consider the impact of a demand shock <span class="math notranslate nohighlight">\(\Delta d\)</span> which shifts demand from <span class="math notranslate nohighlight">\(d_0\)</span> to <span class="math notranslate nohighlight">\(d_1 = d_0 + \Delta d\)</span>.</p>
 <p>Gross output shifts from <span class="math notranslate nohighlight">\(x_0 = Ld_0\)</span> to <span class="math notranslate nohighlight">\(x_1 = Ld_1\)</span>.</p>
 <p>If <span class="math notranslate nohighlight">\(r(A) &lt; 1\)</span> then a solution exists and</p>
@@ -896,7 +906,7 @@ L = \sum_{i=0}^{\infty} A^i
 </section>
 </section>
 <section id="applications-of-graph-theory">
-<h2><span class="section-number">40.7. </span>Applications of graph theory<a class="headerlink" href="#applications-of-graph-theory" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">40.7. </span>Applications of graph theory<a class="headerlink" href="#applications-of-graph-theory" title="Link to this heading">#</a></h2>
 <p>We can further study input-output networks through applications of <a class="reference internal" href="networks.html"><span class="doc">graph theory</span></a>.</p>
 <p>An input-output network can be represented by a weighted directed graph induced by the adjacency matrix <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <p>The set of nodes <span class="math notranslate nohighlight">\(V = [n]\)</span> is the list of sectors and the set of edges is given by</p>
@@ -907,7 +917,7 @@ E = \{(i,j) \in V \times V : a_{ij}&gt;0\}
 <p>In <a class="reference internal" href="#us-15sectors"><span class="std std-numref">Fig. 40.1</span></a> weights are indicated by the widths of the arrows, which are proportional to the corresponding input-output coefficients.</p>
 <p>We can now use centrality measures to rank sectors and discuss their importance relative to the other sectors.</p>
 <section id="eigenvector-centrality">
-<h3><span class="section-number">40.7.1. </span>Eigenvector centrality<a class="headerlink" href="#eigenvector-centrality" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">40.7.1. </span>Eigenvector centrality<a class="headerlink" href="#eigenvector-centrality" title="Link to this heading">#</a></h3>
 <p>Eigenvector centrality of a node <span class="math notranslate nohighlight">\(i\)</span> is measured by</p>
 <div class="math notranslate nohighlight">
 \[
@@ -917,10 +927,10 @@ E = \{(i,j) \in V \times V : a_{ij}&gt;0\}
 \]</div>
 <p>We plot a bar graph of hub-based eigenvector centrality for the sectors represented in <a class="reference internal" href="#us-15sectors"><span class="std std-numref">Fig. 40.1</span></a>.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
@@ -932,7 +942,8 @@ E = \{(i,j) \in V \times V : a_{ij}&gt;0\}
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/978086082c362356d877d184562f4b3210fb4487735d682ffcc320af47cf5e84.png"><img alt="_images/978086082c362356d877d184562f4b3210fb4487735d682ffcc320af47cf5e84.png" src="_images/978086082c362356d877d184562f4b3210fb4487735d682ffcc320af47cf5e84.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/978086082c362356d877d184562f4b3210fb4487735d682ffcc320af47cf5e84.png"><img alt="_images/978086082c362356d877d184562f4b3210fb4487735d682ffcc320af47cf5e84.png" src="_images/978086082c362356d877d184562f4b3210fb4487735d682ffcc320af47cf5e84.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>A higher measure indicates higher importance as a supplier.</p>
@@ -940,7 +951,7 @@ E = \{(i,j) \in V \times V : a_{ij}&gt;0\}
 <p>The above figure indicates that manufacturing is the most dominant sector in the US economy.</p>
 </section>
 <section id="output-multipliers">
-<h3><span class="section-number">40.7.2. </span>Output multipliers<a class="headerlink" href="#output-multipliers" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">40.7.2. </span>Output multipliers<a class="headerlink" href="#output-multipliers" title="Link to this heading">#</a></h3>
 <p>Another way to rank sectors in input-output networks is via output multipliers.</p>
 <p>The <strong>output multiplier</strong> of sector <span class="math notranslate nohighlight">\(j\)</span> denoted by <span class="math notranslate nohighlight">\(\mu_j\)</span> is usually defined as the
 total sector-wide impact of a unit change of demand in sector <span class="math notranslate nohighlight">\(j\)</span>.</p>
@@ -962,10 +973,10 @@ total sector-wide impact of a unit change of demand in sector <span class="math 
 <p>The following figure displays the output multipliers for the sectors represented
 in <a class="reference internal" href="#us-15sectors"><span class="std std-numref">Fig. 40.1</span></a>.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">,</span> <span class="n">F</span> <span class="o">=</span> <span class="n">build_coefficient_matrices</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
@@ -981,14 +992,15 @@ in <a class="reference internal" href="#us-15sectors"><span class="std std-numre
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/b83564577a00a9940328b12114359c4a6b1a21feb902693116a027b63471fd89.png"><img alt="_images/b83564577a00a9940328b12114359c4a6b1a21feb902693116a027b63471fd89.png" src="_images/b83564577a00a9940328b12114359c4a6b1a21feb902693116a027b63471fd89.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/b83564577a00a9940328b12114359c4a6b1a21feb902693116a027b63471fd89.png"><img alt="_images/b83564577a00a9940328b12114359c4a6b1a21feb902693116a027b63471fd89.png" src="_images/b83564577a00a9940328b12114359c4a6b1a21feb902693116a027b63471fd89.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>We observe that manufacturing and agriculture are highest ranking sectors.</p>
 </section>
 </section>
 <section id="exercises">
-<h2><span class="section-number">40.8. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">40.8. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
 <div class="exercise admonition" id="io_ex1">
 
 <p class="admonition-title"><span class="caption-number">Exercise 40.1 </span></p>

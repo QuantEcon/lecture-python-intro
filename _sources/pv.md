@@ -339,8 +339,6 @@ $$ (eq:Ainv)
 
 Check this by showing that $A A^{-1}$ is equal to the identity matrix.
 
-
-
 ```{exercise-end}
 ```
 
@@ -473,8 +471,6 @@ following settings for $d$ and $p_{T+1}^*$:
 Plugging each of the above $p_{T+1}^*, d_t$  pairs into Equation {eq}`eq:ptpveq` yields:
 
 1. $   p_t = \sum^T_{s=t} \delta^{s-t} g^s d_0     = d_t \frac{1 - (\delta g)^{T+1-t}}{1 - \delta g}$
-   
-
 2. $p_t = \sum^T_{s=t} \delta^{s-t} g^s d_0 + \frac{\delta^{T+1-t} g^{T+1} d_0}{1 - \delta g} =  \frac{d_t}{1 - \delta g}$
 3. $p_t = 0$
 4. $p_t = c \delta^{-t}$

@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>46. Maximum Likelihood Estimation &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
@@ -70,15 +69,15 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=bd0785fbb14d8d2bd4d9ae501d79ed8d3bc089ec" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.5ea377869091fd0449014c60fc090103.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=4c010e0d" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -86,23 +85,22 @@
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script src="_static/scripts/quantecon-book-theme.js?digest=d9faaf6c4b57726f74ba012412af1f5681bdff87"></script>
+    <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
+    <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QDS1YRJNGM"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -111,12 +109,20 @@
                 gtag('config', 'G-QDS1YRJNGM');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QDS1YRJNGM');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"argmax": "arg\\,max", "argmin": "arg\\,min"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'mle';</script>
     <link rel="canonical" href="https://intro.quantecon.org/mle.html" />
-    <link rel="shortcut icon" href="_static/lectures-favicon.ico"/>
+    <link rel="icon" href="_static/lectures-favicon.ico"/>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -239,21 +245,21 @@
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="maximum-likelihood-estimation">
-<h1><span class="section-number">46. </span>Maximum Likelihood Estimation<a class="headerlink" href="#maximum-likelihood-estimation" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">46. </span>Maximum Likelihood Estimation<a class="headerlink" href="#maximum-likelihood-estimation" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">lognorm</span><span class="p">,</span> <span class="n">pareto</span><span class="p">,</span> <span class="n">expon</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">quad</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">exp</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">lognorm</span><span class="p">,</span> <span class="n">pareto</span><span class="p">,</span> <span class="n">expon</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.integrate</span><span class="w"> </span><span class="kn">import</span> <span class="n">quad</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">exp</span>
 </pre></div>
 </div>
 </div>
 </div>
 <section id="introduction">
-<h2><span class="section-number">46.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">46.1. </span>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p>Consider a situation where a policymaker is trying to estimate how much revenue
 a proposed wealth tax will raise.</p>
 <p>The proposed tax is</p>
@@ -279,7 +285,7 @@ a proposed wealth tax will raise.</p>
 </div><p>Let’s go ahead and define <span class="math notranslate nohighlight">\(h\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">h</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">w_bar</span><span class="o">=</span><span class="mf">2.5</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">h</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">w_bar</span><span class="o">=</span><span class="mf">2.5</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">w</span> <span class="o">&lt;=</span> <span class="n">w_bar</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">w</span>
     <span class="k">else</span><span class="p">:</span>
@@ -311,10 +317,10 @@ is just too hard.</p>
 <a class="reference external" href="https://en.wikipedia.org/wiki/Survey_of_Consumer_Finances">Survey of Consumer Finances</a> (SCF).</p>
 <p>The following code imports this data  and reads it into an array called <code class="docutils literal notranslate"><span class="pre">sample</span></code>.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://media.githubusercontent.com/media/QuantEcon/high_dim_data/update_scf_noweights/SCF_plus/SCF_plus_mini_no_weights.csv&#39;</span>
@@ -346,7 +352,8 @@ is just too hard.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/95bad22eeeb1de59831d3fb53b41e82deefa21a435ef42c8c642b09387b1b6d2.png"><img alt="_images/95bad22eeeb1de59831d3fb53b41e82deefa21a435ef42c8c642b09387b1b6d2.png" src="_images/95bad22eeeb1de59831d3fb53b41e82deefa21a435ef42c8c642b09387b1b6d2.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/95bad22eeeb1de59831d3fb53b41e82deefa21a435ef42c8c642b09387b1b6d2.png"><img alt="_images/95bad22eeeb1de59831d3fb53b41e82deefa21a435ef42c8c642b09387b1b6d2.png" src="_images/95bad22eeeb1de59831d3fb53b41e82deefa21a435ef42c8c642b09387b1b6d2.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>The histogram shows that many people have very low wealth and a few people have
@@ -363,7 +370,7 @@ very high wealth.</p>
 <p>Our plan is to assume that wealth of each individual is a draw from a distribution with density <span class="math notranslate nohighlight">\(f\)</span>.</p>
 <p>If we obtain an estimate of <span class="math notranslate nohighlight">\(f\)</span> we can then approximate <span class="math notranslate nohighlight">\(T\)</span> as follows:</p>
 <div class="math notranslate nohighlight" id="equation-eq-est-rev">
-<span class="eqno">(46.1)<a class="headerlink" href="#equation-eq-est-rev" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(46.1)<a class="headerlink" href="#equation-eq-est-rev" title="Link to this equation">#</a></span>\[
     T = \sum_{i=1}^{N} h(w_i) 
       = N \frac{1}{N} \sum_{i=1}^{N} h(w_i) 
       \approx N \int_{0}^{\infty} h(w)f(w) dw
@@ -372,7 +379,7 @@ very high wealth.</p>
 <p>The problem now is: how do we estimate <span class="math notranslate nohighlight">\(f\)</span>?</p>
 </section>
 <section id="id1">
-<h2><span class="section-number">46.2. </span>Maximum likelihood estimation<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">46.2. </span>Maximum likelihood estimation<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Maximum_likelihood_estimation">Maximum likelihood estimation</a>
 is a method of estimating an unknown distribution.</p>
 <p>Maximum likelihood estimation has two steps:</p>
@@ -399,7 +406,8 @@ like a bell-shaped curve.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/a20bce915c3ec326284e59501792ea7d96ca42f7486483d202c2afb858186f69.png"><img alt="_images/a20bce915c3ec326284e59501792ea7d96ca42f7486483d202c2afb858186f69.png" src="_images/a20bce915c3ec326284e59501792ea7d96ca42f7486483d202c2afb858186f69.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/a20bce915c3ec326284e59501792ea7d96ca42f7486483d202c2afb858186f69.png"><img alt="_images/a20bce915c3ec326284e59501792ea7d96ca42f7486483d202c2afb858186f69.png" src="_images/a20bce915c3ec326284e59501792ea7d96ca42f7486483d202c2afb858186f69.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>Now our job is to obtain the maximum likelihood estimates of <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span>, which
@@ -500,7 +508,8 @@ let’s compute them for our wealth sample.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/3c3fb0364963917d41b13675bf9dcaa92dd7ff44952f53982cbca4a8dabc5e8a.png"><img alt="_images/3c3fb0364963917d41b13675bf9dcaa92dd7ff44952f53982cbca4a8dabc5e8a.png" src="_images/3c3fb0364963917d41b13675bf9dcaa92dd7ff44952f53982cbca4a8dabc5e8a.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/3c3fb0364963917d41b13675bf9dcaa92dd7ff44952f53982cbca4a8dabc5e8a.png"><img alt="_images/3c3fb0364963917d41b13675bf9dcaa92dd7ff44952f53982cbca4a8dabc5e8a.png" src="_images/3c3fb0364963917d41b13675bf9dcaa92dd7ff44952f53982cbca4a8dabc5e8a.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>Our estimated lognormal distribution appears to be a reasonable fit for the overall data.</p>
@@ -510,7 +519,7 @@ let’s compute them for our wealth sample.</p>
 function</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">total_revenue</span><span class="p">(</span><span class="n">dist</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">total_revenue</span><span class="p">(</span><span class="n">dist</span><span class="p">):</span>
     <span class="n">integral</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">quad</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">h</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">dist</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100_000</span><span class="p">)</span>
     <span class="n">T</span> <span class="o">=</span> <span class="n">N</span> <span class="o">*</span> <span class="n">integral</span>
     <span class="k">return</span> <span class="n">T</span>
@@ -535,7 +544,7 @@ function</p>
 times as large.)</p>
 </section>
 <section id="pareto-distribution">
-<h2><span class="section-number">46.3. </span>Pareto distribution<a class="headerlink" href="#pareto-distribution" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">46.3. </span>Pareto distribution<a class="headerlink" href="#pareto-distribution" title="Link to this heading">#</a></h2>
 <p>We mentioned above that using maximum likelihood estimation requires us to make
 a prior assumption of the underlying distribution.</p>
 <p>Previously we assumed that the distribution is lognormal.</p>
@@ -622,14 +631,15 @@ with parameters <span class="math notranslate nohighlight">\(b\)</span> and <spa
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/108effc3cede404c88c72e6e595341539e994e911a1c395afec9eaafb60b562a.png"><img alt="_images/108effc3cede404c88c72e6e595341539e994e911a1c395afec9eaafb60b562a.png" src="_images/108effc3cede404c88c72e6e595341539e994e911a1c395afec9eaafb60b562a.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/108effc3cede404c88c72e6e595341539e994e911a1c395afec9eaafb60b562a.png"><img alt="_images/108effc3cede404c88c72e6e595341539e994e911a1c395afec9eaafb60b562a.png" src="_images/108effc3cede404c88c72e6e595341539e994e911a1c395afec9eaafb60b562a.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>We observe that in this case the fit for the Pareto distribution is not very
 good, so we can probably reject it.</p>
 </section>
 <section id="what-is-the-best-distribution">
-<h2><span class="section-number">46.4. </span>What is the best distribution?<a class="headerlink" href="#what-is-the-best-distribution" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">46.4. </span>What is the best distribution?<a class="headerlink" href="#what-is-the-best-distribution" title="Link to this heading">#</a></h2>
 <p>There is no “best” distribution — every choice we make is an assumption.</p>
 <p>All we can do is try to pick a distribution that fits the data well.</p>
 <p>The plots above suggested that the lognormal distribution is optimal.</p>
@@ -637,10 +647,10 @@ good, so we can probably reject it.</p>
 <p>To see this, let’s now set a minimum threshold of net worth in our dataset.</p>
 <p>We set an arbitrary threshold of $500,000 and read the data into <code class="docutils literal notranslate"><span class="pre">sample_tail</span></code>.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_tail</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;n_wealth&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">500_000</span> <span class="p">]</span>
@@ -664,12 +674,13 @@ good, so we can probably reject it.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/cd734167a933e9858675680df85b2ea4f19a932c276ce1e60a5dfa20331d475c.png"><img alt="_images/cd734167a933e9858675680df85b2ea4f19a932c276ce1e60a5dfa20331d475c.png" src="_images/cd734167a933e9858675680df85b2ea4f19a932c276ce1e60a5dfa20331d475c.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/cd734167a933e9858675680df85b2ea4f19a932c276ce1e60a5dfa20331d475c.png"><img alt="_images/cd734167a933e9858675680df85b2ea4f19a932c276ce1e60a5dfa20331d475c.png" src="_images/cd734167a933e9858675680df85b2ea4f19a932c276ce1e60a5dfa20331d475c.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>Now let’s try fitting some distributions to this data.</p>
 <section id="lognormal-distribution-for-the-right-hand-tail">
-<h3><span class="section-number">46.4.1. </span>Lognormal distribution for the right hand tail<a class="headerlink" href="#lognormal-distribution-for-the-right-hand-tail" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">46.4.1. </span>Lognormal distribution for the right hand tail<a class="headerlink" href="#lognormal-distribution-for-the-right-hand-tail" title="Link to this heading">#</a></h3>
 <p>Let’s start with the lognormal distribution</p>
 <p>We estimate the parameters again and plot the density against our data.</p>
 <div class="cell docutils container">
@@ -690,14 +701,15 @@ good, so we can probably reject it.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/94f1123aebe8bab09e7c5b0e0be701a83e7e8ca80c97dcb2c7fb6bcbcffafa16.png"><img alt="_images/94f1123aebe8bab09e7c5b0e0be701a83e7e8ca80c97dcb2c7fb6bcbcffafa16.png" src="_images/94f1123aebe8bab09e7c5b0e0be701a83e7e8ca80c97dcb2c7fb6bcbcffafa16.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/94f1123aebe8bab09e7c5b0e0be701a83e7e8ca80c97dcb2c7fb6bcbcffafa16.png"><img alt="_images/94f1123aebe8bab09e7c5b0e0be701a83e7e8ca80c97dcb2c7fb6bcbcffafa16.png" src="_images/94f1123aebe8bab09e7c5b0e0be701a83e7e8ca80c97dcb2c7fb6bcbcffafa16.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>While the lognormal distribution was a good fit for the entire dataset,
 it is not a good fit for the right hand tail.</p>
 </section>
 <section id="pareto-distribution-for-the-right-hand-tail">
-<h3><span class="section-number">46.4.2. </span>Pareto distribution for the right hand tail<a class="headerlink" href="#pareto-distribution-for-the-right-hand-tail" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">46.4.2. </span>Pareto distribution for the right hand tail<a class="headerlink" href="#pareto-distribution-for-the-right-hand-tail" title="Link to this heading">#</a></h3>
 <p>Let’s now assume the truncated dataset has a Pareto distribution.</p>
 <p>We estimate the parameters again and plot the density against our data.</p>
 <div class="cell docutils container">
@@ -717,13 +729,14 @@ it is not a good fit for the right hand tail.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/6b983a047adb6194ebf8ba2a7a21aa26542ac78b545d7f1eb51cce725870651d.png"><img alt="_images/6b983a047adb6194ebf8ba2a7a21aa26542ac78b545d7f1eb51cce725870651d.png" src="_images/6b983a047adb6194ebf8ba2a7a21aa26542ac78b545d7f1eb51cce725870651d.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/6b983a047adb6194ebf8ba2a7a21aa26542ac78b545d7f1eb51cce725870651d.png"><img alt="_images/6b983a047adb6194ebf8ba2a7a21aa26542ac78b545d7f1eb51cce725870651d.png" src="_images/6b983a047adb6194ebf8ba2a7a21aa26542ac78b545d7f1eb51cce725870651d.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>The Pareto distribution is a better fit for the right hand tail of our dataset.</p>
 </section>
 <section id="so-what-is-the-best-distribution">
-<h3><span class="section-number">46.4.3. </span>So what is the best distribution?<a class="headerlink" href="#so-what-is-the-best-distribution" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">46.4.3. </span>So what is the best distribution?<a class="headerlink" href="#so-what-is-the-best-distribution" title="Link to this heading">#</a></h3>
 <p>As we said above, there is no “best” distribution — each choice is an
 assumption.</p>
 <p>We just have to test what we think are reasonable distributions.</p>
@@ -734,7 +747,7 @@ they have completed these lectures).</p>
 </section>
 </section>
 <section id="exercises">
-<h2><span class="section-number">46.5. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">46.5. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
 <div class="exercise admonition" id="mle_ex1">
 
 <p class="admonition-title"><span class="caption-number">Exercise 46.1 </span></p>
@@ -810,7 +823,8 @@ distributed with parameter <span class="math notranslate nohighlight">\(\lambda 
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/2e1cfd058b450582af1a08ffbf82dc2eaca0dee96c1344092882004b1227f5b9.png"><img alt="_images/2e1cfd058b450582af1a08ffbf82dc2eaca0dee96c1344092882004b1227f5b9.png" src="_images/2e1cfd058b450582af1a08ffbf82dc2eaca0dee96c1344092882004b1227f5b9.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/2e1cfd058b450582af1a08ffbf82dc2eaca0dee96c1344092882004b1227f5b9.png"><img alt="_images/2e1cfd058b450582af1a08ffbf82dc2eaca0dee96c1344092882004b1227f5b9.png" src="_images/2e1cfd058b450582af1a08ffbf82dc2eaca0dee96c1344092882004b1227f5b9.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>Clearly, this distribution is not a good fit for our data.</p>

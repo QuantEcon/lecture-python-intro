@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>4. Price Level Histories &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
@@ -70,15 +69,15 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=bd0785fbb14d8d2bd4d9ae501d79ed8d3bc089ec" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.5ea377869091fd0449014c60fc090103.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=4c010e0d" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -86,23 +85,22 @@
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script src="_static/scripts/quantecon-book-theme.js?digest=d9faaf6c4b57726f74ba012412af1f5681bdff87"></script>
+    <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
+    <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QDS1YRJNGM"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -111,12 +109,20 @@
                 gtag('config', 'G-QDS1YRJNGM');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QDS1YRJNGM');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"argmax": "arg\\,max", "argmin": "arg\\,min"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'inflation_history';</script>
     <link rel="canonical" href="https://intro.quantecon.org/inflation_history.html" />
-    <link rel="shortcut icon" href="_static/lectures-favicon.ico"/>
+    <link rel="icon" href="_static/lectures-favicon.ico"/>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -238,7 +244,7 @@
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="price-level-histories">
-<h1><span class="section-number">4. </span>Price Level Histories<a class="headerlink" href="#price-level-histories" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">4. </span>Price Level Histories<a class="headerlink" href="#price-level-histories" title="Link to this heading">#</a></h1>
 <p>This lecture offers some historical evidence about fluctuations in levels of aggregate price indexes.</p>
 <p>Let’s start by installing the necessary Python packages.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">xlrd</span></code> package is used by <code class="docutils literal notranslate"><span class="pre">pandas</span></code> to perform operations on Excel files.</p>
@@ -248,37 +254,37 @@
 </pre></div>
 </div>
 </div>
-<details class="hide below-input">
+<details class="admonition hide below-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show output</span>
-<span class="expanded">Hide code cell output</span>
+<p class="collapsed admonition-title">Show output</p>
+<p class="expanded admonition-title">Hide code cell output</p>
 </summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting xlrd
+  Downloading xlrd-2.0.2-py2.py3-none-any.whl.metadata (3.5 kB)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading xlrd-2.0.1-py2.py3-none-any.whl.metadata (3.4 kB)
-Downloading xlrd-2.0.1-py2.py3-none-any.whl (96 kB)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading xlrd-2.0.2-py2.py3-none-any.whl (96 kB)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: xlrd
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed xlrd-2.0.1
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed xlrd-2.0.2
 </pre></div>
 </div>
 </div>
 </details>
 </div>
 <!-- Check for pandas>=2.1.4 for Google Collab Compat --><div class="cell tag_hide-cell docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show content</span>
-<span class="expanded">Hide code cell content</span>
+<p class="collapsed admonition-title">Show content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">importlib.metadata</span> <span class="kn">import</span> <span class="n">version</span>
-<span class="kn">from</span> <span class="nn">packaging.version</span> <span class="kn">import</span> <span class="n">Version</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">importlib.metadata</span><span class="w"> </span><span class="kn">import</span> <span class="n">version</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">packaging.version</span><span class="w"> </span><span class="kn">import</span> <span class="n">Version</span>
 
 <span class="k">if</span> <span class="n">Version</span><span class="p">(</span><span class="n">version</span><span class="p">(</span><span class="s2">&quot;pandas&quot;</span><span class="p">))</span> <span class="o">&lt;</span> <span class="n">Version</span><span class="p">(</span><span class="s1">&#39;2.1.4&#39;</span><span class="p">):</span>
     <span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;pandas&gt;=2.1.4&quot;</span>
@@ -290,10 +296,10 @@ Downloading xlrd-2.0.1-py2.py3-none-any.whl (96 kB)
 <p>We can then import the Python modules we will use.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">matplotlib.dates</span> <span class="k">as</span> <span class="nn">mdates</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.dates</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mdates</span>
 </pre></div>
 </div>
 </div>
@@ -310,7 +316,7 @@ Downloading xlrd-2.0.1-py2.py3-none-any.whl (96 kB)
 <p>This lecture sets the stage for some subsequent lectures about a theory that macro economists use to think about determinants of the price level, namely, <a class="reference internal" href="cagan_ree.html"><span class="doc">A Monetarist Theory of Price Levels</span></a> and <a class="reference internal" href="cagan_adaptive.html"><span class="doc">Monetarist Theory of Price Levels with Adaptive Expectations</span></a></p>
 </div>
 <section id="four-centuries-of-price-levels">
-<h2><span class="section-number">4.1. </span>Four centuries of price levels<a class="headerlink" href="#four-centuries-of-price-levels" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">4.1. </span>Four centuries of price levels<a class="headerlink" href="#four-centuries-of-price-levels" title="Link to this heading">#</a></h2>
 <p>We begin by displaying data that originally appeared on page 35 of <span id="id1">[<a class="reference internal" href="zreferences.html#id12" title="Thomas J Sargent and François R Velde. The Big Problem of Small Change. Princeton University Press, Princeton, New Jersey, 2002.">Sargent and Velde, 2002</a>]</span> that show price levels for four “hard currency” countries from 1600 to 1914.</p>
 <ul class="simple">
 <li><p>France</p></li>
@@ -363,9 +369,10 @@ Downloading xlrd-2.0.1-py2.py3-none-any.whl (96 kB)
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="lrpl">
-<a class="reference internal image-reference" href="_images/d6ff8165b647a0b3fa60f8a6bba27945d5ad73ab7143dbf310ad20b6f17865c9.png"><img alt="_images/d6ff8165b647a0b3fa60f8a6bba27945d5ad73ab7143dbf310ad20b6f17865c9.png" src="_images/d6ff8165b647a0b3fa60f8a6bba27945d5ad73ab7143dbf310ad20b6f17865c9.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/d6ff8165b647a0b3fa60f8a6bba27945d5ad73ab7143dbf310ad20b6f17865c9.png"><img alt="_images/d6ff8165b647a0b3fa60f8a6bba27945d5ad73ab7143dbf310ad20b6f17865c9.png" src="_images/d6ff8165b647a0b3fa60f8a6bba27945d5ad73ab7143dbf310ad20b6f17865c9.png" style="width: 80%;" />
+</a>
 <figcaption>
-<p><span class="caption-number">Fig. 4.1 </span><span class="caption-text">Long run time series of the price level</span><a class="headerlink" href="#lrpl" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 4.1 </span><span class="caption-text">Long run time series of the price level</span><a class="headerlink" href="#lrpl" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -431,9 +438,10 @@ Downloading xlrd-2.0.1-py2.py3-none-any.whl (96 kB)
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="lrpl-lg">
-<a class="reference internal image-reference" href="_images/c34228bebdd578cb7597ebd20f35aacebab99fc700e75a93cc94bcb1a828f0cc.png"><img alt="_images/c34228bebdd578cb7597ebd20f35aacebab99fc700e75a93cc94bcb1a828f0cc.png" src="_images/c34228bebdd578cb7597ebd20f35aacebab99fc700e75a93cc94bcb1a828f0cc.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/c34228bebdd578cb7597ebd20f35aacebab99fc700e75a93cc94bcb1a828f0cc.png"><img alt="_images/c34228bebdd578cb7597ebd20f35aacebab99fc700e75a93cc94bcb1a828f0cc.png" src="_images/c34228bebdd578cb7597ebd20f35aacebab99fc700e75a93cc94bcb1a828f0cc.png" style="width: 80%;" />
+</a>
 <figcaption>
-<p><span class="caption-number">Fig. 4.2 </span><span class="caption-text">Long run time series of the price level (log)</span><a class="headerlink" href="#lrpl-lg" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 4.2 </span><span class="caption-text">Long run time series of the price level (log)</span><a class="headerlink" href="#lrpl-lg" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -447,7 +455,7 @@ Downloading xlrd-2.0.1-py2.py3-none-any.whl (96 kB)
 <p>The breadth and lengths of the inflationary experiences of the twentieth century under paper money fiat standards are historically unprecedented.</p>
 </section>
 <section id="four-big-inflations">
-<h2><span class="section-number">4.2. </span>Four big inflations<a class="headerlink" href="#four-big-inflations" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">4.2. </span>Four big inflations<a class="headerlink" href="#four-big-inflations" title="Link to this heading">#</a></h2>
 <p>In the wake of World War I, which ended in November 1918, monetary and fiscal authorities struggled to achieve price level stability without being on a gold or silver standard.</p>
 <p>We present four graphs from “The Ends of Four Big Inflations” from chapter 3 of <span id="id3">[<a class="reference internal" href="zreferences.html#id13" title="Thomas J Sargent. Rational Expectations and Inflation. Princeton University Press, Princeton, New Jersey, 2013.">Sargent, 2013</a>]</span>.</p>
 <p>The graphs depict logarithms of price levels during the early post World War I years for four countries:</p>
@@ -463,13 +471,13 @@ from chapter 3 of <span id="id4">[<a class="reference internal" href="zreference
 We have transcribed all of these data into a spreadsheet <a class="reference download external" download="" href="https://github.com/QuantEcon/lecture-python-intro/raw/main/lectures/datasets/chapter_3.xlsx"><code class="xref download docutils literal notranslate"><span class="pre">chapter_3.xlsx</span></code></a> that we read into pandas.</p>
 <p>In the code cell below we clean the data and build a <code class="docutils literal notranslate"><span class="pre">pandas.dataframe</span></code>.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">process_entry</span><span class="p">(</span><span class="n">entry</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">process_entry</span><span class="p">(</span><span class="n">entry</span><span class="p">):</span>
     <span class="s2">&quot;Clean each entry of a dataframe.&quot;</span>
     
     <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">:</span>
@@ -492,7 +500,7 @@ We have transcribed all of these data into a spreadsheet <a class="reference dow
                     <span class="n">entry</span> <span class="o">=</span> <span class="n">entry</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">entry</span>
 
-<span class="k">def</span> <span class="nf">process_df</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">process_df</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
     <span class="s2">&quot;Clean and reorganize the entire dataframe.&quot;</span>
     
     <span class="c1"># Remove HTML markers from column names</span>
@@ -531,13 +539,13 @@ We have transcribed all of these data into a spreadsheet <a class="reference dow
 <p>Now we write plotting functions <code class="docutils literal notranslate"><span class="pre">pe_plot</span></code> and <code class="docutils literal notranslate"><span class="pre">pr_plot</span></code> that will build figures that show the price level, exchange rates,
 and inflation rates, for each country of interest.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pe_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">e_seq</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">labs</span><span class="p">,</span> <span class="n">ax</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">pe_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">e_seq</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">labs</span><span class="p">,</span> <span class="n">ax</span><span class="p">):</span>
     <span class="s2">&quot;Generate plots for price and exchange rates.&quot;</span>
 
     <span class="n">p_lab</span><span class="p">,</span> <span class="n">e_lab</span> <span class="o">=</span> <span class="n">labs</span>
@@ -570,7 +578,7 @@ and inflation rates, for each country of interest.</p>
     
     <span class="k">return</span> <span class="n">ax1</span>
 
-<span class="k">def</span> <span class="nf">pr_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">ax</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">pr_plot</span><span class="p">(</span><span class="n">p_seq</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">ax</span><span class="p">):</span>
     <span class="s2">&quot;Generate plots for inflation rates.&quot;</span>
 
     <span class="c1">#  Calculate the difference of log p_seq</span>
@@ -647,7 +655,7 @@ and inflation rates, for each country of interest.</p>
 <p>For each country, the scale on the right side of a graph will pertain to the price level while the scale on the left side of a graph will pertain to the exchange rate.</p>
 <p>For each country, the second graph plots a centered three-month moving average of the inflation rate defined as <span class="math notranslate nohighlight">\(\frac{p_{t-1} + p_t + p_{t+1}}{3}\)</span>.</p>
 <section id="austria">
-<h3><span class="section-number">4.2.1. </span>Austria<a class="headerlink" href="#austria" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">4.2.1. </span>Austria<a class="headerlink" href="#austria" title="Link to this heading">#</a></h3>
 <p>The sources of our data are:</p>
 <ul class="simple">
 <li><p>Table 3.3, retail price level <span class="math notranslate nohighlight">\(\exp p\)</span></p></li>
@@ -671,9 +679,10 @@ and inflation rates, for each country of interest.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="pi-xrate-austria">
-<a class="reference internal image-reference" href="_images/4cee6b5d39b005398210a98c04f554c6c39f912ebb782c816aad9e8c74f983c8.png"><img alt="_images/4cee6b5d39b005398210a98c04f554c6c39f912ebb782c816aad9e8c74f983c8.png" src="_images/4cee6b5d39b005398210a98c04f554c6c39f912ebb782c816aad9e8c74f983c8.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/4cee6b5d39b005398210a98c04f554c6c39f912ebb782c816aad9e8c74f983c8.png"><img alt="_images/4cee6b5d39b005398210a98c04f554c6c39f912ebb782c816aad9e8c74f983c8.png" src="_images/4cee6b5d39b005398210a98c04f554c6c39f912ebb782c816aad9e8c74f983c8.png" style="width: 80%;" />
+</a>
 <figcaption>
-<p><span class="caption-number">Fig. 4.3 </span><span class="caption-text">Price index and exchange rate (Austria)</span><a class="headerlink" href="#pi-xrate-austria" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 4.3 </span><span class="caption-text">Price index and exchange rate (Austria)</span><a class="headerlink" href="#pi-xrate-austria" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -690,9 +699,10 @@ and inflation rates, for each country of interest.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="inflationrate-austria">
-<a class="reference internal image-reference" href="_images/16594bb0eec3315d3075d2246d108739ed8418a12c98a6d4594a655b2e15273a.png"><img alt="_images/16594bb0eec3315d3075d2246d108739ed8418a12c98a6d4594a655b2e15273a.png" src="_images/16594bb0eec3315d3075d2246d108739ed8418a12c98a6d4594a655b2e15273a.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/16594bb0eec3315d3075d2246d108739ed8418a12c98a6d4594a655b2e15273a.png"><img alt="_images/16594bb0eec3315d3075d2246d108739ed8418a12c98a6d4594a655b2e15273a.png" src="_images/16594bb0eec3315d3075d2246d108739ed8418a12c98a6d4594a655b2e15273a.png" style="width: 80%;" />
+</a>
 <figcaption>
-<p><span class="caption-number">Fig. 4.4 </span><span class="caption-text">Monthly inflation rate (Austria)</span><a class="headerlink" href="#inflationrate-austria" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 4.4 </span><span class="caption-text">Monthly inflation rate (Austria)</span><a class="headerlink" href="#inflationrate-austria" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -706,7 +716,7 @@ and inflation rates, for each country of interest.</p>
 <p>We’ll see similar patterns in the next three episodes that we’ll study now.</p>
 </section>
 <section id="hungary">
-<h3><span class="section-number">4.2.2. </span>Hungary<a class="headerlink" href="#hungary" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">4.2.2. </span>Hungary<a class="headerlink" href="#hungary" title="Link to this heading">#</a></h3>
 <p>The source of our data for Hungary is:</p>
 <ul class="simple">
 <li><p>Table 3.10, price level <span class="math notranslate nohighlight">\(\exp p\)</span> and exchange rate</p></li>
@@ -729,9 +739,10 @@ and inflation rates, for each country of interest.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="pi-xrate-hungary">
-<a class="reference internal image-reference" href="_images/6d2ca603d45b14e5f0062aa7d4252ce5efaf9b3bcb61d54c8375ed6de533782e.png"><img alt="_images/6d2ca603d45b14e5f0062aa7d4252ce5efaf9b3bcb61d54c8375ed6de533782e.png" src="_images/6d2ca603d45b14e5f0062aa7d4252ce5efaf9b3bcb61d54c8375ed6de533782e.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/6d2ca603d45b14e5f0062aa7d4252ce5efaf9b3bcb61d54c8375ed6de533782e.png"><img alt="_images/6d2ca603d45b14e5f0062aa7d4252ce5efaf9b3bcb61d54c8375ed6de533782e.png" src="_images/6d2ca603d45b14e5f0062aa7d4252ce5efaf9b3bcb61d54c8375ed6de533782e.png" style="width: 80%;" />
+</a>
 <figcaption>
-<p><span class="caption-number">Fig. 4.5 </span><span class="caption-text">Price index and exchange rate (Hungary)</span><a class="headerlink" href="#pi-xrate-hungary" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 4.5 </span><span class="caption-text">Price index and exchange rate (Hungary)</span><a class="headerlink" href="#pi-xrate-hungary" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -748,16 +759,17 @@ and inflation rates, for each country of interest.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="inflationrate-hungary">
-<a class="reference internal image-reference" href="_images/0992358e2e667a0e18675dccc4092811b3a9e9334024d8cbf44a344fbe88d40e.png"><img alt="_images/0992358e2e667a0e18675dccc4092811b3a9e9334024d8cbf44a344fbe88d40e.png" src="_images/0992358e2e667a0e18675dccc4092811b3a9e9334024d8cbf44a344fbe88d40e.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/0992358e2e667a0e18675dccc4092811b3a9e9334024d8cbf44a344fbe88d40e.png"><img alt="_images/0992358e2e667a0e18675dccc4092811b3a9e9334024d8cbf44a344fbe88d40e.png" src="_images/0992358e2e667a0e18675dccc4092811b3a9e9334024d8cbf44a344fbe88d40e.png" style="width: 80%;" />
+</a>
 <figcaption>
-<p><span class="caption-number">Fig. 4.6 </span><span class="caption-text">Monthly inflation rate (Hungary)</span><a class="headerlink" href="#inflationrate-hungary" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 4.6 </span><span class="caption-text">Monthly inflation rate (Hungary)</span><a class="headerlink" href="#inflationrate-hungary" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
 </div>
 </section>
 <section id="poland">
-<h3><span class="section-number">4.2.3. </span>Poland<a class="headerlink" href="#poland" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">4.2.3. </span>Poland<a class="headerlink" href="#poland" title="Link to this heading">#</a></h3>
 <p>The sources of our data for Poland are:</p>
 <ul class="simple">
 <li><p>Table 3.15, price level <span class="math notranslate nohighlight">\(\exp p\)</span></p></li>
@@ -811,7 +823,8 @@ We dropped the exchange rate after June 1924, when the zloty was adopted. We did
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/eb8af189cb0c5546e39d0bf30f307ed8caef5baae5a4b29a5574081430837c48.png"><img alt="_images/eb8af189cb0c5546e39d0bf30f307ed8caef5baae5a4b29a5574081430837c48.png" src="_images/eb8af189cb0c5546e39d0bf30f307ed8caef5baae5a4b29a5574081430837c48.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/eb8af189cb0c5546e39d0bf30f307ed8caef5baae5a4b29a5574081430837c48.png"><img alt="_images/eb8af189cb0c5546e39d0bf30f307ed8caef5baae5a4b29a5574081430837c48.png" src="_images/eb8af189cb0c5546e39d0bf30f307ed8caef5baae5a4b29a5574081430837c48.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <div class="cell docutils container">
@@ -826,16 +839,17 @@ We dropped the exchange rate after June 1924, when the zloty was adopted. We did
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="inflationrate-poland">
-<a class="reference internal image-reference" href="_images/9728701621d5d616c8f95d7c8d9ccb263b79f3335b935308c9fc42e161332a0f.png"><img alt="_images/9728701621d5d616c8f95d7c8d9ccb263b79f3335b935308c9fc42e161332a0f.png" src="_images/9728701621d5d616c8f95d7c8d9ccb263b79f3335b935308c9fc42e161332a0f.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/9728701621d5d616c8f95d7c8d9ccb263b79f3335b935308c9fc42e161332a0f.png"><img alt="_images/9728701621d5d616c8f95d7c8d9ccb263b79f3335b935308c9fc42e161332a0f.png" src="_images/9728701621d5d616c8f95d7c8d9ccb263b79f3335b935308c9fc42e161332a0f.png" style="width: 80%;" />
+</a>
 <figcaption>
-<p><span class="caption-number">Fig. 4.7 </span><span class="caption-text">Monthly inflation rate (Poland)</span><a class="headerlink" href="#inflationrate-poland" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 4.7 </span><span class="caption-text">Monthly inflation rate (Poland)</span><a class="headerlink" href="#inflationrate-poland" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
 </div>
 </section>
 <section id="germany">
-<h3><span class="section-number">4.2.4. </span>Germany<a class="headerlink" href="#germany" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">4.2.4. </span>Germany<a class="headerlink" href="#germany" title="Link to this heading">#</a></h3>
 <p>The sources of our data for Germany are the following tables from chapter 3 of <span id="id7">[<a class="reference internal" href="zreferences.html#id13" title="Thomas J Sargent. Rational Expectations and Inflation. Princeton University Press, Princeton, New Jersey, 2013.">Sargent, 2013</a>]</span>:</p>
 <ul class="simple">
 <li><p>Table 3.18, wholesale price level <span class="math notranslate nohighlight">\(\exp p\)</span></p></li>
@@ -860,9 +874,10 @@ We dropped the exchange rate after June 1924, when the zloty was adopted. We did
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="pi-xrate-germany">
-<a class="reference internal image-reference" href="_images/9afec066cfd96516392bb032f7a7be72202fbf35f87f101244e29b18c7d88513.png"><img alt="_images/9afec066cfd96516392bb032f7a7be72202fbf35f87f101244e29b18c7d88513.png" src="_images/9afec066cfd96516392bb032f7a7be72202fbf35f87f101244e29b18c7d88513.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/9afec066cfd96516392bb032f7a7be72202fbf35f87f101244e29b18c7d88513.png"><img alt="_images/9afec066cfd96516392bb032f7a7be72202fbf35f87f101244e29b18c7d88513.png" src="_images/9afec066cfd96516392bb032f7a7be72202fbf35f87f101244e29b18c7d88513.png" style="width: 80%;" />
+</a>
 <figcaption>
-<p><span class="caption-number">Fig. 4.8 </span><span class="caption-text">Price index and exchange rate (Germany)</span><a class="headerlink" href="#pi-xrate-germany" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 4.8 </span><span class="caption-text">Price index and exchange rate (Germany)</span><a class="headerlink" href="#pi-xrate-germany" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -892,9 +907,10 @@ We dropped the exchange rate after June 1924, when the zloty was adopted. We did
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="piadj-xrate-germany">
-<a class="reference internal image-reference" href="_images/2bfa5b377a230a08728e9d9307954c1dd5cae22438369f0e74dfa277383fb9bf.png"><img alt="_images/2bfa5b377a230a08728e9d9307954c1dd5cae22438369f0e74dfa277383fb9bf.png" src="_images/2bfa5b377a230a08728e9d9307954c1dd5cae22438369f0e74dfa277383fb9bf.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/2bfa5b377a230a08728e9d9307954c1dd5cae22438369f0e74dfa277383fb9bf.png"><img alt="_images/2bfa5b377a230a08728e9d9307954c1dd5cae22438369f0e74dfa277383fb9bf.png" src="_images/2bfa5b377a230a08728e9d9307954c1dd5cae22438369f0e74dfa277383fb9bf.png" style="width: 80%;" />
+</a>
 <figcaption>
-<p><span class="caption-number">Fig. 4.9 </span><span class="caption-text">Price index (adjusted) and exchange rate (Germany)</span><a class="headerlink" href="#piadj-xrate-germany" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 4.9 </span><span class="caption-text">Price index (adjusted) and exchange rate (Germany)</span><a class="headerlink" href="#piadj-xrate-germany" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -911,9 +927,10 @@ We dropped the exchange rate after June 1924, when the zloty was adopted. We did
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="inflationrate-germany">
-<a class="reference internal image-reference" href="_images/6b0d7f2faa6eac7def0befc4b4959b1637dca468a0c584fedffe7e6e252eedfd.png"><img alt="_images/6b0d7f2faa6eac7def0befc4b4959b1637dca468a0c584fedffe7e6e252eedfd.png" src="_images/6b0d7f2faa6eac7def0befc4b4959b1637dca468a0c584fedffe7e6e252eedfd.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/6b0d7f2faa6eac7def0befc4b4959b1637dca468a0c584fedffe7e6e252eedfd.png"><img alt="_images/6b0d7f2faa6eac7def0befc4b4959b1637dca468a0c584fedffe7e6e252eedfd.png" src="_images/6b0d7f2faa6eac7def0befc4b4959b1637dca468a0c584fedffe7e6e252eedfd.png" style="width: 80%;" />
+</a>
 <figcaption>
-<p><span class="caption-number">Fig. 4.10 </span><span class="caption-text">Monthly inflation rate (Germany)</span><a class="headerlink" href="#inflationrate-germany" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 4.10 </span><span class="caption-text">Monthly inflation rate (Germany)</span><a class="headerlink" href="#inflationrate-germany" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -921,7 +938,7 @@ We dropped the exchange rate after June 1924, when the zloty was adopted. We did
 </section>
 </section>
 <section id="starting-and-stopping-big-inflations">
-<h2><span class="section-number">4.3. </span>Starting and stopping big inflations<a class="headerlink" href="#starting-and-stopping-big-inflations" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">4.3. </span>Starting and stopping big inflations<a class="headerlink" href="#starting-and-stopping-big-inflations" title="Link to this heading">#</a></h2>
 <p>It is striking how <em>quickly</em> (log) price levels in Austria, Hungary, Poland, and Germany leveled off after rising so quickly.</p>
 <p>These “sudden stops” are also revealed by the permanent drops in three-month moving averages of inflation for the four countries plotted above.</p>
 <p>In addition, the US dollar exchange rates for each of the four countries shadowed their price levels.</p>

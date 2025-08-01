@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>41. A Lake Model of Employment &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
@@ -70,15 +69,15 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=bd0785fbb14d8d2bd4d9ae501d79ed8d3bc089ec" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.5ea377869091fd0449014c60fc090103.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=4c010e0d" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -86,23 +85,22 @@
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script src="_static/scripts/quantecon-book-theme.js?digest=d9faaf6c4b57726f74ba012412af1f5681bdff87"></script>
+    <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
+    <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QDS1YRJNGM"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -111,12 +109,20 @@
                 gtag('config', 'G-QDS1YRJNGM');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QDS1YRJNGM');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"argmax": "arg\\,max", "argmin": "arg\\,min"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'lake_model';</script>
     <link rel="canonical" href="https://intro.quantecon.org/lake_model.html" />
-    <link rel="shortcut icon" href="_static/lectures-favicon.ico"/>
+    <link rel="icon" href="_static/lectures-favicon.ico"/>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -242,21 +248,21 @@
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="a-lake-model-of-employment">
-<h1><span class="section-number">41. </span>A Lake Model of Employment<a class="headerlink" href="#a-lake-model-of-employment" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">41. </span>A Lake Model of Employment<a class="headerlink" href="#a-lake-model-of-employment" title="Link to this heading">#</a></h1>
 <section id="outline">
-<h2><span class="section-number">41.1. </span>Outline<a class="headerlink" href="#outline" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">41.1. </span>Outline<a class="headerlink" href="#outline" title="Link to this heading">#</a></h2>
 <p>In addition to what’s in Anaconda, this lecture will need the following libraries:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="the-lake-model">
-<h2><span class="section-number">41.2. </span>The Lake model<a class="headerlink" href="#the-lake-model" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">41.2. </span>The Lake model<a class="headerlink" href="#the-lake-model" title="Link to this heading">#</a></h2>
 <p>This model is sometimes called the <strong>lake model</strong> because there are two pools of workers:</p>
 <ol class="arabic simple">
 <li><p>those who are currently employed.</p></li>
@@ -273,17 +279,17 @@
 <figure class="align-default" id="lake-model-graphviz">
 <img alt="_images/lake_model_worker.png" src="_images/lake_model_worker.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 41.1 </span><span class="caption-text">An illustration of the lake model</span><a class="headerlink" href="#lake-model-graphviz" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 41.1 </span><span class="caption-text">An illustration of the lake model</span><a class="headerlink" href="#lake-model-graphviz" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="dynamics">
-<h2><span class="section-number">41.3. </span>Dynamics<a class="headerlink" href="#dynamics" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">41.3. </span>Dynamics<a class="headerlink" href="#dynamics" title="Link to this heading">#</a></h2>
 <p>Let <span class="math notranslate nohighlight">\(e_t\)</span> and <span class="math notranslate nohighlight">\(u_t\)</span> be the number of employed and unemployed workers at time <span class="math notranslate nohighlight">\(t\)</span> respectively.</p>
 <p>The total population of workers is <span class="math notranslate nohighlight">\(n_t = e_t + u_t\)</span>.</p>
 <p>The number of unemployed and employed workers thus evolves according to:</p>
 <div class="math notranslate nohighlight" id="equation-lake-model">
-<span class="eqno">(41.1)<a class="headerlink" href="#equation-lake-model" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{aligned}
+<span class="eqno">(41.1)<a class="headerlink" href="#equation-lake-model" title="Link to this equation">#</a></span>\[\begin{split}\begin{aligned}
     u_{t+1} &amp;= (1-d)(1-\lambda)u_t + \alpha(1-d)e_t + bn_t \\
     &amp;= ((1-d)(1-\lambda) + b)u_t + (\alpha(1-d) + b)e_t \\
     e_{t+1} &amp;= (1-d)\lambda u_t + (1 - \alpha)(1-d)e_t
@@ -316,11 +322,11 @@ x_t =
 <p>What long-run unemployment rate and employment rate should we expect?</p>
 <p>Do long-run outcomes depend on the initial values <span class="math notranslate nohighlight">\((u_0, e_o)\)</span>?</p>
 <section id="visualising-the-long-run-outcomes">
-<h3><span class="section-number">41.3.1. </span>Visualising the long-run outcomes<a class="headerlink" href="#visualising-the-long-run-outcomes" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">41.3.1. </span>Visualising the long-run outcomes<a class="headerlink" href="#visualising-the-long-run-outcomes" title="Link to this heading">#</a></h3>
 <p>Let us first plot the time series of unemployment <span class="math notranslate nohighlight">\(u_t\)</span>, employment <span class="math notranslate nohighlight">\(e_t\)</span>, and labor force <span class="math notranslate nohighlight">\(n_t\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">LakeModel</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">LakeModel</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Solves the lake model and computes dynamics of the unemployment stocks and</span>
 <span class="sd">    rates.</span>
@@ -337,7 +343,7 @@ x_t =
 <span class="sd">        Exit rate from the labor force</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">λ</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">α</span><span class="o">=</span><span class="mf">0.013</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">0.0124</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mf">0.00822</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">λ</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">α</span><span class="o">=</span><span class="mf">0.013</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">0.0124</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mf">0.00822</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">λ</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">α</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">d</span> <span class="o">=</span> <span class="n">λ</span><span class="p">,</span> <span class="n">α</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">d</span>
 
         <span class="n">λ</span><span class="p">,</span> <span class="n">α</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">λ</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">α</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">d</span>
@@ -352,7 +358,7 @@ x_t =
         <span class="bp">self</span><span class="o">.</span><span class="n">ē</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">ū</span>
 
 
-    <span class="k">def</span> <span class="nf">simulate_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">simulate_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Simulates the sequence of employment and unemployment</span>
 
@@ -412,7 +418,8 @@ x_t =
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/ebc9ac3c1a89b7f5be12e25b3163a1ce9cd4760a644db77c0f34ba35db1d5dc0.png"><img alt="_images/ebc9ac3c1a89b7f5be12e25b3163a1ce9cd4760a644db77c0f34ba35db1d5dc0.png" src="_images/ebc9ac3c1a89b7f5be12e25b3163a1ce9cd4760a644db77c0f34ba35db1d5dc0.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/ebc9ac3c1a89b7f5be12e25b3163a1ce9cd4760a644db77c0f34ba35db1d5dc0.png"><img alt="_images/ebc9ac3c1a89b7f5be12e25b3163a1ce9cd4760a644db77c0f34ba35db1d5dc0.png" src="_images/ebc9ac3c1a89b7f5be12e25b3163a1ce9cd4760a644db77c0f34ba35db1d5dc0.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>Not surprisingly, we observe that labor force <span class="math notranslate nohighlight">\(n_t\)</span> increases at a constant rate.</p>
@@ -435,7 +442,7 @@ is determined by constant exit rate and entry rate of labor market in the long r
 <p>Moreover, the times series of unemployment and employment seems to grow at some stable rates in the long run.</p>
 </section>
 <section id="the-application-of-perron-frobenius-theorem">
-<h3><span class="section-number">41.3.2. </span>The application of Perron-Frobenius theorem<a class="headerlink" href="#the-application-of-perron-frobenius-theorem" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">41.3.2. </span>The application of Perron-Frobenius theorem<a class="headerlink" href="#the-application-of-perron-frobenius-theorem" title="Link to this heading">#</a></h3>
 <p>Since by intuition if we consider unemployment pool and employment pool as a closed system, the growth should be similar to the labor force.</p>
 <p>We next ask whether the long-run growth rates of <span class="math notranslate nohighlight">\(e_t\)</span> and <span class="math notranslate nohighlight">\(u_t\)</span>
 also dominated by <span class="math notranslate nohighlight">\(1+b-d\)</span> as labor force.</p>
@@ -448,7 +455,7 @@ begin with an initial condition <span class="math notranslate nohighlight">\(x_0
 <p>This theorem helps characterise the dominant eigenvalue <span class="math notranslate nohighlight">\(r(A)\)</span> which
 determines the behavior of this iterative process.</p>
 <section id="dominant-eigenvector">
-<h4><span class="section-number">41.3.2.1. </span>Dominant eigenvector<a class="headerlink" href="#dominant-eigenvector" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">41.3.2.1. </span>Dominant eigenvector<a class="headerlink" href="#dominant-eigenvector" title="Link to this heading">#</a></h4>
 <p>We now illustrate the power of the Perron-Frobenius theorem by showing how it
 helps us to analyze the lake model.</p>
 <p>Since <span class="math notranslate nohighlight">\(A\)</span> is a nonnegative and irreducible matrix, the Perron-Frobenius theorem implies that:</p>
@@ -478,14 +485,14 @@ helps us to analyze the lake model.</p>
 <p>Therefore, the magnitude <span class="math notranslate nohighlight">\(x_t = A^t x_0\)</span> is also dominated by <span class="math notranslate nohighlight">\(r(A)^t\)</span> in the long run.</p>
 <p>Recall that the spectral radius is bounded by column sums: for <span class="math notranslate nohighlight">\(A \geq 0\)</span>, we have</p>
 <div class="math notranslate nohighlight" id="equation-pf-bounds">
-<span class="eqno">(41.2)<a class="headerlink" href="#equation-pf-bounds" title="Permalink to this equation">#</a></span>\[\min_j \text{colsum}_j (A) \leq r(A) \leq \max_j \text{colsum}_j (A)\]</div>
+<span class="eqno">(41.2)<a class="headerlink" href="#equation-pf-bounds" title="Link to this equation">#</a></span>\[\min_j \text{colsum}_j (A) \leq r(A) \leq \max_j \text{colsum}_j (A)\]</div>
 <p>Note that <span class="math notranslate nohighlight">\(\text{colsum}_j(A) = 1 + b - d\)</span> for <span class="math notranslate nohighlight">\(j=1,2\)</span> and by <a class="reference internal" href="#equation-pf-bounds">(41.2)</a> we can thus conclude that the dominant eigenvalue
 is <span class="math notranslate nohighlight">\(r(A) = 1 + b - d\)</span>.</p>
 <p>Denote <span class="math notranslate nohighlight">\(g = b - d\)</span> as the overall growth rate of the total labor force, so that <span class="math notranslate nohighlight">\(r(A) = 1 + g\)</span>.</p>
 <p>The Perron-Frobenius implies that there is a unique positive eigenvector <span class="math notranslate nohighlight">\(\bar{x} = \begin{bmatrix} \bar{u} \\ \bar{e} \end{bmatrix}\)</span>
 such that <span class="math notranslate nohighlight">\(A\bar{x} = r(A)\bar{x}\)</span> and <span class="math notranslate nohighlight">\(\begin{bmatrix} 1 &amp; 1 \end{bmatrix} \bar{x} = 1\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-steady-x">
-<span class="eqno">(41.3)<a class="headerlink" href="#equation-steady-x" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{aligned}
+<span class="eqno">(41.3)<a class="headerlink" href="#equation-steady-x" title="Link to this equation">#</a></span>\[\begin{split}\begin{aligned}
     \bar{u} &amp; = \frac{b + \alpha (1-d)}{b + (\alpha+\lambda)(1-d)} \\
     \bar{e} &amp; = \frac{\lambda(1-d)}{b + (\alpha+\lambda)(1-d)}
 \end{aligned}\end{split}\]</div>
@@ -493,7 +500,7 @@ such that <span class="math notranslate nohighlight">\(A\bar{x} = r(A)\bar{x}\)<
 <p>This dominant eigenvector plays an important role in determining long-run outcomes as illustrated below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_time_paths</span><span class="p">(</span><span class="n">lm</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_time_paths</span><span class="p">(</span><span class="n">lm</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Plots the simulated time series.</span>
 
@@ -576,7 +583,8 @@ such that <span class="math notranslate nohighlight">\(A\bar{x} = r(A)\bar{x}\)<
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/0bca318918784f414d54f016e495294f5f9837e99727f4e0297a91f28494aa96.png"><img alt="_images/0bca318918784f414d54f016e495294f5f9837e99727f4e0297a91f28494aa96.png" src="_images/0bca318918784f414d54f016e495294f5f9837e99727f4e0297a91f28494aa96.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/0bca318918784f414d54f016e495294f5f9837e99727f4e0297a91f28494aa96.png"><img alt="_images/0bca318918784f414d54f016e495294f5f9837e99727f4e0297a91f28494aa96.png" src="_images/0bca318918784f414d54f016e495294f5f9837e99727f4e0297a91f28494aa96.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>Since <span class="math notranslate nohighlight">\(\bar{x}\)</span> is an eigenvector corresponding to the eigenvalue <span class="math notranslate nohighlight">\(r(A)\)</span>, all the vectors in the set
@@ -587,7 +595,7 @@ to <span class="math notranslate nohighlight">\(r(A)\)</span>.</p>
 <p>This suggests that all such sequences share strong similarities in the long run, determined by the dominant eigenvector <span class="math notranslate nohighlight">\(\bar{x}\)</span>.</p>
 </section>
 <section id="negative-growth-rate">
-<h4><span class="section-number">41.3.2.2. </span>Negative growth rate<a class="headerlink" href="#negative-growth-rate" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">41.3.2.2. </span>Negative growth rate<a class="headerlink" href="#negative-growth-rate" title="Link to this heading">#</a></h4>
 <p>In the example illustrated above we considered parameters such that overall growth rate of the labor force <span class="math notranslate nohighlight">\(g&gt;0\)</span>.</p>
 <p>Suppose now we are faced with a situation where the <span class="math notranslate nohighlight">\(g&lt;0\)</span>, i.e., negative growth in the labor force.</p>
 <p>This means that <span class="math notranslate nohighlight">\(b-d&lt;0\)</span>, i.e., workers exit the market faster than they enter.</p>
@@ -601,7 +609,8 @@ to <span class="math notranslate nohighlight">\(r(A)\)</span>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/3c9b88ad07583aa15f08332db4f753bcd4b763c6a1ebd59c8084910c7f99c41d.png"><img alt="_images/3c9b88ad07583aa15f08332db4f753bcd4b763c6a1ebd59c8084910c7f99c41d.png" src="_images/3c9b88ad07583aa15f08332db4f753bcd4b763c6a1ebd59c8084910c7f99c41d.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/3c9b88ad07583aa15f08332db4f753bcd4b763c6a1ebd59c8084910c7f99c41d.png"><img alt="_images/3c9b88ad07583aa15f08332db4f753bcd4b763c6a1ebd59c8084910c7f99c41d.png" src="_images/3c9b88ad07583aa15f08332db4f753bcd4b763c6a1ebd59c8084910c7f99c41d.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>Thus, while the sequence of iterates still moves towards the dominant eigenvector <span class="math notranslate nohighlight">\(\bar{x}\)</span>, in this case
@@ -612,7 +621,7 @@ to some point, in this case to <span class="math notranslate nohighlight">\((0,0
 </section>
 </section>
 <section id="properties">
-<h3><span class="section-number">41.3.3. </span>Properties<a class="headerlink" href="#properties" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">41.3.3. </span>Properties<a class="headerlink" href="#properties" title="Link to this heading">#</a></h3>
 <p>Since the column sums of <span class="math notranslate nohighlight">\(A\)</span> are <span class="math notranslate nohighlight">\(r(A)=1\)</span>, the left eigenvector is <span class="math notranslate nohighlight">\(\mathbb{1}^\top=[1, 1]\)</span>.</p>
 <p>Perron-Frobenius theory implies that</p>
 <div class="math notranslate nohighlight">
@@ -687,7 +696,8 @@ r_t = \hat{A}^t r_0 = (1+g)^{-t} A^t r_0 = r(A)^{-t} A^t r_0 \to \begin{bmatrix}
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/eade5a93f9bf3984267588dbf8af6e3a49ca14b01b040eab1231fc7b61fd21b4.png"><img alt="_images/eade5a93f9bf3984267588dbf8af6e3a49ca14b01b040eab1231fc7b61fd21b4.png" src="_images/eade5a93f9bf3984267588dbf8af6e3a49ca14b01b040eab1231fc7b61fd21b4.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/eade5a93f9bf3984267588dbf8af6e3a49ca14b01b040eab1231fc7b61fd21b4.png"><img alt="_images/eade5a93f9bf3984267588dbf8af6e3a49ca14b01b040eab1231fc7b61fd21b4.png" src="_images/eade5a93f9bf3984267588dbf8af6e3a49ca14b01b040eab1231fc7b61fd21b4.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>To provide more intuition for convergence, we further explain the convergence below without the Perron-Frobenius theorem.</p>
@@ -711,7 +721,7 @@ r_t = P z_t = \begin{bmatrix} v_1 &amp; v_2 \end{bmatrix}  \begin{bmatrix} \gamm
 </section>
 </section>
 <section id="exercise">
-<h2><span class="section-number">41.4. </span>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">41.4. </span>Exercise<a class="headerlink" href="#exercise" title="Link to this heading">#</a></h2>
 <div class="exercise admonition" id="lake_model_ex1">
 
 <p class="admonition-title"><span class="caption-number">Exercise 41.1 </span> (Evolution of unemployment and employment rate)</p>
@@ -752,7 +762,8 @@ the fraction of unemployment rises as the separation rate increases.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/b22f53b3fbb18d3a335420869141aa1cd6b4c44b6ef5a5a0ac1af7aa80615d8c.png"><img alt="_images/b22f53b3fbb18d3a335420869141aa1cd6b4c44b6ef5a5a0ac1af7aa80615d8c.png" src="_images/b22f53b3fbb18d3a335420869141aa1cd6b4c44b6ef5a5a0ac1af7aa80615d8c.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/b22f53b3fbb18d3a335420869141aa1cd6b4c44b6ef5a5a0ac1af7aa80615d8c.png"><img alt="_images/b22f53b3fbb18d3a335420869141aa1cd6b4c44b6ef5a5a0ac1af7aa80615d8c.png" src="_images/b22f53b3fbb18d3a335420869141aa1cd6b4c44b6ef5a5a0ac1af7aa80615d8c.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 </section>

@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>45. Simple Linear Regression Model &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
@@ -70,15 +69,15 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=bd0785fbb14d8d2bd4d9ae501d79ed8d3bc089ec" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.5ea377869091fd0449014c60fc090103.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=4c010e0d" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -86,23 +85,22 @@
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script src="_static/scripts/quantecon-book-theme.js?digest=d9faaf6c4b57726f74ba012412af1f5681bdff87"></script>
+    <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
+    <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QDS1YRJNGM"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -111,12 +109,20 @@
                 gtag('config', 'G-QDS1YRJNGM');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QDS1YRJNGM');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"argmax": "arg\\,max", "argmin": "arg\\,min"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'simple_linear_regression';</script>
     <link rel="canonical" href="https://intro.quantecon.org/simple_linear_regression.html" />
-    <link rel="shortcut icon" href="_static/lectures-favicon.ico"/>
+    <link rel="icon" href="_static/lectures-favicon.ico"/>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -231,12 +237,12 @@
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="simple-linear-regression-model">
-<h1><span class="section-number">45. </span>Simple Linear Regression Model<a class="headerlink" href="#simple-linear-regression-model" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">45. </span>Simple Linear Regression Model<a class="headerlink" href="#simple-linear-regression-model" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
@@ -249,7 +255,7 @@ y_i = \alpha + \beta x_i + \epsilon_i, i = 1,2,...,N
 <p>where <span class="math notranslate nohighlight">\(\epsilon_i\)</span> represents the error between the line of best fit and the sample values for <span class="math notranslate nohighlight">\(y_i\)</span> given <span class="math notranslate nohighlight">\(x_i\)</span>.</p>
 <p>Our goal is to choose values for <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> to build a line of “best” fit for some data that is available for variables <span class="math notranslate nohighlight">\(x_i\)</span> and <span class="math notranslate nohighlight">\(y_i\)</span>.</p>
 <p>Let us consider a simple dataset of 10 observations for variables <span class="math notranslate nohighlight">\(x_i\)</span> and <span class="math notranslate nohighlight">\(y_i\)</span>:</p>
-<div class="pst-scrollable-table-container"><table class="colwidths-auto table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p></p></th>
 <th class="head"><p><span class="math notranslate nohighlight">\(y_i\)</span></p></th>
@@ -404,9 +410,10 @@ y_i = \alpha + \beta x_i + \epsilon_i, i = 1,2,...,N
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="sales-v-temp1">
-<a class="reference internal image-reference" href="_images/ae16655e72c744b266b2dbdb3340f166bed20f6469c10343ae257d60ddc74671.png"><img alt="_images/ae16655e72c744b266b2dbdb3340f166bed20f6469c10343ae257d60ddc74671.png" src="_images/ae16655e72c744b266b2dbdb3340f166bed20f6469c10343ae257d60ddc74671.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/ae16655e72c744b266b2dbdb3340f166bed20f6469c10343ae257d60ddc74671.png"><img alt="_images/ae16655e72c744b266b2dbdb3340f166bed20f6469c10343ae257d60ddc74671.png" src="_images/ae16655e72c744b266b2dbdb3340f166bed20f6469c10343ae257d60ddc74671.png" style="width: 80%;" />
+</a>
 <figcaption>
-<p><span class="caption-number">Fig. 45.1 </span><span class="caption-text">Scatter plot</span><a class="headerlink" href="#sales-v-temp1" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 45.1 </span><span class="caption-text">Scatter plot</span><a class="headerlink" href="#sales-v-temp1" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -438,9 +445,10 @@ y_i = \alpha + \beta x_i + \epsilon_i, i = 1,2,...,N
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="sales-v-temp2">
-<a class="reference internal image-reference" href="_images/45a679edd0353ad3c46c3ded09fe6a74410f122bf80c327dde1ceda2b3f85377.png"><img alt="_images/45a679edd0353ad3c46c3ded09fe6a74410f122bf80c327dde1ceda2b3f85377.png" src="_images/45a679edd0353ad3c46c3ded09fe6a74410f122bf80c327dde1ceda2b3f85377.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/45a679edd0353ad3c46c3ded09fe6a74410f122bf80c327dde1ceda2b3f85377.png"><img alt="_images/45a679edd0353ad3c46c3ded09fe6a74410f122bf80c327dde1ceda2b3f85377.png" src="_images/45a679edd0353ad3c46c3ded09fe6a74410f122bf80c327dde1ceda2b3f85377.png" style="width: 80%;" />
+</a>
 <figcaption>
-<p><span class="caption-number">Fig. 45.2 </span><span class="caption-text">Scatter plot with a line of fit</span><a class="headerlink" href="#sales-v-temp2" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 45.2 </span><span class="caption-text">Scatter plot with a line of fit</span><a class="headerlink" href="#sales-v-temp2" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -466,9 +474,10 @@ y_i = \alpha + \beta x_i + \epsilon_i, i = 1,2,...,N
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="sales-v-temp3">
-<a class="reference internal image-reference" href="_images/039c89754a790ce6c5e03828e94371e7e31442fa43a72a7e6339edc7c39991eb.png"><img alt="_images/039c89754a790ce6c5e03828e94371e7e31442fa43a72a7e6339edc7c39991eb.png" src="_images/039c89754a790ce6c5e03828e94371e7e31442fa43a72a7e6339edc7c39991eb.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/039c89754a790ce6c5e03828e94371e7e31442fa43a72a7e6339edc7c39991eb.png"><img alt="_images/039c89754a790ce6c5e03828e94371e7e31442fa43a72a7e6339edc7c39991eb.png" src="_images/039c89754a790ce6c5e03828e94371e7e31442fa43a72a7e6339edc7c39991eb.png" style="width: 80%;" />
+</a>
 <figcaption>
-<p><span class="caption-number">Fig. 45.3 </span><span class="caption-text">Scatter plot with a line of fit #2</span><a class="headerlink" href="#sales-v-temp3" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 45.3 </span><span class="caption-text">Scatter plot with a line of fit #2</span><a class="headerlink" href="#sales-v-temp3" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -492,9 +501,10 @@ y_i = \alpha + \beta x_i + \epsilon_i, i = 1,2,...,N
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="sales-v-temp4">
-<a class="reference internal image-reference" href="_images/2fde1a53525ad1a628f36c9ee8b95814b34408e154e9ef98c8ad1adc4205d367.png"><img alt="_images/2fde1a53525ad1a628f36c9ee8b95814b34408e154e9ef98c8ad1adc4205d367.png" src="_images/2fde1a53525ad1a628f36c9ee8b95814b34408e154e9ef98c8ad1adc4205d367.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/2fde1a53525ad1a628f36c9ee8b95814b34408e154e9ef98c8ad1adc4205d367.png"><img alt="_images/2fde1a53525ad1a628f36c9ee8b95814b34408e154e9ef98c8ad1adc4205d367.png" src="_images/2fde1a53525ad1a628f36c9ee8b95814b34408e154e9ef98c8ad1adc4205d367.png" style="width: 80%;" />
+</a>
 <figcaption>
-<p><span class="caption-number">Fig. 45.4 </span><span class="caption-text">Scatter plot with a line of fit #3</span><a class="headerlink" href="#sales-v-temp4" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 45.4 </span><span class="caption-text">Scatter plot with a line of fit #3</span><a class="headerlink" href="#sales-v-temp4" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -633,9 +643,10 @@ y_i = \alpha + \beta x_i + \epsilon_i, i = 1,2,...,N
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="plt-residuals">
-<a class="reference internal image-reference" href="_images/afc08c73771f64327a100eab5ac006e587c368bbb786f0dc010c2256edf0fb02.png"><img alt="_images/afc08c73771f64327a100eab5ac006e587c368bbb786f0dc010c2256edf0fb02.png" src="_images/afc08c73771f64327a100eab5ac006e587c368bbb786f0dc010c2256edf0fb02.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/afc08c73771f64327a100eab5ac006e587c368bbb786f0dc010c2256edf0fb02.png"><img alt="_images/afc08c73771f64327a100eab5ac006e587c368bbb786f0dc010c2256edf0fb02.png" src="_images/afc08c73771f64327a100eab5ac006e587c368bbb786f0dc010c2256edf0fb02.png" style="width: 80%;" />
+</a>
 <figcaption>
-<p><span class="caption-number">Fig. 45.5 </span><span class="caption-text">Plot of the residuals</span><a class="headerlink" href="#plt-residuals" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 45.5 </span><span class="caption-text">Plot of the residuals</span><a class="headerlink" href="#plt-residuals" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -652,7 +663,7 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 \]</div>
 <p>that we would like to minimize with parameters <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span>.</p>
 <section id="how-does-error-change-with-respect-to-alpha-and-beta">
-<h2><span class="section-number">45.1. </span>How does error change with respect to <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span><a class="headerlink" href="#how-does-error-change-with-respect-to-alpha-and-beta" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">45.1. </span>How does error change with respect to <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span><a class="headerlink" href="#how-does-error-change-with-respect-to-alpha-and-beta" title="Link to this heading">#</a></h2>
 <p>Let us first look at how the total error changes with respect to <span class="math notranslate nohighlight">\(\beta\)</span> (holding the intercept <span class="math notranslate nohighlight">\(\alpha\)</span> constant)</p>
 <p>We know from <a class="reference internal" href="#slr-optimal-values"><span class="std std-ref">the next section</span></a> the optimal values for <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span>  are:</p>
 <div class="cell docutils container">
@@ -683,9 +694,10 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="plt-errors">
-<a class="reference internal image-reference" href="_images/45c233c171f7ddb358b813018dad6df181f832c891cfbd761f316bccd4773184.png"><img alt="_images/45c233c171f7ddb358b813018dad6df181f832c891cfbd761f316bccd4773184.png" src="_images/45c233c171f7ddb358b813018dad6df181f832c891cfbd761f316bccd4773184.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/45c233c171f7ddb358b813018dad6df181f832c891cfbd761f316bccd4773184.png"><img alt="_images/45c233c171f7ddb358b813018dad6df181f832c891cfbd761f316bccd4773184.png" src="_images/45c233c171f7ddb358b813018dad6df181f832c891cfbd761f316bccd4773184.png" style="width: 80%;" />
+</a>
 <figcaption>
-<p><span class="caption-number">Fig. 45.6 </span><span class="caption-text">Plotting the error</span><a class="headerlink" href="#plt-errors" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 45.6 </span><span class="caption-text">Plotting the error</span><a class="headerlink" href="#plt-errors" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -710,16 +722,17 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="plt-errors-2">
-<a class="reference internal image-reference" href="_images/a6adf09ca66632085dc062be116ab7d9a20b8b29d954f113edf6b4a1d9bf9e5a.png"><img alt="_images/a6adf09ca66632085dc062be116ab7d9a20b8b29d954f113edf6b4a1d9bf9e5a.png" src="_images/a6adf09ca66632085dc062be116ab7d9a20b8b29d954f113edf6b4a1d9bf9e5a.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/a6adf09ca66632085dc062be116ab7d9a20b8b29d954f113edf6b4a1d9bf9e5a.png"><img alt="_images/a6adf09ca66632085dc062be116ab7d9a20b8b29d954f113edf6b4a1d9bf9e5a.png" src="_images/a6adf09ca66632085dc062be116ab7d9a20b8b29d954f113edf6b4a1d9bf9e5a.png" style="width: 80%;" />
+</a>
 <figcaption>
-<p><span class="caption-number">Fig. 45.7 </span><span class="caption-text">Plotting the error (2)</span><a class="headerlink" href="#plt-errors-2" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 45.7 </span><span class="caption-text">Plotting the error (2)</span><a class="headerlink" href="#plt-errors-2" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
 </div>
 </section>
 <section id="calculating-optimal-values">
-<span id="slr-optimal-values"></span><h2><span class="section-number">45.2. </span>Calculating optimal values<a class="headerlink" href="#calculating-optimal-values" title="Permalink to this heading">#</a></h2>
+<span id="slr-optimal-values"></span><h2><span class="section-number">45.2. </span>Calculating optimal values<a class="headerlink" href="#calculating-optimal-values" title="Link to this heading">#</a></h2>
 <p>Now let us use calculus to solve the optimization problem and compute the optimal values for <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> to find the ordinary least squares solution.</p>
 <p>First taking the partial derivative with respect to <span class="math notranslate nohighlight">\(\alpha\)</span></p>
 <div class="math notranslate nohighlight">
@@ -753,7 +766,7 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 \]</div>
 <p>We observe that both fractions resolve to the means <span class="math notranslate nohighlight">\(\bar{y_i}\)</span> and <span class="math notranslate nohighlight">\(\bar{x_i}\)</span></p>
 <div class="math notranslate nohighlight" id="equation-eq-optimal-alpha">
-<span class="eqno">(45.1)<a class="headerlink" href="#equation-eq-optimal-alpha" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(45.1)<a class="headerlink" href="#equation-eq-optimal-alpha" title="Link to this equation">#</a></span>\[
 \alpha = \bar{y_i} - \beta\bar{x_i}
 \]</div>
 <p>Now let’s take the partial derivative of the cost function <span class="math notranslate nohighlight">\(C\)</span> with respect to <span class="math notranslate nohighlight">\(\beta\)</span></p>
@@ -793,7 +806,7 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 \]</div>
 <p>and solving for <span class="math notranslate nohighlight">\(\beta\)</span> yields</p>
 <div class="math notranslate nohighlight" id="equation-eq-optimal-beta">
-<span class="eqno">(45.2)<a class="headerlink" href="#equation-eq-optimal-beta" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(45.2)<a class="headerlink" href="#equation-eq-optimal-beta" title="Link to this equation">#</a></span>\[
 \beta = \frac{\sum_{i=1}^{N}(x_i y_i - \bar{y_i} x_i)}{\sum_{i=1}^{N}(x_i^2 - \bar{x_i} x_i)}
 \]</div>
 <p>We can now use <a class="reference internal" href="#equation-eq-optimal-alpha">(45.1)</a> and <a class="reference internal" href="#equation-eq-optimal-beta">(45.2)</a> to calculate the optimal values for <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span></p>
@@ -855,9 +868,10 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="plt-ols">
-<a class="reference internal image-reference" href="_images/eedad939bfbc1c689cb4e4d318581386ee815797c5fa99b9d3a0eed8f322064e.png"><img alt="_images/eedad939bfbc1c689cb4e4d318581386ee815797c5fa99b9d3a0eed8f322064e.png" src="_images/eedad939bfbc1c689cb4e4d318581386ee815797c5fa99b9d3a0eed8f322064e.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/eedad939bfbc1c689cb4e4d318581386ee815797c5fa99b9d3a0eed8f322064e.png"><img alt="_images/eedad939bfbc1c689cb4e4d318581386ee815797c5fa99b9d3a0eed8f322064e.png" src="_images/eedad939bfbc1c689cb4e4d318581386ee815797c5fa99b9d3a0eed8f322064e.png" style="width: 80%;" />
+</a>
 <figcaption>
-<p><span class="caption-number">Fig. 45.8 </span><span class="caption-text">OLS line of best fit</span><a class="headerlink" href="#plt-ols" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 45.8 </span><span class="caption-text">OLS line of best fit</span><a class="headerlink" href="#plt-ols" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -1865,7 +1879,8 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;year&#39;&gt;
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/b7e1e08c140a3e834e2b17c920663b11523b7f5768efad8fcf0cb992856f470e.png"><img alt="_images/b7e1e08c140a3e834e2b17c920663b11523b7f5768efad8fcf0cb992856f470e.png" src="_images/b7e1e08c140a3e834e2b17c920663b11523b7f5768efad8fcf0cb992856f470e.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/b7e1e08c140a3e834e2b17c920663b11523b7f5768efad8fcf0cb992856f470e.png"><img alt="_images/b7e1e08c140a3e834e2b17c920663b11523b7f5768efad8fcf0cb992856f470e.png" src="_images/b7e1e08c140a3e834e2b17c920663b11523b7f5768efad8fcf0cb992856f470e.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>In fact we can use pandas to quickly check how many countries are captured in each year</p>
@@ -1876,7 +1891,8 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/b7d0bc1cd1d2d2a6d5027a37f0986c0ec1a36bb447e386bb154c6f986138959d.png"><img alt="_images/b7d0bc1cd1d2d2a6d5027a37f0986c0ec1a36bb447e386bb154c6f986138959d.png" src="_images/b7d0bc1cd1d2d2a6d5027a37f0986c0ec1a36bb447e386bb154c6f986138959d.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/b7d0bc1cd1d2d2a6d5027a37f0986c0ec1a36bb447e386bb154c6f986138959d.png"><img alt="_images/b7d0bc1cd1d2d2a6d5027a37f0986c0ec1a36bb447e386bb154c6f986138959d.png" src="_images/b7d0bc1cd1d2d2a6d5027a37f0986c0ec1a36bb447e386bb154c6f986138959d.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>So it is clear that if you are doing cross-sectional comparisons then more recent data will include a wider set of countries</p>
@@ -1895,7 +1911,8 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/39ec302f3f085fa707fa4f3527f8e8c06fd17067bd8a23aa53644af274454de0.png"><img alt="_images/39ec302f3f085fa707fa4f3527f8e8c06fd17067bd8a23aa53644af274454de0.png" src="_images/39ec302f3f085fa707fa4f3527f8e8c06fd17067bd8a23aa53644af274454de0.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/39ec302f3f085fa707fa4f3527f8e8c06fd17067bd8a23aa53644af274454de0.png"><img alt="_images/39ec302f3f085fa707fa4f3527f8e8c06fd17067bd8a23aa53644af274454de0.png" src="_images/39ec302f3f085fa707fa4f3527f8e8c06fd17067bd8a23aa53644af274454de0.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>This data shows a couple of interesting relationships.</p>
@@ -1912,7 +1929,8 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/aa7a44f5e5d1462dd0e0cdc298b4f46d204eb343290caa46f934d36f5f4224af.png"><img alt="_images/aa7a44f5e5d1462dd0e0cdc298b4f46d204eb343290caa46f934d36f5f4224af.png" src="_images/aa7a44f5e5d1462dd0e0cdc298b4f46d204eb343290caa46f934d36f5f4224af.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/aa7a44f5e5d1462dd0e0cdc298b4f46d204eb343290caa46f934d36f5f4224af.png"><img alt="_images/aa7a44f5e5d1462dd0e0cdc298b4f46d204eb343290caa46f934d36f5f4224af.png" src="_images/aa7a44f5e5d1462dd0e0cdc298b4f46d204eb343290caa46f934d36f5f4224af.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>As you can see from this transformation – a linear model fits the shape of the data more closely.</p>
@@ -2194,10 +2212,11 @@ C = \sum_{i=1}^{N}{(y_i - \alpha - \beta x_i)^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.LineCollection at 0x7f839751c560&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.LineCollection at 0x7f372a355f70&gt;
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/3ad5ed72f7537f1858833344970ecd4432384a34d56dc476b2a13cc2fd313f9d.png"><img alt="_images/3ad5ed72f7537f1858833344970ecd4432384a34d56dc476b2a13cc2fd313f9d.png" src="_images/3ad5ed72f7537f1858833344970ecd4432384a34d56dc476b2a13cc2fd313f9d.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/3ad5ed72f7537f1858833344970ecd4432384a34d56dc476b2a13cc2fd313f9d.png"><img alt="_images/3ad5ed72f7537f1858833344970ecd4432384a34d56dc476b2a13cc2fd313f9d.png" src="_images/3ad5ed72f7537f1858833344970ecd4432384a34d56dc476b2a13cc2fd313f9d.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 </section>

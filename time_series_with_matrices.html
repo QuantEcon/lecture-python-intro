@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>36. Univariate Time Series with Matrix Algebra &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
@@ -70,15 +69,15 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=bd0785fbb14d8d2bd4d9ae501d79ed8d3bc089ec" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.5ea377869091fd0449014c60fc090103.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=4c010e0d" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -86,23 +85,22 @@
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script src="_static/scripts/quantecon-book-theme.js?digest=d9faaf6c4b57726f74ba012412af1f5681bdff87"></script>
+    <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
+    <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QDS1YRJNGM"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -111,12 +109,20 @@
                 gtag('config', 'G-QDS1YRJNGM');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QDS1YRJNGM');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"argmax": "arg\\,max", "argmin": "arg\\,min"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'time_series_with_matrices';</script>
     <link rel="canonical" href="https://intro.quantecon.org/time_series_with_matrices.html" />
-    <link rel="shortcut icon" href="_static/lectures-favicon.ico"/>
+    <link rel="icon" href="_static/lectures-favicon.ico"/>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -235,9 +241,9 @@
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="univariate-time-series-with-matrix-algebra">
-<h1><span class="section-number">36. </span>Univariate Time Series with Matrix Algebra<a class="headerlink" href="#univariate-time-series-with-matrix-algebra" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">36. </span>Univariate Time Series with Matrix Algebra<a class="headerlink" href="#univariate-time-series-with-matrix-algebra" title="Link to this heading">#</a></h1>
 <section id="overview">
-<h2><span class="section-number">36.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">36.1. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
 <p>This lecture uses matrices to solve some linear difference equations.</p>
 <p>As a running example, we’ll study a <strong>second-order linear difference
 equation</strong> that was the key technical tool in Paul Samuelson’s 1939
@@ -253,9 +259,9 @@ a “forward-looking” linear difference equation.</p>
 <p>We will use the following imports:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">cm</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">cm</span>
 
 <span class="c1"># Custom figsize for this lecture</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
@@ -268,11 +274,11 @@ a “forward-looking” linear difference equation.</p>
 </div>
 </section>
 <section id="samuelsons-model">
-<h2><span class="section-number">36.2. </span>Samuelson’s model<a class="headerlink" href="#samuelsons-model" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">36.2. </span>Samuelson’s model<a class="headerlink" href="#samuelsons-model" title="Link to this heading">#</a></h2>
 <p>Let <span class="math notranslate nohighlight">\(t = 0, \pm 1, \pm 2, \ldots\)</span> index time.</p>
 <p>For <span class="math notranslate nohighlight">\(t = 1, 2, 3, \ldots, T\)</span> suppose that</p>
 <div class="math notranslate nohighlight" id="equation-tswm-1">
-<span class="eqno">(36.1)<a class="headerlink" href="#equation-tswm-1" title="Permalink to this equation">#</a></span>\[y_{t} = \alpha_{0} + \alpha_{1} y_{t-1} + \alpha_{2} y_{t-2}\]</div>
+<span class="eqno">(36.1)<a class="headerlink" href="#equation-tswm-1" title="Link to this equation">#</a></span>\[y_{t} = \alpha_{0} + \alpha_{1} y_{t-1} + \alpha_{2} y_{t-2}\]</div>
 <p>where we assume that <span class="math notranslate nohighlight">\(y_0\)</span> and <span class="math notranslate nohighlight">\(y_{-1}\)</span> are given numbers
 that we take as <em>initial conditions</em>.</p>
 <p>In Samuelson’s model, <span class="math notranslate nohighlight">\(y_t\)</span> stood for <strong>national income</strong> or perhaps a different
@@ -466,7 +472,8 @@ it directly.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/f28b75dd7016499bc59f08d74a2f60c65dc4609fe3feefb3dbaae91a1536e73a.png"><img alt="_images/f28b75dd7016499bc59f08d74a2f60c65dc4609fe3feefb3dbaae91a1536e73a.png" src="_images/f28b75dd7016499bc59f08d74a2f60c65dc4609fe3feefb3dbaae91a1536e73a.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/f28b75dd7016499bc59f08d74a2f60c65dc4609fe3feefb3dbaae91a1536e73a.png"><img alt="_images/f28b75dd7016499bc59f08d74a2f60c65dc4609fe3feefb3dbaae91a1536e73a.png" src="_images/f28b75dd7016499bc59f08d74a2f60c65dc4609fe3feefb3dbaae91a1536e73a.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>The <a class="reference internal" href="scalar_dynam.html#scalar-dynam-steady-state"><span class="std std-ref">*steady state*</span></a> value <span class="math notranslate nohighlight">\(y^*\)</span> of <span class="math notranslate nohighlight">\(y_t\)</span> is obtained by setting <span class="math notranslate nohighlight">\(y_t = y_{t-1} =
@@ -508,18 +515,19 @@ constant:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/7c7243db82010ab09792f49b66a7667ec4693c9718ae53d4da6dbf7a50fc5b3b.png"><img alt="_images/7c7243db82010ab09792f49b66a7667ec4693c9718ae53d4da6dbf7a50fc5b3b.png" src="_images/7c7243db82010ab09792f49b66a7667ec4693c9718ae53d4da6dbf7a50fc5b3b.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/7c7243db82010ab09792f49b66a7667ec4693c9718ae53d4da6dbf7a50fc5b3b.png"><img alt="_images/7c7243db82010ab09792f49b66a7667ec4693c9718ae53d4da6dbf7a50fc5b3b.png" src="_images/7c7243db82010ab09792f49b66a7667ec4693c9718ae53d4da6dbf7a50fc5b3b.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 </section>
 <section id="adding-a-random-term">
-<h2><span class="section-number">36.3. </span>Adding a random term<a class="headerlink" href="#adding-a-random-term" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">36.3. </span>Adding a random term<a class="headerlink" href="#adding-a-random-term" title="Link to this heading">#</a></h2>
 <p>To generate some excitement, we’ll follow in the spirit of the great economists
 <a class="reference external" href="https://en.wikipedia.org/wiki/Eugen_Slutsky">Eugen Slutsky</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Ragnar_Frisch">Ragnar Frisch</a> and replace our original second-order difference
 equation with the following <strong>second-order stochastic linear difference
 equation</strong>:</p>
 <div class="math notranslate nohighlight" id="equation-tswm-2">
-<span class="eqno">(36.2)<a class="headerlink" href="#equation-tswm-2" title="Permalink to this equation">#</a></span>\[y_{t} = \alpha_{0} + \alpha_{1} y_{t-1} + \alpha_{2} y_{t-2} + u_t\]</div>
+<span class="eqno">(36.2)<a class="headerlink" href="#equation-tswm-2" title="Link to this equation">#</a></span>\[y_{t} = \alpha_{0} + \alpha_{1} y_{t-1} + \alpha_{2} y_{t-2} + u_t\]</div>
 <p>where <span class="math notranslate nohighlight">\(u_{t} \sim N\left(0, \sigma_{u}^{2}\right)\)</span> and is <a class="reference internal" href="lln_clt.html#iid-theorem"><span class="std std-ref">IID</span></a>,
 meaning independent and identically distributed.</p>
 <p>We’ll stack these <span class="math notranslate nohighlight">\(T\)</span> equations into a system cast in terms of
@@ -537,12 +545,12 @@ u_{T}
 <p>Where <span class="math notranslate nohighlight">\(A, b, y\)</span> are defined as above, now assume that <span class="math notranslate nohighlight">\(y\)</span> is
 governed by the system</p>
 <div class="math notranslate nohighlight" id="equation-eq-eqar">
-<span class="eqno">(36.3)<a class="headerlink" href="#equation-eq-eqar" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(36.3)<a class="headerlink" href="#equation-eq-eqar" title="Link to this equation">#</a></span>\[
 A y = b + u
 \]</div>
 <p>The solution for <span class="math notranslate nohighlight">\(y\)</span> becomes</p>
 <div class="math notranslate nohighlight" id="equation-eq-eqma">
-<span class="eqno">(36.4)<a class="headerlink" href="#equation-eq-eqma" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(36.4)<a class="headerlink" href="#equation-eq-eqma" title="Link to this equation">#</a></span>\[
 y = A^{-1} \left(b + u\right)
 \]</div>
 <p>Let’s try it out in Python.</p>
@@ -566,7 +574,8 @@ y = A^{-1} \left(b + u\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/d8bf00754fb61af67a4ce0727770af935347cb6c67fb0eaf170ca82aa8426f4e.png"><img alt="_images/d8bf00754fb61af67a4ce0727770af935347cb6c67fb0eaf170ca82aa8426f4e.png" src="_images/d8bf00754fb61af67a4ce0727770af935347cb6c67fb0eaf170ca82aa8426f4e.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/9ff8657585a9628d849d2b6e885a96020bc9cb325dba1fa2cc7e9d50e0cc254b.png"><img alt="_images/9ff8657585a9628d849d2b6e885a96020bc9cb325dba1fa2cc7e9d50e0cc254b.png" src="_images/9ff8657585a9628d849d2b6e885a96020bc9cb325dba1fa2cc7e9d50e0cc254b.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>The above time series looks a lot like (detrended) GDP series for a
@@ -590,7 +599,8 @@ number of advanced countries in recent decades.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/180fc3edd751d989e7fdcc531be0e94eb37e5567013d168ac2ff48b5342c5471.png"><img alt="_images/180fc3edd751d989e7fdcc531be0e94eb37e5567013d168ac2ff48b5342c5471.png" src="_images/180fc3edd751d989e7fdcc531be0e94eb37e5567013d168ac2ff48b5342c5471.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/cc3bec8dda0f0cb7b1e35e136fbd1750a3bdeb41af750c75378008d0c0c7761c.png"><img alt="_images/cc3bec8dda0f0cb7b1e35e136fbd1750a3bdeb41af750c75378008d0c0c7761c.png" src="_images/cc3bec8dda0f0cb7b1e35e136fbd1750a3bdeb41af750c75378008d0c0c7761c.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>Also consider the case when <span class="math notranslate nohighlight">\(y_{0}\)</span> and <span class="math notranslate nohighlight">\(y_{-1}\)</span> are at
@@ -613,12 +623,13 @@ steady state.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/efd666d5166d8291b852ce1d66dbe6339c94cae954daf249e8c2e23b07a7ac30.png"><img alt="_images/efd666d5166d8291b852ce1d66dbe6339c94cae954daf249e8c2e23b07a7ac30.png" src="_images/efd666d5166d8291b852ce1d66dbe6339c94cae954daf249e8c2e23b07a7ac30.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/a1e82bdbc09e1dfc673b167a92a074a247d11d06117056990c44c8790fba02b7.png"><img alt="_images/a1e82bdbc09e1dfc673b167a92a074a247d11d06117056990c44c8790fba02b7.png" src="_images/a1e82bdbc09e1dfc673b167a92a074a247d11d06117056990c44c8790fba02b7.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 </section>
 <section id="computing-population-moments">
-<h2><span class="section-number">36.4. </span>Computing population moments<a class="headerlink" href="#computing-population-moments" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">36.4. </span>Computing population moments<a class="headerlink" href="#computing-population-moments" title="Link to this heading">#</a></h2>
 <p>We can apply standard formulas for multivariate normal distributions to compute the mean vector and covariance matrix
 for our time series model</p>
 <div class="math notranslate nohighlight">
@@ -650,14 +661,14 @@ y \sim {\mathcal N}(\mu_y, \Sigma_y)
 <p>Let’s write a Python  class that computes the mean vector <span class="math notranslate nohighlight">\(\mu_y\)</span> and covariance matrix <span class="math notranslate nohighlight">\(\Sigma_y\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">population_moments</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">population_moments</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute population moments μ_y, Σ_y.</span>
 <span class="sd">    ---------</span>
 <span class="sd">    Parameters:</span>
 <span class="sd">    α_0, α_1, α_2, T, y_neg1, y_0</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">α_0</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> 
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">α_0</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> 
                        <span class="n">α_1</span><span class="o">=</span><span class="mf">1.53</span><span class="p">,</span> 
                        <span class="n">α_2</span><span class="o">=-</span><span class="mf">.9</span><span class="p">,</span> 
                        <span class="n">T</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> 
@@ -685,7 +696,7 @@ y \sim {\mathcal N}(\mu_y, \Sigma_y)
 
         <span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">A_inv</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">σ_u</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">T</span> <span class="o">=</span> <span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">A_inv</span><span class="p">,</span> <span class="n">σ_u</span><span class="p">,</span> <span class="n">T</span>
     
-    <span class="k">def</span> <span class="nf">sample_y</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">sample_y</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Give a sample of size n of y.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -695,7 +706,7 @@ y \sim {\mathcal N}(\mu_y, \Sigma_y)
 
         <span class="k">return</span> <span class="n">ys</span>
 
-    <span class="k">def</span> <span class="nf">get_moments</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_moments</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compute the population moments of y.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -738,7 +749,8 @@ y \sim {\mathcal N}(\mu_y, \Sigma_y)
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/39d29cdf1bcafda0a9826a245adabff2cc4b4a26ddd164d23df7d0dc45a30432.png"><img alt="_images/39d29cdf1bcafda0a9826a245adabff2cc4b4a26ddd164d23df7d0dc45a30432.png" src="_images/39d29cdf1bcafda0a9826a245adabff2cc4b4a26ddd164d23df7d0dc45a30432.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/60c04b9b2d0e0f8c26316dfd96e77d3289bde1573a382d270efd6cd707b6d1a4.png"><img alt="_images/60c04b9b2d0e0f8c26316dfd96e77d3289bde1573a382d270efd6cd707b6d1a4.png" src="_images/60c04b9b2d0e0f8c26316dfd96e77d3289bde1573a382d270efd6cd707b6d1a4.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>Visually, notice how the  variance across realizations of <span class="math notranslate nohighlight">\(y_t\)</span> decreases as <span class="math notranslate nohighlight">\(t\)</span> increases.</p>
@@ -752,7 +764,8 @@ y \sim {\mathcal N}(\mu_y, \Sigma_y)
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/ba7acb839681a83e250f47983bc704e95b6fd1201f2260d3d9f26669189b8aee.png"><img alt="_images/ba7acb839681a83e250f47983bc704e95b6fd1201f2260d3d9f26669189b8aee.png" src="_images/ba7acb839681a83e250f47983bc704e95b6fd1201f2260d3d9f26669189b8aee.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/ba7acb839681a83e250f47983bc704e95b6fd1201f2260d3d9f26669189b8aee.png"><img alt="_images/ba7acb839681a83e250f47983bc704e95b6fd1201f2260d3d9f26669189b8aee.png" src="_images/ba7acb839681a83e250f47983bc704e95b6fd1201f2260d3d9f26669189b8aee.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>Notice how the population variance increases and asymptotes.</p>
@@ -820,7 +833,7 @@ y \sim {\mathcal N}(\mu_y, \Sigma_y)
 <p>There is a lot to be learned about the process by staring at the off diagonal elements of <span class="math notranslate nohighlight">\(\Sigma_y\)</span> corresponding to different time periods <span class="math notranslate nohighlight">\(t\)</span>, but we resist the temptation to do so here.</p>
 </section>
 <section id="moving-average-representation">
-<h2><span class="section-number">36.5. </span>Moving average representation<a class="headerlink" href="#moving-average-representation" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">36.5. </span>Moving average representation<a class="headerlink" href="#moving-average-representation" title="Link to this heading">#</a></h2>
 <p>Let’s print out  <span class="math notranslate nohighlight">\(A^{-1}\)</span> and stare at  its structure</p>
 <ul class="simple">
 <li><p>is it triangular or almost triangular or <span class="math notranslate nohighlight">\(\ldots\)</span> ?</p></li>
@@ -863,7 +876,7 @@ y_{t+1}=\sum_{i=1}^{t+1}\tilde{A}_{t+1,i}b_{i}+\sum_{i=1}^{t}\tilde{A}_{t+1,i}u_
 <strong>moving average</strong> representation for <span class="math notranslate nohighlight">\(y\)</span>, system  <a class="reference internal" href="#equation-eq-eqar">(36.3)</a> constitutes  an <strong>autoregressive</strong> representation for <span class="math notranslate nohighlight">\(y\)</span>.</p>
 </section>
 <section id="a-forward-looking-model">
-<h2><span class="section-number">36.6. </span>A forward looking model<a class="headerlink" href="#a-forward-looking-model" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">36.6. </span>A forward looking model<a class="headerlink" href="#a-forward-looking-model" title="Link to this heading">#</a></h2>
 <p>Samuelson’s model is <em>backward looking</em> in the sense that we give it <em>initial conditions</em> and let it
 run.</p>
 <p>Let’s now turn to model  that is <em>forward looking</em>.</p>
@@ -975,7 +988,8 @@ y_{T}
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/c17f463d6ea660493cc63382adbca8c66bc703f270681b053bd8ce7f2a17f6e4.png"><img alt="_images/c17f463d6ea660493cc63382adbca8c66bc703f270681b053bd8ce7f2a17f6e4.png" src="_images/c17f463d6ea660493cc63382adbca8c66bc703f270681b053bd8ce7f2a17f6e4.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/c17f463d6ea660493cc63382adbca8c66bc703f270681b053bd8ce7f2a17f6e4.png"><img alt="_images/c17f463d6ea660493cc63382adbca8c66bc703f270681b053bd8ce7f2a17f6e4.png" src="_images/c17f463d6ea660493cc63382adbca8c66bc703f270681b053bd8ce7f2a17f6e4.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>Can you explain why the trend of the price is downward over time?</p>
@@ -996,7 +1010,8 @@ steady state.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/b38fbda4ac5c7c8b13ac5741366eb1253d339b0dc6c01e0eadbfdc44f07b56c1.png"><img alt="_images/b38fbda4ac5c7c8b13ac5741366eb1253d339b0dc6c01e0eadbfdc44f07b56c1.png" src="_images/b38fbda4ac5c7c8b13ac5741366eb1253d339b0dc6c01e0eadbfdc44f07b56c1.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/b38fbda4ac5c7c8b13ac5741366eb1253d339b0dc6c01e0eadbfdc44f07b56c1.png"><img alt="_images/b38fbda4ac5c7c8b13ac5741366eb1253d339b0dc6c01e0eadbfdc44f07b56c1.png" src="_images/b38fbda4ac5c7c8b13ac5741366eb1253d339b0dc6c01e0eadbfdc44f07b56c1.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 </section>

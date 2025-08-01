@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>38. Shortest Paths &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
@@ -70,15 +69,15 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=bd0785fbb14d8d2bd4d9ae501d79ed8d3bc089ec" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.5ea377869091fd0449014c60fc090103.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=4c010e0d" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -86,23 +85,22 @@
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script src="_static/scripts/quantecon-book-theme.js?digest=d9faaf6c4b57726f74ba012412af1f5681bdff87"></script>
+    <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
+    <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QDS1YRJNGM"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -111,12 +109,20 @@
                 gtag('config', 'G-QDS1YRJNGM');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QDS1YRJNGM');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"argmax": "arg\\,max", "argmin": "arg\\,min"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'short_path';</script>
     <link rel="canonical" href="https://intro.quantecon.org/short_path.html" />
-    <link rel="shortcut icon" href="_static/lectures-favicon.ico"/>
+    <link rel="icon" href="_static/lectures-favicon.ico"/>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -242,9 +248,9 @@
                 <img style="width:250px;display:inline;" width="250px" src="https://assets.quantecon.org/img/qe-menubar-logo.svg" alt="QuantEcon">
         </a>
 </div><section class="tex2jax_ignore mathjax_ignore" id="shortest-paths">
-<h1><span class="section-number">38. </span>Shortest Paths<a class="headerlink" href="#shortest-paths" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">38. </span>Shortest Paths<a class="headerlink" href="#shortest-paths" title="Link to this heading">#</a></h1>
 <section id="overview">
-<span id="index-0"></span><h2><span class="section-number">38.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<span id="index-0"></span><h2><span class="section-number">38.1. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
 <p>The shortest path problem is a <a class="reference external" href="https://en.wikipedia.org/wiki/Shortest_path">classic problem</a> in mathematics and computer science with applications in</p>
 <ul class="simple">
 <li><p>Economics (sequential decision making, analysis of social networks, etc.)</p></li>
@@ -263,14 +269,14 @@
 <p>The only scientific library we’ll need in what follows is NumPy:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="outline-of-the-problem">
-<h2><span class="section-number">38.2. </span>Outline of the problem<a class="headerlink" href="#outline-of-the-problem" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">38.2. </span>Outline of the problem<a class="headerlink" href="#outline-of-the-problem" title="Link to this heading">#</a></h2>
 <p>The shortest path problem is one of finding how to traverse a <a class="reference external" href="https://en.wikipedia.org/wiki/Graph_%28mathematics%29">graph</a> from one specified node to another at minimum cost.</p>
 <p>Consider the following graph</p>
 <figure class="align-default">
@@ -303,7 +309,7 @@
 </figure>
 </section>
 <section id="finding-least-cost-paths">
-<h2><span class="section-number">38.3. </span>Finding least-cost paths<a class="headerlink" href="#finding-least-cost-paths" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">38.3. </span>Finding least-cost paths<a class="headerlink" href="#finding-least-cost-paths" title="Link to this heading">#</a></h2>
 <p>For large graphs, we need a systematic solution.</p>
 <p>Let <span class="math notranslate nohighlight">\(J(v)\)</span> denote the minimum cost-to-go from node <span class="math notranslate nohighlight">\(v\)</span>, understood as the total cost from <span class="math notranslate nohighlight">\(v\)</span> if we take the best route.</p>
 <p>Suppose that we know <span class="math notranslate nohighlight">\(J(v)\)</span> for each node <span class="math notranslate nohighlight">\(v\)</span>, as shown below for the graph from the preceding example.</p>
@@ -317,7 +323,7 @@
 <li><p>From current node <span class="math notranslate nohighlight">\(v\)</span>, move to any node that solves</p></li>
 </ol>
 <div class="math notranslate nohighlight" id="equation-spprebell">
-<span class="eqno">(38.1)<a class="headerlink" href="#equation-spprebell" title="Permalink to this equation">#</a></span>\[\min_{w \in F_v} \{ c(v, w) + J(w) \}\]</div>
+<span class="eqno">(38.1)<a class="headerlink" href="#equation-spprebell" title="Link to this equation">#</a></span>\[\min_{w \in F_v} \{ c(v, w) + J(w) \}\]</div>
 <p>where</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(F_v\)</span> is the set of nodes that can be reached from <span class="math notranslate nohighlight">\(v\)</span> in one step.</p></li>
@@ -328,24 +334,24 @@
 <p>Some thought will convince you that, for every node <span class="math notranslate nohighlight">\(v\)</span>,
 the function <span class="math notranslate nohighlight">\(J\)</span> satisfies</p>
 <div class="math notranslate nohighlight" id="equation-spbell">
-<span class="eqno">(38.2)<a class="headerlink" href="#equation-spbell" title="Permalink to this equation">#</a></span>\[J(v) = \min_{w \in F_v} \{ c(v, w) + J(w) \}\]</div>
+<span class="eqno">(38.2)<a class="headerlink" href="#equation-spbell" title="Link to this equation">#</a></span>\[J(v) = \min_{w \in F_v} \{ c(v, w) + J(w) \}\]</div>
 <p>This is known as the <strong>Bellman equation</strong>, after the mathematician <a class="reference external" href="https://en.wikipedia.org/wiki/Richard_E._Bellman">Richard Bellman</a>.</p>
 <p>The Bellman equation can be thought of as a restriction that <span class="math notranslate nohighlight">\(J\)</span> must
 satisfy.</p>
 <p>What we want to do now is use this restriction to compute <span class="math notranslate nohighlight">\(J\)</span>.</p>
 </section>
 <section id="solving-for-minimum-cost-to-go">
-<h2><span class="section-number">38.4. </span>Solving for minimum cost-to-go<a class="headerlink" href="#solving-for-minimum-cost-to-go" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">38.4. </span>Solving for minimum cost-to-go<a class="headerlink" href="#solving-for-minimum-cost-to-go" title="Link to this heading">#</a></h2>
 <p>Let’s look at an algorithm for computing <span class="math notranslate nohighlight">\(J\)</span> and then think about how to
 implement it.</p>
 <section id="the-algorithm">
-<h3><span class="section-number">38.4.1. </span>The algorithm<a class="headerlink" href="#the-algorithm" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">38.4.1. </span>The algorithm<a class="headerlink" href="#the-algorithm" title="Link to this heading">#</a></h3>
 <p>The standard algorithm for finding <span class="math notranslate nohighlight">\(J\)</span> is to start an initial guess and then iterate.</p>
 <p>This is a standard approach to solving nonlinear equations, often called
 the method of <strong>successive approximations</strong>.</p>
 <p>Our initial guess will be</p>
 <div class="math notranslate nohighlight" id="equation-spguess">
-<span class="eqno">(38.3)<a class="headerlink" href="#equation-spguess" title="Permalink to this equation">#</a></span>\[J_0(v) = 0 \text{ for all } v\]</div>
+<span class="eqno">(38.3)<a class="headerlink" href="#equation-spguess" title="Link to this equation">#</a></span>\[J_0(v) = 0 \text{ for all } v\]</div>
 <p>Now</p>
 <ol class="arabic simple">
 <li><p>Set <span class="math notranslate nohighlight">\(n = 0\)</span></p></li>
@@ -357,7 +363,7 @@ the method of <strong>successive approximations</strong>.</p>
 on dynamic programming.</p>
 </section>
 <section id="implementation">
-<h3><span class="section-number">38.4.2. </span>Implementation<a class="headerlink" href="#implementation" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">38.4.2. </span>Implementation<a class="headerlink" href="#implementation" title="Link to this heading">#</a></h3>
 <p>Having an algorithm is a good start, but we also need to think about how to
 implement it on a computer.</p>
 <p>First, for the cost function <span class="math notranslate nohighlight">\(c\)</span>, we’ll implement it as a matrix
@@ -382,7 +388,7 @@ Q(1, 2)
 <p>For example, for the simple graph above, we set</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">inf</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">inf</span>
 
 <span class="n">Q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">inf</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>   <span class="mi">5</span><span class="p">,</span>   <span class="mi">3</span><span class="p">,</span>   <span class="n">inf</span><span class="p">,</span> <span class="n">inf</span><span class="p">,</span> <span class="n">inf</span><span class="p">],</span>
               <span class="p">[</span><span class="n">inf</span><span class="p">,</span> <span class="n">inf</span><span class="p">,</span> <span class="n">inf</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span>   <span class="mi">6</span><span class="p">,</span>   <span class="n">inf</span><span class="p">,</span> <span class="n">inf</span><span class="p">],</span>
@@ -437,7 +443,7 @@ Q(1, 2)
 </section>
 </section>
 <section id="exercises">
-<h2><span class="section-number">38.5. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">38.5. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
 <div class="exercise admonition" id="short_path_ex1">
 
 <p class="admonition-title"><span class="caption-number">Exercise 38.1 </span></p>
@@ -581,7 +587,7 @@ integers, so consider replacing <code class="docutils literal notranslate"><span
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_nodes</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">destination_node</span> <span class="o">=</span> <span class="mi">99</span>
 
-<span class="k">def</span> <span class="nf">map_graph_to_distance_matrix</span><span class="p">(</span><span class="n">in_file</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">map_graph_to_distance_matrix</span><span class="p">(</span><span class="n">in_file</span><span class="p">):</span>
 
     <span class="c1"># First let&#39;s set of the distance matrix Q with inf everywhere</span>
     <span class="n">Q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">num_nodes</span><span class="p">,</span> <span class="n">num_nodes</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span>
@@ -612,11 +618,11 @@ integers, so consider replacing <code class="docutils literal notranslate"><span
 <p>The minimization step is vectorized to make it faster.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bellman</span><span class="p">(</span><span class="n">J</span><span class="p">,</span> <span class="n">Q</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">bellman</span><span class="p">(</span><span class="n">J</span><span class="p">,</span> <span class="n">Q</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">Q</span> <span class="o">+</span> <span class="n">J</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">compute_cost_to_go</span><span class="p">(</span><span class="n">Q</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_cost_to_go</span><span class="p">(</span><span class="n">Q</span><span class="p">):</span>
     <span class="n">num_nodes</span> <span class="o">=</span> <span class="n">Q</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">J</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_nodes</span><span class="p">)</span>      <span class="c1"># Initial guess</span>
     <span class="n">max_iter</span> <span class="o">=</span> <span class="mi">500</span>
@@ -641,7 +647,7 @@ dealing with floating point numbers now.</p>
 optimal path (and its cost).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">print_best_path</span><span class="p">(</span><span class="n">J</span><span class="p">,</span> <span class="n">Q</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">print_best_path</span><span class="p">(</span><span class="n">J</span><span class="p">,</span> <span class="n">Q</span><span class="p">):</span>
     <span class="n">sum_costs</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">current_node</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">while</span> <span class="n">current_node</span> <span class="o">!=</span> <span class="n">destination_node</span><span class="p">:</span>

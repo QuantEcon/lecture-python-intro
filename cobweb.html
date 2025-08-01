@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>26. The Cobweb Model &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
@@ -70,15 +69,15 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=bd0785fbb14d8d2bd4d9ae501d79ed8d3bc089ec" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.5ea377869091fd0449014c60fc090103.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=4c010e0d" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -86,23 +85,22 @@
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script src="_static/scripts/quantecon-book-theme.js?digest=d9faaf6c4b57726f74ba012412af1f5681bdff87"></script>
+    <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
+    <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QDS1YRJNGM"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -111,12 +109,20 @@
                 gtag('config', 'G-QDS1YRJNGM');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QDS1YRJNGM');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"argmax": "arg\\,max", "argmin": "arg\\,min"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'cobweb';</script>
     <link rel="canonical" href="https://intro.quantecon.org/cobweb.html" />
-    <link rel="shortcut icon" href="_static/lectures-favicon.ico"/>
+    <link rel="icon" href="_static/lectures-favicon.ico"/>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -235,10 +241,10 @@
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="the-cobweb-model">
-<span id="cobweb"></span><h1><span class="section-number">26. </span>The Cobweb Model<a class="headerlink" href="#the-cobweb-model" title="Permalink to this heading">#</a></h1>
+<span id="cobweb"></span><h1><span class="section-number">26. </span>The Cobweb Model<a class="headerlink" href="#the-cobweb-model" title="Link to this heading">#</a></h1>
 <p>The cobweb model is a model of prices and quantities in a given market, and how they evolve over time.</p>
 <section id="overview">
-<h2><span class="section-number">26.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">26.1. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
 <p>The cobweb model dates back to the 1930s and, while simple, it remains significant
 because it shows the fundamental importance of <em>expectations</em>.</p>
 <p>To give some idea of how the model operates, and why expectations matter, imagine the following scenario.</p>
@@ -265,15 +271,15 @@ assumptions regarding the way that producers form expectations.</p>
 <p>We will use the following imports.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="history">
-<h2><span class="section-number">26.2. </span>History<a class="headerlink" href="#history" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">26.2. </span>History<a class="headerlink" href="#history" title="Link to this heading">#</a></h2>
 <p>Early papers on the cobweb cycle include <span id="id1">[<a class="reference internal" href="zreferences.html#id279" title="Frederick V. Waugh. Cobweb models. Journal of Farm Economics, 46(4):732–750, 1964.">Waugh, 1964</a>]</span> and <span id="id2">[<a class="reference internal" href="zreferences.html#id280" title="Arthur A. Harlow. The hog cycle and the cobweb theorem. American Journal of Agricultural Economics, 42(4):842-853, 1960. doi:https://doi.org/10.2307/1235116.">Harlow, 1960</a>]</span>.</p>
 <p>The paper <span id="id3">[<a class="reference internal" href="zreferences.html#id280" title="Arthur A. Harlow. The hog cycle and the cobweb theorem. American Journal of Agricultural Economics, 42(4):842-853, 1960. doi:https://doi.org/10.2307/1235116.">Harlow, 1960</a>]</span> uses the cobweb theorem to explain the prices of hog in the US over 1920–1950.</p>
 <p>The next plot replicates part of Figure 2 from that paper, which plots the price of hogs at yearly frequency.</p>
@@ -295,12 +301,13 @@ assumptions regarding the way that producers form expectations.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/1a2b226f06e8a75914b62d5ca0360067ec5acda2ee2d286b63e21beb4a9d4b50.png"><img alt="_images/1a2b226f06e8a75914b62d5ca0360067ec5acda2ee2d286b63e21beb4a9d4b50.png" src="_images/1a2b226f06e8a75914b62d5ca0360067ec5acda2ee2d286b63e21beb4a9d4b50.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/1a2b226f06e8a75914b62d5ca0360067ec5acda2ee2d286b63e21beb4a9d4b50.png"><img alt="_images/1a2b226f06e8a75914b62d5ca0360067ec5acda2ee2d286b63e21beb4a9d4b50.png" src="_images/1a2b226f06e8a75914b62d5ca0360067ec5acda2ee2d286b63e21beb4a9d4b50.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 </section>
 <section id="the-model">
-<h2><span class="section-number">26.3. </span>The model<a class="headerlink" href="#the-model" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">26.3. </span>The model<a class="headerlink" href="#the-model" title="Link to this heading">#</a></h2>
 <p>Let’s return to our discussion of a hypothetical soybean market, where price is determined by supply and demand.</p>
 <p>We suppose that demand for soybeans is given by</p>
 <div class="math notranslate nohighlight">
@@ -320,9 +327,9 @@ assumptions regarding the way that producers form expectations.</p>
 <p>First we store the parameters in a class and define the functions above as methods.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Market</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Market</span><span class="p">:</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">a</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>      <span class="c1"># demand parameter</span>
                  <span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>      <span class="c1"># demand parameter</span>
                  <span class="n">c</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>      <span class="c1"># supply parameter</span>
@@ -331,11 +338,11 @@ assumptions regarding the way that producers form expectations.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">c</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">d</span> <span class="o">=</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">λ</span> <span class="o">=</span> <span class="n">λ</span>
 
-    <span class="k">def</span> <span class="nf">demand</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">demand</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
         <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span>
         <span class="k">return</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span> <span class="o">*</span> <span class="n">p</span>
 
-    <span class="k">def</span> <span class="nf">supply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">supply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
         <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">λ</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">c</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">d</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">λ</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">λ</span> <span class="o">*</span> <span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="n">c</span><span class="p">))</span> <span class="o">+</span> <span class="n">d</span>
 </pre></div>
@@ -360,7 +367,8 @@ assumptions regarding the way that producers form expectations.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/e8ce19ccb2890e00b75d891a950aa8ff4a34d33fcc3d38c472bb0f9975e380a5.png"><img alt="_images/e8ce19ccb2890e00b75d891a950aa8ff4a34d33fcc3d38c472bb0f9975e380a5.png" src="_images/e8ce19ccb2890e00b75d891a950aa8ff4a34d33fcc3d38c472bb0f9975e380a5.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/e8ce19ccb2890e00b75d891a950aa8ff4a34d33fcc3d38c472bb0f9975e380a5.png"><img alt="_images/e8ce19ccb2890e00b75d891a950aa8ff4a34d33fcc3d38c472bb0f9975e380a5.png" src="_images/e8ce19ccb2890e00b75d891a950aa8ff4a34d33fcc3d38c472bb0f9975e380a5.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>Market equilibrium requires that supply equals demand, or</p>
@@ -377,17 +385,17 @@ assumptions regarding the way that producers form expectations.</p>
 <p>We will assume that expected prices at time <span class="math notranslate nohighlight">\(t\)</span> depend on past prices.</p>
 <p>In particular, we suppose that</p>
 <div class="math notranslate nohighlight" id="equation-p-et">
-<span class="eqno">(26.1)<a class="headerlink" href="#equation-p-et" title="Permalink to this equation">#</a></span>\[    p^e_t = f(p_{t-1}, p_{t-2})\]</div>
+<span class="eqno">(26.1)<a class="headerlink" href="#equation-p-et" title="Link to this equation">#</a></span>\[    p^e_t = f(p_{t-1}, p_{t-2})\]</div>
 <p>where <span class="math notranslate nohighlight">\(f\)</span> is some function.</p>
 <p>Thus, we are assuming that producers expect the time-<span class="math notranslate nohighlight">\(t\)</span> price to be some function of lagged prices, up to <span class="math notranslate nohighlight">\(2\)</span> lags.</p>
 <p>(We could of course add additional lags and readers are encouraged to experiment with such cases.)</p>
 <p>Combining the last two equations gives the dynamics for prices:</p>
 <div class="math notranslate nohighlight" id="equation-price-t">
-<span class="eqno">(26.2)<a class="headerlink" href="#equation-price-t" title="Permalink to this equation">#</a></span>\[    p_t = - \frac{1}{b} [ S(f(p_{t-1}, p_{t-2})) - a]\]</div>
+<span class="eqno">(26.2)<a class="headerlink" href="#equation-price-t" title="Link to this equation">#</a></span>\[    p_t = - \frac{1}{b} [ S(f(p_{t-1}, p_{t-2})) - a]\]</div>
 <p>The price dynamics depend on the parameter values and also on the function <span class="math notranslate nohighlight">\(f\)</span> that determines how producers form expectations.</p>
 </section>
 <section id="naive-expectations">
-<h2><span class="section-number">26.4. </span>Naive expectations<a class="headerlink" href="#naive-expectations" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">26.4. </span>Naive expectations<a class="headerlink" href="#naive-expectations" title="Link to this heading">#</a></h2>
 <p>To go further in our analysis we need to specify the function <span class="math notranslate nohighlight">\(f\)</span>; that is, how expectations are formed.</p>
 <p>Let’s start with naive expectations, which refers to the case where producers expect the next period spot price to be whatever the price is in the current period.</p>
 <p>In other words,</p>
@@ -407,11 +415,11 @@ p_t^e = p_{t-1}
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(g\)</span> is the function defined by</p>
 <div class="math notranslate nohighlight" id="equation-def-g">
-<span class="eqno">(26.3)<a class="headerlink" href="#equation-def-g" title="Permalink to this equation">#</a></span>\[    g(p) = - \frac{1}{b} [ S(p) - a]\]</div>
+<span class="eqno">(26.3)<a class="headerlink" href="#equation-def-g" title="Link to this equation">#</a></span>\[    g(p) = - \frac{1}{b} [ S(p) - a]\]</div>
 <p>Here we represent the function <span class="math notranslate nohighlight">\(g\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">g</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">current_price</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">g</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">current_price</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Function to find the next price given the current price</span>
 <span class="sd">    and Market model</span>
@@ -426,13 +434,13 @@ p_t^e = p_{t-1}
 <p>Let’s try to understand how prices will evolve using a 45-degree diagram, which is a tool for studying one-dimensional dynamics.</p>
 <p>The function <code class="docutils literal notranslate"><span class="pre">plot45</span></code> defined below helps us draw the 45-degree diagram.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot45</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">pmin</span><span class="p">,</span> <span class="n">pmax</span><span class="p">,</span> <span class="n">p0</span><span class="p">,</span> <span class="n">num_arrows</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot45</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">pmin</span><span class="p">,</span> <span class="n">pmax</span><span class="p">,</span> <span class="n">p0</span><span class="p">,</span> <span class="n">num_arrows</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Function to plot a 45 degree plot</span>
 
@@ -522,7 +530,8 @@ p_t^e = p_{t-1}
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/0ae88d022cbd7f1cfe141f03aad5572399811169b51a04af0965b687b23431d1.png"><img alt="_images/0ae88d022cbd7f1cfe141f03aad5572399811169b51a04af0965b687b23431d1.png" src="_images/0ae88d022cbd7f1cfe141f03aad5572399811169b51a04af0965b687b23431d1.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/0ae88d022cbd7f1cfe141f03aad5572399811169b51a04af0965b687b23431d1.png"><img alt="_images/0ae88d022cbd7f1cfe141f03aad5572399811169b51a04af0965b687b23431d1.png" src="_images/0ae88d022cbd7f1cfe141f03aad5572399811169b51a04af0965b687b23431d1.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>The plot shows the function <span class="math notranslate nohighlight">\(g\)</span> defined in <a class="reference internal" href="#equation-def-g">(26.3)</a> and the 45-degree line.</p>
@@ -541,7 +550,7 @@ p_t^e = p_{t-1}
 <p>To confirm this, let’s plot a time series.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ts_plot_price</span><span class="p">(</span><span class="n">model</span><span class="p">,</span>             <span class="c1"># Market model</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">ts_plot_price</span><span class="p">(</span><span class="n">model</span><span class="p">,</span>             <span class="c1"># Market model</span>
                   <span class="n">p0</span><span class="p">,</span>                <span class="c1"># Initial price</span>
                   <span class="n">y_a</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">y_b</span><span class="o">=</span> <span class="mi">12</span><span class="p">,</span>    <span class="c1"># Controls y-axis</span>
                   <span class="n">ts_length</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>     <span class="c1"># Length of time series</span>
@@ -577,7 +586,8 @@ p_t^e = p_{t-1}
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/10436c9ab43550a582a43cfd63a58c2f7910736cf9550a6e314744d5cb806dba.png"><img alt="_images/10436c9ab43550a582a43cfd63a58c2f7910736cf9550a6e314744d5cb806dba.png" src="_images/10436c9ab43550a582a43cfd63a58c2f7910736cf9550a6e314744d5cb806dba.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/10436c9ab43550a582a43cfd63a58c2f7910736cf9550a6e314744d5cb806dba.png"><img alt="_images/10436c9ab43550a582a43cfd63a58c2f7910736cf9550a6e314744d5cb806dba.png" src="_images/10436c9ab43550a582a43cfd63a58c2f7910736cf9550a6e314744d5cb806dba.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>We see that a cycle has formed and the cycle is persistent.</p>
@@ -591,12 +601,13 @@ p_t^e = p_{t-1}
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/be9a3a18f4bf47b3f414c653e3b6569376dd14adedfabb4e8ef4ff41869cc65f.png"><img alt="_images/be9a3a18f4bf47b3f414c653e3b6569376dd14adedfabb4e8ef4ff41869cc65f.png" src="_images/be9a3a18f4bf47b3f414c653e3b6569376dd14adedfabb4e8ef4ff41869cc65f.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/be9a3a18f4bf47b3f414c653e3b6569376dd14adedfabb4e8ef4ff41869cc65f.png"><img alt="_images/be9a3a18f4bf47b3f414c653e3b6569376dd14adedfabb4e8ef4ff41869cc65f.png" src="_images/be9a3a18f4bf47b3f414c653e3b6569376dd14adedfabb4e8ef4ff41869cc65f.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 </section>
 <section id="adaptive-expectations">
-<h2><span class="section-number">26.5. </span>Adaptive expectations<a class="headerlink" href="#adaptive-expectations" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">26.5. </span>Adaptive expectations<a class="headerlink" href="#adaptive-expectations" title="Link to this heading">#</a></h2>
 <p>Naive expectations are quite simple and also important in driving the cycle that we found.</p>
 <p>What if expectations are formed in a different way?</p>
 <p>Next we consider adaptive expectations.</p>
@@ -605,11 +616,11 @@ the next period price as a weighted average of their last guess and the
 current spot price.</p>
 <p>That is,</p>
 <div class="math notranslate nohighlight" id="equation-pe-adaptive">
-<span class="eqno">(26.4)<a class="headerlink" href="#equation-pe-adaptive" title="Permalink to this equation">#</a></span>\[p_t^e = \alpha p_{t-1} + (1-\alpha) p^e_{t-1}
+<span class="eqno">(26.4)<a class="headerlink" href="#equation-pe-adaptive" title="Link to this equation">#</a></span>\[p_t^e = \alpha p_{t-1} + (1-\alpha) p^e_{t-1}
 \qquad (0 \leq \alpha \leq 1)\]</div>
 <p>Another way to write this is</p>
 <div class="math notranslate nohighlight" id="equation-pe-adaptive-2">
-<span class="eqno">(26.5)<a class="headerlink" href="#equation-pe-adaptive-2" title="Permalink to this equation">#</a></span>\[p_t^e = p^e_{t-1} + \alpha (p_{t-1} - p_{t-1}^e)\]</div>
+<span class="eqno">(26.5)<a class="headerlink" href="#equation-pe-adaptive-2" title="Link to this equation">#</a></span>\[p_t^e = p^e_{t-1} + \alpha (p_{t-1} - p_{t-1}^e)\]</div>
 <p>This equation helps to show that expectations shift</p>
 <ol class="arabic simple">
 <li><p>up when prices last period were above expectations</p></li>
@@ -623,7 +634,7 @@ current spot price.</p>
 <p>Let’s try to simulate the price and observe the dynamics using different values of <span class="math notranslate nohighlight">\(\alpha\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">find_next_price_adaptive</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">curr_price_exp</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">find_next_price_adaptive</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">curr_price_exp</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Function to find the next price given the current price expectation</span>
 <span class="sd">    and Market model</span>
@@ -636,7 +647,7 @@ current spot price.</p>
 <p>The function below plots price dynamics under adaptive expectations for different values of <span class="math notranslate nohighlight">\(\alpha\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ts_price_plot_adaptive</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">p0</span><span class="p">,</span> <span class="n">ts_length</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">α</span><span class="o">=</span><span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">]):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">ts_price_plot_adaptive</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">p0</span><span class="p">,</span> <span class="n">ts_length</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">α</span><span class="o">=</span><span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">]):</span>
     <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">α</span><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
     <span class="k">for</span> <span class="n">i_plot</span><span class="p">,</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">α</span><span class="p">):</span>
         <span class="n">pe_last</span> <span class="o">=</span> <span class="n">p0</span>
@@ -663,7 +674,8 @@ current spot price.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/54c876cfa75f190dfe501d7964aa8f5fe234dc1200f23b853f3056d3191c05d0.png"><img alt="_images/54c876cfa75f190dfe501d7964aa8f5fe234dc1200f23b853f3056d3191c05d0.png" src="_images/54c876cfa75f190dfe501d7964aa8f5fe234dc1200f23b853f3056d3191c05d0.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/54c876cfa75f190dfe501d7964aa8f5fe234dc1200f23b853f3056d3191c05d0.png"><img alt="_images/54c876cfa75f190dfe501d7964aa8f5fe234dc1200f23b853f3056d3191c05d0.png" src="_images/54c876cfa75f190dfe501d7964aa8f5fe234dc1200f23b853f3056d3191c05d0.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>Note that if <span class="math notranslate nohighlight">\(\alpha=1\)</span>, then adaptive expectations are just naive expectation.</p>
@@ -672,7 +684,7 @@ expectations, which stabilizes expected prices.</p>
 <p>This increased stability can be seen in the figures.</p>
 </section>
 <section id="exercises">
-<h2><span class="section-number">26.6. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">26.6. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
 <div class="exercise admonition" id="cobweb_ex1">
 
 <p class="admonition-title"><span class="caption-number">Exercise 26.1 </span></p>
@@ -687,7 +699,7 @@ expectations, which stabilizes expected prices.</p>
 <section id="solution-content">
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ts_plot_supply</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">p0</span><span class="p">,</span> <span class="n">ts_length</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">ts_plot_supply</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">p0</span><span class="p">,</span> <span class="n">ts_length</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Function to simulate and plot the supply function</span>
 <span class="sd">    given the initial price.</span>
@@ -726,7 +738,8 @@ expectations, which stabilizes expected prices.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/401ef1d0e4288975cff908f585995d99690755185f195e1ffab83c41e869d8b3.png"><img alt="_images/401ef1d0e4288975cff908f585995d99690755185f195e1ffab83c41e869d8b3.png" src="_images/401ef1d0e4288975cff908f585995d99690755185f195e1ffab83c41e869d8b3.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/401ef1d0e4288975cff908f585995d99690755185f195e1ffab83c41e869d8b3.png"><img alt="_images/401ef1d0e4288975cff908f585995d99690755185f195e1ffab83c41e869d8b3.png" src="_images/401ef1d0e4288975cff908f585995d99690755185f195e1ffab83c41e869d8b3.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 </section>
@@ -741,7 +754,7 @@ expectations for the next period price as a linear combination of their last
 guess and the second last guess.</p>
 <p>That is,</p>
 <div class="math notranslate nohighlight" id="equation-pe-blae">
-<span class="eqno">(26.6)<a class="headerlink" href="#equation-pe-blae" title="Permalink to this equation">#</a></span>\[p_t^e = \alpha p_{t-1} + (1-\alpha) p_{t-2}\]</div>
+<span class="eqno">(26.6)<a class="headerlink" href="#equation-pe-blae" title="Link to this equation">#</a></span>\[p_t^e = \alpha p_{t-1} + (1-\alpha) p_{t-2}\]</div>
 <p>Simulate and plot the price dynamics for <span class="math notranslate nohighlight">\(\alpha \in \{0.1, 0.3, 0.5, 0.8\}\)</span> where <span class="math notranslate nohighlight">\(p_0=1\)</span> and <span class="math notranslate nohighlight">\(p_1=2.5\)</span>.</p>
 </section>
 </div>
@@ -751,7 +764,7 @@ guess and the second last guess.</p>
 <section id="solution-content">
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">find_next_price_blae</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">curr_price_exp</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">find_next_price_blae</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">curr_price_exp</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Function to find the next price given the current price expectation</span>
 <span class="sd">    and Market model</span>
@@ -763,7 +776,7 @@ guess and the second last guess.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ts_plot_price_blae</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">p0</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="n">alphas</span><span class="p">,</span> <span class="n">ts_length</span><span class="o">=</span><span class="mi">15</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">ts_plot_price_blae</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">p0</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="n">alphas</span><span class="p">,</span> <span class="n">ts_length</span><span class="o">=</span><span class="mi">15</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Function to simulate and plot the time series of price</span>
 <span class="sd">    using backward looking average expectations.</span>
@@ -802,7 +815,8 @@ guess and the second last guess.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/51e0cf2b6f6839e78b7a12207dc13debe6e809c96b5c8886c6f3ee07d72daebc.png"><img alt="_images/51e0cf2b6f6839e78b7a12207dc13debe6e809c96b5c8886c6f3ee07d72daebc.png" src="_images/51e0cf2b6f6839e78b7a12207dc13debe6e809c96b5c8886c6f3ee07d72daebc.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/51e0cf2b6f6839e78b7a12207dc13debe6e809c96b5c8886c6f3ee07d72daebc.png"><img alt="_images/51e0cf2b6f6839e78b7a12207dc13debe6e809c96b5c8886c6f3ee07d72daebc.png" src="_images/51e0cf2b6f6839e78b7a12207dc13debe6e809c96b5c8886c6f3ee07d72daebc.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 </section>

@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>17. Eigenvalues and Eigenvectors &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
@@ -70,15 +69,15 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=bd0785fbb14d8d2bd4d9ae501d79ed8d3bc089ec" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.5ea377869091fd0449014c60fc090103.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=4c010e0d" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -86,23 +85,22 @@
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script src="_static/scripts/quantecon-book-theme.js?digest=d9faaf6c4b57726f74ba012412af1f5681bdff87"></script>
+    <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
+    <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QDS1YRJNGM"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -111,12 +109,20 @@
                 gtag('config', 'G-QDS1YRJNGM');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QDS1YRJNGM');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"argmax": "arg\\,max", "argmin": "arg\\,min"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'eigen_I';</script>
     <link rel="canonical" href="https://intro.quantecon.org/eigen_I.html" />
-    <link rel="shortcut icon" href="_static/lectures-favicon.ico"/>
+    <link rel="icon" href="_static/lectures-favicon.ico"/>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -266,9 +272,9 @@
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="eigenvalues-and-eigenvectors">
-<span id="eigen"></span><h1><span class="section-number">17. </span>Eigenvalues and Eigenvectors<a class="headerlink" href="#eigenvalues-and-eigenvectors" title="Permalink to this heading">#</a></h1>
+<span id="eigen"></span><h1><span class="section-number">17. </span>Eigenvalues and Eigenvectors<a class="headerlink" href="#eigenvalues-and-eigenvectors" title="Link to this heading">#</a></h1>
 <section id="overview">
-<span id="index-0"></span><h2><span class="section-number">17.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<span id="index-0"></span><h2><span class="section-number">17.1. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
 <p>Eigenvalues and eigenvectors are a relatively advanced topic in linear algebra.</p>
 <p>At the same time, these concepts are extremely useful for</p>
 <ul class="simple">
@@ -284,22 +290,22 @@ and understand <a class="reference internal" href="linear_equations.html"><span 
 <p>We will use the following imports:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">matrix_power</span>
-<span class="kn">from</span> <span class="nn">matplotlib.lines</span> <span class="kn">import</span> <span class="n">Line2D</span>
-<span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">FancyArrowPatch</span>
-<span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">proj3d</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numpy.linalg</span><span class="w"> </span><span class="kn">import</span> <span class="n">matrix_power</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.lines</span><span class="w"> </span><span class="kn">import</span> <span class="n">Line2D</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="kn">import</span> <span class="n">FancyArrowPatch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mpl_toolkits.mplot3d</span><span class="w"> </span><span class="kn">import</span> <span class="n">proj3d</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="matrices-as-transformations">
-<span id="matrices-as-transformation"></span><h2><span class="section-number">17.2. </span>Matrices as transformations<a class="headerlink" href="#matrices-as-transformations" title="Permalink to this heading">#</a></h2>
+<span id="matrices-as-transformation"></span><h2><span class="section-number">17.2. </span>Matrices as transformations<a class="headerlink" href="#matrices-as-transformations" title="Link to this heading">#</a></h2>
 <p>Let’s start by discussing an important concept concerning matrices.</p>
 <section id="mapping-vectors-to-vectors">
-<h3><span class="section-number">17.2.1. </span>Mapping vectors to vectors<a class="headerlink" href="#mapping-vectors-to-vectors" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">17.2.1. </span>Mapping vectors to vectors<a class="headerlink" href="#mapping-vectors-to-vectors" title="Link to this heading">#</a></h3>
 <p>One way to think about a matrix is as a rectangular collection of
 numbers.</p>
 <p>Another way to think about a matrix is as a <em>map</em> (i.e., as a function) that
@@ -319,7 +325,7 @@ a map transforming <span class="math notranslate nohighlight">\(x\)</span> to <s
 <span class="math notranslate nohighlight">\(A(x) = y\)</span> rather than <span class="math notranslate nohighlight">\(Ax = y\)</span> but the second notation is more conventional.</p>
 </section>
 <section id="square-matrices">
-<h3><span class="section-number">17.2.2. </span>Square matrices<a class="headerlink" href="#square-matrices" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">17.2.2. </span>Square matrices<a class="headerlink" href="#square-matrices" title="Link to this heading">#</a></h3>
 <p>Let’s restrict our discussion to square matrices.</p>
 <p>In the above discussion, this means that <span class="math notranslate nohighlight">\(m=n\)</span> and <span class="math notranslate nohighlight">\(A\)</span> maps <span class="math notranslate nohighlight">\(\mathbb R^n\)</span> to
 itself.</p>
@@ -365,7 +371,7 @@ itself.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">sqrt</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="c1"># Set the axes through the origin</span>
@@ -406,7 +412,8 @@ itself.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/d3bb0c6c3c47a24c7b9fa71daf9b33dd654a6f2f973352ea0af35eab551bc0a0.png"><img alt="_images/d3bb0c6c3c47a24c7b9fa71daf9b33dd654a6f2f973352ea0af35eab551bc0a0.png" src="_images/d3bb0c6c3c47a24c7b9fa71daf9b33dd654a6f2f973352ea0af35eab551bc0a0.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/4709a17d1298966edbaafbfc0e38d02385dc6a267d51d00002aea372ed8f0187.png"><img alt="_images/4709a17d1298966edbaafbfc0e38d02385dc6a267d51d00002aea372ed8f0187.png" src="_images/4709a17d1298966edbaafbfc0e38d02385dc6a267d51d00002aea372ed8f0187.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>One way to understand this transformation is that <span class="math notranslate nohighlight">\(A\)</span></p>
@@ -417,7 +424,7 @@ itself.</p>
 </section>
 </section>
 <section id="types-of-transformations">
-<h2><span class="section-number">17.3. </span>Types of transformations<a class="headerlink" href="#types-of-transformations" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">17.3. </span>Types of transformations<a class="headerlink" href="#types-of-transformations" title="Link to this heading">#</a></h2>
 <p>Let’s examine some standard transformations we can perform with matrices.</p>
 <p>Below we visualize transformations by thinking of vectors as points
 instead of arrows.</p>
@@ -429,20 +436,20 @@ instead of arrows.</p>
 <p>To build the transformations we will use two functions, called <code class="docutils literal notranslate"><span class="pre">grid_transform</span></code> and <code class="docutils literal notranslate"><span class="pre">circle_transform</span></code>.</p>
 <p>Each of these functions visualizes the actions of a given <span class="math notranslate nohighlight">\(2 \times 2\)</span> matrix <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">colorizer</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">colorizer</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
     <span class="n">r</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="o">-</span><span class="n">y</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>
     <span class="n">g</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="o">+</span><span class="n">y</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>
     <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">4</span> <span class="o">+</span> <span class="n">x</span><span class="o">/</span><span class="mi">16</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">grid_transform</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">grid_transform</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])):</span>
     <span class="n">xvals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
     <span class="n">yvals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
     <span class="n">xygrid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xvals</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">yvals</span><span class="p">])</span>
@@ -476,7 +483,7 @@ instead of arrows.</p>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
 
-<span class="k">def</span> <span class="nf">circle_transform</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">circle_transform</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])):</span>
 
     <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 
@@ -525,21 +532,9 @@ instead of arrows.</p>
 </div>
 </div>
 </details>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:31: SyntaxWarning: invalid escape sequence &#39;\c&#39;
-&lt;&gt;:37: SyntaxWarning: invalid escape sequence &#39;\c&#39;
-&lt;&gt;:31: SyntaxWarning: invalid escape sequence &#39;\c&#39;
-&lt;&gt;:37: SyntaxWarning: invalid escape sequence &#39;\c&#39;
-/tmp/ipykernel_7468/2923067778.py:31: SyntaxWarning: invalid escape sequence &#39;\c&#39;
-  ax[0].set_title(&quot;points $x_1, x_2, \cdots, x_k$&quot;)
-/tmp/ipykernel_7468/2923067778.py:37: SyntaxWarning: invalid escape sequence &#39;\c&#39;
-  ax[1].set_title(&quot;points $Ax_1, Ax_2, \cdots, Ax_k$&quot;)
-</pre></div>
-</div>
-</div>
 </div>
 <section id="scaling">
-<h3><span class="section-number">17.3.1. </span>Scaling<a class="headerlink" href="#scaling" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">17.3.1. </span>Scaling<a class="headerlink" href="#scaling" title="Link to this heading">#</a></h3>
 <p>A matrix of the form</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -561,13 +556,15 @@ a factor <span class="math notranslate nohighlight">\(\beta\)</span>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/d4bae5462c2d69aba3028c1040e93478996782b5917d473224e9d662da7d8986.png"><img alt="_images/d4bae5462c2d69aba3028c1040e93478996782b5917d473224e9d662da7d8986.png" src="_images/d4bae5462c2d69aba3028c1040e93478996782b5917d473224e9d662da7d8986.png" style="width: 80%;" /></a>
-<a class="reference internal image-reference" href="_images/6795990036e49367c4cec43dd5e5dc941f22396c9e63706c145e60547939dc4b.png"><img alt="_images/6795990036e49367c4cec43dd5e5dc941f22396c9e63706c145e60547939dc4b.png" src="_images/6795990036e49367c4cec43dd5e5dc941f22396c9e63706c145e60547939dc4b.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/a5dc15a692d53c1eeefe51bd7f0a1f54948a13c3f3e5f85a4d85ccc9624e1d64.png"><img alt="_images/a5dc15a692d53c1eeefe51bd7f0a1f54948a13c3f3e5f85a4d85ccc9624e1d64.png" src="_images/a5dc15a692d53c1eeefe51bd7f0a1f54948a13c3f3e5f85a4d85ccc9624e1d64.png" style="width: 80%;" />
+</a>
+<a class="reference internal image-reference" href="_images/2e3e233518da39cb9a6bc92fdaec3fa31b4994cf63bb86951fc98bb38ed21f3a.png"><img alt="_images/2e3e233518da39cb9a6bc92fdaec3fa31b4994cf63bb86951fc98bb38ed21f3a.png" src="_images/2e3e233518da39cb9a6bc92fdaec3fa31b4994cf63bb86951fc98bb38ed21f3a.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 </section>
 <section id="shearing">
-<h3><span class="section-number">17.3.2. </span>Shearing<a class="headerlink" href="#shearing" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">17.3.2. </span>Shearing<a class="headerlink" href="#shearing" title="Link to this heading">#</a></h3>
 <p>A “shear” matrix of the form</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -588,13 +585,15 @@ y-coordinate of a point.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/54ec1604acf417fd2d968dac3f8fbbf07696d9214956a50fb39f3639953ad843.png"><img alt="_images/54ec1604acf417fd2d968dac3f8fbbf07696d9214956a50fb39f3639953ad843.png" src="_images/54ec1604acf417fd2d968dac3f8fbbf07696d9214956a50fb39f3639953ad843.png" style="width: 80%;" /></a>
-<a class="reference internal image-reference" href="_images/2d9dc17ece45c4ced95b72fce59a7b960511be379b9b5c2b09a0f5fdfaee3f50.png"><img alt="_images/2d9dc17ece45c4ced95b72fce59a7b960511be379b9b5c2b09a0f5fdfaee3f50.png" src="_images/2d9dc17ece45c4ced95b72fce59a7b960511be379b9b5c2b09a0f5fdfaee3f50.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/fc546e7d54ca5517de88d8d626953513eaa6a90fde36c3497e516fe806d7a697.png"><img alt="_images/fc546e7d54ca5517de88d8d626953513eaa6a90fde36c3497e516fe806d7a697.png" src="_images/fc546e7d54ca5517de88d8d626953513eaa6a90fde36c3497e516fe806d7a697.png" style="width: 80%;" />
+</a>
+<a class="reference internal image-reference" href="_images/f557980d4e1b1258e26ae866e70270327254ea130ec5a052d90519cf20e976a4.png"><img alt="_images/f557980d4e1b1258e26ae866e70270327254ea130ec5a052d90519cf20e976a4.png" src="_images/f557980d4e1b1258e26ae866e70270327254ea130ec5a052d90519cf20e976a4.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 </section>
 <section id="rotation">
-<h3><span class="section-number">17.3.3. </span>Rotation<a class="headerlink" href="#rotation" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">17.3.3. </span>Rotation<a class="headerlink" href="#rotation" title="Link to this heading">#</a></h3>
 <p>A matrix of the form</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -615,12 +614,13 @@ y-coordinate of a point.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/364b3fdf6920c9bc4603c684b6f4f63ffdbcffa0e9f55efa46dfd24f33db6730.png"><img alt="_images/364b3fdf6920c9bc4603c684b6f4f63ffdbcffa0e9f55efa46dfd24f33db6730.png" src="_images/364b3fdf6920c9bc4603c684b6f4f63ffdbcffa0e9f55efa46dfd24f33db6730.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/a27e78ddb420b4813fe783ff265a57e3273026566150bbd7a2b8132c9f506752.png"><img alt="_images/a27e78ddb420b4813fe783ff265a57e3273026566150bbd7a2b8132c9f506752.png" src="_images/a27e78ddb420b4813fe783ff265a57e3273026566150bbd7a2b8132c9f506752.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 </section>
 <section id="permutation">
-<h3><span class="section-number">17.3.4. </span>Permutation<a class="headerlink" href="#permutation" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">17.3.4. </span>Permutation<a class="headerlink" href="#permutation" title="Link to this heading">#</a></h3>
 <p>The permutation matrix</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -638,18 +638,19 @@ y-coordinate of a point.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/81b63974f3e3e8b1116ac117221e2776b6bc552c0b4faaec243b503de9ecf5e4.png"><img alt="_images/81b63974f3e3e8b1116ac117221e2776b6bc552c0b4faaec243b503de9ecf5e4.png" src="_images/81b63974f3e3e8b1116ac117221e2776b6bc552c0b4faaec243b503de9ecf5e4.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/94da584e68dbe0d9724489ff47bb9f22e1815f7fbfbcae60d3f134d78fc89887.png"><img alt="_images/94da584e68dbe0d9724489ff47bb9f22e1815f7fbfbcae60d3f134d78fc89887.png" src="_images/94da584e68dbe0d9724489ff47bb9f22e1815f7fbfbcae60d3f134d78fc89887.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>More examples of common transition matrices can be found <a class="reference external" href="https://en.wikipedia.org/wiki/Transformation_matrix#Examples_in_2_dimensions">here</a>.</p>
 </section>
 </section>
 <section id="matrix-multiplication-as-composition">
-<h2><span class="section-number">17.4. </span>Matrix multiplication as composition<a class="headerlink" href="#matrix-multiplication-as-composition" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">17.4. </span>Matrix multiplication as composition<a class="headerlink" href="#matrix-multiplication-as-composition" title="Link to this heading">#</a></h2>
 <p>Since matrices act as functions that transform one vector to another, we can
 apply the concept of function composition to matrices as well.</p>
 <section id="linear-compositions">
-<h3><span class="section-number">17.4.1. </span>Linear compositions<a class="headerlink" href="#linear-compositions" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">17.4.1. </span>Linear compositions<a class="headerlink" href="#linear-compositions" title="Link to this heading">#</a></h3>
 <p>Consider the two matrices</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -766,20 +767,20 @@ understand why, under matrix multiplication, <span class="math notranslate nohig
 <p>(After all, when we compose functions, the order usually matters.)</p>
 </section>
 <section id="examples">
-<h3><span class="section-number">17.4.2. </span>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">17.4.2. </span>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h3>
 <p>Let <span class="math notranslate nohighlight">\(A\)</span> be the <span class="math notranslate nohighlight">\(90^{\circ}\)</span> clockwise rotation matrix given by
 <span class="math notranslate nohighlight">\(\begin{bmatrix} 0 &amp; 1 \\ -1 &amp; 0 \end{bmatrix}\)</span> and let <span class="math notranslate nohighlight">\(B\)</span> be a shear matrix
 along the x-axis given by <span class="math notranslate nohighlight">\(\begin{bmatrix} 1 &amp; 2 \\ 0 &amp; 1 \end{bmatrix}\)</span>.</p>
 <p>We will visualize how a grid of points changes when we apply the
 transformation <span class="math notranslate nohighlight">\(AB\)</span> and then compare it with the transformation <span class="math notranslate nohighlight">\(BA\)</span>.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">grid_composition_transform</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]),</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">grid_composition_transform</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]),</span>
                                <span class="n">B</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])):</span>
     <span class="n">xvals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
     <span class="n">yvals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
@@ -829,7 +830,7 @@ transformation <span class="math notranslate nohighlight">\(AB\)</span> and then
 </div>
 </div>
 <section id="shear-then-rotate">
-<h4><span class="section-number">17.4.2.1. </span>Shear then rotate<a class="headerlink" href="#shear-then-rotate" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">17.4.2.1. </span>Shear then rotate<a class="headerlink" href="#shear-then-rotate" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_composition_transform</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>  <span class="c1"># transformation AB</span>
@@ -837,12 +838,13 @@ transformation <span class="math notranslate nohighlight">\(AB\)</span> and then
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/adee0da2102e36fdcd687437bb4df486ea848757ddf07ec57dcd3b044a28c0d0.png"><img alt="_images/adee0da2102e36fdcd687437bb4df486ea848757ddf07ec57dcd3b044a28c0d0.png" src="_images/adee0da2102e36fdcd687437bb4df486ea848757ddf07ec57dcd3b044a28c0d0.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/4d565145e6f40c0549878e796ee33b08524bdc7c23a41fc2ebe6a73b3d69f7c0.png"><img alt="_images/4d565145e6f40c0549878e796ee33b08524bdc7c23a41fc2ebe6a73b3d69f7c0.png" src="_images/4d565145e6f40c0549878e796ee33b08524bdc7c23a41fc2ebe6a73b3d69f7c0.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 </section>
 <section id="rotate-then-shear">
-<h4><span class="section-number">17.4.2.2. </span>Rotate then shear<a class="headerlink" href="#rotate-then-shear" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">17.4.2.2. </span>Rotate then shear<a class="headerlink" href="#rotate-then-shear" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_composition_transform</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>         <span class="c1"># transformation BA</span>
@@ -850,7 +852,8 @@ transformation <span class="math notranslate nohighlight">\(AB\)</span> and then
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/55e554fd496798e0b0a7d5a1aad4da13788806f48dcaf4702886c91af60caef6.png"><img alt="_images/55e554fd496798e0b0a7d5a1aad4da13788806f48dcaf4702886c91af60caef6.png" src="_images/55e554fd496798e0b0a7d5a1aad4da13788806f48dcaf4702886c91af60caef6.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/60dd83150b1dab988384554b760cc5c72bdb0ccd8e1aacab03a4a8e061705e27.png"><img alt="_images/60dd83150b1dab988384554b760cc5c72bdb0ccd8e1aacab03a4a8e061705e27.png" src="_images/60dd83150b1dab988384554b760cc5c72bdb0ccd8e1aacab03a4a8e061705e27.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>It is evident that the transformation <span class="math notranslate nohighlight">\(AB\)</span> is not the same as the transformation <span class="math notranslate nohighlight">\(BA\)</span>.</p>
@@ -858,7 +861,7 @@ transformation <span class="math notranslate nohighlight">\(AB\)</span> and then
 </section>
 </section>
 <section id="iterating-on-a-fixed-map">
-<h2><span class="section-number">17.5. </span>Iterating on a fixed map<a class="headerlink" href="#iterating-on-a-fixed-map" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">17.5. </span>Iterating on a fixed map<a class="headerlink" href="#iterating-on-a-fixed-map" title="Link to this heading">#</a></h2>
 <p>In economics (and especially in dynamic modeling), we are often interested in
 analyzing behavior where we repeatedly apply a fixed matrix.</p>
 <p>For example, given a vector <span class="math notranslate nohighlight">\(v\)</span> and a matrix <span class="math notranslate nohighlight">\(A\)</span>, we are interested in
@@ -873,7 +876,7 @@ studying the sequence</p>
 different maps <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <div class="cell docutils container" id="plot-series">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_series</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_series</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
 
     <span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
                   <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
@@ -932,7 +935,8 @@ different maps <span class="math notranslate nohighlight">\(A\)</span>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/9ced777f16d19e89fb2bc2aaa592659dc2d2fb14b60505c9f381706515c0eb8e.png"><img alt="_images/9ced777f16d19e89fb2bc2aaa592659dc2d2fb14b60505c9f381706515c0eb8e.png" src="_images/9ced777f16d19e89fb2bc2aaa592659dc2d2fb14b60505c9f381706515c0eb8e.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/71bb0d0a30f6c5230a31f87fc65241203198d4c4bef006b572b4513837829cef.png"><img alt="_images/71bb0d0a30f6c5230a31f87fc65241203198d4c4bef006b572b4513837829cef.png" src="_images/71bb0d0a30f6c5230a31f87fc65241203198d4c4bef006b572b4513837829cef.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>Here with each iteration the vectors get shorter, i.e., move closer to the origin.</p>
@@ -950,7 +954,8 @@ different maps <span class="math notranslate nohighlight">\(A\)</span>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/b972eb0c72f8cd89ea3c6a033b580b58756f65903acbb44d6f8cbe20567d186c.png"><img alt="_images/b972eb0c72f8cd89ea3c6a033b580b58756f65903acbb44d6f8cbe20567d186c.png" src="_images/b972eb0c72f8cd89ea3c6a033b580b58756f65903acbb44d6f8cbe20567d186c.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/2f3ba2f842461ce35b20951ec14346dc1137bd7dfcb37adfb8e308f71309630e.png"><img alt="_images/2f3ba2f842461ce35b20951ec14346dc1137bd7dfcb37adfb8e308f71309630e.png" src="_images/2f3ba2f842461ce35b20951ec14346dc1137bd7dfcb37adfb8e308f71309630e.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>Here with each iteration vectors do not tend to get longer or shorter.</p>
@@ -969,7 +974,8 @@ an ellipse”.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/122313210dbad73aa3c02ac616d43c0a96407a0f275e99c4b9fca65bc5ec7009.png"><img alt="_images/122313210dbad73aa3c02ac616d43c0a96407a0f275e99c4b9fca65bc5ec7009.png" src="_images/122313210dbad73aa3c02ac616d43c0a96407a0f275e99c4b9fca65bc5ec7009.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/d51848ee824ad649c9b9078a19ff3f55c095ef8fe016014e38c71529eaf8c58a.png"><img alt="_images/d51848ee824ad649c9b9078a19ff3f55c095ef8fe016014e38c71529eaf8c58a.png" src="_images/d51848ee824ad649c9b9078a19ff3f55c095ef8fe016014e38c71529eaf8c58a.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>Here with each iteration vectors tend to get longer, i.e., farther from the
@@ -979,10 +985,10 @@ origin.</p>
 <p>We now discuss the property of A that determines this behavior.</p>
 </section>
 <section id="eigenvalues">
-<span id="la-eigenvalues"></span><h2><span class="section-number">17.6. </span>Eigenvalues<a class="headerlink" href="#eigenvalues" title="Permalink to this heading">#</a></h2>
+<span id="la-eigenvalues"></span><h2><span class="section-number">17.6. </span>Eigenvalues<a class="headerlink" href="#eigenvalues" title="Link to this heading">#</a></h2>
 <p id="index-1">In this section we introduce the notions of eigenvalues and eigenvectors.</p>
 <section id="definitions">
-<h3><span class="section-number">17.6.1. </span>Definitions<a class="headerlink" href="#definitions" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">17.6.1. </span>Definitions<a class="headerlink" href="#definitions" title="Link to this heading">#</a></h3>
 <p>Let <span class="math notranslate nohighlight">\(A\)</span> be an <span class="math notranslate nohighlight">\(n \times n\)</span> square matrix.</p>
 <p>If <span class="math notranslate nohighlight">\(\lambda\)</span> is scalar and <span class="math notranslate nohighlight">\(v\)</span> is a non-zero <span class="math notranslate nohighlight">\(n\)</span>-vector such that</p>
 <div class="math notranslate nohighlight">
@@ -997,7 +1003,7 @@ applied, <span class="math notranslate nohighlight">\(v\)</span> is merely scale
 <p>As expected, the image <span class="math notranslate nohighlight">\(Av\)</span> of each <span class="math notranslate nohighlight">\(v\)</span> is just a scaled version of the original</p>
 <div class="cell tag_output_scroll docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">eig</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">numpy.linalg</span><span class="w"> </span><span class="kn">import</span> <span class="n">eig</span>
 
 <span class="n">A</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
      <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
@@ -1045,12 +1051,13 @@ applied, <span class="math notranslate nohighlight">\(v\)</span> is merely scale
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/0531df3bf96c979cf62b7500e7710078212808638a52ba17b6936e5353fd5358.png"><img alt="_images/0531df3bf96c979cf62b7500e7710078212808638a52ba17b6936e5353fd5358.png" src="_images/0531df3bf96c979cf62b7500e7710078212808638a52ba17b6936e5353fd5358.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/9667a34342250ee8eb1bbcf3ef75abbf5261b1c82d217396e0d8fd97c90f899b.png"><img alt="_images/9667a34342250ee8eb1bbcf3ef75abbf5261b1c82d217396e0d8fd97c90f899b.png" src="_images/9667a34342250ee8eb1bbcf3ef75abbf5261b1c82d217396e0d8fd97c90f899b.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 </section>
 <section id="complex-values">
-<h3><span class="section-number">17.6.2. </span>Complex values<a class="headerlink" href="#complex-values" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">17.6.2. </span>Complex values<a class="headerlink" href="#complex-values" title="Link to this heading">#</a></h3>
 <p>So far our definition of eigenvalues and eigenvectors seems straightforward.</p>
 <p>There is one complication we haven’t mentioned yet:</p>
 <p>When solving <span class="math notranslate nohighlight">\(Av = \lambda v\)</span>,</p>
@@ -1061,7 +1068,7 @@ applied, <span class="math notranslate nohighlight">\(v\)</span> is merely scale
 <p>We will see some examples below.</p>
 </section>
 <section id="some-mathematical-details">
-<h3><span class="section-number">17.6.3. </span>Some mathematical details<a class="headerlink" href="#some-mathematical-details" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">17.6.3. </span>Some mathematical details<a class="headerlink" href="#some-mathematical-details" title="Link to this heading">#</a></h3>
 <p>We note some mathematical details for more advanced readers.</p>
 <p>(Other readers can skip to the next section.)</p>
 <p>The eigenvalue equation is equivalent to <span class="math notranslate nohighlight">\((A - \lambda I) v = 0\)</span>.</p>
@@ -1075,7 +1082,7 @@ in <span class="math notranslate nohighlight">\(\lambda\)</span> of degree <span
 plane, although some might be repeated.</p>
 </section>
 <section id="facts">
-<h3><span class="section-number">17.6.4. </span>Facts<a class="headerlink" href="#facts" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">17.6.4. </span>Facts<a class="headerlink" href="#facts" title="Link to this heading">#</a></h3>
 <p>Some nice facts about the eigenvalues of a square matrix <span class="math notranslate nohighlight">\(A\)</span> are as follows:</p>
 <ol class="arabic simple">
 <li><p>the determinant of <span class="math notranslate nohighlight">\(A\)</span> equals the product of the eigenvalues</p></li>
@@ -1086,11 +1093,11 @@ plane, although some might be repeated.</p>
 <p>A corollary of the last statement is that a matrix is invertible if and only if all its eigenvalues are nonzero.</p>
 </section>
 <section id="computation">
-<h3><span class="section-number">17.6.5. </span>Computation<a class="headerlink" href="#computation" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">17.6.5. </span>Computation<a class="headerlink" href="#computation" title="Link to this heading">#</a></h3>
 <p>Using NumPy, we can solve for the eigenvalues and eigenvectors of a matrix as follows</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">eig</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">numpy.linalg</span><span class="w"> </span><span class="kn">import</span> <span class="n">eig</span>
 
 <span class="n">A</span> <span class="o">=</span> <span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
      <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
@@ -1129,15 +1136,15 @@ to one.</p>
 </section>
 </section>
 <section id="the-neumann-series-lemma">
-<span id="la-neumann"></span><h2><span class="section-number">17.7. </span>The Neumann Series Lemma<a class="headerlink" href="#the-neumann-series-lemma" title="Permalink to this heading">#</a></h2>
+<span id="la-neumann"></span><h2><span class="section-number">17.7. </span>The Neumann Series Lemma<a class="headerlink" href="#the-neumann-series-lemma" title="Link to this heading">#</a></h2>
 <p id="index-2">In this section we present a famous result about series of matrices that has
 many applications in economics.</p>
 <section id="scalar-series">
-<h3><span class="section-number">17.7.1. </span>Scalar series<a class="headerlink" href="#scalar-series" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">17.7.1. </span>Scalar series<a class="headerlink" href="#scalar-series" title="Link to this heading">#</a></h3>
 <p>Here’s a fundamental result about series:</p>
 <p>If <span class="math notranslate nohighlight">\(a\)</span> is a number and <span class="math notranslate nohighlight">\(|a| &lt; 1\)</span>, then</p>
 <div class="math notranslate nohighlight" id="equation-gp-sum">
-<span class="eqno">(17.1)<a class="headerlink" href="#equation-gp-sum" title="Permalink to this equation">#</a></span>\[    \sum_{k=0}^{\infty} a^k =\frac{1}{1-a} = (1 - a)^{-1}\]</div>
+<span class="eqno">(17.1)<a class="headerlink" href="#equation-gp-sum" title="Link to this equation">#</a></span>\[    \sum_{k=0}^{\infty} a^k =\frac{1}{1-a} = (1 - a)^{-1}\]</div>
 <p>For a one-dimensional linear equation <span class="math notranslate nohighlight">\(x = ax + b\)</span> where x is unknown we can thus conclude that the solution <span class="math notranslate nohighlight">\(x^{*}\)</span> is given by:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1145,13 +1152,13 @@ many applications in economics.</p>
 \]</div>
 </section>
 <section id="matrix-series">
-<h3><span class="section-number">17.7.2. </span>Matrix series<a class="headerlink" href="#matrix-series" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">17.7.2. </span>Matrix series<a class="headerlink" href="#matrix-series" title="Link to this heading">#</a></h3>
 <p>A generalization of this idea exists in the matrix setting.</p>
 <p>Consider the system of equations <span class="math notranslate nohighlight">\(x = Ax + b\)</span> where <span class="math notranslate nohighlight">\(A\)</span> is an <span class="math notranslate nohighlight">\(n \times n\)</span>
 square matrix and <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(b\)</span> are both column vectors in <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>.</p>
 <p>Using matrix algebra we can conclude that the solution to this system of equations will be given by:</p>
 <div class="math notranslate nohighlight" id="equation-neumann-eqn">
-<span class="eqno">(17.2)<a class="headerlink" href="#equation-neumann-eqn" title="Permalink to this equation">#</a></span>\[    x^{*} = (I-A)^{-1}b\]</div>
+<span class="eqno">(17.2)<a class="headerlink" href="#equation-neumann-eqn" title="Link to this equation">#</a></span>\[    x^{*} = (I-A)^{-1}b\]</div>
 <p>What guarantees the existence of a unique vector <span class="math notranslate nohighlight">\(x^{*}\)</span> that satisfies
 <a class="reference internal" href="#equation-neumann-eqn">(17.2)</a>?</p>
 <p>The following is a fundamental result in functional analysis that generalizes
@@ -1236,7 +1243,7 @@ result which illustrates the result of the Neumann Series Lemma.</p>
 </section>
 </section>
 <section id="exercises">
-<h2><span class="section-number">17.8. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">17.8. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
 <div class="exercise admonition" id="eig1_ex1">
 
 <p class="admonition-title"><span class="caption-number">Exercise 17.1 </span></p>
@@ -1297,6 +1304,7 @@ b_{k+1}=\frac{A b_k}{\left\|A b_k\right\|}
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;iterations&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Power iteration&#39;</span><span class="p">)</span>
 <span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1306,12 +1314,8 @@ b_{k+1}=\frac{A b_k}{\left\|A b_k\right\|}
 The real eigenvalue is [ 4. -2.  2.]
 </pre></div>
 </div>
-<figure class="align-default" id="pow-dist">
-<a class="reference internal image-reference" href="_images/695afdd7a47ee0b89da213a55b76fe272cfaf3ea24da997d6c97e111e2db6f0b.png"><img alt="_images/695afdd7a47ee0b89da213a55b76fe272cfaf3ea24da997d6c97e111e2db6f0b.png" src="_images/695afdd7a47ee0b89da213a55b76fe272cfaf3ea24da997d6c97e111e2db6f0b.png" style="width: 80%;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 17.1 </span><span class="caption-text">Power iteration</span><a class="headerlink" href="#pow-dist" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
+<a class="reference internal image-reference" href="_images/7eeef0c18b7fcd300e038576557c2adc6586db66dcd3a832d8ed6ceea596500f.png"><img alt="_images/7eeef0c18b7fcd300e038576557c2adc6586db66dcd3a832d8ed6ceea596500f.png" src="_images/7eeef0c18b7fcd300e038576557c2adc6586db66dcd3a832d8ed6ceea596500f.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>Then we can look at the trajectory of the eigenvector approximation.</p>
@@ -1344,17 +1348,15 @@ The real eigenvalue is [ 4. -2.  2.]
                    <span class="sa">r</span><span class="s1">&#39;approximated eigenvector ($b_k$)&#39;</span><span class="p">])</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_box_aspect</span><span class="p">(</span><span class="n">aspect</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
 
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Power iteration trajectory&#39;</span><span class="p">)</span>
+
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<figure class="align-default" id="pow-trajectory">
-<a class="reference internal image-reference" href="_images/d4ee17cdb61ad533171ba0f49f7e635783cb82ae1e2c22ee56ca361cfe2a61e0.png"><img alt="_images/d4ee17cdb61ad533171ba0f49f7e635783cb82ae1e2c22ee56ca361cfe2a61e0.png" src="_images/d4ee17cdb61ad533171ba0f49f7e635783cb82ae1e2c22ee56ca361cfe2a61e0.png" style="width: 80%;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 17.2 </span><span class="caption-text">Power iteration trajectory</span><a class="headerlink" href="#pow-trajectory" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
+<a class="reference internal image-reference" href="_images/0634e91f7764d90da0882c322b4ee88aea5c1f71a8555f56381c61eefbe3e71c.png"><img alt="_images/0634e91f7764d90da0882c322b4ee88aea5c1f71a8555f56381c61eefbe3e71c.png" src="_images/0634e91f7764d90da0882c322b4ee88aea5c1f71a8555f56381c61eefbe3e71c.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 </section>
@@ -1397,7 +1399,8 @@ eigenvectors:
  [ 0.57735027  0.57735027]]
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/1fe5955a14d4268e0613aba9fa5ca5d05a4bd97233937d0e449b24479f5d8bcc.png"><img alt="_images/1fe5955a14d4268e0613aba9fa5ca5d05a4bd97233937d0e449b24479f5d8bcc.png" src="_images/1fe5955a14d4268e0613aba9fa5ca5d05a4bd97233937d0e449b24479f5d8bcc.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/fb78eabe33a96e5beba3836b2379489e53d1c89d6ebb8e53e5ae819cf84af4b5.png"><img alt="_images/fb78eabe33a96e5beba3836b2379489e53d1c89d6ebb8e53e5ae819cf84af4b5.png" src="_images/fb78eabe33a96e5beba3836b2379489e53d1c89d6ebb8e53e5ae819cf84af4b5.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>The result seems to converge to the eigenvector of <span class="math notranslate nohighlight">\(A\)</span> with the largest eigenvalue.</p>
@@ -1436,6 +1439,7 @@ eigenvectors:
 
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Convergence towards eigenvectors&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">,</span> <span class="n">adjustable</span><span class="o">=</span><span class="s1">&#39;box&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1443,12 +1447,8 @@ eigenvectors:
 </div>
 </div>
 <div class="cell_output docutils container">
-<figure class="align-default" id="eigen-conv">
-<a class="reference internal image-reference" href="_images/fed49dd307abc1ceee25ffd73ea605362af80cc84db3c7c3a6dfab0bb5447004.png"><img alt="_images/fed49dd307abc1ceee25ffd73ea605362af80cc84db3c7c3a6dfab0bb5447004.png" src="_images/fed49dd307abc1ceee25ffd73ea605362af80cc84db3c7c3a6dfab0bb5447004.png" style="width: 80%;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 17.3 </span><span class="caption-text">Convergence towards eigenvectors</span><a class="headerlink" href="#eigen-conv" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
+<a class="reference internal image-reference" href="_images/93fd141bfd213ca01b9c532e8498b2bd9f841da4d9c2c21a0101a07e3ea48833.png"><img alt="_images/93fd141bfd213ca01b9c532e8498b2bd9f841da4d9c2c21a0101a07e3ea48833.png" src="_images/93fd141bfd213ca01b9c532e8498b2bd9f841da4d9c2c21a0101a07e3ea48833.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>Note that the vector field converges to the eigenvector of <span class="math notranslate nohighlight">\(A\)</span> with the largest eigenvalue and diverges from the eigenvector of <span class="math notranslate nohighlight">\(A\)</span> with the smallest eigenvalue.</p>
@@ -1472,7 +1472,7 @@ eigenvectors:
 <p>Here is one solution</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">figure</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">],</span>
               <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]])</span>
 <span class="n">A</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)))</span> <span class="o">*</span> <span class="n">A</span>
@@ -1530,6 +1530,7 @@ eigenvectors:
     <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
     <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">,</span> <span class="n">adjustable</span><span class="o">=</span><span class="s1">&#39;box&#39;</span><span class="p">)</span>
 
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Vector fields of the three matrices&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1551,9 +1552,8 @@ eigenvalues:
 eigenvectors:
  [[0.81649658+0.j         0.81649658-0.j        ]
  [0.40824829-0.40824829j 0.40824829+0.40824829j]]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Example 3:
+
+Example 3:
 
 eigenvalues:
  [1.22474487+0.70710678j 1.22474487-0.70710678j]
@@ -1562,12 +1562,8 @@ eigenvectors:
  [0.40824829-0.40824829j 0.40824829+0.40824829j]]
 </pre></div>
 </div>
-<figure class="align-default" id="vector-field">
-<a class="reference internal image-reference" href="_images/2a3e17b5bcd243624611e26728d006006a48c99f4f7868667b9e1a8c0fe58250.png"><img alt="_images/2a3e17b5bcd243624611e26728d006006a48c99f4f7868667b9e1a8c0fe58250.png" src="_images/2a3e17b5bcd243624611e26728d006006a48c99f4f7868667b9e1a8c0fe58250.png" style="width: 80%;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 17.4 </span><span class="caption-text">Vector fields of the three matrices</span><a class="headerlink" href="#vector-field" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
+<a class="reference internal image-reference" href="_images/270197c046e1116cc1e3aa6b8d952dcda5f559a662e88b0db0fc5e392768e289.png"><img alt="_images/270197c046e1116cc1e3aa6b8d952dcda5f559a662e88b0db0fc5e392768e289.png" src="_images/270197c046e1116cc1e3aa6b8d952dcda5f559a662e88b0db0fc5e392768e289.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>The vector fields explain why we observed the trajectories of the vector <span class="math notranslate nohighlight">\(v\)</span> multiplied by <span class="math notranslate nohighlight">\(A\)</span> iteratively before.</p>
@@ -1575,12 +1571,12 @@ eigenvectors:
 <p>We can plot the complex plane for one of the matrices using <code class="docutils literal notranslate"><span class="pre">Arrow3D</span></code> class retrieved from <a class="reference external" href="https://stackoverflow.com/questions/22867620/putting-arrowheads-on-vectors-in-a-3d-plot">stackoverflow</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Arrow3D</span><span class="p">(</span><span class="n">FancyArrowPatch</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">zs</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Arrow3D</span><span class="p">(</span><span class="n">FancyArrowPatch</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">zs</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_verts3d</span> <span class="o">=</span> <span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">zs</span>
 
-    <span class="k">def</span> <span class="nf">do_3d_projection</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">do_3d_projection</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">xs3d</span><span class="p">,</span> <span class="n">ys3d</span><span class="p">,</span> <span class="n">zs3d</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_verts3d</span>
         <span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">zs</span> <span class="o">=</span> <span class="n">proj3d</span><span class="o">.</span><span class="n">proj_transform</span><span class="p">(</span><span class="n">xs3d</span><span class="p">,</span> <span class="n">ys3d</span><span class="p">,</span> <span class="n">zs3d</span><span class="p">,</span>
                                            <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">M</span><span class="p">)</span>
@@ -1627,18 +1623,15 @@ eigenvectors:
 <span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;Im&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_box_aspect</span><span class="p">(</span><span class="n">aspect</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
 
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;3D plot of the vector field&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<figure class="align-default" id="d-vector-field">
-<a class="reference internal image-reference" href="_images/2fd98d8d9686c970aaf56441c57a7a40e457d3a04f50d4faf1c40a02fac8410a.png"><img alt="_images/2fd98d8d9686c970aaf56441c57a7a40e457d3a04f50d4faf1c40a02fac8410a.png" src="_images/2fd98d8d9686c970aaf56441c57a7a40e457d3a04f50d4faf1c40a02fac8410a.png" style="width: 80%;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 17.5 </span><span class="caption-text">3D plot of the vector field</span><a class="headerlink" href="#d-vector-field" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
+<a class="reference internal image-reference" href="_images/0433d03b946c68773f3866955318fbbee45b9ed9bdcbe852b93a55967e54dcee.png"><img alt="_images/0433d03b946c68773f3866955318fbbee45b9ed9bdcbe852b93a55967e54dcee.png" src="_images/0433d03b946c68773f3866955318fbbee45b9ed9bdcbe852b93a55967e54dcee.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 </section>

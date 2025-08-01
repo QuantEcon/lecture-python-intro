@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>24. Dynamics in One Dimension &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
@@ -70,15 +69,15 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=bd0785fbb14d8d2bd4d9ae501d79ed8d3bc089ec" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.5ea377869091fd0449014c60fc090103.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=4c010e0d" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -86,23 +85,22 @@
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script src="_static/scripts/quantecon-book-theme.js?digest=d9faaf6c4b57726f74ba012412af1f5681bdff87"></script>
+    <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
+    <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QDS1YRJNGM"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -111,12 +109,20 @@
                 gtag('config', 'G-QDS1YRJNGM');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QDS1YRJNGM');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"argmax": "arg\\,max", "argmin": "arg\\,min"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'scalar_dynam';</script>
     <link rel="canonical" href="https://intro.quantecon.org/scalar_dynam.html" />
-    <link rel="shortcut icon" href="_static/lectures-favicon.ico"/>
+    <link rel="icon" href="_static/lectures-favicon.ico"/>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -253,9 +259,9 @@
                 <img style="width:250px;display:inline;" width="250px" src="https://assets.quantecon.org/img/qe-menubar-logo.svg" alt="QuantEcon">
         </a>
 </div><section class="tex2jax_ignore mathjax_ignore" id="dynamics-in-one-dimension">
-<span id="scalar-dynam"></span><h1><span class="section-number">24. </span>Dynamics in One Dimension<a class="headerlink" href="#dynamics-in-one-dimension" title="Permalink to this heading">#</a></h1>
+<span id="scalar-dynam"></span><h1><span class="section-number">24. </span>Dynamics in One Dimension<a class="headerlink" href="#dynamics-in-one-dimension" title="Link to this heading">#</a></h1>
 <section id="overview">
-<h2><span class="section-number">24.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">24.1. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
 <p>In economics many variables depend on their past values</p>
 <p>For example, it seems reasonable to believe that inflation last year with affects inflation this year.</p>
 <p>(Perhaps high inflation last year will lead people to demand higher wages to
@@ -274,18 +280,18 @@ and understand key concepts.)</p>
 <p>Let’s start with some standard imports:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="some-definitions">
-<h2><span class="section-number">24.2. </span>Some definitions<a class="headerlink" href="#some-definitions" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">24.2. </span>Some definitions<a class="headerlink" href="#some-definitions" title="Link to this heading">#</a></h2>
 <p>This section sets out the objects of interest and the kinds of properties we study.</p>
 <section id="composition-of-functions">
-<h3><span class="section-number">24.2.1. </span>Composition of functions<a class="headerlink" href="#composition-of-functions" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">24.2.1. </span>Composition of functions<a class="headerlink" href="#composition-of-functions" title="Link to this heading">#</a></h3>
 <p>For this lecture you should know the following.</p>
 <p>If</p>
 <ul class="simple">
@@ -315,7 +321,7 @@ itself.</p>
 <p>In the example above, <span class="math notranslate nohighlight">\(f^n(x) = x^{1/(2^n)}\)</span>.</p>
 </section>
 <section id="dynamic-systems">
-<h3><span class="section-number">24.2.2. </span>Dynamic systems<a class="headerlink" href="#dynamic-systems" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">24.2.2. </span>Dynamic systems<a class="headerlink" href="#dynamic-systems" title="Link to this heading">#</a></h3>
 <p>A <strong>(discrete time) dynamic system</strong> is a set <span class="math notranslate nohighlight">\(S\)</span> and a function <span class="math notranslate nohighlight">\(g\)</span> that sends
 set <span class="math notranslate nohighlight">\(S\)</span> back into to itself.</p>
 <p>Examples of dynamic systems include</p>
@@ -333,12 +339,12 @@ form a dynamic system, since <span class="math notranslate nohighlight">\(g(1) =
 <p>Given a dynamic system consisting of set <span class="math notranslate nohighlight">\(S\)</span> and function <span class="math notranslate nohighlight">\(g\)</span>, we can create
 a sequence <span class="math notranslate nohighlight">\(\{x_t\}\)</span> of points in <span class="math notranslate nohighlight">\(S\)</span> by setting</p>
 <div class="math notranslate nohighlight" id="equation-sdsod">
-<span class="eqno">(24.1)<a class="headerlink" href="#equation-sdsod" title="Permalink to this equation">#</a></span>\[    x_{t+1} = g(x_t)
+<span class="eqno">(24.1)<a class="headerlink" href="#equation-sdsod" title="Link to this equation">#</a></span>\[    x_{t+1} = g(x_t)
     \quad \text{ with } 
     x_0 \text{ given}.\]</div>
 <p>This means that we choose some number <span class="math notranslate nohighlight">\(x_0\)</span> in <span class="math notranslate nohighlight">\(S\)</span> and then take</p>
 <div class="math notranslate nohighlight" id="equation-sdstraj">
-<span class="eqno">(24.2)<a class="headerlink" href="#equation-sdstraj" title="Permalink to this equation">#</a></span>\[    x_0, \quad
+<span class="eqno">(24.2)<a class="headerlink" href="#equation-sdstraj" title="Link to this equation">#</a></span>\[    x_0, \quad
     x_1 = g(x_0), \quad
     x_2 = g(x_1) = g(g(x_0)), \quad \text{etc.}\]</div>
 <p>This sequence <span class="math notranslate nohighlight">\(\{x_t\}\)</span> is called the <strong>trajectory</strong> of <span class="math notranslate nohighlight">\(x_0\)</span> under <span class="math notranslate nohighlight">\(g\)</span>.</p>
@@ -358,7 +364,7 @@ we can write the trajectory more simply as</p>
 </ul>
 </section>
 <section id="example-a-linear-model">
-<h3><span class="section-number">24.2.3. </span>Example: a linear model<a class="headerlink" href="#example-a-linear-model" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">24.2.3. </span>Example: a linear model<a class="headerlink" href="#example-a-linear-model" title="Link to this heading">#</a></h3>
 <p>One simple example of a dynamic system is when <span class="math notranslate nohighlight">\(S=\mathbb R\)</span> and <span class="math notranslate nohighlight">\(g(x)=ax +
 b\)</span>, where <span class="math notranslate nohighlight">\(a, b\)</span> are constants (sometimes called ``parameters’’).</p>
 <p>This leads to the <strong>linear difference equation</strong></p>
@@ -370,30 +376,30 @@ b\)</span>, where <span class="math notranslate nohighlight">\(a, b\)</span> are
 \]</div>
 <p>The trajectory of <span class="math notranslate nohighlight">\(x_0\)</span> is</p>
 <div class="math notranslate nohighlight" id="equation-sdslinmodpath">
-<span class="eqno">(24.3)<a class="headerlink" href="#equation-sdslinmodpath" title="Permalink to this equation">#</a></span>\[x_0, \quad
+<span class="eqno">(24.3)<a class="headerlink" href="#equation-sdslinmodpath" title="Link to this equation">#</a></span>\[x_0, \quad
 a x_0 + b, \quad
 a^2 x_0 + a b + b, \quad \text{etc.}\]</div>
 <p>Continuing in this way, and using our knowledge of <a class="reference internal" href="geom_series.html"><span class="doc">geometric series</span></a>, we find that, for any <span class="math notranslate nohighlight">\(t = 0, 1, 2, \ldots\)</span>,</p>
 <div class="math notranslate nohighlight" id="equation-sdslinmod">
-<span class="eqno">(24.4)<a class="headerlink" href="#equation-sdslinmod" title="Permalink to this equation">#</a></span>\[    x_t = a^t x_0 + b \frac{1 - a^t}{1 - a}\]</div>
+<span class="eqno">(24.4)<a class="headerlink" href="#equation-sdslinmod" title="Link to this equation">#</a></span>\[    x_t = a^t x_0 + b \frac{1 - a^t}{1 - a}\]</div>
 <p>We have an exact expression for <span class="math notranslate nohighlight">\(x_t\)</span> for all non-negative integer <span class="math notranslate nohighlight">\(t\)</span> and hence a full
 understanding of the dynamics.</p>
 <p>Notice in particular that <span class="math notranslate nohighlight">\(|a| &lt; 1\)</span>, then, by <a class="reference internal" href="#equation-sdslinmod">(24.4)</a>, we have</p>
 <div class="math notranslate nohighlight" id="equation-sdslinmodc">
-<span class="eqno">(24.5)<a class="headerlink" href="#equation-sdslinmodc" title="Permalink to this equation">#</a></span>\[x_t \to  \frac{b}{1 - a} \text{ as } t \to \infty\]</div>
+<span class="eqno">(24.5)<a class="headerlink" href="#equation-sdslinmodc" title="Link to this equation">#</a></span>\[x_t \to  \frac{b}{1 - a} \text{ as } t \to \infty\]</div>
 <p>regardless of <span class="math notranslate nohighlight">\(x_0\)</span>.</p>
 <p>This is an example of what is called global stability, a topic we return to
 below.</p>
 </section>
 <section id="example-a-nonlinear-model">
-<h3><span class="section-number">24.2.4. </span>Example: a nonlinear model<a class="headerlink" href="#example-a-nonlinear-model" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">24.2.4. </span>Example: a nonlinear model<a class="headerlink" href="#example-a-nonlinear-model" title="Link to this heading">#</a></h3>
 <p>In the linear example above, we obtained an exact analytical expression for
 <span class="math notranslate nohighlight">\(x_t\)</span> in terms of arbitrary non-negative integer <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(x_0\)</span>.</p>
 <p>This made analysis of dynamics very easy.</p>
 <p>When models are nonlinear, however, the situation can be quite different.</p>
 <p>For example, in a later lecture <a class="reference internal" href="solow.html"><span class="doc">The Solow-Swan Growth Model</span></a>, we will study the Solow-Swan growth model, which has dynamics</p>
 <div class="math notranslate nohighlight" id="equation-solow-lom2">
-<span class="eqno">(24.6)<a class="headerlink" href="#equation-solow-lom2" title="Permalink to this equation">#</a></span>\[k_{t+1} = s A k_t^{\alpha} + (1 - \delta) k_t\]</div>
+<span class="eqno">(24.6)<a class="headerlink" href="#equation-solow-lom2" title="Link to this equation">#</a></span>\[k_{t+1} = s A k_t^{\alpha} + (1 - \delta) k_t\]</div>
 <p>Here <span class="math notranslate nohighlight">\(k=K/L\)</span> is the per capita capital stock, <span class="math notranslate nohighlight">\(s\)</span> is the saving rate, <span class="math notranslate nohighlight">\(A\)</span> is the total factor productivity, <span class="math notranslate nohighlight">\(\alpha\)</span> is the capital share, and <span class="math notranslate nohighlight">\(\delta\)</span> is the depreciation rate.</p>
 <p>All these parameter are positive and <span class="math notranslate nohighlight">\(0 &lt; \alpha, \delta &lt; 1\)</span>.</p>
 <p>If you try to iterate like we did in <a class="reference internal" href="#equation-sdslinmodpath">(24.3)</a>, you will find that
@@ -402,11 +408,11 @@ the algebra gets messy quickly.</p>
 </section>
 </section>
 <section id="stability">
-<h2><span class="section-number">24.3. </span>Stability<a class="headerlink" href="#stability" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">24.3. </span>Stability<a class="headerlink" href="#stability" title="Link to this heading">#</a></h2>
 <p>Consider a dynamic system consisting of set <span class="math notranslate nohighlight">\(S \subset \mathbb R\)</span> and
 <span class="math notranslate nohighlight">\(g\)</span> mapping <span class="math notranslate nohighlight">\(S\)</span> to <span class="math notranslate nohighlight">\(S\)</span>.</p>
 <section id="steady-states">
-<span id="scalar-dynam-steady-state"></span><h3><span class="section-number">24.3.1. </span>Steady states<a class="headerlink" href="#steady-states" title="Permalink to this heading">#</a></h3>
+<span id="scalar-dynam-steady-state"></span><h3><span class="section-number">24.3.1. </span>Steady states<a class="headerlink" href="#steady-states" title="Link to this heading">#</a></h3>
 <p>A <strong>steady state</strong> of this system is a
 point <span class="math notranslate nohighlight">\(x^*\)</span> in <span class="math notranslate nohighlight">\(S\)</span> such that <span class="math notranslate nohighlight">\(x^* = g(x^*)\)</span>.</p>
 <p>In other words, <span class="math notranslate nohighlight">\(x^*\)</span> is a <strong>fixed point</strong> of the function <span class="math notranslate nohighlight">\(g\)</span> in
@@ -422,7 +428,7 @@ state in <span class="math notranslate nohighlight">\(\mathbb R\)</span>.</p></l
 </ul>
 </section>
 <section id="global-stability">
-<span id="scalar-dynam-global-stability"></span><h3><span class="section-number">24.3.2. </span>Global stability<a class="headerlink" href="#global-stability" title="Permalink to this heading">#</a></h3>
+<span id="scalar-dynam-global-stability"></span><h3><span class="section-number">24.3.2. </span>Global stability<a class="headerlink" href="#global-stability" title="Link to this heading">#</a></h3>
 <p>A steady state <span class="math notranslate nohighlight">\(x^*\)</span> of the dynamic system is called
 <strong>globally stable</strong> if, for all <span class="math notranslate nohighlight">\(x_0 \in S\)</span>,</p>
 <div class="math notranslate nohighlight">
@@ -438,7 +444,7 @@ x_t = g^t(x_0) \to x^* \text{ as } t \to \infty
 <p>This follows directly from <a class="reference internal" href="#equation-sdslinmod">(24.4)</a>.</p>
 </section>
 <section id="local-stability">
-<h3><span class="section-number">24.3.3. </span>Local stability<a class="headerlink" href="#local-stability" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">24.3.3. </span>Local stability<a class="headerlink" href="#local-stability" title="Link to this heading">#</a></h3>
 <p>A steady state <span class="math notranslate nohighlight">\(x^*\)</span> of the dynamic system is called
 <strong>locally stable</strong> if there exists an <span class="math notranslate nohighlight">\(\epsilon &gt; 0\)</span> such that</p>
 <div class="math notranslate nohighlight">
@@ -460,7 +466,7 @@ x_t = g^t(x_0) \to x^* \text{ as } t \to \infty
 </div></section>
 </section>
 <section id="graphical-analysis">
-<h2><span class="section-number">24.4. </span>Graphical analysis<a class="headerlink" href="#graphical-analysis" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">24.4. </span>Graphical analysis<a class="headerlink" href="#graphical-analysis" title="Link to this heading">#</a></h2>
 <p>As we saw above, analyzing the dynamics for nonlinear models is nontrivial.</p>
 <p>There is no single way to tackle all nonlinear models.</p>
 <p>However, there is one technique for one-dimensional models that provides a
@@ -471,13 +477,13 @@ great deal of intuition.</p>
 <p>The function of the code is to produce 45-degree diagrams and time series
 plots.</p>
 <div class="cell tag_hide-input tag_output_scroll docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">subplots</span><span class="p">():</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">subplots</span><span class="p">():</span>
     <span class="s2">&quot;Custom subplots with axes throught the origin&quot;</span>
     <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 
@@ -491,7 +497,7 @@ plots.</p>
     <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span>
 
 
-<span class="k">def</span> <span class="nf">plot45</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">num_arrows</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">var</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot45</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">num_arrows</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">var</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">):</span>
 
     <span class="n">xgrid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
 
@@ -543,7 +549,7 @@ plots.</p>
     <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">ncol</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">legend_args</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-<span class="k">def</span> <span class="nf">ts_plot</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">ts_length</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">var</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">ts_plot</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">ts_length</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">var</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">):</span>
     <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">subplots</span><span class="p">()</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$t$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
@@ -570,7 +576,7 @@ plots.</p>
 parameters. Here’s the update function corresponding to the model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">g</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">A</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">delta</span> <span class="o">=</span> <span class="mf">0.4</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">g</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">A</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">delta</span> <span class="o">=</span> <span class="mf">0.4</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">A</span> <span class="o">*</span> <span class="n">s</span> <span class="o">*</span> <span class="n">k</span><span class="o">**</span><span class="n">alpha</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">delta</span><span class="p">)</span> <span class="o">*</span> <span class="n">k</span>
 </pre></div>
 </div>
@@ -586,7 +592,8 @@ parameters. Here’s the update function corresponding to the model.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/1b22e04db6d8942db7b7b74e0126e0c76310d3c6cd2e365188831b20f8401350.png"><img alt="_images/1b22e04db6d8942db7b7b74e0126e0c76310d3c6cd2e365188831b20f8401350.png" src="_images/1b22e04db6d8942db7b7b74e0126e0c76310d3c6cd2e365188831b20f8401350.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/1b22e04db6d8942db7b7b74e0126e0c76310d3c6cd2e365188831b20f8401350.png"><img alt="_images/1b22e04db6d8942db7b7b74e0126e0c76310d3c6cd2e365188831b20f8401350.png" src="_images/1b22e04db6d8942db7b7b74e0126e0c76310d3c6cd2e365188831b20f8401350.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>The plot shows the function <span class="math notranslate nohighlight">\(g\)</span> and the 45-degree line.</p>
@@ -611,7 +618,7 @@ value on the vertical axis.</p>
 k^* = \left( \frac{sz}{\delta} \right)^{1/(1-\alpha)}
 \]</div>
 <section id="trajectories">
-<h3><span class="section-number">24.4.1. </span>Trajectories<a class="headerlink" href="#trajectories" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">24.4.1. </span>Trajectories<a class="headerlink" href="#trajectories" title="Link to this heading">#</a></h3>
 <p>By the preceding discussion, in regions where <span class="math notranslate nohighlight">\(g\)</span> lies above the 45-degree line, we know that the trajectory is increasing.</p>
 <p>The next figure traces out a trajectory in such a region so we can see this more clearly.</p>
 <p>The initial condition is <span class="math notranslate nohighlight">\(k_0 = 0.25\)</span>.</p>
@@ -624,7 +631,8 @@ k^* = \left( \frac{sz}{\delta} \right)^{1/(1-\alpha)}
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/db010d4f718a925aa7e9f904c2fe8aaa879f33c54d291649a3cbba303217e635.png"><img alt="_images/db010d4f718a925aa7e9f904c2fe8aaa879f33c54d291649a3cbba303217e635.png" src="_images/db010d4f718a925aa7e9f904c2fe8aaa879f33c54d291649a3cbba303217e635.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/db010d4f718a925aa7e9f904c2fe8aaa879f33c54d291649a3cbba303217e635.png"><img alt="_images/db010d4f718a925aa7e9f904c2fe8aaa879f33c54d291649a3cbba303217e635.png" src="_images/db010d4f718a925aa7e9f904c2fe8aaa879f33c54d291649a3cbba303217e635.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>We can plot the time series of per capita capital corresponding to the figure above as
@@ -636,7 +644,8 @@ follows:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/c9b9199822d7ab92fb684eb7ee9dcbfc45764908741fb6e5116403839372f076.png"><img alt="_images/c9b9199822d7ab92fb684eb7ee9dcbfc45764908741fb6e5116403839372f076.png" src="_images/c9b9199822d7ab92fb684eb7ee9dcbfc45764908741fb6e5116403839372f076.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/c9b9199822d7ab92fb684eb7ee9dcbfc45764908741fb6e5116403839372f076.png"><img alt="_images/c9b9199822d7ab92fb684eb7ee9dcbfc45764908741fb6e5116403839372f076.png" src="_images/c9b9199822d7ab92fb684eb7ee9dcbfc45764908741fb6e5116403839372f076.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>Here’s a somewhat longer view:</p>
@@ -647,7 +656,8 @@ follows:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/14e16a3b15fc7f90dab9694bd42a6a1fbbfd9b968010d3d348e5058bf1890a86.png"><img alt="_images/14e16a3b15fc7f90dab9694bd42a6a1fbbfd9b968010d3d348e5058bf1890a86.png" src="_images/14e16a3b15fc7f90dab9694bd42a6a1fbbfd9b968010d3d348e5058bf1890a86.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/14e16a3b15fc7f90dab9694bd42a6a1fbbfd9b968010d3d348e5058bf1890a86.png"><img alt="_images/14e16a3b15fc7f90dab9694bd42a6a1fbbfd9b968010d3d348e5058bf1890a86.png" src="_images/14e16a3b15fc7f90dab9694bd42a6a1fbbfd9b968010d3d348e5058bf1890a86.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>When per capita capital stock is higher than the unique positive steady state, we see that
@@ -661,7 +671,8 @@ it declines:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/629d30dddd51d46652a4fcd2ea87af943a855ab92861c341edcb290c41132adf.png"><img alt="_images/629d30dddd51d46652a4fcd2ea87af943a855ab92861c341edcb290c41132adf.png" src="_images/629d30dddd51d46652a4fcd2ea87af943a855ab92861c341edcb290c41132adf.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/629d30dddd51d46652a4fcd2ea87af943a855ab92861c341edcb290c41132adf.png"><img alt="_images/629d30dddd51d46652a4fcd2ea87af943a855ab92861c341edcb290c41132adf.png" src="_images/629d30dddd51d46652a4fcd2ea87af943a855ab92861c341edcb290c41132adf.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>Here is the time series:</p>
@@ -672,12 +683,13 @@ it declines:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/2c9ec639c951c47d880ec2128bb4f13bc701a14b7c092398c778481a50b1a07d.png"><img alt="_images/2c9ec639c951c47d880ec2128bb4f13bc701a14b7c092398c778481a50b1a07d.png" src="_images/2c9ec639c951c47d880ec2128bb4f13bc701a14b7c092398c778481a50b1a07d.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/2c9ec639c951c47d880ec2128bb4f13bc701a14b7c092398c778481a50b1a07d.png"><img alt="_images/2c9ec639c951c47d880ec2128bb4f13bc701a14b7c092398c778481a50b1a07d.png" src="_images/2c9ec639c951c47d880ec2128bb4f13bc701a14b7c092398c778481a50b1a07d.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 </section>
 <section id="complex-dynamics">
-<h3><span class="section-number">24.4.2. </span>Complex dynamics<a class="headerlink" href="#complex-dynamics" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">24.4.2. </span>Complex dynamics<a class="headerlink" href="#complex-dynamics" title="Link to this heading">#</a></h3>
 <p>The Solow-Swan model is nonlinear but still generates very regular dynamics.</p>
 <p>One model that generates irregular dynamics is the <strong>quadratic map</strong></p>
 <div class="math notranslate nohighlight">
@@ -697,7 +709,8 @@ g(x) = 4 x (1 - x),
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/c5ff7c0276bb777828cbc01d5519c3b81dee173633f74579bb98ea7ae3433dc0.png"><img alt="_images/c5ff7c0276bb777828cbc01d5519c3b81dee173633f74579bb98ea7ae3433dc0.png" src="_images/c5ff7c0276bb777828cbc01d5519c3b81dee173633f74579bb98ea7ae3433dc0.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/c5ff7c0276bb777828cbc01d5519c3b81dee173633f74579bb98ea7ae3433dc0.png"><img alt="_images/c5ff7c0276bb777828cbc01d5519c3b81dee173633f74579bb98ea7ae3433dc0.png" src="_images/c5ff7c0276bb777828cbc01d5519c3b81dee173633f74579bb98ea7ae3433dc0.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>Now let’s look at a typical trajectory.</p>
@@ -708,7 +721,8 @@ g(x) = 4 x (1 - x),
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/7961d872f0961016407a9e95c8f89f6bd34f721a9f6b2873bcd309d4bce8d317.png"><img alt="_images/7961d872f0961016407a9e95c8f89f6bd34f721a9f6b2873bcd309d4bce8d317.png" src="_images/7961d872f0961016407a9e95c8f89f6bd34f721a9f6b2873bcd309d4bce8d317.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/7961d872f0961016407a9e95c8f89f6bd34f721a9f6b2873bcd309d4bce8d317.png"><img alt="_images/7961d872f0961016407a9e95c8f89f6bd34f721a9f6b2873bcd309d4bce8d317.png" src="_images/7961d872f0961016407a9e95c8f89f6bd34f721a9f6b2873bcd309d4bce8d317.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>Notice how irregular it is.</p>
@@ -720,7 +734,8 @@ g(x) = 4 x (1 - x),
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/bad45f0dce1be39fffb7fa8135ca88e9f9a95eeb4c953e76843a344eed22b069.png"><img alt="_images/bad45f0dce1be39fffb7fa8135ca88e9f9a95eeb4c953e76843a344eed22b069.png" src="_images/bad45f0dce1be39fffb7fa8135ca88e9f9a95eeb4c953e76843a344eed22b069.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/bad45f0dce1be39fffb7fa8135ca88e9f9a95eeb4c953e76843a344eed22b069.png"><img alt="_images/bad45f0dce1be39fffb7fa8135ca88e9f9a95eeb4c953e76843a344eed22b069.png" src="_images/bad45f0dce1be39fffb7fa8135ca88e9f9a95eeb4c953e76843a344eed22b069.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>The irregularity is even clearer over a longer time horizon:</p>
@@ -731,13 +746,14 @@ g(x) = 4 x (1 - x),
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/5d054a31ca9b57bc0c44ba64b2d1006856d40909b60eec2307af137ce2f2bc10.png"><img alt="_images/5d054a31ca9b57bc0c44ba64b2d1006856d40909b60eec2307af137ce2f2bc10.png" src="_images/5d054a31ca9b57bc0c44ba64b2d1006856d40909b60eec2307af137ce2f2bc10.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/5d054a31ca9b57bc0c44ba64b2d1006856d40909b60eec2307af137ce2f2bc10.png"><img alt="_images/5d054a31ca9b57bc0c44ba64b2d1006856d40909b60eec2307af137ce2f2bc10.png" src="_images/5d054a31ca9b57bc0c44ba64b2d1006856d40909b60eec2307af137ce2f2bc10.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 </section>
 </section>
 <section id="exercises">
-<h2><span class="section-number">24.5. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">24.5. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
 <div class="exercise admonition" id="sd_ex1">
 
 <p class="admonition-title"><span class="caption-number">Exercise 24.1 </span></p>
@@ -777,7 +793,8 @@ g(x) = 4 x (1 - x),
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/0a62931bb69d5cd6f8b563a361e8390257a1ce5ace662d24f1a6dce0e047d658.png"><img alt="_images/0a62931bb69d5cd6f8b563a361e8390257a1ce5ace662d24f1a6dce0e047d658.png" src="_images/0a62931bb69d5cd6f8b563a361e8390257a1ce5ace662d24f1a6dce0e047d658.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/0a62931bb69d5cd6f8b563a361e8390257a1ce5ace662d24f1a6dce0e047d658.png"><img alt="_images/0a62931bb69d5cd6f8b563a361e8390257a1ce5ace662d24f1a6dce0e047d658.png" src="_images/0a62931bb69d5cd6f8b563a361e8390257a1ce5ace662d24f1a6dce0e047d658.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>Here is the corresponding time series, which converges towards the steady
@@ -789,7 +806,8 @@ state.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/a5894d498bd38c37a99ec7fd1da7231fde3c063e04763b270c58b627147916db.png"><img alt="_images/a5894d498bd38c37a99ec7fd1da7231fde3c063e04763b270c58b627147916db.png" src="_images/a5894d498bd38c37a99ec7fd1da7231fde3c063e04763b270c58b627147916db.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/a5894d498bd38c37a99ec7fd1da7231fde3c063e04763b270c58b627147916db.png"><img alt="_images/a5894d498bd38c37a99ec7fd1da7231fde3c063e04763b270c58b627147916db.png" src="_images/a5894d498bd38c37a99ec7fd1da7231fde3c063e04763b270c58b627147916db.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>Now let’s try <span class="math notranslate nohighlight">\(a=-0.5\)</span> and see what differences we observe.</p>
@@ -812,7 +830,8 @@ state.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/d514ceb73f2f313a147955ec9f5b288d027c2e4f6f41c509b693307a39bd0698.png"><img alt="_images/d514ceb73f2f313a147955ec9f5b288d027c2e4f6f41c509b693307a39bd0698.png" src="_images/d514ceb73f2f313a147955ec9f5b288d027c2e4f6f41c509b693307a39bd0698.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/d514ceb73f2f313a147955ec9f5b288d027c2e4f6f41c509b693307a39bd0698.png"><img alt="_images/d514ceb73f2f313a147955ec9f5b288d027c2e4f6f41c509b693307a39bd0698.png" src="_images/d514ceb73f2f313a147955ec9f5b288d027c2e4f6f41c509b693307a39bd0698.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>Here is the corresponding time series, which converges towards the steady
@@ -824,7 +843,8 @@ state.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/25f0acb334bc8deace12937e4711a541b3947d23ad09f879e103e51d3fad8859.png"><img alt="_images/25f0acb334bc8deace12937e4711a541b3947d23ad09f879e103e51d3fad8859.png" src="_images/25f0acb334bc8deace12937e4711a541b3947d23ad09f879e103e51d3fad8859.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/25f0acb334bc8deace12937e4711a541b3947d23ad09f879e103e51d3fad8859.png"><img alt="_images/25f0acb334bc8deace12937e4711a541b3947d23ad09f879e103e51d3fad8859.png" src="_images/25f0acb334bc8deace12937e4711a541b3947d23ad09f879e103e51d3fad8859.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>Once again, we have convergence to the steady state but the nature of

@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>14. Equalizing Difference Model &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
@@ -70,15 +69,15 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=bd0785fbb14d8d2bd4d9ae501d79ed8d3bc089ec" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.5ea377869091fd0449014c60fc090103.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=4c010e0d" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -86,23 +85,22 @@
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script src="_static/scripts/quantecon-book-theme.js?digest=d9faaf6c4b57726f74ba012412af1f5681bdff87"></script>
+    <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
+    <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QDS1YRJNGM"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -111,12 +109,20 @@
                 gtag('config', 'G-QDS1YRJNGM');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QDS1YRJNGM');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"argmax": "arg\\,max", "argmin": "arg\\,min"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'equalizing_difference';</script>
     <link rel="canonical" href="https://intro.quantecon.org/equalizing_difference.html" />
-    <link rel="shortcut icon" href="_static/lectures-favicon.ico"/>
+    <link rel="icon" href="_static/lectures-favicon.ico"/>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -238,9 +244,9 @@
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="equalizing-difference-model">
-<h1><span class="section-number">14. </span>Equalizing Difference Model<a class="headerlink" href="#equalizing-difference-model" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">14. </span>Equalizing Difference Model<a class="headerlink" href="#equalizing-difference-model" title="Link to this heading">#</a></h1>
 <section id="overview">
-<h2><span class="section-number">14.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">14.1. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
 <p>This lecture presents a model of the college-high-school wage gap in which the
 “time to build” a college graduate plays a key role.</p>
 <p>Milton Friedman invented the   model  to study whether  differences in  earnings of US dentists and doctors were outcomes of  competitive labor markets or whether
@@ -259,17 +265,17 @@ they reflected entry barriers imposed by governments working in conjunction with
 <p>As usual, we’ll start by importing some Python modules.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
-<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Symbol</span><span class="p">,</span> <span class="n">Lambda</span><span class="p">,</span> <span class="n">symbols</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">namedtuple</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sympy</span><span class="w"> </span><span class="kn">import</span> <span class="n">Symbol</span><span class="p">,</span> <span class="n">Lambda</span><span class="p">,</span> <span class="n">symbols</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="the-indifference-condition">
-<h2><span class="section-number">14.2. </span>The indifference condition<a class="headerlink" href="#the-indifference-condition" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">14.2. </span>The indifference condition<a class="headerlink" href="#the-indifference-condition" title="Link to this heading">#</a></h2>
 <p>The key idea is that the entry level college wage premium has to adjust to make a representative worker indifferent between going to college and not going to college.</p>
 <p>Let</p>
 <ul class="simple">
@@ -291,7 +297,7 @@ they reflected entry barriers imposed by governments working in conjunction with
 <li><p>he goes to college for four years and after graduating earns wages paid to a college graduate</p></li>
 </ul>
 <section id="present-value-of-a-high-school-educated-worker">
-<h3><span class="section-number">14.2.1. </span>Present value of a high school educated worker<a class="headerlink" href="#present-value-of-a-high-school-educated-worker" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">14.2.1. </span>Present value of a high school educated worker<a class="headerlink" href="#present-value-of-a-high-school-educated-worker" title="Link to this heading">#</a></h3>
 <p>If someone goes to work immediately after high school  and  works for the  <span class="math notranslate nohighlight">\(T+1\)</span> years <span class="math notranslate nohighlight">\(t=0, 1, 2, \ldots, T\)</span>, she earns present value</p>
 <div class="math notranslate nohighlight">
 \[
@@ -305,7 +311,7 @@ A_h = \left[ \frac{1 - (R^{-1} \gamma_h)^{T+1} }{1 - R^{-1} \gamma_h } \right].
 <p>The present value <span class="math notranslate nohighlight">\(h_0\)</span> is the “human wealth” at the beginning of time <span class="math notranslate nohighlight">\(0\)</span> of someone who chooses not to attend college but instead to go to work immediately at the wage of a high school graduate.</p>
 </section>
 <section id="present-value-of-a-college-bound-new-high-school-graduate">
-<h3><span class="section-number">14.2.2. </span>Present value of a college-bound new high school graduate<a class="headerlink" href="#present-value-of-a-college-bound-new-high-school-graduate" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">14.2.2. </span>Present value of a college-bound new high school graduate<a class="headerlink" href="#present-value-of-a-college-bound-new-high-school-graduate" title="Link to this heading">#</a></h3>
 <p>If someone goes to college for the four years <span class="math notranslate nohighlight">\(t=0, 1, 2, 3\)</span> during which she earns <span class="math notranslate nohighlight">\(0\)</span>, but then goes to work  immediately after college   and  works for the <span class="math notranslate nohighlight">\(T-3\)</span> years <span class="math notranslate nohighlight">\(t=4, 5, \ldots ,T\)</span>, she earns present value</p>
 <div class="math notranslate nohighlight">
 \[
@@ -337,13 +343,13 @@ h_0 = c_0 - D
 \]</div>
 <p>or</p>
 <div class="math notranslate nohighlight" id="equation-eq-equalize">
-<span class="eqno">(14.1)<a class="headerlink" href="#equation-eq-equalize" title="Permalink to this equation">#</a></span>\[ 
+<span class="eqno">(14.1)<a class="headerlink" href="#equation-eq-equalize" title="Link to this equation">#</a></span>\[ 
 w_0^h A_h  = \phi w_0^h A_c - D .
 \]</div>
 <p>This “indifference condition”  is the heart of the model.</p>
 <p>Solving equation <a class="reference internal" href="#equation-eq-equalize">(14.1)</a> for the college wage premium <span class="math notranslate nohighlight">\(\phi\)</span> we obtain</p>
 <div class="math notranslate nohighlight" id="equation-eq-wagepremium">
-<span class="eqno">(14.2)<a class="headerlink" href="#equation-eq-wagepremium" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(14.2)<a class="headerlink" href="#equation-eq-wagepremium" title="Link to this equation">#</a></span>\[
 \phi  = \frac{A_h}{A_c} + \frac{D}{w_0^h A_c} .
 \]</div>
 <p>In a <strong>free college</strong> special case <span class="math notranslate nohighlight">\(D =0\)</span>.</p>
@@ -357,7 +363,7 @@ w_0^h A_h  = \phi w_0^h A_c - D .
 </section>
 </section>
 <section id="computations">
-<h2><span class="section-number">14.3. </span>Computations<a class="headerlink" href="#computations" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">14.3. </span>Computations<a class="headerlink" href="#computations" title="Link to this heading">#</a></h2>
 <p>We can have some fun with examples that tweak various parameters,
 prominently including <span class="math notranslate nohighlight">\(\gamma_h, \gamma_c, R\)</span>.</p>
 <p>Now let’s write some Python code to compute <span class="math notranslate nohighlight">\(\phi\)</span> and plot it as a function of some of its determinants.</p>
@@ -366,7 +372,7 @@ prominently including <span class="math notranslate nohighlight">\(\gamma_h, \ga
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the namedtuple for the equalizing difference model</span>
 <span class="n">EqDiffModel</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;EqDiffModel&#39;</span><span class="p">,</span> <span class="s1">&#39;R T γ_h γ_c w_h0 D&#39;</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">create_edm</span><span class="p">(</span><span class="n">R</span><span class="o">=</span><span class="mf">1.05</span><span class="p">,</span>   <span class="c1"># gross rate of return</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_edm</span><span class="p">(</span><span class="n">R</span><span class="o">=</span><span class="mf">1.05</span><span class="p">,</span>   <span class="c1"># gross rate of return</span>
                <span class="n">T</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>     <span class="c1"># time horizon</span>
                <span class="n">γ_h</span><span class="o">=</span><span class="mf">1.01</span><span class="p">,</span> <span class="c1"># high-school wage growth</span>
                <span class="n">γ_c</span><span class="o">=</span><span class="mf">1.01</span><span class="p">,</span> <span class="c1"># college wage growth</span>
@@ -376,7 +382,7 @@ prominently including <span class="math notranslate nohighlight">\(\gamma_h, \ga
     
     <span class="k">return</span> <span class="n">EqDiffModel</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">γ_h</span><span class="p">,</span> <span class="n">γ_c</span><span class="p">,</span> <span class="n">w_h0</span><span class="p">,</span> <span class="n">D</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">compute_gap</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_gap</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
     <span class="n">R</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">γ_h</span><span class="p">,</span> <span class="n">γ_c</span><span class="p">,</span> <span class="n">w_h0</span><span class="p">,</span> <span class="n">D</span> <span class="o">=</span> <span class="n">model</span>
     
     <span class="n">A_h</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">γ_h</span><span class="o">/</span><span class="n">R</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">γ_h</span><span class="o">/</span><span class="n">R</span><span class="p">)</span>
@@ -440,7 +446,8 @@ we  build some functions to help do comparative statics .</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/0e094697e4ccde8a5c974b9c666a43e29d4058567d82f64842e89fc7f0bc677e.png"><img alt="_images/0e094697e4ccde8a5c974b9c666a43e29d4058567d82f64842e89fc7f0bc677e.png" src="_images/0e094697e4ccde8a5c974b9c666a43e29d4058567d82f64842e89fc7f0bc677e.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/0e094697e4ccde8a5c974b9c666a43e29d4058567d82f64842e89fc7f0bc677e.png"><img alt="_images/0e094697e4ccde8a5c974b9c666a43e29d4058567d82f64842e89fc7f0bc677e.png" src="_images/0e094697e4ccde8a5c974b9c666a43e29d4058567d82f64842e89fc7f0bc677e.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>Evidently, the initial wage ratio <span class="math notranslate nohighlight">\(\phi\)</span> must rise to compensate a prospective high school student for <strong>waiting</strong> to start receiving income – remember that while she is earning nothing in years <span class="math notranslate nohighlight">\(t=0, 1, 2, 3\)</span>, the high school worker is earning a salary.</p>
@@ -460,7 +467,8 @@ determinants of <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/e23e9fa82d90e6ac6ae82f8ae45da4c38ca6b0d691285804f895723726c3291b.png"><img alt="_images/e23e9fa82d90e6ac6ae82f8ae45da4c38ca6b0d691285804f895723726c3291b.png" src="_images/e23e9fa82d90e6ac6ae82f8ae45da4c38ca6b0d691285804f895723726c3291b.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/e23e9fa82d90e6ac6ae82f8ae45da4c38ca6b0d691285804f895723726c3291b.png"><img alt="_images/e23e9fa82d90e6ac6ae82f8ae45da4c38ca6b0d691285804f895723726c3291b.png" src="_images/e23e9fa82d90e6ac6ae82f8ae45da4c38ca6b0d691285804f895723726c3291b.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>Notice how  the initial wage gap falls when the rate of growth <span class="math notranslate nohighlight">\(\gamma_c\)</span> of college wages rises.</p>
@@ -481,12 +489,13 @@ determinants of <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/6a20d4677c4391a910c9646977ee084cccdeb3afb4189bef6e50352189301bac.png"><img alt="_images/6a20d4677c4391a910c9646977ee084cccdeb3afb4189bef6e50352189301bac.png" src="_images/6a20d4677c4391a910c9646977ee084cccdeb3afb4189bef6e50352189301bac.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/6a20d4677c4391a910c9646977ee084cccdeb3afb4189bef6e50352189301bac.png"><img alt="_images/6a20d4677c4391a910c9646977ee084cccdeb3afb4189bef6e50352189301bac.png" src="_images/6a20d4677c4391a910c9646977ee084cccdeb3afb4189bef6e50352189301bac.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 </section>
 <section id="entrepreneur-worker-interpretation">
-<h2><span class="section-number">14.4. </span>Entrepreneur-worker interpretation<a class="headerlink" href="#entrepreneur-worker-interpretation" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">14.4. </span>Entrepreneur-worker interpretation<a class="headerlink" href="#entrepreneur-worker-interpretation" title="Link to this heading">#</a></h2>
 <p>We can add a parameter and reinterpret variables to get a model of entrepreneurs versus workers.</p>
 <p>We now let <span class="math notranslate nohighlight">\(h\)</span> be  the present value of a “worker”.</p>
 <p>We define the present value of an entrepreneur to be</p>
@@ -507,7 +516,7 @@ be an entrepreneur, the higher must be the reward for a successful project.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a model of entrepreneur-worker interpretation</span>
 <span class="n">EqDiffModel</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;EqDiffModel&#39;</span><span class="p">,</span> <span class="s1">&#39;R T γ_h γ_c w_h0 D π&#39;</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">create_edm_π</span><span class="p">(</span><span class="n">R</span><span class="o">=</span><span class="mf">1.05</span><span class="p">,</span>   <span class="c1"># gross rate of return</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_edm_π</span><span class="p">(</span><span class="n">R</span><span class="o">=</span><span class="mf">1.05</span><span class="p">,</span>   <span class="c1"># gross rate of return</span>
                  <span class="n">T</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>     <span class="c1"># time horizon</span>
                  <span class="n">γ_h</span><span class="o">=</span><span class="mf">1.01</span><span class="p">,</span> <span class="c1"># high-school wage growth</span>
                  <span class="n">γ_c</span><span class="o">=</span><span class="mf">1.01</span><span class="p">,</span> <span class="c1"># college wage growth</span>
@@ -519,7 +528,7 @@ be an entrepreneur, the higher must be the reward for a successful project.</p>
     <span class="k">return</span> <span class="n">EqDiffModel</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">γ_h</span><span class="p">,</span> <span class="n">γ_c</span><span class="p">,</span> <span class="n">w_h0</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">π</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">compute_gap</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_gap</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
     <span class="n">R</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">γ_h</span><span class="p">,</span> <span class="n">γ_c</span><span class="p">,</span> <span class="n">w_h0</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">π</span> <span class="o">=</span> <span class="n">model</span>
     
     <span class="n">A_h</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">γ_h</span><span class="o">/</span><span class="n">R</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">γ_h</span><span class="o">/</span><span class="n">R</span><span class="p">)</span>
@@ -565,13 +574,14 @@ be an entrepreneur, the higher must be the reward for a successful project.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/736f745f25c74fe85f95a9e31f4d1470f8ec8244407e5a39129fcb5f42143ea0.png"><img alt="_images/736f745f25c74fe85f95a9e31f4d1470f8ec8244407e5a39129fcb5f42143ea0.png" src="_images/736f745f25c74fe85f95a9e31f4d1470f8ec8244407e5a39129fcb5f42143ea0.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/736f745f25c74fe85f95a9e31f4d1470f8ec8244407e5a39129fcb5f42143ea0.png"><img alt="_images/736f745f25c74fe85f95a9e31f4d1470f8ec8244407e5a39129fcb5f42143ea0.png" src="_images/736f745f25c74fe85f95a9e31f4d1470f8ec8244407e5a39129fcb5f42143ea0.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>Does the graph make sense to you?</p>
 </section>
 <section id="an-application-of-calculus">
-<h2><span class="section-number">14.5. </span>An application of calculus<a class="headerlink" href="#an-application-of-calculus" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">14.5. </span>An application of calculus<a class="headerlink" href="#an-application-of-calculus" title="Link to this heading">#</a></h2>
 <p>So far, we have used only linear algebra and it has been a good enough tool for us to  figure out how our model works.</p>
 <p>However, someone who knows calculus might want us  just to  take partial derivatives.</p>
 <p>We’ll do that now.</p>

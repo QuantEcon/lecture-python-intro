@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>25. The Solow-Swan Growth Model &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
@@ -70,15 +69,15 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=bd0785fbb14d8d2bd4d9ae501d79ed8d3bc089ec" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.5ea377869091fd0449014c60fc090103.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=4c010e0d" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -86,23 +85,22 @@
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script src="_static/scripts/quantecon-book-theme.js?digest=d9faaf6c4b57726f74ba012412af1f5681bdff87"></script>
+    <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
+    <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QDS1YRJNGM"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -111,12 +109,20 @@
                 gtag('config', 'G-QDS1YRJNGM');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QDS1YRJNGM');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"argmax": "arg\\,max", "argmin": "arg\\,min"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'solow';</script>
     <link rel="canonical" href="https://intro.quantecon.org/solow.html" />
-    <link rel="shortcut icon" href="_static/lectures-favicon.ico"/>
+    <link rel="icon" href="_static/lectures-favicon.ico"/>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -233,7 +239,7 @@
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="the-solow-swan-growth-model">
-<span id="solow"></span><h1><span class="section-number">25. </span>The Solow-Swan Growth Model<a class="headerlink" href="#the-solow-swan-growth-model" title="Permalink to this heading">#</a></h1>
+<span id="solow"></span><h1><span class="section-number">25. </span>The Solow-Swan Growth Model<a class="headerlink" href="#the-solow-swan-growth-model" title="Link to this heading">#</a></h1>
 <p>In this lecture we review a famous model due
 to <a class="reference external" href="https://en.wikipedia.org/wiki/Robert_Solow">Robert Solow (1925–2023)</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Trevor_Swan">Trevor Swan (1918–1989)</a>.</p>
 <p>The model is used to study growth over the long run.</p>
@@ -241,14 +247,14 @@ to <a class="reference external" href="https://en.wikipedia.org/wiki/Robert_Solo
 <p>We will use the following imports.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 </pre></div>
 </div>
 </div>
 </div>
 <section id="the-model">
-<h2><span class="section-number">25.1. </span>The model<a class="headerlink" href="#the-model" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">25.1. </span>The model<a class="headerlink" href="#the-model" title="Link to this heading">#</a></h2>
 <p>In a Solow–Swan economy, agents save a fixed fraction of their current
 incomes.</p>
 <p>Savings sustain or increase the stock of capital.</p>
@@ -296,13 +302,13 @@ becomes <span class="math notranslate nohighlight">\(1-\delta\)</span> units tom
 \]</div>
 <p>With  <span class="math notranslate nohighlight">\(f(k) := F(k, 1)\)</span>, the final expression for capital dynamics is</p>
 <div class="math notranslate nohighlight" id="equation-solow">
-<span class="eqno">(25.1)<a class="headerlink" href="#equation-solow" title="Permalink to this equation">#</a></span>\[    k_{t+1} = g(k_t)
+<span class="eqno">(25.1)<a class="headerlink" href="#equation-solow" title="Link to this equation">#</a></span>\[    k_{t+1} = g(k_t)
     \text{ where } g(k) := s f(k) + (1 - \delta) k\]</div>
 <p>Our aim is to learn about the evolution of <span class="math notranslate nohighlight">\(k_t\)</span> over time,
 given an exogenous initial capital stock  <span class="math notranslate nohighlight">\(k_0\)</span>.</p>
 </section>
 <section id="a-graphical-perspective">
-<h2><span class="section-number">25.2. </span>A graphical perspective<a class="headerlink" href="#a-graphical-perspective" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">25.2. </span>A graphical perspective<a class="headerlink" href="#a-graphical-perspective" title="Link to this heading">#</a></h2>
 <p>To understand the dynamics of the sequence <span class="math notranslate nohighlight">\((k_t)_{t \geq 0}\)</span> we use a 45-degree diagram.</p>
 <p>To do so, we first
 need to specify the functional form for <span class="math notranslate nohighlight">\(f\)</span> and assign values to the parameters.</p>
@@ -322,7 +328,7 @@ need to specify the functional form for <span class="math notranslate nohighligh
 <p>Now, we define the function <span class="math notranslate nohighlight">\(g\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">g</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">g</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">A</span> <span class="o">*</span> <span class="n">s</span> <span class="o">*</span> <span class="n">k</span><span class="o">**</span><span class="n">alpha</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">delta</span><span class="p">)</span> <span class="o">*</span> <span class="n">k</span>
 </pre></div>
 </div>
@@ -331,7 +337,7 @@ need to specify the functional form for <span class="math notranslate nohighligh
 <p>Let’s plot the 45-degree diagram of <span class="math notranslate nohighlight">\(g\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot45</span><span class="p">(</span><span class="n">kstar</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot45</span><span class="p">(</span><span class="n">kstar</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="n">xgrid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="mi">12000</span><span class="p">)</span>
 
     <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
@@ -380,7 +386,8 @@ need to specify the functional form for <span class="math notranslate nohighligh
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/eb2a0ba00ca8d7a87326646dfcc72fd65d591f85b30fd9993efc3e91ac1e034b.png"><img alt="_images/eb2a0ba00ca8d7a87326646dfcc72fd65d591f85b30fd9993efc3e91ac1e034b.png" src="_images/eb2a0ba00ca8d7a87326646dfcc72fd65d591f85b30fd9993efc3e91ac1e034b.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/eb2a0ba00ca8d7a87326646dfcc72fd65d591f85b30fd9993efc3e91ac1e034b.png"><img alt="_images/eb2a0ba00ca8d7a87326646dfcc72fd65d591f85b30fd9993efc3e91ac1e034b.png" src="_images/eb2a0ba00ca8d7a87326646dfcc72fd65d591f85b30fd9993efc3e91ac1e034b.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>Suppose, at some <span class="math notranslate nohighlight">\(k_t\)</span>, the value <span class="math notranslate nohighlight">\(g(k_t)\)</span> lies strictly above the 45-degree line.</p>
@@ -392,7 +399,7 @@ need to specify the functional form for <span class="math notranslate nohighligh
 there is a unique steady state in <span class="math notranslate nohighlight">\((0, \infty)\)</span>.</p>
 <p>It solves <span class="math notranslate nohighlight">\(k = s Ak^{\alpha} + (1-\delta)k\)</span> and hence is given by</p>
 <div class="math notranslate nohighlight" id="equation-kstarss">
-<span class="eqno">(25.2)<a class="headerlink" href="#equation-kstarss" title="Permalink to this equation">#</a></span>\[    k^* := \left( \frac{s A}{\delta} \right)^{1/(1 - \alpha)}\]</div>
+<span class="eqno">(25.2)<a class="headerlink" href="#equation-kstarss" title="Link to this equation">#</a></span>\[    k^* := \left( \frac{s A}{\delta} \right)^{1/(1 - \alpha)}\]</div>
 <p>If initial capital is below <span class="math notranslate nohighlight">\(k^*\)</span>, then capital increases over time.</p>
 <p>If initial capital is above this level, then the reverse is true.</p>
 <p>Let’s plot the 45-degree diagram to show the <span class="math notranslate nohighlight">\(k^*\)</span> in the plot.</p>
@@ -404,7 +411,8 @@ there is a unique steady state in <span class="math notranslate nohighlight">\((
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/fc30c38bacfd4aa9f3343cbf24614d332f18cc531cca19de891e9ba0d220de54.png"><img alt="_images/fc30c38bacfd4aa9f3343cbf24614d332f18cc531cca19de891e9ba0d220de54.png" src="_images/fc30c38bacfd4aa9f3343cbf24614d332f18cc531cca19de891e9ba0d220de54.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/fc30c38bacfd4aa9f3343cbf24614d332f18cc531cca19de891e9ba0d220de54.png"><img alt="_images/fc30c38bacfd4aa9f3343cbf24614d332f18cc531cca19de891e9ba0d220de54.png" src="_images/fc30c38bacfd4aa9f3343cbf24614d332f18cc531cca19de891e9ba0d220de54.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>From our graphical analysis, it appears that <span class="math notranslate nohighlight">\((k_t)\)</span> converges to <span class="math notranslate nohighlight">\(k^*\)</span>, regardless of initial capital
@@ -428,7 +436,7 @@ three distinct initial conditions, under the parameterization listed above.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">simulate_ts</span><span class="p">(</span><span class="n">x0_values</span><span class="p">,</span> <span class="n">ts_length</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">simulate_ts</span><span class="p">(</span><span class="n">x0_values</span><span class="p">,</span> <span class="n">ts_length</span><span class="p">):</span>
 
     <span class="n">k_star</span> <span class="o">=</span> <span class="p">(</span><span class="n">s</span> <span class="o">*</span> <span class="n">A</span> <span class="o">/</span> <span class="n">delta</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">alpha</span><span class="p">))</span>
     <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
@@ -463,13 +471,14 @@ three distinct initial conditions, under the parameterization listed above.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/cbc9f4786772249302319ae8e7a37935cad9515e3ec072122ccfb57cb38dadfe.png"><img alt="_images/cbc9f4786772249302319ae8e7a37935cad9515e3ec072122ccfb57cb38dadfe.png" src="_images/cbc9f4786772249302319ae8e7a37935cad9515e3ec072122ccfb57cb38dadfe.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/cbc9f4786772249302319ae8e7a37935cad9515e3ec072122ccfb57cb38dadfe.png"><img alt="_images/cbc9f4786772249302319ae8e7a37935cad9515e3ec072122ccfb57cb38dadfe.png" src="_images/cbc9f4786772249302319ae8e7a37935cad9515e3ec072122ccfb57cb38dadfe.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>As expected, the time paths in the figure all converge to <span class="math notranslate nohighlight">\(k^*\)</span>.</p>
 </section>
 <section id="growth-in-continuous-time">
-<h2><span class="section-number">25.3. </span>Growth in continuous time<a class="headerlink" href="#growth-in-continuous-time" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">25.3. </span>Growth in continuous time<a class="headerlink" href="#growth-in-continuous-time" title="Link to this heading">#</a></h2>
 <p>In this section, we investigate a continuous time version of the Solow–Swan
 growth model.</p>
 <p>We will see how the smoothing provided by continuous time can
@@ -485,7 +494,7 @@ given by <span class="math notranslate nohighlight">\(k_{t+1} = s f(k_t) + (1 - 
 \]</div>
 <p>Taking the time step to zero gives the continuous time limit</p>
 <div class="math notranslate nohighlight" id="equation-solowc">
-<span class="eqno">(25.3)<a class="headerlink" href="#equation-solowc" title="Permalink to this equation">#</a></span>\[    k'_t = s f(k_t) - \delta k_t
+<span class="eqno">(25.3)<a class="headerlink" href="#equation-solowc" title="Link to this equation">#</a></span>\[    k'_t = s f(k_t) - \delta k_t
     \qquad \text{with} \qquad
     k'_t := \frac{d}{dt} k_t\]</div>
 <p>Our aim is to learn about the evolution of <span class="math notranslate nohighlight">\(k_t\)</span> over time,
@@ -517,7 +526,7 @@ levels of capital combine to yield global stability.</p>
 <p>Next we define the function <span class="math notranslate nohighlight">\(g\)</span> for growth in continuous time</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">g_con</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">g_con</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">A</span> <span class="o">*</span> <span class="n">s</span> <span class="o">*</span> <span class="n">k</span><span class="o">**</span><span class="n">alpha</span> <span class="o">-</span> <span class="n">delta</span> <span class="o">*</span> <span class="n">k</span>
 </pre></div>
 </div>
@@ -525,7 +534,7 @@ levels of capital combine to yield global stability.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_gcon</span><span class="p">(</span><span class="n">kstar</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_gcon</span><span class="p">(</span><span class="n">kstar</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 
     <span class="n">k_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">2.8</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
 
@@ -568,7 +577,8 @@ levels of capital combine to yield global stability.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/53d167007c17b9383b6f28b82560e13a18f37b38c767901492506b6912171ba3.png"><img alt="_images/53d167007c17b9383b6f28b82560e13a18f37b38c767901492506b6912171ba3.png" src="_images/53d167007c17b9383b6f28b82560e13a18f37b38c767901492506b6912171ba3.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/53d167007c17b9383b6f28b82560e13a18f37b38c767901492506b6912171ba3.png"><img alt="_images/53d167007c17b9383b6f28b82560e13a18f37b38c767901492506b6912171ba3.png" src="_images/53d167007c17b9383b6f28b82560e13a18f37b38c767901492506b6912171ba3.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>This shows global stability heuristically for a fixed parameterization, but
@@ -582,7 +592,7 @@ k'_t\)</span>.</p>
 <p>Substituting into <span class="math notranslate nohighlight">\(k'_t = sAk_t^\alpha - \delta k_t\)</span> leads to the
 linear differential equation</p>
 <div class="math notranslate nohighlight" id="equation-xsolow">
-<span class="eqno">(25.4)<a class="headerlink" href="#equation-xsolow" title="Permalink to this equation">#</a></span>\[    x'_t = (1-\alpha) (sA - \delta x_t)\]</div>
+<span class="eqno">(25.4)<a class="headerlink" href="#equation-xsolow" title="Link to this equation">#</a></span>\[    x'_t = (1-\alpha) (sA - \delta x_t)\]</div>
 <p>This equation, which is a <a class="reference external" href="https://math.libretexts.org/Bookshelves/Calculus/Calculus_(Guichard)/17%3A_Differential_Equations/17.01%3A_First_Order_Differential_Equations">linear ordinary differential equation</a>, has the solution</p>
 <div class="math notranslate nohighlight">
 \[
@@ -597,7 +607,7 @@ linear differential equation</p>
 differentiating it with respect to <span class="math notranslate nohighlight">\(t\)</span>.)</p>
 <p>Converting back to <span class="math notranslate nohighlight">\(k_t\)</span> yields</p>
 <div class="math notranslate nohighlight" id="equation-ssivs">
-<span class="eqno">(25.5)<a class="headerlink" href="#equation-ssivs" title="Permalink to this equation">#</a></span>\[    k_t
+<span class="eqno">(25.5)<a class="headerlink" href="#equation-ssivs" title="Link to this equation">#</a></span>\[    k_t
     =
     \left[
         \left(
@@ -611,7 +621,7 @@ k^*\)</span> as <span class="math notranslate nohighlight">\(t \to \infty\)</spa
 <p>Thus, global stability holds.</p>
 </section>
 <section id="exercises">
-<h2><span class="section-number">25.4. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">25.4. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
 <div class="exercise admonition" id="solow_ex1">
 
 <p class="admonition-title"><span class="caption-number">Exercise 25.1 </span></p>
@@ -653,14 +663,14 @@ k^*\)</span> as <span class="math notranslate nohighlight">\(t \to \infty\)</spa
 We will use <span class="math notranslate nohighlight">\(-c^*(s)\)</span> since <code class="docutils literal notranslate"><span class="pre">minimize_scalar</span></code> finds the minimum value.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize_scalar</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">minimize_scalar</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calc_c_star</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">calc_c_star</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
     <span class="n">k</span> <span class="o">=</span> <span class="p">((</span><span class="n">s</span> <span class="o">*</span> <span class="n">A</span><span class="p">)</span> <span class="o">/</span> <span class="n">delta</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">))</span>
     <span class="k">return</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">s</span><span class="p">)</span> <span class="o">*</span> <span class="n">A</span> <span class="o">*</span> <span class="n">k</span> <span class="o">**</span> <span class="n">alpha</span>
 </pre></div>
@@ -712,13 +722,14 @@ We will use <span class="math notranslate nohighlight">\(-c^*(s)\)</span> since 
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/9cb908e3ee7d14ec4cb105fa711466b47baa63cfbb08359009077feaf2bc65cb.png"><img alt="_images/9cb908e3ee7d14ec4cb105fa711466b47baa63cfbb08359009077feaf2bc65cb.png" src="_images/9cb908e3ee7d14ec4cb105fa711466b47baa63cfbb08359009077feaf2bc65cb.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/9cb908e3ee7d14ec4cb105fa711466b47baa63cfbb08359009077feaf2bc65cb.png"><img alt="_images/9cb908e3ee7d14ec4cb105fa711466b47baa63cfbb08359009077feaf2bc65cb.png" src="_images/9cb908e3ee7d14ec4cb105fa711466b47baa63cfbb08359009077feaf2bc65cb.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>One can also try to solve this mathematically by differentiating <span class="math notranslate nohighlight">\(c^*(s)\)</span> and solve for <span class="math notranslate nohighlight">\(\frac{d}{ds}c^*(s)=0\)</span> using <a class="reference external" href="https://www.sympy.org/en/index.html">sympy</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">solve</span><span class="p">,</span> <span class="n">Symbol</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sympy</span><span class="w"> </span><span class="kn">import</span> <span class="n">solve</span><span class="p">,</span> <span class="n">Symbol</span>
 </pre></div>
 </div>
 </div>
@@ -765,7 +776,7 @@ k^\alpha_t\)</span> converges to a constant <span class="math notranslate nohigh
 stochastic sequence <span class="math notranslate nohighlight">\((A_t)_{t \geq 1}\)</span>.</p>
 <p>Dynamics are now</p>
 <div class="math notranslate nohighlight" id="equation-solowran">
-<span class="eqno">(25.6)<a class="headerlink" href="#equation-solowran" title="Permalink to this equation">#</a></span>\[    k_{t+1} = s A_{t+1} f(k_t) + (1 - \delta) k_t\]</div>
+<span class="eqno">(25.6)<a class="headerlink" href="#equation-solowran" title="Link to this equation">#</a></span>\[    k_{t+1} = s A_{t+1} f(k_t) + (1 - \delta) k_t\]</div>
 <p>We suppose <span class="math notranslate nohighlight">\(f\)</span> is Cobb–Douglas and <span class="math notranslate nohighlight">\((A_t)\)</span> is IID and lognormal.</p>
 <p>Now the long run convergence obtained in the deterministic case breaks
 down, since the system is hit with new shocks at each point in time.</p>
@@ -795,10 +806,10 @@ down, since the system is hit with new shocks at each point in time.</p>
 <p>Let’s define the function <em>k_next</em> to find the next value of <span class="math notranslate nohighlight">\(k\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">lgnorm</span><span class="p">():</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">lgnorm</span><span class="p">():</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">mu</span> <span class="o">+</span> <span class="n">sig</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">())</span>
 
-<span class="k">def</span> <span class="nf">k_next</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">k_next</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">lgnorm</span><span class="p">()</span> <span class="o">*</span> <span class="n">s</span> <span class="o">*</span> <span class="n">k</span><span class="o">**</span><span class="n">alpha</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">delta</span><span class="p">)</span> <span class="o">*</span> <span class="n">k</span>
 </pre></div>
 </div>
@@ -806,7 +817,7 @@ down, since the system is hit with new shocks at each point in time.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ts_plot</span><span class="p">(</span><span class="n">x_values</span><span class="p">,</span> <span class="n">ts_length</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">ts_plot</span><span class="p">(</span><span class="n">x_values</span><span class="p">,</span> <span class="n">ts_length</span><span class="p">):</span>
     <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
     <span class="n">ts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ts_length</span><span class="p">)</span>
 
@@ -836,7 +847,8 @@ down, since the system is hit with new shocks at each point in time.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/48084f0bb0c51dec5fbf3853ad7a4413b1ddf335a2f59639980963c94e20308f.png"><img alt="_images/48084f0bb0c51dec5fbf3853ad7a4413b1ddf335a2f59639980963c94e20308f.png" src="_images/48084f0bb0c51dec5fbf3853ad7a4413b1ddf335a2f59639980963c94e20308f.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/a9e6795a6d6e4b1d0a6af08facb490d5eaf05a6a32243ec31605ec1faca62aa1.png"><img alt="_images/a9e6795a6d6e4b1d0a6af08facb490d5eaf05a6a32243ec31605ec1faca62aa1.png" src="_images/a9e6795a6d6e4b1d0a6af08facb490d5eaf05a6a32243ec31605ec1faca62aa1.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 </section>

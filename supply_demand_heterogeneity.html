@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>44. Market Equilibrium with Heterogeneity &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
@@ -70,15 +69,15 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=bd0785fbb14d8d2bd4d9ae501d79ed8d3bc089ec" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.5ea377869091fd0449014c60fc090103.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=4c010e0d" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -86,23 +85,22 @@
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script src="_static/scripts/quantecon-book-theme.js?digest=d9faaf6c4b57726f74ba012412af1f5681bdff87"></script>
+    <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
+    <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QDS1YRJNGM"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -111,12 +109,20 @@
                 gtag('config', 'G-QDS1YRJNGM');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QDS1YRJNGM');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"argmax": "arg\\,max", "argmin": "arg\\,min"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'supply_demand_heterogeneity';</script>
     <link rel="canonical" href="https://intro.quantecon.org/supply_demand_heterogeneity.html" />
-    <link rel="shortcut icon" href="_static/lectures-favicon.ico"/>
+    <link rel="icon" href="_static/lectures-favicon.ico"/>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -243,9 +249,9 @@
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="market-equilibrium-with-heterogeneity">
-<span id="supply-demand-heterogeneity"></span><h1><span class="section-number">44. </span>Market Equilibrium with Heterogeneity<a class="headerlink" href="#market-equilibrium-with-heterogeneity" title="Permalink to this heading">#</a></h1>
+<span id="supply-demand-heterogeneity"></span><h1><span class="section-number">44. </span>Market Equilibrium with Heterogeneity<a class="headerlink" href="#market-equilibrium-with-heterogeneity" title="Link to this heading">#</a></h1>
 <section id="overview">
-<h2><span class="section-number">44.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">44.1. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
 <p>In the <a class="reference internal" href="supply_demand_multiple_goods.html"><span class="doc">previous lecture</span></a>, we studied competitive equilibria in an economy with many goods.</p>
 <p>While the results of the study were informative, we used a strong simplifying assumption: all of the agents in the economy are identical.</p>
 <p>In the real world, households, firms and other economic agents differ from one another along many dimensions.</p>
@@ -255,15 +261,15 @@
 <p>Here are some imports:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">inv</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.linalg</span><span class="w"> </span><span class="kn">import</span> <span class="n">inv</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="an-simple-example">
-<h2><span class="section-number">44.2. </span>An simple example<a class="headerlink" href="#an-simple-example" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">44.2. </span>An simple example<a class="headerlink" href="#an-simple-example" title="Link to this heading">#</a></h2>
 <p>Let’s study a simple example of <strong>pure exchange</strong> economy without production.</p>
 <p>There are two consumers who differ in their endowment vectors <span class="math notranslate nohighlight">\(e_i\)</span> and their bliss-point vectors <span class="math notranslate nohighlight">\(b_i\)</span> for <span class="math notranslate nohighlight">\(i=1,2\)</span>.</p>
 <p>The total endowment is <span class="math notranslate nohighlight">\(e_1 + e_2\)</span>.</p>
@@ -285,12 +291,12 @@ e_1 + e_2 =
 \]</div>
 <p>which, after a line or two of linear algebra, implies that</p>
 <div class="math notranslate nohighlight" id="equation-eq-old6">
-<span class="eqno">(44.1)<a class="headerlink" href="#equation-eq-old6" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(44.1)<a class="headerlink" href="#equation-eq-old6" title="Link to this equation">#</a></span>\[
 (\mu_1 + \mu_2) p = \Pi^\top(b_1+ b_2) - \Pi^\top \Pi (e_1 + e_2)
 \]</div>
 <p>We can normalize prices by setting <span class="math notranslate nohighlight">\(\mu_1 + \mu_2 =1\)</span> and then solving</p>
 <div class="math notranslate nohighlight" id="equation-eq-old7">
-<span class="eqno">(44.2)<a class="headerlink" href="#equation-eq-old7" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(44.2)<a class="headerlink" href="#equation-eq-old7" title="Link to this equation">#</a></span>\[
 \mu_i(p,e) = \frac{p^\top (\Pi^{-1} b_i - e_i)}{p^\top (\Pi^\top \Pi )^{-1} p}
 \]</div>
 <p>for <span class="math notranslate nohighlight">\(\mu_i, i = 1,2\)</span>.</p>
@@ -317,10 +323,10 @@ e = e_1 + e_2 .
 </div>
 </section>
 <section id="pure-exchange-economy">
-<h2><span class="section-number">44.3. </span>Pure exchange economy<a class="headerlink" href="#pure-exchange-economy" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">44.3. </span>Pure exchange economy<a class="headerlink" href="#pure-exchange-economy" title="Link to this heading">#</a></h2>
 <p>Let’s further explore a pure exchange economy with <span class="math notranslate nohighlight">\(n\)</span> goods and <span class="math notranslate nohighlight">\(m\)</span> people.</p>
 <section id="competitive-equilibrium">
-<h3><span class="section-number">44.3.1. </span>Competitive equilibrium<a class="headerlink" href="#competitive-equilibrium" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">44.3.1. </span>Competitive equilibrium<a class="headerlink" href="#competitive-equilibrium" title="Link to this heading">#</a></h3>
 <p>We’ll compute a competitive equilibrium.</p>
 <p>To compute a competitive equilibrium of a pure exchange economy, we use the fact that</p>
 <ul class="simple">
@@ -343,7 +349,7 @@ c_{i}=\Pi^{-1}b_{i}-(\Pi^{\top}\Pi)^{-1}\mu_{i}p
 \]</div>
 </section>
 <section id="designing-some-python-code">
-<h3><span class="section-number">44.3.2. </span>Designing some Python code<a class="headerlink" href="#designing-some-python-code" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">44.3.2. </span>Designing some Python code<a class="headerlink" href="#designing-some-python-code" title="Link to this heading">#</a></h3>
 <p>Below we shall construct a Python class with the following attributes:</p>
 <ul class="simple">
 <li><p><strong>Preferences</strong> in the form of</p>
@@ -383,8 +389,8 @@ c_{i}=\Pi^{-1}b_{i}-(\Pi^{\top}\Pi)^{-1}\mu_{i}p
 <p>Now let’s proceed to code.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ExchangeEconomy</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">ExchangeEconomy</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> 
                  <span class="n">Π</span><span class="p">,</span> 
                  <span class="n">bs</span><span class="p">,</span> 
                  <span class="n">es</span><span class="p">,</span> 
@@ -415,7 +421,7 @@ c_{i}=\Pi^{-1}b_{i}-(\Pi^{\top}\Pi)^{-1}\mu_{i}p
 
         <span class="bp">self</span><span class="o">.</span><span class="n">Π</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">es</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Ws</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="o">=</span> <span class="n">Π</span><span class="p">,</span> <span class="n">bs</span><span class="p">,</span> <span class="n">es</span><span class="p">,</span> <span class="n">Ws</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span>
 
-    <span class="k">def</span> <span class="nf">competitive_equilibrium</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">competitive_equilibrium</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compute the competitive equilibrium prices and allocation</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -456,7 +462,7 @@ c_{i}=\Pi^{-1}b_{i}-(\Pi^{\top}\Pi)^{-1}\mu_{i}p
 </section>
 </section>
 <section id="implementation">
-<h2><span class="section-number">44.4. </span>Implementation<a class="headerlink" href="#implementation" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">44.4. </span>Implementation<a class="headerlink" href="#implementation" title="Link to this heading">#</a></h2>
 <p>Next we use the class <code class="docutils literal notranslate"><span class="pre">ExchangeEconomy</span></code> defined above to study</p>
 <ul class="simple">
 <li><p>a two-person economy without production,</p></li>
@@ -464,7 +470,7 @@ c_{i}=\Pi^{-1}b_{i}-(\Pi^{\top}\Pi)^{-1}\mu_{i}p
 <li><p>an economy with risk and arrow securities.</p></li>
 </ul>
 <section id="two-person-economy-without-production">
-<h3><span class="section-number">44.4.1. </span>Two-person economy without production<a class="headerlink" href="#two-person-economy-without-production" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">44.4.1. </span>Two-person economy without production<a class="headerlink" href="#two-person-economy-without-production" title="Link to this heading">#</a></h3>
 <p>Here we study how competitive equilibrium <span class="math notranslate nohighlight">\(p, c_1, c_2\)</span> respond to different <span class="math notranslate nohighlight">\(b_i\)</span> and <span class="math notranslate nohighlight">\(e_i\)</span>, <span class="math notranslate nohighlight">\(i \in \{1, 2\}\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -582,7 +588,7 @@ Competitive equilibrium allocation: [array([1.25, 1.25]), array([0.75, 0.75])]
 </div>
 </section>
 <section id="a-dynamic-economy">
-<h3><span class="section-number">44.4.2. </span>A dynamic economy<a class="headerlink" href="#a-dynamic-economy" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">44.4.2. </span>A dynamic economy<a class="headerlink" href="#a-dynamic-economy" title="Link to this heading">#</a></h3>
 <p>Now let’s use the tricks described above to study a dynamic economy, one with two periods.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -612,7 +618,7 @@ Competitive equilibrium allocation: [array([1., 1.])]
 </div>
 </section>
 <section id="risk-economy-with-arrow-securities">
-<h3><span class="section-number">44.4.3. </span>Risk economy with arrow securities<a class="headerlink" href="#risk-economy-with-arrow-securities" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">44.4.3. </span>Risk economy with arrow securities<a class="headerlink" href="#risk-economy-with-arrow-securities" title="Link to this heading">#</a></h3>
 <p>We use the tricks described above to interpret  <span class="math notranslate nohighlight">\(c_1, c_2\)</span> as “Arrow securities” that are state-contingent claims to consumption goods.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -645,7 +651,7 @@ Competitive equilibrium allocation: [array([0.7, 0.7]), array([0.3, 0.3])]
 </section>
 </section>
 <section id="deducing-a-representative-consumer">
-<h2><span class="section-number">44.5. </span>Deducing a representative consumer<a class="headerlink" href="#deducing-a-representative-consumer" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">44.5. </span>Deducing a representative consumer<a class="headerlink" href="#deducing-a-representative-consumer" title="Link to this heading">#</a></h2>
 <p>In the class of multiple consumer economies that we are studying here, it turns out that there
 exists a single <strong>representative consumer</strong> whose preferences and endowments can be deduced from lists of preferences and endowments for separate individual consumers.</p>
 <p>Consider a multiple consumer economy with initial distribution of wealth <span class="math notranslate nohighlight">\(W_i\)</span> satisfying <span class="math notranslate nohighlight">\(\sum_i W_{i}=0\)</span></p>

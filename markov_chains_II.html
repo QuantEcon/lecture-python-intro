@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>35. Markov Chains: Irreducibility and Ergodicity &#8212; A First Course in Quantitative Economics with Python</title>
     <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
@@ -70,15 +69,15 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=bd0785fbb14d8d2bd4d9ae501d79ed8d3bc089ec" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.5ea377869091fd0449014c60fc090103.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=4c010e0d" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -86,23 +85,22 @@
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script src="_static/scripts/quantecon-book-theme.js?digest=d9faaf6c4b57726f74ba012412af1f5681bdff87"></script>
+    <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
+    <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QDS1YRJNGM"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -111,12 +109,20 @@
                 gtag('config', 'G-QDS1YRJNGM');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QDS1YRJNGM');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"argmax": "arg\\,max", "argmin": "arg\\,min"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'markov_chains_II';</script>
     <link rel="canonical" href="https://intro.quantecon.org/markov_chains_II.html" />
-    <link rel="shortcut icon" href="_static/lectures-favicon.ico"/>
+    <link rel="icon" href="_static/lectures-favicon.ico"/>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -242,7 +248,7 @@
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="markov-chains-irreducibility-and-ergodicity">
-<h1><span class="section-number">35. </span>Markov Chains: Irreducibility and Ergodicity<a class="headerlink" href="#markov-chains-irreducibility-and-ergodicity" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">35. </span>Markov Chains: Irreducibility and Ergodicity<a class="headerlink" href="#markov-chains-irreducibility-and-ergodicity" title="Link to this heading">#</a></h1>
 <p id="index-0">In addition to what’s in Anaconda, this lecture will need the following libraries:</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
@@ -250,14 +256,16 @@
 </pre></div>
 </div>
 </div>
-<details class="hide below-input">
+<details class="admonition hide below-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show output</span>
-<span class="expanded">Hide code cell output</span>
+<p class="collapsed admonition-title">Show output</p>
+<p class="expanded admonition-title">Hide code cell output</p>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: quantecon in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (0.8.0)
-Requirement already satisfied: numba&gt;=0.49.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon) (0.60.0)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: quantecon in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (0.8.1)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numba&gt;=0.49.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon) (0.60.0)
 Requirement already satisfied: numpy&gt;=1.17.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon) (1.26.4)
 Requirement already satisfied: requests in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon) (2.32.3)
 Requirement already satisfied: scipy&gt;=1.5.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.12/site-packages (from quantecon) (1.13.1)
@@ -274,7 +282,7 @@ Requirement already satisfied: mpmath&lt;1.4,&gt;=1.1.0 in /home/runner/minicond
 </details>
 </div>
 <section id="overview">
-<h2><span class="section-number">35.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">35.1. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
 <p>This lecture continues on from our <a class="reference internal" href="markov_chains_I.html"><span class="doc">earlier lecture on Markov chains</span></a>.</p>
 <p>Specifically, we will introduce the concepts of irreducibility and ergodicity, and see how they connect to stationarity.</p>
 <p>Irreducibility describes the ability of a Markov chain to move between any two states in the system.</p>
@@ -289,16 +297,16 @@ law of large numbers.</p></li>
 <p>Let’s start with some standard imports:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">quantecon</span> <span class="k">as</span> <span class="nn">qe</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">quantecon</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">qe</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="irreducibility">
-<span id="mc-irreducible"></span><h2><span class="section-number">35.2. </span>Irreducibility<a class="headerlink" href="#irreducibility" title="Permalink to this heading">#</a></h2>
+<span id="mc-irreducible"></span><h2><span class="section-number">35.2. </span>Irreducibility<a class="headerlink" href="#irreducibility" title="Link to this heading">#</a></h2>
 <p>To explain irreducibility, let’s take <span class="math notranslate nohighlight">\(P\)</span> to be a fixed stochastic matrix.</p>
 <p>State <span class="math notranslate nohighlight">\(y\)</span> is called <strong>accessible</strong> (or <strong>reachable</strong>) from state <span class="math notranslate nohighlight">\(x\)</span> if <span class="math notranslate nohighlight">\(P^t(x,y)&gt;0\)</span> for some integer <span class="math notranslate nohighlight">\(t\ge 0\)</span>.</p>
 <p>Two states, <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>, are said to <strong>communicate</strong> if <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> are accessible from each other.</p>
@@ -379,7 +387,7 @@ in terms of long-run outcomes.</p>
 <p>For example, poverty is a life sentence in the second graph but not the first.</p>
 <p>We’ll come back to this a bit later.</p>
 <section id="irreducibility-and-stationarity">
-<h3><span class="section-number">35.2.1. </span>Irreducibility and stationarity<a class="headerlink" href="#irreducibility-and-stationarity" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">35.2.1. </span>Irreducibility and stationarity<a class="headerlink" href="#irreducibility-and-stationarity" title="Link to this heading">#</a></h3>
 <p>We discussed uniqueness of stationary distributions in our earlier lecture <a class="reference internal" href="markov_chains_I.html"><span class="doc">Markov Chains: Basic Concepts</span></a>.</p>
 <p>There we <a class="reference internal" href="markov_chains_I.html#mc_po_conv_thm">stated</a> that uniqueness holds when the transition matrix is everywhere positive.</p>
 <p>In fact irreducibility is sufficient:</p>
@@ -394,7 +402,7 @@ Theorem 5.2 of <span id="id2">[<a class="reference internal" href="zreferences.h
 </section>
 </section>
 <section id="ergodicity">
-<span id="id3"></span><h2><span class="section-number">35.3. </span>Ergodicity<a class="headerlink" href="#ergodicity" title="Permalink to this heading">#</a></h2>
+<span id="id3"></span><h2><span class="section-number">35.3. </span>Ergodicity<a class="headerlink" href="#ergodicity" title="Link to this heading">#</a></h2>
 <p>Under irreducibility, yet another important result obtains:</p>
 <div class="proof theorem admonition" id="stationary">
 <p class="admonition-title"><span class="caption-number">Theorem 35.2 </span></p>
@@ -402,7 +410,7 @@ Theorem 5.2 of <span id="id2">[<a class="reference internal" href="zreferences.h
 <p>If <span class="math notranslate nohighlight">\(P\)</span> is irreducible and <span class="math notranslate nohighlight">\(\psi^*\)</span> is the unique stationary
 distribution, then, for all <span class="math notranslate nohighlight">\(x \in S\)</span>,</p>
 <div class="math notranslate nohighlight" id="equation-llnfmc0">
-<span class="eqno">(35.1)<a class="headerlink" href="#equation-llnfmc0" title="Permalink to this equation">#</a></span>\[\frac{1}{m} \sum_{t = 1}^m \mathbb{1}\{X_t = x\}  \to \psi^*(x)
+<span class="eqno">(35.1)<a class="headerlink" href="#equation-llnfmc0" title="Link to this equation">#</a></span>\[\frac{1}{m} \sum_{t = 1}^m \mathbb{1}\{X_t = x\}  \to \psi^*(x)
     \quad \text{as } m \to \infty\]</div>
 </section>
 </div><p>Here</p>
@@ -419,7 +427,7 @@ converges to <span class="math notranslate nohighlight">\(\psi^*(x)\)</span> as 
 <p>It tells us that, in some settings, the law of large numbers sometimes holds even when the
 sequence of random variables is <a class="reference internal" href="lln_clt.html#iid-violation"><span class="std std-ref">not IID</span></a>.</p>
 <section id="example-ergodicity-and-unemployment">
-<span id="mc-eg1-2"></span><h3><span class="section-number">35.3.1. </span>Example: ergodicity and unemployment<a class="headerlink" href="#example-ergodicity-and-unemployment" title="Permalink to this heading">#</a></h3>
+<span id="mc-eg1-2"></span><h3><span class="section-number">35.3.1. </span>Example: ergodicity and unemployment<a class="headerlink" href="#example-ergodicity-and-unemployment" title="Link to this heading">#</a></h3>
 <p>Recall our cross-sectional interpretation of the employment/unemployment model <a class="reference internal" href="markov_chains_I.html#mc-eg1-1"><span class="std std-ref">discussed before</span></a>.</p>
 <p>Assume that <span class="math notranslate nohighlight">\(\alpha \in (0,1)\)</span> and <span class="math notranslate nohighlight">\(\beta \in (0,1)\)</span>, so that irreducibility holds.</p>
 <p>We saw that the stationary distribution is <span class="math notranslate nohighlight">\((p, 1-p)\)</span>, where</p>
@@ -433,7 +441,7 @@ p = \frac{\beta}{\alpha + \beta}
 <p>This is one aspect of the concept  of ergodicity.</p>
 </section>
 <section id="example-hamilton-dynamics">
-<span id="ergo"></span><h3><span class="section-number">35.3.2. </span>Example: Hamilton dynamics<a class="headerlink" href="#example-hamilton-dynamics" title="Permalink to this heading">#</a></h3>
+<span id="ergo"></span><h3><span class="section-number">35.3.2. </span>Example: Hamilton dynamics<a class="headerlink" href="#example-hamilton-dynamics" title="Link to this heading">#</a></h3>
 <p>Another example is the Hamilton dynamics we <a class="reference internal" href="markov_chains_I.html#mc-eg2"><span class="std std-ref">discussed before</span></a>.</p>
 <p>Let <span class="math notranslate nohighlight">\(\{X_t\}\)</span> be a sample path generated by these dynamics.</p>
 <p>Let’s denote the fraction of time spent in state <span class="math notranslate nohighlight">\(x\)</span> over the period <span class="math notranslate nohighlight">\(t=1,
@@ -474,14 +482,15 @@ ergodicity holds.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/3c8bb3edef11d543ce2035aed350dfe5f33cc16723d9ed517ea101367c17bf49.png"><img alt="_images/3c8bb3edef11d543ce2035aed350dfe5f33cc16723d9ed517ea101367c17bf49.png" src="_images/3c8bb3edef11d543ce2035aed350dfe5f33cc16723d9ed517ea101367c17bf49.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/4e450db80a09f368c8fbf89ccfa0e901689f5825265ce165e8e0099842a1043a.png"><img alt="_images/4e450db80a09f368c8fbf89ccfa0e901689f5825265ce165e8e0099842a1043a.png" src="_images/4e450db80a09f368c8fbf89ccfa0e901689f5825265ce165e8e0099842a1043a.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>You might like to try changing <span class="math notranslate nohighlight">\(x=1\)</span> to either <span class="math notranslate nohighlight">\(x=0\)</span> or <span class="math notranslate nohighlight">\(x=2\)</span>.</p>
 <p>In any of these cases, ergodicity will hold.</p>
 </section>
 <section id="example-a-periodic-chain">
-<h3><span class="section-number">35.3.3. </span>Example: a periodic chain<a class="headerlink" href="#example-a-periodic-chain" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">35.3.3. </span>Example: a periodic chain<a class="headerlink" href="#example-a-periodic-chain" title="Link to this heading">#</a></h3>
 <div class="proof example admonition" id="mc2_ex_pc">
 <p class="admonition-title"><span class="caption-number">Example 35.3 </span></p>
 <section class="example-content" id="proof-content">
@@ -532,7 +541,8 @@ is called <a class="reference external" href="https://stats.libretexts.org/Books
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/35e15f95aad62d7d72a86dd3e381c28e82e0fd7d9d42d11023940c56f76cfe05.png"><img alt="_images/35e15f95aad62d7d72a86dd3e381c28e82e0fd7d9d42d11023940c56f76cfe05.png" src="_images/35e15f95aad62d7d72a86dd3e381c28e82e0fd7d9d42d11023940c56f76cfe05.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/35e15f95aad62d7d72a86dd3e381c28e82e0fd7d9d42d11023940c56f76cfe05.png"><img alt="_images/35e15f95aad62d7d72a86dd3e381c28e82e0fd7d9d42d11023940c56f76cfe05.png" src="_images/35e15f95aad62d7d72a86dd3e381c28e82e0fd7d9d42d11023940c56f76cfe05.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>This example helps to emphasize that asymptotic stationarity is about the distribution, while ergodicity is about the sample path.</p>
@@ -540,7 +550,7 @@ is called <a class="reference external" href="https://stats.libretexts.org/Books
 <p>However, the distribution at each state does not.</p>
 </section>
 <section id="example-political-institutions">
-<h3><span class="section-number">35.3.4. </span>Example:  political institutions<a class="headerlink" href="#example-political-institutions" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">35.3.4. </span>Example:  political institutions<a class="headerlink" href="#example-political-institutions" title="Link to this heading">#</a></h3>
 <p>Let’s go back to the political institutions model with six states discussed <a class="reference internal" href="markov_chains_I.html#mc-eg3"><span class="std std-ref">in a previous lecture</span></a> and study ergodicity.</p>
 <p>Here’s the transition matrix.</p>
 <div class="math notranslate nohighlight">
@@ -590,13 +600,14 @@ indicating that this chain is irreducible.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/496d5d0d885ade8ca0ad6b6090be28a1244dea8242dca635dfa69a816e4c9473.png"><img alt="_images/496d5d0d885ade8ca0ad6b6090be28a1244dea8242dca635dfa69a816e4c9473.png" src="_images/496d5d0d885ade8ca0ad6b6090be28a1244dea8242dca635dfa69a816e4c9473.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/496d5d0d885ade8ca0ad6b6090be28a1244dea8242dca635dfa69a816e4c9473.png"><img alt="_images/496d5d0d885ade8ca0ad6b6090be28a1244dea8242dca635dfa69a816e4c9473.png" src="_images/496d5d0d885ade8ca0ad6b6090be28a1244dea8242dca635dfa69a816e4c9473.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 </section>
 </section>
 <section id="exercises">
-<h2><span class="section-number">35.4. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">35.4. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
 <div class="exercise admonition" id="mc_ex1">
 
 <p class="admonition-title"><span class="caption-number">Exercise 35.1 </span></p>
@@ -727,7 +738,8 @@ P:=
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/11f98536fe20709f9eb4abf7ffc7ec45314846b36f227b2ed820275cd49959eb.png"><img alt="_images/11f98536fe20709f9eb4abf7ffc7ec45314846b36f227b2ed820275cd49959eb.png" src="_images/11f98536fe20709f9eb4abf7ffc7ec45314846b36f227b2ed820275cd49959eb.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/11f98536fe20709f9eb4abf7ffc7ec45314846b36f227b2ed820275cd49959eb.png"><img alt="_images/11f98536fe20709f9eb4abf7ffc7ec45314846b36f227b2ed820275cd49959eb.png" src="_images/11f98536fe20709f9eb4abf7ffc7ec45314846b36f227b2ed820275cd49959eb.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 <p>Note that the fraction of time spent at each state converges to the probability
@@ -807,11 +819,12 @@ conditions.</p>
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:18: SyntaxWarning: invalid escape sequence &#39;\,&#39;
 &lt;&gt;:18: SyntaxWarning: invalid escape sequence &#39;\,&#39;
-/tmp/ipykernel_8170/4115541328.py:18: SyntaxWarning: invalid escape sequence &#39;\,&#39;
+/tmp/ipykernel_8369/4115541328.py:18: SyntaxWarning: invalid escape sequence &#39;\,&#39;
   ax.plot(X_bar - p, label=f&#39;$x_0 = \, {x0} $&#39;)
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/f1a8348007ceb74c15ec5103b41803529bc017e490233e1a1006c2163665ba9d.png"><img alt="_images/f1a8348007ceb74c15ec5103b41803529bc017e490233e1a1006c2163665ba9d.png" src="_images/f1a8348007ceb74c15ec5103b41803529bc017e490233e1a1006c2163665ba9d.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/70e869a7a4b0ab732afc49e62e6961989f01f00d77ba30ad5cdae12508a45a93.png"><img alt="_images/70e869a7a4b0ab732afc49e62e6961989f01f00d77ba30ad5cdae12508a45a93.png" src="_images/70e869a7a4b0ab732afc49e62e6961989f01f00d77ba30ad5cdae12508a45a93.png" style="width: 80%;" />
+</a>
 </div>
 </div>
 </section>
@@ -834,7 +847,7 @@ is a strictly positive matrix.</p>
 <section id="solution-content">
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_irreducible</span><span class="p">(</span><span class="n">P</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">is_irreducible</span><span class="p">(</span><span class="n">P</span><span class="p">):</span>
     <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
