@@ -1,8 +1,8 @@
 name: Link Checker [Anaconda, Linux]
 on:
   schedule:
-    # UTC 23:00 is early morning in Australia (9am)
-    - cron:  '0 23 * * *'
+    # UTC 23:00 is early morning in Australia (9am) -- runs weekly on Sunday
+    - cron:  '0 23 * * 0'
   workflow_dispatch:
 jobs:
   link-checking:
