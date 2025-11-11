@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.4
+    jupytext_version: 1.16.1
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -78,7 +78,7 @@ nonnegative $n$-vector $p$ that sums to one.
 For example, $p = (0.2, 0.2, 0.6)$ is a probability mass function over $3$ outcomes.
 
 A **stochastic matrix** (or **Markov matrix**)  is an $n \times n$ square matrix $P$
-such that each row of $P$ is a probability mass function over $n$ outcomes.
+such that each row of $P$ is a probability mass function.
 
 In other words,
 
@@ -98,7 +98,7 @@ Before defining a Markov chain rigorously, we'll  give some examples.
 
 
 (mc_eg2)=
-#### Example 1
+#### Example 1: Economic states
 
 From  US unemployment data, Hamilton {cite}`Hamilton2005` estimated the following dynamics.
 
@@ -174,7 +174,7 @@ In particular, $P(i,j)$ is the
 
 
 (mc_eg1)=
-#### Example 2
+#### Example 2: Unemployment
 
 Consider a worker who, at any given time $t$, is either unemployed (state 0)
 or employed (state 1).
@@ -222,7 +222,7 @@ Then we can address a range of questions, such as
 We'll cover some of these applications below.
 
 (mc_eg3)=
-#### Example 3
+#### Example 3: Political transition dynamics
 
 Imam and Temple {cite}`imampolitical` categorize political institutions into
 three types: democracy $\text{(D)}$, autocracy $\text{(A)}$, and an intermediate
@@ -233,17 +233,17 @@ Each institution can have two potential development regimes: collapse $\text{(C)
 Imam and Temple {cite}`imampolitical` estimate the following transition
 probabilities:
 
-
 $$
-P :=
-\begin{bmatrix}
-0.86 & 0.11 & 0.03 & 0.00 & 0.00 & 0.00 \\
-0.52 & 0.33 & 0.13 & 0.02 & 0.00 & 0.00 \\
-0.12 & 0.03 & 0.70 & 0.11 & 0.03 & 0.01 \\
-0.13 & 0.02 & 0.35 & 0.36 & 0.10 & 0.04 \\
-0.00 & 0.00 & 0.09 & 0.11 & 0.55 & 0.25 \\
-0.00 & 0.00 & 0.09 & 0.15 & 0.26 & 0.50
-\end{bmatrix}
+\begin{array}{c|cccccc}
+ & \text{DG} & \text{DC} & \text{NG} & \text{NC} & \text{AG} & \text{AC} \\
+\hline
+\text{DG} & 0.86 & 0.11 & 0.03 & 0.00 & 0.00 & 0.00 \\
+\text{DC} & 0.52 & 0.33 & 0.13 & 0.02 & 0.00 & 0.00 \\
+\text{NG} & 0.12 & 0.03 & 0.70 & 0.11 & 0.03 & 0.01 \\
+\text{NC} & 0.13 & 0.02 & 0.35 & 0.36 & 0.10 & 0.04 \\
+\text{AG} & 0.00 & 0.00 & 0.09 & 0.11 & 0.55 & 0.25 \\
+\text{AC} & 0.00 & 0.00 & 0.09 & 0.15 & 0.26 & 0.50 \\
+\end{array}
 $$
 
 ```{code-cell} ipython3
@@ -287,6 +287,20 @@ plt.colorbar(pc, ax=ax)
 plt.show()
 ```
 
+The probabilities can be represented in matrix form as follows
+
+$$
+P :=
+\begin{bmatrix}
+0.86 & 0.11 & 0.03 & 0.00 & 0.00 & 0.00 \\
+0.52 & 0.33 & 0.13 & 0.02 & 0.00 & 0.00 \\
+0.12 & 0.03 & 0.70 & 0.11 & 0.03 & 0.01 \\
+0.13 & 0.02 & 0.35 & 0.36 & 0.10 & 0.04 \\
+0.00 & 0.00 & 0.09 & 0.11 & 0.55 & 0.25 \\
+0.00 & 0.00 & 0.09 & 0.15 & 0.26 & 0.50
+\end{bmatrix}
+$$
+
 Looking at the data, we see that democracies tend to have longer-lasting growth
 regimes compared to autocracies (as indicated by the lower probability of
 transitioning from growth to growth in autocracies).
@@ -310,7 +324,7 @@ A **distribution** $\psi$ on $S$ is a probability mass function of length $n$, w
 A **Markov chain** $\{X_t\}$ on $S$ is a sequence of random variables taking values in $S$
 that have the **Markov property**.
 
-This means that, for any date $t$ and any state $y \in S$,
+This means that, for any time $t$ and any state $y \in S$,
 
 ```{math}
 :label: fin_markov_mp
@@ -333,7 +347,7 @@ P(x, y) := \mathbb P \{ X_{t+1} = y \,|\, X_t = x \}
 By construction,
 
 * $P(x, y)$ is the probability of going from $x$ to $y$ in one unit of time (one step)
-* $P(x, \cdot)$ is the conditional distribution of $X_{t+1}$ given $X_t = x$
+* $P(x, \cdot)$ is the conditional distribution(probability mass function) of $X_{t+1}$ given $X_t = x$
 
 We can view $P$ as a stochastic matrix where
 
@@ -439,7 +453,7 @@ Here's a short time series.
 mc_sample_path(P, ψ_0=(1.0, 0.0), ts_length=10)
 ```
 
-It can be shown that for a long series drawn from `P`, the fraction of the
+It can be proven that for a long series drawn from `P`, the fraction of the
 sample that takes value 0 will be about 0.25.
 
 (We will explain why {ref}`later <ergodicity>`.)
@@ -607,39 +621,40 @@ $$
 $$
 
 
-### Example: probability of recession
-
 ```{index} single: Markov Chains; Future Probabilities
 ```
 
-Recall the stochastic matrix $P$ for recession and growth {ref}`considered above <mc_eg2>`.
+```{prf:example} Probability of Recession
+:label: prob-recesession
 
-Suppose that the current state is unknown --- perhaps statistics are available only at the *end* of the current month.
+Recall the stochastic matrix $P$ for recession and growth considered in {ref}`Example 1: Economic states <mc_eg2>`.
 
-We guess that the probability that the economy is in state $x$ is $\psi_t(x)$ at time t.
+Suppose that the current state is unknown — perhaps statistics are available only at the *end* of the current month.
 
-The probability of being in recession (either mild or severe) in 6 months time is given by
+We guess that the probability that the economy is in state $x$ is $\psi_t(x)$ at time $t$.
+
+The probability of being in recession (either mild or severe) in 6 months' time is given by
 
 $$
 (\psi_t P^6)(1) + (\psi_t P^6)(2)
 $$
 
+```
 
+```{index} single: Markov Chains; Cross-Sectional Distributions
+```
 
-(mc_eg1-1)=
-### Example 2: cross-sectional distributions
+````{prf:example} Cross-Sectional Distributions
+:label: cross-sectional-distributions
 
 The distributions we have been studying can be viewed either
 
 1. as probabilities or
-1. as cross-sectional frequencies that the law of large numbers leads us to anticipate for large samples.
+2. as cross-sectional frequencies that the law of large numbers leads us to anticipate for large samples.
 
-To illustrate, recall our model of employment/unemployment dynamics for a given worker {ref}`discussed above <mc_eg1>`.
+To illustrate, recall our model of employment/unemployment dynamics for a given worker discussed in {ref}`Example 2: Unemployment <mc_eg1>`.
 
-Consider a large population of workers, each of whose lifetime experience is
-described by the specified dynamics, with each worker's outcomes being
-realizations of processes that are statistically independent of all other
-workers' processes.
+Consider a large population of workers, each of whose lifetime experience is described by the specified dynamics, with each worker's outcomes being realizations of processes that are statistically independent of all other workers' processes.
 
 Let $\psi_t$ be the current *cross-sectional* distribution over $\{ 0, 1 \}$.
 
@@ -649,25 +664,24 @@ The cross-sectional distribution records fractions of workers employed and unemp
 
 What will the cross-sectional distribution be in 10 periods hence?
 
-The answer is $\psi_t P^{10}$, where $P$ is the stochastic matrix in
-{eq}`p_unempemp`.
+The answer is $\psi_t P^{10}$, where $P$ is the stochastic matrix in {eq}`p_unempemp`.
 
-This is because each worker's state evolves according to $P$, so
-$\psi_t P^{10}$ is a [marginal distribution](https://en.wikipedia.org/wiki/Marginal_distribution)  for a single randomly selected
-worker.
+This is because each worker's state evolves according to $P$, so $\psi_t P^{10}$ is a [marginal distribution](https://en.wikipedia.org/wiki/Marginal_distribution) for a single randomly selected worker.
 
-But when the sample is large, outcomes and probabilities are roughly equal (by an application of the law
-of large numbers).
+But when the sample is large, outcomes and probabilities are roughly equal (by an application of the law of large numbers).
 
-So for a very large (tending to infinite) population,
-$\psi_t P^{10}$ also represents  fractions of workers in
-each state.
+So for a very large (tending to infinite) population, $\psi_t P^{10}$ also represents fractions of workers in each state.
 
 This is exactly the cross-sectional distribution.
 
+```{note}
+A cross-sectional frequency measures how a particular variable (e.g., employment status) is distributed across a population at a specific time, providing information on the proportions of individuals in each possible state of that variable.
+```
+
+````
+
 (stationary)=
 ## Stationary distributions
-
 
 As seen in {eq}`fin_mc_fr`, we can shift a distribution forward one
 unit of time via postmultiplication by $P$.
@@ -682,8 +696,6 @@ P = np.array([[0.4, 0.6],
 ```
 
 Notice that `ψ @ P` is the same as `ψ`.
-
-
 
 Such distributions are called **stationary** or **invariant**.
 
@@ -725,10 +737,8 @@ distribution.
 We will come back to this when we introduce irreducibility in the {doc}`next lecture <markov_chains_II>` on Markov chains.
 
 
-
-### Example
-
-Recall our model of the employment/unemployment dynamics of a particular worker {ref}`discussed above <mc_eg1>`.
+```{prf:example} Steady-State Unemployment Probability
+Recall our model of the employment/unemployment dynamics of a particular worker discussed in {ref}`Example 2: Unemployment <mc_eg1>`.
 
 If $\alpha \in (0,1)$ and $\beta \in (0,1)$, then the transition matrix is everywhere positive.
 
@@ -738,12 +748,13 @@ corresponds to unemployment (state 0).
 Using $\psi^* = \psi^* P$ and a bit of algebra yields
 
 $$
-    p = \frac{\beta}{\alpha + \beta}
+p = \frac{\beta}{\alpha + \beta}
 $$
 
 This is, in some sense, a steady state probability of unemployment.
 
 Not surprisingly it tends to zero as $\beta \to 0$, and to one as $\alpha \to 0$.
+```
 
 
 
@@ -879,10 +890,10 @@ HTML(anim.to_jshtml())
 
 Here
 
-* $P$ is the stochastic matrix for recession and growth {ref}`considered above <mc_eg2>`.
-* The red, blue and green dots are initial marginal probability distributions  $\psi_1, \psi_2, \psi_3$, each of which is represented as a vector in $\mathbb R^3$.
-* The transparent dots are the marginal distributions $\psi_i P^t$ for $t = 1, 2, \ldots$, for $i=1,2,3.$.
-* The yellow dot is $\psi^*$.
+* $P$ is the stochastic matrix for recession and growth considered in {ref}`Example 1: Economic states <mc_eg2>`.
+* The highest red dot is an arbitrarily chosen initial marginal probability distribution  $\psi_0$, represented as a vector in $\mathbb R^3$.
+* The other red dots are the marginal distributions $\psi_0 P^t$ for $t = 1, 2, \ldots$.
+* The black dot is $\psi^*$.
 
 You might like to try experimenting with different initial conditions.
 
