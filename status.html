@@ -9,9 +9,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>49. Execution Statistics &#8212; A First Course in Quantitative Economics with Python</title>
-    <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js" integrity="sha384-bq5PNg/ZcfW7KMvFSmhjqCQJ/VFnec+6sZkctn/4ZLeubkn7U58Le4zFFSn3dhUu" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js" integrity="sha384-qEqAs1VsN9WH2myXDbiP2wGGIttL9bMRZBKCl54ZnzpDlVqbYANP9vMaoT/wvQcf" crossorigin="anonymous"></script>
     
         <script>
             MathJax = {
@@ -70,7 +77,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=3bd9fcddbe64f63e07c8604843d1cc622a07b430" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=22b71a9b445b7b2b6a277c0a48ea72bf6e7c90d9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
@@ -95,7 +102,7 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js?v=4a39c7ea"></script>
-    <script src="_static/scripts/quantecon-book-theme.js?digest=30f7c850c5b005eca2ad6e48893cd350a6c6c4c2"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=65b86b9423025043228643fcfb616ce846cb91c1"></script>
     <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
     <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -181,7 +188,7 @@
                                 
                             </p>
 
-                            <p class="powered">Powered by <a href="https://jupyterbook.org/en/stable/">Jupyter Book</a></p>
+                            <p class="powered">Powered by <a href="https://jupyterbook.org/v1/">Jupyter Book</a></p>
 
                         </nav>
 
@@ -201,10 +208,9 @@
 
                         <p class="qe-page__header-heading"><a href="intro.html">A First Course in Quantitative Economics with Python</a></p>
 
-                        <p class="qe-page__header-subheading">Execution Statistics</p>
-
                     </div>
-                    <!-- length 2, since its a string and empty dict has length 2 - {} -->
+
+                    <!-- Authors section -->
                         <p class="qe-page__header-authors" font-size="18">
                             
                                 
@@ -217,6 +223,28 @@
                             
                         </p>
 
+                    <!-- Last modified / Changelog dropdown -->
+                        <button class="qe-page__header-changed" id="changelog-toggle" aria-expanded="false">
+                            Last changed: Dec 20, 2025
+                            <span class="changelog-icon">▼</span>
+                        </button>
+
+                    <!-- Changelog dropdown content -->
+                    <div class="qe-page__header-changelog" id="changelog-content" aria-hidden="true">
+                        <h4>Changelog (<a href="https://github.com/QuantEcon/lecture-python-intro/commits/main/lectures/status.md">full history</a>)</h4>
+                        <ul class="changelog-list">
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/9ca0dca" class="changelog-hash">9ca0dca</a>
+                                
+                                <span class="changelog-author">dependabot[bot]</span>
+                                <span class="changelog-time">8 minutes ago</span>
+                                <span class="changelog-message">Bump anaconda from 2025.06 to 2025.12 (#673)</span>
+                            </li>
+                            
+                        </ul>
+                    </div>
 
                 </div> <!-- .page__header -->
 
@@ -241,297 +269,297 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><p><a class="xref doc reference internal" href="ar1_processes.html"><span class="doc">ar1_processes</span></a></p></td>
-<td><p>2025-10-27 03:36</p></td>
+<td><p>2025-12-08 03:33</p></td>
 <td><p>cache</p></td>
-<td><p>6.78</p></td>
+<td><p>6.1</p></td>
 <td><p>✅</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="xref doc reference internal" href="business_cycle.html"><span class="doc">business_cycle</span></a></p></td>
-<td><p>2025-10-27 03:37</p></td>
+<td><p>2025-12-08 03:33</p></td>
 <td><p>cache</p></td>
-<td><p>13.5</p></td>
+<td><p>20.6</p></td>
 <td><p>✅</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="xref doc reference internal" href="cagan_adaptive.html"><span class="doc">cagan_adaptive</span></a></p></td>
-<td><p>2025-10-27 03:37</p></td>
+<td><p>2025-12-08 03:33</p></td>
 <td><p>cache</p></td>
 <td><p>2.5</p></td>
 <td><p>✅</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="xref doc reference internal" href="cagan_ree.html"><span class="doc">cagan_ree</span></a></p></td>
-<td><p>2025-10-27 03:37</p></td>
+<td><p>2025-12-08 03:33</p></td>
 <td><p>cache</p></td>
-<td><p>3.61</p></td>
+<td><p>3.37</p></td>
 <td><p>✅</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="xref doc reference internal" href="cobweb.html"><span class="doc">cobweb</span></a></p></td>
-<td><p>2025-10-27 03:37</p></td>
-<td><p>cache</p></td>
-<td><p>2.66</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="xref doc reference internal" href="commod_price.html"><span class="doc">commod_price</span></a></p></td>
-<td><p>2025-10-27 03:37</p></td>
-<td><p>cache</p></td>
-<td><p>19.5</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="xref doc reference internal" href="complex_and_trig.html"><span class="doc">complex_and_trig</span></a></p></td>
-<td><p>2025-10-27 03:37</p></td>
-<td><p>cache</p></td>
-<td><p>2.5</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="xref doc reference internal" href="cons_smooth.html"><span class="doc">cons_smooth</span></a></p></td>
-<td><p>2025-10-27 03:37</p></td>
-<td><p>cache</p></td>
-<td><p>3.59</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="xref doc reference internal" href="eigen_I.html"><span class="doc">eigen_I</span></a></p></td>
-<td><p>2025-10-27 03:37</p></td>
-<td><p>cache</p></td>
-<td><p>4.9</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="xref doc reference internal" href="eigen_II.html"><span class="doc">eigen_II</span></a></p></td>
-<td><p>2025-10-27 03:37</p></td>
-<td><p>cache</p></td>
-<td><p>5.81</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="xref doc reference internal" href="equalizing_difference.html"><span class="doc">equalizing_difference</span></a></p></td>
-<td><p>2025-10-27 03:37</p></td>
-<td><p>cache</p></td>
-<td><p>2.26</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="xref doc reference internal" href="french_rev.html"><span class="doc">french_rev</span></a></p></td>
-<td><p>2025-10-27 03:38</p></td>
-<td><p>cache</p></td>
-<td><p>7.72</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="xref doc reference internal" href="geom_series.html"><span class="doc">geom_series</span></a></p></td>
-<td><p>2025-10-27 03:38</p></td>
-<td><p>cache</p></td>
-<td><p>3.18</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="xref doc reference internal" href="greek_square.html"><span class="doc">greek_square</span></a></p></td>
-<td><p>2025-10-27 03:38</p></td>
-<td><p>cache</p></td>
-<td><p>2.6</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="xref doc reference internal" href="heavy_tails.html"><span class="doc">heavy_tails</span></a></p></td>
-<td><p>2025-10-27 03:38</p></td>
-<td><p>cache</p></td>
-<td><p>16.5</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="xref doc reference internal" href="inequality.html"><span class="doc">inequality</span></a></p></td>
-<td><p>2025-10-27 03:39</p></td>
-<td><p>cache</p></td>
-<td><p>39.5</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="xref doc reference internal" href="inflation_history.html"><span class="doc">inflation_history</span></a></p></td>
-<td><p>2025-10-27 03:39</p></td>
-<td><p>cache</p></td>
-<td><p>6.91</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="xref doc reference internal" href="input_output.html"><span class="doc">input_output</span></a></p></td>
-<td><p>2025-10-27 03:39</p></td>
-<td><p>cache</p></td>
-<td><p>8.84</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="xref doc reference internal" href="intro.html"><span class="doc">intro</span></a></p></td>
-<td><p>2025-10-27 03:39</p></td>
-<td><p>cache</p></td>
-<td><p>0.91</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="xref doc reference internal" href="intro_supply_demand.html"><span class="doc">intro_supply_demand</span></a></p></td>
-<td><p>2025-10-27 03:39</p></td>
-<td><p>cache</p></td>
-<td><p>2.52</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="xref doc reference internal" href="laffer_adaptive.html"><span class="doc">laffer_adaptive</span></a></p></td>
-<td><p>2025-10-27 03:39</p></td>
-<td><p>cache</p></td>
-<td><p>2.49</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="xref doc reference internal" href="lake_model.html"><span class="doc">lake_model</span></a></p></td>
-<td><p>2025-10-27 03:39</p></td>
-<td><p>cache</p></td>
-<td><p>2.7</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="xref doc reference internal" href="linear_equations.html"><span class="doc">linear_equations</span></a></p></td>
-<td><p>2025-10-27 03:39</p></td>
-<td><p>cache</p></td>
-<td><p>1.84</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="xref doc reference internal" href="lln_clt.html"><span class="doc">lln_clt</span></a></p></td>
-<td><p>2025-10-27 03:42</p></td>
-<td><p>cache</p></td>
-<td><p>151.19</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="xref doc reference internal" href="long_run_growth.html"><span class="doc">long_run_growth</span></a></p></td>
-<td><p>2025-10-27 03:42</p></td>
-<td><p>cache</p></td>
-<td><p>7.62</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="xref doc reference internal" href="lp_intro.html"><span class="doc">lp_intro</span></a></p></td>
-<td><p>2025-10-27 03:42</p></td>
-<td><p>cache</p></td>
-<td><p>4.33</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="xref doc reference internal" href="markov_chains_I.html"><span class="doc">markov_chains_I</span></a></p></td>
-<td><p>2025-10-27 03:42</p></td>
-<td><p>cache</p></td>
-<td><p>15.56</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="xref doc reference internal" href="markov_chains_II.html"><span class="doc">markov_chains_II</span></a></p></td>
-<td><p>2025-10-27 03:42</p></td>
-<td><p>cache</p></td>
-<td><p>4.87</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="xref doc reference internal" href="mle.html"><span class="doc">mle</span></a></p></td>
-<td><p>2025-10-27 03:42</p></td>
-<td><p>cache</p></td>
-<td><p>6.93</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="xref doc reference internal" href="money_inflation.html"><span class="doc">money_inflation</span></a></p></td>
-<td><p>2025-10-27 03:42</p></td>
+<td><p>2025-12-08 03:33</p></td>
 <td><p>cache</p></td>
 <td><p>2.65</p></td>
 <td><p>✅</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="xref doc reference internal" href="money_inflation_nonlinear.html"><span class="doc">money_inflation_nonlinear</span></a></p></td>
-<td><p>2025-10-27 03:42</p></td>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="commod_price.html"><span class="doc">commod_price</span></a></p></td>
+<td><p>2025-12-08 03:34</p></td>
 <td><p>cache</p></td>
-<td><p>2.19</p></td>
+<td><p>19.0</p></td>
 <td><p>✅</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="xref doc reference internal" href="monte_carlo.html"><span class="doc">monte_carlo</span></a></p></td>
-<td><p>2025-10-27 03:46</p></td>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="complex_and_trig.html"><span class="doc">complex_and_trig</span></a></p></td>
+<td><p>2025-12-08 03:34</p></td>
 <td><p>cache</p></td>
-<td><p>214.89</p></td>
+<td><p>2.17</p></td>
 <td><p>✅</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="xref doc reference internal" href="networks.html"><span class="doc">networks</span></a></p></td>
-<td><p>2025-10-27 03:46</p></td>
-<td><p>cache</p></td>
-<td><p>7.09</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="xref doc reference internal" href="olg.html"><span class="doc">olg</span></a></p></td>
-<td><p>2025-10-27 03:46</p></td>
-<td><p>cache</p></td>
-<td><p>2.59</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="xref doc reference internal" href="prob_dist.html"><span class="doc">prob_dist</span></a></p></td>
-<td><p>2025-10-27 03:46</p></td>
-<td><p>cache</p></td>
-<td><p>6.56</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="xref doc reference internal" href="pv.html"><span class="doc">pv</span></a></p></td>
-<td><p>2025-10-27 03:46</p></td>
-<td><p>cache</p></td>
-<td><p>1.47</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="xref doc reference internal" href="scalar_dynam.html"><span class="doc">scalar_dynam</span></a></p></td>
-<td><p>2025-10-27 03:46</p></td>
-<td><p>cache</p></td>
-<td><p>2.8</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="xref doc reference internal" href="schelling.html"><span class="doc">schelling</span></a></p></td>
-<td><p>2025-10-27 03:46</p></td>
-<td><p>cache</p></td>
-<td><p>10.43</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="xref doc reference internal" href="short_path.html"><span class="doc">short_path</span></a></p></td>
-<td><p>2025-10-27 03:46</p></td>
-<td><p>cache</p></td>
-<td><p>1.01</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="xref doc reference internal" href="simple_linear_regression.html"><span class="doc">simple_linear_regression</span></a></p></td>
-<td><p>2025-10-27 03:46</p></td>
-<td><p>cache</p></td>
-<td><p>3.85</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="xref doc reference internal" href="solow.html"><span class="doc">solow</span></a></p></td>
-<td><p>2025-10-27 03:47</p></td>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="cons_smooth.html"><span class="doc">cons_smooth</span></a></p></td>
+<td><p>2025-12-08 03:34</p></td>
 <td><p>cache</p></td>
 <td><p>3.67</p></td>
 <td><p>✅</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="xref doc reference internal" href="#"><span class="doc">status</span></a></p></td>
-<td><p>2025-10-27 03:47</p></td>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="eigen_I.html"><span class="doc">eigen_I</span></a></p></td>
+<td><p>2025-12-08 03:34</p></td>
 <td><p>cache</p></td>
-<td><p>4.3</p></td>
+<td><p>4.86</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="eigen_II.html"><span class="doc">eigen_II</span></a></p></td>
+<td><p>2025-12-08 03:34</p></td>
+<td><p>cache</p></td>
+<td><p>5.56</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="equalizing_difference.html"><span class="doc">equalizing_difference</span></a></p></td>
+<td><p>2025-12-08 03:34</p></td>
+<td><p>cache</p></td>
+<td><p>2.07</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="french_rev.html"><span class="doc">french_rev</span></a></p></td>
+<td><p>2025-12-08 03:34</p></td>
+<td><p>cache</p></td>
+<td><p>9.42</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="geom_series.html"><span class="doc">geom_series</span></a></p></td>
+<td><p>2025-12-08 03:34</p></td>
+<td><p>cache</p></td>
+<td><p>2.91</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="greek_square.html"><span class="doc">greek_square</span></a></p></td>
+<td><p>2025-12-08 03:34</p></td>
+<td><p>cache</p></td>
+<td><p>2.42</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="heavy_tails.html"><span class="doc">heavy_tails</span></a></p></td>
+<td><p>2025-12-08 03:35</p></td>
+<td><p>cache</p></td>
+<td><p>15.73</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="inequality.html"><span class="doc">inequality</span></a></p></td>
+<td><p>2025-12-08 03:35</p></td>
+<td><p>cache</p></td>
+<td><p>38.34</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="inflation_history.html"><span class="doc">inflation_history</span></a></p></td>
+<td><p>2025-12-08 03:35</p></td>
+<td><p>cache</p></td>
+<td><p>7.1</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="input_output.html"><span class="doc">input_output</span></a></p></td>
+<td><p>2025-12-08 03:35</p></td>
+<td><p>cache</p></td>
+<td><p>8.63</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="intro.html"><span class="doc">intro</span></a></p></td>
+<td><p>2025-12-08 03:36</p></td>
+<td><p>cache</p></td>
+<td><p>0.74</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="intro_supply_demand.html"><span class="doc">intro_supply_demand</span></a></p></td>
+<td><p>2025-12-08 03:36</p></td>
+<td><p>cache</p></td>
+<td><p>2.51</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="laffer_adaptive.html"><span class="doc">laffer_adaptive</span></a></p></td>
+<td><p>2025-12-08 03:36</p></td>
+<td><p>cache</p></td>
+<td><p>2.41</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="lake_model.html"><span class="doc">lake_model</span></a></p></td>
+<td><p>2025-12-08 03:36</p></td>
+<td><p>cache</p></td>
+<td><p>2.41</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="linear_equations.html"><span class="doc">linear_equations</span></a></p></td>
+<td><p>2025-12-08 03:36</p></td>
+<td><p>cache</p></td>
+<td><p>2.0</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="lln_clt.html"><span class="doc">lln_clt</span></a></p></td>
+<td><p>2025-12-08 03:38</p></td>
+<td><p>cache</p></td>
+<td><p>151.02</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="long_run_growth.html"><span class="doc">long_run_growth</span></a></p></td>
+<td><p>2025-12-08 03:38</p></td>
+<td><p>cache</p></td>
+<td><p>8.02</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="lp_intro.html"><span class="doc">lp_intro</span></a></p></td>
+<td><p>2025-12-08 03:38</p></td>
+<td><p>cache</p></td>
+<td><p>4.67</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="markov_chains_I.html"><span class="doc">markov_chains_I</span></a></p></td>
+<td><p>2025-12-08 03:39</p></td>
+<td><p>cache</p></td>
+<td><p>15.29</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="markov_chains_II.html"><span class="doc">markov_chains_II</span></a></p></td>
+<td><p>2025-12-08 03:39</p></td>
+<td><p>cache</p></td>
+<td><p>4.67</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="mle.html"><span class="doc">mle</span></a></p></td>
+<td><p>2025-12-08 03:39</p></td>
+<td><p>cache</p></td>
+<td><p>6.46</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="money_inflation.html"><span class="doc">money_inflation</span></a></p></td>
+<td><p>2025-12-08 03:39</p></td>
+<td><p>cache</p></td>
+<td><p>2.62</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="money_inflation_nonlinear.html"><span class="doc">money_inflation_nonlinear</span></a></p></td>
+<td><p>2025-12-08 03:39</p></td>
+<td><p>cache</p></td>
+<td><p>2.15</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="monte_carlo.html"><span class="doc">monte_carlo</span></a></p></td>
+<td><p>2025-12-08 03:43</p></td>
+<td><p>cache</p></td>
+<td><p>217.33</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="networks.html"><span class="doc">networks</span></a></p></td>
+<td><p>2025-12-08 03:43</p></td>
+<td><p>cache</p></td>
+<td><p>7.04</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="olg.html"><span class="doc">olg</span></a></p></td>
+<td><p>2025-12-08 03:43</p></td>
+<td><p>cache</p></td>
+<td><p>2.39</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="prob_dist.html"><span class="doc">prob_dist</span></a></p></td>
+<td><p>2025-12-08 03:43</p></td>
+<td><p>cache</p></td>
+<td><p>6.63</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="pv.html"><span class="doc">pv</span></a></p></td>
+<td><p>2025-12-08 03:43</p></td>
+<td><p>cache</p></td>
+<td><p>4.02</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="scalar_dynam.html"><span class="doc">scalar_dynam</span></a></p></td>
+<td><p>2025-12-08 03:43</p></td>
+<td><p>cache</p></td>
+<td><p>2.95</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="schelling.html"><span class="doc">schelling</span></a></p></td>
+<td><p>2025-12-08 03:43</p></td>
+<td><p>cache</p></td>
+<td><p>10.39</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="short_path.html"><span class="doc">short_path</span></a></p></td>
+<td><p>2025-12-08 03:43</p></td>
+<td><p>cache</p></td>
+<td><p>1.09</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="simple_linear_regression.html"><span class="doc">simple_linear_regression</span></a></p></td>
+<td><p>2025-12-08 03:43</p></td>
+<td><p>cache</p></td>
+<td><p>4.22</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="solow.html"><span class="doc">solow</span></a></p></td>
+<td><p>2025-12-08 03:43</p></td>
+<td><p>cache</p></td>
+<td><p>3.71</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="#"><span class="doc">status</span></a></p></td>
+<td><p>2025-12-08 03:43</p></td>
+<td><p>cache</p></td>
+<td><p>4.42</p></td>
 <td><p>✅</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="xref doc reference internal" href="supply_demand_heterogeneity.html"><span class="doc">supply_demand_heterogeneity</span></a></p></td>
-<td><p>2025-10-27 03:47</p></td>
+<td><p>2025-12-08 03:43</p></td>
 <td><p>cache</p></td>
-<td><p>1.11</p></td>
+<td><p>1.18</p></td>
 <td><p>✅</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="xref doc reference internal" href="supply_demand_multiple_goods.html"><span class="doc">supply_demand_multiple_goods</span></a></p></td>
-<td><p>2025-10-27 03:47</p></td>
+<td><p>2025-12-08 03:43</p></td>
 <td><p>cache</p></td>
-<td><p>1.84</p></td>
+<td><p>1.85</p></td>
 <td><p>✅</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="xref doc reference internal" href="tax_smooth.html"><span class="doc">tax_smooth</span></a></p></td>
-<td><p>2025-10-27 03:47</p></td>
+<td><p>2025-12-08 03:43</p></td>
 <td><p>cache</p></td>
-<td><p>3.42</p></td>
+<td><p>3.27</p></td>
 <td><p>✅</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="xref doc reference internal" href="time_series_with_matrices.html"><span class="doc">time_series_with_matrices</span></a></p></td>
-<td><p>2025-10-27 03:47</p></td>
+<td><p>2025-12-08 03:44</p></td>
 <td><p>cache</p></td>
-<td><p>2.47</p></td>
+<td><p>2.44</p></td>
 <td><p>✅</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="xref doc reference internal" href="troubleshooting.html"><span class="doc">troubleshooting</span></a></p></td>
-<td><p>2025-10-27 03:39</p></td>
+<td><p>2025-12-08 03:36</p></td>
 <td><p>cache</p></td>
-<td><p>0.91</p></td>
+<td><p>0.74</p></td>
 <td><p>✅</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="xref doc reference internal" href="unpleasant.html"><span class="doc">unpleasant</span></a></p></td>
-<td><p>2025-10-27 03:47</p></td>
+<td><p>2025-12-08 03:44</p></td>
 <td><p>cache</p></td>
-<td><p>1.79</p></td>
+<td><p>1.71</p></td>
 <td><p>✅</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="xref doc reference internal" href="zreferences.html"><span class="doc">zreferences</span></a></p></td>
-<td><p>2025-10-27 03:39</p></td>
+<td><p>2025-12-08 03:36</p></td>
 <td><p>cache</p></td>
-<td><p>0.91</p></td>
+<td><p>0.74</p></td>
 <td><p>✅</p></td>
 </tr>
 </tbody>
@@ -670,7 +698,7 @@ fontconfig                       2.14.1               h55d465d_3
 fonttools                        4.55.3               py313h5eee18b_0
 fqdn                             1.5.1                pypi_0              pypi
 freetype                         2.13.3               h4a9f257_0
-frozendict                       2.4.6                pypi_0              pypi
+frozendict                       2.4.7                pypi_0              pypi
 frozenlist                       1.5.0                py313h5eee18b_0
 fsspec                           2025.3.2             py313h7040dfc_0
 gflags                           2.2.2                h6a678d5_1
@@ -870,7 +898,7 @@ partd                            1.4.2                py313h06a4308_0
 pathspec                         0.10.3               py313h06a4308_0
 patsy                            1.0.1                py313h06a4308_0
 pcre2                            10.42                hebb0a14_1
-peewee                           3.18.2               pypi_0              pypi
+peewee                           3.18.3               pypi_0              pypi
 pexpect                          4.8.0                pyhd3eb1b0_3
 pickleshare                      0.7.5                pyhd3eb1b0_1003
 pillow                           11.1.0               py313hac6e08b_1
@@ -1050,7 +1078,7 @@ w3lib                            1.21.0               pyhd3eb1b0_0
 watchdog                         4.0.2                py313h06a4308_0
 wbgapi                           1.0.12               pypi_0              pypi
 wcwidth                          0.2.5                pyhd3eb1b0_0
-webcolors                        24.11.1              pypi_0              pypi
+webcolors                        25.10.0              pypi_0              pypi
 webencodings                     0.5.1                py313h06a4308_2
 websocket-client                 1.8.0                py313h06a4308_0
 websockets                       15.0.1               pypi_0              pypi

@@ -9,9 +9,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>23. Racial Segregation &#8212; A First Course in Quantitative Economics with Python</title>
-    <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js" integrity="sha384-bq5PNg/ZcfW7KMvFSmhjqCQJ/VFnec+6sZkctn/4ZLeubkn7U58Le4zFFSn3dhUu" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js" integrity="sha384-qEqAs1VsN9WH2myXDbiP2wGGIttL9bMRZBKCl54ZnzpDlVqbYANP9vMaoT/wvQcf" crossorigin="anonymous"></script>
     
         <script>
             MathJax = {
@@ -70,7 +77,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=3bd9fcddbe64f63e07c8604843d1cc622a07b430" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=22b71a9b445b7b2b6a277c0a48ea72bf6e7c90d9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
@@ -95,7 +102,7 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js?v=4a39c7ea"></script>
-    <script src="_static/scripts/quantecon-book-theme.js?digest=30f7c850c5b005eca2ad6e48893cd350a6c6c4c2"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=65b86b9423025043228643fcfb616ce846cb91c1"></script>
     <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
     <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -197,7 +204,7 @@
                                 
                             </p>
 
-                            <p class="powered">Powered by <a href="https://jupyterbook.org/en/stable/">Jupyter Book</a></p>
+                            <p class="powered">Powered by <a href="https://jupyterbook.org/v1/">Jupyter Book</a></p>
 
                         </nav>
 
@@ -217,10 +224,9 @@
 
                         <p class="qe-page__header-heading"><a href="intro.html">A First Course in Quantitative Economics with Python</a></p>
 
-                        <p class="qe-page__header-subheading">Racial Segregation</p>
-
                     </div>
-                    <!-- length 2, since its a string and empty dict has length 2 - {} -->
+
+                    <!-- Authors section -->
                         <p class="qe-page__header-authors" font-size="18">
                             
                                 
@@ -233,6 +239,28 @@
                             
                         </p>
 
+                    <!-- Last modified / Changelog dropdown -->
+                        <button class="qe-page__header-changed" id="changelog-toggle" aria-expanded="false">
+                            Last changed: Dec 20, 2025
+                            <span class="changelog-icon">▼</span>
+                        </button>
+
+                    <!-- Changelog dropdown content -->
+                    <div class="qe-page__header-changelog" id="changelog-content" aria-hidden="true">
+                        <h4>Changelog (<a href="https://github.com/QuantEcon/lecture-python-intro/commits/main/lectures/schelling.md">full history</a>)</h4>
+                        <ul class="changelog-list">
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/9ca0dca" class="changelog-hash">9ca0dca</a>
+                                
+                                <span class="changelog-author">dependabot[bot]</span>
+                                <span class="changelog-time">8 minutes ago</span>
+                                <span class="changelog-message">Bump anaconda from 2025.06 to 2025.12 (#673)</span>
+                            </li>
+                            
+                        </ul>
+                    </div>
 
                 </div> <!-- .page__header -->
 
@@ -511,31 +539,17 @@ plot the distribution
 <a class="reference internal image-reference" href="_images/4334ce34a59c8f659037e9ed3d9cf5de795af99dcd4c751146e718f3df79bf13.png"><img alt="_images/4334ce34a59c8f659037e9ed3d9cf5de795af99dcd4c751146e718f3df79bf13.png" src="_images/4334ce34a59c8f659037e9ed3d9cf5de795af99dcd4c751146e718f3df79bf13.png" style="width: 80%;" />
 </a>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Entering loop  1
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Entering loop  2
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Entering loop  3
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Entering loop  4
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Entering loop  5
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Entering loop  6
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Entering loop  7
+Entering loop  2
+Entering loop  3
+Entering loop  4
+Entering loop  5
+Entering loop  6
+Entering loop  7
+Converged after 8 iterations.
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="_images/c6be4f559bd56bb48b524f95aa6ca04a64942b56c70b9dfa223e35b72d249838.png"><img alt="_images/c6be4f559bd56bb48b524f95aa6ca04a64942b56c70b9dfa223e35b72d249838.png" src="_images/c6be4f559bd56bb48b524f95aa6ca04a64942b56c70b9dfa223e35b72d249838.png" style="width: 80%;" />
 </a>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Converged after 8 iterations.
-</pre></div>
-</div>
 </div>
 </div>
 <p>As discussed above, agents are initially mixed randomly together.</p>
@@ -695,17 +709,17 @@ with small probability, is replaced by an agent of the other type.)</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/6b4c91580a79875f538f90cc6e61d13c91e24d4221dbea290d03752fa5409c8d.png"><img alt="_images/6b4c91580a79875f538f90cc6e61d13c91e24d4221dbea290d03752fa5409c8d.png" src="_images/6b4c91580a79875f538f90cc6e61d13c91e24d4221dbea290d03752fa5409c8d.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/2cd53c5d89485b8cf9c7bd2cc48347b2f999ab3f176d35f82040d10b5ea59146.png"><img alt="_images/2cd53c5d89485b8cf9c7bd2cc48347b2f999ab3f176d35f82040d10b5ea59146.png" src="_images/2cd53c5d89485b8cf9c7bd2cc48347b2f999ab3f176d35f82040d10b5ea59146.png" style="width: 80%;" />
 </a>
-<a class="reference internal image-reference" href="_images/3dd65995480b3c52bb3cf7dacec040b42988666cb140c30123a110b84a0edc07.png"><img alt="_images/3dd65995480b3c52bb3cf7dacec040b42988666cb140c30123a110b84a0edc07.png" src="_images/3dd65995480b3c52bb3cf7dacec040b42988666cb140c30123a110b84a0edc07.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/bd8ca38c5d7a1486cb12204ad9dbcf3595fba9cdca66cf5d2bd41b317eea13a7.png"><img alt="_images/bd8ca38c5d7a1486cb12204ad9dbcf3595fba9cdca66cf5d2bd41b317eea13a7.png" src="_images/bd8ca38c5d7a1486cb12204ad9dbcf3595fba9cdca66cf5d2bd41b317eea13a7.png" style="width: 80%;" />
 </a>
-<a class="reference internal image-reference" href="_images/8e6c6880f444beed3406fc78bf2b4f895c6dc1239885ef9c6a8b5e7f71b9dc8e.png"><img alt="_images/8e6c6880f444beed3406fc78bf2b4f895c6dc1239885ef9c6a8b5e7f71b9dc8e.png" src="_images/8e6c6880f444beed3406fc78bf2b4f895c6dc1239885ef9c6a8b5e7f71b9dc8e.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/a5d722de5c9f0aa26db97966f83fe9a9a025f52eb99f915ae5346316ccc17b02.png"><img alt="_images/a5d722de5c9f0aa26db97966f83fe9a9a025f52eb99f915ae5346316ccc17b02.png" src="_images/a5d722de5c9f0aa26db97966f83fe9a9a025f52eb99f915ae5346316ccc17b02.png" style="width: 80%;" />
 </a>
-<a class="reference internal image-reference" href="_images/acd570f10fea1515ff5037d9d23c5597667c7f1024713644cbb53aa6606b81ae.png"><img alt="_images/acd570f10fea1515ff5037d9d23c5597667c7f1024713644cbb53aa6606b81ae.png" src="_images/acd570f10fea1515ff5037d9d23c5597667c7f1024713644cbb53aa6606b81ae.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/ad4cf0276312f449e408ae2e78b03c905671195805e8859866a448b94d46f591.png"><img alt="_images/ad4cf0276312f449e408ae2e78b03c905671195805e8859866a448b94d46f591.png" src="_images/ad4cf0276312f449e408ae2e78b03c905671195805e8859866a448b94d46f591.png" style="width: 80%;" />
 </a>
-<a class="reference internal image-reference" href="_images/7fd4dd40582e0c8397637b132493f0fcdf9d86942cb72715670e738c8bee8eba.png"><img alt="_images/7fd4dd40582e0c8397637b132493f0fcdf9d86942cb72715670e738c8bee8eba.png" src="_images/7fd4dd40582e0c8397637b132493f0fcdf9d86942cb72715670e738c8bee8eba.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/54ed54029f1df784129ad511798182abbef10e0e21636e3f590d77302fb712fe.png"><img alt="_images/54ed54029f1df784129ad511798182abbef10e0e21636e3f590d77302fb712fe.png" src="_images/54ed54029f1df784129ad511798182abbef10e0e21636e3f590d77302fb712fe.png" style="width: 80%;" />
 </a>
-<a class="reference internal image-reference" href="_images/6e5016cace293dcbe97678cdf4463a76a854936e2cce5ca7a6d13b40faaffce5.png"><img alt="_images/6e5016cace293dcbe97678cdf4463a76a854936e2cce5ca7a6d13b40faaffce5.png" src="_images/6e5016cace293dcbe97678cdf4463a76a854936e2cce5ca7a6d13b40faaffce5.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/06f5880f6680f3e779407f763c0a153c417eb5e64edb39ea12a50cdde1123b83.png"><img alt="_images/06f5880f6680f3e779407f763c0a153c417eb5e64edb39ea12a50cdde1123b83.png" src="_images/06f5880f6680f3e779407f763c0a153c417eb5e64edb39ea12a50cdde1123b83.png" style="width: 80%;" />
 </a>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Terminating at iteration 50001
 </pre></div>

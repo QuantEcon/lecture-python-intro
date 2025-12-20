@@ -9,9 +9,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>36. Univariate Time Series with Matrix Algebra &#8212; A First Course in Quantitative Economics with Python</title>
-    <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js" integrity="sha384-bq5PNg/ZcfW7KMvFSmhjqCQJ/VFnec+6sZkctn/4ZLeubkn7U58Le4zFFSn3dhUu" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js" integrity="sha384-qEqAs1VsN9WH2myXDbiP2wGGIttL9bMRZBKCl54ZnzpDlVqbYANP9vMaoT/wvQcf" crossorigin="anonymous"></script>
     
         <script>
             MathJax = {
@@ -70,7 +77,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=3bd9fcddbe64f63e07c8604843d1cc622a07b430" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=22b71a9b445b7b2b6a277c0a48ea72bf6e7c90d9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
@@ -95,7 +102,7 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js?v=4a39c7ea"></script>
-    <script src="_static/scripts/quantecon-book-theme.js?digest=30f7c850c5b005eca2ad6e48893cd350a6c6c4c2"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=65b86b9423025043228643fcfb616ce846cb91c1"></script>
     <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
     <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -194,7 +201,7 @@
                                 
                             </p>
 
-                            <p class="powered">Powered by <a href="https://jupyterbook.org/en/stable/">Jupyter Book</a></p>
+                            <p class="powered">Powered by <a href="https://jupyterbook.org/v1/">Jupyter Book</a></p>
 
                         </nav>
 
@@ -214,10 +221,9 @@
 
                         <p class="qe-page__header-heading"><a href="intro.html">A First Course in Quantitative Economics with Python</a></p>
 
-                        <p class="qe-page__header-subheading">Univariate Time Series with Matrix Algebra</p>
-
                     </div>
-                    <!-- length 2, since its a string and empty dict has length 2 - {} -->
+
+                    <!-- Authors section -->
                         <p class="qe-page__header-authors" font-size="18">
                             
                                 
@@ -230,6 +236,28 @@
                             
                         </p>
 
+                    <!-- Last modified / Changelog dropdown -->
+                        <button class="qe-page__header-changed" id="changelog-toggle" aria-expanded="false">
+                            Last changed: Dec 20, 2025
+                            <span class="changelog-icon">▼</span>
+                        </button>
+
+                    <!-- Changelog dropdown content -->
+                    <div class="qe-page__header-changelog" id="changelog-content" aria-hidden="true">
+                        <h4>Changelog (<a href="https://github.com/QuantEcon/lecture-python-intro/commits/main/lectures/time_series_with_matrices.md">full history</a>)</h4>
+                        <ul class="changelog-list">
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/9ca0dca" class="changelog-hash">9ca0dca</a>
+                                
+                                <span class="changelog-author">dependabot[bot]</span>
+                                <span class="changelog-time">8 minutes ago</span>
+                                <span class="changelog-message">Bump anaconda from 2025.06 to 2025.12 (#673)</span>
+                            </li>
+                            
+                        </ul>
+                    </div>
 
                 </div> <!-- .page__header -->
 
@@ -574,7 +602,7 @@ y = A^{-1} \left(b + u\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/77171b52482251bec3b6e67fa2eceda647de85a2a788ff9952dd5a6ef5bea727.png"><img alt="_images/77171b52482251bec3b6e67fa2eceda647de85a2a788ff9952dd5a6ef5bea727.png" src="_images/77171b52482251bec3b6e67fa2eceda647de85a2a788ff9952dd5a6ef5bea727.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/9027d5e25fa7a73cc6cbbb6996f83b9171bc8325bc2d2385c044b04917fb6557.png"><img alt="_images/9027d5e25fa7a73cc6cbbb6996f83b9171bc8325bc2d2385c044b04917fb6557.png" src="_images/9027d5e25fa7a73cc6cbbb6996f83b9171bc8325bc2d2385c044b04917fb6557.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -599,7 +627,7 @@ number of advanced countries in recent decades.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/9228a066dda9298defb094102c6f21b7cfeec83cf0c40f522732f0dd07fe3eb1.png"><img alt="_images/9228a066dda9298defb094102c6f21b7cfeec83cf0c40f522732f0dd07fe3eb1.png" src="_images/9228a066dda9298defb094102c6f21b7cfeec83cf0c40f522732f0dd07fe3eb1.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/da0275265e0035196e285be8885fdf2a11abc61fd2fba736f33247d9d9eddff5.png"><img alt="_images/da0275265e0035196e285be8885fdf2a11abc61fd2fba736f33247d9d9eddff5.png" src="_images/da0275265e0035196e285be8885fdf2a11abc61fd2fba736f33247d9d9eddff5.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -623,7 +651,7 @@ steady state.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/d6107b89c83913f5c9c423f21a70062fe3ae4e05e29d9f50c1525fa2f8723dee.png"><img alt="_images/d6107b89c83913f5c9c423f21a70062fe3ae4e05e29d9f50c1525fa2f8723dee.png" src="_images/d6107b89c83913f5c9c423f21a70062fe3ae4e05e29d9f50c1525fa2f8723dee.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/565d06530073d0e28930fc9b907b499359f8fc56178f56c1454cf0759b0a02c2.png"><img alt="_images/565d06530073d0e28930fc9b907b499359f8fc56178f56c1454cf0759b0a02c2.png" src="_images/565d06530073d0e28930fc9b907b499359f8fc56178f56c1454cf0759b0a02c2.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -749,7 +777,7 @@ y \sim {\mathcal N}(\mu_y, \Sigma_y)
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/c6f4eaffe4f7fdbd3fe2c19586a4e9f3cc77d7f044af9773caf5528b0b679a9b.png"><img alt="_images/c6f4eaffe4f7fdbd3fe2c19586a4e9f3cc77d7f044af9773caf5528b0b679a9b.png" src="_images/c6f4eaffe4f7fdbd3fe2c19586a4e9f3cc77d7f044af9773caf5528b0b679a9b.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/76bfae03c4a3bb1b62263d1fc0efde0143ccea0471cbbb74ca9aa89d6be15420.png"><img alt="_images/76bfae03c4a3bb1b62263d1fc0efde0143ccea0471cbbb74ca9aa89d6be15420.png" src="_images/76bfae03c4a3bb1b62263d1fc0efde0143ccea0471cbbb74ca9aa89d6be15420.png" style="width: 80%;" />
 </a>
 </div>
 </div>
