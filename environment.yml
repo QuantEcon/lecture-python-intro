@@ -3,7 +3,7 @@ channels:
   - default
 dependencies:
   - python=3.13
-  - anaconda=2025.06
+  - anaconda=2025.12
   - pip
   - pip:
     - jupyter-book==1.0.4post1
@@ -15,5 +15,9 @@ dependencies:
     - sphinxcontrib-youtube==1.4.1
     - sphinx-togglebutton==0.3.2
     - sphinx-reredirects==1.0.0
+    # TODO: Check for SymPy 1.14.1+ when available
+    # Pinned to 1.13.3 due to bug in 1.14.0 causing OverflowError in solve() 
+    # for symbolic differentiation in solow.md (factorint issue with large mpz)
+    - sympy==1.13.3
 
 
