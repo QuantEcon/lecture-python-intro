@@ -3,10 +3,12 @@ jupytext:
   text_representation:
     extension: .md
     format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.17.1
 kernelspec:
-  display_name: Python 3
-  language: python
   name: python3
+  display_name: Python 3 (ipykernel)
+  language: python
 ---
 
 (solow)=
@@ -117,7 +119,7 @@ The function $g$ from {eq}`solow` is then plotted, along with the 45-degree line
 Let's define the constants.
 
 ```{code-cell} ipython3
-A, s, alpha, delta = 2, 0.3, 0.3, 0.4
+A, s, α, δ = 2, 0.3, 0.3, 0.4
 x0 = 0.25
 xmin, xmax = 0, 3
 ```
@@ -125,8 +127,8 @@ xmin, xmax = 0, 3
 Now, we define the function $g$.
 
 ```{code-cell} ipython3
-def g(A, s, alpha, delta, k):
-    return A * s * k**alpha + (1 - delta) * k
+def g(A, s, α, δ, k):
+    return A * s * k**α + (1 - δ) * k
 ```
 
 Let's plot the 45-degree diagram of $g$.
@@ -139,7 +141,7 @@ def plot45(kstar=None):
 
     ax.set_xlim(xmin, xmax)
 
-    g_values = g(A, s, alpha, delta, xgrid)
+    g_values = g(A, s, α, δ, xgrid)
 
     ymin, ymax = np.min(g_values), np.max(g_values)
     ax.set_ylim(ymin, ymax)
@@ -202,10 +204,9 @@ If initial capital is above this level, then the reverse is true.
 Let's plot the 45-degree diagram to show the $k^*$ in the plot.
 
 ```{code-cell} ipython3
-kstar = ((s * A) / delta)**(1/(1 - alpha))
+kstar = ((s * A) / δ)**(1/(1 - α))
 plot45(kstar)
 ```
-
 
 From our graphical analysis, it appears that $(k_t)$ converges to $k^*$, regardless of initial capital
 $k_0$.
@@ -221,7 +222,7 @@ At this parameterization, $k^* \approx 1.78$.
 Let's define the constants and three distinct initial conditions
 
 ```{code-cell} ipython3
-A, s, alpha, delta = 2, 0.3, 0.3, 0.4
+A, s, α, δ = 2, 0.3, 0.3, 0.4
 x0 = np.array([.25, 1.25, 3.25])
 
 ts_length = 20
@@ -232,7 +233,7 @@ ymin, ymax = 0, 3.5
 ```{code-cell} ipython3
 def simulate_ts(x0_values, ts_length):
 
-    k_star = (s * A / delta)**(1/(1-alpha))
+    k_star = (s * A / δ)**(1/(1-α))
     fig, ax = plt.subplots(figsize=[11, 5])
     ax.set_xlim(xmin, xmax)
     ax.set_ylim(ymin, ymax)
@@ -243,7 +244,7 @@ def simulate_ts(x0_values, ts_length):
     for x_init in x0_values:
         ts[0] = x_init
         for t in range(1, ts_length):
-            ts[t] = g(A, s, alpha, delta, ts[t-1])
+            ts[t] = g(A, s, α, δ, ts[t-1])
         ax.plot(np.arange(ts_length), ts, '-o', ms=4, alpha=0.6,
                 label=r'$k_0=%g$' %x_init)
     ax.plot(np.arange(ts_length), np.full(ts_length,k_star),
@@ -319,14 +320,14 @@ levels of capital combine to yield global stability.
 To see this in a figure, let's define the constants
 
 ```{code-cell} ipython3
-A, s, alpha, delta = 2, 0.3, 0.3, 0.4
+A, s, α, δ = 2, 0.3, 0.3, 0.4
 ```
 
 Next we define the function $g$ for growth in continuous time
 
 ```{code-cell} ipython3
-def g_con(A, s, alpha, delta, k):
-    return A * s * k**alpha - delta * k
+def g_con(A, s, α, δ, k):
+    return A * s * k**α - δ * k
 ```
 
 ```{code-cell} ipython3
@@ -335,7 +336,7 @@ def plot_gcon(kstar=None):
     k_grid = np.linspace(0, 2.8, 10000)
 
     fig, ax = plt.subplots(figsize=[11, 5])
-    ax.plot(k_grid, g_con(A, s, alpha, delta, k_grid), label='$g(k)$')
+    ax.plot(k_grid, g_con(A, s, α, δ, k_grid), label='$g(k)$')
     ax.plot(k_grid, 0 * k_grid, label="$k'=0$")
 
     if kstar:
@@ -364,7 +365,7 @@ def plot_gcon(kstar=None):
 ```
 
 ```{code-cell} ipython3
-kstar = ((s * A) / delta)**(1/(1 - alpha))
+kstar = ((s * A) / δ)**(1/(1 - α))
 plot_gcon(kstar)
 ```
 
@@ -450,14 +451,14 @@ $$
 
 ```{code-cell} ipython3
 A = 2.0
-alpha = 0.3
-delta = 0.5
+α = 0.3
+δ = 0.5
 ```
 
 ```{code-cell} ipython3
 s_grid = np.linspace(0, 1, 1000)
-k_star = ((s_grid * A) / delta)**(1/(1 - alpha))
-c_star = (1 - s_grid) * A * k_star ** alpha
+k_star = ((s_grid * A) / δ)**(1/(1 - α))
+c_star = (1 - s_grid) * A * k_star ** α
 ```
 
 Let's find the value of $s$ that maximizes $c^*$ using [scipy.optimize.minimize_scalar](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize_scalar.html#scipy.optimize.minimize_scalar).
@@ -469,8 +470,8 @@ from scipy.optimize import minimize_scalar
 
 ```{code-cell} ipython3
 def calc_c_star(s):
-    k = ((s * A) / delta)**(1/(1 - alpha))
-    return - (1 - s) * A * k ** alpha
+    k = ((s * A) / δ)**(1/(1 - α))
+    return - (1 - s) * A * k ** α
 ```
 
 ```{code-cell} ipython3
@@ -510,13 +511,18 @@ plt.show()
 One can also try to solve this mathematically by differentiating $c^*(s)$ and solve for $\frac{d}{ds}c^*(s)=0$ using [sympy](https://www.sympy.org/en/index.html).
 
 ```{code-cell} ipython3
-from sympy import solve, Symbol
+from sympy import solve, Symbol, Rational
 ```
 
 ```{code-cell} ipython3
+# Use Rational for exact symbolic computation
+A = Rational(2)
+α = Rational(3, 10)
+δ = Rational(1, 2)
+
 s_symbol = Symbol('s', real=True)
-k = ((s_symbol * A) / delta)**(1/(1 - alpha))
-c = (1 - s_symbol) * A * k ** alpha
+k = ((s_symbol * A) / δ)**(1/(1 - α))
+c = (1 - s_symbol) * A * k ** α
 ```
 
 Let's differentiate $c$ and solve using [sympy.solve](https://docs.sympy.org/latest/modules/solvers/solvers.html#sympy.solvers.solvers.solve)
@@ -524,7 +530,7 @@ Let's differentiate $c$ and solve using [sympy.solve](https://docs.sympy.org/lat
 ```{code-cell} ipython3
 # Solve using sympy
 s_star = solve(c.diff())[0]
-print(f"s_star = {s_star}")
+print(f"s_star = {float(s_star)}")
 ```
 
 Incidentally, the rate of savings which maximizes steady state level of per capita consumption is called the [Golden Rule savings rate](https://en.wikipedia.org/wiki/Golden_Rule_savings_rate).
@@ -576,12 +582,12 @@ Let's define the constants for lognormal distribution and initial values used fo
 
 ```{code-cell} ipython3
 # Define the constants
-sig = 0.2
-mu = np.log(2) - sig**2 / 2
+σ = 0.2
+μ = np.log(2) - σ**2 / 2
 A = 2.0
 s = 0.6
-alpha = 0.3
-delta = 0.5
+α = 0.3
+δ = 0.5
 x0 = [.25, 3.25] # list of initial values used for simulation
 ```
 
@@ -589,10 +595,10 @@ Let's define the function *k_next* to find the next value of $k$
 
 ```{code-cell} ipython3
 def lgnorm():
-    return np.exp(mu + sig * np.random.randn())
+    return np.exp(μ + σ * np.random.randn())
 
-def k_next(s, alpha, delta, k):
-    return lgnorm() * s * k**alpha + (1 - delta) * k
+def k_next(s, α, δ, k):
+    return lgnorm() * s * k**α + (1 - δ) * k
 ```
 
 ```{code-cell} ipython3
@@ -604,7 +610,7 @@ def ts_plot(x_values, ts_length):
     for x_init in x_values:
         ts[0] = x_init
         for t in range(1, ts_length):
-            ts[t] = k_next(s, alpha, delta, ts[t-1])
+            ts[t] = k_next(s, α, δ, ts[t-1])
         ax.plot(np.arange(ts_length), ts, '-o', ms=4,
                 alpha=0.6, label=r'$k_0=%g$' %x_init)
 
@@ -620,8 +626,6 @@ def ts_plot(x_values, ts_length):
 ```{code-cell} ipython3
 ts_plot(x0, 50)
 ```
-
-
 
 ```{solution-end}
 ```
