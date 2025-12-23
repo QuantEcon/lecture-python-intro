@@ -510,13 +510,18 @@ plt.show()
 One can also try to solve this mathematically by differentiating $c^*(s)$ and solve for $\frac{d}{ds}c^*(s)=0$ using [sympy](https://www.sympy.org/en/index.html).
 
 ```{code-cell} ipython3
-from sympy import solve, Symbol
+from sympy import solve, Symbol, Rational
 ```
 
 ```{code-cell} ipython3
+# Use Rational for exact symbolic computation
+A_sym = Rational(2)
+alpha_sym = Rational(3, 10)
+delta_sym = Rational(1, 2)
+
 s_symbol = Symbol('s', real=True)
-k = ((s_symbol * A) / delta)**(1/(1 - alpha))
-c = (1 - s_symbol) * A * k ** alpha
+k = ((s_symbol * A_sym) / delta_sym)**(1/(1 - alpha_sym))
+c = (1 - s_symbol) * A_sym * k ** alpha_sym
 ```
 
 Let's differentiate $c$ and solve using [sympy.solve](https://docs.sympy.org/latest/modules/solvers/solvers.html#sympy.solvers.solvers.solve)
@@ -524,7 +529,7 @@ Let's differentiate $c$ and solve using [sympy.solve](https://docs.sympy.org/lat
 ```{code-cell} ipython3
 # Solve using sympy
 s_star = solve(c.diff())[0]
-print(f"s_star = {s_star}")
+print(f"s_star = {float(s_star)}")
 ```
 
 Incidentally, the rate of savings which maximizes steady state level of per capita consumption is called the [Golden Rule savings rate](https://en.wikipedia.org/wiki/Golden_Rule_savings_rate).
