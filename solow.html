@@ -236,7 +236,7 @@
 
                     <!-- Last modified / Changelog dropdown -->
                         <button class="qe-page__header-changed" id="changelog-toggle" aria-expanded="false">
-                            Last changed: Dec 20, 2025
+                            Last changed: Dec 23, 2025
                             <span class="changelog-icon">▼</span>
                         </button>
 
@@ -247,11 +247,92 @@
                             
                             <li class="changelog-entry">
                                 
-                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/9ca0dca" class="changelog-hash">9ca0dca</a>
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/059e0f40" class="changelog-hash">059e0f40</a>
                                 
-                                <span class="changelog-author">dependabot[bot]</span>
-                                <span class="changelog-time">8 minutes ago</span>
-                                <span class="changelog-message">Bump anaconda from 2025.06 to 2025.12 (#673)</span>
+                                <span class="changelog-author">Matt McKay</span>
+                                <span class="changelog-time">3 days ago</span>
+                                <span class="changelog-message">Fix SymPy OverflowError in solow.md by using Rational (#687)</span>
+                            </li>
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/6cc6c4bc" class="changelog-hash">6cc6c4bc</a>
+                                
+                                <span class="changelog-author">Humphrey Yang</span>
+                                <span class="changelog-time">11 months ago</span>
+                                <span class="changelog-message">[FIX] Fix string warnings (#566)</span>
+                            </li>
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/f5f71615" class="changelog-hash">f5f71615</a>
+                                
+                                <span class="changelog-author">JingkunZhao</span>
+                                <span class="changelog-time">1 year ago</span>
+                                <span class="changelog-message">[solow] Update unfinished suggestions (#511)</span>
+                            </li>
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/689cb068" class="changelog-hash">689cb068</a>
+                                
+                                <span class="changelog-author">JingkunZhao</span>
+                                <span class="changelog-time">1 year ago</span>
+                                <span class="changelog-message">[Solow] Update context</span>
+                            </li>
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/8cb45a16" class="changelog-hash">8cb45a16</a>
+                                
+                                <span class="changelog-author">JingkunZhao</span>
+                                <span class="changelog-time">1 year ago</span>
+                                <span class="changelog-message">[solow] Update internal links</span>
+                            </li>
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/2cb3ac3d" class="changelog-hash">2cb3ac3d</a>
+                                
+                                <span class="changelog-author">JingkunZhao</span>
+                                <span class="changelog-time">1 year ago</span>
+                                <span class="changelog-message">[solow] Update editorial suggestions</span>
+                            </li>
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/8f060459" class="changelog-hash">8f060459</a>
+                                
+                                <span class="changelog-author">Jingni</span>
+                                <span class="changelog-time">1 year ago</span>
+                                <span class="changelog-message">Update solow.md (#332)</span>
+                            </li>
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/f5c8fdb4" class="changelog-hash">f5c8fdb4</a>
+                                
+                                <span class="changelog-author">porntipapoonpolsub</span>
+                                <span class="changelog-time">2 years ago</span>
+                                <span class="changelog-message">Make all titles and headings in line with manual</span>
+                            </li>
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/b59c8b9d" class="changelog-hash">b59c8b9d</a>
+                                
+                                <span class="changelog-author">mmcky</span>
+                                <span class="changelog-time">2 years ago</span>
+                                <span class="changelog-message">ENH: Set a default image size across all lectures (#165)</span>
+                            </li>
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/969c7b55" class="changelog-hash">969c7b55</a>
+                                
+                                <span class="changelog-author">Smit-create</span>
+                                <span class="changelog-time">2 years ago</span>
+                                <span class="changelog-message">Add k simulation</span>
                             </li>
                             
                         </ul>
@@ -346,7 +427,7 @@ need to specify the functional form for <span class="math notranslate nohighligh
 <p>Let’s define the constants.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">delta</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">α</span><span class="p">,</span> <span class="n">δ</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span>
 <span class="n">x0</span> <span class="o">=</span> <span class="mf">0.25</span>
 <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span>
 </pre></div>
@@ -356,8 +437,8 @@ need to specify the functional form for <span class="math notranslate nohighligh
 <p>Now, we define the function <span class="math notranslate nohighlight">\(g\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">g</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">A</span> <span class="o">*</span> <span class="n">s</span> <span class="o">*</span> <span class="n">k</span><span class="o">**</span><span class="n">alpha</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">delta</span><span class="p">)</span> <span class="o">*</span> <span class="n">k</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">g</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">α</span><span class="p">,</span> <span class="n">δ</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">A</span> <span class="o">*</span> <span class="n">s</span> <span class="o">*</span> <span class="n">k</span><span class="o">**</span><span class="n">α</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">δ</span><span class="p">)</span> <span class="o">*</span> <span class="n">k</span>
 </pre></div>
 </div>
 </div>
@@ -372,7 +453,7 @@ need to specify the functional form for <span class="math notranslate nohighligh
 
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">)</span>
 
-    <span class="n">g_values</span> <span class="o">=</span> <span class="n">g</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">xgrid</span><span class="p">)</span>
+    <span class="n">g_values</span> <span class="o">=</span> <span class="n">g</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">α</span><span class="p">,</span> <span class="n">δ</span><span class="p">,</span> <span class="n">xgrid</span><span class="p">)</span>
 
     <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">g_values</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">g_values</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">)</span>
@@ -414,7 +495,7 @@ need to specify the functional form for <span class="math notranslate nohighligh
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/af1489dc863726ae4e186096ca147ef81fca76465822981d95a32d46c70c07a9.png"><img alt="_images/af1489dc863726ae4e186096ca147ef81fca76465822981d95a32d46c70c07a9.png" src="_images/af1489dc863726ae4e186096ca147ef81fca76465822981d95a32d46c70c07a9.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/d068f0aa38507d2c15043bc275f07e183648b0eab6174b7cfe173ee053f54575.png"><img alt="_images/d068f0aa38507d2c15043bc275f07e183648b0eab6174b7cfe173ee053f54575.png" src="_images/d068f0aa38507d2c15043bc275f07e183648b0eab6174b7cfe173ee053f54575.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -433,13 +514,13 @@ there is a unique steady state in <span class="math notranslate nohighlight">\((
 <p>Let’s plot the 45-degree diagram to show the <span class="math notranslate nohighlight">\(k^*\)</span> in the plot.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kstar</span> <span class="o">=</span> <span class="p">((</span><span class="n">s</span> <span class="o">*</span> <span class="n">A</span><span class="p">)</span> <span class="o">/</span> <span class="n">delta</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kstar</span> <span class="o">=</span> <span class="p">((</span><span class="n">s</span> <span class="o">*</span> <span class="n">A</span><span class="p">)</span> <span class="o">/</span> <span class="n">δ</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">α</span><span class="p">))</span>
 <span class="n">plot45</span><span class="p">(</span><span class="n">kstar</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/94574179114a9f362550ea0b679f614a8fac2e37301e6dc2a2c5257fd150a242.png"><img alt="_images/94574179114a9f362550ea0b679f614a8fac2e37301e6dc2a2c5257fd150a242.png" src="_images/94574179114a9f362550ea0b679f614a8fac2e37301e6dc2a2c5257fd150a242.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/71d481ea0c8ac056faf89634683707eac0ba13a812c9356841d94b3869d72f66.png"><img alt="_images/71d481ea0c8ac056faf89634683707eac0ba13a812c9356841d94b3869d72f66.png" src="_images/71d481ea0c8ac056faf89634683707eac0ba13a812c9356841d94b3869d72f66.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -452,7 +533,7 @@ three distinct initial conditions, under the parameterization listed above.</p>
 <p>Let’s define the constants and three distinct initial conditions</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">delta</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">α</span><span class="p">,</span> <span class="n">δ</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span>
 <span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">.25</span><span class="p">,</span> <span class="mf">1.25</span><span class="p">,</span> <span class="mf">3.25</span><span class="p">])</span>
 
 <span class="n">ts_length</span> <span class="o">=</span> <span class="mi">20</span>
@@ -466,7 +547,7 @@ three distinct initial conditions, under the parameterization listed above.</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">simulate_ts</span><span class="p">(</span><span class="n">x0_values</span><span class="p">,</span> <span class="n">ts_length</span><span class="p">):</span>
 
-    <span class="n">k_star</span> <span class="o">=</span> <span class="p">(</span><span class="n">s</span> <span class="o">*</span> <span class="n">A</span> <span class="o">/</span> <span class="n">delta</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">alpha</span><span class="p">))</span>
+    <span class="n">k_star</span> <span class="o">=</span> <span class="p">(</span><span class="n">s</span> <span class="o">*</span> <span class="n">A</span> <span class="o">/</span> <span class="n">δ</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">α</span><span class="p">))</span>
     <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">)</span>
@@ -477,7 +558,7 @@ three distinct initial conditions, under the parameterization listed above.</p>
     <span class="k">for</span> <span class="n">x_init</span> <span class="ow">in</span> <span class="n">x0_values</span><span class="p">:</span>
         <span class="n">ts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x_init</span>
         <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ts_length</span><span class="p">):</span>
-            <span class="n">ts</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">g</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">ts</span><span class="p">[</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">ts</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">g</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">α</span><span class="p">,</span> <span class="n">δ</span><span class="p">,</span> <span class="n">ts</span><span class="p">[</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ts_length</span><span class="p">),</span> <span class="n">ts</span><span class="p">,</span> <span class="s1">&#39;-o&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span>
                 <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$k_0=</span><span class="si">%g</span><span class="s1">$&#39;</span> <span class="o">%</span><span class="k">x_init</span>)
     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ts_length</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">ts_length</span><span class="p">,</span><span class="n">k_star</span><span class="p">),</span>
@@ -499,7 +580,7 @@ three distinct initial conditions, under the parameterization listed above.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/1877d30950c7e53b5b5452b04f67af9c3fa2752ef76ffbef0307450c944d5997.png"><img alt="_images/1877d30950c7e53b5b5452b04f67af9c3fa2752ef76ffbef0307450c944d5997.png" src="_images/1877d30950c7e53b5b5452b04f67af9c3fa2752ef76ffbef0307450c944d5997.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/6f6006876f7f62c58d707539d15a115320bfe42d710b252ebfedddceb9edc31a.png"><img alt="_images/6f6006876f7f62c58d707539d15a115320bfe42d710b252ebfedddceb9edc31a.png" src="_images/6f6006876f7f62c58d707539d15a115320bfe42d710b252ebfedddceb9edc31a.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -546,7 +627,7 @@ levels of capital combine to yield global stability.</p>
 <p>To see this in a figure, let’s define the constants</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">delta</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">α</span><span class="p">,</span> <span class="n">δ</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span>
 </pre></div>
 </div>
 </div>
@@ -554,8 +635,8 @@ levels of capital combine to yield global stability.</p>
 <p>Next we define the function <span class="math notranslate nohighlight">\(g\)</span> for growth in continuous time</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">g_con</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">A</span> <span class="o">*</span> <span class="n">s</span> <span class="o">*</span> <span class="n">k</span><span class="o">**</span><span class="n">alpha</span> <span class="o">-</span> <span class="n">delta</span> <span class="o">*</span> <span class="n">k</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">g_con</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">α</span><span class="p">,</span> <span class="n">δ</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">A</span> <span class="o">*</span> <span class="n">s</span> <span class="o">*</span> <span class="n">k</span><span class="o">**</span><span class="n">α</span> <span class="o">-</span> <span class="n">δ</span> <span class="o">*</span> <span class="n">k</span>
 </pre></div>
 </div>
 </div>
@@ -567,7 +648,7 @@ levels of capital combine to yield global stability.</p>
     <span class="n">k_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">2.8</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
 
     <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">k_grid</span><span class="p">,</span> <span class="n">g_con</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">k_grid</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$g(k)$&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">k_grid</span><span class="p">,</span> <span class="n">g_con</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">α</span><span class="p">,</span> <span class="n">δ</span><span class="p">,</span> <span class="n">k_grid</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$g(k)$&#39;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">k_grid</span><span class="p">,</span> <span class="mi">0</span> <span class="o">*</span> <span class="n">k_grid</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;$k&#39;=0$&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">kstar</span><span class="p">:</span>
@@ -599,13 +680,13 @@ levels of capital combine to yield global stability.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kstar</span> <span class="o">=</span> <span class="p">((</span><span class="n">s</span> <span class="o">*</span> <span class="n">A</span><span class="p">)</span> <span class="o">/</span> <span class="n">delta</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kstar</span> <span class="o">=</span> <span class="p">((</span><span class="n">s</span> <span class="o">*</span> <span class="n">A</span><span class="p">)</span> <span class="o">/</span> <span class="n">δ</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">α</span><span class="p">))</span>
 <span class="n">plot_gcon</span><span class="p">(</span><span class="n">kstar</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/b82bfd9a5d7bcad9f1442beadf0cbf90a3593afce1f6428226ddaf11d24da2b5.png"><img alt="_images/b82bfd9a5d7bcad9f1442beadf0cbf90a3593afce1f6428226ddaf11d24da2b5.png" src="_images/b82bfd9a5d7bcad9f1442beadf0cbf90a3593afce1f6428226ddaf11d24da2b5.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/3f2d316a2881192fb2daeed279886316d6e2afff65bd8ec8f9489f416d545c5b.png"><img alt="_images/3f2d316a2881192fb2daeed279886316d6e2afff65bd8ec8f9489f416d545c5b.png" src="_images/3f2d316a2881192fb2daeed279886316d6e2afff65bd8ec8f9489f416d545c5b.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -672,8 +753,8 @@ k^*\)</span> as <span class="math notranslate nohighlight">\(t \to \infty\)</spa
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="mf">2.0</span>
-<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.3</span>
-<span class="n">delta</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">α</span> <span class="o">=</span> <span class="mf">0.3</span>
+<span class="n">δ</span> <span class="o">=</span> <span class="mf">0.5</span>
 </pre></div>
 </div>
 </div>
@@ -681,8 +762,8 @@ k^*\)</span> as <span class="math notranslate nohighlight">\(t \to \infty\)</spa
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
-<span class="n">k_star</span> <span class="o">=</span> <span class="p">((</span><span class="n">s_grid</span> <span class="o">*</span> <span class="n">A</span><span class="p">)</span> <span class="o">/</span> <span class="n">delta</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">))</span>
-<span class="n">c_star</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">s_grid</span><span class="p">)</span> <span class="o">*</span> <span class="n">A</span> <span class="o">*</span> <span class="n">k_star</span> <span class="o">**</span> <span class="n">alpha</span>
+<span class="n">k_star</span> <span class="o">=</span> <span class="p">((</span><span class="n">s_grid</span> <span class="o">*</span> <span class="n">A</span><span class="p">)</span> <span class="o">/</span> <span class="n">δ</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">α</span><span class="p">))</span>
+<span class="n">c_star</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">s_grid</span><span class="p">)</span> <span class="o">*</span> <span class="n">A</span> <span class="o">*</span> <span class="n">k_star</span> <span class="o">**</span> <span class="n">α</span>
 </pre></div>
 </div>
 </div>
@@ -699,8 +780,8 @@ We will use <span class="math notranslate nohighlight">\(-c^*(s)\)</span> since 
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">calc_c_star</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-    <span class="n">k</span> <span class="o">=</span> <span class="p">((</span><span class="n">s</span> <span class="o">*</span> <span class="n">A</span><span class="p">)</span> <span class="o">/</span> <span class="n">delta</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">))</span>
-    <span class="k">return</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">s</span><span class="p">)</span> <span class="o">*</span> <span class="n">A</span> <span class="o">*</span> <span class="n">k</span> <span class="o">**</span> <span class="n">alpha</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="p">((</span><span class="n">s</span> <span class="o">*</span> <span class="n">A</span><span class="p">)</span> <span class="o">/</span> <span class="n">δ</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">α</span><span class="p">))</span>
+    <span class="k">return</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">s</span><span class="p">)</span> <span class="o">*</span> <span class="n">A</span> <span class="o">*</span> <span class="n">k</span> <span class="o">**</span> <span class="n">α</span>
 </pre></div>
 </div>
 </div>
@@ -750,23 +831,28 @@ We will use <span class="math notranslate nohighlight">\(-c^*(s)\)</span> since 
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/22870bfb04c7d4a2054e91e005eb912f584ff1f59a6c57f0046a7dbd23b446e4.png"><img alt="_images/22870bfb04c7d4a2054e91e005eb912f584ff1f59a6c57f0046a7dbd23b446e4.png" src="_images/22870bfb04c7d4a2054e91e005eb912f584ff1f59a6c57f0046a7dbd23b446e4.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/a2ebd9cf6d98ed32476a11c9df3babd3e0f588bf5097b07da8f80c7efaeec456.png"><img alt="_images/a2ebd9cf6d98ed32476a11c9df3babd3e0f588bf5097b07da8f80c7efaeec456.png" src="_images/a2ebd9cf6d98ed32476a11c9df3babd3e0f588bf5097b07da8f80c7efaeec456.png" style="width: 80%;" />
 </a>
 </div>
 </div>
 <p>One can also try to solve this mathematically by differentiating <span class="math notranslate nohighlight">\(c^*(s)\)</span> and solve for <span class="math notranslate nohighlight">\(\frac{d}{ds}c^*(s)=0\)</span> using <a class="reference external" href="https://www.sympy.org/en/index.html">sympy</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sympy</span><span class="w"> </span><span class="kn">import</span> <span class="n">solve</span><span class="p">,</span> <span class="n">Symbol</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sympy</span><span class="w"> </span><span class="kn">import</span> <span class="n">solve</span><span class="p">,</span> <span class="n">Symbol</span><span class="p">,</span> <span class="n">Rational</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s_symbol</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">k</span> <span class="o">=</span> <span class="p">((</span><span class="n">s_symbol</span> <span class="o">*</span> <span class="n">A</span><span class="p">)</span> <span class="o">/</span> <span class="n">delta</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">))</span>
-<span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">s_symbol</span><span class="p">)</span> <span class="o">*</span> <span class="n">A</span> <span class="o">*</span> <span class="n">k</span> <span class="o">**</span> <span class="n">alpha</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use Rational for exact symbolic computation</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">Rational</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">α</span> <span class="o">=</span> <span class="n">Rational</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">δ</span> <span class="o">=</span> <span class="n">Rational</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">s_symbol</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">k</span> <span class="o">=</span> <span class="p">((</span><span class="n">s_symbol</span> <span class="o">*</span> <span class="n">A</span><span class="p">)</span> <span class="o">/</span> <span class="n">δ</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">α</span><span class="p">))</span>
+<span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">s_symbol</span><span class="p">)</span> <span class="o">*</span> <span class="n">A</span> <span class="o">*</span> <span class="n">k</span> <span class="o">**</span> <span class="n">α</span>
 </pre></div>
 </div>
 </div>
@@ -776,12 +862,12 @@ We will use <span class="math notranslate nohighlight">\(-c^*(s)\)</span> since 
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solve using sympy</span>
 <span class="n">s_star</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">diff</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;s_star = </span><span class="si">{</span><span class="n">s_star</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;s_star = </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">s_star</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>s_star = 0.300000000000000
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>s_star = 0.3
 </pre></div>
 </div>
 </div>
@@ -820,12 +906,12 @@ down, since the system is hit with new shocks at each point in time.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the constants</span>
-<span class="n">sig</span> <span class="o">=</span> <span class="mf">0.2</span>
-<span class="n">mu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">sig</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="n">σ</span> <span class="o">=</span> <span class="mf">0.2</span>
+<span class="n">μ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">σ</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="mi">2</span>
 <span class="n">A</span> <span class="o">=</span> <span class="mf">2.0</span>
 <span class="n">s</span> <span class="o">=</span> <span class="mf">0.6</span>
-<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.3</span>
-<span class="n">delta</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">α</span> <span class="o">=</span> <span class="mf">0.3</span>
+<span class="n">δ</span> <span class="o">=</span> <span class="mf">0.5</span>
 <span class="n">x0</span> <span class="o">=</span> <span class="p">[</span><span class="mf">.25</span><span class="p">,</span> <span class="mf">3.25</span><span class="p">]</span> <span class="c1"># list of initial values used for simulation</span>
 </pre></div>
 </div>
@@ -835,10 +921,10 @@ down, since the system is hit with new shocks at each point in time.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">lgnorm</span><span class="p">():</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">mu</span> <span class="o">+</span> <span class="n">sig</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">())</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">μ</span> <span class="o">+</span> <span class="n">σ</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">())</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">k_next</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">lgnorm</span><span class="p">()</span> <span class="o">*</span> <span class="n">s</span> <span class="o">*</span> <span class="n">k</span><span class="o">**</span><span class="n">alpha</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">delta</span><span class="p">)</span> <span class="o">*</span> <span class="n">k</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">k_next</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">α</span><span class="p">,</span> <span class="n">δ</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">lgnorm</span><span class="p">()</span> <span class="o">*</span> <span class="n">s</span> <span class="o">*</span> <span class="n">k</span><span class="o">**</span><span class="n">α</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">δ</span><span class="p">)</span> <span class="o">*</span> <span class="n">k</span>
 </pre></div>
 </div>
 </div>
@@ -853,7 +939,7 @@ down, since the system is hit with new shocks at each point in time.</p>
     <span class="k">for</span> <span class="n">x_init</span> <span class="ow">in</span> <span class="n">x_values</span><span class="p">:</span>
         <span class="n">ts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x_init</span>
         <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ts_length</span><span class="p">):</span>
-            <span class="n">ts</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">k_next</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">ts</span><span class="p">[</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">ts</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">k_next</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">α</span><span class="p">,</span> <span class="n">δ</span><span class="p">,</span> <span class="n">ts</span><span class="p">[</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ts_length</span><span class="p">),</span> <span class="n">ts</span><span class="p">,</span> <span class="s1">&#39;-o&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
                 <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$k_0=</span><span class="si">%g</span><span class="s1">$&#39;</span> <span class="o">%</span><span class="k">x_init</span>)
 
@@ -875,7 +961,7 @@ down, since the system is hit with new shocks at each point in time.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/0e0d0489145b4d935f91cf50d57e3ee6a36259a3f4ae9384be98674a40f2925f.png"><img alt="_images/0e0d0489145b4d935f91cf50d57e3ee6a36259a3f4ae9384be98674a40f2925f.png" src="_images/0e0d0489145b4d935f91cf50d57e3ee6a36259a3f4ae9384be98674a40f2925f.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/13cbcba61c75741b8bfcbb1aa7e9be2170344dbfe9a9a4425eb05a1abd20575e.png"><img alt="_images/13cbcba61c75741b8bfcbb1aa7e9be2170344dbfe9a9a4425eb05a1abd20575e.png" src="_images/13cbcba61c75741b8bfcbb1aa7e9be2170344dbfe9a9a4425eb05a1abd20575e.png" style="width: 80%;" />
 </a>
 </div>
 </div>
