@@ -36,7 +36,7 @@ by printing money at times $t \geq T$.
 
 These outcomes are the essential finding of Sargent and Wallace's "unpleasant monetarist arithmetic" {cite}`sargent1981`.
 
-That lecture  described  supplies and demands for money that appear in lecture.
+That lecture  described  supplies and demands for money that appear in that lecture.
 
 It also   characterized the steady state equilibrium from which we work backwards in this lecture. 
 

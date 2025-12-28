@@ -34,7 +34,7 @@ Linear programs come in pairs:
 
 If a primal problem involves *maximization*, the dual problem involves *minimization*.
 
-If a primal problem involves  *minimization**, the dual problem involves **maximization*.
+If a primal problem involves *minimization*, the dual problem involves *maximization*.
 
 We provide a standard form of a linear program and methods to transform other forms of linear programming problems  into a standard form.
 
