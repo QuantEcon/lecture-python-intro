@@ -19,7 +19,7 @@ kernelspec:
 This  is a sister lecture to our  lecture on {doc}`consumption-smoothing <cons_smooth>`.
 
 
-By renaming variables, we  obtain  a  version of a model "tax-smoothing model" that  Robert Barro {cite}`Barro1979` used  to explain why governments sometimes choose not to balance their budgets every period but instead use issue debt to smooth tax rates over time.
+By renaming variables, we  obtain  a  version of a model "tax-smoothing model" that  Robert Barro {cite}`Barro1979` used  to explain why governments sometimes choose not to balance their budgets every period but instead issue debt to smooth tax rates over time.
 
 The government chooses a tax collection path that minimizes the present value of its costs of raising revenue.
 
@@ -49,7 +49,7 @@ from collections import namedtuple
 
 A government exists at times $t=0, 1, \ldots, S$ and  faces an exogenous stream of expenditures $\{G_t\}_{t=0}^S$.
 
-It chooses  chooses a stream of tax collections $\{T_t\}_{t=0}^S$.
+It chooses a stream of tax collections $\{T_t\}_{t=0}^S$.
 
 The model takes a government expenditure stream as an "exogenous" input that is somehow determined  outside the model.
 

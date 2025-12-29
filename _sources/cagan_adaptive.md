@@ -437,8 +437,8 @@ We invite you to explain to  yourself the source of this overshooting and why it
 
 ### Experiment 2
 
-Now we'll do a different experiment, namely, a gradual stabilization in which the rate of growth of the money supply smoothly 
-decline from a high value to a persistently low value.  
+Now we'll do a different experiment, namely, a gradual stabilization in which the rate of growth of the money supply smoothly
+declines from a high value to a persistently low value.  
 
 While price level inflation eventually falls, it falls more slowly than the driving  force that ultimately causes it to fall, namely, the falling rate of growth of the money supply.
 

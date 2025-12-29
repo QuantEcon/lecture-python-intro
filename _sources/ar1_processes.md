@@ -356,7 +356,7 @@ In this equation, we can use observed data to evaluate the left hand side of {eq
 
 And we can use a theoretical AR(1) model to calculate the right hand side.
 
-If $\frac{1}{m} \sum_{t = 1}^m X_t$ is not close to $\psi^(x)$, even for many
+If $\frac{1}{m} \sum_{t = 1}^m X_t$ is not close to $\psi^*(x)$, even for many
 observations, then our theory seems to be incorrect and we will need to revise
 it.
 

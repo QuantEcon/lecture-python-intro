@@ -57,7 +57,7 @@ These graphs will portray how the "Industrial Revolution" began in Britain in th
 
 In a nutshell, this lecture records growth trajectories of various countries over long time periods. 
 
-While some countries have experienced long-term rapid growth across that has lasted a hundred years, others have not. 
+While some countries have experienced long-term rapid growth that has lasted a hundred years, others have not. 
 
 Since populations differ across countries and vary within a country over time, it will
 be interesting to describe both total GDP and GDP per capita as it evolves within a country.
@@ -181,7 +181,7 @@ gdp_pc[country].plot(
 [International dollars](https://en.wikipedia.org/wiki/international_dollar) are a hypothetical unit of currency that has the same purchasing power parity that the U.S. Dollar has in the United States at a given point in time. They are also known as Geary–Khamis dollars (GK Dollars).
 :::
 
-We can see that the data is non-continuous for longer periods in the early 250 years of this millennium, so we could choose to interpolate to get a continuous line plot.
+We can see that the data is incomplete for longer periods in the early 250 years of this millennium, so we could choose to interpolate to get a continuous line plot.
 
 Here we use dashed lines to indicate interpolated trends
 

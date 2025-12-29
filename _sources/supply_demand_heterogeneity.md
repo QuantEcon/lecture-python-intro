@@ -36,7 +36,7 @@ import numpy as np
 from scipy.linalg import inv
 ```
 
-## An simple example
+## A simple example
 
 Let's study a simple example of **pure exchange** economy without production.
 

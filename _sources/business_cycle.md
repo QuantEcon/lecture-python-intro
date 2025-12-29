@@ -211,7 +211,7 @@ plt.show()
 
 GDP growth is positive on average and trending slightly downward over time.
 
-We also see fluctuations over GDP growth over time, some of which are quite large.
+We also see fluctuations in GDP growth over time, some of which are quite large.
 
 Let's look at a few more countries to get a basis for comparison.
 
@@ -608,7 +608,7 @@ perspectives: consumption, production, and credit level.
 
 ### Consumption
 
-Consumption depends on consumers' confidence towards their
+Consumption depends on consumers' confidence in their
 income and the overall performance of the economy in the future. 
 
 One widely cited indicator for consumer confidence is the [consumer sentiment index](https://fred.stlouisfed.org/series/UMCSENT) published by the University
