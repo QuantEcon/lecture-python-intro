@@ -77,7 +77,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=22b71a9b445b7b2b6a277c0a48ea72bf6e7c90d9" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=ca16d73eb23eeca4aff446ccb0673818c18f9cfc" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
@@ -102,7 +102,7 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js?v=4a39c7ea"></script>
-    <script src="_static/scripts/quantecon-book-theme.js?digest=65b86b9423025043228643fcfb616ce846cb91c1"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=239405dfbfda750f9038d3ea275d1490a4be841e"></script>
     <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
     <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -163,6 +163,8 @@
 
 <!-- Override QuantEcon theme colors -->
 
+<!-- Color scheme: applies scheme-specific body class -->
+
     <span id="top"></span>
 
     <div class="qe-wrapper">
@@ -173,6 +175,11 @@
 
                 <div class="qe-page__toc">
 
+                    
+                    
+                    
+
+                    
                     <div class="inner">
 
                         
@@ -213,10 +220,14 @@
                         <div class="qe-page__toc-footer">
                             
                             
+                            
                             <p><a href="#top"><strong>Back to top</strong></a></p>
+                            
                         </div>
 
                     </div>
+
+                    
 
                 </div>
 
@@ -257,7 +268,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/ea4253a7" class="changelog-hash">ea4253a7</a>
                                 
                                 <span class="changelog-author">Matt McKay</span>
-                                <span class="changelog-time">11 months ago</span>
+                                <span class="changelog-time">1 year ago</span>
                                 <span class="changelog-message">FIX: yf change to labels and using close price (#564)</span>
                             </li>
                             
@@ -275,7 +286,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/86ba660a" class="changelog-hash">86ba660a</a>
                                 
                                 <span class="changelog-author">kp992</span>
-                                <span class="changelog-time">1 year ago</span>
+                                <span class="changelog-time">2 years ago</span>
                                 <span class="changelog-message">Remove unused imports (#331)</span>
                             </li>
                             
@@ -364,7 +375,7 @@ price function.</p>
 </summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting yfinance
-  Downloading yfinance-1.0-py2.py3-none-any.whl.metadata (6.0 kB)
+  Downloading yfinance-1.2.0-py2.py3-none-any.whl.metadata (6.1 kB)
 Requirement already satisfied: pandas&gt;=1.3.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (2.3.3)
 Requirement already satisfied: numpy&gt;=1.16.5 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (2.3.5)
 Requirement already satisfied: requests&gt;=2.31 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (2.32.5)
@@ -372,7 +383,6 @@ Collecting multitasking&gt;=0.0.7 (from yfinance)
   Downloading multitasking-0.0.12.tar.gz (19 kB)
   Installing build dependencies ... ?25l-
  \
- |
  done
 ?25h  Getting requirements to build wheel ... ?25l-
  done
@@ -383,23 +393,13 @@ Requirement already satisfied: pytz&gt;=2022.5 in /home/runner/miniconda3/envs/q
 Collecting frozendict&gt;=2.3.4 (from yfinance)
   Downloading frozendict-2.4.7-py3-none-any.whl.metadata (23 kB)
 Collecting peewee&gt;=3.16.2 (from yfinance)
-  Downloading peewee-3.18.3.tar.gz (3.0 MB)
-?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/3.0 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">3.0/3.0 MB</span> <span class=" -Color -Color-Red">90.9 MB/s</span>  <span class=" -Color -Color-Yellow">0:00:00</span>
-?25h
-  Installing build dependencies ... ?25l-
- \
- done
-?25h  Getting requirements to build wheel ... ?25l-
- done
-?25h  Preparing metadata (pyproject.toml) ... ?25l-
- done
-?25hRequirement already satisfied: beautifulsoup4&gt;=4.11.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (4.13.5)
+  Downloading peewee-4.0.0-py3-none-any.whl.metadata (8.1 kB)
+Requirement already satisfied: beautifulsoup4&gt;=4.11.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (4.13.5)
 Collecting curl_cffi&lt;0.14,&gt;=0.7 (from yfinance)
   Downloading curl_cffi-0.13.0-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (13 kB)
 Requirement already satisfied: protobuf&gt;=3.19.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (5.29.3)
 Collecting websockets&gt;=13.0 (from yfinance)
-  Downloading websockets-15.0.1-cp313-cp313-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.8 kB)
+  Downloading websockets-16.0-cp313-cp313-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (6.8 kB)
 Requirement already satisfied: cffi&gt;=1.12.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from curl_cffi&lt;0.14,&gt;=0.7-&gt;yfinance) (2.0.0)
 Requirement already satisfied: certifi&gt;=2024.2.2 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from curl_cffi&lt;0.14,&gt;=0.7-&gt;yfinance) (2025.11.12)
 Requirement already satisfied: soupsieve&gt;1.2 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from beautifulsoup4&gt;=4.11.1-&gt;yfinance) (2.5)
@@ -411,30 +411,26 @@ Requirement already satisfied: six&gt;=1.5 in /home/runner/miniconda3/envs/quant
 Requirement already satisfied: charset_normalizer&lt;4,&gt;=2 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from requests&gt;=2.31-&gt;yfinance) (3.4.4)
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from requests&gt;=2.31-&gt;yfinance) (3.11)
 Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from requests&gt;=2.31-&gt;yfinance) (2.5.0)
-Downloading yfinance-1.0-py2.py3-none-any.whl (127 kB)
+Downloading yfinance-1.2.0-py2.py3-none-any.whl (130 kB)
 Downloading curl_cffi-0.13.0-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (8.3 MB)
 ?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/8.3 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">8.3/8.3 MB</span> <span class=" -Color -Color-Red">85.1 MB/s</span>  <span class=" -Color -Color-Yellow">0:00:00</span>
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">8.3/8.3 MB</span> <span class=" -Color -Color-Red">136.2 MB/s</span>  <span class=" -Color -Color-Yellow">0:00:00</span>
 ?25hDownloading frozendict-2.4.7-py3-none-any.whl (16 kB)
-Downloading websockets-15.0.1-cp313-cp313-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (182 kB)
-Building wheels for collected packages: multitasking, peewee
+Downloading peewee-4.0.0-py3-none-any.whl (139 kB)
+Downloading websockets-16.0-cp313-cp313-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (184 kB)
+Building wheels for collected packages: multitasking
   Building wheel for multitasking (pyproject.toml) ... ?25l-
  done
-?25h  Created wheel for multitasking: filename=multitasking-0.0.12-py3-none-any.whl size=15636 sha256=b6079552af774429fe8b6150acf81833862ae37dab36bb554b9bedefc4b9b9ab
+?25h  Created wheel for multitasking: filename=multitasking-0.0.12-py3-none-any.whl size=15635 sha256=2793a6d1e1ec6797a849baf7baa17ea1684d0a5f9255eff9de16ccf991b221e7
   Stored in directory: /home/runner/.cache/pip/wheels/1e/df/0f/e2bbb22d689b30c681feb5410ab64a2523437b34c8ecfc6476
-  Building wheel for peewee (pyproject.toml) ... ?25l-
- \
- |
- done
-?25h  Created wheel for peewee: filename=peewee-3.18.3-cp313-cp313-linux_x86_64.whl size=302197 sha256=4b0bbf445190305f8e5ac33134014c2332b1f138dc9f7b112e1fa8f2294d2e73
-  Stored in directory: /home/runner/.cache/pip/wheels/8c/a9/a4/df972cd49f865ffde174d9c5b26f14f08f8a363ed31e10ff91
-Successfully built multitasking peewee
+Successfully built multitasking
 Installing collected packages: peewee, multitasking, websockets, frozendict, curl_cffi, yfinance
 ?25l
    ━━━━━━━━━━━━━╺━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">2/6</span> [websockets]
    ━━━━━━━━━━━━━━━━━━━━━━━━━━╸━━━━━━━━━━━━━ <span class=" -Color -Color-Green">4/6</span> [curl_cffi]
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">6/6</span> [yfinance]
-Successfully installed curl_cffi-0.13.0 frozendict-2.4.7 multitasking-0.0.12 peewee-3.18.3 websockets-15.0.1 yfinance-1.0
+
+Successfully installed curl_cffi-0.13.0 frozendict-2.4.7 multitasking-0.0.12 peewee-4.0.0 websockets-16.0 yfinance-1.2.0
 </pre></div>
 </div>
 </div>
@@ -758,7 +754,7 @@ other choices are possible).</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/ad89178b8f6a00c14e8f87782c1cb3f074bc39045ca0c9d5755fafb7f6ef4526.png"><img alt="_images/ad89178b8f6a00c14e8f87782c1cb3f074bc39045ca0c9d5755fafb7f6ef4526.png" src="_images/ad89178b8f6a00c14e8f87782c1cb3f074bc39045ca0c9d5755fafb7f6ef4526.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/780a44f5187c367d8a930c084c425f9c06c56f9a27bd8ddf6cee8817eb88ae58.png"><img alt="_images/780a44f5187c367d8a930c084c425f9c06c56f9a27bd8ddf6cee8817eb88ae58.png" src="_images/780a44f5187c367d8a930c084c425f9c06c56f9a27bd8ddf6cee8817eb88ae58.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -794,7 +790,7 @@ prices.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/092f96dc07cf2ea7779a47bd8f3d74147d0a9ede0a6263cecf43ad57818284fa.png"><img alt="_images/092f96dc07cf2ea7779a47bd8f3d74147d0a9ede0a6263cecf43ad57818284fa.png" src="_images/092f96dc07cf2ea7779a47bd8f3d74147d0a9ede0a6263cecf43ad57818284fa.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/f8d23c4925380ce393592a2732010103fdf5b453bb7d06af39810b6afe447a8c.png"><img alt="_images/f8d23c4925380ce393592a2732010103fdf5b453bb7d06af39810b6afe447a8c.png" src="_images/f8d23c4925380ce393592a2732010103fdf5b453bb7d06af39810b6afe447a8c.png" style="width: 80%;" />
 </a>
 </div>
 </div>
