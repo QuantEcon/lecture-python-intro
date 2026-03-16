@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.16.4
+    jupytext_version: 1.17.1
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -283,7 +283,7 @@ def compute_optimal(model, B0, G_seq):
     A = np.diag(-R*np.ones(S), k=-1) + np.eye(S+1)
     b = G_seq - T_seq
     b[0] = b[0] + B0
-    B_seq = np.linalg.inv(A) @ b
+    B_seq = np.linalg.inv(A) @ (R * b)
     B_seq = np.concatenate([[B0], B_seq])
 
     return T_seq, B_seq, h0
@@ -368,7 +368,7 @@ def plot_ts(model,    # tax-smoothing model
     T_seq, B_seq, h0 = compute_optimal(model, B0, G_seq)
     
     # Sequence length
-    S = tax_model.S
+    S = model.S
     
     fig, axes = plt.subplots(1, 2, figsize=(12,5))
     
