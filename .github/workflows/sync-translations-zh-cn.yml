@@ -17,13 +17,40 @@ jobs:
   sync:
     if: >
       (github.event_name == 'pull_request' && github.event.pull_request.merged == true) ||
-      (github.event_name == 'issue_comment' && contains(github.event.comment.body, '\translate-resync'))
+      (
+        github.event_name == 'issue_comment' &&
+        github.event.issue.pull_request &&
+        contains(github.event.comment.body, '\translate-resync') &&
+        (
+          github.event.comment.author_association == 'OWNER' ||
+          github.event.comment.author_association == 'MEMBER' ||
+          github.event.comment.author_association == 'COLLABORATOR'
+        )
+      )
     runs-on: ubuntu-latest
 
     steps:
+      - name: Resolve merged PR commit for re-sync
+        if: github.event_name == 'issue_comment'
+        id: resolve_pr
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          pr_json="$(gh api repos/${{ github.repository }}/pulls/${{ github.event.issue.number }})"
+          merged="$(jq -r '.merged' <<<"$pr_json")"
+          merge_commit_sha="$(jq -r '.merge_commit_sha // empty' <<<"$pr_json")"
+
+          if [ "$merged" != "true" ] || [ -z "$merge_commit_sha" ]; then
+            echo "The referenced pull request is not merged or has no merge commit SHA."
+            exit 1
+          fi
+
+          echo "merge_commit_sha=$merge_commit_sha" >> "$GITHUB_OUTPUT"
+
       - uses: actions/checkout@v6
         with:
           fetch-depth: 2
+          ref: ${{ steps.resolve_pr.outputs.merge_commit_sha || github.sha }}
 
       - uses: QuantEcon/action-translation@v0.14.1
         with:
