@@ -45,7 +45,8 @@ We will use the following imports.
 ```{code-cell} ipython3
 import numpy as np
 import matplotlib.pyplot as plt
-from numpy.random import randn
+
+rng = np.random.default_rng()
 ```
 
 
@@ -168,9 +169,9 @@ $$
 
 S = 0.0
 for i in range(n):
-    X_1 = np.exp(μ_1 + σ_1 * randn())
-    X_2 = np.exp(μ_2 + σ_2 * randn())
-    X_3 = np.exp(μ_3 + σ_3 * randn())
+    X_1 = np.exp(μ_1 + σ_1 * rng.standard_normal())
+    X_2 = np.exp(μ_2 + σ_2 * rng.standard_normal())
+    X_3 = np.exp(μ_3 + σ_3 * rng.standard_normal())
     S += (X_1 + X_2 + X_3)**p
 S / n
 ```
@@ -183,9 +184,9 @@ We can also construct a function that contains these operations:
 def compute_mean(n=1_000_000):
     S = 0.0
     for i in range(n):
-        X_1 = np.exp(μ_1 + σ_1 * randn())
-        X_2 = np.exp(μ_2 + σ_2 * randn())
-        X_3 = np.exp(μ_3 + σ_3 * randn())
+        X_1 = np.exp(μ_1 + σ_1 * rng.standard_normal())
+        X_2 = np.exp(μ_2 + σ_2 * rng.standard_normal())
+        X_3 = np.exp(μ_3 + σ_3 * rng.standard_normal())
         S += (X_1 + X_2 + X_3)**p
     return (S / n)
 ```
@@ -210,9 +211,9 @@ To make it faster, let's implement a vectorized routine using NumPy.
 
 ```{code-cell} ipython3
 def compute_mean_vectorized(n=1_000_000):
-    X_1 = np.exp(μ_1 + σ_1 * randn(n))
-    X_2 = np.exp(μ_2 + σ_2 * randn(n))
-    X_3 = np.exp(μ_3 + σ_3 * randn(n))
+    X_1 = np.exp(μ_1 + σ_1 * rng.standard_normal(n))
+    X_2 = np.exp(μ_2 + σ_2 * rng.standard_normal(n))
+    X_3 = np.exp(μ_3 + σ_3 * rng.standard_normal(n))
     S = (X_1 + X_2 + X_3)**p
     return S.mean()
 ```
@@ -399,7 +400,7 @@ M = 10_000_000
 Here is our code
 
 ```{code-cell} ipython3
-S = np.exp(μ + σ * np.random.randn(M))
+S = np.exp(μ + σ * rng.standard_normal(M))
 return_draws = np.maximum(S - K, 0)
 P = β**n * np.mean(return_draws)
 print(f"The Monte Carlo option price is approximately {P:3f}")
@@ -520,8 +521,8 @@ def simulate_asset_price_path(μ=default_μ, S0=default_S0, h0=default_h0, n=def
 
     h = h0
     for t in range(n):
-        s[t+1] = s[t] + μ + np.exp(h) * randn()
-        h = ρ * h + ν * randn()
+        s[t+1] = s[t] + μ + np.exp(h) * rng.standard_normal()
+        h = ρ * h + ν * rng.standard_normal()
 
     return np.exp(s)
 ```
@@ -583,8 +584,8 @@ def compute_call_price(β=default_β,
         h = h0
         # Simulate forward in time
         for t in range(n):
-            s = s + μ + np.exp(h) * randn()
-            h = ρ * h + ν * randn()
+            s = s + μ + np.exp(h) * rng.standard_normal()
+            h = ρ * h + ν * rng.standard_normal()
         # And add the value max{S_n - K, 0} to current_sum
         current_sum += np.maximum(np.exp(s) - K, 0)
 
@@ -629,7 +630,7 @@ def compute_call_price_vector(β=default_β,
     s = np.full(M, np.log(S0))
     h = np.full(M, h0)
     for t in range(n):
-        Z = np.random.randn(2, M)
+        Z = rng.standard_normal((2, M))
         s = s + μ + np.exp(h) * Z[0, :]
         h = ρ * h + ν * Z[1, :]
     expectation = np.mean(np.maximum(np.exp(s) - K, 0))
@@ -706,8 +707,8 @@ def compute_call_price_with_barrier(β=default_β,
         option_is_null = False
         # Simulate forward in time
         for t in range(n):
-            s = s + μ + np.exp(h) * randn()
-            h = ρ * h + ν * randn()
+            s = s + μ + np.exp(h) * rng.standard_normal()
+            h = ρ * h + ν * rng.standard_normal()
             if np.exp(s) > bp:
                 payoff = 0
                 option_is_null = True
@@ -744,7 +745,7 @@ def compute_call_price_with_barrier_vector(β=default_β,
     h = np.full(M, h0)
     option_is_null = np.full(M, False)
     for t in range(n):
-        Z = np.random.randn(2, M)
+        Z = rng.standard_normal((2, M))
         s = s + μ + np.exp(h) * Z[0, :]
         h = ρ * h + ν * Z[1, :]
         # Mark all the options null where S_n > barrier price
