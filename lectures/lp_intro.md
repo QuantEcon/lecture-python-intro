@@ -487,9 +487,9 @@ The optimal plan tells the  factory to produce $2.5$ units of Product 1 and $5$ 
 
 We are using the `linprog` function as a *black box*.
 
-Inside it, Python first  transforms the problem into  standard form.
+Internally, after a presolve step, SciPy transforms the problem into a standard form before applying the selected solver.
 
-To do that, for each inequality constraint it generates one slack variable.
+In this transformation, one slack variable is added for each inequality constraint.
 
 Here the vector of slack variables is a two-dimensional NumPy array that  equals $b_{ub} - A_{ub}x$.
 
