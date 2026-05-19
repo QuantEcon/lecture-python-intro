@@ -60,6 +60,8 @@ We will use the following imports.
 ```{code-cell} ipython3
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+from IPython.display import HTML
 ```
 
 ## History
@@ -319,10 +321,43 @@ m = Market()
 ```
 
 ```{code-cell} ipython3
-plot45(m, 0, 9, 2, num_arrows=3)
+fig, ax = plt.subplots(figsize=(9, 8))
+ax.set_xlabel('$p_t$')
+ax.set_ylabel('$p_{t+1}$')
+
+ax.plot([0, 9], [0, 9], lw=1, alpha=0.7, label='45°')
+
+p_grid = np.linspace(0, 9, 200)
+ax.plot(p_grid, [g(m, p) for p in p_grid], 'b-', lw=2, alpha=0.6, label='g')
+
+ax.legend()
+
+cobweb, = ax.plot([], [], lw=1.5)
+point, = ax.plot([], [], '.', markersize=20)
+
+def animate(i):
+    p0 = 2
+    x, y = [p0], [p0]
+    p = p0
+
+    for _ in range(i):
+        p_next = g(m, p)
+        x.extend([p, p])
+        y.extend([p_next, p_next])
+        x.append(p_next)
+        y.append(p_next)
+        p = p_next
+
+    cobweb.set_data(x, y)
+    point.set_data([p], [p])
+    return cobweb, point
+
+anim = FuncAnimation(fig, animate, frames=20, interval=500, blit=True)
+plt.close()
+HTML(anim.to_jshtml())
 ```
 
-The plot shows the function $g$ defined in {eq}`def_g` and the 45-degree line.
+The animation shows the function $g$ defined in {eq}`def_g`, the 45-degree line, and the resulting price dynamics.
 
 Think of $ p_t $ as a value on the horizontal axis.
 
