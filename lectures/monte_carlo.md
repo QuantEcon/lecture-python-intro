@@ -342,7 +342,7 @@ Now let's price a European call option.
 
 The option is described by three things:
 
-2. $n$, the **expiry date**,
+1. $n$, the **expiry date**,
 2. $K$, the **strike price**, and
 3. $S_n$, the price of the **underlying** asset at date $n$.
 
