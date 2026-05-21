@@ -1005,7 +1005,8 @@ A = np.array([[1, 0, 3],
 num_iters = 20
 
 # Define a random starting vector b
-b = np.random.rand(A.shape[1])
+rng = np.random.default_rng()
+b = rng.random(A.shape[1])
 
 # Get the leading eigenvector of matrix A
 eigenvector = np.linalg.eig(A)[1][:, 0]
