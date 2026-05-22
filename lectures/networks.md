@@ -37,8 +37,7 @@ intricate connections between simple processing units.
 Epidemiologists studying [transmission of diseases](https://en.wikipedia.org/wiki/Network_medicine#Network_epidemics)
 like COVID-19 analyze interactions between groups of human hosts.
 
-In operations research, network analysis is used to study fundamental problems
-as on minimum cost flow, the traveling salesman, [shortest paths](https://en.wikipedia.org/wiki/Shortest_path_problem),
+In operations research, network analysis is used to study fundamental problems such as minimum cost flow, the traveling salesman, [shortest paths](https://en.wikipedia.org/wiki/Shortest_path_problem),
 and assignment.
 
 This lecture gives an introduction to economic and financial networks.
