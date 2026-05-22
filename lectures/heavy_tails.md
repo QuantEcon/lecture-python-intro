@@ -252,7 +252,8 @@ mystnb:
     caption: Histogram (normal vs bitcoin returns)
     name: hist-normal-btc
 ---
-r = np.random.standard_t(df=5, size=1000)
+rng = np.random.default_rng()
+r = rng.standard_t(df=5, size=1000)
 
 fig, ax = plt.subplots()
 ax.hist(r, bins=60, alpha=0.4, label='bitcoin returns', density=True)
@@ -348,7 +349,7 @@ mystnb:
     name: draws-normal-cauchy
 ---
 n = 120
-np.random.seed(11)
+rng = np.random.default_rng(11)
 
 fig, axes = plt.subplots(3, 1, figsize=(6, 12))
 
@@ -358,7 +359,7 @@ for ax in axes:
 s_vals = 2, 12
 
 for ax, s in zip(axes[:2], s_vals):
-    data = np.random.randn(n) * s
+    data = rng.standard_normal(n) * s
     ax.plot(list(range(n)), data, linestyle='', marker='o', alpha=0.5, ms=4)
     ax.vlines(list(range(n)), 0, data, lw=0.2)
     ax.set_title(fr"draws from $N(0, \sigma^2)$ with $\sigma = {s}$", fontsize=11)
@@ -407,12 +408,12 @@ mystnb:
     name: draws-exponential
 ---
 n = 120
-np.random.seed(11)
+rng = np.random.default_rng(11)
 
 fig, ax = plt.subplots()
 ax.set_ylim((0, 50))
 
-data = np.random.exponential(size=n)
+data = rng.exponential(size=n)
 ax.plot(list(range(n)), data, linestyle='', marker='o', alpha=0.5, ms=4)
 ax.vlines(list(range(n)), 0, data, lw=0.2)
 
@@ -464,11 +465,11 @@ mystnb:
     name: draws-pareto
 ---
 n = 120
-np.random.seed(11)
+rng = np.random.default_rng(11)
 
 fig, ax = plt.subplots()
 ax.set_ylim((0, 80))
-exponential_data = np.random.exponential(size=n)
+exponential_data = rng.exponential(size=n)
 pareto_data = np.exp(exponential_data)
 ax.plot(list(range(n)), pareto_data, linestyle='', marker='o', alpha=0.5, ms=4)
 ax.vlines(list(range(n)), 0, pareto_data, lw=0.2)
@@ -612,13 +613,13 @@ mystnb:
 # Parameters and grid
 x_grid = np.linspace(1, 1000, 1000)
 sample_size = 1000
-np.random.seed(13)
-z = np.random.randn(sample_size)
+rng = np.random.default_rng(13)
+z = rng.standard_normal(sample_size)
 
 # Draws
-data_exp = np.random.exponential(size=sample_size)
+data_exp = rng.exponential(size=sample_size)
 data_logn = np.exp(z)
-data_pareto = np.exp(np.random.exponential(size=sample_size))
+data_pareto = np.exp(rng.exponential(size=sample_size))
 
 data_list = [data_exp, data_logn, data_pareto]
 
@@ -658,7 +659,7 @@ The [statsmodels](https://www.statsmodels.org/stable/index.html) package provide
 If the data is drawn from a normal distribution, the plot would look like:
 
 ```{code-cell} ipython3
-data_normal = np.random.normal(size=sample_size)
+data_normal = rng.normal(size=sample_size)
 sm.qqplot(data_normal, line='45')
 plt.show()
 ```
@@ -978,13 +979,13 @@ mystnb:
 ---
 from scipy.stats import cauchy
 
-np.random.seed(1234)
+rng = np.random.default_rng(1234)
 N = 1_000
 
 distribution = cauchy()
 
 fig, ax = plt.subplots()
-data = distribution.rvs(N)
+data = distribution.rvs(N, random_state=rng)
 
 # Compute sample mean at each n
 sample_mean = np.empty(N)
@@ -1200,7 +1201,7 @@ $\alpha$.
 
 For $\alpha$, try 1.15, 1.5 and 1.75.
 
-Use `np.random.seed(11)` to set the seed.
+Use `rng = np.random.default_rng(11)` to set the seed.
 ```
 
 
@@ -1211,7 +1212,7 @@ Use `np.random.seed(11)` to set the seed.
 ```{code-cell} ipython3
 from scipy.stats import pareto
 
-np.random.seed(11)
+rng = np.random.default_rng(11)
 
 n = 120
 alphas = [1.15, 1.50, 1.75]
@@ -1220,7 +1221,7 @@ fig, axes = plt.subplots(3, 1, figsize=(6, 8))
 
 for (a, ax) in zip(alphas, axes):
     ax.set_ylim((-5, 50))
-    data = pareto.rvs(size=n, scale=1, b=a)
+    data = pareto.rvs(size=n, scale=1, b=a, random_state=rng)
     ax.plot(list(range(n)), data, linestyle='', marker='o', alpha=0.5, ms=4)
     ax.vlines(list(range(n)), 0, data, lw=0.2)
     ax.set_title(f"Pareto draws with $\\alpha = {a}$", fontsize=11)
@@ -1280,7 +1281,7 @@ for each of the two distributions and compare the two samples by
 * producing a [violin plot](https://en.wikipedia.org/wiki/Violin_plot) visualizing the two samples side-by-side and
 * printing the mean and standard deviation of both samples.
 
-For the seed use `np.random.seed(1234)`.
+For the seed use `rng = np.random.default_rng(1234)`.
 
 What differences do you observe?
 
@@ -1334,9 +1335,9 @@ r = 0.05
 x_bar = 1.0
 α = 1.05
 
-def pareto_rvs(n):
+def pareto_rvs(n, rng):
     "Uses a standard method to generate Pareto draws."
-    u = np.random.uniform(size=n)
+    u = rng.uniform(size=n)
     y = x_bar / (u**(1/α))
     return y
 ```
@@ -1353,13 +1354,13 @@ Here's a function to compute a single estimate of tax revenue for a particular
 choice of distribution `dist`.
 
 ```{code-cell} ipython3
-def tax_rev(dist):
+def tax_rev(dist, rng):
     tax_raised = 0
     for t in range(num_years):
         if dist == 'pareto':
-            π = pareto_rvs(num_firms)
+            π = pareto_rvs(num_firms, rng)
         else:
-            π = np.exp(μ + σ * np.random.randn(num_firms))
+            π = np.exp(μ + σ * rng.standard_normal(num_firms))
         tax_raised += β**t * np.sum(π * tax_rate)
     return tax_raised
 ```
@@ -1368,14 +1369,14 @@ Now let's generate the violin plot.
 
 ```{code-cell} ipython3
 num_reps = 100
-np.random.seed(1234)
+rng = np.random.default_rng(1234)
 
 tax_rev_lognorm = np.empty(num_reps)
 tax_rev_pareto = np.empty(num_reps)
 
 for i in range(num_reps):
-    tax_rev_pareto[i] = tax_rev('pareto')
-    tax_rev_lognorm[i] = tax_rev('lognorm')
+    tax_rev_pareto[i] = tax_rev('pareto', rng)
+    tax_rev_lognorm[i] = tax_rev('lognorm', rng)
 
 fig, ax = plt.subplots()
 
