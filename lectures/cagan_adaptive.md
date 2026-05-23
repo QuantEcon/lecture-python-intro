@@ -454,3 +454,304 @@ The sluggish fall in inflation is explained by how anticipated  inflation $\pi_t
 # solve and plot
 π_seq_2, Eπ_seq_2, m_seq_2, p_seq_2 = solve_and_plot(md, μ_seq_2)
 ```
+
+## Exercises
+
+```{exercise}
+:label: ca_ex1
+
+**Sensitivity of overshooting to the learning speed $\lambda$.**
+
+For Experiment 1 (sudden stabilization at $T_1 = 60$ from $\mu_0 = 0.5$ to
+$\mu^* = 0$), solve the model for
+$\lambda \in \{0.3,\, 0.5,\, 0.7,\, 0.9\}$ and, on a single graph, plot the
+actual inflation rate $\pi_t$ for each value.
+
+(a) As $\lambda$ decreases (the public updates its expectations faster), what
+    happens to the magnitude of the overshoot in $\pi_t$ at $t = T_1$?
+
+(b) For each $\lambda$, print the peak value of $\pi_t$ for $t \geq T_1$.
+    Explain intuitively why faster updating dampens overshooting.
+```
+
+```{solution-start} ca_ex1
+:class: dropdown
+```
+
+```{code-cell} ipython3
+T1 = 60
+μ0 = 0.5
+μ_star = 0.0
+λ_vals = [0.3, 0.5, 0.7, 0.9]
+
+fig, ax = plt.subplots(figsize=(9, 4))
+for λ in λ_vals:
+    m = create_cagan_adaptive_model(λ=λ)
+    μ_seq = np.append(μ0 * np.ones(T1), μ_star * np.ones(m.T + 1 - T1))
+    π_seq, _, _, _ = solve_cagan_adaptive(m, μ_seq)
+    ax.plot(range(m.T + 1), π_seq, label=f'λ = {λ}')
+
+ax.axvline(T1, linestyle='--', color='black', lw=1, label='Stabilization $T_1$')
+ax.axhline(μ_star, linestyle=':', color='gray', lw=0.8)
+ax.set_xlabel('$t$')
+ax.set_ylabel(r'$\pi_t$')
+ax.set_title('Inflation paths for different λ (sudden stabilization)')
+ax.legend()
+plt.show()
+
+print(f'{"λ":>6} | {"peak π after T₁":>18}')
+print('-' * 30)
+for λ in λ_vals:
+    m = create_cagan_adaptive_model(λ=λ)
+    μ_seq = np.append(μ0 * np.ones(T1), μ_star * np.ones(m.T + 1 - T1))
+    π_seq, _, _, _ = solve_cagan_adaptive(m, μ_seq)
+    peak = np.max(np.abs(π_seq[T1:]))
+    print(f'{λ:>6.1f} | {peak:>18.4f}')
+```
+
+When $\lambda$ is small the public places a large weight $(1-\lambda)$ on the most
+recent *actual* inflation observation.  After stabilization, actual inflation drops
+quickly, so expected inflation — and hence money demand — adjusts fast too,
+leaving little room for overshooting.  When $\lambda$ is close to 1 expectations
+are very inertial: the public is slow to "forget" past high inflation, so demand
+for real balances stays depressed after the stabilization, driving a large
+transitory spike in $\pi_t$.
+
+```{solution-end}
+```
+
+```{exercise}
+:label: ca_ex2
+
+**Systematic forecast errors under adaptive expectations.**
+
+The lecture notes that $\pi_t^* \neq \pi_t$ in general under adaptive
+expectations, in contrast to a rational-expectations equilibrium.
+
+For the default model (`md`) and both experiments:
+
+(a) Compute and plot the forecast error $e_t = \pi_t^* - \pi_t$ for
+    $t = 0, 1, \ldots, T$.
+
+(b) For each experiment, is $e_t$ systematically positive or negative during
+    the disinflation?  Explain why this systematic bias could not survive under
+    rational expectations.
+
+(Recall that `Eπ_seq` returned by `solve_cagan_adaptive` has $T+2$ elements
+while `π_seq` has $T+1$; use `Eπ_seq[:-1]` to align them.)
+```
+
+```{solution-start} ca_ex2
+:class: dropdown
+```
+
+```{code-cell} ipython3
+T1  = 60
+μ0  = 0.5
+μ_star = 0.0
+
+# Experiment 1 sequences
+μ_seq_1 = np.append(μ0 * np.ones(T1), μ_star * np.ones(md.T + 1 - T1))
+π1, Eπ1, _, _ = solve_cagan_adaptive(md, μ_seq_1)
+
+# Experiment 2 sequences
+ϕ = 0.9
+μ_seq_2 = np.array([ϕ**t * μ0 + (1 - ϕ**t) * μ_star for t in range(md.T)])
+μ_seq_2 = np.append(μ_seq_2, μ_star)
+π2, Eπ2, _, _ = solve_cagan_adaptive(md, μ_seq_2)
+
+t_seq = np.arange(md.T + 1)
+e1 = Eπ1[:-1] - π1   # forecast error, length T+1
+e2 = Eπ2[:-1] - π2
+
+fig, axes = plt.subplots(1, 2, figsize=(11, 4))
+axes[0].plot(t_seq, e1)
+axes[0].axhline(0, color='black', lw=0.8, linestyle='--')
+axes[0].axvline(T1, color='gray', lw=0.8, linestyle=':')
+axes[0].set_title('Forecast error: Experiment 1 (sudden)')
+axes[0].set_xlabel('$t$')
+axes[0].set_ylabel(r'$\pi_t^* - \pi_t$')
+
+axes[1].plot(t_seq, e2, color='C1')
+axes[1].axhline(0, color='black', lw=0.8, linestyle='--')
+axes[1].set_title('Forecast error: Experiment 2 (gradual)')
+axes[1].set_xlabel('$t$')
+axes[1].set_ylabel(r'$\pi_t^* - \pi_t$')
+
+plt.tight_layout()
+plt.show()
+
+print(f'Exp 1 — mean forecast error t < T₁:  {e1[:T1].mean():.4f}')
+print(f'Exp 1 — mean forecast error t ≥ T₁:  {e1[T1:].mean():.4f}')
+print(f'Exp 2 — mean forecast error overall:  {e2.mean():.4f}')
+```
+
+During disinflation, actual inflation falls *below* expected inflation, so
+$e_t = \pi_t^* - \pi_t > 0$ throughout the transition — the public
+systematically **over-predicts** inflation.  Under rational expectations this
+persistent one-sided bias would be immediately arbitraged away: agents would
+adjust their forecasting rule until $e_t$ had mean zero.
+
+```{solution-end}
+```
+
+```{exercise}
+:label: ca_ex3
+
+**Post-stabilization convergence rate.**
+
+The lecture derives that, after the money-growth rate has been permanently set to
+$\mu^*$, the actual inflation rate $\pi_t$ decays geometrically:
+
+$$
+\pi_{t+1} = \rho\, \pi_t, \qquad
+\rho \equiv \frac{\lambda - \alpha(1-\lambda)}{1 - \alpha(1-\lambda)}.
+$$
+
+Using Experiment 1 and the default model `md`:
+
+(a) Compute $\rho$ analytically from the model parameters and verify that
+    $|\rho| < 1$ (the stability condition {eq}`eq:suffcond`).
+
+(b) From the solved path `π_seq`, compute the empirical ratios
+    $\pi_{t+1}/\pi_t$ for $t = T_1 + 1, \ldots, T_1 + 10$ and compare them
+    to $\rho$.
+
+(c) Plot $\log|\pi_t|$ against $t$ for $t \geq T_1$ and verify that it is
+    linear with slope $\log|\rho|$.
+```
+
+```{solution-start} ca_ex3
+:class: dropdown
+```
+
+```{code-cell} ipython3
+T1 = 60
+μ0 = 0.5
+μ_star = 0.0
+
+α, λ = md.α, md.λ
+ρ = (λ - α * (1 - λ)) / (1 - α * (1 - λ))
+print(f'α = {α},  λ = {λ}')
+print(f'ρ = {ρ:.6f}   (|ρ| < 1: {abs(ρ) < 1})')
+
+μ_seq = np.append(μ0 * np.ones(T1), μ_star * np.ones(md.T + 1 - T1))
+π_seq, _, _, _ = solve_cagan_adaptive(md, μ_seq)
+
+# (b) empirical successive ratios
+print(f'\n{"t":>5} | {"π_t":>12} | {"π_{t+1}/π_t":>14} | {"ρ":>8}')
+print('-' * 46)
+for t in range(T1 + 1, T1 + 11):
+    ratio = π_seq[t] / π_seq[t - 1]
+    print(f'{t:>5} | {π_seq[t]:>12.6f} | {ratio:>14.6f} | {ρ:>8.6f}')
+```
+
+```{code-cell} ipython3
+# (c) log|π_t| is linear after T1
+t_post = np.arange(T1, md.T + 1)
+log_π  = np.log(np.abs(π_seq[T1:]))
+
+fig, ax = plt.subplots()
+ax.plot(t_post, log_π, label=r'$\log|\pi_t|$')
+# overlay the theoretical slope
+slope_theory = np.log(abs(ρ))
+ax.plot(t_post,
+        log_π[0] + slope_theory * (t_post - T1),
+        linestyle='--', label=f'slope = log|ρ| = {slope_theory:.4f}')
+ax.set_xlabel('$t$')
+ax.set_ylabel(r'$\log|\pi_t|$')
+ax.set_title('Geometric decay of inflation after stabilization')
+ax.legend()
+plt.show()
+```
+
+The empirical ratios converge to $\rho = 0.8$ immediately after $T_1$, confirming
+the first-order difference equation derived analytically.  The log plot is exactly
+linear with the theoretical slope, reflecting the exact geometric convergence
+$\pi_t = \rho^{t-T_1} \pi_{T_1}$ for $t \geq T_1$.
+
+```{solution-end}
+```
+
+```{exercise}
+:label: ca_ex4
+
+**Fast vs slow learning under gradual stabilization.**
+
+Experiment 2 uses a gradual decline in money growth
+$\mu_t = \phi^t \mu_0 + (1-\phi^t)\mu^*$ with $\phi = 0.9$.
+
+(a) For the same gradual $\mu$ path, compare the inflation $\pi_t$ and expected
+    inflation $\pi_t^*$ paths for two extreme cases:
+
+    * **Fast learners**: $\lambda = 0.2$ (heavy weight on recent realised inflation)
+    * **Slow learners**: $\lambda = 0.95$ (heavy weight on past expectations)
+
+    Plot $\pi_t$, $\pi_t^*$, and $\mu_t$ for each case on side-by-side graphs.
+
+(b) For each case, compute the mean absolute forecast error
+    $\bar{e} = \frac{1}{T+1}\sum_{t=0}^T |\pi_t^* - \pi_t|$.
+    Which agent type makes larger errors during the disinflation, and why?
+
+(c) For fast learners, explain why $\pi_t$ can *undershoot* $\mu_t$ during the
+    transition, while for slow learners inflation persistently *exceeds*
+    $\mu_t$.
+```
+
+```{solution-start} ca_ex4
+:class: dropdown
+```
+
+```{code-cell} ipython3
+μ0    = 0.5
+μ_star = 0.0
+ϕ     = 0.9
+
+λ_cases = {'Fast learners (λ=0.2)': 0.2,
+           'Slow learners (λ=0.95)': 0.95}
+
+fig, axes = plt.subplots(1, 2, figsize=(12, 4))
+
+for ax, (label, λ) in zip(axes, λ_cases.items()):
+    m = create_cagan_adaptive_model(λ=λ)
+    μ_seq = np.array([ϕ**t * μ0 + (1 - ϕ**t) * μ_star for t in range(m.T)])
+    μ_seq = np.append(μ_seq, μ_star)
+    π_seq, Eπ_seq, _, _ = solve_cagan_adaptive(m, μ_seq)
+
+    t_seq = np.arange(m.T + 1)
+    ax.plot(t_seq, μ_seq,          label=r'$\mu_t$',   linestyle=':',  color='black')
+    ax.plot(t_seq, π_seq,          label=r'$\pi_t$',   lw=1.5)
+    ax.plot(t_seq, Eπ_seq[:-1],    label=r'$\pi_t^*$', linestyle='--', lw=1.5)
+    ax.set_xlabel('$t$')
+    ax.set_title(label)
+    ax.legend(fontsize=8)
+
+plt.tight_layout()
+plt.show()
+
+print(f'{"Case":>30} | {"Mean |forecast error|":>22}')
+print('-' * 56)
+for label, λ in λ_cases.items():
+    m = create_cagan_adaptive_model(λ=λ)
+    μ_seq = np.array([ϕ**t * μ0 + (1 - ϕ**t) * μ_star for t in range(m.T)])
+    μ_seq = np.append(μ_seq, μ_star)
+    π_seq, Eπ_seq, _, _ = solve_cagan_adaptive(m, μ_seq)
+    mae = np.mean(np.abs(Eπ_seq[:-1] - π_seq))
+    print(f'{label:>30} | {mae:>22.6f}')
+```
+
+**Fast learners** quickly revise $\pi_t^*$ downward as they observe each decline
+in $\pi_t$.  Because expectations fall *with* actual inflation, money demand
+adjusts promptly and $\pi_t$ can even dip below $\mu_t$ transiently (a
+"forward-looking" flavour emerges from the rapid feedback).  Their forecast
+errors are small.
+
+**Slow learners** keep $\pi_t^*$ elevated long after actual inflation has begun
+to fall.  Persistently high expected inflation suppresses real money demand,
+which bids up the price level and keeps $\pi_t$ above $\mu_t$ throughout the
+transition.  Their larger, slower-correcting forecast errors are the hallmark of
+the adaptive mechanism.
+
+```{solution-end}
+```
+```

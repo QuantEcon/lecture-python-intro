@@ -488,3 +488,186 @@ Let's compute $\frac{\partial \phi}{\partial R}$ and evaluate it numerically at 
 ```
 
 We find that raising the gross interest rate $R$ increases the initial college wage premium $\phi$, in line with our earlier graphical analysis.
+
+## Exercises
+
+```{exercise}
+:label: eq_ex1
+
+Using `compute_gap`, plot the college-high-school wage premium $\phi$ as a function
+of tuition cost $D \in [0, 30]$ with all other parameters at their default values.
+
+(a) Add a horizontal dashed line at $\phi = 1$.  Does $\phi$ ever reach 1 in this
+    range?  Explain why or why not in terms of the free-college formula
+    $\phi = A_h / A_c$.
+
+(b) Numerically estimate $\partial\phi/\partial D$ as the slope of the plotted
+    line and compare it to the symbolic derivative $\phi_D$ computed with SymPy
+    in this lecture.
+```
+
+```{solution-start} eq_ex1
+:class: dropdown
+```
+
+```{code-cell} ipython3
+D_arr = np.linspace(0, 30, 200)
+# Use create_edm_π with π=1 (certainty) so compute_gap handles the 7-field model
+models = [create_edm_π(D=d, π=1.0) for d in D_arr]
+gaps = [compute_gap(m) for m in models]
+
+fig, ax = plt.subplots()
+ax.plot(D_arr, gaps, label=r'$\phi(D)$')
+ax.axhline(1, linestyle='--', color='red', label=r'$\phi = 1$')
+ax.set_xlabel('$D$ (tuition cost)')
+ax.set_ylabel(r'College wage premium $\phi$')
+ax.set_title('College wage premium vs tuition cost')
+ax.legend()
+plt.show()
+
+# Numerical slope (finite difference)
+slope_num = (gaps[-1] - gaps[0]) / (D_arr[-1] - D_arr[0])
+
+# Compare with SymPy ϕ_D_func already computed in this lecture
+slope_sympy = float(ϕ_D_func(D_value, γ_h_value, γ_c_value, R_value, T_value, w_h0_value))
+
+print(f'Numerical ∂ϕ/∂D: {slope_num:.6f}')
+print(f'SymPy     ∂ϕ/∂D: {slope_sympy:.6f}')
+print(f'Match: {abs(slope_num - slope_sympy) < 1e-4}')
+```
+
+Because $A_h > A_c$ (forgone earnings dominate even with $D=0$), the free-college
+premium $A_h/A_c > 1$, so $\phi$ exceeds 1 for all $D \geq 0$.
+
+```{solution-end}
+```
+
+```{exercise}
+:label: eq_ex2
+
+Plot the college wage premium $\phi$ as a function of career length
+$T \in \{10, 15, 20, \ldots, 60\}$ for two cases:
+
+1. Free college: $D = 0$.
+2. Costly college: $D = 10$.
+
+On the same graph, plot both curves and add a horizontal dashed line at
+$\phi = 1$.  Explain the direction of the relationship between $T$ and $\phi$
+in terms of the present-value factors $A_h$ and $A_c$.
+```
+
+```{solution-start} eq_ex2
+:class: dropdown
+```
+
+```{code-cell} ipython3
+T_arr = np.arange(10, 65, 5)
+
+gaps_free   = [compute_gap(create_edm_π(T=t, D=0,  π=1.0)) for t in T_arr]
+gaps_costly = [compute_gap(create_edm_π(T=t, D=10, π=1.0)) for t in T_arr]
+
+fig, ax = plt.subplots()
+ax.plot(T_arr, gaps_free,   'o-', label='$D = 0$ (free college)')
+ax.plot(T_arr, gaps_costly, 's-', label='$D = 10$ (costly college)')
+ax.axhline(1, linestyle='--', color='gray', label=r'$\phi = 1$')
+ax.set_xlabel('Career length $T$')
+ax.set_ylabel(r'College wage premium $\phi$')
+ax.set_title('College wage premium vs career length')
+ax.legend()
+plt.show()
+```
+
+As $T$ rises, college graduates have more years over which to "recoup" the cost
+of their four-year delay in starting work: $A_c$ grows faster than $A_h$ because
+the 4-year discount factor $(R^{-1}\gamma_c)^4$ is amortised over more periods.
+This shrinks $A_h/A_c$ and therefore $\phi$.
+
+```{solution-end}
+```
+
+```{exercise}
+:label: eq_ex3
+
+Verify the SymPy partial derivative $\partial\phi/\partial R$ numerically using a
+**central finite-difference** approximation
+
+$$
+\frac{\partial\phi}{\partial R}\bigg|_{R=R_0} \approx
+\frac{\phi(R_0 + \varepsilon) - \phi(R_0 - \varepsilon)}{2\varepsilon}
+$$
+
+for $\varepsilon = 10^{-5}$.  Evaluate at the default parameter values and compare
+with the symbolic result computed in this lecture.
+```
+
+```{solution-start} eq_ex3
+:class: dropdown
+```
+
+```{code-cell} ipython3
+ε = 1e-5
+
+# Finite-difference estimate using create_edm_π (π=1 for the standard model)
+gap_plus  = compute_gap(create_edm_π(R=R_value + ε, π=1.0))
+gap_minus = compute_gap(create_edm_π(R=R_value - ε, π=1.0))
+dϕ_dR_fd  = (gap_plus - gap_minus) / (2 * ε)
+
+# SymPy result from ϕ_R_func already computed in this lecture
+dϕ_dR_sym = float(ϕ_R_func(D_value, γ_h_value, γ_c_value, R_value, T_value, w_h0_value))
+
+print(f'Finite-difference ∂ϕ/∂R: {dϕ_dR_fd:.6f}')
+print(f'SymPy             ∂ϕ/∂R: {dϕ_dR_sym:.6f}')
+print(f'Absolute error:           {abs(dϕ_dR_fd - dϕ_dR_sym):.2e}')
+```
+
+The two estimates agree to at least five significant figures, confirming that the
+symbolic calculus and numerical computation are consistent.
+
+```{solution-end}
+```
+
+```{exercise}
+:label: eq_ex4
+
+Using the entrepreneur-worker version of the model (`create_edm_π`), answer the
+following questions.
+
+(a) Plot the required wage premium $\phi$ for a successful entrepreneur as a
+    function of the success probability $\pi \in [0.10, 1.00]$.  Mark the
+    horizontal line $\phi = 2$ as a dashed line.
+
+(b) At what approximate value of $\pi$ does the premium first exceed 2?  Find
+    this threshold by scanning the grid.
+
+(c) Explain intuitively why the premium rises as $\pi \to 0$.
+```
+
+```{solution-start} eq_ex4
+:class: dropdown
+```
+
+```{code-cell} ipython3
+π_arr = np.linspace(0.10, 1.00, 200)
+# create_edm_π and compute_gap are already defined in this lecture
+ϕ_arr_π = [compute_gap(create_edm_π(π=p)) for p in π_arr]
+
+fig, ax = plt.subplots()
+ax.plot(π_arr, ϕ_arr_π, label=r'$\phi(\pi)$')
+ax.axhline(2, linestyle='--', color='red', label=r'$\phi = 2$')
+ax.set_xlabel(r'Success probability $\pi$')
+ax.set_ylabel(r'Required wage premium $\phi$')
+ax.set_title('Entrepreneur premium vs success probability')
+ax.legend()
+plt.show()
+
+# Find threshold
+threshold_idx = next(i for i, v in enumerate(ϕ_arr_π) if v > 2)
+print(f'Premium first exceeds 2 at π ≈ {π_arr[threshold_idx]:.3f}')
+```
+
+As $\pi \to 0$ the expected lifetime earnings of an entrepreneur approach zero
+regardless of $\phi$, so $\phi$ must rise without bound to keep the
+entrepreneur indifferent between entrepreneurship and wage work.
+
+```{solution-end}
+```

@@ -672,3 +672,260 @@ Each government stopped printing money to pay for goods and services once again 
 The story told in {cite}`sargent2002big` is grounded in a *monetarist theory of the price level* described in {doc}`cagan_ree` and {doc}`cagan_adaptive`.
 
 Those lectures discuss theories about what owners of those rapidly depreciating currencies were thinking and how their beliefs shaped responses of inflation to government monetary and fiscal policies.
+
+## Exercises
+
+```{exercise}
+:label: ih_ex1
+
+**Comparing peak monthly inflation rates across the four hyperinflations.**
+
+For each of the four post-World War I hyperinflationary episodes (Austria,
+Hungary, Poland, Germany), compute the peak monthly log-inflation rate
+$\Delta \log p_t = \log p_t - \log p_{t-1}$ and the calendar month in which
+it occurred.
+
+(a) Display the four peak log-changes in a bar chart.
+
+(b) Convert each peak log-change to a monthly percentage price rise
+    (i.e., compute $100 \times (e^{\Delta \log p_t} - 1)$) and print a
+    short table of peak rates and dates.
+
+(c) Which country experienced the most extreme peak monthly inflation?
+```
+
+```{solution-start} ih_ex1
+:class: dropdown
+```
+
+```{code-cell} ipython3
+# Price series directly available from the lecture
+p_aus = df_aus['Retail price index, 52 commodities'].dropna()
+p_hun = df_hun['Hungarian index of prices'].dropna()
+p_deu = df_deu['Price index (on basis of marks before July 1924,'
+               '  reichsmarks after)'].dropna()
+
+# Reconstruct the spliced Poland series (following the lecture body)
+p_s1 = df_pol['Wholesale price index'].copy()
+p_s2 = df_pol['Wholesale Price Index: On paper currency basis'].copy()
+p_s3 = df_pol['Wholesale Price Index: On zloty basis'].copy()
+m1 = p_s1[~p_s1.isna()].index[-1]
+m2 = p_s2[~p_s2.isna()].index[-2]
+r12 = p_s1[m1] / p_s2[m1]
+r23 = p_s2[m2] / p_s3[m2]
+p_pol = pd.concat([p_s1[:m1],
+                   r12 * p_s2[m1:m2],
+                   r23 * p_s3[m2:]]).dropna()
+
+p_series = {'Austria': p_aus, 'Hungary': p_hun,
+            'Poland':  p_pol, 'Germany': p_deu}
+
+# Compute peak monthly log-inflation and its date for each country
+peak_log  = {}
+peak_date = {}
+for country, p in p_series.items():
+    log_infl = pd.Series(np.diff(np.log(p.values)), index=p.index[1:])
+    peak_log[country]  = log_infl.max()
+    peak_date[country] = log_infl.idxmax()
+
+# (b) Print table
+print(f"{'Country':<10}  {'Peak log-change':>16}  {'Monthly % rise':>14}  {'Date'}")
+print('-' * 62)
+for c in p_series:
+    pct = 100 * (np.exp(peak_log[c]) - 1)
+    print(f"{c:<10}  {peak_log[c]:>16.3f}  {pct:>13.1f}%  "
+          f"{peak_date[c].strftime('%b %Y')}")
+
+# (a) Bar chart
+fig, ax = plt.subplots()
+countries = list(p_series.keys())
+ax.bar(countries, [peak_log[c] for c in countries], color='steelblue')
+ax.set_ylabel('Peak monthly log-inflation rate')
+ax.set_title('Peak monthly inflation during the four post-WWI hyperinflations')
+plt.tight_layout()
+plt.show()
+```
+
+The table and bar chart show that Germany's hyperinflation dwarfed the others:
+its peak monthly log-inflation rate (reached in November 1923) translates into
+a price level that roughly doubled every day at the peak.  Austria, Hungary, and
+Poland experienced severe inflations by any historical standard, but they were
+modest in comparison.
+
+```{solution-end}
+```
+
+```{exercise}
+:label: ih_ex2
+
+**Gold standard versus fiat money: quantifying long-run price stability.**
+
+The lecture argues that abandoning the gold/silver standard after 1914 unleashed
+persistent inflation that had been absent over the preceding three centuries.
+
+Using the `df_fig5` dataframe, test this claim quantitatively.  For each
+country in `df_fig5` (UK, US, France, Castile), compute the annualized
+average log-growth rate of the price level for:
+
+* the gold-standard era: years 1700 to 1913, and
+* the fiat-money era: years 1914 to 2000.
+
+The annualized rate for a country whose price level rises from $p_{t_1}$ in
+year $t_1$ to $p_{t_2}$ in year $t_2$ is
+
+$$
+g = \frac{\log p_{t_2} - \log p_{t_1}}{t_2 - t_1}.
+$$
+
+Display your results in a grouped bar chart and comment on what you find.
+```
+
+```{solution-start} ih_ex2
+:class: dropdown
+```
+
+```{code-cell} ipython3
+periods = {
+    '1700–1913\n(gold standard)': (1700, 1913),
+    '1914–2000\n(fiat money)':    (1914, 2000),
+}
+cols_fig5 = ['UK', 'US', 'France', 'Castile']
+rates = {col: {} for col in cols_fig5}
+
+for col in cols_fig5:
+    series = df_fig5[col].dropna()
+    for label, (y1, y2) in periods.items():
+        sub = series[(series.index >= y1) & (series.index <= y2)]
+        if len(sub) >= 2:
+            rates[col][label] = (
+                (np.log(float(sub.iloc[-1])) - np.log(float(sub.iloc[0])))
+                / (sub.index[-1] - sub.index[0])
+            )
+        else:
+            rates[col][label] = np.nan
+
+x = np.arange(len(cols_fig5))
+width = 0.35
+era_labels = list(periods.keys())
+
+fig, ax = plt.subplots(figsize=(9, 5))
+for i, label in enumerate(era_labels):
+    vals = [rates[c].get(label, np.nan) for c in cols_fig5]
+    ax.bar(x + (i - 0.5) * width, vals, width, label=label)
+
+ax.set_xticks(x)
+ax.set_xticklabels(cols_fig5)
+ax.set_ylabel('Annualized log-price growth rate')
+ax.set_title('Price-level growth: gold standard era vs. fiat money era')
+ax.axhline(0, color='black', lw=0.8)
+ax.legend()
+plt.tight_layout()
+plt.show()
+```
+
+The chart confirms the lecture's central message.  During the three centuries of
+the gold and silver standard (1700–1913) the annualized log-price growth rate
+was close to zero for all four countries — the price level was roughly
+trendless.  After 1914, when governments left the gold standard and gained the
+ability to print money, average annual inflation jumped markedly for every
+country with sufficient post-1914 data.  The Castile series does not extend
+reliably into the 20th century, so its fiat-era bar reflects incomplete data
+and should be interpreted with caution.
+
+```{solution-end}
+```
+
+```{exercise}
+:label: ih_ex3
+
+**Purchasing power parity during the German hyperinflation.**
+
+The lecture states that the US dollar exchange rate for each country
+"shadowed" its price level.  This co-movement is a hallmark of
+*purchasing power parity* (PPP), which predicts that $\log e_t \approx
+\log p_t + \text{const}$, so the *real exchange rate*
+$q_t = \log e_t - \log p_t$ should be approximately constant.
+
+Examine PPP for the German episode:
+
+(a) Normalize both the log price level and the log exchange rate (marks per
+    US cent) to zero at the first available date and plot both normalized
+    series on the same axes.  How closely do they track each other?
+
+(b) Compute the Pearson correlation between the two normalized log-level
+    series and print it.
+
+(c) Plot the real exchange rate $q_t = \log e_t - \log p_t$ over time.
+    Compare the standard deviation of $q_t$ with the standard deviation of
+    $\log p_t$ to assess how large the deviations from PPP are relative to
+    the overall price movement.
+```
+
+```{solution-start} ih_ex3
+:class: dropdown
+```
+
+```{code-cell} ipython3
+# Extract Germany price and exchange-rate series and align on common dates
+p_ger = df_deu['Price index (on basis of marks before July 1924,'
+               '  reichsmarks after)'].dropna()
+e_ger = (1 / df_deu['Cents per mark']).dropna()
+
+common = p_ger.index.intersection(e_ger.index)
+log_p = np.log(p_ger[common])
+log_e = np.log(e_ger[common])
+
+# Normalize to zero at the first common date
+log_p_n = log_p - log_p.iloc[0]
+log_e_n = log_e - log_e.iloc[0]
+
+# (a) Plot normalized log levels
+fig, ax = plt.subplots(figsize=(9, 4))
+ax.plot(common, log_p_n, label='Log price level (normalized)', lw=2)
+ax.plot(common, log_e_n, label='Log exchange rate (normalized)',
+        lw=2, linestyle='--')
+ax.set_ylabel('Log level (normalized to 0 at start)')
+ax.set_title('PPP check: Germany 1919–1924')
+ax.legend()
+ax.xaxis.set_major_locator(mdates.MonthLocator(interval=5))
+ax.xaxis.set_major_formatter(mdates.DateFormatter('%b %Y'))
+for lbl in ax.get_xticklabels():
+    lbl.set_rotation(45)
+plt.tight_layout()
+plt.show()
+
+# (b) Pearson correlation
+corr = np.corrcoef(log_p_n.values, log_e_n.values)[0, 1]
+print(f"Pearson correlation between log price and log exchange rate: {corr:.4f}")
+
+# (c) Real exchange rate q_t = log e - log p
+q = log_e - log_p
+fig, ax = plt.subplots(figsize=(9, 3))
+ax.plot(common, q, lw=2, color='tab:green')
+ax.set_ylabel(r'$q_t = \log e_t - \log p_t$')
+ax.set_title('Real exchange rate: Germany 1919–1924')
+ax.xaxis.set_major_locator(mdates.MonthLocator(interval=5))
+ax.xaxis.set_major_formatter(mdates.DateFormatter('%b %Y'))
+for lbl in ax.get_xticklabels():
+    lbl.set_rotation(45)
+plt.tight_layout()
+plt.show()
+
+print(f"Std dev of log price level (normalized): {log_p_n.std():.3f}")
+print(f"Std dev of real exchange rate q:         {q.std():.3f}")
+```
+
+Parts (a) and (b): the two normalized log series are nearly indistinguishable
+and their Pearson correlation is very close to 1.  During Germany's
+hyperinflation, every tenfold rise in the domestic price level was matched
+by an approximately tenfold rise in the exchange rate — precisely what PPP
+predicts.
+
+Part (c): the real exchange rate $q_t$ fluctuates only modestly compared with
+the enormous swings in $\log p_t$.  Its standard deviation is a small fraction
+of the standard deviation of the normalized log price level, confirming that
+exchange rate movements were driven almost entirely by domestic price inflation,
+with only minor transient deviations from PPP.
+
+```{solution-end}
+```

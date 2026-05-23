@@ -416,3 +416,162 @@ line_params = {'lw': 1.5,
 π_bars = (π_l, π_u)
 draw_iterations(πs, model, line_params, π_bars, num_steps=80)
 ```
+
+## Exercises
+
+```{exercise}
+:label: la_ex1
+
+**Comparative statics: how do steady-state inflation rates change with the government deficit $g$?**
+
+The lecture claims that, under adaptive expectations, the "old time religion" holds:
+lowering the government deficit $g$ lowers the low-inflation steady state $\pi_l$.
+
+(a) Compute the maximum seigniorage revenue $g_{\rm max}$ and the corresponding
+    $x_{\rm max}$ by finding the $x$ that maximises $\exp(-\alpha x) - \exp(-(1+\alpha)x)$
+    using `scipy.optimize.minimize_scalar`.
+
+(b) For $g$ ranging from a small positive value to $0.999 \times g_{\rm max}$,
+    compute both $\pi_l(g)$ and $\pi_u(g)$ and plot them against $g$ on the
+    same axes.
+
+(c) Verify that the two roots merge as $g \to g_{\rm max}$ and that $\pi_l$
+    falls as $g$ is reduced from the benchmark value $g = 0.35$ to $g/2$.
+    Relate this to the "old time religion" claim in the lecture.
+```
+
+```{solution-start} la_ex1
+:class: dropdown
+```
+
+```{code-cell} ipython3
+from scipy.optimize import minimize_scalar
+
+# (a) Find g_max
+res = minimize_scalar(lambda x: -compute_seign(x, model.α),
+                      bounds=(0, 10), method='bounded')
+x_max = res.x
+g_max = compute_seign(x_max, model.α)
+print(f"x_max  = {x_max:.4f}")
+print(f"g_max  = {g_max:.4f}")
+```
+
+```{code-cell} ipython3
+# (b) Trace π_l(g) and π_u(g)
+g_grid  = np.linspace(0.01, g_max * 0.999, 300)
+πl_list, πu_list = [], []
+
+for g in g_grid:
+    mod_g = create_model(g=g)
+    πl_list.append(solve_π_bar(mod_g, x0=0.3))
+    πu_list.append(solve_π_bar(mod_g, x0=4.0))
+
+fig, ax = plt.subplots()
+ax.plot(g_grid, πl_list, label=r'$\pi_l(g)$ — low-inflation steady state')
+ax.plot(g_grid, πu_list, label=r'$\pi_u(g)$ — high-inflation steady state')
+ax.axvline(model.g, color='grey', linestyle='--', lw=1,
+           label=f'benchmark $g = {model.g}$')
+ax.set_xlabel('government deficit $g$')
+ax.set_ylabel('steady-state inflation $\\bar\\pi$')
+ax.set_title('Steady-state inflation rates vs government deficit')
+ax.legend()
+plt.tight_layout()
+plt.show()
+```
+
+```{code-cell} ipython3
+# (c) Verify "old time religion"
+π_l_bench = solve_π_bar(model, x0=0.3)
+π_l_half  = solve_π_bar(create_model(g=model.g / 2), x0=0.3)
+print(f"π_l at g = {model.g:.2f}:      {π_l_bench:.4f}")
+print(f"π_l at g = {model.g/2:.3f}:   {π_l_half:.4f}")
+print(f"Cutting g in half reduces π_l by {π_l_bench - π_l_half:.4f}")
+```
+
+The two curves merge at $g_{\rm max}$ because the Laffer curve peaks there and
+can no longer support two distinct inflation rates.  As $g$ falls, $\pi_l$
+falls monotonically while $\pi_u$ rises — confirming the "old time religion":
+under adaptive expectations the economy converges to the low-inflation
+equilibrium, so a lower deficit directly implies lower inflation.
+
+```{solution-end}
+```
+
+```{exercise}
+:label: la_ex2
+
+**How the speed of expectation adjustment $\delta$ affects convergence.**
+
+The parameter $\delta \in (0,1)$ controls how slowly the public updates its
+inflation expectations: $\delta$ close to $1$ means expectations are very
+sluggish (heavily backward-looking), while $\delta$ close to $0$ means they
+adjust almost instantly.
+
+Fix an initial $\pi_0$ halfway between $\pi_l$ and $\pi_u$, i.e.,
+$\pi_0 = (\pi_l + \pi_u)/2$, and set $p_{-1} = m_0 + \alpha \pi_0$.
+
+(a) Using `create_model` and `solve_laffer_adapt`, simulate 80 steps for each
+    $\delta \in \{0.3,\, 0.6,\, 0.9\}$ and plot the resulting $\pi_t$ paths on
+    a single panel.  Add a horizontal dashed line at $\pi_l$ for reference.
+
+(b) For each $\delta$ value, report how many time steps it takes for $\pi_t$
+    to come within $0.01$ of $\pi_l$.
+
+(c) Explain intuitively why a larger $\delta$ leads to slower convergence.
+```
+
+```{solution-start} la_ex2
+:class: dropdown
+```
+
+```{code-cell} ipython3
+δ_values  = [0.3, 0.6, 0.9]
+num_steps = 80
+π0 = (π_l + π_u) / 2          # start midway between the two steady states
+
+fig, ax = plt.subplots(figsize=(8, 4))
+
+for δ in δ_values:
+    mod_δ = create_model(δ=δ)
+    # Recompute steady states for this δ (they don't change, but confirm)
+    π_l_δ = solve_π_bar(mod_δ, x0=0.6)
+    p0    = mod_δ.m0 + mod_δ.α * π0
+    π_seq, *_ = solve_laffer_adapt(p0, π0, mod_δ, num_steps)
+    ax.plot(np.arange(num_steps), π_seq, lw=1.5, marker='o',
+            markersize=2, label=f'$\\delta={δ}$')
+
+ax.axhline(π_l, color='grey', linestyle='--', lw=1.5, alpha=0.7,
+           label=r'$\pi_l$')
+ax.set_xlabel('timestep')
+ax.set_ylabel(r'$\pi_t$')
+ax.set_title('Convergence to $\\pi_l$ for different adaptation speeds $\\delta$')
+ax.legend()
+ax.grid(True, alpha=0.3)
+plt.tight_layout()
+plt.show()
+```
+
+```{code-cell} ipython3
+# (b) Steps to come within 0.01 of π_l
+tol = 0.01
+print(f"{'δ':>5}  {'steps to |π_t - π_l| < 0.01':>30}")
+print('-' * 40)
+for δ in δ_values:
+    mod_δ = create_model(δ=δ)
+    p0    = mod_δ.m0 + mod_δ.α * π0
+    π_seq, *_ = solve_laffer_adapt(p0, π0, mod_δ, num_steps)
+    hits  = np.where(np.abs(π_seq - π_l) < tol)[0]
+    steps = hits[0] if len(hits) > 0 else ">80"
+    print(f"{δ:>5}  {str(steps):>30}")
+```
+
+**(c)** When $\delta$ is large, each period's revision of $\pi_t^*$ is a small
+fraction $(1-\delta)$ of the forecast error — expectations are sticky.  This
+means the expectations signal that drives the economy toward $\pi_l$ arrives
+only weakly each period, so the real inflation rate $\pi_t$ creeps toward the
+steady state rather than jumping there quickly.  A small $\delta$ gives
+forecast errors full (or near-full) weight, snapping expectations to the
+current observation and pulling $\pi_t$ to $\pi_l$ within just a few periods.
+
+```{solution-end}
+```

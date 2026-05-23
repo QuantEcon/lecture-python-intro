@@ -984,3 +984,240 @@ On grounds of plausibility, we recommend following many macroeconomists in selec
 As we shall see, we shall accept this recommendation in  lecture {doc}`unpleasant`.
 
 In lecture, {doc}`laffer_adaptive`, we shall explore how  {cite}`bruno1990seigniorage` and others justified this in other ways.
+
+## Exercises
+
+```{exercise}
+:label: mi_ex1
+
+**The seigniorage Laffer curve: peak revenue and fiscal limits.**
+
+The lecture states that steady-state seigniorage
+
+$$
+S(\bar R) = (\gamma_1 + \gamma_2) - \frac{\gamma_2}{\bar R} - \gamma_1 \bar R
+$$
+
+is maximized at $\bar R_{\rm max} = \sqrt{\gamma_2/\gamma_1}$.
+
+(a) Verify this analytically by differentiating $S(\bar R)$ with respect to
+    $\bar R$, setting the derivative to zero, and solving for $\bar R$.
+
+(b) Using the default model `msm`, compute $\bar R_{\rm max}$ and the
+    corresponding maximum revenue $g_{\rm max} = S(\bar R_{\rm max})$.
+    Plot the seigniorage curve together with a horizontal line at $g_{\rm max}$.
+
+(c) What happens if the government tries to finance a deficit $g > g_{\rm max}$?
+    Evaluate the discriminant of the steady-state quadratic
+    {eq}`eq:steadyquadratic` for $g = g_{\rm max} + 1$ and explain
+    the economic interpretation.
+```
+
+```{solution-start} mi_ex1
+:class: dropdown
+```
+
+**(a)** Differentiating with respect to $\bar R$:
+
+$$
+S'(\bar R) = \frac{\gamma_2}{\bar R^2} - \gamma_1 = 0
+\quad \Longrightarrow \quad
+\bar R^2 = \frac{\gamma_2}{\gamma_1}
+\quad \Longrightarrow \quad
+\bar R_{\rm max} = \sqrt{\frac{\gamma_2}{\gamma_1}}.
+$$
+
+Since $S''(\bar R) = -2\gamma_2/\bar R^3 < 0$, this is indeed a maximum.
+
+```{code-cell} ipython3
+γ1, γ2 = msm.γ1, msm.γ2
+
+R_max = np.sqrt(γ2 / γ1)
+g_max = seign(R_max, msm)
+print(f"R_max = sqrt(γ2/γ1) = sqrt({γ2}/{γ1}) = {R_max:.4f}")
+print(f"g_max = S(R_max)     = {g_max:.4f}")
+
+R_plot = np.linspace(γ2/γ1, 1, 300)
+fig, ax = plt.subplots()
+ax.plot(R_plot, seign(R_plot, msm), label='$S(\\bar R)$')
+ax.axhline(g_max, color='red', linestyle='--', label=f'$g_{{\\rm max}}={g_max:.2f}$')
+ax.axvline(R_max, color='grey', linestyle=':', lw=1)
+ax.set_xlabel('$\\bar R$')
+ax.set_ylabel('seigniorage')
+ax.set_title('Seigniorage Laffer curve and peak revenue')
+ax.legend()
+plt.tight_layout()
+plt.show()
+```
+
+**(c)** The steady-state quadratic is $-\gamma_1 \bar R^2 + (\gamma_1+\gamma_2-g)\bar R - \gamma_2 = 0$.
+Its discriminant is $(\gamma_1+\gamma_2-g)^2 - 4\gamma_1\gamma_2$.
+
+```{code-cell} ipython3
+g_too_high = g_max + 1
+discriminant = (γ1 + γ2 - g_too_high)**2 - 4 * γ1 * γ2
+roots = np.roots((-γ1, γ1 + γ2 - g_too_high, -γ2))
+print(f"g = g_max + 1 = {g_too_high:.4f}")
+print(f"Discriminant  = {discriminant:.4f}  ({'negative' if discriminant < 0 else 'positive'})")
+print(f"np.roots      = {roots}")
+print(f"Roots are real: {np.all(np.isreal(roots))}")
+```
+
+When $g > g_{\rm max}$ the discriminant is negative and there are no real
+steady-state rates of return on currency.  Economically, the government is
+trying to finance a deficit that exceeds the maximum amount of seigniorage
+the inflation tax can ever raise, regardless of the inflation rate chosen.
+No stationary equilibrium exists.
+
+```{solution-end}
+```
+
+```{exercise}
+:label: mi_ex2
+
+**How steady-state rates of return vary with the government deficit.**
+
+The two steady-state roots $R_l < R_u$ of the quadratic
+{eq}`eq:steadyquadratic` depend on the government deficit $g$.
+
+(a) For $g$ ranging from a value near $0$ to just below $g_{\rm max}$,
+    compute both roots $R_l(g)$ and $R_u(g)$ and plot them against $g$ on
+    the same graph.
+
+(b) Verify the following boundary conditions analytically and numerically:
+
+    * At $g = 0$: the two roots should be $R = 1$ and $R = \gamma_2/\gamma_1$.
+    * As $g \to g_{\rm max}$: the two roots should merge at $\bar R_{\rm max} = \sqrt{\gamma_2/\gamma_1}$.
+
+(c) Mark the benchmark deficit $g = 3$ on your graph and read off $R_u$ and
+    $R_l$.  Do your graph values agree with `msm.R_u` and `msm.R_l`?
+```
+
+```{solution-start} mi_ex2
+:class: dropdown
+```
+
+```{code-cell} ipython3
+R_max = np.sqrt(msm.γ2 / msm.γ1)
+g_max = seign(R_max, msm)
+
+g_grid = np.linspace(1e-6, g_max * (1 - 1e-4), 300)
+R_u_curve, R_l_curve = [], []
+
+for g in g_grid:
+    roots = np.sort(np.roots((-msm.γ1, msm.γ1 + msm.γ2 - g, -msm.γ2)).real)
+    R_l_curve.append(roots[0])
+    R_u_curve.append(roots[1])
+
+fig, ax = plt.subplots()
+ax.plot(g_grid, R_u_curve, label='$R_u(g)$ — low inflation steady state')
+ax.plot(g_grid, R_l_curve, label='$R_l(g)$ — high inflation steady state')
+ax.axvline(msm.g, color='grey', linestyle='--', lw=1,
+           label=f'benchmark $g = {msm.g}$')
+ax.set_xlabel('government deficit $g$')
+ax.set_ylabel('steady-state rate of return $\\bar R$')
+ax.set_title('Steady-state rates of return vs government deficit')
+ax.legend()
+plt.tight_layout()
+plt.show()
+
+# Boundary conditions
+print("Boundary checks:")
+print(f"  g → 0:     R_u → {R_u_curve[0]:.4f}  (expected 1.0)")
+print(f"             R_l → {R_l_curve[0]:.4f}  (expected γ2/γ1 = {msm.γ2/msm.γ1:.4f})")
+print(f"  g → g_max: R_u → {R_u_curve[-1]:.4f}")
+print(f"             R_l → {R_l_curve[-1]:.4f}")
+print(f"             R_max = {R_max:.4f}  (roots should merge here)")
+print(f"\nAt benchmark g = {msm.g}:")
+print(f"  R_u from curve = {R_u_curve[np.argmin(np.abs(g_grid - msm.g))]:.4f},  "
+      f"msm.R_u = {msm.R_u:.4f}")
+print(f"  R_l from curve = {R_l_curve[np.argmin(np.abs(g_grid - msm.g))]:.4f},  "
+      f"msm.R_l = {msm.R_l:.4f}")
+```
+
+The two branches of the Laffer curve start apart at $g=0$ and merge at
+$g = g_{\rm max}$.  For $g > g_{\rm max}$ no real steady state exists.
+The upper branch $R_u(g)$ falls and the lower branch $R_l(g)$ rises as
+$g$ increases, reflecting the increasing inflation tax needed to finance a
+larger deficit.
+
+```{solution-end}
+```
+
+```{exercise}
+:label: mi_ex3
+
+**Quantity theory of money via the eigendecomposition.**
+
+Method 2 identifies a unique "magic" initial price level
+
+$$
+\bar p_0 = \frac{Q_{21}}{Q_{11}} m_0
+$$
+
+(where $Q_{ij}$ denotes the $(i,j)$ element of the eigenvector matrix $Q$)
+that places the economy on the low-inflation equilibrium path.
+
+(a) Using `iterate_H`, simulate the path of $y_t = (m_t, p_t)$ starting from
+    $y_0 = (m_0,\, \bar p_0)$.  Compute $R_t = p_t/p_{t+1}$ for $t = 0, \ldots, 10$
+    and verify that it equals `msm.R_u` at every step.
+
+(b) The formula $\bar p_0 = (Q_{21}/Q_{11})\, m_0$ says that the initial
+    price level is proportional to the money supply — a version of the
+    **quantity theory of money**.  Compute $\bar p_0$ for $m_0 \in [50, 300]$
+    and plot $\bar p_0$ against $m_0$.  What is the slope?
+
+(c) Method 1 gives a formula for $p_0$ directly from $R_0$ via
+    equation {eq}`eq:p0fromR0`.  Set $R_0 = R_u$ in that formula and
+    confirm that you recover $\bar p_0$.
+```
+
+```{solution-start} mi_ex3
+:class: dropdown
+```
+
+```{code-cell} ipython3
+# (a) Verify R_t = R_u along the magic-p0 path
+p0_bar = (Q[1, 0] / Q[0, 0]) * msm.M0
+y0 = np.array([msm.M0, p0_bar])
+num_steps = 12
+
+y_series = iterate_H(y0, H, num_steps)
+P = y_series[1, :]
+R_path = P[:-1] / P[1:]      # R_t = p_t / p_{t+1}
+
+print(f"R_t along the magic-p0 path (first {num_steps-1} periods):")
+print(np.round(R_path, 6))
+print(f"msm.R_u = {msm.R_u:.6f}")
+```
+
+```{code-cell} ipython3
+# (b) Plot p0_bar vs m0
+m0_values = np.linspace(50, 300, 80)
+p0_bar_values = (Q[1, 0] / Q[0, 0]) * m0_values
+
+fig, ax = plt.subplots()
+ax.plot(m0_values, p0_bar_values)
+ax.set_xlabel('$m_0$')
+ax.set_ylabel('$\\bar p_0$')
+ax.set_title('Quantity theory: $\\bar p_0$ proportional to $m_0$')
+ax.grid(True, alpha=0.3)
+plt.tight_layout()
+plt.show()
+
+slope = Q[1, 0] / Q[0, 0]
+print(f"Slope = Q_21 / Q_11 = {slope:.6f}")
+
+# (c) Compare with Method 1 formula eq:p0fromR0
+p0_method1 = msm.M0 / (msm.γ1 - msm.g - msm.γ2 / msm.R_u)
+print(f"\nMethod 1 formula (R_0 = R_u):  p0 = {p0_method1:.6f}")
+print(f"Eigendecomposition formula:    p0 = {p0_bar:.6f}")
+```
+
+Parts (a) and (c) confirm that both methods select exactly the same unique
+initial price level.  Part (b) shows the quantity-theory proportionality:
+doubling $m_0$ exactly doubles $\bar p_0$, with constant slope $Q_{21}/Q_{11}$.
+This linearity is a direct consequence of the linearity of the model.
+
+```{solution-end}
+```

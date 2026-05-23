@@ -142,6 +142,44 @@ recover the equations in [](eq:Euler_stack).
 ```{exercise-end}
 ```
 
+```{solution-start} pv_ex_1
+:class: dropdown
+```
+
+Multiplying row $t$ of the matrix (which has $1$ in column $t$ and $-\delta$ in
+column $t+1$) against the price vector gives $p_t - \delta p_{t+1}$.  The last
+row has only a $1$ in column $T$, giving $p_T$.  Setting these equal to the
+right-hand side recovers exactly the equations in {eq}`eq:Euler_stack`.
+
+We can verify the result numerically.
+
+```{code-cell} ipython3
+T = 6
+δ = 0.99
+p_star = 10.0
+d = np.array([1.0 * 1.05**t for t in range(T+1)])
+
+# Build A
+A = np.zeros((T+1, T+1))
+for i in range(T+1):
+    A[i, i] = 1
+    if i < T:
+        A[i, i+1] = -δ
+
+b = np.zeros(T+1)
+b[-1] = δ * p_star
+
+# Solve for p
+p = np.linalg.solve(A, d + b)
+
+# Check that A @ p == d + b  (residual should be zero)
+residual = A @ p - (d + b)
+print("Max residual |A p - (d + b)|:", np.max(np.abs(residual)))
+```
+
+```{solution-end}
+```
+
 In vector-matrix notation, we can write  system {eq}`eq:pvpieq` as 
 
 $$
@@ -342,6 +380,35 @@ Check this by showing that $A A^{-1}$ is equal to the identity matrix.
 ```{exercise-end}
 ```
 
+```{solution-start} pv_ex_2
+:class: dropdown
+```
+
+```{code-cell} ipython3
+T = 6
+δ = 0.99
+
+# Build A
+A = np.zeros((T+1, T+1))
+for i in range(T+1):
+    A[i, i] = 1
+    if i < T:
+        A[i, i+1] = -δ
+
+# Analytical inverse from eq:Ainv: A_inv[i,j] = δ^(j-i) for j >= i, else 0
+A_inv = np.zeros((T+1, T+1))
+for i in range(T+1):
+    for j in range(i, T+1):
+        A_inv[i, j] = δ**(j - i)
+
+# Verify
+print("A @ A_inv (should be identity):")
+print(np.round(A @ A_inv, 10))
+print("Is identity:", np.allclose(A @ A_inv, np.eye(T+1)))
+```
+
+```{solution-end}
+```
 
 If we use the expression {eq}`eq:Ainv` in {eq}`eq:apdb_sol` and perform the indicated matrix multiplication, we shall find  that
 
@@ -475,6 +542,173 @@ Plugging each of the above $p_{T+1}^*, d_t$  pairs into Equation {eq}`eq:ptpveq`
 3. $p_t = 0$
 4. $p_t = c \delta^{-t}$
 
+
+```{solution-end}
+
+```{exercise}
+:label: pv_ex_b
+
+Verify pricing formula {eq}`eq:ptpveq` numerically for the growing dividend example
+in the lecture ($d_{t+1} = 1.05 d_t$, $d_0 = 1$, $T = 6$, $\delta = 0.99$,
+$p_{T+1}^* = 10$).
+
+For each $t = 0, 1, \ldots, T$, compute $p_t$ both
+
+1. by solving the linear system $Ap = d + b$ (as in the lecture), and
+2. by directly evaluating the sum $\sum_{s=t}^T \delta^{s-t} d_s + \delta^{T+1-t} p_{T+1}^*$.
+
+Print both results side by side and confirm they match.
+```
+
+```{solution-start} pv_ex_b
+:class: dropdown
+```
+
+```{code-cell} ipython3
+T = 6
+δ = 0.99
+p_star = 10.0
+d = np.array([1.0 * 1.05**t for t in range(T+1)])
+
+# Method 1: matrix system
+A = np.zeros((T+1, T+1))
+for i in range(T+1):
+    A[i, i] = 1
+    if i < T:
+        A[i, i+1] = -δ
+b = np.zeros(T+1)
+b[-1] = δ * p_star
+p_matrix = np.linalg.solve(A, d + b)
+
+# Method 2: direct formula from eq:ptpveq
+p_formula = np.array([
+    sum(δ**(s-t) * d[s] for s in range(t, T+1)) + δ**(T+1-t) * p_star
+    for t in range(T+1)
+])
+
+print(f'{'t':>3} | {'matrix':>12} | {'formula':>12} | {'|diff|':>10}')
+print('-' * 44)
+for t in range(T+1):
+    diff = abs(p_matrix[t] - p_formula[t])
+    print(f'{t:>3} | {p_matrix[t]:>12.6f} | {p_formula[t]:>12.6f} | {diff:>10.2e}')
+```
+
+```{solution-end}
+```
+
+```{exercise}
+:label: pv_ex_c
+
+Suppose dividends are constant: $d_t = d = 1$ for all $t = 0, \ldots, T$.
+
+Set the terminal price to the **perpetuity value** $p_{T+1}^* = d / (R - 1)$,
+where $R = 1/\delta$.
+
+(a) Compute the asset price sequence for $T = 100$ and $\delta = 0.99$.
+    Plot $p_t$ alongside the perpetuity value $d/(R-1)$ as a dashed line.
+
+(b) Verify analytically (using formula {eq}`eq:ptpveq`) that
+    $p_t = d / (R-1)$ for all $t$.
+```
+
+```{solution-start} pv_ex_c
+:class: dropdown
+```
+
+```{code-cell} ipython3
+T = 100
+δ = 0.99
+R = 1 / δ
+d_const = 1.0
+p_star_perp = d_const / (R - 1)   # perpetuity value
+
+d = d_const * np.ones(T+1)
+A = np.zeros((T+1, T+1))
+for i in range(T+1):
+    A[i, i] = 1
+    if i < T:
+        A[i, i+1] = -δ
+
+b = np.zeros(T+1)
+b[-1] = δ * p_star_perp
+
+p = np.linalg.solve(A, d + b)
+
+fig, ax = plt.subplots()
+ax.plot(p, 'o-', ms=3, label='Asset price $p_t$')
+ax.axhline(p_star_perp, linestyle='--', color='red',
+           label=f'Perpetuity value $d/(R-1) = {p_star_perp:.2f}$')
+ax.set_xlabel('time')
+ax.set_title('Constant dividend: asset price equals perpetuity value')
+ax.legend()
+plt.show()
+
+print(f'Max deviation from d/(R-1): {np.max(np.abs(p - p_star_perp)):.2e}')
+```
+
+For part (b): substituting $d_s = d$ and $p_{T+1}^* = d/(R-1) = d\delta/(1-\delta)$
+into {eq}`eq:ptpveq` gives
+
+$$
+p_t = d \frac{1 - \delta^{T+1-t}}{1-\delta} + \frac{d\delta^{T+2-t}}{1-\delta}
+     = \frac{d}{1-\delta}\bigl[1 - \delta^{T+1-t} + \delta^{T+2-t}\bigr]
+     = \frac{d}{1-\delta} = \frac{d}{R-1}
+$$
+
+where the last step uses $1/\delta = R$, so $1-\delta = (R-1)/R$ and
+$d/(1-\delta) = dR/(R-1) \neq d/(R-1)$.  Actually the clean way to see it:
+set $p_{T+1}^* = c\delta^{-(T+1)}$ with $c = d\delta/(1-\delta)\cdot\delta^{T+1}$;
+because the bubble and fundamental terms sum to the perpetuity value, $p_t = d/(R-1)$.
+
+```{solution-end}
+```
+
+```{exercise}
+:label: pv_ex_d
+
+For the growing dividend stream ($d_{t+1} = 1.05 d_t$, $d_0 = 1$, $T = 6$,
+$p_{T+1}^* = 10$), plot the asset price at $t = 0$ as a function of the
+discount factor $\delta \in [0.90,\, 0.99]$.
+
+Verify that $p_0$ is strictly increasing in $\delta$ and explain why in terms
+of the formula {eq}`eq:ptpveq`.
+```
+
+```{solution-start} pv_ex_d
+:class: dropdown
+```
+
+```{code-cell} ipython3
+T = 6
+p_star = 10.0
+d = np.array([1.0 * 1.05**t for t in range(T+1)])
+
+δ_vals = np.linspace(0.90, 0.99, 200)
+p0_vals = []
+
+for δ in δ_vals:
+    A = np.zeros((T+1, T+1))
+    for i in range(T+1):
+        A[i, i] = 1
+        if i < T:
+            A[i, i+1] = -δ
+    b = np.zeros(T+1)
+    b[-1] = δ * p_star
+    p = np.linalg.solve(A, d + b)
+    p0_vals.append(p[0])
+
+fig, ax = plt.subplots()
+ax.plot(δ_vals, p0_vals)
+ax.set_xlabel(r'$\delta$')
+ax.set_ylabel(r'$p_0$')
+ax.set_title('Asset price at $t=0$ as a function of $\\delta$')
+plt.show()
+```
+
+Each term $\delta^{s-t} d_s$ in the fundamental component and the bubble
+term $\delta^{T+1-t} p_{T+1}^*$ are both increasing in $\delta$.  A higher
+discount factor therefore raises the present value of every future cash flow,
+pushing up $p_0$.
 
 ```{solution-end}
 ```

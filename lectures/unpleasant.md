@@ -504,3 +504,175 @@ plot_path([80, 100], msm)
 * An open  market operation that reduces the post open market operation money supply at time $0$ also *lowers* the rate of return on money $R_u$ at times $t \geq T$ because it brings  a higher gross of interest government deficit that must be financed by printing money (i.e., levying an inflation tax) at time $t \geq T$.
 
 * $R$ is important in the context of maintaining monetary stability and addressing the consequences of increased inflation due to government deficits. Thus, a larger $R$ might be chosen to mitigate the negative impacts on the real rate of return caused by inflation.
+
+## Exercises
+
+```{exercise}
+:label: un_ex1
+
+**How the length of the tight-money period $T$ amplifies unpleasant arithmetic.**
+
+The lecture shows that a central bank open-market operation that reduces $m_0$
+at $t = 0$ lowers the price level immediately but forces a higher
+post-$T$ deficit $\bar g$ — and therefore a lower rate of return $R_u$ (higher
+inflation) — forever after.
+
+The same mechanism operates as $T$ grows: holding $m_0 = 100$ fixed, a longer
+period of bond-financed deficits accumulates more interest-bearing debt
+$B_{T-1}$ that must eventually be serviced by printing money.
+
+Fix $m_0 = 100$ and vary $T \in \{1, 3, 5, 10, 20\}$.  For each $T$:
+
+(a) Use `simulate` to obtain the stationary post-$T$ rate of return
+    $R_u$ (it equals `paths[3, T]`).
+
+(b) Compute the post-$T$ government deficit
+    $\bar g = g + (\tilde R - 1) B_{T-1}$ directly from the model parameters
+    and the fixed-point $p_0$.
+
+(c) Plot $R_u$ and $\bar g$ against $T$ on side-by-side panels and explain
+    why $R_u$ falls and $\bar g$ rises as $T$ increases.
+```
+
+```{solution-start} un_ex1
+:class: dropdown
+```
+
+```{code-cell} ipython3
+m0 = 100
+T_values = [1, 3, 5, 10, 20]
+
+R_u_list  = []
+g_bar_list = []
+
+for T_val in T_values:
+    model_T = create_model(T=T_val)
+    # equilibrium price level
+    p0 = compute_fixed_point(m0, 1, model_T)
+    # open-market operation → bonds
+    Bm1   = (1 / (p0 * model_T.R_tilde)) * (model_T.m0_check - m0) \
+            + model_T.Bm1_check
+    BTm1  = (model_T.R_tilde ** T_val * Bm1
+             + (1 - model_T.R_tilde ** T_val) / (1 - model_T.R_tilde) * model_T.g)
+    g_bar = model_T.g + (model_T.R_tilde - 1) * BTm1
+    g_bar_list.append(g_bar)
+    # post-T rate of return from simulate
+    paths = simulate(m0, model_T, length=T_val + 3)
+    R_u_list.append(paths[3, T_val])
+
+fig, axes = plt.subplots(1, 2, figsize=(10, 4))
+
+axes[0].plot(T_values, R_u_list, marker='o')
+axes[0].set_xlabel('$T$')
+axes[0].set_ylabel('$R_u$  (post-$T$ rate of return)')
+axes[0].set_title('Longer tight-money period → lower $R_u$')
+axes[0].grid(True, alpha=0.3)
+
+axes[1].plot(T_values, g_bar_list, marker='o', color='tab:orange')
+axes[1].set_xlabel('$T$')
+axes[1].set_ylabel(r'$\bar{g}$  (post-$T$ deficit)')
+axes[1].set_title('Longer tight-money period → larger $\\bar{g}$')
+axes[1].grid(True, alpha=0.3)
+
+plt.tight_layout()
+plt.show()
+
+print(f"\n{'T':>4}  {'g_bar':>8}  {'R_u':>8}")
+print('-' * 26)
+for T_val, g_b, Ru in zip(T_values, g_bar_list, R_u_list):
+    print(f"{T_val:>4}  {g_b:>8.4f}  {Ru:>8.4f}")
+```
+
+Each additional period that $m_t$ is held fixed forces the government to roll
+over its bonds at gross rate $\tilde R > 1$, compounding the stock $B_{T-1}$
+and therefore raising $\bar g$.  A higher $\bar g$ sits further up the
+seigniorage Laffer curve, requiring a lower $R_u$ (higher inflation tax rate).
+This is the core mechanism of "unpleasant monetarist arithmetic": tighter money
+today makes the long-run inflation rate higher, not lower.
+
+```{solution-end}
+```
+
+```{exercise}
+:label: un_ex2
+
+**The fiscal limit: how large can $T$ be?**
+
+The post-$T$ deficit $\bar g$ must be financeable by the inflation tax, which
+means it cannot exceed the maximum seigniorage revenue
+$g_{\rm max} = S(\bar R_{\rm max})$ from the Laffer curve.
+
+With $m_0 = 100$ and the default parameters, find the **fiscal limit**
+$T^*$: the largest integer $T$ for which a feasible stationary equilibrium
+still exists after time $T$ (i.e., $\bar g \leq g_{\rm max}$).
+
+(a) Compute $g_{\rm max} = (\gamma_1 + \gamma_2) - \gamma_2/\bar R_{\rm max}
+    - \gamma_1 \bar R_{\rm max}$ where $\bar R_{\rm max} = \sqrt{\gamma_2/\gamma_1}$.
+
+(b) For $T = 1, 2, \ldots, 50$, compute $\bar g(T)$ as in {ref}`un_ex1`.
+    Plot $\bar g(T)$ and $g_{\rm max}$ on the same axes and shade the
+    infeasible region.
+
+(c) Identify $T^*$ and print $\bar g$ at $T^*$ and $T^* + 1$.
+```
+
+```{solution-start} un_ex2
+:class: dropdown
+```
+
+```{code-cell} ipython3
+γ1, γ2 = msm.γ1, msm.γ2
+
+# (a) Laffer-curve peak
+R_max   = np.sqrt(γ2 / γ1)
+g_max   = (γ1 + γ2) - γ2 / R_max - γ1 * R_max
+print(f"R_max  = {R_max:.4f}")
+print(f"g_max  = {g_max:.4f}")
+
+# (b) g_bar for T = 1 ... 50
+m0 = 100
+T_candidates = np.arange(1, 151)
+g_bar_arr = np.empty(len(T_candidates))
+
+for i, T_val in enumerate(T_candidates):
+    model_T = create_model(T=int(T_val))
+    p0      = compute_fixed_point(m0, 1, model_T)
+    Bm1     = (1 / (p0 * model_T.R_tilde)) * (model_T.m0_check - m0) \
+              + model_T.Bm1_check
+    BTm1    = (model_T.R_tilde ** T_val * Bm1
+               + (1 - model_T.R_tilde ** T_val) / (1 - model_T.R_tilde)
+               * model_T.g)
+    g_bar_arr[i] = model_T.g + (model_T.R_tilde - 1) * BTm1
+
+feasible = g_bar_arr <= g_max
+
+fig, ax = plt.subplots()
+ax.plot(T_candidates, g_bar_arr, label=r'$\bar{g}(T)$')
+ax.axhline(g_max, color='red', linestyle='--',
+           label=f'$g_{{\\rm max}} = {g_max:.2f}$')
+ax.fill_between(T_candidates, g_bar_arr, g_max,
+                where=~feasible, alpha=0.2, color='red',
+                label='infeasible region')
+ax.set_xlabel('$T$')
+ax.set_ylabel(r'post-$T$ deficit $\bar{g}$')
+ax.set_title('Fiscal limit: $\\bar{g}(T)$ vs Laffer-curve maximum')
+ax.legend()
+plt.tight_layout()
+plt.show()
+
+# (c) Fiscal limit T*
+T_star = T_candidates[feasible][-1]
+print(f"\nFiscal limit T* = {T_star}")
+print(f"  g_bar(T*)   = {g_bar_arr[T_star - 1]:.4f}  ≤  g_max = {g_max:.4f}")
+print(f"  g_bar(T*+1) = {g_bar_arr[T_star]:.4f}  >  g_max = {g_max:.4f}  (infeasible)")
+```
+
+Beyond $T^*$, the accumulated bond debt $B_{T-1}$ is so large that the
+implied $\bar g$ exceeds the peak of the seigniorage Laffer curve.  No matter
+how high the government sets the inflation tax rate, it cannot raise enough
+revenue to service that debt.  The fiscal limit is therefore a hard constraint
+on how long a tight-money policy can be pursued before the underlying fiscal
+arithmetic becomes incoherent.
+
+```{solution-end}
+```

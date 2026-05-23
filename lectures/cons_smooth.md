@@ -752,6 +752,32 @@ is the inverse of $A$ and check that $A A^{-1} = I$
 
 ```
 
+```{solution-start} consmooth_ex1
+:class: dropdown
+```
+
+```{code-cell} ipython3
+λ = 0.9
+T = 6
+
+# Matrix A: ones on diagonal, -λ on the first subdiagonal
+A = np.eye(T) - λ * np.diag(np.ones(T-1), k=-1)
+
+# Purported inverse: lower triangular, A_inv[i,j] = λ^(i-j) for i >= j
+A_inv = np.zeros((T, T))
+for i in range(T):
+    for j in range(i + 1):
+        A_inv[i, j] = λ**(i - j)
+
+# Verify A @ A_inv = I
+print("A @ A_inv (should be identity):")
+print(np.round(A @ A_inv, 10))
+print("Is identity:", np.allclose(A @ A_inv, np.eye(T)))
+```
+
+```{solution-end}
+```
+
 ### Second-order difference equation
 
 A second-order linear difference equation for $\{y_t\}_{t=0}^T$ is
@@ -788,4 +814,213 @@ Multiplying both sides by  inverse of the matrix on the left again provides the 
 
 As an exercise, we ask you to represent and solve a **third-order linear difference equation**.
 How many initial conditions must you specify?
+```
+
+```{solution-start} consmooth_ex2
+:class: dropdown
+```
+
+A third-order linear difference equation is
+
+$$
+y_t = \lambda_1 y_{t-1} + \lambda_2 y_{t-2} + \lambda_3 y_{t-3}, \quad t = 1, 2, \ldots, T
+$$
+
+Three initial conditions are required: $y_0$, $y_{-1}$, and $y_{-2}$.
+
+The matrix representation stacks the $T$ equations as
+
+$$
+\begin{bmatrix}
+1 & 0 & 0 & 0 & \cdots \\
+-\lambda_1 & 1 & 0 & 0 & \cdots \\
+-\lambda_2 & -\lambda_1 & 1 & 0 & \cdots \\
+-\lambda_3 & -\lambda_2 & -\lambda_1 & 1 & \cdots \\
+\vdots & \ddots & \ddots & \ddots & \ddots
+\end{bmatrix}
+\begin{bmatrix} y_1 \\ y_2 \\ y_3 \\ y_4 \\ \vdots \end{bmatrix}
+=
+\begin{bmatrix}
+\lambda_1 y_0 + \lambda_2 y_{-1} + \lambda_3 y_{-2} \\
+\lambda_2 y_0 + \lambda_3 y_{-1} \\
+\lambda_3 y_0 \\
+0 \\
+\vdots
+\end{bmatrix}
+$$
+
+```{code-cell} ipython3
+λ1, λ2, λ3 = 0.8, -0.3, 0.1
+y0, y_m1, y_m2 = 1.0, 0.5, 0.25
+T = 15
+
+# Build the 3rd-order coefficient matrix
+A3 = np.eye(T)
+for i in range(T):
+    if i >= 1:
+        A3[i, i-1] = -λ1
+    if i >= 2:
+        A3[i, i-2] = -λ2
+    if i >= 3:
+        A3[i, i-3] = -λ3
+
+# Right-hand side
+b = np.zeros(T)
+b[0] = λ1 * y0  + λ2 * y_m1 + λ3 * y_m2
+b[1] = λ2 * y0  + λ3 * y_m1
+b[2] = λ3 * y0
+
+# Solve
+y = np.linalg.solve(A3, b)
+y_full = np.concatenate([[y_m2, y_m1, y0], y])
+
+fig, ax = plt.subplots()
+ax.plot(range(-2, T+1), y_full, 'o-')
+ax.axhline(0, linestyle='--', lw=1)
+ax.set_xlabel('$t$')
+ax.set_ylabel('$y_t$')
+ax.set_title('Third-order linear difference equation')
+plt.show()
+```
+
+```{solution-end}
+```
+
+## Exercises
+
+```{exercise}
+:label: consmooth_ex3
+
+Using `compute_optimal`, compute the optimal constant consumption level $c_0$ for
+initial financial wealth values $a_0 \in \{-4, -2, 0, 2\}$, holding fixed the income
+sequence
+
+$$
+y_t = \begin{cases} 1 & t = 0, 1, \ldots, 45 \\ 0 & t = 46, \ldots, 65 \end{cases}
+$$
+
+and the default model parameters.
+
+(a) Plot all four consumption paths on a single graph.  What do you notice about
+    their shapes relative to one another?
+
+(b) Plot $c_0$ against $a_0$ and compute the slope of the resulting line.
+    Verify that the slope equals the annuity factor
+    $\left(\frac{1-R^{-1}}{1-R^{-(T+1)}}\right)$ from equation {eq}`eq:conssmoothing`.
+```
+
+```{solution-start} consmooth_ex3
+:class: dropdown
+```
+
+```{code-cell} ipython3
+cs_model = create_consumption_smoothing_model()
+T = cs_model.T
+y_seq = np.concatenate([np.ones(46), np.zeros(20)])
+
+a0_vals = [-4, -2, 0, 2]
+c0_vals = []
+
+fig, axes = plt.subplots(1, 2, figsize=(12, 4))
+
+for a0 in a0_vals:
+    c_seq, a_seq, h0 = compute_optimal(cs_model, a0, y_seq)
+    c0_vals.append(c_seq[0])
+    axes[0].plot(range(T+1), c_seq, label=f'$a_0 = {a0}$')
+
+axes[0].set_xlabel('$t$')
+axes[0].set_ylabel('$c_t$')
+axes[0].set_title('Consumption paths for different $a_0$')
+axes[0].legend()
+
+axes[1].plot(a0_vals, c0_vals, 'o-')
+axes[1].set_xlabel('$a_0$')
+axes[1].set_ylabel('$c_0$')
+axes[1].set_title('Optimal $c_0$ as a function of $a_0$')
+
+plt.tight_layout()
+plt.show()
+
+# Verify slope = annuity factor
+R = cs_model.R
+slope = (c0_vals[-1] - c0_vals[0]) / (a0_vals[-1] - a0_vals[0])
+annuity = (1 - 1/R) / (1 - (1/R)**(T+1))
+print(f'Numerical slope of c0 w.r.t. a0: {slope:.8f}')
+print(f'Annuity factor (1 - R⁻¹)/(1 - R⁻⁽ᵀ⁺¹⁾):  {annuity:.8f}')
+print(f'Match: {np.isclose(slope, annuity)}')
+```
+
+The four paths are parallel horizontal lines — all flat but shifted vertically.
+The slope of $c_0$ with respect to $a_0$ exactly equals the annuity factor,
+confirming that an extra dollar of initial wealth is spread evenly over all
+$T+1$ periods as a constant additional flow.
+
+```{solution-end}
+```
+
+```{exercise}
+:label: consmooth_ex4
+
+The variational argument in this lecture says that the constant consumption path
+maximizes welfare {eq}`welfare` among all budget-feasible paths.
+
+Using `compute_variation` with $\xi_1 = 0.1$ and the Experiment 1 income sequence
+($W_0 = 2.5$ windfall at $t=21$, with $a_0 = -2$):
+
+(a) Compute welfare for the optimal flat path and for variations with
+    $\phi \in \{0.7,\, 0.9,\, 1.0,\, 1.02,\, 1.1\}$.  Print the results in a table.
+
+(b) Plot welfare as a function of $\phi$ on a fine grid in $(0.5, 1.5)$.  Mark the
+    welfare of the optimal flat path as a dashed horizontal line and confirm it is
+    the global maximum.
+```
+
+```{solution-start} consmooth_ex4
+:class: dropdown
+```
+
+```{code-cell} ipython3
+a0 = -2
+y_seq_pos = np.concatenate(
+    [np.ones(21), np.array([2.5]), np.ones(24), np.zeros(20)])
+
+c_opt, _, _ = compute_optimal(cs_model, a0, y_seq_pos)
+w_opt = welfare(cs_model, c_opt)
+
+print(f'Optimal (flat) welfare: {w_opt:.6f}\n')
+
+ϕ_vals = [0.7, 0.9, 1.0, 1.02, 1.1]
+print(f'{"ϕ":>6} | {"welfare":>12} | {"vs. optimal":>14}')
+print('-' * 38)
+for ϕ in ϕ_vals:
+    cvar = compute_variation(cs_model, ξ1=0.1, ϕ=ϕ, a0=a0,
+                             y_seq=y_seq_pos, verbose=0)
+    w = welfare(cs_model, cvar)
+    print(f'{ϕ:>6.2f} | {w:>12.6f} | {w - w_opt:>+14.6f}')
+
+# Fine grid
+ϕ_grid = np.linspace(0.5, 1.5, 200)
+w_grid = np.array([
+    welfare(cs_model,
+            compute_variation(cs_model, ξ1=0.1, ϕ=ϕ, a0=a0,
+                              y_seq=y_seq_pos, verbose=0))
+    for ϕ in ϕ_grid
+])
+
+fig, ax = plt.subplots()
+ax.plot(ϕ_grid, w_grid, label='Welfare of variation')
+ax.axhline(w_opt, linestyle='--', color='red', label='Optimal flat path')
+ax.set_xlabel(r'$\phi$')
+ax.set_ylabel('Welfare')
+ax.set_title('Welfare of consumption path variations ($\\xi_1 = 0.1$)')
+ax.legend()
+plt.show()
+```
+
+Every variation delivers strictly lower welfare than the flat path, and the flat
+path sits at the peak of the welfare curve.  This numerically confirms the variational
+principle: the constant consumption path is the global welfare maximizer when
+$\beta R = 1$.
+
+```{solution-end}
 ```

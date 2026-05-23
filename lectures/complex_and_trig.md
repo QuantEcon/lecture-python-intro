@@ -526,3 +526,207 @@ integrate(sin(ω)**2, (ω, -pi, pi))
 
 ```{solution-end}
 ```
+
+```{exercise}
+:label: complex_ex2
+
+**Double-angle identities via De Moivre's theorem.**
+
+Apply de Moivre's theorem with $n = 2$:
+
+$$
+(\cos\theta + i\sin\theta)^2 = \cos 2\theta + i\sin 2\theta
+$$
+
+Expand the left-hand side as a complex square and equate real and imaginary
+parts to deduce the two **double-angle identities**
+
+$$
+\cos 2\theta = \cos^2\theta - \sin^2\theta, \qquad
+\sin 2\theta = 2\sin\theta\cos\theta.
+$$
+
+Then use the Pythagorean identity $\cos^2\theta + \sin^2\theta = 1$ to write
+two alternative forms of the cosine identity:
+
+$$
+\cos 2\theta = 2\cos^2\theta - 1 = 1 - 2\sin^2\theta.
+$$
+
+Verify all four identities using `simplify` from `sympy`.
+```
+
+```{solution-start} complex_ex2
+:class: dropdown
+```
+
+De Moivre with $n = 2$ gives
+$(\cos\theta + i\sin\theta)^2 = \cos 2\theta + i\sin 2\theta$.
+Expanding the left side:
+
+$$
+\cos^2\theta - \sin^2\theta \;+\; i\,(2\sin\theta\cos\theta)
+= \cos 2\theta + i\sin 2\theta.
+$$
+
+Matching real parts: $\cos 2\theta = \cos^2\theta - \sin^2\theta$.
+Matching imaginary parts: $\sin 2\theta = 2\sin\theta\cos\theta$.
+
+Substituting $\sin^2\theta = 1 - \cos^2\theta$ into the cosine formula gives
+$\cos 2\theta = 2\cos^2\theta - 1$, and substituting $\cos^2\theta = 1 - \sin^2\theta$
+gives $\cos 2\theta = 1 - 2\sin^2\theta$.
+
+```{code-cell} ipython3
+from sympy import Symbol, cos, sin, simplify
+
+θ = Symbol('θ', real=True)
+
+print("cos(2θ) = cos²θ − sin²θ:",
+      simplify(cos(2*θ) - (cos(θ)**2 - sin(θ)**2)))
+
+print("sin(2θ) = 2sinθcosθ:",
+      simplify(sin(2*θ) - 2*sin(θ)*cos(θ)))
+
+print("cos(2θ) = 2cos²θ − 1:",
+      simplify(cos(2*θ) - (2*cos(θ)**2 - 1)))
+
+print("cos(2θ) = 1 − 2sin²θ:",
+      simplify(cos(2*θ) - (1 - 2*sin(θ)**2)))
+```
+
+Each `simplify` call returns 0, confirming all four identities.
+
+```{solution-end}
+```
+
+```{exercise}
+:label: complex_ex3
+
+**Product-to-sum formulas by "adding appropriate pairs".**
+
+The angle-sum identities derived in the lecture are:
+
+$$
+\cos(\theta + w) = \cos\theta\cos w - \sin\theta\sin w \tag{i}
+$$
+
+$$
+\cos(\theta - w) = \cos\theta\cos w + \sin\theta\sin w \tag{ii}
+$$
+
+$$
+\sin(\theta + w) = \sin\theta\cos w + \cos\theta\sin w \tag{iii}
+$$
+
+$$
+\sin(\theta - w) = \sin\theta\cos w - \cos\theta\sin w \tag{iv}
+$$
+
+By adding and subtracting appropriate pairs of these four equations, derive
+the three **product-to-sum formulas**:
+
+$$
+\cos\theta\cos w = \frac{\cos(\theta+w) + \cos(\theta-w)}{2}
+$$
+
+$$
+\sin\theta\sin w = \frac{\cos(\theta-w) - \cos(\theta+w)}{2}
+$$
+
+$$
+\sin\theta\cos w = \frac{\sin(\theta+w) + \sin(\theta-w)}{2}
+$$
+
+Verify all three with `simplify` from `sympy`.
+```
+
+```{solution-start} complex_ex3
+:class: dropdown
+```
+
+Adding (i) and (ii) gives $\cos(\theta+w) + \cos(\theta-w) = 2\cos\theta\cos w$.
+
+Subtracting (i) from (ii) gives $\cos(\theta-w) - \cos(\theta+w) = 2\sin\theta\sin w$.
+
+Adding (iii) and (iv) gives $\sin(\theta+w) + \sin(\theta-w) = 2\sin\theta\cos w$.
+
+Dividing each result by 2 yields the three product-to-sum formulas.
+
+```{code-cell} ipython3
+from sympy import symbols, cos, sin, simplify
+
+θ, w = symbols('θ w', real=True)
+
+print("cos(θ+w) + cos(θ-w) − 2cos(θ)cos(w) =",
+      simplify(cos(θ+w) + cos(θ-w) - 2*cos(θ)*cos(w)))
+
+print("cos(θ-w) − cos(θ+w) − 2sin(θ)sin(w) =",
+      simplify(cos(θ-w) - cos(θ+w) - 2*sin(θ)*sin(w)))
+
+print("sin(θ+w) + sin(θ-w) − 2sin(θ)cos(w) =",
+      simplify(sin(θ+w) + sin(θ-w) - 2*sin(θ)*cos(w)))
+```
+
+All three expressions simplify to 0.
+
+```{solution-end}
+```
+
+```{exercise}
+:label: complex_ex4
+
+**Orthogonality of cosines.**
+
+Apply the product-to-sum formula from {ref}`complex_ex3` with $\theta = m\phi$
+and $w = n\phi$:
+
+$$
+\cos(m\phi)\cos(n\phi) = \frac{\cos((m-n)\phi) + \cos((m+n)\phi)}{2}.
+$$
+
+Use this identity and the fact that $\int_{-\pi}^{\pi} \cos(k\phi)\,d\phi = 0$
+for every non-zero integer $k$ to prove that for positive integers $m$ and $n$
+
+$$
+\int_{-\pi}^{\pi} \cos(m\phi)\cos(n\phi)\,d\phi =
+\begin{cases} \pi & \text{if } m = n \\ 0 & \text{if } m \neq n. \end{cases}
+$$
+
+Verify this **orthogonality table** numerically with `integrate` from `sympy`
+for $m, n \in \{1, 2, 3\}$.
+```
+
+```{solution-start} complex_ex4
+:class: dropdown
+```
+
+**Case $m \neq n$:** Both $m - n$ and $m + n$ are non-zero integers, so
+$\int_{-\pi}^{\pi} \cos((m-n)\phi)\,d\phi = \int_{-\pi}^{\pi} \cos((m+n)\phi)\,d\phi = 0$,
+giving a total of 0.
+
+**Case $m = n$:** The formula becomes
+$\cos(m\phi)^2 = \tfrac{1}{2}[1 + \cos(2m\phi)]$.
+Since $\int_{-\pi}^{\pi} \cos(2m\phi)\,d\phi = 0$ for non-zero integer $m$,
+the integral equals $\tfrac{1}{2} \cdot 2\pi = \pi$.
+
+```{code-cell} ipython3
+from sympy import Symbol, cos, integrate, pi
+
+ϕ = Symbol('ϕ', real=True)
+
+print(f"{'m':>3}  {'n':>3}  {'integral':>10}")
+print('-' * 22)
+for m in [1, 2, 3]:
+    for n in [1, 2, 3]:
+        val = integrate(cos(m*ϕ) * cos(n*ϕ), (ϕ, -pi, pi))
+        print(f"{m:>3}  {n:>3}  {str(val):>10}")
+```
+
+The table confirms the rule: diagonal entries (where $m = n$) all equal $\pi$,
+and every off-diagonal entry equals $0$.  This orthogonality property is the
+foundation of Fourier series: it is why sinusoidal functions at different
+frequencies do not "interfere" when we decompose a signal into its frequency
+components.
+
+```{solution-end}
+```

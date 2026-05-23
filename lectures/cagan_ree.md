@@ -649,6 +649,258 @@ plot_sequences(sequences, (r'$\mu$', r'$\pi$',
                            r'$m - p$', r'$m$', r'$p$'))
 ```
 
+## Exercises
+
+```{exercise}
+:label: cagan_ex1
+
+**Sensitivity to $\alpha$.**
+
+For Experiment 1 (foreseen sudden stabilization from $\mu_0 = 0.5$ to $\mu^* = 0$
+at $T_1 = 60$, with $T = 80$), solve the model for
+$\alpha \in \{1,\, 3,\, 5,\, 10,\, 25\}$ and plot the inflation path $\pi_t$ for
+each value on a single graph.
+
+Describe how the **anticipation effect** — the pre-stabilization fall in inflation
+— changes with $\alpha$.
+```
+
+```{solution-start} cagan_ex1
+:class: dropdown
+```
+
+```{code-cell} ipython3
+T1 = 60
+μ0 = 0.5
+μ_star = 0.0
+T = 80
+μ_seq = np.append(μ0 * np.ones(T1+1), μ_star * np.ones(T - T1))
+
+α_vals = [1, 3, 5, 10, 25]
+T_seq = np.arange(T+1)
+
+fig, ax = plt.subplots()
+for α in α_vals:
+    cm = create_cagan_model(α=α, μ_seq=μ_seq)
+    π_seq, _, _ = solve(cm, T)
+    ax.plot(T_seq, π_seq, label=f'α = {α}')
+
+ax.axvline(T1, linestyle='--', color='black', lw=1, label='Stabilization $T_1$')
+ax.set_xlabel('$t$')
+ax.set_ylabel(r'$\pi_t$')
+ax.set_title('Inflation paths for different α (foreseen stabilization)')
+ax.legend()
+plt.show()
+```
+
+For small $\alpha$, real-balance demand is insensitive to inflation so the model
+behaves almost like the exogenous-money case: inflation tracks $\mu_t$ closely
+and the anticipation effect is minimal.  For large $\alpha$, agents strongly
+revalue money in response to expected future inflation, so the announcement of a
+future stabilization pulls inflation down gradually, well before $T_1$.
+
+```{solution-end}
+```
+
+```{exercise}
+:label: cagan_ex2
+
+**Verify the analytical formula.**
+
+For Experiment 1 ($\alpha = 5$, $T_1 = 60$, $T = 80$, $\mu_0 = 0.5$,
+$\mu^* = 0$), the closed-form solution for the inflation rate is given by
+equation {eq}`eq:fisctheory1`:
+
+$$
+\pi_t = (1-\delta) \sum_{s=t}^T \delta^{s-t} \mu_s + \delta^{T+1-t} \pi_{T+1}^*
+$$
+
+Compute $\pi_t$ directly from this formula for each $t = 0, 1, \ldots, T$ and
+compare it to the matrix solution returned by `solve`.  Plot both on the same
+graph and print the maximum absolute difference.
+```
+
+```{solution-start} cagan_ex2
+:class: dropdown
+```
+
+```{code-cell} ipython3
+T1 = 60
+μ0 = 0.5
+μ_star = 0.0
+T = 80
+α = 5
+μ_seq = np.append(μ0 * np.ones(T1+1), μ_star * np.ones(T - T1))
+
+cm = create_cagan_model(α=α, μ_seq=μ_seq)
+π_matrix, _, _ = solve(cm, T)
+
+# Analytical formula
+δ = α / (1 + α)
+π_term = cm.π_end   # terminal condition stored in model
+π_formula = np.array([
+    (1 - δ) * sum(δ**(s-t) * μ_seq[s] for s in range(t, T+1))
+    + δ**(T+1-t) * π_term
+    for t in range(T+1)
+])
+
+T_seq = np.arange(T+1)
+fig, ax = plt.subplots()
+ax.plot(T_seq, π_matrix,  label='Matrix solution', lw=2)
+ax.plot(T_seq, π_formula, '--', label='Analytical formula', lw=1.5)
+ax.set_xlabel('$t$')
+ax.set_ylabel(r'$\pi_t$')
+ax.set_title('Matrix vs analytical inflation path')
+ax.legend()
+plt.show()
+
+print(f'Max absolute difference: {np.max(np.abs(π_matrix - π_formula)):.2e}')
+```
+
+The two methods agree to machine precision, confirming that the matrix system
+{eq}`eq:pieq` correctly implements formula {eq}`eq:fisctheory1`.
+
+```{solution-end}
+```
+
+```{exercise}
+:label: cagan_ex3
+
+**Foreseen gradual vs sudden stabilization.**
+
+Experiment 1 features a *sudden* foreseen drop in money growth at $T_1 = 60$.
+Experiment 3 features a *gradual* foreseen path $\mu_t = \phi^t \mu_0 + (1-\phi^t)\mu^*$.
+
+On a single graph, plot the inflation paths for:
+- Experiment 1 (sudden), and
+- Experiment 3 with $\phi \in \{0.95, 0.85, 0.70\}$ (increasingly fast gradualism).
+
+Use $\alpha = 5$, $\mu_0 = 0.5$, $\mu^* = 0$, $T = 80$.  Which approach generates
+the smoothest pre-stabilization decline in inflation?
+```
+
+```{solution-start} cagan_ex3
+:class: dropdown
+```
+
+```{code-cell} ipython3
+T = 80
+T1 = 60
+μ0 = 0.5
+μ_star = 0.0
+α = 5
+T_seq = np.arange(T+1)
+
+# Experiment 1: sudden
+μ_sudden = np.append(μ0 * np.ones(T1+1), μ_star * np.ones(T - T1))
+cm_sudden = create_cagan_model(α=α, μ_seq=μ_sudden)
+π_sudden, _, _ = solve(cm_sudden, T)
+
+fig, ax = plt.subplots()
+ax.plot(T_seq, π_sudden, lw=2, label='Sudden (Exp. 1)')
+
+# Experiment 3: gradual
+for ϕ in [0.95, 0.85, 0.70]:
+    μ_grad = np.array([ϕ**t * μ0 + (1 - ϕ**t) * μ_star for t in range(T)])
+    μ_grad = np.append(μ_grad, μ_star)
+    cm_grad = create_cagan_model(α=α, μ_seq=μ_grad)
+    π_grad, _, _ = solve(cm_grad, T)
+    ax.plot(T_seq, π_grad, label=f'Gradual ϕ = {ϕ}')
+
+ax.set_xlabel('$t$')
+ax.set_ylabel(r'$\pi_t$')
+ax.set_title('Inflation: sudden vs gradual foreseen stabilization')
+ax.legend()
+plt.show()
+```
+
+Faster gradual stabilization (smaller $\phi$) pulls $\mu_t$ down more quickly,
+so there is less future inflation to discount and $\pi_t$ falls sooner and more
+steeply.  The sudden stabilization has the largest discontinuity in the path
+of $\mu_t$, but because it is fully anticipated the inflation path is smooth
+throughout.
+
+```{solution-end}
+```
+
+```{exercise}
+:label: cagan_ex4
+
+**Real-balance dynamics.**
+
+For Experiments 1 and 2 (foreseen and unforeseen sudden stabilization, regime 1
+where $m_{T_1}$ is kept smooth), compute and plot the path of log real balances
+$m_t - p_t$ for $t = 0, 1, \ldots, T$.
+
+Use $\alpha = 5$, $T_1 = 60$, $T = 80$, $\mu_0 = 0.5$, $\mu^* = 0$.
+
+Describe the qualitative difference between the two paths and explain it using
+the money-demand equation {eq}`eq:caganmd`.
+```
+
+```{solution-start} cagan_ex4
+:class: dropdown
+```
+
+```{code-cell} ipython3
+T = 80
+T1 = 60
+μ0 = 0.5
+μ_star = 0.0
+α = 5
+
+# Experiment 1: foreseen
+μ_seq_1 = np.append(μ0 * np.ones(T1+1), μ_star * np.ones(T - T1))
+cm1 = create_cagan_model(α=α, μ_seq=μ_seq_1)
+π_seq_1, m_seq_1, p_seq_1 = solve(cm1, T)
+
+# Experiment 2: unforeseen (at T1 the model is re-solved with the new μ)
+# Before T1: agents expect μ0 forever
+μ_seq_2a = μ0 * np.ones(T+1)   # what agents believed before T1
+cm2a = create_cagan_model(α=α, μ_seq=μ_seq_2a)
+π_pre, m_pre, p_pre = solve(cm2a, T)
+
+# After T1: new μ_star path
+μ_seq_2b = np.append(μ0 * np.ones(T1+1), μ_star * np.ones(T - T1))
+# splice: use m from first regime up to T1, then re-solve
+m_T1 = m_pre[T1]   # money supply at T1 is kept smooth
+μ_new = μ_star * np.ones(T - T1)
+μ_seq_post = np.append(np.array([μ0] * (T1+1)), μ_new)
+cm2b = create_cagan_model(m0=np.exp(m_T1), α=α,
+                          μ_seq=μ_star * np.ones(T+1))
+π_post, m_post, p_post = solve(cm2b, T)
+
+# For the unforeseen case we use the full μ_seq_2a solution before T1
+# and the updated solution after
+T_seq = np.arange(T+1)
+
+fig, ax = plt.subplots()
+ax.plot(T_seq, m_seq_1 - p_seq_1, label='Foreseen (Exp. 1)')
+# approximate unforeseen by splicing pre/post paths
+rb_unforeseen = np.concatenate([
+    (m_pre - p_pre)[:T1+1],
+    (m_post - p_post)[1:T - T1 + 1]
+])
+ax.plot(np.arange(len(rb_unforeseen)),
+        rb_unforeseen, '--', label='Unforeseen (Exp. 2, approx.)')
+ax.axvline(T1, linestyle=':', color='black', lw=1)
+ax.set_xlabel('$t$')
+ax.set_ylabel('$m_t - p_t$ (log real balances)')
+ax.set_title('Real-balance paths: foreseen vs unforeseen stabilization')
+ax.legend()
+plt.show()
+```
+
+From equation {eq}`eq:caganmd`, $m_t - p_t = -\alpha \pi_t$.  In the **foreseen**
+case, inflation falls gradually before $T_1$, so real balances rise smoothly as
+the public anticipates lower future inflation.  In the **unforeseen** case, there
+is no pre-announcement effect: real balances are flat until the surprise at $T_1$,
+at which point inflation drops abruptly and real balances jump discontinuously
+upward — a "velocity dividend" from the surprise stabilization.
+
+```{solution-end}
+```
+
 ## Sequel
 
 Another lecture {doc}`monetarist theory of price levels with adaptive expectations <cagan_adaptive>` describes an "adaptive expectations" version of Cagan's model.
