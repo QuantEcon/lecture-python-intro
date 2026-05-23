@@ -437,3 +437,300 @@ on grounds of plausibility, we  again recommend  selecting the unique equilibriu
 As we shall see, we  accepting  this recommendation is a key ingredient of outcomes of the "unpleasant arithmetic" that we describe in {doc}`unpleasant`.
 
 In {doc}`laffer_adaptive`, we shall explore how  {cite}`bruno1990seigniorage` and others justified our equilibrium selection in other ways.
+
+## Exercises
+
+```{exercise}
+:label: mni_ex1
+
+**Peak seigniorage revenue and fiscal limits.**
+
+The steady-state seigniorage collected at inflation rate $x$ is
+
+$$
+L(x) = e^{-\alpha x} - e^{-(1+\alpha)x}.
+$$
+
+(a) Verify analytically that $L(x)$ is maximized at
+
+$$
+x^* = \ln\!\left(\frac{1+\alpha}{\alpha}\right)
+$$
+
+by differentiating, setting $L'(x) = 0$, and solving for $x$.
+
+(b) Using the default model, compute $x^*$ from the analytic formula and
+    confirm it numerically with `scipy.optimize.minimize_scalar`.
+    Plot the Laffer curve with horizontal lines marking $g_{\rm max} = L(x^*)$
+    and the benchmark deficit $g = 0.35$.
+
+(c) What happens if the government attempts to finance a deficit
+    $g > g_{\rm max}$?  Evaluate $L(x) - g$ over a fine grid of $x$ values
+    for $g = g_{\rm max} + 0.01$ and explain the economic interpretation.
+```
+
+```{solution-start} mni_ex1
+:class: dropdown
+```
+
+**(a)** Differentiating $L(x)$:
+
+$$
+L'(x) = -\alpha e^{-\alpha x} + (1+\alpha)\, e^{-(1+\alpha)x} = 0.
+$$
+
+Rearranging:
+
+$$
+\frac{1+\alpha}{\alpha} = e^{(1+\alpha)x - \alpha x} = e^{x}
+\implies x^* = \ln\!\left(\frac{1+\alpha}{\alpha}\right).
+$$
+
+Since $L''(x^*) < 0$, this is indeed a maximum.
+
+```{code-cell} ipython3
+from scipy.optimize import minimize_scalar
+
+α = model.α
+x_star_analytic = np.log((1 + α) / α)
+g_max = compute_seign(x_star_analytic, α)
+print(f"Analytic  x* = ln((1+α)/α) = {x_star_analytic:.6f}")
+print(f"g_max = L(x*)              = {g_max:.6f}")
+
+result = minimize_scalar(lambda x: -compute_seign(x, α), bounds=(0, 10), method='bounded')
+print(f"Numerical x*               = {result.x:.6f}")
+```
+
+```{code-cell} ipython3
+x_values = np.linspace(0, 5, 1000)
+y_values = compute_seign(x_values, α)
+
+fig, ax = plt.subplots()
+ax.plot(x_values, y_values, label=r'$L(x)$')
+ax.axhline(g_max, color='red', linestyle='--',
+           label=f'$g_{{\\rm max}}={g_max:.4f}$')
+ax.axhline(model.g, color='blue', linestyle='--', lw=1,
+           label=f'$g={model.g}$')
+ax.axvline(x_star_analytic, color='grey', linestyle=':', lw=1,
+           label=f'$x^*={x_star_analytic:.4f}$')
+ax.set_xlabel(r'steady-state inflation rate $x$')
+ax.set_ylabel('seigniorage')
+ax.legend()
+plt.tight_layout()
+plt.show()
+```
+
+**(c)**
+
+```{code-cell} ipython3
+g_infeasible = g_max + 0.01
+x_grid = np.linspace(0, 10, 10_000)
+residual = compute_seign(x_grid, α) - g_infeasible
+
+print(f"g_max        = {g_max:.6f}")
+print(f"g_infeasible = {g_infeasible:.6f}")
+print(f"max L(x) - g = {residual.max():.8f}  (always negative)")
+```
+
+When $g > g_{\rm max}$, the equation $L(x) = g$ has no real solution for any
+$x \geq 0$.  Economically, the inflation tax cannot raise enough revenue to
+cover the deficit at *any* inflation rate: the government has exceeded the
+fiscal limit of the seigniorage Laffer curve, and no stationary equilibrium
+exists.
+
+```{solution-end}
+```
+
+```{exercise}
+:label: mni_ex2
+
+**How the two steady-state inflation rates depend on the deficit $g$.**
+
+The lecture computes $\pi_l$ and $\pi_u$ for a fixed benchmark deficit
+$g = 0.35$.
+
+(a) For $g$ ranging from $0.05$ to just below $g_{\rm max}$, compute both
+    $\pi_l(g)$ and $\pi_u(g)$ numerically and plot them on the same graph.
+
+(b) Describe the limiting behavior:
+    - As $g \to 0^+$, what do $\pi_l(g)$ and $\pi_u(g)$ approach?
+    - As $g \to g_{\rm max}^-$, what do they approach?
+
+(c) Mark the benchmark $g = 0.35$ on your graph and read off the two
+    values.  Confirm they agree with `π_l` and `π_u` computed in the
+    lecture.
+```
+
+```{solution-start} mni_ex2
+:class: dropdown
+```
+
+```{code-cell} ipython3
+α = model.α
+x_star = np.log((1 + α) / α)
+g_max = compute_seign(x_star, α)
+
+g_grid = np.linspace(0.05, g_max * 0.999, 200)
+π_l_curve, π_u_curve = [], []
+
+for g in g_grid:
+    m_temp = create_model(α=α, g=g)
+    π_l_curve.append(solve_π_bar(m_temp, x0=0.3))
+    π_u_curve.append(solve_π_bar(m_temp, x0=3.0))
+
+π_l_curve = np.array(π_l_curve)
+π_u_curve = np.array(π_u_curve)
+
+fig, ax = plt.subplots()
+ax.plot(g_grid, π_l_curve, label=r'$\pi_l(g)$ — low-inflation steady state')
+ax.plot(g_grid, π_u_curve, label=r'$\pi_u(g)$ — high-inflation steady state')
+ax.axvline(model.g, color='grey', linestyle='--', lw=1,
+           label=f'benchmark $g={model.g}$')
+ax.set_xlabel('government deficit $g$')
+ax.set_ylabel('steady-state inflation rate')
+ax.legend()
+plt.tight_layout()
+plt.show()
+```
+
+**(b)**
+
+```{code-cell} ipython3
+print(f"As g → 0:      π_l → {π_l_curve[0]:.4f}  (approaches 0)")
+print(f"               π_u → {π_u_curve[0]:.4f}  (large; approaches ∞)")
+print(f"As g → g_max:  π_l → {π_l_curve[-1]:.4f}")
+print(f"               π_u → {π_u_curve[-1]:.4f}")
+print(f"x* = {x_star:.4f}  (the two roots merge here)")
+```
+
+When $g \to 0^+$, the curve $L(x) = g$ has one root near $x = 0$
+($\pi_l \to 0$) and another at very large $x$ ($\pi_u \to \infty$).
+As $g$ rises toward $g_{\rm max}$ the two roots approach each other and merge
+at $x^* = \ln\bigl((1+\alpha)/\alpha\bigr)$.
+
+**(c)**
+
+```{code-cell} ipython3
+idx = np.argmin(np.abs(g_grid - model.g))
+print(f"At benchmark g = {model.g}:")
+print(f"  π_l from curve = {π_l_curve[idx]:.4f},  π_l from lecture = {π_l:.4f}")
+print(f"  π_u from curve = {π_u_curve[idx]:.4f},  π_u from lecture = {π_u:.4f}")
+```
+
+```{solution-end}
+```
+
+```{exercise}
+:label: mni_ex3
+
+**Effect of the money-demand elasticity $\alpha$.**
+
+The parameter $\alpha$ governs how sensitive real money demand is to expected
+inflation.  A larger $\alpha$ means households reduce their real balances more
+sharply as inflation rises.
+
+(a) For $\alpha \in \{0.3,\; 0.5,\; 0.8\}$, compute
+    $x^*(\alpha) = \ln\bigl((1+\alpha)/\alpha\bigr)$ and
+    $g_{\rm max}(\alpha) = \alpha^\alpha/(1+\alpha)^{1+\alpha}$.
+    Plot the three Laffer curves on the same axes.
+
+(b) Keeping the deficit fixed at $g = 0.35$, check for each $\alpha$
+    whether the deficit is feasible (i.e., $g \leq g_{\rm max}(\alpha)$).
+    For each feasible case, compute $(\pi_l,\, \pi_u)$.
+
+(c) For every feasible $\alpha$, simulate 20 periods starting from the
+    midpoint $p_0 = \tfrac{1}{2}(p_{0,l} + p_{0,u})$ and plot $\pi_t$ on a
+    single graph.  What do the paths have in common?
+```
+
+```{solution-start} mni_ex3
+:class: dropdown
+```
+
+**(a)**
+
+```{code-cell} ipython3
+alphas = [0.3, 0.5, 0.8]
+x_values = np.linspace(0, 6, 1000)
+
+fig, ax = plt.subplots()
+for α in alphas:
+    y_values = compute_seign(x_values, α)
+    x_star_α  = np.log((1 + α) / α)
+    g_max_α   = compute_seign(x_star_α, α)
+    ax.plot(x_values, y_values,
+            label=fr'$\alpha={α}$,  $g_{{\rm max}}={g_max_α:.3f}$')
+    print(f"α = {α}:  x* = {x_star_α:.4f},  g_max = {g_max_α:.4f}")
+
+ax.axhline(0.35, color='red', linestyle='--', lw=1, label='$g=0.35$')
+ax.set_xlabel(r'steady-state inflation rate $x$')
+ax.set_ylabel('seigniorage')
+ax.set_ylim([0, 0.6])
+ax.legend()
+plt.tight_layout()
+plt.show()
+```
+
+A larger $\alpha$ flattens and narrows the Laffer curve, reducing the maximum
+seigniorage the government can raise.
+
+**(b)**
+
+```{code-cell} ipython3
+g = 0.35
+print(f"Feasibility check for g = {g}\n")
+
+steady_states = {}
+for α in alphas:
+    m_temp  = create_model(α=α, g=g)
+    x_star_α = np.log((1 + α) / α)
+    g_max_α  = compute_seign(x_star_α, α)
+    if g <= g_max_α:
+        pl = solve_π_bar(m_temp, x0=0.3)
+        pu = solve_π_bar(m_temp, x0=3.0)
+        steady_states[α] = (pl, pu)
+        print(f"α = {α}: feasible  (g_max = {g_max_α:.4f})"
+              f"  →  π_l = {pl:.4f},  π_u = {pu:.4f}")
+    else:
+        steady_states[α] = None
+        print(f"α = {α}: infeasible (g_max = {g_max_α:.4f} < g = {g})")
+```
+
+For $\alpha = 0.8$ the maximum seigniorage falls below $g = 0.35$, so no
+steady-state equilibrium exists.  Higher money-demand sensitivity tightens the
+fiscal limit of the inflation tax.
+
+**(c)**
+
+```{code-cell} ipython3
+num_steps = 20
+fig, ax = plt.subplots()
+
+for α in alphas:
+    if steady_states[α] is None:
+        continue
+    π_l_α, π_u_α = steady_states[α]
+    m_temp  = create_model(α=α, g=g)
+    p0_l_α  = solve_p0_bar(m_temp, x0=np.log(220), π_bar=π_l_α)
+    p0_u_α  = solve_p0_bar(m_temp, x0=np.log(220), π_bar=π_u_α)
+    p0_mid  = (p0_l_α + p0_u_α) / 2
+
+    π_seq_α, *_ = simulate_seq(p0_mid, m_temp, num_steps)
+    ax.plot(range(num_steps), π_seq_α,
+            marker='o', markersize=3, lw=1.5,
+            label=fr'$\alpha={α}$  ($\pi_u={π_u_α:.2f}$)')
+    ax.axhline(π_u_α, linestyle='--', lw=1, alpha=0.4)
+
+ax.set_xlabel('time step')
+ax.set_ylabel(r'$\pi_t$')
+ax.legend()
+plt.tight_layout()
+plt.show()
+```
+
+For every feasible $\alpha$, the path from the midpoint $p_0$ converges to the
+*high*-inflation steady state $\pi_u$, confirming the perverse dynamics under
+rational expectations regardless of the value of $\alpha$.
+
+```{solution-end}
+```
