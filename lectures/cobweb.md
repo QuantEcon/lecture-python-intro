@@ -82,7 +82,6 @@ ax.plot(years, hog_prices, '-o', ms=4, label='hog price')
 ax.set_xlabel('year')
 ax.set_ylabel('dollars')
 ax.legend()
-ax.grid()
 plt.show()
 ```
 

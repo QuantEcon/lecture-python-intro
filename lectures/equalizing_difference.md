@@ -497,11 +497,10 @@ We find that raising the gross interest rate $R$ increases the initial college w
 Using `compute_gap`, plot the college-high-school wage premium $\phi$ as a function
 of tuition cost $D \in [0, 30]$ with all other parameters at their default values.
 
-(a) Add a horizontal dashed line at $\phi = 1$.  Does $\phi$ ever reach 1 in this
-    range?  Explain why or why not in terms of the free-college formula
-    $\phi = A_h / A_c$.
+a. Add a horizontal dashed line at $\phi = 1$ and explain why $\phi$ does or does
+    not reach 1 in this range in terms of the free-college formula $\phi = A_h / A_c$.
 
-(b) Numerically estimate $\partial\phi/\partial D$ as the slope of the plotted
+b. Numerically estimate $\partial\phi/\partial D$ as the slope of the plotted
     line and compare it to the symbolic derivative $\phi_D$ computed with SymPy
     in this lecture.
 ```
@@ -531,8 +530,8 @@ slope_num = (gaps[-1] - gaps[0]) / (D_arr[-1] - D_arr[0])
 # Compare with SymPy ϕ_D_func already computed in this lecture
 slope_sympy = float(ϕ_D_func(D_value, γ_h_value, γ_c_value, R_value, T_value, w_h0_value))
 
-print(f'Numerical ∂ϕ/∂D: {slope_num:.6f}')
-print(f'SymPy     ∂ϕ/∂D: {slope_sympy:.6f}')
+print(f'Numerical dϕ/dD: {slope_num:.6f}')
+print(f'SymPy     dϕ/dD: {slope_sympy:.6f}')
 print(f'Match: {abs(slope_num - slope_sympy) < 1e-4}')
 ```
 
@@ -551,9 +550,9 @@ $T \in \{10, 15, 20, \ldots, 60\}$ for two cases:
 1. Free college: $D = 0$.
 2. Costly college: $D = 10$.
 
-On the same graph, plot both curves and add a horizontal dashed line at
-$\phi = 1$.  Explain the direction of the relationship between $T$ and $\phi$
-in terms of the present-value factors $A_h$ and $A_c$.
+On the same graph, plot both curves, add a horizontal dashed line at $\phi = 1$,
+and explain the direction of the relationship between $T$ and $\phi$ in terms of
+the present-value factors $A_h$ and $A_c$.
 ```
 
 ```{solution-start} eq_ex2
@@ -597,8 +596,8 @@ $$
 \frac{\phi(R_0 + \varepsilon) - \phi(R_0 - \varepsilon)}{2\varepsilon}
 $$
 
-for $\varepsilon = 10^{-5}$.  Evaluate at the default parameter values and compare
-with the symbolic result computed in this lecture.
+for $\varepsilon = 10^{-5}$, evaluating at the default parameter values and
+comparing with the symbolic result computed in this lecture.
 ```
 
 ```{solution-start} eq_ex3
@@ -616,8 +615,8 @@ dϕ_dR_fd  = (gap_plus - gap_minus) / (2 * ε)
 # SymPy result from ϕ_R_func already computed in this lecture
 dϕ_dR_sym = float(ϕ_R_func(D_value, γ_h_value, γ_c_value, R_value, T_value, w_h0_value))
 
-print(f'Finite-difference ∂ϕ/∂R: {dϕ_dR_fd:.6f}')
-print(f'SymPy             ∂ϕ/∂R: {dϕ_dR_sym:.6f}')
+print(f'Finite-difference dϕ/dR: {dϕ_dR_fd:.6f}')
+print(f'SymPy             dϕ/dR: {dϕ_dR_sym:.6f}')
 print(f'Absolute error:           {abs(dϕ_dR_fd - dϕ_dR_sym):.2e}')
 ```
 
@@ -633,13 +632,13 @@ symbolic calculus and numerical computation are consistent.
 Using the entrepreneur-worker version of the model (`create_edm_π`), answer the
 following questions.
 
-(a) Plot the required wage premium $\phi$ for a successful entrepreneur as a
-    function of the success probability $\pi \in [0.10, 1.00]$.  Mark the
+a. Plot the required wage premium $\phi$ for a successful entrepreneur as a
+    function of the success probability $\pi \in [0.10, 1.00]$ and mark the
     horizontal line $\phi = 2$ as a dashed line.
 
-(b) At what approximate value of $\pi$ does the premium cross 2, and for which side of that threshold is the premium above 2?
+b. At what approximate value of $\pi$ does the premium cross 2, and for which side of that threshold is the premium above 2?
 
-(c) Explain intuitively why the premium rises as $\pi \to 0$.
+c. Explain intuitively why the premium rises as $\pi \to 0$.
 ```
 
 ```{solution-start} eq_ex4
@@ -664,7 +663,7 @@ plt.show()
 crossing = np.interp(2, ϕ_arr_π[::-1], π_arr[::-1])
 above_idx = np.where(ϕ_arr_π > 2)[0]
 
-print(f'Premium equals 2 at π ≈ {crossing:.3f}')
+print(f'Premium equals 2 at π approximately {crossing:.3f}')
 print(f'On the grid, premium exceeds 2 for π below about {π_arr[above_idx[-1]]:.3f}')
 ```
 

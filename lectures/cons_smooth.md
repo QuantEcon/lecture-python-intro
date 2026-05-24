@@ -551,7 +551,14 @@ Now let's compute and plot consumption path variations
 def compute_variation(model, ξ1, ϕ, a0, y_seq, verbose=1):
     R, T, β_seq = model.R, model.T, model.β_seq
 
-    ξ0 = ξ1*((1 - 1/R) / (1 - (1/R)**(T+1))) * ((1 - (ϕ/R)**(T+1)) / (1 - ϕ/R))
+    growth = ϕ / R
+    if np.isclose(growth, 1):
+        pv_sum = T + 1
+    else:
+        pv_sum = (1 - growth**(T+1)) / (1 - growth)
+
+    annuity = (1 - 1/R) / (1 - (1/R)**(T+1))
+    ξ0 = ξ1 * annuity * pv_sum
     v_seq = np.array([(ξ1*ϕ**t - ξ0) for t in range(T+1)])
 
     if verbose == 1:
@@ -901,11 +908,11 @@ $$
 
 and the default model parameters.
 
-(a) Plot all four consumption paths on a single graph.  What do you notice about
-    their shapes relative to one another?
+a. Plot all four consumption paths on a single graph and describe their shapes
+    relative to one another.
 
-(b) Plot $c_0$ against $a_0$ and compute the slope of the resulting line.
-    Verify that the slope equals the annuity factor
+b. Plot $c_0$ against $a_0$, compute the slope of the resulting line, and verify
+    that the slope equals the annuity factor
     $\left(\frac{1-R^{-1}}{1-R^{-(T+1)}}\right)$ from equation {eq}`eq:conssmoothing`.
 ```
 
@@ -946,7 +953,7 @@ R = cs_model.R
 slope = (c0_vals[-1] - c0_vals[0]) / (a0_vals[-1] - a0_vals[0])
 annuity = (1 - 1/R) / (1 - (1/R)**(T+1))
 print(f'Numerical slope of c0 w.r.t. a0: {slope:.8f}')
-print(f'Annuity factor (1 - R⁻¹)/(1 - R⁻⁽ᵀ⁺¹⁾):  {annuity:.8f}')
+print(f'Annuity factor (1 - R**(-1))/(1 - R**(-(T+1))): {annuity:.8f}')
 print(f'Match: {np.isclose(slope, annuity)}')
 ```
 
@@ -968,13 +975,13 @@ maximizes welfare {eq}`welfare` among all budget-feasible paths.
 Using `compute_variation` with $\xi_1 = 0.1$ and the Experiment 1 income sequence
 ($W_0 = 2.5$ windfall at $t=21$, with $a_0 = -2$):
 
-(a) Compute welfare for the optimal flat path and for variations with $\phi \in \{0.7,\, 0.9,\, 0.98,\, 1.02,\, 1.1\}$.
+a. Compute welfare for the optimal flat path and for variations with $\phi \in \{0.7,\, 0.9,\, 0.98,\, 1.02,\, 1.1\}$.
 
     Print the results in a table.
 
-(b) Plot welfare as a function of $\phi$ on a fine grid in $(0.5, 1.5)$.  Mark the
-    welfare of the optimal flat path as a dashed horizontal line and confirm it is
-    the global maximum.
+b. Plot welfare as a function of $\phi$ on a fine grid in $[0.7, 1.1]$ and mark
+    the welfare of the optimal flat path as a dashed horizontal line to confirm
+    that it lies above these budget-feasible variations.
 ```
 
 ```{solution-start} consmooth_ex4
@@ -1001,7 +1008,7 @@ for ϕ in ϕ_vals:
     print(f'{ϕ:>6.2f} | {w:>12.6f} | {w - w_opt:>+14.6f}')
 
 # Fine grid
-ϕ_grid = np.linspace(0.5, 1.5, 200)
+ϕ_grid = np.linspace(0.7, 1.1, 200)
 w_grid = np.array([
     welfare(cs_model,
             compute_variation(cs_model, ξ1=0.1, ϕ=ϕ, a0=a0,
@@ -1020,6 +1027,8 @@ plt.show()
 ```
 
 Every non-zero variation in the plotted family delivers strictly lower welfare than the flat path marked by the horizontal dashed line.
+
+The wider interval $(0.5, 1.5)$ is not informative here because values of $\phi$ well above one make the late-life variation $\xi_1\phi^t$ very large.
 
 This numerically confirms the variational principle that the constant consumption path is the global welfare maximizer when $\beta R = 1$.
 

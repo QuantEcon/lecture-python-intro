@@ -178,7 +178,9 @@ gdp_pc[country].plot(
 ```
 
 :::{note}
-[International dollars](https://en.wikipedia.org/wiki/international_dollar) are a hypothetical unit of currency that has the same purchasing power parity that the U.S. Dollar has in the United States at a given point in time. They are also known as Geary–Khamis dollars (GK Dollars).
+[International dollars](https://en.wikipedia.org/wiki/international_dollar) are a hypothetical unit of currency that has the same purchasing power parity that the U.S. Dollar has in the United States at a given point in time.
+
+They are also known as Geary-Khamis dollars (GK Dollars).
 :::
 
 We can see that the data is incomplete for longer periods in the early 250 years of this millennium, so we could choose to interpolate to get a continuous line plot.
@@ -302,7 +304,7 @@ events = [
           'Industrial Revolution\n(1760-1840)',
           'grey', 1.1),
     Event((1929, 1939), ylim + ylim*0.04,
-          'the Great Depression\n(1929–1939)',
+          'the Great Depression\n(1929-1939)',
           'grey', 1),
     Event((1978, 1979), ylim + ylim*0.13,
           'Reform and Opening-up\n(1978-1979)',
@@ -372,10 +374,10 @@ Event((1760, 1840), ylim + ylim*0.06,
       'Industrial Revolution\n(1760-1840)',
       'grey', 1),
 Event((1839, 1842), ylim + ylim*0.2,
-      'First Opium War\n(1839–1842)',
+      'First Opium War\n(1839-1842)',
       'tab:red', 1.07),
 Event((1861, 1895), ylim + ylim*0.4,
-      'Self-Strengthening Movement\n(1861–1895)',
+      'Self-Strengthening Movement\n(1861-1895)',
       'tab:blue', 1.14),
 Event((1939, 1945), ylim + ylim*0.06,
       'WW 2\n(1939-1945)',
@@ -446,7 +448,7 @@ events = [
           'WW 1\n(1914-1918)',
           'tab:red', 1),
     Event((1929, 1939), ylim + ylim*0.6,
-          'the Great Depression\n(1929–1939)',
+          'the Great Depression\n(1929-1939)',
           'grey', 1.08),
     Event((1939, 1945), ylim + ylim*1.1,
           'WW 2\n(1939-1945)',

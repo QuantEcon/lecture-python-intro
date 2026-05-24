@@ -893,7 +893,9 @@ assignats (paper money) were accompanied by little upward price  level pressure,
 
 This reflects how well legal restrictions -- financial repression -- was working during the period of the Terror.
 
-But the Terror ended in July 1794.  That unleashed a big inflation as people tried to find other ways to transact and store values.
+But the Terror ended in July 1794.
+
+That unleashed a big inflation as people tried to find other ways to transact and store values.
 
 The following two graphs are for the classical hyperinflation period.
 
@@ -1006,18 +1008,18 @@ Because `infl` measures the *log* change in the price level, the 50 per cent
 threshold in simple-ratio terms ($P_{t+1}/P_t - 1 \geq 0.5$) corresponds to
 $\log(1.5) \approx 0.405$ in the `infl` units.
 
-(a) Using the approximate date grid
+a. Using the approximate date grid
     `pd.date_range(start='1791-01', periods=63, freq='ME')`, plot the full
-    monthly inflation series `infl[1:]` (skip the leading `NaN`).  Draw a
-    dashed horizontal line at the 50 per cent threshold and shade the months
-    that exceed it.
+    monthly inflation series `infl[1:]` (skip the leading `NaN`), draw a dashed
+    horizontal line at the 50 per cent threshold, and shade the months that
+    exceed it.
 
-(b) Print the number of months above the threshold and their approximate dates.
-    Do the dates match the "May to December 1795" statement in the lecture?
+b. Print the number of months above the threshold and their approximate dates to
+    check whether they match the "May to December 1795" statement in the lecture.
 
-(c) The lecture partitions the data into three sub-periods with the boundary
-    at index 44 (August 1794, roughly).  How many of the hyperinflation months
-    (by Cagan's criterion) fall inside the third sub-period `infl[44:63]`?
+c. Using the lecture's boundary at index 44 (August 1794, roughly), compute how
+    many Cagan-hyperinflation months fall inside the third sub-period
+    `infl[44:63]`.
 ```
 
 ```{solution-start} fr_ex1
@@ -1033,7 +1035,7 @@ threshold = np.log(1.5)
 fig, ax = plt.subplots(figsize=(10, 4))
 ax.plot(dates[1:], infl[1:], color='black', lw=1, label='Monthly inflation (log change)')
 ax.axhline(threshold, color='red', linestyle='--', lw=1,
-           label=f'50%/month threshold (log 1.5 ≈ {threshold:.3f})')
+           label=f'50%/month threshold (log 1.5 approx {threshold:.3f})')
 ax.fill_between(dates[1:], infl[1:], threshold,
                 where=infl[1:] > threshold,
                 alpha=0.35, color='red', label='Above Cagan threshold')
@@ -1042,7 +1044,7 @@ ax.axvline(pd.Timestamp('1793-07'), color='orange', lw=0.8, linestyle=':',
 ax.axvline(pd.Timestamp('1794-08'), color='orange', lw=0.8, linestyle=':')
 ax.set_xlabel('Date')
 ax.set_ylabel('Monthly inflation (log change)')
-ax.set_title('Monthly inflation in Revolutionary France, 1791–1796')
+ax.set_title('Monthly inflation in Revolutionary France, 1791-1796')
 ax.legend(fontsize=8)
 plt.tight_layout()
 plt.show()
@@ -1052,12 +1054,12 @@ plt.show()
 above = np.where(infl > threshold)[0]
 print(f'Months above 50%/month threshold: {len(above)}')
 for idx in above:
-    print(f'  index {idx:3d}  ≈  {dates[idx].strftime("%b %Y")}  '
+    print(f'  index {idx:3d}  approx {dates[idx].strftime("%b %Y")}  '
           f'(inflation = {infl[idx]:.3f})')
 
-# Part (c)
+# Part c
 in_subperiod3 = above[above >= 44]
-print(f'\nOf those, {len(in_subperiod3)} fall in sub-period 3 (index ≥ 44)')
+print(f'\nOf those, {len(in_subperiod3)} fall in sub-period 3 (index >= 44)')
 ```
 
 The concentrated cluster of months above the threshold falls in 1795,
@@ -1084,23 +1086,22 @@ The lecture fits a *linear* (levels) regression of `infl` on `bal` for the
 hyperinflation sub-period, but Cagan's theory predicts a log-linear
 relationship.
 
-(a) Compute `log_bal = np.log(bal)`.  Using the `fit` helper defined in this
-    lecture, regress `log_bal[44:63]` on `infl[44:63]` and extract the slope
-    $b$.  Then $\hat\alpha = -b$.
+a. Compute `log_bal = np.log(bal)`, use the `fit` helper defined in this lecture
+    to regress `log_bal[44:63]` on `infl[44:63]`, extract the slope $b$, and set
+    $\hat\alpha = -b$.
 
-(b) Plot `infl[44:63]` on the horizontal axis and `log_bal[44:63]` on the
-    vertical axis.  Overlay the fitted line and label it with the estimated
+b. Plot `infl[44:63]` on the horizontal axis and `log_bal[44:63]` on the
+    vertical axis, then overlay the fitted line and label it with the estimated
     $\hat\alpha$.
 
-(c) The `fit` function in this lecture regresses `infl` on `bal` (levels, not
-    logs).  This gives slope $b_3$ (`b3` from the lecture).  Explain in one or
-    two sentences why the log-linear specification in part (a) is more
-    consistent with Cagan's model, and what distortion arises from using
+c. Explain why the slope $b_3$ from the lecture's levels regression of `infl` on
+    `bal` is less consistent with Cagan's model than the log-linear
+    specification in part a, and identify the distortion that arises from using
     `bal` in levels during a hyperinflation.
 
-(d) Compare $\hat\alpha$ from part (a) to the default value $\alpha = 5$ used
-    in the quantecon lecture {doc}`cagan_ree`.  Is the order of magnitude
-    consistent?
+d. Compare $\hat\alpha$ from part a to the default value $\alpha = 5$ used in
+    the quantecon lecture {doc}`cagan_ree` and assess whether the order of
+    magnitude is consistent.
 ```
 
 ```{solution-start} fr_ex2
@@ -1113,7 +1114,7 @@ log_bal = np.log(bal)
 # Fit log_bal = a + b * infl.
 a_log, b_log = fit(infl[44:63], log_bal[44:63])
 α_hat = -b_log
-print(f'Log-linear estimate:  α̂ = {α_hat:.2f}')
+print(f'Log-linear estimate:  alpha_hat = {α_hat:.2f}')
 print(f'Default in cagan_ree: α  = 5.00')
 ```
 
@@ -1128,13 +1129,13 @@ ax.plot(infl_grid, a_log + b_log * infl_grid,
         label=fr'log-linear fit: $\hat{{\alpha}} = {α_hat:.1f}$')
 ax.set_xlabel('Monthly inflation rate $\\pi_t$')
 ax.set_ylabel('$\\log(\\mathrm{real\\;balances})$')
-ax.set_title('Cagan demand for money — hyperinflation period')
+ax.set_title('Cagan demand for money - hyperinflation period')
 ax.legend()
 plt.tight_layout()
 plt.show()
 ```
 
-**Part (c):** Cagan's model postulates an exponential fall in real balances as
+**Part c:** Cagan's model postulates an exponential fall in real balances as
 inflation rises, $M/p = e^{c - \alpha\pi}$.
 
 Over a hyperinflation real balances vary by orders of magnitude, so a linear
@@ -1143,7 +1144,7 @@ fit of `infl` on `bal` is a poor global approximation because it imposes a strai
 Taking logs first makes the relationship linear and the regression well-specified
 across the full range of the data.
 
-**Part (d):** $\hat\alpha$ should come out in the range of 3–6, consistent with the
+**Part d:** $\hat\alpha$ should come out in the range of 3-6, consistent with the
 default $\alpha = 5$ in {doc}`cagan_ree`, confirming that the same model estimated
 on 18th-century French data gives a parameter value similar to those obtained from
 20th-century hyperinflations.
@@ -1156,9 +1157,9 @@ on 18th-century French data gives a parameter value similar to those obtained fr
 
 **A single-figure portrait of the three monetary regimes.**
 
-The lecture presents the three monetary regimes through five separate scatter
-plots.  Here you will synthesise them into a single figure that makes the
-contrasting theories visually obvious.
+The lecture presents the three monetary regimes through five separate scatter plots.
+
+Here you will synthesise them into a single figure that makes the contrasting theories visually obvious.
 
 Produce a figure with all three scatter clouds (blue circles, red pluses, orange
 stars) and one regression line per cloud, using the coefficients already computed
@@ -1168,16 +1169,16 @@ in the lecture:
   `infl = a1 + b1 * bal`  (theory says growing *backed* real balances accompany
   only modest inflation).
 
-- **Terror** (indices 31:44): the normal money-demand relationship was suspended
-  by legal restrictions.  Draw the *reversed* regression
-  `bal = a2_rev + b2_rev * infl` as a function of `infl`  — this produces a
-  nearly *horizontal* line in `(bal, infl)` space, showing that real balances
+- **Terror** (indices 31:44): because legal restrictions suspended the normal
+  money-demand relationship, draw the *reversed* regression
+  `bal = a2_rev + b2_rev * infl` as a function of `infl`, which produces a
+  nearly *horizontal* line in `(bal, infl)` space and shows that real balances
   were held roughly fixed by force regardless of inflation.
 
 - **Hyperinflation** (indices 44:63): draw `infl = a3 + b3 * bal`  (the classic
-  negative Cagan slope — higher inflation accompanies lower real balances).
+  negative Cagan slope, since higher inflation accompanies lower real balances).
 
-After producing the figure, write 2–3 sentences explaining why the Terror
+After producing the figure, write 2-3 sentences explaining why the Terror
 regression line takes a different orientation from the other two.
 ```
 
@@ -1190,19 +1191,19 @@ fig, ax = plt.subplots(figsize=(8, 6))
 
 # Real bills
 ax.plot(bal[1:31], infl[1:31], 'o', markerfacecolor='none',
-        color='blue', label='Real bills (1791–1793)')
+        color='blue', label='Real bills (1791-1793)')
 bal_grid1 = np.linspace(bal[1:31].min(), bal[1:31].max(), 100)
 ax.plot(bal_grid1, a1 + b1 * bal_grid1, color='blue', lw=2)
 
 # Terror
 ax.plot(bal[31:44], infl[31:44], '+', color='red', ms=9,
-        label='Terror (1793–1794)')
+        label='Terror (1793-1794)')
 infl_grid2 = np.linspace(infl[31:44].min(), infl[31:44].max(), 100)
 ax.plot(a2_rev + b2_rev * infl_grid2, infl_grid2, color='red', lw=2)
 
 # Hyperinflation
 ax.plot(bal[44:63], infl[44:63], '*', color='orange', ms=8,
-        label='Hyperinflation (1794–1796)')
+        label='Hyperinflation (1794-1796)')
 bal_grid3 = np.linspace(bal[44:63].min(), bal[44:63].max(), 100)
 ax.plot(bal_grid3, a3 + b3 * bal_grid3, color='orange', lw=2)
 

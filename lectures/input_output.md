@@ -41,7 +41,7 @@ mpl.rcParams.update(mpl.rcParamsDefault)
 ```
 
 The following figure illustrates a network of linkages among 15 sectors
-obtained from the US Bureau of Economic Analysis’s 2021 Input-Output Accounts
+obtained from the US Bureau of Economic Analysis's 2021 Input-Output Accounts
 Data.
 
 
@@ -200,7 +200,6 @@ This can be graphically represented as follows.
 :tags: [hide-input]
 
 fig, ax = plt.subplots()
-ax.grid()
 
 # Draw constraint lines
 ax.hlines(0, -1, 400)
@@ -457,7 +456,6 @@ The dual problem can be graphically represented as follows.
 :tags: [hide-input]
 
 fig, ax = plt.subplots()
-ax.grid()
 
 # Draw constraint lines
 ax.hlines(0, -1, 50)

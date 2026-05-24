@@ -976,7 +976,7 @@ The red, yellow, and green dots represent different initial probability distribu
 
 The blue dot represents the unique stationary distribution.
 
-Unlike Hamilton’s Markov chain, these initial distributions do not converge to the unique stationary distribution.
+Unlike Hamilton's Markov chain, these initial distributions do not converge to the unique stationary distribution.
 
 Instead, they cycle periodically around the probability simplex, illustrating that asymptotic stability fails.
 

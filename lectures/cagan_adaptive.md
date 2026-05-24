@@ -464,9 +464,9 @@ The sluggish fall in inflation is explained by how anticipated  inflation $\pi_t
 
 For Experiment 1 (sudden stabilization at $T_1 = 60$ from $\mu_0 = 0.5$ to $\mu^* = 0$), solve the model for $\lambda \in \{0.86,\, 0.90,\, 0.95,\, 0.98\}$ and, on a single graph, plot the actual inflation rate $\pi_t$ for each value.
 
-(a) How do the sign and speed of post-stabilization convergence change as $\lambda$ varies within the stable region?
+a. How do the sign and speed of post-stabilization convergence change as $\lambda$ varies within the stable region?
 
-(b) For each $\lambda$, print $\rho$ and the peak absolute value of $\pi_t$ for $t \geq T_1$.
+b. For each $\lambda$, print $\rho$ and the peak absolute value of $\pi_t$ for $t \geq T_1$.
 ```
 
 ```{solution-start} ca_ex1
@@ -494,7 +494,7 @@ ax.set_title('Inflation paths for different λ (sudden stabilization)')
 ax.legend()
 plt.show()
 
-print(f'{"λ":>6} | {"ρ":>10} | {"|ρ|<1":>8} | {"peak |π| after T₁":>20}')
+print(f'{"λ":>6} | {"ρ":>10} | {"|ρ|<1":>8} | {"peak |π| after T1":>20}')
 print('-' * 56)
 for λ in λ_vals:
     m = create_cagan_adaptive_model(λ=λ)
@@ -524,12 +524,12 @@ expectations, in contrast to a rational-expectations equilibrium.
 
 For the default model (`md`) and both experiments:
 
-(a) Compute and plot the forecast error $e_t = \pi_t^* - \pi_t$ for
+a. Compute and plot the forecast error $e_t = \pi_t^* - \pi_t$ for
     $t = 0, 1, \ldots, T$.
 
-(b) For each experiment, is $e_t$ systematically positive or negative during
-    the disinflation?  Explain why this systematic bias could not survive under
-    rational expectations.
+b. For each experiment, determine whether $e_t$ is systematically positive or
+    negative during the disinflation and explain why this systematic bias could
+    not survive under rational expectations.
 
 (Recall that `Eπ_seq` returned by `solve_cagan_adaptive` has $T+2$ elements
 while `π_seq` has $T+1$; use `Eπ_seq[:-1]` to align them.)
@@ -575,13 +575,13 @@ axes[1].set_ylabel(r'$\pi_t^* - \pi_t$')
 plt.tight_layout()
 plt.show()
 
-print(f'Exp 1 — mean forecast error t < T₁:  {e1[:T1].mean():.4f}')
-print(f'Exp 1 — mean forecast error t ≥ T₁:  {e1[T1:].mean():.4f}')
-print(f'Exp 2 — mean forecast error overall:  {e2.mean():.4f}')
+print(f'Exp 1: mean forecast error t < T1:  {e1[:T1].mean():.4f}')
+print(f'Exp 1: mean forecast error t >= T1: {e1[T1:].mean():.4f}')
+print(f'Exp 2: mean forecast error overall: {e2.mean():.4f}')
 ```
 
 During disinflation, actual inflation falls *below* expected inflation, so
-$e_t = \pi_t^* - \pi_t > 0$ throughout the transition — the public
+$e_t = \pi_t^* - \pi_t > 0$ throughout the transition, so the public
 systematically **over-predicts** inflation.
 
 Under rational expectations this persistent one-sided bias would be immediately arbitraged away as agents adjust their forecasting rule until $e_t$ has mean zero.
@@ -604,14 +604,14 @@ $$
 
 Using Experiment 1 and the default model `md`:
 
-(a) Compute $\rho$ analytically from the model parameters and verify that
+a. Compute $\rho$ analytically from the model parameters and verify that
     $|\rho| < 1$ (the stability condition {eq}`eq:suffcond`).
 
-(b) From the solved path `π_seq`, compute the empirical ratios
+b. From the solved path `π_seq`, compute the empirical ratios
     $\pi_{t+1}/\pi_t$ for $t = T_1 + 1, \ldots, T_1 + 10$ and compare them
     to $\rho$.
 
-(c) Plot $\log|\pi_t|$ against $t$ for $t \geq T_1$ and verify that it is
+c. Plot $\log|\pi_t|$ against $t$ for $t \geq T_1$ and verify that it is
     linear with slope $\log|\rho|$.
 ```
 
@@ -632,7 +632,7 @@ print(f'ρ = {ρ:.6f}   (|ρ| < 1: {abs(ρ) < 1})')
 μ_seq = np.append(μ0 * np.ones(T1), μ_star * np.ones(md.T + 1 - T1))
 π_seq, _, _, _ = solve_cagan_adaptive(md, μ_seq)
 
-# (b) empirical successive ratios
+# Part b: empirical successive ratios
 print(f'\n{"t":>5} | {"π_t":>12} | {"π_{t+1}/π_t":>14} | {"ρ":>8}')
 print('-' * 46)
 for t in range(T1, T1 + 10):
@@ -641,7 +641,7 @@ for t in range(T1, T1 + 10):
 ```
 
 ```{code-cell} ipython3
-# (c) log|π_t| is linear after T1
+# Part c: log|π_t| is linear after T1
 t_post = np.arange(T1, md.T + 1)
 log_π  = np.log(np.abs(π_seq[T1:]))
 
@@ -676,16 +676,16 @@ $\pi_t = \rho^{t-T_1} \pi_{T_1}$ for $t \geq T_1$.
 Experiment 2 uses a gradual decline in money growth
 $\mu_t = \phi^t \mu_0 + (1-\phi^t)\mu^*$ with $\phi = 0.9$.
 
-(a) For the same gradual $\mu$ path, compare the inflation $\pi_t$ and expected inflation $\pi_t^*$ paths for two stable cases:
+a. For the same gradual $\mu$ path, compare the inflation $\pi_t$ and expected inflation $\pi_t^*$ paths for two stable cases:
 
     * **Faster adjustment**: $\lambda = 0.86$
     * **Slower adjustment**: $\lambda = 0.95$
 
     Plot $\pi_t$, $\pi_t^*$, and $\mu_t$ for each case on side-by-side graphs.
 
-(b) For each case, compute the mean absolute forecast error $\bar{e} = \frac{1}{T+1}\sum_{t=0}^T |\pi_t^* - \pi_t|$.
+b. For each case, compute the mean absolute forecast error $\bar{e} = \frac{1}{T+1}\sum_{t=0}^T |\pi_t^* - \pi_t|$.
 
-(c) Explain why the faster-adjustment case can move below the money-growth path while the slower-adjustment case displays more persistent forecast errors.
+c. Explain why the faster-adjustment case can move below the money-growth path while the slower-adjustment case displays more persistent forecast errors.
 ```
 
 ```{solution-start} ca_ex4

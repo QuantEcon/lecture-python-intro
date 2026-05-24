@@ -147,9 +147,11 @@ recover the equations in [](eq:Euler_stack).
 ```
 
 Multiplying row $t$ of the matrix (which has $1$ in column $t$ and $-\delta$ in
-column $t+1$) against the price vector gives $p_t - \delta p_{t+1}$.  The last
-row has only a $1$ in column $T$, giving $p_T$.  Setting these equal to the
-right-hand side recovers exactly the equations in {eq}`eq:Euler_stack`.
+column $t+1$) against the price vector gives $p_t - \delta p_{t+1}$.
+
+The last row has only a $1$ in column $T$, giving $p_T$.
+
+Setting these equal to the right-hand side recovers exactly the equations in {eq}`eq:Euler_stack`.
 
 We can verify the result numerically.
 
@@ -602,10 +604,10 @@ Suppose dividends are constant: $d_t = d = 1$ for all $t = 0, \ldots, T$.
 
 Set the terminal price to the perpetuity value $p_{T+1}^* = d / (1-\delta)$.
 
-(a) Compute the asset price sequence for $T = 100$ and $\delta = 0.99$.
-    Plot $p_t$ alongside the perpetuity value $d/(1-\delta)$ as a dashed line.
+a. Compute the asset price sequence for $T = 100$ and $\delta = 0.99$ and plot
+    $p_t$ alongside the perpetuity value $d/(1-\delta)$ as a dashed line.
 
-(b) Verify analytically (using formula {eq}`eq:ptpveq`) that
+b. Verify analytically (using formula {eq}`eq:ptpveq`) that
     $p_t = d / (1-\delta)$ for all $t$.
 ```
 
@@ -643,7 +645,7 @@ plt.show()
 print(f'Max deviation from d/(1 - δ): {np.max(np.abs(p - p_star_perp)):.2e}')
 ```
 
-For part (b), substituting $d_s = d$ and $p_{T+1}^* = d/(1-\delta)$ into {eq}`eq:ptpveq` gives
+For part b, substituting $d_s = d$ and $p_{T+1}^* = d/(1-\delta)$ into {eq}`eq:ptpveq` gives
 
 $$
 p_t = d \frac{1 - \delta^{T+1-t}}{1-\delta} + \frac{d\delta^{T+1-t}}{1-\delta}

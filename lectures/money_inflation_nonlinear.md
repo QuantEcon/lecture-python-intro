@@ -451,7 +451,7 @@ $$
 L(x) = e^{-\alpha x} - e^{-(1+\alpha)x}.
 $$
 
-(a) Verify analytically that $L(x)$ is maximized at
+a. Verify analytically that $L(x)$ is maximized at
 
 $$
 x^* = \ln\!\left(\frac{1+\alpha}{\alpha}\right)
@@ -459,21 +459,21 @@ $$
 
 by differentiating, setting $L'(x) = 0$, and solving for $x$.
 
-(b) Using the default model, compute $x^*$ from the analytic formula and
-    confirm it numerically with `scipy.optimize.minimize_scalar`.
-    Plot the Laffer curve with horizontal lines marking $g_{\rm max} = L(x^*)$
-    and the benchmark deficit $g = 0.35$.
+b. Using the default model, compute $x^*$ from the analytic formula, confirm it
+    numerically with `scipy.optimize.minimize_scalar`, and plot the Laffer curve
+    with horizontal lines marking $g_{\rm max} = L(x^*)$ and the benchmark
+    deficit $g = 0.35$.
 
-(c) What happens if the government attempts to finance a deficit
-    $g > g_{\rm max}$?  Evaluate $L(x) - g$ over a fine grid of $x$ values
-    for $g = g_{\rm max} + 0.01$ and explain the economic interpretation.
+c. Evaluate $L(x) - g$ over a fine grid of $x$ values for
+    $g = g_{\rm max} + 0.01$ and explain what happens if the government attempts
+    to finance a deficit $g > g_{\rm max}$.
 ```
 
 ```{solution-start} mni_ex1
 :class: dropdown
 ```
 
-**(a)** Differentiating $L(x)$:
+**Part a.** Differentiating $L(x)$:
 
 $$
 L'(x) = -\alpha e^{-\alpha x} + (1+\alpha)\, e^{-(1+\alpha)x} = 0.
@@ -520,7 +520,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-**(c)**
+**Part c.**
 
 ```{code-cell} ipython3
 g_infeasible = g_max + 0.01
@@ -550,16 +550,15 @@ No stationary equilibrium exists.
 The lecture computes $\pi_l$ and $\pi_u$ for a fixed benchmark deficit
 $g = 0.35$.
 
-(a) For $g$ ranging from $0.05$ to just below $g_{\rm max}$, compute both
+a. For $g$ ranging from $0.05$ to just below $g_{\rm max}$, compute both
     $\pi_l(g)$ and $\pi_u(g)$ numerically and plot them on the same graph.
 
-(b) Describe the limiting behavior:
+b. Describe the limiting behavior:
     - As $g \to 0^+$, what do $\pi_l(g)$ and $\pi_u(g)$ approach?
     - As $g \to g_{\rm max}^-$, what do they approach?
 
-(c) Mark the benchmark $g = 0.35$ on your graph and read off the two
-    values.  Confirm they agree with `π_l` and `π_u` computed in the
-    lecture.
+c. Mark the benchmark $g = 0.35$ on your graph, read off the two values, and
+    confirm they agree with `π_l` and `π_u` computed in the lecture.
 ```
 
 ```{solution-start} mni_ex2
@@ -583,8 +582,8 @@ for g in g_grid:
 π_u_curve = np.array(π_u_curve)
 
 fig, ax = plt.subplots()
-ax.plot(g_grid, π_l_curve, label=r'$\pi_l(g)$ — low-inflation steady state')
-ax.plot(g_grid, π_u_curve, label=r'$\pi_u(g)$ — high-inflation steady state')
+ax.plot(g_grid, π_l_curve, label=r'$\pi_l(g)$ - low-inflation steady state')
+ax.plot(g_grid, π_u_curve, label=r'$\pi_u(g)$ - high-inflation steady state')
 ax.axvline(model.g, color='grey', linestyle='--', lw=1,
            label=f'benchmark $g={model.g}$')
 ax.set_xlabel('government deficit $g$')
@@ -594,13 +593,13 @@ plt.tight_layout()
 plt.show()
 ```
 
-**(b)**
+**Part b.**
 
 ```{code-cell} ipython3
-print(f"As g → 0:      π_l → {π_l_curve[0]:.4f}  (approaches 0)")
-print(f"               π_u → {π_u_curve[0]:.4f}  (large; approaches ∞)")
-print(f"As g → g_max:  π_l → {π_l_curve[-1]:.4f}")
-print(f"               π_u → {π_u_curve[-1]:.4f}")
+print(f"As g -> 0:      π_l -> {π_l_curve[0]:.4f}  (approaches 0)")
+print(f"                π_u -> {π_u_curve[0]:.4f}  (large; approaches infinity)")
+print(f"As g -> g_max:  π_l -> {π_l_curve[-1]:.4f}")
+print(f"                π_u -> {π_u_curve[-1]:.4f}")
 print(f"x* = {x_star:.4f}  (the two roots merge here)")
 ```
 
@@ -610,7 +609,7 @@ When $g \to 0^+$, the curve $L(x) = g$ has one root near $x = 0$
 As $g$ rises toward $g_{\rm max}$ the two roots approach each other and merge
 at $x^* = \ln\bigl((1+\alpha)/\alpha\bigr)$.
 
-**(c)**
+**Part c.**
 
 ```{code-cell} ipython3
 idx = np.argmin(np.abs(g_grid - model.g))
@@ -632,28 +631,30 @@ print(f"  direct solve    = ({π_l_bench:.4f}, {π_u_bench:.4f})")
 **Effect of the money-demand elasticity $\alpha$.**
 
 The parameter $\alpha$ governs how sensitive real money demand is to expected
-inflation.  A larger $\alpha$ means households reduce their real balances more
+inflation.
+
+A larger $\alpha$ means households reduce their real balances more
 sharply as inflation rises.
 
-(a) For $\alpha \in \{0.3,\; 0.5,\; 0.8\}$, compute
+a. For $\alpha \in \{0.3,\; 0.5,\; 0.8\}$, compute
     $x^*(\alpha) = \ln\bigl((1+\alpha)/\alpha\bigr)$ and
-    $g_{\rm max}(\alpha) = \alpha^\alpha/(1+\alpha)^{1+\alpha}$.
-    Plot the three Laffer curves on the same axes.
+    $g_{\rm max}(\alpha) = \alpha^\alpha/(1+\alpha)^{1+\alpha}$, then plot the
+    three Laffer curves on the same axes.
 
-(b) Keeping the deficit fixed at $g = 0.35$, check for each $\alpha$
-    whether the deficit is feasible (i.e., $g \leq g_{\rm max}(\alpha)$).
-    For each feasible case, compute $(\pi_l,\, \pi_u)$.
+b. Keeping the deficit fixed at $g = 0.35$, check for each $\alpha$
+    whether the deficit is feasible (i.e., $g \leq g_{\rm max}(\alpha)$) and
+    compute $(\pi_l,\, \pi_u)$ for each feasible case.
 
-(c) For every feasible $\alpha$, simulate 20 periods starting from the
+c. For every feasible $\alpha$, simulate 20 periods starting from the
     midpoint $p_0 = \tfrac{1}{2}(p_{0,l} + p_{0,u})$ and plot $\pi_t$ on a
-    single graph.  What do the paths have in common?
+    single graph to identify what the paths have in common.
 ```
 
 ```{solution-start} mni_ex3
 :class: dropdown
 ```
 
-**(a)**
+**Part a.**
 
 ```{code-cell} ipython3
 alphas = [0.3, 0.5, 0.8]
@@ -680,7 +681,7 @@ plt.show()
 A larger $\alpha$ flattens and narrows the Laffer curve, reducing the maximum
 seigniorage the government can raise.
 
-**(b)**
+**Part b.**
 
 ```{code-cell} ipython3
 g = 0.35
@@ -696,7 +697,7 @@ for α in alphas:
         pu = solve_π_bar(m_temp, x0=3.0)
         steady_states[α] = (pl, pu)
         print(f"α = {α}: feasible  (g_max = {g_max_α:.4f})"
-              f"  →  π_l = {pl:.4f},  π_u = {pu:.4f}")
+              f"  ->  π_l = {pl:.4f},  π_u = {pu:.4f}")
     else:
         steady_states[α] = None
         print(f"α = {α}: infeasible (g_max = {g_max_α:.4f} < g = {g})")
@@ -707,7 +708,7 @@ steady-state equilibrium exists.
 
 Higher money-demand sensitivity tightens the fiscal limit of the inflation tax.
 
-**(c)**
+**Part c.**
 
 ```{code-cell} ipython3
 num_steps = 20

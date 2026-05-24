@@ -222,13 +222,11 @@ def grid_transform(A=np.array([[1, -1], [1, 1]])):
 
     # Plot x-y grid points
     ax[0].scatter(xygrid[0], xygrid[1], s=36, c=colors, edgecolor="none")
-    # ax[0].grid(True)
     # ax[0].axis("equal")
     ax[0].set_title("points $x_1, x_2, \cdots, x_k$")
 
     # Plot transformed grid points
     ax[1].scatter(uvgrid[0], uvgrid[1], s=36, c=colors, edgecolor="none")
-    # ax[1].grid(True)
     # ax[1].axis("equal")
     ax[1].set_title("points $Ax_1, Ax_2, \cdots, Ax_k$")
 
@@ -746,7 +744,6 @@ for spine in ['left', 'bottom']:
     ax.spines[spine].set_position('zero')
 for spine in ['right', 'top']:
     ax.spines[spine].set_color('none')
-# ax.grid(alpha=0.4)
 
 xmin, xmax = -3, 3
 ymin, ymax = -3, 3
@@ -1148,7 +1145,6 @@ plt.legend(lines, labels, loc='center left',
 plt.xlabel("x")
 plt.ylabel("y")
 plt.title("Convergence towards eigenvectors")
-plt.grid()
 plt.gca().set_aspect('equal', adjustable='box')
 plt.show()
 ```
@@ -1237,7 +1233,6 @@ for i, example in enumerate(examples):
 
     ax[i].set_xlabel("x-axis")
     ax[i].set_ylabel("y-axis")
-    ax[i].grid()
     ax[i].set_aspect('equal', adjustable='box')
 
 fig.suptitle("Vector fields of the three matrices")

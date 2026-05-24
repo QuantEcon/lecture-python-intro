@@ -1026,12 +1026,12 @@ The right panel shows that the error decays geometrically, a straight line on a 
 Using the fractional reserve banking model from this lecture, suppose the
 initial deposit is $D_0 = 1$.
 
-(a) For each reserve ratio $r \in \{0.05, 0.10, 0.20, 0.40\}$, plot the
+a. For each reserve ratio $r \in \{0.05, 0.10, 0.20, 0.40\}$, plot the
     **cumulative deposits** $\sum_{i=0}^{N} D_i$ as a function of the number
-    of banks $N$ (for $N = 0, 1, \ldots, 50$).  Add a dashed horizontal line
+    of banks $N$ (for $N = 0, 1, \ldots, 50$) and add a dashed horizontal line
     at the theoretical limit $D_0/r$ for each.
 
-(b) Print the theoretical money multiplier $1/r$ for each reserve ratio.
+b. Print the theoretical money multiplier $1/r$ for each reserve ratio.
 ```
 
 ```{solution-start} geom_ex2
@@ -1058,7 +1058,7 @@ ax.set_title('Convergence to the money multiplier $D_0/r$')
 ax.legend()
 plt.show()
 
-# Part (b)
+# Part b
 print(f"{'Reserve ratio':>15} | {'Money multiplier 1/r':>20}")
 print('-' * 40)
 for r in reserve_ratios:
@@ -1084,10 +1084,10 @@ $$
 Using the `infinite_lease` function defined earlier, set $x_0 = 1$ and
 $r = 0.05$, and let $g$ range over $[0,\, 0.045]$.
 
-(a) Plot the exact present value and the Gordon approximation on the same
+a. Plot the exact present value and the Gordon approximation on the same
     graph as functions of $g$.
 
-(b) On a second subplot, plot the percentage approximation error
+b. On a second subplot, plot the percentage approximation error
 
 $$
 \text{error}(\%) = \frac{|\text{Gordon} - \text{exact}|}{\text{exact}} \times 100
@@ -1143,13 +1143,13 @@ The approximation becomes accurate when $r$ is small because the exact value dif
 
 The `calculate_y` function simulates the Keynesian dynamic model.
 
-(a) For $i = 0.3$, $g = 0.3$, $y_{-1} = 0$, and $T = 60$, plot the path
-    of national income $y_t$ for each $b \in \{0.25,\, 0.50,\, 0.75,\, 0.90\}$.
-    For each $b$, mark the long-run equilibrium
-    $y^* = (i + g)/(1 - b)$ with a dashed horizontal line.
+a. For $i = 0.3$, $g = 0.3$, $y_{-1} = 0$, and $T = 60$, plot the path
+    of national income $y_t$ for each $b \in \{0.25,\, 0.50,\, 0.75,\, 0.90\}$
+    and mark the long-run equilibrium $y^* = (i + g)/(1 - b)$ with a dashed
+    horizontal line for each $b$.
 
-(b) For each value of $b$, find the first period $T^*$ at which $y_t$
-    reaches 95 percent of $y^*$.  Plot $T^*$ against $b$ and comment on how
+b. For each value of $b$, find the first period $T^*$ at which $y_t$
+    reaches 95 percent of $y^*$, plot $T^*$ against $b$, and comment on how
     the speed of convergence relates to the size of the Keynesian multiplier.
 ```
 
@@ -1162,7 +1162,7 @@ i_0, g_0, y_init = 0.3, 0.3, 0
 bs = [0.25, 0.50, 0.75, 0.90]
 T = 60
 
-# Part (a)
+# Part a
 fig, ax = plt.subplots()
 for b in bs:
     y = calculate_y(i_0, b, g_0, T, y_init)
@@ -1176,7 +1176,7 @@ ax.set_title('National income paths for different $b$')
 ax.legend()
 plt.show()
 
-# Part (b)
+# Part b
 T_long = 1000
 T_star_vals = []
 for b in bs:

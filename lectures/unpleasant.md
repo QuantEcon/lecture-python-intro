@@ -305,8 +305,9 @@ where $\theta \in [0,1)$ is a relaxation parameter.
 We'll set parameters of the model so that the steady state after time $T$ is initially the same
 as in {doc}`money_inflation_nonlinear`
 
-In particular, we set $\gamma_1=100, \gamma_2 =50, g=3.0$.  We set $m_0 = 100$ in that lecture,
-but now the counterpart will be $M_T$, which is endogenous.
+In particular, we set $\gamma_1=100, \gamma_2 =50, g=3.0$.
+
+We set $m_0 = 100$ in that lecture, but now the counterpart will be $M_T$, which is endogenous.
 
 As for new parameters, we'll set $\tilde R = 1.01, \check B_{-1} = 0, \check m_0 = 105, T = 5$.
 
@@ -514,8 +515,8 @@ plot_path([80, 100], msm)
 
 The lecture shows that a central bank open-market operation that reduces $m_0$
 at $t = 0$ lowers the price level immediately but forces a higher
-post-$T$ deficit $\bar g$ — and therefore a lower rate of return $R_u$ (higher
-inflation) — forever after.
+post-$T$ deficit $\bar g$ and therefore a lower rate of return $R_u$ (higher
+inflation) forever after.
 
 The same mechanism operates as $T$ grows: holding $m_0 = 100$ fixed, a longer
 period of bond-financed deficits accumulates more interest-bearing debt
@@ -523,14 +524,14 @@ $B_{T-1}$ that must eventually be serviced by printing money.
 
 Fix $m_0 = 100$ and vary $T \in \{1, 3, 5, 10, 20\}$.  For each $T$:
 
-(a) Use `simulate` to obtain the stationary post-$T$ rate of return
+a. Use `simulate` to obtain the stationary post-$T$ rate of return
     $R_u$ (it equals `paths[3, T]`).
 
-(b) Compute the post-$T$ government deficit
+b. Compute the post-$T$ government deficit
     $\bar g = g + (\tilde R - 1) B_{T-1}$ directly from the model parameters
     and the fixed-point $p_0$.
 
-(c) Plot $R_u$ and $\bar g$ against $T$ on side-by-side panels and explain
+c. Plot $R_u$ and $\bar g$ against $T$ on side-by-side panels and explain
     why $R_u$ falls and $\bar g$ rises as $T$ increases.
 ```
 
@@ -549,7 +550,7 @@ for T_val in T_values:
     model_T = create_model(T=T_val)
     # equilibrium price level
     p0 = compute_fixed_point(m0, 1, model_T)
-    # open-market operation → bonds
+    # open-market operation creates bonds
     Bm1   = (1 / (p0 * model_T.R_tilde)) * (model_T.m0_check - m0) \
             + model_T.Bm1_check
     BTm1  = (model_T.R_tilde ** T_val * Bm1
@@ -565,14 +566,12 @@ fig, axes = plt.subplots(1, 2, figsize=(10, 4))
 axes[0].plot(T_values, R_u_list, marker='o')
 axes[0].set_xlabel('$T$')
 axes[0].set_ylabel('$R_u$  (post-$T$ rate of return)')
-axes[0].set_title('Longer tight-money period → lower $R_u$')
-axes[0].grid(True, alpha=0.3)
+axes[0].set_title('Longer tight-money period lowers $R_u$')
 
 axes[1].plot(T_values, g_bar_list, marker='o', color='tab:orange')
 axes[1].set_xlabel('$T$')
 axes[1].set_ylabel(r'$\bar{g}$  (post-$T$ deficit)')
-axes[1].set_title('Longer tight-money period → larger $\\bar{g}$')
-axes[1].grid(True, alpha=0.3)
+axes[1].set_title('Longer tight-money period raises $\\bar{g}$')
 
 plt.tight_layout()
 plt.show()
@@ -608,14 +607,14 @@ With $m_0 = 100$ and the default parameters, find the **fiscal limit**
 $T^*$: the largest integer $T$ for which a feasible stationary equilibrium
 still exists after time $T$ (i.e., $\bar g \leq g_{\rm max}$).
 
-(a) Compute $g_{\rm max} = (\gamma_1 + \gamma_2) - \gamma_2/\bar R_{\rm max}
+a. Compute $g_{\rm max} = (\gamma_1 + \gamma_2) - \gamma_2/\bar R_{\rm max}
     - \gamma_1 \bar R_{\rm max}$ where $\bar R_{\rm max} = \sqrt{\gamma_2/\gamma_1}$.
 
-(b) For $T = 1, 2, \ldots, 150$, compute $\bar g(T)$ as in {ref}`un_ex1`.
+b. For $T = 1, 2, \ldots, 150$, compute $\bar g(T)$ as in {ref}`un_ex1`.
 
     Plot $\bar g(T)$ and $g_{\rm max}$ on the same axes and shade the infeasible region.
 
-(c) Identify $T^*$, print $\bar g$ at $T^*$, and verify that no feasible real fixed point exists at $T^* + 1$.
+c. Identify $T^*$, print $\bar g$ at $T^*$, and verify that no feasible real fixed point exists at $T^* + 1$.
 ```
 
 ```{solution-start} un_ex2
@@ -625,13 +624,13 @@ still exists after time $T$ (i.e., $\bar g \leq g_{\rm max}$).
 ```{code-cell} ipython3
 γ1, γ2 = msm.γ1, msm.γ2
 
-# (a) Laffer-curve peak
+# Part a: Laffer-curve peak
 R_max   = np.sqrt(γ2 / γ1)
 g_max   = (γ1 + γ2) - γ2 / R_max - γ1 * R_max
 print(f"R_max  = {R_max:.4f}")
 print(f"g_max  = {g_max:.4f}")
 
-# (b) g_bar for T = 1 ... 150
+# Part b: g_bar for T = 1 ... 150
 m0 = 100
 T_candidates = np.arange(1, 151)
 
@@ -704,12 +703,12 @@ ax.legend()
 plt.tight_layout()
 plt.show()
 
-# (c) Fiscal limit T*
+# Part c: fiscal limit T*
 p0_next, g_bar_next, real_next = compute_fixed_point_and_g_bar(
     T_star + 1, m0, p0_guess=p0_guess)
 
 print(f"\nFiscal limit T* = {T_star}")
-print(f"  g_bar(T*)   = {g_bar_arr[T_star - 1]:.4f}  ≤  g_max = {g_max:.4f}")
+print(f"  g_bar(T*)   = {g_bar_arr[T_star - 1]:.4f}  <=  g_max = {g_max:.4f}")
 print(f"  Feasible real fixed point at T*+1 = {T_star + 1}: {real_next}")
 ```
 

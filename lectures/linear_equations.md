@@ -250,7 +250,6 @@ for spine in ['right', 'top']:
     ax.spines[spine].set_color('none')
 
 ax.set(xlim=(-2, 10), ylim=(-4, 4))
-# ax.grid()
 vecs = ((4, -2), (3, 3), (7, 1))
 tags = ('(x1, x2)', '(y1, y2)', '(x1+x2, y1+y2)')
 colors = ('blue', 'green', 'red')

@@ -461,8 +461,9 @@ Such a completely unanticipated shock is popularly known as an "MIT shock".
 
 The mental experiment involves switching at time $T_1$ from an initial "continuation path" for $\{\mu_t, \pi_t\} $ to another path that involves a permanently lower inflation rate.
 
-**Initial Path:** $\mu_t = \mu_0$ for all $t \geq 0$. So this path is for $\{\mu_t\}_{t=0}^\infty$; the associated
-path for $\pi_t$ has $\pi_t = \mu_0$.
+**Initial Path:** $\mu_t = \mu_0$ for all $t \geq 0$.
+
+This path is for $\{\mu_t\}_{t=0}^\infty$; the associated path for $\pi_t$ has $\pi_t = \mu_0$.
 
 **Revised Continuation Path** Where $ \mu_0 > \mu^*$, we construct a continuation path $\{\mu_s\}_{s=T_1}^\infty$
 by setting $\mu_s = \mu^*$ for all $s \geq T_1$. The perfect foresight continuation path for
@@ -661,8 +662,8 @@ at $T_1 = 60$, with $T = 80$), solve the model for
 $\alpha \in \{1,\, 3,\, 5,\, 10,\, 25\}$ and plot the inflation path $\pi_t$ for
 each value on a single graph.
 
-Describe how the **anticipation effect** — the pre-stabilization fall in inflation
-— changes with $\alpha$.
+Describe how the **anticipation effect**, the pre-stabilization fall in inflation,
+changes with $\alpha$.
 ```
 
 ```{solution-start} cagan_ex1
@@ -716,9 +717,9 @@ $$
 \pi_t = (1-\delta) \sum_{s=t}^T \delta^{s-t} \mu_s + \delta^{T+1-t} \pi_{T+1}^*
 $$
 
-Compute $\pi_t$ directly from this formula for each $t = 0, 1, \ldots, T$ and
-compare it to the matrix solution returned by `solve`.  Plot both on the same
-graph and print the maximum absolute difference.
+Compute $\pi_t$ directly from this formula for each $t = 0, 1, \ldots, T$,
+compare it to the matrix solution returned by `solve`, plot both on the same
+graph, and print the maximum absolute difference.
 ```
 
 ```{solution-start} cagan_ex2
@@ -770,14 +771,15 @@ The two methods agree to machine precision, confirming that the matrix system
 **Foreseen gradual vs sudden stabilization.**
 
 Experiment 1 features a *sudden* foreseen drop in money growth at $T_1 = 60$.
+
 Experiment 3 features a *gradual* foreseen path $\mu_t = \phi^t \mu_0 + (1-\phi^t)\mu^*$.
 
 On a single graph, plot the inflation paths for:
 - Experiment 1 (sudden), and
 - Experiment 3 with $\phi \in \{0.95, 0.85, 0.70\}$ (increasingly fast gradualism).
 
-Use $\alpha = 5$, $\mu_0 = 0.5$, $\mu^* = 0$, $T = 80$.  Which approach generates
-the smoothest pre-stabilization decline in inflation?
+Use $\alpha = 5$, $\mu_0 = 0.5$, $\mu^* = 0$, and $T = 80$ to determine which
+approach generates the smoothest pre-stabilization decline in inflation.
 ```
 
 ```{solution-start} cagan_ex3

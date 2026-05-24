@@ -278,7 +278,7 @@ def process_df(df):
 
     # Convert attribute values to numeric
     df = df.map(lambda x: float(x) \
-                if x != '—' else np.nan)
+                if x != '\u2014' else np.nan)
 
     # Finally, we only focus on data between 1919 and 1925
     mask = (df.index >= '1919-01-01') & \
@@ -685,13 +685,13 @@ Hungary, Poland, Germany), compute the peak monthly log-inflation rate
 $\Delta \log p_t = \log p_t - \log p_{t-1}$ and the calendar month in which
 it occurred.
 
-(a) Display the four peak log-changes in a bar chart.
+a. Display the four peak log-changes in a bar chart.
 
-(b) Convert each peak log-change to a monthly percentage price rise
+b. Convert each peak log-change to a monthly percentage price rise
     (i.e., compute $100 \times (e^{\Delta \log p_t} - 1)$) and print a
     short table of peak rates and dates.
 
-(c) Which country experienced the most extreme peak monthly inflation?
+c. Which country experienced the most extreme peak monthly inflation?
 ```
 
 ```{solution-start} ih_ex1
@@ -728,7 +728,7 @@ for country, p in p_series.items():
     peak_log[country]  = log_infl.max()
     peak_date[country] = log_infl.idxmax()
 
-# (b) Print table
+# Part b: print table
 print(f"{'Country':<10}  {'Peak log-change':>16}  {'Monthly % rise':>14}  {'Date'}")
 print('-' * 62)
 for c in p_series:
@@ -736,7 +736,7 @@ for c in p_series:
     print(f"{c:<10}  {peak_log[c]:>16.3f}  {pct:>13.1f}%  "
           f"{peak_date[c].strftime('%b %Y')}")
 
-# (a) Bar chart
+# Part a: bar chart
 fig, ax = plt.subplots()
 countries = list(p_series.keys())
 ax.bar(countries, [peak_log[c] for c in countries], color='steelblue')
@@ -785,8 +785,8 @@ Display your results in a grouped bar chart and comment on what you find.
 
 ```{code-cell} ipython3
 periods = {
-    '1700–1913\n(gold standard)': (1700, 1913),
-    '1914–2000\n(fiat money)':    (1914, 2000),
+    '1700-1913\n(gold standard)': (1700, 1913),
+    '1914-2000\n(fiat money)':    (1914, 2000),
 }
 cols_fig5 = ['UK', 'US', 'France', 'Castile']
 rates = {col: {} for col in cols_fig5}
@@ -842,22 +842,24 @@ fiat-era bar reflects incomplete data and should be interpreted with caution.
 **Purchasing power parity during the German hyperinflation.**
 
 The lecture states that the US dollar exchange rate for each country
-"shadowed" its price level.  This co-movement is a hallmark of
+"shadowed" its price level.
+
+This co-movement is a hallmark of
 *purchasing power parity* (PPP), which predicts that $\log e_t \approx
 \log p_t + \text{const}$, so the *real exchange rate*
 $q_t = \log e_t - \log p_t$ should be approximately constant.
 
 Examine PPP for the German episode:
 
-(a) Normalize both the log price level and the log exchange rate (marks per
-    US cent) to zero at the first available date and plot both normalized
-    series on the same axes.  How closely do they track each other?
+a. Normalize both the log price level and the log exchange rate (marks per
+    US cent) to zero at the first available date, plot both normalized
+    series on the same axes, and assess how closely they track each other.
 
-(b) Compute the Pearson correlation between the two normalized log-level
+b. Compute the Pearson correlation between the two normalized log-level
     series and print it.
 
-(c) Plot the real exchange rate $q_t = \log e_t - \log p_t$ over time.
-    Compare the standard deviation of $q_t$ with the standard deviation of
+c. Plot the real exchange rate $q_t = \log e_t - \log p_t$ over time and
+    compare the standard deviation of $q_t$ with the standard deviation of
     $\log p_t$ to assess how large the deviations from PPP are relative to
     the overall price movement.
 ```
@@ -884,13 +886,13 @@ log_e = np.log(e_ger[common])
 log_p_n = log_p - log_p.iloc[0]
 log_e_n = log_e - log_e.iloc[0]
 
-# (a) Plot normalized log levels
+# Part a: plot normalized log levels
 fig, ax = plt.subplots(figsize=(9, 4))
 ax.plot(common, log_p_n, label='Log price level (normalized)', lw=2)
 ax.plot(common, log_e_n, label='Log exchange rate (normalized)',
         lw=2, linestyle='--')
 ax.set_ylabel('Log level (normalized to 0 at start)')
-ax.set_title('PPP check: Germany 1919–1924')
+ax.set_title('PPP check: Germany 1919-1924')
 ax.legend()
 ax.xaxis.set_major_locator(mdates.MonthLocator(interval=5))
 ax.xaxis.set_major_formatter(mdates.DateFormatter('%b %Y'))
@@ -899,16 +901,16 @@ for lbl in ax.get_xticklabels():
 plt.tight_layout()
 plt.show()
 
-# (b) Pearson correlation
+# Part b: Pearson correlation
 corr = np.corrcoef(log_p_n.values, log_e_n.values)[0, 1]
 print(f"Pearson correlation between log price and log exchange rate: {corr:.4f}")
 
-# (c) Real exchange rate q_t = log e - log p
+# Part c: real exchange rate q_t = log e - log p
 q = log_e - log_p
 fig, ax = plt.subplots(figsize=(9, 3))
 ax.plot(common, q, lw=2, color='tab:green')
 ax.set_ylabel(r'$q_t = \log e_t - \log p_t$')
-ax.set_title('Real exchange rate: Germany 1919–1924')
+ax.set_title('Real exchange rate: Germany 1919-1924')
 ax.xaxis.set_major_locator(mdates.MonthLocator(interval=5))
 ax.xaxis.set_major_formatter(mdates.DateFormatter('%b %Y'))
 for lbl in ax.get_xticklabels():
@@ -920,12 +922,12 @@ print(f"Std dev of log price level (normalized): {log_p_n.std():.3f}")
 print(f"Std dev of real exchange rate q:         {q.std():.3f}")
 ```
 
-For parts (a) and (b), the two normalized log series are nearly indistinguishable and their Pearson correlation is very close to 1.
+For parts a and b, the two normalized log series are nearly indistinguishable and their Pearson correlation is very close to 1.
 
 During Germany's hyperinflation, every tenfold rise in the domestic price level
 was matched by an approximately tenfold rise in the exchange rate, as PPP predicts.
 
-For part (c), the real exchange rate $q_t$ fluctuates only modestly compared with the enormous swings in $\log p_t$.
+For part c, the real exchange rate $q_t$ fluctuates only modestly compared with the enormous swings in $\log p_t$.
 
 Its standard deviation is a small fraction of the standard deviation of the normalized
 log price level, confirming that exchange rate movements were driven almost entirely

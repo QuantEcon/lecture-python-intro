@@ -62,7 +62,7 @@ from collections import namedtuple
 
 ## Consumer surplus
 
-Before we look at the model of supply and demand, it will be helpful to have some background on (a) consumer and producer surpluses and (b) integration.
+Before we look at the model of supply and demand, it will be helpful to have some background on consumer and producer surpluses and on integration.
 
 (If you are comfortable with both topics you can jump to the {ref}`next section <integration>`.)
 

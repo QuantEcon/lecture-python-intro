@@ -153,7 +153,6 @@ ax.text(0-0.2, 0.5, '$x = 1$')                            # Label x
 ax.text(0.5, 1.2, r'$y = \sqrt{3}$')                      # Label y
 ax.text(0.25, 0.15, r'$\theta = 60^o$')                   # Label θ
 
-ax.grid(True)
 plt.show()
 ```
 
@@ -351,7 +350,6 @@ ticklab = ax.yaxis.get_ticklabels()[0] # Set y-label position
 trans = ticklab.get_transform()
 ax.yaxis.set_label_coords(0, 5, transform=trans)
 
-ax.grid()
 plt.show()
 ```
 
@@ -582,16 +580,16 @@ from sympy import Symbol, cos, sin, simplify
 
 θ = Symbol('θ', real=True)
 
-print("cos(2θ) = cos²θ − sin²θ:",
+print("cos(2θ) = cos(θ)**2 - sin(θ)**2:",
       simplify(cos(2*θ) - (cos(θ)**2 - sin(θ)**2)))
 
 print("sin(2θ) = 2sinθcosθ:",
       simplify(sin(2*θ) - 2*sin(θ)*cos(θ)))
 
-print("cos(2θ) = 2cos²θ − 1:",
+print("cos(2θ) = 2*cos(θ)**2 - 1:",
       simplify(cos(2*θ) - (2*cos(θ)**2 - 1)))
 
-print("cos(2θ) = 1 − 2sin²θ:",
+print("cos(2θ) = 1 - 2*sin(θ)**2:",
       simplify(cos(2*θ) - (1 - 2*sin(θ)**2)))
 ```
 
@@ -657,13 +655,13 @@ from sympy import symbols, cos, sin, simplify
 
 θ, w = symbols('θ w', real=True)
 
-print("cos(θ+w) + cos(θ-w) − 2cos(θ)cos(w) =",
+print("cos(θ+w) + cos(θ-w) - 2cos(θ)cos(w) =",
       simplify(cos(θ+w) + cos(θ-w) - 2*cos(θ)*cos(w)))
 
-print("cos(θ-w) − cos(θ+w) − 2sin(θ)sin(w) =",
+print("cos(θ-w) - cos(θ+w) - 2sin(θ)sin(w) =",
       simplify(cos(θ-w) - cos(θ+w) - 2*sin(θ)*sin(w)))
 
-print("sin(θ+w) + sin(θ-w) − 2sin(θ)cos(w) =",
+print("sin(θ+w) + sin(θ-w) - 2sin(θ)cos(w) =",
       simplify(sin(θ+w) + sin(θ-w) - 2*sin(θ)*cos(w)))
 ```
 

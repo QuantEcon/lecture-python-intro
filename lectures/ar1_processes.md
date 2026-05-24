@@ -464,8 +464,8 @@ $$
 For $K$ use the Gaussian kernel ($K$ is the standard normal
 density).
 
-Write the class so that the bandwidth defaults to Silverman’s rule (see
-the “rule of thumb” discussion on [this
+Write the class so that the bandwidth defaults to Silverman's rule (see
+the "rule of thumb" discussion on [this
 page](https://en.wikipedia.org/wiki/Kernel_density_estimation)). Test
 the class you have written by going through the steps
 

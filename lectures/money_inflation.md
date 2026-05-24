@@ -392,7 +392,11 @@ Method 1 uses an indirect approach to computing an equilibrium by first computin
 
 ```{prf:remark}
 :label: initial_condition
-Notice that  method 1 starts by picking an **initial condition** $R_0$ from a set $[\frac{\gamma_2}{\gamma_1}, R_u]$. Equilibrium $\{p_t, m_t\}_{t=0}^\infty$ sequences are not unique.  There is actually a continuum of equilibria indexed by a choice of $R_0$ from the set $[\frac{\gamma_2}{\gamma_1}, R_u]$.
+Notice that method 1 starts by picking an **initial condition** $R_0$ from a set $[\frac{\gamma_2}{\gamma_1}, R_u]$.
+
+Equilibrium $\{p_t, m_t\}_{t=0}^\infty$ sequences are not unique.
+
+There is actually a continuum of equilibria indexed by a choice of $R_0$ from the set $[\frac{\gamma_2}{\gamma_1}, R_u]$.
 ```
 
 ```{prf:remark}
@@ -473,7 +477,10 @@ that serve to finance the government deficit of $g$ indicates the presence of a 
 
 ```{note}
 Arthur Laffer's curve plots a hump shaped curve of revenue raised from a tax against the tax rate.
-Its hump shape indicates that there are typically two tax rates that yield the same amount of revenue. This is due to two countervailing courses, one being that raising a tax rate typically decreases the **base** of the tax as people take decisions to reduce their exposure to the tax.
+
+Its hump shape indicates that there are typically two tax rates that yield the same amount of revenue.
+
+This is due to two countervailing courses, one being that raising a tax rate typically decreases the **base** of the tax as people take decisions to reduce their exposure to the tax.
 ```
 
 ```{code-cell} ipython3
@@ -1000,24 +1007,23 @@ $$
 
 is maximized at $\bar R_{\rm max} = \sqrt{\gamma_2/\gamma_1}$.
 
-(a) Verify this analytically by differentiating $S(\bar R)$ with respect to
+a. Verify this analytically by differentiating $S(\bar R)$ with respect to
     $\bar R$, setting the derivative to zero, and solving for $\bar R$.
 
-(b) Using the default model `msm`, compute $\bar R_{\rm max}$ and the
-    corresponding maximum revenue $g_{\rm max} = S(\bar R_{\rm max})$.
-    Plot the seigniorage curve together with a horizontal line at $g_{\rm max}$.
+b. Using the default model `msm`, compute $\bar R_{\rm max}$ and the
+    corresponding maximum revenue $g_{\rm max} = S(\bar R_{\rm max})$, then
+    plot the seigniorage curve together with a horizontal line at $g_{\rm max}$.
 
-(c) What happens if the government tries to finance a deficit $g > g_{\rm max}$?
-    Evaluate the discriminant of the steady-state quadratic
+c. Evaluate the discriminant of the steady-state quadratic
     {eq}`eq:steadyquadratic` for $g = g_{\rm max} + 1$ and explain
-    the economic interpretation.
+    what happens if the government tries to finance a deficit $g > g_{\rm max}$.
 ```
 
 ```{solution-start} mi_ex1
 :class: dropdown
 ```
 
-**(a)** Differentiating with respect to $\bar R$:
+**Part a.** Differentiating with respect to $\bar R$:
 
 $$
 S'(\bar R) = \frac{\gamma_2}{\bar R^2} - \gamma_1 = 0
@@ -1050,7 +1056,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-**(c)** The steady-state quadratic is $-\gamma_1 \bar R^2 + (\gamma_1+\gamma_2-g)\bar R - \gamma_2 = 0$.
+**Part c.** The steady-state quadratic is $-\gamma_1 \bar R^2 + (\gamma_1+\gamma_2-g)\bar R - \gamma_2 = 0$.
 
 Its discriminant is $(\gamma_1+\gamma_2-g)^2 - 4\gamma_1\gamma_2$.
 
@@ -1082,17 +1088,17 @@ No stationary equilibrium exists.
 The two steady-state roots $R_l < R_u$ of the quadratic
 {eq}`eq:steadyquadratic` depend on the government deficit $g$.
 
-(a) For $g$ ranging from a value near $0$ to just below $g_{\rm max}$,
+a. For $g$ ranging from a value near $0$ to just below $g_{\rm max}$,
     compute both roots $R_l(g)$ and $R_u(g)$ and plot them against $g$ on
     the same graph.
 
-(b) Verify the following boundary conditions analytically and numerically:
+b. Verify the following boundary conditions analytically and numerically:
 
     * At $g = 0$: the two roots should be $R = 1$ and $R = \gamma_2/\gamma_1$.
     * As $g \to g_{\rm max}$: the two roots should merge at $\bar R_{\rm max} = \sqrt{\gamma_2/\gamma_1}$.
 
-(c) Mark the benchmark deficit $g = 3$ on your graph and read off $R_u$ and
-    $R_l$.  Do your graph values agree with `msm.R_u` and `msm.R_l`?
+c. Mark the benchmark deficit $g = 3$ on your graph, read off $R_u$ and $R_l$,
+    and check whether your graph values agree with `msm.R_u` and `msm.R_l`.
 ```
 
 ```{solution-start} mi_ex2
@@ -1112,8 +1118,8 @@ for g in g_grid:
     R_u_curve.append(roots[1])
 
 fig, ax = plt.subplots()
-ax.plot(g_grid, R_u_curve, label='$R_u(g)$ — low inflation steady state')
-ax.plot(g_grid, R_l_curve, label='$R_l(g)$ — high inflation steady state')
+ax.plot(g_grid, R_u_curve, label='$R_u(g)$ - low inflation steady state')
+ax.plot(g_grid, R_l_curve, label='$R_l(g)$ - high inflation steady state')
 ax.axvline(msm.g, color='grey', linestyle='--', lw=1,
            label=f'benchmark $g = {msm.g}$')
 ax.set_xlabel('government deficit $g$')
@@ -1125,10 +1131,10 @@ plt.show()
 
 # Boundary conditions
 print("Boundary checks:")
-print(f"  g → 0:     R_u → {R_u_curve[0]:.4f}  (expected 1.0)")
-print(f"             R_l → {R_l_curve[0]:.4f}  (expected γ2/γ1 = {msm.γ2/msm.γ1:.4f})")
-print(f"  g → g_max: R_u → {R_u_curve[-1]:.4f}")
-print(f"             R_l → {R_l_curve[-1]:.4f}")
+print(f"  g -> 0:     R_u -> {R_u_curve[0]:.4f}  (expected 1.0)")
+print(f"              R_l -> {R_l_curve[0]:.4f}  (expected γ2/γ1 = {msm.γ2/msm.γ1:.4f})")
+print(f"  g -> g_max: R_u -> {R_u_curve[-1]:.4f}")
+print(f"              R_l -> {R_l_curve[-1]:.4f}")
 print(f"             R_max = {R_max:.4f}  (roots should merge here)")
 print(f"\nAt benchmark g = {msm.g}:")
 print(f"  R_u from curve = {R_u_curve[np.argmin(np.abs(g_grid - msm.g))]:.4f},  "
@@ -1163,18 +1169,16 @@ $$
 (where $Q_{ij}$ denotes the $(i,j)$ element of the eigenvector matrix $Q$)
 that places the economy on the low-inflation equilibrium path.
 
-(a) Using `iterate_H`, simulate the path of $y_t = (m_t, p_t)$ starting from
-    $y_0 = (m_0,\, \bar p_0)$.  Compute $R_t = p_t/p_{t+1}$ for $t = 0, \ldots, 10$
+a. Using `iterate_H`, simulate the path of $y_t = (m_t, p_t)$ starting from
+    $y_0 = (m_0,\, \bar p_0)$, compute $R_t = p_t/p_{t+1}$ for $t = 0, \ldots, 10$,
     and verify that it equals `msm.R_u` at every step.
 
-(b) The formula $\bar p_0 = (Q_{21}/Q_{11})\, m_0$ says that the initial
-    price level is proportional to the money supply — a version of the
-    **quantity theory of money**.  Compute $\bar p_0$ for $m_0 \in [50, 300]$
-    and plot $\bar p_0$ against $m_0$.  What is the slope?
+b. Use the formula $\bar p_0 = (Q_{21}/Q_{11})\, m_0$ to interpret the initial
+    price level as proportional to the money supply, compute $\bar p_0$ for
+    $m_0 \in [50, 300]$, plot $\bar p_0$ against $m_0$, and report the slope.
 
-(c) Method 1 gives a formula for $p_0$ directly from $R_0$ via
-    equation {eq}`eq:p0fromR0`.  Set $R_0 = R_u$ in that formula and
-    confirm that you recover $\bar p_0$.
+c. Set $R_0 = R_u$ in the Method 1 formula for $p_0$ from equation
+    {eq}`eq:p0fromR0` and confirm that you recover $\bar p_0$.
 ```
 
 ```{solution-start} mi_ex3
@@ -1182,7 +1186,7 @@ that places the economy on the low-inflation equilibrium path.
 ```
 
 ```{code-cell} ipython3
-# (a) Verify R_t = R_u along the magic-p0 path
+# Part a: verify R_t = R_u along the magic-p0 path
 p0_bar = (Q[1, 0] / Q[0, 0]) * msm.M0
 y0 = np.array([msm.M0, p0_bar])
 num_steps = 12
@@ -1197,7 +1201,7 @@ print(f"msm.R_u = {msm.R_u:.6f}")
 ```
 
 ```{code-cell} ipython3
-# (b) Plot p0_bar vs m0
+# Part b: plot p0_bar vs m0
 m0_values = np.linspace(50, 300, 80)
 p0_bar_values = (Q[1, 0] / Q[0, 0]) * m0_values
 
@@ -1206,23 +1210,22 @@ ax.plot(m0_values, p0_bar_values)
 ax.set_xlabel('$m_0$')
 ax.set_ylabel('$\\bar p_0$')
 ax.set_title('Quantity theory: $\\bar p_0$ proportional to $m_0$')
-ax.grid(True, alpha=0.3)
 plt.tight_layout()
 plt.show()
 
 slope = Q[1, 0] / Q[0, 0]
 print(f"Slope = Q_21 / Q_11 = {slope:.6f}")
 
-# (c) Compare with Method 1 formula eq:p0fromR0
+# Part c: compare with Method 1 formula eq:p0fromR0
 p0_method1 = msm.M0 / (msm.γ1 - msm.g - msm.γ2 / msm.R_u)
 print(f"\nMethod 1 formula (R_0 = R_u):  p0 = {p0_method1:.6f}")
 print(f"Eigendecomposition formula:    p0 = {p0_bar:.6f}")
 ```
 
-Parts (a) and (c) confirm that both methods select exactly the same unique
+Parts a and c confirm that both methods select exactly the same unique
 initial price level.
 
-Part (b) shows the quantity-theory proportionality that doubling $m_0$ exactly doubles $\bar p_0$, with constant slope $Q_{21}/Q_{11}$.
+Part b shows the quantity-theory proportionality that doubling $m_0$ exactly doubles $\bar p_0$, with constant slope $Q_{21}/Q_{11}$.
 
 This linearity is a direct consequence of the linearity of the model.
 
