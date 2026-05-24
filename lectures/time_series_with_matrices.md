@@ -305,8 +305,10 @@ $$ (eq:eqma)
 Let’s try it out in Python.
 
 ```{code-cell} ipython3
+rng = np.random.default_rng()
+
 σ_u = 2.
-u = np.random.normal(0, σ_u, size=T)
+u = rng.normal(0, σ_u, size=T)
 y = A_inv @ (b + u)
 ```
 
@@ -327,8 +329,8 @@ We can simulate $N$ paths.
 N = 100
 
 for i in range(N):
-    col = cm.viridis(np.random.rand())  # Choose a random color from viridis
-    u = np.random.normal(0, σ_u, size=T)
+    col = cm.viridis(rng.random())  # Choose a random color from viridis
+    u = rng.normal(0, σ_u, size=T)
     y = A_inv @ (b + u)
     plt.plot(np.arange(T)+1, y, lw=0.5, color=col)
 
@@ -345,8 +347,8 @@ steady state.
 N = 100
 
 for i in range(N):
-    col = cm.viridis(np.random.rand())  # Choose a random color from viridis
-    u = np.random.normal(0, σ_u, size=T)
+    col = cm.viridis(rng.random())  # Choose a random color from viridis
+    u = rng.normal(0, σ_u, size=T)
     y_steady = A_inv @ (b_steady + u)
     plt.plot(np.arange(T)+1, y_steady, lw=0.5, color=col)
 
@@ -432,12 +434,14 @@ class population_moments:
 
         self.A, self.b, self.A_inv, self.σ_u, self.T = A, b, A_inv, σ_u, T
     
-    def sample_y(self, n):
+    def sample_y(self, n, rng=None):
         """
         Give a sample of size n of y.
         """
+        if rng is None:
+            rng = np.random.default_rng()
         A_inv, σ_u, b, T = self.A_inv, self.σ_u, self.b, self.T
-        us = np.random.normal(0, σ_u, size=[n, T])
+        us = rng.normal(0, σ_u, size=[n, T])
         ys = np.vstack([A_inv @ (b + u) for u in us])
 
         return ys
@@ -472,8 +476,8 @@ Let's begin by generating $N$ time realizations of $y$ plotting them together wi
 N = 100
 
 for i in range(N):
-    col = cm.viridis(np.random.rand())  # Choose a random color from viridis
-    ys = series_process.sample_y(N)
+    col = cm.viridis(rng.random())  # Choose a random color from viridis
+    ys = series_process.sample_y(N, rng=rng)
     plt.plot(ys[i,:], lw=0.5, color=col)
     plt.plot(μ_y, color='red')
 
@@ -649,7 +653,7 @@ print(B)
 
 ```{code-cell} ipython3
 σ_u = 0.
-u = np.random.normal(0, σ_u, size=T)
+u = rng.normal(0, σ_u, size=T)
 y = A_inv @ (b + u)
 y_steady = A_inv @ (b_steady + u)
 ```
