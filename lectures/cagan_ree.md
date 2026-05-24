@@ -18,16 +18,16 @@ kernelspec:
 
 We'll use linear algebra first to explain and then do some experiments with a "monetarist theory of price levels".
 
-Economists call it a "monetary" or "monetarist" theory of price levels because effects on price levels occur via a central bank's decisions to print money supply. 
+Economists call it a "monetary" or "monetarist" theory of price levels because effects on price levels occur via a central bank's decisions to print money supply.
 
   * a goverment's fiscal policies determine whether its _expenditures_ exceed its _tax collections_
   * if its expenditures exceed its tax collections, the government can instruct the central bank to cover the difference by _printing money_
   * that leads to effects on the price level as price level path adjusts to equate the supply of money to the demand for money
 
-Such a theory of price levels was described by Thomas Sargent and Neil Wallace in chapter 5 of 
-{cite}`sargent2013rational`, which reprints a 1981 Federal Reserve Bank of Minneapolis article entitled "Unpleasant Monetarist Arithmetic". 
+Such a theory of price levels was described by Thomas Sargent and Neil Wallace in chapter 5 of
+{cite}`sargent2013rational`, which reprints a 1981 Federal Reserve Bank of Minneapolis article entitled "Unpleasant Monetarist Arithmetic".
 
-Sometimes this theory is also called a "fiscal theory of price levels" to emphasize the importance of fiscal deficits in shaping changes in the money supply. 
+Sometimes this theory is also called a "fiscal theory of price levels" to emphasize the importance of fiscal deficits in shaping changes in the money supply.
 
 The theory has been extended, criticized, and applied by John Cochrane {cite}`cochrane2023fiscal`.
 
@@ -39,25 +39,25 @@ Elemental forces at work in the fiscal theory of the price level help to underst
 According to this theory, when the government persistently spends more than it collects in taxes and prints money to finance the shortfall (the "shortfall" is called the "government deficit"), it puts upward pressure on the price level and generates
 persistent inflation.
 
-The "monetarist" or "fiscal theory of price levels" asserts that 
+The "monetarist" or "fiscal theory of price levels" asserts that
 
 * to _start_ a persistent inflation the government begins persistently to run a money-financed government deficit
 
 * to _stop_ a persistent inflation the government stops persistently running a money-financed government deficit
 
-The model in this lecture is a "rational expectations" (or "perfect foresight") version of a model that Philip Cagan {cite}`Cagan` used to study the monetary dynamics of hyperinflations. 
+The model in this lecture is a "rational expectations" (or "perfect foresight") version of a model that Philip Cagan {cite}`Cagan` used to study the monetary dynamics of hyperinflations.
 
 While Cagan didn't use that "rational expectations" version of the model, Thomas Sargent {cite}`sargent1982ends` did when he studied the Ends of Four Big Inflations in Europe after World War I.
 
-* this lecture {doc}`fiscal theory of the price level with adaptive expectations <cagan_adaptive>` describes a version of the model that does not impose "rational expectations" but instead uses 
+* this lecture {doc}`fiscal theory of the price level with adaptive expectations <cagan_adaptive>` describes a version of the model that does not impose "rational expectations" but instead uses
   what Cagan and his teacher Milton Friedman called "adaptive expectations"
 
    * a reader of both lectures will notice that the algebra is less complicated in the present rational expectations version of the model
-   * the difference in algebra complications can be traced to the following source: the adaptive expectations version of the model has more endogenous variables and more free parameters 
+   * the difference in algebra complications can be traced to the following source: the adaptive expectations version of the model has more endogenous variables and more free parameters
 
 Some of our quantitative experiments with the rational expectations version of the model are designed to illustrate how the fiscal theory explains the abrupt end of those big inflations.
 
-In those experiments, we'll encounter an instance of a "velocity dividend" that has sometimes accompanied successful inflation stabilization programs. 
+In those experiments, we'll encounter an instance of a "velocity dividend" that has sometimes accompanied successful inflation stabilization programs.
 
 To facilitate using linear matrix algebra as our main mathematical tool, we'll use a finite horizon version of the model.
 
@@ -76,8 +76,8 @@ The model consists of
 * an equilibrium condition that equates the demand for money to the supply
 
 * a "perfect foresight" assumption that the public's expected rate of inflation equals the actual rate of inflation.
- 
-To represent the model formally, let 
+
+To represent the model formally, let
 
 * $ m_t $ be the log of the supply of nominal money balances;
 * $\mu_t = m_{t+1} - m_t $ be the net rate of growth of nominal balances;
@@ -88,8 +88,8 @@ To represent the model formally, let
 * $\pi_{T+1}^*$ the terminal rate of inflation between times $T$ and $T+1$.
 
 The demand for real balances $\exp\left(m_t^d - p_t\right)$ is governed by the following version of the Cagan demand function
- 
-$$ 
+
+$$
 m_t^d - p_t = -\alpha \pi_t^* \: , \: \alpha > 0 ; \quad t = 0, 1, \ldots, T .
 $$ (eq:caganmd)
 
@@ -101,11 +101,11 @@ problem.
 
 This lets us set
 
-$$ 
-\pi_t^* = \pi_t , % \forall t 
+$$
+\pi_t^* = \pi_t , % \forall t
 $$ (eq:ree)
 
-while equating demand for money to supply lets us set $m_t^d = m_t$ for all $t \geq 0$. 
+while equating demand for money to supply lets us set $m_t^d = m_t$ for all $t \geq 0$.
 
 The preceding equations then imply
 
@@ -124,7 +124,7 @@ which we rewrite as a forward-looking first-order linear difference
 equation in $\pi_s$ with $\mu_s$ as a "forcing variable":
 
 $$
-\pi_t = \frac{\alpha}{1+\alpha} \pi_{t+1} + \frac{1}{1+\alpha} \mu_t , \quad t= 0, 1, \ldots , T 
+\pi_t = \frac{\alpha}{1+\alpha} \pi_{t+1} + \frac{1}{1+\alpha} \mu_t , \quad t= 0, 1, \ldots , T
 $$
 
 where $ 0< \frac{\alpha}{1+\alpha} <1 $.
@@ -144,12 +144,12 @@ $$
                 \vdots & \vdots & \vdots & \vdots & \vdots & -\delta & 0 \cr
                 0 & 0 & 0 & 0 & \cdots & 1 & -\delta \cr
                 0 & 0 & 0 & 0 & \cdots & 0 & 1 \end{bmatrix}
-\begin{bmatrix} \pi_0 \cr \pi_1 \cr \pi_2 \cr \vdots \cr \pi_{T-1} \cr \pi_T 
-\end{bmatrix} 
-= (1 - \delta) \begin{bmatrix} 
+\begin{bmatrix} \pi_0 \cr \pi_1 \cr \pi_2 \cr \vdots \cr \pi_{T-1} \cr \pi_T
+\end{bmatrix}
+= (1 - \delta) \begin{bmatrix}
 \mu_0 \cr \mu_1 \cr \mu_2 \cr \vdots \cr \mu_{T-1} \cr \mu_T
 \end{bmatrix}
-+ \begin{bmatrix} 
++ \begin{bmatrix}
 0 \cr 0 \cr 0 \cr \vdots \cr 0 \cr \delta \pi_{T+1}^*
 \end{bmatrix}
 $$ (eq:pieq)
@@ -157,8 +157,8 @@ $$ (eq:pieq)
 By multiplying both sides of equation {eq}`eq:pieq` by the inverse of the matrix on the left side, we can calculate
 
 $$
-\pi \equiv \begin{bmatrix} \pi_0 \cr \pi_1 \cr \pi_2 \cr \vdots \cr \pi_{T-1} \cr \pi_T 
-\end{bmatrix} 
+\pi \equiv \begin{bmatrix} \pi_0 \cr \pi_1 \cr \pi_2 \cr \vdots \cr \pi_{T-1} \cr \pi_T
+\end{bmatrix}
 $$
 
 It turns out that
@@ -167,9 +167,9 @@ $$
 \pi_t = (1-\delta) \sum_{s=t}^T \delta^{s-t} \mu_s + \delta^{T+1-t} \pi_{T+1}^*
 $$ (eq:fisctheory1)
 
-We can represent the equations 
+We can represent the equations
 
-$$ 
+$$
 m_{t+1} = m_t + \mu_t , \quad t = 0, 1, \ldots, T
 $$
 
@@ -182,20 +182,20 @@ $$
 0 & -1 & 1 & \cdots & 0 & 0 \cr
 \vdots & \vdots & \vdots & \vdots & 0 & 0 \cr
 0 & 0 & 0 & \cdots & 1 & 0 \cr
-0 & 0 & 0 & \cdots & -1 & 1 
+0 & 0 & 0 & \cdots & -1 & 1
 \end{bmatrix}
-\begin{bmatrix} 
+\begin{bmatrix}
 m_1 \cr m_2 \cr m_3 \cr \vdots \cr m_T \cr m_{T+1}
 \end{bmatrix}
-= \begin{bmatrix} 
+= \begin{bmatrix}
 \mu_0 \cr \mu_1 \cr \mu_2 \cr \vdots \cr \mu_{T-1} \cr \mu_T
 \end{bmatrix}
-+ \begin{bmatrix} 
++ \begin{bmatrix}
 m_0 \cr 0 \cr 0 \cr \vdots \cr 0 \cr 0
 \end{bmatrix}
 $$ (eq:eq101)
 
-Multiplying both sides of equation {eq}`eq:eq101` with the inverse of the matrix on the left will give 
+Multiplying both sides of equation {eq}`eq:eq101` with the inverse of the matrix on the left will give
 
 $$
 m_t = m_0 + \sum_{s=0}^{t-1} \mu_s, \quad t =1, \ldots, T+1
@@ -210,7 +210,7 @@ To determine the continuation inflation rate $\pi_{T+1}^*$ we shall proceed by a
 version of equation {eq}`eq:fisctheory1` at time $t = T+1$:
 
 $$
-\pi_t = (1-\delta) \sum_{s=t}^\infty \delta^{s-t} \mu_s , 
+\pi_t = (1-\delta) \sum_{s=t}^\infty \delta^{s-t} \mu_s ,
 $$ (eq:fisctheory2)
 
 and by also assuming the following continuation path for $\mu_t$ beyond $T$:
@@ -221,7 +221,7 @@ $$
 
 Plugging the preceding equation into equation {eq}`eq:fisctheory2` at $t = T+1$ and rearranging we can deduce that
 
-$$ 
+$$
 \pi_{T+1}^* = \frac{1 - \delta}{1 - \delta \gamma^*} \gamma^* \mu_T
 $$ (eq:piterm)
 
@@ -242,7 +242,7 @@ First, we store parameters in a `namedtuple`:
 
 ```{code-cell} ipython3
 # Create the rational expectation version of Cagan model in finite time
-CaganREE = namedtuple("CaganREE", 
+CaganREE = namedtuple("CaganREE",
                         ["m0",    # initial money supply
                          "μ_seq", # sequence of rate of growth
                          "α",     # sensitivity parameter
@@ -260,9 +260,9 @@ Now we can solve the model to compute $\pi_t$, $m_t$ and $p_t$ for $t =1, \ldots
 
 ```{code-cell} ipython3
 def solve(model, T):
-    m0, π_end, μ_seq, α, δ = (model.m0, model.π_end, 
+    m0, π_end, μ_seq, α, δ = (model.m0, model.π_end,
                               model.μ_seq, model.α, model.δ)
-    
+
     # Create matrix representation above
     A1 = np.eye(T+1, T+1) - δ * np.eye(T+1, T+1, k=1)
     A2 = np.eye(T+1, T+1) - np.eye(T+1, T+1, k=-1)
@@ -290,13 +290,13 @@ In devising these experiments, we'll make assumptions about $\{\mu_t\}$ that are
 
 We  describe several such experiments.
 
-In all of them, 
+In all of them,
 
-$$ 
+$$
 \mu_t = \mu^* , \quad t \geq T_1
 $$
 
-so that, in terms of our notation and formula for $\pi_{T+1}^*$ above, $\gamma^* = 1$. 
+so that, in terms of our notation and formula for $\pi_{T+1}^*$ above, $\gamma^* = 1$.
 
 #### Experiment 1: Foreseen sudden stabilization
 
@@ -305,7 +305,7 @@ In this experiment, we'll study how, when $\alpha >0$, a foreseen inflation stab
 We'll study a situation in which the rate of growth of the money supply is $\mu_0$
 from $t=0$ to $t= T_1$ and then permanently falls to $\mu^*$ at $t=T_1$.
 
-Thus, let $T_1 \in (0, T)$. 
+Thus, let $T_1 \in (0, T)$.
 
 So where $\mu_0 > \mu^*$, we assume that
 
@@ -316,7 +316,7 @@ $$
      \end{cases}
 $$
 
-We'll start by executing a version of our "experiment 1" in which the government implements a _foreseen_ sudden permanent reduction in the rate of money creation at time $T_1$. 
+We'll start by executing a version of our "experiment 1" in which the government implements a _foreseen_ sudden permanent reduction in the rate of money creation at time $T_1$.
 
 Let's experiment with the following parameters
 
@@ -352,15 +352,15 @@ plot_sequences(sequences, (r'$\mu$', r'$\pi$', r'$m - p$', r'$m$', r'$p$'))
 ```
 
 The plot of the money growth rate $\mu_t$ in the top level panel portrays
-a sudden reduction from $.5$ to $0$ at time $T_1 = 60$. 
+a sudden reduction from $.5$ to $0$ at time $T_1 = 60$.
 
 This brings about a gradual reduction of the inflation rate $\pi_t$ that precedes the
 money supply growth rate reduction at time $T_1$.
 
-Notice how the inflation rate declines smoothly (i.e., continuously) to $0$ at $T_1$ -- 
+Notice how the inflation rate declines smoothly (i.e., continuously) to $0$ at $T_1$ --
 unlike the money growth rate, it does not suddenly "jump" downward at $T_1$.
 
-This is because the reduction in $\mu$ at $T_1$ has been foreseen from the start. 
+This is because the reduction in $\mu$ at $T_1$ has been foreseen from the start.
 
 While the log money supply portrayed in the bottom panel has a kink at $T_1$, the log price level does not -- it is "smooth" -- once again a consequence of the fact that the
 reduction in $\mu$ has been foreseen.
@@ -379,15 +379,15 @@ $$ (eq:pformula2)
 
 or, by using equation {eq}`eq:fisctheory1`,
 
-$$ 
-p_t = m_t + \alpha \left[ (1-\delta) \sum_{s=t}^T \delta^{s-t} \mu_s + \delta^{T+1-t} \pi_{T+1}^* \right] 
+$$
+p_t = m_t + \alpha \left[ (1-\delta) \sum_{s=t}^T \delta^{s-t} \mu_s + \delta^{T+1-t} \pi_{T+1}^* \right]
 $$ (eq:pfiscaltheory2)
 
-In our next experiment, we'll study a "surprise" permanent change in the money growth that beforehand 
-was completely unanticipated. 
+In our next experiment, we'll study a "surprise" permanent change in the money growth that beforehand
+was completely unanticipated.
 
 At time $T_1$ when the "surprise" money growth rate change occurs, to satisfy
-equation {eq}`eq:pformula2`, the log of real balances jumps 
+equation {eq}`eq:pformula2`, the log of real balances jumps
 _upward_ as $\pi_t$ jumps _downward_.
 
 But in order for $m_t - p_t$ to jump, which variable jumps, $m_{T_1}$ or $p_{T_1}$?
@@ -400,8 +400,8 @@ What jumps at $T_1$?
 
 Is it $p_{T_1}$ or $m_{T_1}$?
 
-If we insist that the money supply $m_{T_1}$ is locked at its value $m_{T_1}^1$ inherited from the past, then formula {eq}`eq:pformula2` implies that the price level jumps downward at time $T_1$, to coincide with the downward jump in 
-$\pi_{T_1}$ 
+If we insist that the money supply $m_{T_1}$ is locked at its value $m_{T_1}^1$ inherited from the past, then formula {eq}`eq:pformula2` implies that the price level jumps downward at time $T_1$, to coincide with the downward jump in
+$\pi_{T_1}$
 
 An alternative assumption about the money supply level is that as part of the "inflation stabilization",
 the government resets $m_{T_1}$ according to
@@ -410,7 +410,7 @@ $$
 m_{T_1}^2 - m_{T_1}^1 = \alpha (\pi_{T_1}^1 - \pi_{T_1}^2),
 $$ (eq:eqnmoneyjump)
 
-which describes how the government could reset the money supply at $T_1$ in response to the jump in expected inflation associated with monetary stabilization. 
+which describes how the government could reset the money supply at $T_1$ in response to the jump in expected inflation associated with monetary stabilization.
 
 Doing this would let the price level be continuous at $T_1$.
 
@@ -425,7 +425,7 @@ We have noted that with a constant expected forward sequence $\mu_s = \bar \mu$ 
 
 A consequence is that at $T_1$, either $m$ or $p$ must "jump" at $T_1$.
 
-We'll study both cases. 
+We'll study both cases.
 
 #### $m_{T_{1}}$ does not jump.
 
@@ -441,10 +441,10 @@ Simply glue the sequences $t\leq T_1$ and $t > T_1$.
 
 We reset $m_{T_{1}}$ so that $p_{T_{1}}=\left(m_{T_{1}-1}+\mu_{0}\right)+\alpha\mu_{0}$, with $\pi_{T_{1}}=\mu^{*}$.
 
-Then, 
+Then,
 
-$$ 
-m_{T_{1}}=p_{T_{1}}-\alpha\pi_{T_{1}}=\left(m_{T_{1}-1}+\mu_{0}\right)+\alpha\left(\mu_{0}-\mu^{*}\right) 
+$$
+m_{T_{1}}=p_{T_{1}}-\alpha\pi_{T_{1}}=\left(m_{T_{1}-1}+\mu_{0}\right)+\alpha\left(\mu_{0}-\mu^{*}\right)
 $$
 
 We then compute for the remaining $T-T_{1}$ periods with $\mu_{s}=\mu^{*},\forall s\geq T_{1}$ and the initial condition $m_{T_{1}}$ from above.
@@ -455,29 +455,29 @@ We are now technically equipped to discuss our next experiment.
 
 This experiment deviates a little bit from a pure version of our "perfect foresight"
 assumption by assuming that a sudden permanent reduction in $\mu_t$ like that
-analyzed in experiment 1 is completely unanticipated. 
+analyzed in experiment 1 is completely unanticipated.
 
 Such a completely unanticipated shock is popularly known as an "MIT shock".
 
-The mental experiment involves switching at time $T_1$ from an initial "continuation path" for $\{\mu_t, \pi_t\} $ to another path that involves a permanently lower inflation rate.  
+The mental experiment involves switching at time $T_1$ from an initial "continuation path" for $\{\mu_t, \pi_t\} $ to another path that involves a permanently lower inflation rate.
 
-**Initial Path:** $\mu_t = \mu_0$ for all $t \geq 0$. So this path is for $\{\mu_t\}_{t=0}^\infty$; the associated 
-path for $\pi_t$ has $\pi_t = \mu_0$. 
+**Initial Path:** $\mu_t = \mu_0$ for all $t \geq 0$. So this path is for $\{\mu_t\}_{t=0}^\infty$; the associated
+path for $\pi_t$ has $\pi_t = \mu_0$.
 
 **Revised Continuation Path** Where $ \mu_0 > \mu^*$, we construct a continuation path $\{\mu_s\}_{s=T_1}^\infty$
-by setting $\mu_s = \mu^*$ for all $s \geq T_1$. The perfect foresight continuation path for 
-$\pi$ is $\pi_s = \mu^*$ 
+by setting $\mu_s = \mu^*$ for all $s \geq T_1$. The perfect foresight continuation path for
+$\pi$ is $\pi_s = \mu^*$
 
 To capture a "completely unanticipated permanent shock to the $\{\mu_t\}$ process at time $T_1$, we simply glue the $\mu_t, \pi_t$
 that emerges under path 2 for $t \geq T_1$ to the $\mu_t, \pi_t$ path that had emerged under path 1 for $ t=0, \ldots,
 T_1 -1$.
 
-We can do the MIT shock calculations mostly by hand. 
+We can do the MIT shock calculations mostly by hand.
 
 Thus, for path 1, $\pi_t = \mu_0 $ for all $t \in [0, T_1-1]$, while for path 2,
-$\mu_s = \mu^*$ for all $s \geq T_1$. 
+$\mu_s = \mu^*$ for all $s \geq T_1$.
 
-We now move on to experiment 2, our "MIT shock", completely unforeseen 
+We now move on to experiment 2, our "MIT shock", completely unforeseen
 sudden stabilization.
 
 We set this up so that the $\{\mu_t\}$ sequences that describe the sudden stabilization
@@ -495,7 +495,7 @@ cm1 = create_cagan_model(μ_seq=μ_seq_2_path1)
 # continuation path
 μ_seq_2_cont = μ_star * np.ones(T-T1)
 
-cm2 = create_cagan_model(m0=m_seq_2_path1[T1+1], 
+cm2 = create_cagan_model(m0=m_seq_2_path1[T1+1],
                          μ_seq=μ_seq_2_cont)
 π_seq_2_cont, m_seq_2_cont1, p_seq_2_cont1 = solve(cm2, T-1-T1)
 
@@ -503,11 +503,11 @@ cm2 = create_cagan_model(m0=m_seq_2_path1[T1+1],
 # regime 1 - simply glue π_seq, μ_seq
 μ_seq_2 = np.concatenate((μ_seq_2_path1[:T1+1],
                           μ_seq_2_cont))
-π_seq_2 = np.concatenate((π_seq_2_path1[:T1+1], 
+π_seq_2 = np.concatenate((π_seq_2_path1[:T1+1],
                           π_seq_2_cont))
-m_seq_2_regime1 = np.concatenate((m_seq_2_path1[:T1+1], 
+m_seq_2_regime1 = np.concatenate((m_seq_2_path1[:T1+1],
                                   m_seq_2_cont1))
-p_seq_2_regime1 = np.concatenate((p_seq_2_path1[:T1+1], 
+p_seq_2_regime1 = np.concatenate((p_seq_2_path1[:T1+1],
                                   p_seq_2_cont1))
 
 # regime 2 - reset m_T1
@@ -516,7 +516,7 @@ m_T1 = (m_seq_2_path1[T1] + μ0) + cm2.α*(μ0 - μ_star)
 cm3 = create_cagan_model(m0=m_T1, μ_seq=μ_seq_2_cont)
 π_seq_2_cont2, m_seq_2_cont2, p_seq_2_cont2 = solve(cm3, T-1-T1)
 
-m_seq_2_regime2 = np.concatenate((m_seq_2_path1[:T1+1], 
+m_seq_2_regime2 = np.concatenate((m_seq_2_path1[:T1+1],
                                   m_seq_2_cont2))
 p_seq_2_regime2 = np.concatenate((p_seq_2_path1[:T1+1],
                                   p_seq_2_cont2))
@@ -534,13 +534,13 @@ fig, ax = plt.subplots(5, 1, figsize=(5, 12), dpi=200)
 plot_configs = [
     {'data': [(T_seq[:-1], μ_seq_2)], 'ylabel': r'$\mu$'},
     {'data': [(T_seq, π_seq_2)], 'ylabel': r'$\pi$'},
-    {'data': [(T_seq, m_seq_2_regime1 - p_seq_2_regime1)], 
+    {'data': [(T_seq, m_seq_2_regime1 - p_seq_2_regime1)],
      'ylabel': r'$m - p$'},
-    {'data': [(T_seq, m_seq_2_regime1, 'Smooth $m_{T_1}$'), 
-              (T_seq, m_seq_2_regime2, 'Jumpy $m_{T_1}$')], 
+    {'data': [(T_seq, m_seq_2_regime1, 'Smooth $m_{T_1}$'),
+              (T_seq, m_seq_2_regime2, 'Jumpy $m_{T_1}$')],
      'ylabel': r'$m$'},
-    {'data': [(T_seq, p_seq_2_regime1, 'Smooth $p_{T_1}$'), 
-              (T_seq, p_seq_2_regime2, 'Jumpy $p_{T_1}$')], 
+    {'data': [(T_seq, p_seq_2_regime1, 'Smooth $p_{T_1}$'),
+              (T_seq, p_seq_2_regime2, 'Jumpy $p_{T_1}$')],
      'ylabel': r'$p$'}
 ]
 
@@ -557,22 +557,22 @@ def experiment_plot(plot_configs, ax):
         axi.set_xlabel(r'$t$')
     plt.tight_layout()
     plt.show()
-    
+
 experiment_plot(plot_configs, ax)
 ```
 
 We invite you to compare these graphs with corresponding ones for the foreseen stabilization analyzed in experiment 1 above.
 
-Note how the inflation graph in the second panel is now identical to the 
+Note how the inflation graph in the second panel is now identical to the
 money growth graph in the top panel, and how now the log of real balances portrayed in the third panel jumps upward at time $T_1$.
 
 The bottom two panels plot $m$ and $p$ under two possible ways that $m_{T_1}$ might adjust
-as required by the upward jump in $m - p$ at $T_1$.  
+as required by the upward jump in $m - p$ at $T_1$.
 
 * the orange line lets $m_{T_1}$ jump upward in order to make sure that the log price level $p_{T_1}$ does not fall.
 
 * the blue line lets $p_{T_1}$ fall while stopping the money supply from jumping.
-  
+
 Here is a way to interpret what the government is doing when the orange line policy is in place.
 
 The government prints money to finance expenditure with the "velocity dividend" that it reaps from the increased demand for real balances brought about by the permanent decrease in the rate of growth of the money supply.
@@ -590,16 +590,16 @@ fig, ax = plt.subplots(5, figsize=(5, 12), dpi=200)
 
 plot_configs = [
     {'data': [(T_seq[:-1], μ_seq_2)], 'ylabel': r'$\mu$'},
-    {'data': [(T_seq, π_seq_2, 'Unforeseen'), 
-              (T_seq, π_seq_1, 'Foreseen')], 'ylabel': r'$p$'},
-    {'data': [(T_seq, m_seq_2_regime1 - p_seq_2_regime1, 'Unforeseen'), 
+    {'data': [(T_seq, π_seq_2, 'Unforeseen'),
+              (T_seq, π_seq_1, 'Foreseen')], 'ylabel': r'$\pi$'},
+    {'data': [(T_seq, m_seq_2_regime1 - p_seq_2_regime1, 'Unforeseen'),
               (T_seq, m_seq_1 - p_seq_1, 'Foreseen')], 'ylabel': r'$m - p$'},
-    {'data': [(T_seq, m_seq_2_regime1, 'Unforeseen (Smooth $m_{T_1}$)'), 
+    {'data': [(T_seq, m_seq_2_regime1, 'Unforeseen (Smooth $m_{T_1}$)'),
               (T_seq, m_seq_2_regime2, 'Unforeseen ($m_{T_1}$ jumps)'),
-              (T_seq, m_seq_1, 'Foreseen')], 'ylabel': r'$m$'},   
-    {'data': [(T_seq, p_seq_2_regime1, 'Unforeseen (Smooth $m_{T_1}$)'), 
+              (T_seq, m_seq_1, 'Foreseen')], 'ylabel': r'$m$'},
+    {'data': [(T_seq, p_seq_2_regime1, 'Unforeseen (Smooth $m_{T_1}$)'),
           (T_seq, p_seq_2_regime2, 'Unforeseen ($m_{T_1}$ jumps)'),
-          (T_seq, p_seq_1, 'Foreseen')], 'ylabel': r'$p$'}   
+          (T_seq, p_seq_1, 'Foreseen')], 'ylabel': r'$p$'}
 ]
 
 experiment_plot(plot_configs, ax)
@@ -612,7 +612,7 @@ In particular, in the above graphs, notice how a gradual fall in inflation prece
 inflation instead falls abruptly when the permanent drop in money supply growth is unanticipated.
 
 It seems to the author team at quantecon that the drops in inflation near the ends of the four hyperinflations described in {doc}`this lecture <inflation_history>`
-more closely resemble outcomes from the experiment 2 "unforeseen stabilization". 
+more closely resemble outcomes from the experiment 2 "unforeseen stabilization".
 
 (It is fair to say that the preceding informal pattern recognition exercise should be supplemented with a more formal structural statistical analysis.)
 
@@ -627,7 +627,7 @@ Thus, suppose that $\phi \in (0,1)$, that $\mu_0 > \mu^*$, and that for $t = 0, 
 
 $$
 \mu_t = \phi^t \mu_0 + (1 - \phi^t) \mu^* .
-$$ 
+$$
 
 Next we perform an experiment in which there is a perfectly foreseen _gradual_ decrease in the rate of growth of the money supply.
 
@@ -643,9 +643,9 @@ cm4 = create_cagan_model(μ_seq=μ_seq_stab)
 
 π_seq_4, m_seq_4, p_seq_4 = solve(cm4, T)
 
-sequences = (μ_seq_stab, π_seq_4, 
+sequences = (μ_seq_stab, π_seq_4,
              m_seq_4 - p_seq_4, m_seq_4, p_seq_4)
-plot_sequences(sequences, (r'$\mu$', r'$\pi$', 
+plot_sequences(sequences, (r'$\mu$', r'$\pi$',
                            r'$m - p$', r'$m$', r'$p$'))
 ```
 
@@ -683,7 +683,7 @@ fig, ax = plt.subplots()
 for α in α_vals:
     cm = create_cagan_model(α=α, μ_seq=μ_seq)
     π_seq, _, _ = solve(cm, T)
-    ax.plot(T_seq, π_seq, label=f'α = {α}')
+    ax.plot(T_seq, π_seq[:-1], label=f'α = {α}')
 
 ax.axvline(T1, linestyle='--', color='black', lw=1, label='Stabilization $T_1$')
 ax.set_xlabel('$t$')
@@ -693,11 +693,12 @@ ax.legend()
 plt.show()
 ```
 
-For small $\alpha$, real-balance demand is insensitive to inflation so the model
-behaves almost like the exogenous-money case: inflation tracks $\mu_t$ closely
-and the anticipation effect is minimal.  For large $\alpha$, agents strongly
-revalue money in response to expected future inflation, so the announcement of a
-future stabilization pulls inflation down gradually, well before $T_1$.
+For small $\alpha$, real-balance demand is insensitive to inflation, so
+the model behaves almost like the exogenous-money case and inflation tracks $\mu_t$ closely.
+
+For large $\alpha$, agents strongly revalue money in response to expected
+future inflation, so the announcement of a future stabilization pulls
+inflation down gradually before $T_1$.
 
 ```{solution-end}
 ```
@@ -734,10 +735,10 @@ T = 80
 
 cm = create_cagan_model(α=α, μ_seq=μ_seq)
 π_matrix, _, _ = solve(cm, T)
+π_matrix = π_matrix[:-1]
 
-# Analytical formula
 δ = α / (1 + α)
-π_term = cm.π_end   # terminal condition stored in model
+π_term = cm.π_end
 π_formula = np.array([
     (1 - δ) * sum(δ**(s-t) * μ_seq[s] for s in range(t, T+1))
     + δ**(T+1-t) * π_term
@@ -791,21 +792,19 @@ T1 = 60
 α = 5
 T_seq = np.arange(T+1)
 
-# Experiment 1: sudden
 μ_sudden = np.append(μ0 * np.ones(T1+1), μ_star * np.ones(T - T1))
 cm_sudden = create_cagan_model(α=α, μ_seq=μ_sudden)
 π_sudden, _, _ = solve(cm_sudden, T)
 
 fig, ax = plt.subplots()
-ax.plot(T_seq, π_sudden, lw=2, label='Sudden (Exp. 1)')
+ax.plot(T_seq, π_sudden[:-1], lw=2, label='Sudden (Exp. 1)')
 
-# Experiment 3: gradual
 for ϕ in [0.95, 0.85, 0.70]:
     μ_grad = np.array([ϕ**t * μ0 + (1 - ϕ**t) * μ_star for t in range(T)])
     μ_grad = np.append(μ_grad, μ_star)
     cm_grad = create_cagan_model(α=α, μ_seq=μ_grad)
     π_grad, _, _ = solve(cm_grad, T)
-    ax.plot(T_seq, π_grad, label=f'Gradual ϕ = {ϕ}')
+    ax.plot(T_seq, π_grad[:-1], label=f'Gradual ϕ = {ϕ}')
 
 ax.set_xlabel('$t$')
 ax.set_ylabel(r'$\pi_t$')
@@ -814,11 +813,12 @@ ax.legend()
 plt.show()
 ```
 
-Faster gradual stabilization (smaller $\phi$) pulls $\mu_t$ down more quickly,
-so there is less future inflation to discount and $\pi_t$ falls sooner and more
-steeply.  The sudden stabilization has the largest discontinuity in the path
-of $\mu_t$, but because it is fully anticipated the inflation path is smooth
-throughout.
+Faster gradual stabilization, corresponding to a smaller $\phi$, pulls $\mu_t$ down more quickly.
+
+With less future inflation to discount, $\pi_t$ falls sooner and more steeply.
+
+The sudden stabilization has the largest discontinuity in the path of $\mu_t$,
+but because it is fully anticipated the inflation path is smooth throughout.
 
 ```{solution-end}
 ```
@@ -849,40 +849,27 @@ T1 = 60
 μ_star = 0.0
 α = 5
 
-# Experiment 1: foreseen
 μ_seq_1 = np.append(μ0 * np.ones(T1+1), μ_star * np.ones(T - T1))
 cm1 = create_cagan_model(α=α, μ_seq=μ_seq_1)
 π_seq_1, m_seq_1, p_seq_1 = solve(cm1, T)
 
-# Experiment 2: unforeseen (at T1 the model is re-solved with the new μ)
-# Before T1: agents expect μ0 forever
-μ_seq_2a = μ0 * np.ones(T+1)   # what agents believed before T1
+μ_seq_2a = μ0 * np.ones(T+1)
 cm2a = create_cagan_model(α=α, μ_seq=μ_seq_2a)
 π_pre, m_pre, p_pre = solve(cm2a, T)
 
-# After T1: new μ_star path
-μ_seq_2b = np.append(μ0 * np.ones(T1+1), μ_star * np.ones(T - T1))
-# splice: use m from first regime up to T1, then re-solve
-m_T1 = m_pre[T1]   # money supply at T1 is kept smooth
-μ_new = μ_star * np.ones(T - T1)
-μ_seq_post = np.append(np.array([μ0] * (T1+1)), μ_new)
-cm2b = create_cagan_model(m0=np.exp(m_T1), α=α,
-                          μ_seq=μ_star * np.ones(T+1))
-π_post, m_post, p_post = solve(cm2b, T)
+μ_seq_2_cont = μ_star * np.ones(T-T1)
+cm2b = create_cagan_model(m0=m_pre[T1+1], α=α,
+                          μ_seq=μ_seq_2_cont)
+π_post, m_post, p_post = solve(cm2b, T-1-T1)
 
-# For the unforeseen case we use the full μ_seq_2a solution before T1
-# and the updated solution after
+m_unforeseen = np.concatenate((m_pre[:T1+1], m_post))
+p_unforeseen = np.concatenate((p_pre[:T1+1], p_post))
 T_seq = np.arange(T+1)
 
 fig, ax = plt.subplots()
-ax.plot(T_seq, m_seq_1 - p_seq_1, label='Foreseen (Exp. 1)')
-# approximate unforeseen by splicing pre/post paths
-rb_unforeseen = np.concatenate([
-    (m_pre - p_pre)[:T1+1],
-    (m_post - p_post)[1:T - T1 + 1]
-])
-ax.plot(np.arange(len(rb_unforeseen)),
-        rb_unforeseen, '--', label='Unforeseen (Exp. 2, approx.)')
+ax.plot(T_seq, (m_seq_1 - p_seq_1)[:-1], label='Foreseen (Exp. 1)')
+ax.plot(T_seq, (m_unforeseen - p_unforeseen)[:-1],
+        '--', label='Unforeseen (Exp. 2)')
 ax.axvline(T1, linestyle=':', color='black', lw=1)
 ax.set_xlabel('$t$')
 ax.set_ylabel('$m_t - p_t$ (log real balances)')
@@ -891,12 +878,13 @@ ax.legend()
 plt.show()
 ```
 
-From equation {eq}`eq:caganmd`, $m_t - p_t = -\alpha \pi_t$.  In the **foreseen**
-case, inflation falls gradually before $T_1$, so real balances rise smoothly as
-the public anticipates lower future inflation.  In the **unforeseen** case, there
-is no pre-announcement effect: real balances are flat until the surprise at $T_1$,
-at which point inflation drops abruptly and real balances jump discontinuously
-upward — a "velocity dividend" from the surprise stabilization.
+From equation {eq}`eq:caganmd`, $m_t - p_t = -\alpha \pi_t$.
+
+In the foreseen case, inflation falls gradually before $T_1$, so real
+balances rise smoothly as the public anticipates lower future inflation.
+
+In the unforeseen case, there is no pre-announcement effect, so real balances
+are flat until the surprise at $T_1$ and then jump upward with the drop in inflation.
 
 ```{solution-end}
 ```

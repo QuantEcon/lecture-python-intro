@@ -15,9 +15,9 @@ kernelspec:
 
 ## Overview
 
-This lecture illustrates two of the most important results in probability and statistics: 
+This lecture illustrates two of the most important results in probability and statistics:
 
-1. the law of large numbers (LLN) and 
+1. the law of large numbers (LLN) and
 2. the central limit theorem (CLT).
 
 These beautiful theorems lie behind many of the most fundamental results in
@@ -65,10 +65,10 @@ We can think of drawing $X$ as tossing a biased coin where
 
 We set $X=1$ if the coin is "heads" and zero otherwise.
 
-The (population) mean of $X$ is 
+The (population) mean of $X$ is
 
 $$
-    \mathbb E X 
+    \mathbb E X
     = 0 \cdot \mathbb P\{X=0\} + 1 \cdot \mathbb P\{X=1\} = \mathbb P\{X=1\} = p
 $$
 ```
@@ -82,7 +82,7 @@ print(X)
 ```
 
 In this setting, the LLN tells us if we flip the coin many times, the fraction
-of heads that we see will be close to the mean $p$. 
+of heads that we see will be close to the mean $p$.
 
 We use $n$ to represent the number of times the coin is flipped.
 
@@ -107,7 +107,7 @@ converges to the "population mean".
 
 Think of $X_1, \ldots, X_n$ as independent flips of the coin.
 
-The population mean is the mean in an infinite sample, which equals the 
+The population mean is the mean in an infinite sample, which equals the
 expectation $\mathbb E X$.
 
 The sample mean of the draws $X_1, \ldots, X_n$ is
@@ -139,16 +139,16 @@ distribution.
 
 These random variables can be continuous or discrete.
 
-For simplicity we will 
+For simplicity we will
 
-* assume they are continuous and 
+* assume they are continuous and
 * let $f$ denote their common density function
 
 The last statement means that for any $i$ in $\{1, \ldots, n\}$ and any
 numbers $a, b$,
 
 
-$$ 
+$$
   \mathbb P\{a \leq X_i \leq b\} = \int_a^b f(x) dx
 $$
 
@@ -182,7 +182,7 @@ If $X_1, \ldots, X_n$ are IID and $\mathbb E |X|$ is finite, then
 ```
 ````
 
-Here 
+Here
 
 * IID means independent and identically distributed and
 * $\mathbb E |X| = \int_{-\infty}^\infty |x| f(x) dx$
@@ -217,9 +217,9 @@ itself a random variable.
 The reason $\bar X_n$ is a random variable is that it's a function of the
 random variables $X_1, \ldots, X_n$.
 
-What we are going to do now is 
+What we are going to do now is
 
-1. pick some fixed distribution to draw each $X_i$ from  
+1. pick some fixed distribution to draw each $X_i$ from
 1. set $n$ to some large number
 
 and then repeat the following three instructions.
@@ -256,13 +256,13 @@ def draw_means(X_distribution,  # The distribution of each X_i
 Now we write a function to generate $m$ sample means and histogram them.
 
 ```{code-cell} ipython3
-def generate_histogram(X_distribution, n, m): 
+def generate_histogram(X_distribution, n, m):
 
     # Compute m sample means
 
     sample_means = np.empty(m)
     for j in range(m):
-      sample_means[j] = draw_means(X_distribution, n) 
+      sample_means[j] = draw_means(X_distribution, n)
 
     # Generate a histogram
 
@@ -271,7 +271,7 @@ def generate_histogram(X_distribution, n, m):
     μ = X_distribution.mean()  # Get the population mean
     σ = X_distribution.std()    # and the standard deviation
     ax.axvline(x=μ, ls="--", c="k", label=fr"$\mu = {μ}$")
-     
+
     ax.set_xlim(μ - σ, μ + σ)
     ax.set_xlabel(r'$\bar X_n$', size=12)
     ax.set_ylabel('density', size=12)
@@ -283,7 +283,7 @@ Now we call the function.
 
 ```{code-cell} ipython3
 # pick a distribution to draw each $X_i$ from
-X_distribution = st.norm(loc=5, scale=2) 
+X_distribution = st.norm(loc=5, scale=2)
 # Call the function
 generate_histogram(X_distribution, n=1_000, m=1000)
 ```
@@ -298,7 +298,7 @@ We will use a [violin plot](https://intro.quantecon.org/prob_dist.html#violin-pl
 Each distribution in the violin plot represents the distribution of $X_n$ for some $n$, calculated by simulation.
 
 ```{code-cell} ipython3
-def means_violin_plot(distribution,  
+def means_violin_plot(distribution,
                       ns = [1_000, 10_000, 100_000],
                       m = 10_000):
 
@@ -490,7 +490,7 @@ xmin, xmax = -3 * σ, 3 * σ
 ax.set_xlim(xmin, xmax)
 ax.hist(Y, bins=60, alpha=0.4, density=True)
 xgrid = np.linspace(xmin, xmax, 200)
-ax.plot(xgrid, st.norm.pdf(xgrid, scale=σ), 
+ax.plot(xgrid, st.norm.pdf(xgrid, scale=σ),
         'k-', lw=2, label=r'$N(0, \sigma^2)$')
 ax.set_xlabel(r"$Y_n$", size=12)
 ax.set_ylabel(r"$density$", size=12)
@@ -509,7 +509,7 @@ The fit to the normal density is already tight and can be further improved by in
 
 
 
-```{exercise} 
+```{exercise}
 :label: lln_ex1
 
 Repeat the simulation [above](sim_one) with the [Beta distribution](https://en.wikipedia.org/wiki/Beta_distribution).
@@ -552,7 +552,7 @@ plt.show()
 ```{solution-end}
 ```
 
-````{exercise} 
+````{exercise}
 :label: lln_ex2
 
 At the start of this lecture we discussed Bernoulli random variables.
@@ -592,14 +592,14 @@ This means that $X = \mathbf 1\{U < p\}$ has the right distribution.
 
 
 
-```{exercise} 
+```{exercise}
 :label: lln_ex3
 
 We mentioned above that LLN can still hold sometimes when IID is violated.
 
 Let's investigate this claim further.
 
-Consider the AR(1) process 
+Consider the AR(1) process
 
 $$
     X_{t+1} = \alpha + \beta X_t + \sigma \epsilon _{t+1}
@@ -646,7 +646,7 @@ $$
     &= \alpha + \beta \frac{\alpha}{1-\beta} \\
     &= \frac{\alpha}{1-\beta}
 \end{aligned}
-$$ 
+$$
 
 We also have the correct variance:
 
@@ -656,7 +656,7 @@ $$
     &= \frac{\beta^2\sigma^2}{1-\beta^2} + \sigma^2 \\
     &= \frac{\sigma^2}{1-\beta^2}
 \end{aligned}
-$$ 
+$$
 
 Finally, since both $X_t$ and $\epsilon_0$ are normally distributed and
 independent from each other, any linear combination of these two variables is
@@ -665,9 +665,9 @@ also normally distributed.
 We have now shown that
 
 $$
-    X_{t+1} \sim 
-    N \left(\frac{\alpha}{1-\beta}, \frac{\sigma^2}{1-\beta^2}\right) 
-$$ 
+    X_{t+1} \sim
+    N \left(\frac{\alpha}{1-\beta}, \frac{\sigma^2}{1-\beta^2}\right)
+$$
 
 We can conclude this AR(1) process violates the independence assumption but is
 identically distributed.
@@ -696,8 +696,8 @@ ax.scatter(range(100, n), means[100:n], s=10, alpha=0.5)
 ax.set_xlabel(r"$n$", size=12)
 ax.set_ylabel(r"$\bar X_n$", size=12)
 yabs_max = max(ax.get_ylim(), key=abs)
-ax.axhline(y=α/(1-β), ls="--", lw=3, 
-           label=r"$\mu = \frac{\alpha}{1-\beta}$", 
+ax.axhline(y=α/(1-β), ls="--", lw=3,
+           label=r"$\mu = \frac{\alpha}{1-\beta}$",
            color = 'black')
 
 plt.legend()

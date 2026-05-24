@@ -70,19 +70,19 @@ In other words, for each $i,j$ with $1 \leq i, j \leq n$, there exists a $k \geq
 Here are some examples to illustrate this further:
 
 $$
-A = \begin{bmatrix} 0.5 & 0.1 \\ 
-                    0.2 & 0.2 
+A = \begin{bmatrix} 0.5 & 0.1 \\
+                    0.2 & 0.2
 \end{bmatrix}
 $$
 
 $A$ is irreducible since $a_{ij}>0$ for all $(i,j)$.
 
 $$
-B = \begin{bmatrix} 0 & 1 \\ 
-                    1 & 0 
+B = \begin{bmatrix} 0 & 1 \\
+                    1 & 0
 \end{bmatrix}
 , \quad
-B^2 = \begin{bmatrix} 1 & 0 \\ 
+B^2 = \begin{bmatrix} 1 & 0 \\
                       0 & 1
 \end{bmatrix}
 $$
@@ -90,8 +90,8 @@ $$
 $B$ is irreducible since $B + B^2$ is a matrix of ones.
 
 $$
-C = \begin{bmatrix} 1 & 0 \\ 
-                    0 & 1 
+C = \begin{bmatrix} 1 & 0 \\
+                    0 & 1
 \end{bmatrix}
 $$
 
@@ -233,19 +233,19 @@ A matrix is called **primitive** if there exists a $k \in \mathbb{N}$ such that 
 Recall the examples given in irreducible matrices:
 
 $$
-A = \begin{bmatrix} 0.5 & 0.1 \\ 
-                    0.2 & 0.2 
+A = \begin{bmatrix} 0.5 & 0.1 \\
+                    0.2 & 0.2
 \end{bmatrix}
 $$
 
 $A$ here is also a primitive matrix since $A^k$ is everywhere positive for some $k \in \mathbb{N}$.
 
 $$
-B = \begin{bmatrix} 0 & 1 \\ 
-                    1 & 0 
+B = \begin{bmatrix} 0 & 1 \\
+                    1 & 0
 \end{bmatrix}
 , \quad
-B^2 = \begin{bmatrix} 1 & 0 \\ 
+B^2 = \begin{bmatrix} 1 & 0 \\
                       0 & 1
 \end{bmatrix}
 $$

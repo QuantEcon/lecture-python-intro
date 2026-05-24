@@ -36,7 +36,7 @@ These simple models are used again and again in economic research to represent t
 * productivity, etc.
 
 We are going to study AR(1) processes partly because they are useful and
-partly because they help us understand important concepts. 
+partly because they help us understand important concepts.
 
 Let's start with some imports:
 
@@ -56,14 +56,14 @@ The **AR(1) model** (autoregressive model of order 1) takes the form
 X_{t+1} = a X_t + b + c W_{t+1}
 ```
 
-where $a, b, c$ are scalar-valued parameters 
+where $a, b, c$ are scalar-valued parameters
 
 (Equation {eq}`can_ar1` is sometimes called a **stochastic difference equation**.)
 
 ```{prf:example}
 :label: ar1_ex_ar
 
-For example, $X_t$ might be 
+For example, $X_t$ might be
 
 * the log of labor income for a given household, or
 * the log of money demand in a given economy.

@@ -18,20 +18,20 @@ kernelspec:
 
 In this lecture, we'll study a famous model of the "consumption function" that Milton Friedman {cite}`Friedman1956` and Robert Hall {cite}`Hall1978`)  proposed to fit some empirical data patterns that the original  Keynesian consumption function  described in this QuantEcon lecture {doc}`geometric series <geom_series>`  missed.
 
-We'll study what is often  called the "consumption-smoothing model." 
+We'll study what is often  called the "consumption-smoothing model."
 
-We'll use  matrix multiplication and matrix inversion, the same tools that we used in this QuantEcon lecture {doc}`present values <pv>`. 
+We'll use  matrix multiplication and matrix inversion, the same tools that we used in this QuantEcon lecture {doc}`present values <pv>`.
 
 Formulas presented in  {doc}`present value formulas<pv>` are at the core of the consumption-smoothing model because we shall use them to define a consumer's "human wealth".
 
 The  key idea that inspired Milton Friedman was that a person's non-financial income, i.e., his or
 her wages from working, can be viewed as a dividend stream from ''human capital''
-and that standard asset-pricing formulas can be applied to compute 
-''non-financial wealth'' that capitalizes that  earnings stream.  
+and that standard asset-pricing formulas can be applied to compute
+''non-financial wealth'' that capitalizes that  earnings stream.
 
 ```{note}
 As we'll see in this QuantEcon lecture  {doc}`equalizing difference model <equalizing_difference>`,
-Milton Friedman had used this idea  in his PhD thesis at Columbia University, 
+Milton Friedman had used this idea  in his PhD thesis at Columbia University,
 eventually published as {cite}`kuznets1939incomes` and {cite}`friedman1954incomes`.
 ```
 
@@ -50,28 +50,28 @@ from collections import namedtuple
 
 The model describes  a consumer who lives from time $t=0, 1, \ldots, T$, receives a stream $\{y_t\}_{t=0}^T$ of non-financial income and chooses a consumption stream $\{c_t\}_{t=0}^T$.
 
-We usually think of the non-financial income stream as coming from the person's earnings from supplying labor.  
+We usually think of the non-financial income stream as coming from the person's earnings from supplying labor.
 
-The model  takes a non-financial income stream as an input, regarding it as "exogenous" in the sense that it is  determined outside the model. 
+The model  takes a non-financial income stream as an input, regarding it as "exogenous" in the sense that it is  determined outside the model.
 
 The consumer faces a gross interest rate of $R >1$ that is constant over time, at which she is free to borrow or lend, up to  limits  that we'll describe below.
 
-Let 
+Let
 
- * $T \geq 2$  be a positive integer that constitutes a time-horizon. 
- * $y = \{y_t\}_{t=0}^T$ be an exogenous  sequence of non-negative non-financial incomes $y_t$. 
- * $a = \{a_t\}_{t=0}^{T+1}$ be a sequence of financial wealth.  
- * $c = \{c_t\}_{t=0}^T$ be a sequence of non-negative consumption rates. 
- * $R \geq 1$ be a fixed gross one period rate of return on financial assets. 
- * $\beta \in (0,1)$ be a fixed discount factor.  
+ * $T \geq 2$  be a positive integer that constitutes a time-horizon.
+ * $y = \{y_t\}_{t=0}^T$ be an exogenous  sequence of non-negative non-financial incomes $y_t$.
+ * $a = \{a_t\}_{t=0}^{T+1}$ be a sequence of financial wealth.
+ * $c = \{c_t\}_{t=0}^T$ be a sequence of non-negative consumption rates.
+ * $R \geq 1$ be a fixed gross one period rate of return on financial assets.
+ * $\beta \in (0,1)$ be a fixed discount factor.
  * $a_0$ be a given initial level of financial assets
- * $a_{T+1} \geq 0$  be a terminal condition on final assets. 
+ * $a_{T+1} \geq 0$  be a terminal condition on final assets.
 
 The sequence of financial wealth $a$ is to be determined by the model.
 
 We require it to satisfy  two  **boundary conditions**:
 
-   * it must  equal an exogenous value  $a_0$ at time $0$ 
+   * it must  equal an exogenous value  $a_0$ at time $0$
    * it must equal or exceed an exogenous value  $a_{T+1}$ at time $T+1$.
 
 The **terminal condition** $a_{T+1} \geq 0$ requires that the consumer not leave the model in debt.
@@ -85,23 +85,23 @@ $$
 a_{t+1} = R (a_t+ y_t - c_t), \quad t =0, 1, \ldots T
 $$ (eq:a_t)
 
-Equations {eq}`eq:a_t` constitute  $T+1$ such budget constraints, one for each $t=0, 1, \ldots, T$. 
+Equations {eq}`eq:a_t` constitute  $T+1$ such budget constraints, one for each $t=0, 1, \ldots, T$.
 
-Given a sequence $y$ of non-financial incomes, a large  set of pairs $(a, c)$ of (financial wealth, consumption) sequences  satisfy the sequence of budget constraints {eq}`eq:a_t`. 
+Given a sequence $y$ of non-financial incomes, a large  set of pairs $(a, c)$ of (financial wealth, consumption) sequences  satisfy the sequence of budget constraints {eq}`eq:a_t`.
 
 Our model has the following logical flow.
 
- * start with an exogenous non-financial income sequence $y$, an initial financial wealth $a_0$, and 
+ * start with an exogenous non-financial income sequence $y$, an initial financial wealth $a_0$, and
  a candidate consumption path $c$.
- 
+
  * use the system of equations {eq}`eq:a_t` for $t=0, \ldots, T$ to compute a path $a$ of financial wealth
- 
- * verify that $a_{T+1}$ satisfies the terminal wealth constraint $a_{T+1} \geq 0$. 
-    
-     * If it does, declare that the candidate path is **budget feasible**. 
- 
+
+ * verify that $a_{T+1}$ satisfies the terminal wealth constraint $a_{T+1} \geq 0$.
+
+     * If it does, declare that the candidate path is **budget feasible**.
+
      * if the candidate consumption path is not budget feasible, propose a less greedy consumption  path and start over
-     
+
 Below, we'll describe how to execute these steps using linear algebra -- matrix inversion and multiplication.
 
 The above procedure seems like a sensible way to find "budget-feasible" consumption paths $c$, i.e., paths that are consistent
@@ -120,33 +120,33 @@ To answer this question, we shall eventually evaluate alternative budget feasibl
 W = \sum_{t=0}^T \beta^t (g_1 c_t - \frac{g_2}{2} c_t^2 )
 ```
 
-where $g_1 > 0, g_2 > 0$.  
+where $g_1 > 0, g_2 > 0$.
 
-When $\beta R \approx 1$, the fact that the utility function $g_1 c_t - \frac{g_2}{2} c_t^2$ has diminishing marginal utility imparts a preference for consumption that is very smooth.  
+When $\beta R \approx 1$, the fact that the utility function $g_1 c_t - \frac{g_2}{2} c_t^2$ has diminishing marginal utility imparts a preference for consumption that is very smooth.
 
 Indeed, we shall see that when $\beta R = 1$ (a condition assumed by Milton Friedman {cite}`Friedman1956` and Robert Hall {cite}`Hall1978`),  criterion {eq}`welfare` assigns higher welfare to smoother consumption paths.
 
-By **smoother** we mean as close as possible to being constant over time.  
+By **smoother** we mean as close as possible to being constant over time.
 
 The preference for smooth consumption paths that is built into the model gives it the  name "consumption-smoothing model".
 
 We'll postpone verifying our claim that a constant consumption path is optimal when $\beta R=1$
-by comparing welfare levels that comes from a constant path with ones that involve non-constant paths. 
+by comparing welfare levels that comes from a constant path with ones that involve non-constant paths.
 
 Before doing that, let's dive in and do some calculations that will help us understand how the model works in practice when we provide the consumer with some different streams on non-financial income.
 
-Here we use default parameters $R = 1.05$, $g_1 = 1$, $g_2 = 1/2$, and $T = 65$. 
+Here we use default parameters $R = 1.05$, $g_1 = 1$, $g_2 = 1/2$, and $T = 65$.
 
 We create a Python **namedtuple** to store these parameters with default values.
 
 ```{code-cell} ipython3
-ConsumptionSmoothing = namedtuple("ConsumptionSmoothing", 
+ConsumptionSmoothing = namedtuple("ConsumptionSmoothing",
                         ["R", "g1", "g2", "β_seq", "T"])
 
 def create_consumption_smoothing_model(R=1.05, g1=1, g2=1/2, T=65):
     β = 1/R
     β_seq = np.array([β**i for i in range(T+1)])
-    return ConsumptionSmoothing(R, g1, g2, 
+    return ConsumptionSmoothing(R, g1, g2,
                                 β_seq, T)
 ```
 
@@ -160,13 +160,13 @@ h_0 \equiv \sum_{t=0}^T R^{-t} y_t = \begin{bmatrix} 1 & R^{-1} & \cdots & R^{-T
 \begin{bmatrix} y_0 \cr y_1  \cr \vdots \cr y_T \end{bmatrix}
 $$
 
-Human or non-financial wealth  at time $0$ is evidently just the present value of the consumer's non-financial income stream $y$. 
+Human or non-financial wealth  at time $0$ is evidently just the present value of the consumer's non-financial income stream $y$.
 
 Formally it very much resembles the asset price that we computed in this QuantEcon lecture {doc}`present values <pv>`.
 
-Indeed, this is why Milton Friedman called it "human capital". 
+Indeed, this is why Milton Friedman called it "human capital".
 
-By iterating on equation {eq}`eq:a_t` and imposing the terminal condition 
+By iterating on equation {eq}`eq:a_t` and imposing the terminal condition
 
 $$
 a_{T+1} = 0,
@@ -174,22 +174,22 @@ $$
 
 it is possible to convert a sequence of budget constraints {eq}`eq:a_t` into a single intertemporal constraint
 
-$$ 
-\sum_{t=0}^T R^{-t} c_t = a_0 + h_0. 
+$$
+\sum_{t=0}^T R^{-t} c_t = a_0 + h_0.
 $$ (eq:budget_intertemp)
 
 Equation {eq}`eq:budget_intertemp`  says that the present value of the consumption stream equals the sum of financial and non-financial (or human) wealth.
 
-Robert Hall {cite}`Hall1978` showed that when $\beta R = 1$, a condition Milton Friedman had also  assumed, it is "optimal" for a consumer to smooth consumption by setting 
+Robert Hall {cite}`Hall1978` showed that when $\beta R = 1$, a condition Milton Friedman had also  assumed, it is "optimal" for a consumer to smooth consumption by setting
 
-$$ 
+$$
 c_t = c_0 \quad t =0, 1, \ldots, T
 $$
 
 (Later we'll present a "variational argument" that shows that this constant path maximizes
 criterion {eq}`welfare` when $\beta R =1$.)
 
-In this case, we can use the intertemporal budget constraint to write 
+In this case, we can use the intertemporal budget constraint to write
 
 $$
 c_t = c_0  = \left(\sum_{t=0}^T R^{-t}\right)^{-1} (a_0 + h_0), \quad t= 0, 1, \ldots, T.
@@ -198,7 +198,7 @@ $$ (eq:conssmoothing)
 Equation {eq}`eq:conssmoothing` is the consumption-smoothing model in a nutshell.
 
 
-## Mechanics of consumption-smoothing model  
+## Mechanics of consumption-smoothing model
 
 As promised, we'll provide step-by-step instructions on how to use linear algebra, readily implemented in Python, to compute all  objects in play in  the consumption-smoothing model.
 
@@ -229,17 +229,17 @@ To do this, we translate that system of difference equations into a single matri
 
 
 $$
-\begin{bmatrix} 
+\begin{bmatrix}
 1 & 0 & 0 & \cdots & 0 & 0 & 0 \cr
 -R & 1 & 0 & \cdots & 0 & 0 & 0 \cr
 0 & -R & 1 & \cdots & 0 & 0 & 0 \cr
 \vdots  &\vdots & \vdots & \cdots & \vdots & \vdots & \vdots \cr
 0 & 0 & 0 & \cdots & -R & 1 & 0 \cr
 0 & 0 & 0 & \cdots & 0 & -R & 1
-\end{bmatrix} 
-\begin{bmatrix} a_1 \cr a_2 \cr a_3 \cr \vdots \cr a_T \cr a_{T+1} 
 \end{bmatrix}
-= R 
+\begin{bmatrix} a_1 \cr a_2 \cr a_3 \cr \vdots \cr a_T \cr a_{T+1}
+\end{bmatrix}
+= R
 \begin{bmatrix} y_0 + a_0 - c_0 \cr y_1 - c_0 \cr y_2 - c_0 \cr \vdots\cr y_{T-1} - c_0 \cr y_T - c_0
 \end{bmatrix}
 $$
@@ -252,12 +252,12 @@ $$
 
 
 Because we have built into  our calculations that the consumer leaves the model  with exactly zero assets, just barely satisfying the
-terminal condition that $a_{T+1} \geq 0$, it should turn out   that 
+terminal condition that $a_{T+1} \geq 0$, it should turn out   that
 
 $$
 a_{T+1} = 0.
 $$
- 
+
 
 Let's verify this with  Python code.
 
@@ -303,7 +303,7 @@ y_seq = np.concatenate([np.ones(46), np.zeros(20)])
 cs_model = create_consumption_smoothing_model()
 c_seq, a_seq, h0 = compute_optimal(cs_model, a0, y_seq)
 
-print('check a_T+1=0:', 
+print('check a_T+1=0:',
       np.abs(a_seq[-1] - 0) <= 1e-8)
 ```
 
@@ -352,30 +352,30 @@ First we create  a function `plot_cs` that generates graphs for different instan
 This will  help us avoid rewriting code to plot outcomes for different non-financial income sequences.
 
 ```{code-cell} ipython3
-def plot_cs(model,    # consumption-smoothing model      
+def plot_cs(model,    # consumption-smoothing model
             a0,       # initial financial wealth
             y_seq     # non-financial income process
            ):
-    
+
     # Compute optimal consumption
     c_seq, a_seq, h0 = compute_optimal(model, a0, y_seq)
-    
+
     # Sequence length
     T = cs_model.T
-    
+
     fig, axes = plt.subplots(1, 2, figsize=(12,5))
-    
+
     axes[0].plot(range(T+1), y_seq, label='non-financial income', lw=2)
     axes[0].plot(range(T+1), c_seq, label='consumption', lw=2)
     axes[1].plot(range(T+2), a_seq, label='financial wealth', color='green', lw=2)
     axes[0].set_ylabel(r'$c_t,y_t$')
     axes[1].set_ylabel(r'$a_t$')
-    
+
     for ax in axes:
         ax.plot(range(T+2), np.zeros(T+2), '--', lw=1, color='black')
         ax.legend()
         ax.set_xlabel(r'$t$')
-    
+
     plt.show()
 ```
 
@@ -383,7 +383,7 @@ In the experiments below, please study how consumption and financial asset seque
 
 #### Experiment 1: one-time gain/loss
 
-We first assume a one-time windfall of $W_0$ in year 21 of the income sequence $y$.  
+We first assume a one-time windfall of $W_0$ in year 21 of the income sequence $y$.
 
 We'll make $W_0$ big - positive to indicate a one-time windfall, and negative to indicate a one-time "disaster".
 
@@ -448,7 +448,7 @@ y_0 = 1
 t_max = 46
 
 # Generate geometric y sequence
-geo_seq = λ ** np.arange(t_max) * y_0 
+geo_seq = λ ** np.arange(t_max) * y_0
 y_seq_geo = np.concatenate(
             [geo_seq, np.zeros(20)])
 
@@ -460,7 +460,7 @@ Now we show the behavior when $\lambda = 0.95$
 ```{code-cell} ipython3
 λ = 0.95
 
-geo_seq = λ ** np.arange(t_max) * y_0 
+geo_seq = λ ** np.arange(t_max) * y_0
 y_seq_geo = np.concatenate(
             [geo_seq, np.zeros(20)])
 
@@ -481,13 +481,13 @@ plot_cs(cs_model, a0, y_seq_geo)
 
 ### Feasible consumption variations
 
-We promised to justify  our claim that when $\beta R =1$ as Friedman assumed, a constant consumption play $c_t = c_0$ for all $t$ is optimal.  
+We promised to justify  our claim that when $\beta R =1$ as Friedman assumed, a constant consumption play $c_t = c_0$ for all $t$ is optimal.
 
 Let's do that now.
 
-The approach we'll take is  an elementary  example  of the "calculus of variations". 
+The approach we'll take is  an elementary  example  of the "calculus of variations".
 
-Let's dive in and see what the key idea is.  
+Let's dive in and see what the key idea is.
 
 To explore what types of consumption paths are welfare-improving, we shall create an **admissible consumption path variation sequence** $\{v_t\}_{t=0}^T$
 that satisfies
@@ -509,7 +509,7 @@ $$
 v_t = \xi_1 \phi^t - \xi_0
 $$
 
-We say two and not three-parameter class because $\xi_0$ will be a function of $(\phi, \xi_1; R)$ that guarantees that the variation sequence is feasible. 
+We say two and not three-parameter class because $\xi_0$ will be a function of $(\phi, \xi_1; R)$ that guarantees that the variation sequence is feasible.
 
 Let's compute that function.
 
@@ -535,9 +535,9 @@ which implies that
 
 $$
 \xi_0 = \xi_0(\phi, \xi_1; R) = \xi_1 \left(\frac{1 - R^{-1}}{1 - R^{-(T+1)}}\right) \left(\frac{1 - (\phi R^{-1})^{T+1}}{1 - \phi R^{-1}}\right)
-$$ 
+$$
 
-This is our formula for $\xi_0$.  
+This is our formula for $\xi_0$.
 
 **Key Idea:** if $c^o$ is a budget-feasible consumption path, then so is $c^o + v$,
 where $v$ is a budget-feasible variation.
@@ -553,7 +553,7 @@ def compute_variation(model, ξ1, ϕ, a0, y_seq, verbose=1):
 
     ξ0 = ξ1*((1 - 1/R) / (1 - (1/R)**(T+1))) * ((1 - (ϕ/R)**(T+1)) / (1 - ϕ/R))
     v_seq = np.array([(ξ1*ϕ**t - ξ0) for t in range(T+1)])
-    
+
     if verbose == 1:
         print('check feasible:', np.isclose(β_seq @ v_seq, 0))     # since β = 1/R
 
@@ -577,20 +577,20 @@ params = np.array(np.meshgrid(ξ1s, ϕs)).T.reshape(-1, 2)
 for i, param in enumerate(params):
     ξ1, ϕ = param
     print(f'variation {i}: ξ1={ξ1}, ϕ={ϕ}')
-    cvar_seq = compute_variation(model=cs_model, 
-                                 ξ1=ξ1, ϕ=ϕ, a0=a0, 
+    cvar_seq = compute_variation(model=cs_model,
+                                 ξ1=ξ1, ϕ=ϕ, a0=a0,
                                  y_seq=y_seq)
     print(f'welfare={welfare(cs_model, cvar_seq)}')
     print('-'*64)
     if i % 2 == 0:
         ls = '-.'
-    else: 
-        ls = '-'  
-    ax.plot(range(T+1), cvar_seq, ls=ls, 
-            color=colors[ξ1], 
+    else:
+        ls = '-'
+    ax.plot(range(T+1), cvar_seq, ls=ls,
+            color=colors[ξ1],
             label=fr'$\xi_1 = {ξ1}, \phi = {ϕ}$')
 
-plt.plot(range(T+1), c_seq, 
+plt.plot(range(T+1), c_seq,
          color='orange', label=r'Optimal $\vec{c}$ ')
 
 plt.legend()
@@ -599,7 +599,7 @@ plt.ylabel(r'$c_t$')
 plt.show()
 ```
 
-We can even use the Python `np.gradient` command to compute derivatives of welfare with respect to our two parameters.  
+We can even use the Python `np.gradient` command to compute derivatives of welfare with respect to our two parameters.
 
 (We are actually discovering  the key idea beneath the **calculus of variations**.)
 
@@ -608,13 +608,13 @@ First, we define the welfare with respect to $\xi_1$ and $\phi$
 ```{code-cell} ipython3
 def welfare_rel(ξ1, ϕ):
     """
-    Compute welfare of variation sequence 
+    Compute welfare of variation sequence
     for given ϕ, ξ1 with a consumption-smoothing model
     """
-    
-    cvar_seq = compute_variation(cs_model, ξ1=ξ1, 
-                                 ϕ=ϕ, a0=a0, 
-                                 y_seq=y_seq, 
+
+    cvar_seq = compute_variation(cs_model, ξ1=ξ1,
+                                 ϕ=ϕ, a0=a0,
+                                 y_seq=y_seq,
                                  verbose=0)
     return welfare(cs_model, cvar_seq)
 
@@ -661,22 +661,22 @@ plt.show()
 ## Wrapping up the consumption-smoothing model
 
 The consumption-smoothing model of Milton Friedman {cite}`Friedman1956` and Robert Hall {cite}`Hall1978`) is a cornerstone of modern economics that has important ramifications for the size of the Keynesian  "fiscal policy multiplier" that we  described in
-QuantEcon lecture {doc}`geometric series <geom_series>`.  
+QuantEcon lecture {doc}`geometric series <geom_series>`.
 
 The consumption-smoothingmodel   **lowers** the government expenditure  multiplier relative to  one implied by the original Keynesian consumption function presented in {doc}`geometric series <geom_series>`.
 
-Friedman's   work opened the door to an enlightening literature on the aggregate consumption function and associated government expenditure  multipliers that remains  active today.  
+Friedman's   work opened the door to an enlightening literature on the aggregate consumption function and associated government expenditure  multipliers that remains  active today.
 
 
 ## Appendix: solving difference equations with linear algebra
 
-In the preceding sections we have used linear algebra to solve a consumption-smoothing model.  
+In the preceding sections we have used linear algebra to solve a consumption-smoothing model.
 
 The same tools from linear algebra -- matrix multiplication and matrix inversion -- can be used  to study many other dynamic models.
 
 We'll conclude this lecture by giving a couple of examples.
 
-We'll describe a useful way of representing and "solving" linear difference equations. 
+We'll describe a useful way of representing and "solving" linear difference equations.
 
 To generate some $y$ vectors, we'll just write down a linear difference equation
 with appropriate initial conditions and then   use linear algebra to solve it.
@@ -695,19 +695,19 @@ where  $y_0$ is a given  initial condition.
 We can cast this set of $T$ equations as a single  matrix equation
 
 $$
-\begin{bmatrix} 
+\begin{bmatrix}
 1 & 0 & 0 & \cdots & 0 & 0 \cr
 -\lambda & 1 & 0 & \cdots & 0 & 0 \cr
 0 & -\lambda & 1 & \cdots & 0 & 0 \cr
  \vdots & \vdots & \vdots & \cdots & \vdots & \vdots \cr
-0 & 0 & 0 & \cdots & -\lambda & 1 
-\end{bmatrix} 
-\begin{bmatrix}
-y_1 \cr y_2 \cr y_3 \cr \vdots \cr y_T 
+0 & 0 & 0 & \cdots & -\lambda & 1
 \end{bmatrix}
-= 
-\begin{bmatrix} 
-\lambda y_0 \cr 0 \cr 0 \cr \vdots \cr 0 
+\begin{bmatrix}
+y_1 \cr y_2 \cr y_3 \cr \vdots \cr y_T
+\end{bmatrix}
+=
+\begin{bmatrix}
+\lambda y_0 \cr 0 \cr 0 \cr \vdots \cr 0
 \end{bmatrix}
 $$ (eq:first_order_lin_diff)
 
@@ -717,34 +717,34 @@ Multiplying both sides of {eq}`eq:first_order_lin_diff`  by the  inverse of the 
 ```{math}
 :label: fst_ord_inverse
 
-\begin{bmatrix} 
-y_1 \cr y_2 \cr y_3 \cr \vdots \cr y_T 
-\end{bmatrix} 
-= 
-\begin{bmatrix} 
+\begin{bmatrix}
+y_1 \cr y_2 \cr y_3 \cr \vdots \cr y_T
+\end{bmatrix}
+=
+\begin{bmatrix}
 1 & 0 & 0 & \cdots & 0 & 0 \cr
 \lambda & 1 & 0 & \cdots & 0 & 0 \cr
 \lambda^2 & \lambda & 1 & \cdots & 0 & 0 \cr
  \vdots & \vdots & \vdots & \cdots & \vdots & \vdots \cr
-\lambda^{T-1} & \lambda^{T-2} & \lambda^{T-3} & \cdots & \lambda & 1 
+\lambda^{T-1} & \lambda^{T-2} & \lambda^{T-3} & \cdots & \lambda & 1
 \end{bmatrix}
-\begin{bmatrix} 
-\lambda y_0 \cr 0 \cr 0 \cr \vdots \cr 0 
+\begin{bmatrix}
+\lambda y_0 \cr 0 \cr 0 \cr \vdots \cr 0
 \end{bmatrix}
 ```
 
 ```{exercise}
 :label: consmooth_ex1
 
-To get {eq}`fst_ord_inverse`, we multiplied both sides of  {eq}`eq:first_order_lin_diff` by  the inverse of the matrix $A$. Please confirm that 
+To get {eq}`fst_ord_inverse`, we multiplied both sides of  {eq}`eq:first_order_lin_diff` by  the inverse of the matrix $A$. Please confirm that
 
 $$
-\begin{bmatrix} 
+\begin{bmatrix}
 1 & 0 & 0 & \cdots & 0 & 0 \cr
 \lambda & 1 & 0 & \cdots & 0 & 0 \cr
 \lambda^2 & \lambda & 1 & \cdots & 0 & 0 \cr
  \vdots & \vdots & \vdots & \cdots & \vdots & \vdots \cr
-\lambda^{T-1} & \lambda^{T-2} & \lambda^{T-3} & \cdots & \lambda & 1 
+\lambda^{T-1} & \lambda^{T-2} & \lambda^{T-3} & \cdots & \lambda & 1
 \end{bmatrix}
 $$
 
@@ -786,24 +786,24 @@ $$
 y_{t} = \lambda_1 y_{t-1} + \lambda_2 y_{t-2}, \quad t = 1, 2, \ldots, T
 $$
 
-where now $y_0$ and $y_{-1}$ are two given initial equations determined outside the model. 
+where now $y_0$ and $y_{-1}$ are two given initial equations determined outside the model.
 
 As we did with the first-order difference equation, we can cast this set of $T$ equations as a single matrix equation
 
 $$
-\begin{bmatrix} 
+\begin{bmatrix}
 1 & 0 & 0 & \cdots & 0 & 0 & 0 \cr
 -\lambda_1 & 1 & 0 & \cdots & 0 & 0 & 0 \cr
 -\lambda_2 & -\lambda_1 & 1 & \cdots & 0 & 0 & 0 \cr
  \vdots & \vdots & \vdots & \cdots & \vdots & \vdots \cr
-0 & 0 & 0 & \cdots & -\lambda_2 & -\lambda_1 & 1 
-\end{bmatrix} 
-\begin{bmatrix} 
-y_1 \cr y_2 \cr y_3 \cr \vdots \cr y_T 
+0 & 0 & 0 & \cdots & -\lambda_2 & -\lambda_1 & 1
 \end{bmatrix}
-= 
-\begin{bmatrix} 
-\lambda_1 y_0 + \lambda_2 y_{-1} \cr \lambda_2 y_0 \cr 0 \cr \vdots \cr 0 
+\begin{bmatrix}
+y_1 \cr y_2 \cr y_3 \cr \vdots \cr y_T
+\end{bmatrix}
+=
+\begin{bmatrix}
+\lambda_1 y_0 + \lambda_2 y_{-1} \cr \lambda_2 y_0 \cr 0 \cr \vdots \cr 0
 \end{bmatrix}
 $$
 
@@ -950,7 +950,8 @@ print(f'Annuity factor (1 - R⁻¹)/(1 - R⁻⁽ᵀ⁺¹⁾):  {annuity:.8f}')
 print(f'Match: {np.isclose(slope, annuity)}')
 ```
 
-The four paths are parallel horizontal lines — all flat but shifted vertically.
+The four paths are parallel horizontal lines, all flat but shifted vertically.
+
 The slope of $c_0$ with respect to $a_0$ exactly equals the annuity factor,
 confirming that an extra dollar of initial wealth is spread evenly over all
 $T+1$ periods as a constant additional flow.
@@ -967,8 +968,9 @@ maximizes welfare {eq}`welfare` among all budget-feasible paths.
 Using `compute_variation` with $\xi_1 = 0.1$ and the Experiment 1 income sequence
 ($W_0 = 2.5$ windfall at $t=21$, with $a_0 = -2$):
 
-(a) Compute welfare for the optimal flat path and for variations with
-    $\phi \in \{0.7,\, 0.9,\, 1.0,\, 1.02,\, 1.1\}$.  Print the results in a table.
+(a) Compute welfare for the optimal flat path and for variations with $\phi \in \{0.7,\, 0.9,\, 0.98,\, 1.02,\, 1.1\}$.
+
+    Print the results in a table.
 
 (b) Plot welfare as a function of $\phi$ on a fine grid in $(0.5, 1.5)$.  Mark the
     welfare of the optimal flat path as a dashed horizontal line and confirm it is
@@ -989,7 +991,7 @@ w_opt = welfare(cs_model, c_opt)
 
 print(f'Optimal (flat) welfare: {w_opt:.6f}\n')
 
-ϕ_vals = [0.7, 0.9, 1.0, 1.02, 1.1]
+ϕ_vals = [0.7, 0.9, 0.98, 1.02, 1.1]
 print(f'{"ϕ":>6} | {"welfare":>12} | {"vs. optimal":>14}')
 print('-' * 38)
 for ϕ in ϕ_vals:
@@ -1017,10 +1019,9 @@ ax.legend()
 plt.show()
 ```
 
-Every variation delivers strictly lower welfare than the flat path, and the flat
-path sits at the peak of the welfare curve.  This numerically confirms the variational
-principle: the constant consumption path is the global welfare maximizer when
-$\beta R = 1$.
+Every non-zero variation in the plotted family delivers strictly lower welfare than the flat path marked by the horizontal dashed line.
+
+This numerically confirms the variational principle that the constant consumption path is the global welfare maximizer when $\beta R = 1$.
 
 ```{solution-end}
 ```

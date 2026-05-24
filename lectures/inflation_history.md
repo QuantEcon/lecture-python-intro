@@ -11,9 +11,9 @@ kernelspec:
   name: python3
 ---
 
-# Price Level Histories 
+# Price Level Histories
 
-This lecture offers some historical evidence about fluctuations in levels of aggregate price indexes.  
+This lecture offers some historical evidence about fluctuations in levels of aggregate price indexes.
 
 Let's start by installing the necessary Python packages.
 
@@ -48,17 +48,17 @@ import matplotlib.dates as mdates
 
 The rate of growth of the price level is called **inflation** in the popular press and in discussions among central bankers and treasury officials.
 
-The price level is measured in units of domestic currency per units of a representative bundle of consumption goods.  
+The price level is measured in units of domestic currency per units of a representative bundle of consumption goods.
 
 Thus, in the US, the price level at $t$ is measured in dollars (month $t$ or year $t$) per unit of the consumption bundle.
 
-Until the early 20th century, in many western economies, price levels fluctuated from year to year but didn't have much of a trend.  
+Until the early 20th century, in many western economies, price levels fluctuated from year to year but didn't have much of a trend.
 
 Often the price levels ended a century near where they started.
 
 Things were different in the 20th century, as we shall see in this lecture.
 
-A widely believed explanation of this big difference is that countries' abandoning gold and silver standards in the early twentieth century. 
+A widely believed explanation of this big difference is that countries' abandoning gold and silver standards in the early twentieth century.
 
 ```{tip}
 This lecture sets the stage for some subsequent lectures about a theory that macro economists use to think about determinants of the price level, namely, {doc}`cagan_ree` and {doc}`cagan_adaptive`
@@ -68,7 +68,7 @@ This lecture sets the stage for some subsequent lectures about a theory that mac
 
 We begin by displaying data that originally appeared on page 35 of {cite}`sargent2002big` that show price levels for four "hard currency" countries from 1600 to 1914.
 
-* France 
+* France
 * Spain (Castile)
 * United Kingdom
 * United States
@@ -84,9 +84,9 @@ Let us bring the data into pandas from a spreadsheet that is [hosted on github](
 ```{code-cell} ipython3
 # Import data and clean up the index
 data_url = "https://github.com/QuantEcon/lecture-python-intro/raw/main/lectures/datasets/longprices.xls"
-df_fig5 = pd.read_excel(data_url, 
-                        sheet_name='all', 
-                        header=2, 
+df_fig5 = pd.read_excel(data_url,
+                        sheet_name='all',
+                        header=2,
                         index_col=0).iloc[1:]
 df_fig5.index = df_fig5.index.astype(int)
 ```
@@ -110,7 +110,7 @@ cols = ['UK', 'US', 'France', 'Castile']
 fig, ax = plt.subplots(figsize=(10,6))
 
 for col in cols:
-    ax.plot(df_fig5_befe1914.index, 
+    ax.plot(df_fig5_befe1914.index,
             df_fig5_befe1914[col], label=col, lw=2)
 
 ax.legend()
@@ -135,18 +135,18 @@ During these episodes, the gold/silver standard was temporarily abandoned when a
 This quantecon lecture {doc}`french_rev` describes circumstances leading up to and during the big inflation that occurred during the French Revolution.
 ```
 
-Despite these temporary lapses, a striking thing about the figure is that price levels were roughly constant over three centuries.  
+Despite these temporary lapses, a striking thing about the figure is that price levels were roughly constant over three centuries.
 
 In the early century, two other features of this data attracted the attention of [Irving Fisher](https://en.wikipedia.org/wiki/Irving_Fisher) of Yale University and [John Maynard Keynes](https://en.wikipedia.org/wiki/John_Maynard_Keynes) of Cambridge University.
 
 * Despite being anchored to the same average level over long time spans, there were considerable year-to-year variations in price levels
 * While using valuable gold and silver as coins succeeded in anchoring the price level by limiting the supply of money, it cost real resources.
-* a country paid a high "opportunity cost" for using gold and silver coins as money -- that gold and silver could instead have been made into valuable jewelry and other durable goods. 
+* a country paid a high "opportunity cost" for using gold and silver coins as money -- that gold and silver could instead have been made into valuable jewelry and other durable goods.
 
-Keynes and Fisher proposed what they claimed would be a more efficient way to achieve a price level that 
+Keynes and Fisher proposed what they claimed would be a more efficient way to achieve a price level that
 
 *  would be at least as firmly anchored as achieved under a gold or silver standard, and
-*  would also exhibit less year-to-year short-term fluctuations.  
+*  would also exhibit less year-to-year short-term fluctuations.
 
 They said that central bank could achieve price level stability by
 
@@ -155,11 +155,11 @@ They said that central bank could achieve price level stability by
 
 This logic prompted John Maynard Keynes to call a commodity standard a "barbarous relic."
 
-A paper currency or "fiat money" system disposes of all reserves behind a currency. 
+A paper currency or "fiat money" system disposes of all reserves behind a currency.
 
 But adhering to a gold or silver standard had provided an automatic mechanism for limiting the supply of money, thereby anchoring the price level.
 
-To anchor the price level, a pure paper or fiat money system replaces that automatic mechanism with a central bank with the authority and determination to limit the supply of money (and to deter counterfeiters!) 
+To anchor the price level, a pure paper or fiat money system replaces that automatic mechanism with a central bank with the authority and determination to limit the supply of money (and to deter counterfeiters!)
 
 Now let's see what happened to the price level in the four countries after 1914, when one after another of them left the gold/silver standard by showing the complete graph that originally appeared on page 35 of {cite}`sargent2002big`.
 
@@ -182,7 +182,7 @@ fig, ax = plt.subplots(dpi=200)
 
 for col in cols:
     ax.plot(df_fig5.index, df_fig5[col], lw=2)
-    ax.text(x=df_fig5.index[-1]+2, 
+    ax.text(x=df_fig5.index[-1]+2,
             y=df_fig5[col].iloc[-1], s=col)
 
 ax.set_yscale('log')
@@ -204,7 +204,7 @@ Proponents of a commodity money system did not trust governments and central ban
 
 They were willing to pay the resource costs associated with setting up and maintaining a commodity money system.
 
-In light of the high and persistent inflation that many countries experienced after they abandoned commodity monies in the twentieth century, we hesitate to criticize advocates of a gold or silver standard for their preference to stay on the pre-1914 gold/silver standard. 
+In light of the high and persistent inflation that many countries experienced after they abandoned commodity monies in the twentieth century, we hesitate to criticize advocates of a gold or silver standard for their preference to stay on the pre-1914 gold/silver standard.
 
 The breadth and lengths of the inflationary experiences of the twentieth century under paper money fiat standards are historically unprecedented.
 
@@ -234,15 +234,15 @@ In the code cell below we clean the data and build a `pandas.dataframe`.
 
 def process_entry(entry):
     "Clean each entry of a dataframe."
-    
+
     if type(entry) == str:
         # Remove leading and trailing whitespace
         entry = entry.strip()
         # Remove comma
         entry = entry.replace(',', '')
-    
+
         # Remove HTML markers
-        item_to_remove = ['<s>a</s>', '<s>c</s>', 
+        item_to_remove = ['<s>a</s>', '<s>c</s>',
                           '<s>d</s>', '<s>e</s>']
 
         # <s>b</s> represents a billion
@@ -257,29 +257,29 @@ def process_entry(entry):
 
 def process_df(df):
     "Clean and reorganize the entire dataframe."
-    
+
     # Remove HTML markers from column names
     for item in ['<s>a</s>', '<s>c</s>', '<s>d</s>', '<s>e</s>']:
         df.columns = df.columns.str.replace(item, '')
-        
+
     # Convert years to int
     df['Year'] = df['Year'].apply(lambda x: int(x))
-    
+
     # Set index to datetime with year and month
     df = df.set_index(
             pd.to_datetime(
                 (df['Year'].astype(str) + \
-                 df['Month'].astype(str)), 
+                 df['Month'].astype(str)),
                 format='%Y%B'))
     df = df.drop(['Year', 'Month'], axis=1)
-    
+
     # Handle duplicates by keeping the first
     df = df[~df.index.duplicated(keep='first')]
-    
+
     # Convert attribute values to numeric
     df = df.map(lambda x: float(x) \
                 if x != '—' else np.nan)
-    
+
     # Finally, we only focus on data between 1919 and 1925
     mask = (df.index >= '1919-01-01') & \
            (df.index < '1925-01-01')
@@ -288,7 +288,7 @@ def process_df(df):
     return df
 ```
 
-Now we write plotting functions `pe_plot` and `pr_plot` that will build figures that show the price level, exchange rates, 
+Now we write plotting functions `pe_plot` and `pr_plot` that will build figures that show the price level, exchange rates,
 and inflation rates, for each country of interest.
 
 ```{code-cell} ipython3
@@ -298,19 +298,19 @@ def pe_plot(p_seq, e_seq, index, labs, ax):
     "Generate plots for price and exchange rates."
 
     p_lab, e_lab = labs
-    
+
     # Plot price and exchange rates
     ax.plot(index, p_seq, label=p_lab, color='tab:blue', lw=2)
-    
+
     # Add a new axis
     ax1 = ax.twinx()
     ax1.plot([None], [None], label=p_lab, color='tab:blue', lw=2)
     ax1.plot(index, e_seq, label=e_lab, color='tab:orange', lw=2)
-    
+
     # Set log axes
     ax.set_yscale('log')
     ax1.set_yscale('log')
-    
+
     # Define the axis label format
     ax.xaxis.set_major_locator(
         mdates.MonthLocator(interval=5))
@@ -318,13 +318,13 @@ def pe_plot(p_seq, e_seq, index, labs, ax):
         mdates.DateFormatter('%b %Y'))
     for label in ax.get_xticklabels():
         label.set_rotation(45)
-    
+
     # Set labels
     ax.set_ylabel('Price level')
     ax1.set_ylabel('Exchange rate')
-  
+
     ax1.legend(loc='upper left')
-    
+
     return ax1
 
 def pr_plot(p_seq, index, ax):
@@ -332,22 +332,22 @@ def pr_plot(p_seq, index, ax):
 
     #  Calculate the difference of log p_seq
     log_diff_p = np.diff(np.log(p_seq))
-    
+
     # Calculate and plot moving average
     diff_smooth = pd.DataFrame(log_diff_p).rolling(3, center=True).mean()
     ax.plot(index[1:], diff_smooth, label='Moving average (3 period)', alpha=0.5, lw=2)
     ax.set_ylabel('Inflation rate')
-    
+
     ax.xaxis.set_major_locator(
         mdates.MonthLocator(interval=5))
     ax.xaxis.set_major_formatter(
         mdates.DateFormatter('%b %Y'))
-    
+
     for label in ax.get_xticklabels():
         label.set_rotation(45)
-    
+
     ax.legend()
-    
+
     return ax
 ```
 
@@ -359,30 +359,30 @@ data_url = "https://github.com/QuantEcon/lecture-python-intro/raw/main/lectures/
 xls = pd.ExcelFile(data_url)
 
 # Select relevant sheets
-sheet_index = [(2, 3, 4), 
-               (9, 10), 
-               (14, 15, 16), 
+sheet_index = [(2, 3, 4),
+               (9, 10),
+               (14, 15, 16),
                (21, 18, 19)]
 
 # Remove redundant rows
-remove_row = [(-2, -2, -2), 
-              (-7, -10), 
-              (-6, -4, -3), 
+remove_row = [(-2, -2, -2),
+              (-7, -10),
+              (-6, -4, -3),
               (-19, -3, -6)]
 
 # Unpack and combine series for each country
 df_list = []
 
 for i in range(4):
-    
+
     indices, rows = sheet_index[i], remove_row[i]
-    
+
     # Apply process_entry on the selected sheet
     sheet_list = [
-        pd.read_excel(xls, 'Table3.' + str(ind), 
+        pd.read_excel(xls, 'Table3.' + str(ind),
             header=1).iloc[:row].map(process_entry)
         for ind, row in zip(indices, rows)]
-    
+
     sheet_list = [process_df(df) for df in sheet_list]
     df_list.append(pd.concat(sheet_list, axis=1))
 
@@ -393,12 +393,12 @@ Now let's construct graphs for our four countries.
 
 For each country, we'll plot two graphs.
 
-The first graph plots logarithms of 
+The first graph plots logarithms of
 
 * price levels
 * exchange rates vis-&agrave;-vis US dollars
 
-For each country, the scale on the right side of a graph will pertain to the price level while the scale on the left side of a graph will pertain to the exchange rate. 
+For each country, the scale on the right side of a graph will pertain to the price level while the scale on the left side of a graph will pertain to the exchange rate.
 
 For each country, the second graph plots a centered three-month moving average of the inflation rate defined as $\frac{p_{t-1} + p_t + p_{t+1}}{3}$.
 
@@ -419,7 +419,7 @@ mystnb:
 p_seq = df_aus['Retail price index, 52 commodities']
 e_seq = df_aus['Exchange Rate']
 
-lab = ['Retail price index', 
+lab = ['Retail price index',
        'Austrian Krones (Crowns) per US cent']
 
 # Create plot
@@ -447,8 +447,8 @@ Staring at {numref}`pi_xrate_austria` and {numref}`inflationrate_austria` convey
 
 * an episode of "hyperinflation" with rapidly rising log price level and very high monthly inflation rates
 * a sudden stop of the hyperinflation as indicated by the abrupt flattening of the log price level and a marked permanent drop in the three-month average of inflation
-* a US dollar exchange rate that shadows the price level.  
-  
+* a US dollar exchange rate that shadows the price level.
+
 We'll see similar patterns in the next three episodes that we'll study now.
 
 ### Hungary
@@ -467,7 +467,7 @@ mystnb:
 p_seq = df_hun['Hungarian index of prices']
 e_seq = 1 / df_hun['Cents per crown in New York']
 
-lab = ['Hungarian index of prices', 
+lab = ['Hungarian index of prices',
        'Hungarian Koronas (Crowns) per US cent']
 
 # Create plot
@@ -495,7 +495,7 @@ plt.show()
 
 The sources of our data for Poland are:
 
-* Table 3.15, price level $\exp p$ 
+* Table 3.15, price level $\exp p$
 * Table 3.15, exchange rate
 
 ```{note}
@@ -514,7 +514,7 @@ mystnb:
 p_seq1 = df_pol['Wholesale price index'].copy()
 p_seq2 = df_pol['Wholesale Price Index: '
                 'On paper currency basis'].copy()
-p_seq3 = df_pol['Wholesale Price Index: ' 
+p_seq3 = df_pol['Wholesale Price Index: '
                 'On zloty basis'].copy()
 
 # Non-nan part
@@ -525,8 +525,8 @@ adj_ratio12 = (p_seq1[mask_1] / p_seq2[mask_1])
 adj_ratio23 = (p_seq2[mask_2] / p_seq3[mask_2])
 
 # Glue three series
-p_seq = pd.concat([p_seq1[:mask_1], 
-                   adj_ratio12 * p_seq2[mask_1:mask_2], 
+p_seq = pd.concat([p_seq1[:mask_1],
+                   adj_ratio12 * p_seq2[mask_1:mask_2],
                    adj_ratio23 * p_seq3[mask_2:]])
 p_seq = p_seq[~p_seq.index.duplicated(keep='first')]
 
@@ -536,7 +536,7 @@ e_seq[e_seq.index > '05-01-1924'] = np.nan
 ```
 
 ```{code-cell} ipython3
-lab = ['Wholesale price index', 
+lab = ['Wholesale price index',
        'Polish marks per US cent']
 
 # Create plot
@@ -564,7 +564,7 @@ plt.show()
 
 The sources of our data for Germany are the following tables from chapter 3 of {cite}`sargent2013rational`:
 
-* Table 3.18, wholesale price level $\exp p$ 
+* Table 3.18, wholesale price level $\exp p$
 * Table 3.19, exchange rate
 
 ```{code-cell} ipython3
@@ -578,7 +578,7 @@ p_seq = df_deu['Price index (on basis of marks before July 1924,'
                 '  reichsmarks after)'].copy()
 e_seq = 1/df_deu['Cents per mark']
 
-lab = ['Price index', 
+lab = ['Price index',
        'Marks per US cent']
 
 # Create plot
@@ -600,12 +600,12 @@ p_seq = df_deu['Price index (on basis of marks before July 1924,'
 e_seq = 1/df_deu['Cents per mark'].copy()
 
 # Adjust the price level/exchange rate after the currency reform
-p_seq[p_seq.index > '06-01-1924'] = p_seq[p_seq.index 
+p_seq[p_seq.index > '06-01-1924'] = p_seq[p_seq.index
                                           > '06-01-1924'] * 1e12
-e_seq[e_seq.index > '12-01-1923'] = e_seq[e_seq.index 
+e_seq[e_seq.index > '12-01-1923'] = e_seq[e_seq.index
                                           > '12-01-1923'] * 1e12
 
-lab = ['Price index (marks or converted to marks)', 
+lab = ['Price index (marks or converted to marks)',
        'Marks per US cent(or reichsmark converted to mark)']
 
 # Create plot
@@ -635,10 +635,10 @@ It is striking how *quickly* (log) price levels in Austria, Hungary, Poland, and
 
 These "sudden stops" are also revealed by the permanent drops in three-month moving averages of inflation for the four countries plotted above.
 
-In addition, the US dollar exchange rates for each of the four countries shadowed their price levels. 
+In addition, the US dollar exchange rates for each of the four countries shadowed their price levels.
 
 ```{note}
-This pattern is an instance of a force featured in the [purchasing power parity](https://en.wikipedia.org/wiki/Purchasing_power_parity) theory of exchange rates. 
+This pattern is an instance of a force featured in the [purchasing power parity](https://en.wikipedia.org/wiki/Purchasing_power_parity) theory of exchange rates.
 ```
 
 Each of these big inflations seemed to have "stopped on a dime".
@@ -647,22 +647,22 @@ Chapter 3 of {cite}`sargent2002big` offers an explanation for this remarkable pa
 
 In a nutshell, here is the explanation offered there.
 
-After World War I, the United States was on a gold standard. 
+After World War I, the United States was on a gold standard.
 
 The US government stood ready to convert a dollar into a specified amount of gold on demand.
 
-Immediately after World War I, Hungary, Austria, Poland, and Germany were not on the gold standard. 
+Immediately after World War I, Hungary, Austria, Poland, and Germany were not on the gold standard.
 
 Their currencies were "fiat" or "unbacked", meaning that they were not backed by credible government promises to convert them into gold or silver coins on demand.
 
-The governments printed new paper notes to pay for goods and services. 
+The governments printed new paper notes to pay for goods and services.
 
 ```{note}
 Technically the notes were "backed" mainly by treasury bills. But people could not expect that those treasury bills would be paid off by levying taxes, but instead by printing more notes or treasury bills.
 ```
 
-This was done on such a scale that it led to a depreciation of the currencies of spectacular proportions. 
- 
+This was done on such a scale that it led to a depreciation of the currencies of spectacular proportions.
+
 In the end, the German mark stabilized at 1 trillion ($10^{12}$) paper marks to the prewar gold mark, the Polish mark at 1.8 million paper marks to the gold zloty, the Austrian crown at 14,400 paper crowns to the prewar Austro-Hungarian crown, and the Hungarian krone at 14,500 paper crowns to the prewar Austro-Hungarian crown.
 
 Chapter 3 of {cite}`sargent2002big`  described deliberate changes in policy that Hungary, Austria, Poland, and Germany made to end their hyperinflations.
@@ -746,11 +746,10 @@ plt.tight_layout()
 plt.show()
 ```
 
-The table and bar chart show that Germany's hyperinflation dwarfed the others:
-its peak monthly log-inflation rate (reached in November 1923) translates into
-a price level that roughly doubled every day at the peak.  Austria, Hungary, and
-Poland experienced severe inflations by any historical standard, but they were
-modest in comparison.
+The table and bar chart show that Germany's hyperinflation dwarfed the others because its peak monthly log-inflation rate, reached in October 1923, translates into a monthly price increase of about 296-fold.
+
+Austria, Hungary, and Poland experienced severe inflations by any historical
+standard, but they were modest in comparison.
 
 ```{solution-end}
 ```
@@ -823,14 +822,16 @@ plt.tight_layout()
 plt.show()
 ```
 
-The chart confirms the lecture's central message.  During the three centuries of
-the gold and silver standard (1700–1913) the annualized log-price growth rate
-was close to zero for all four countries — the price level was roughly
-trendless.  After 1914, when governments left the gold standard and gained the
-ability to print money, average annual inflation jumped markedly for every
-country with sufficient post-1914 data.  The Castile series does not extend
-reliably into the 20th century, so its fiat-era bar reflects incomplete data
-and should be interpreted with caution.
+The chart confirms the lecture's central message.
+
+During the three centuries of the gold and silver standard, 1700 to 1913, the
+annualized log-price growth rate was close to zero for all four countries.
+
+After 1914, when governments left the gold standard and gained the ability to
+print money, average annual inflation jumped markedly for every country with sufficient post-1914 data.
+
+The Castile series does not extend reliably into the 20th century, so its
+fiat-era bar reflects incomplete data and should be interpreted with caution.
 
 ```{solution-end}
 ```
@@ -870,6 +871,10 @@ Examine PPP for the German episode:
 p_ger = df_deu['Price index (on basis of marks before July 1924,'
                '  reichsmarks after)'].dropna()
 e_ger = (1 / df_deu['Cents per mark']).dropna()
+
+# Convert post-reform reichsmark observations back into paper-mark units
+p_ger[p_ger.index > '1924-06-01'] = p_ger[p_ger.index > '1924-06-01'] * 1e12
+e_ger[e_ger.index > '1923-12-01'] = e_ger[e_ger.index > '1923-12-01'] * 1e12
 
 common = p_ger.index.intersection(e_ger.index)
 log_p = np.log(p_ger[common])
@@ -915,17 +920,16 @@ print(f"Std dev of log price level (normalized): {log_p_n.std():.3f}")
 print(f"Std dev of real exchange rate q:         {q.std():.3f}")
 ```
 
-Parts (a) and (b): the two normalized log series are nearly indistinguishable
-and their Pearson correlation is very close to 1.  During Germany's
-hyperinflation, every tenfold rise in the domestic price level was matched
-by an approximately tenfold rise in the exchange rate — precisely what PPP
-predicts.
+For parts (a) and (b), the two normalized log series are nearly indistinguishable and their Pearson correlation is very close to 1.
 
-Part (c): the real exchange rate $q_t$ fluctuates only modestly compared with
-the enormous swings in $\log p_t$.  Its standard deviation is a small fraction
-of the standard deviation of the normalized log price level, confirming that
-exchange rate movements were driven almost entirely by domestic price inflation,
-with only minor transient deviations from PPP.
+During Germany's hyperinflation, every tenfold rise in the domestic price level
+was matched by an approximately tenfold rise in the exchange rate, as PPP predicts.
+
+For part (c), the real exchange rate $q_t$ fluctuates only modestly compared with the enormous swings in $\log p_t$.
+
+Its standard deviation is a small fraction of the standard deviation of the normalized
+log price level, confirming that exchange rate movements were driven almost entirely
+by domestic price inflation with only minor transient deviations from PPP.
 
 ```{solution-end}
 ```

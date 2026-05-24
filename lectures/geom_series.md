@@ -1014,9 +1014,8 @@ plt.show()
 ```
 
 The left panel confirms that $S_T$ converges smoothly to $1/(1-c) = 10$.
-The right panel shows that the error decays geometrically (a straight line on
-a log scale), reflecting the fact that the remainder after $T$ terms equals
-$c^{T+1}/(1-c)$.
+
+The right panel shows that the error decays geometrically, a straight line on a log scale, reflecting the fact that the remainder after $T$ terms equals $c^{T+1}/(1-c)$.
 
 ```{solution-end}
 ```
@@ -1066,10 +1065,9 @@ for r in reserve_ratios:
     print(f"{r:>15.2f} | {1/r:>20.2f}")
 ```
 
-A lower reserve ratio means banks lend out a larger fraction of each deposit,
-so the money-creation process takes longer to run down and the total deposits
-created are much larger.  The dashed lines mark the theoretical limit $D_0/r$,
-which the cumulative series approaches from below.
+A lower reserve ratio means banks lend out a larger fraction of each deposit, so the money-creation process takes longer to run down and the total deposits created are much larger.
+
+The dashed lines mark the theoretical limit $D_0/r$, which the cumulative series approaches from below.
 
 ```{solution-end}
 ```
@@ -1095,7 +1093,7 @@ $$
 \text{error}(\%) = \frac{|\text{Gordon} - \text{exact}|}{\text{exact}} \times 100
 $$
 
-and comment on when the approximation is most accurate.
+and comment on whether the percentage error varies with $g$.
 ```
 
 ```{solution-start} geom_ex3
@@ -1110,6 +1108,7 @@ g_vals = np.linspace(0, 0.045, 300)
 exact = infinite_lease(g_vals, r_val, x_0)
 gordon = x_0 / (r_val - g_vals)
 pct_error = np.abs(gordon - exact) / exact * 100
+pct_error_formula = 100 * r_val / (1 + r_val)
 
 fig, axes = plt.subplots(1, 2, figsize=(12, 4))
 
@@ -1121,19 +1120,20 @@ axes[0].set_title(f'Infinite lease present value ($r = {r_val}$)')
 axes[0].legend()
 
 axes[1].plot(g_vals, pct_error)
+axes[1].axhline(pct_error_formula, linestyle='--', color='red',
+                label=fr'$100r/(1+r) = {pct_error_formula:.2f}\%$')
 axes[1].set_xlabel('$g$')
 axes[1].set_ylabel('Percentage error (%)')
 axes[1].set_title('Gordon formula approximation error')
+axes[1].legend()
 
 plt.tight_layout()
 plt.show()
 ```
 
-The Gordon formula is most accurate when both $r$ and $g$ are small, because
-it relies on the first-order Taylor approximation $1/(1+r) \approx 1 - r$,
-which is tightest near zero.  As $g \to r$, both the exact value and the
-approximation blow up, but the relative error grows because the neglected
-cross-product term $rg$ becomes non-negligible compared to $r - g$.
+For a fixed $r$, the percentage error is constant in $g$ because the exact value is $x_0(1+r)/(r-g)$ while the Gordon approximation is $x_0/(r-g)$.
+
+The approximation becomes accurate when $r$ is small because the exact value differs from the Gordon formula by the factor $1+r$.
 
 ```{solution-end}
 ```
@@ -1162,7 +1162,7 @@ i_0, g_0, y_init = 0.3, 0.3, 0
 bs = [0.25, 0.50, 0.75, 0.90]
 T = 60
 
-# Part (a) — income paths
+# Part (a)
 fig, ax = plt.subplots()
 for b in bs:
     y = calculate_y(i_0, b, g_0, T, y_init)
@@ -1176,7 +1176,7 @@ ax.set_title('National income paths for different $b$')
 ax.legend()
 plt.show()
 
-# Part (b) — speed of convergence
+# Part (b)
 T_long = 1000
 T_star_vals = []
 for b in bs:
@@ -1198,11 +1198,11 @@ for b, T_star in zip(bs, T_star_vals):
     print(f"{b:>6.2f} | {1/(1-b):>20.2f} | {T_star:>14}")
 ```
 
-As $b$ rises toward 1, the Keynesian multiplier $1/(1-b)$ grows large and
-convergence slows markedly.  This reflects the fact that the geometric series
-$\sum_{t=0}^\infty b^t$ converges more slowly when $b$ is close to 1 —
-each additional round of spending adds a term $b^t$ that shrinks only
-gradually.
+As $b$ rises toward 1, the Keynesian multiplier $1/(1-b)$ grows large and convergence slows markedly.
+
+This reflects the fact that the geometric series $\sum_{t=0}^\infty b^t$ converges
+more slowly when $b$ is close to 1 because each additional round of spending adds
+a term $b^t$ that shrinks only gradually.
 
 ```{solution-end}
 ```

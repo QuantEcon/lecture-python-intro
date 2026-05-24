@@ -13,7 +13,7 @@ kernelspec:
 
 # Present Values
 
-## Overview 
+## Overview
 
 This lecture describes the  **present value model** that is a starting point
 of much asset pricing theory.
@@ -22,7 +22,7 @@ Asset pricing theory is a component of theories about many economic decisions in
 
   * consumption
   * labor supply
-  * education choice 
+  * education choice
   * demand for money
 
 In asset pricing theory, and in economic dynamics more generally, a basic topic is the relationship
@@ -34,7 +34,7 @@ In this lecture, we'll represent  a sequence as a vector.
 
 So our analysis will typically boil down to studying relationships among vectors.
 
-Our main  tools in this lecture will be  
+Our main  tools in this lecture will be
 
   * matrix multiplication,  and
   * matrix inversion.
@@ -44,19 +44,19 @@ We'll use the calculations described here in  subsequent lectures, including {do
 
 Let's dive in.
 
-## Analysis 
+## Analysis
 
 
 
-Let 
+Let
 
  * $\{d_t\}_{t=0}^T $ be a sequence of dividends or "payouts"
  * $\{p_t\}_{t=0}^T $ be a sequence of prices of a claim on the continuation of
-    the asset's payout  stream from date $t$ on, namely, $\{d_s\}_{s=t}^T $ 
- * $ \delta  \in (0,1) $ be a one-period "discount factor" 
+    the asset's payout  stream from date $t$ on, namely, $\{d_s\}_{s=t}^T $
+ * $ \delta  \in (0,1) $ be a one-period "discount factor"
  * $p_{T+1}^*$ be a terminal price of the asset at time $T+1$
- 
-We  assume that the dividend stream $\{d_t\}_{t=0}^T $ and the terminal price 
+
+We  assume that the dividend stream $\{d_t\}_{t=0}^T $ and the terminal price
 $p_{T+1}^*$ are both exogenous.
 
 This means that they are determined outside the model.
@@ -80,7 +80,7 @@ price  $p_{T+1}^*$.
 A system of equations like {eq}`eq:Euler1` is an example of a linear  **difference equation**.
 
 There are powerful mathematical  methods available for solving such systems and they are well worth
-studying in their own right, being the foundation for the analysis of many interesting economic models.  
+studying in their own right, being the foundation for the analysis of many interesting economic models.
 
 For an example, see {doc}`Samuelson multiplier-accelerator <dynam:samuelson>`
 
@@ -120,19 +120,19 @@ $$
                     \vdots & \vdots & \vdots & \vdots & \vdots & 0 & 0 \cr
                     0 & 0 & 0 & 0 & \cdots & 1 & -\delta \cr
                     0 & 0 & 0 & 0 & \cdots & 0 & 1 \end{bmatrix}
-    \begin{bmatrix} p_0 \cr p_1 \cr p_2 \cr \vdots \cr p_{T-1} \cr p_T 
-    \end{bmatrix} 
-    =  \begin{bmatrix}  
+    \begin{bmatrix} p_0 \cr p_1 \cr p_2 \cr \vdots \cr p_{T-1} \cr p_T
+    \end{bmatrix}
+    =  \begin{bmatrix}
     d_0 \cr d_1 \cr d_2 \cr \vdots \cr d_{T-1} \cr d_T
     \end{bmatrix}
-    + \begin{bmatrix} 
+    + \begin{bmatrix}
     0 \cr 0 \cr 0 \cr \vdots \cr 0 \cr \delta p_{T+1}^*
     \end{bmatrix}
 $$ (eq:pvpieq)
 
 +++
 
-```{exercise-start} 
+```{exercise-start}
 :label: pv_ex_1
 ```
 
@@ -180,7 +180,7 @@ print("Max residual |A p - (d + b)|:", np.max(np.abs(residual)))
 ```{solution-end}
 ```
 
-In vector-matrix notation, we can write  system {eq}`eq:pvpieq` as 
+In vector-matrix notation, we can write  system {eq}`eq:pvpieq` as
 
 $$
     A p = d + b
@@ -189,7 +189,7 @@ $$ (eq:apdb)
 Here $A$ is the matrix on the left side of equation {eq}`eq:pvpieq`, while
 
 $$
-    p = 
+    p =
     \begin{bmatrix}
         p_0 \\
         p_1 \\
@@ -197,7 +197,7 @@ $$
         p_T
     \end{bmatrix},
     \quad
-    d = 
+    d =
     \begin{bmatrix}
         d_0 \\
         d_1 \\
@@ -205,7 +205,7 @@ $$
         d_T
     \end{bmatrix},
     \quad \text{and} \quad
-    b = 
+    b =
     \begin{bmatrix}
         0 \\
         0 \\
@@ -214,14 +214,14 @@ $$
     \end{bmatrix}
 $$
 
-The solution for the vector of  prices is  
+The solution for the vector of  prices is
 
 $$
     p = A^{-1}(d + b)
 $$ (eq:apdb_sol)
 
 
-For example, suppose that  the dividend stream is 
+For example, suppose that  the dividend stream is
 
 $$
     d_{t+1} = 1.05 d_t, \quad t = 0, 1, \ldots , T-1.
@@ -235,7 +235,7 @@ current_d = 1.0
 d = []
 for t in range(T+1):
     d.append(current_d)
-    current_d = current_d * 1.05 
+    current_d = current_d * 1.05
 
 fig, ax = plt.subplots()
 ax.plot(d, 'o', label='dividends')
@@ -307,7 +307,7 @@ ax.set_xlabel('time')
 plt.show()
 ```
 
-```{exercise-start} 
+```{exercise-start}
 :label: pv_ex_cyc
 ```
 
@@ -349,7 +349,7 @@ The weighted averaging associated with the present value calculation largely
 eliminates the cycles.
 
 
-```{solution-end} 
+```{solution-end}
 ```
 
 ## Analytical expressions
@@ -359,7 +359,7 @@ By the [inverse matrix theorem](https://en.wikipedia.org/wiki/Invertible_matrix)
 It can be verified that the  inverse of the matrix $A$ in {eq}`eq:pvpieq` is
 
 
-$$ A^{-1} = 
+$$ A^{-1} =
     \begin{bmatrix}
         1 & \delta & \delta^2 & \cdots & \delta^{T-1} & \delta^T \cr
         0 & 1 & \delta & \cdots & \delta^{T-2} & \delta^{T-1} \cr
@@ -371,7 +371,7 @@ $$ (eq:Ainv)
 
 
 
-```{exercise-start} 
+```{exercise-start}
 :label: pv_ex_2
 ```
 
@@ -416,13 +416,13 @@ $$
     p_t =  \sum_{s=t}^T \delta^{s-t} d_s +  \delta^{T+1-t} p_{T+1}^*
 $$ (eq:ptpveq)
 
-Pricing formula {eq}`eq:ptpveq` asserts that  two components sum to the asset price 
+Pricing formula {eq}`eq:ptpveq` asserts that  two components sum to the asset price
 $p_t$:
 
   * a **fundamental component** $\sum_{s=t}^T \delta^{s-t} d_s$ that equals the **discounted present value** of prospective dividends
-  
+
   * a **bubble component** $\delta^{T+1-t} p_{T+1}^*$
-  
+
 The fundamental component is pinned down by the discount factor $\delta$ and the
 payout of the asset (in this case,  dividends).
 
@@ -431,13 +431,13 @@ fundamentals.
 
 It is sometimes convenient to rewrite the bubble component as
 
-$$ 
+$$
 c \delta^{-t}
 $$
 
-where 
+where
 
-$$ 
+$$
 c \equiv \delta^{T+1}p_{T+1}^*
 $$
 
@@ -448,10 +448,10 @@ $$
 For a few moments, let's focus on  the special case of an asset that   never pays dividends, in which case
 
 $$
-\begin{bmatrix}  
+\begin{bmatrix}
 d_0 \cr d_1 \cr d_2 \cr \vdots \cr d_{T-1} \cr d_T
-\end{bmatrix} = 
-\begin{bmatrix}  
+\end{bmatrix} =
+\begin{bmatrix}
 0 \cr 0 \cr 0 \cr \vdots \cr 0 \cr 0
 \end{bmatrix}
 $$
@@ -468,27 +468,27 @@ $$
                 \vdots & \vdots & \vdots & \vdots & \vdots & 0 & 0 \cr
                 0 & 0 & 0 & 0 & \cdots & 1 & -\delta \cr
                 0 & 0 & 0 & 0 & \cdots & 0 & 1 \end{bmatrix}
-\begin{bmatrix} p_0 \cr p_1 \cr p_2 \cr \vdots \cr p_{T-1} \cr p_T 
+\begin{bmatrix} p_0 \cr p_1 \cr p_2 \cr \vdots \cr p_{T-1} \cr p_T
 \end{bmatrix}  =
-\begin{bmatrix} 
+\begin{bmatrix}
 0 \cr 0 \cr 0 \cr \vdots \cr 0 \cr \delta p_{T+1}^*
 \end{bmatrix}
 $$ (eq:pieq2)
 
 Evidently, if $p_{T+1}^* = 0$, a price vector $p$ of all entries zero
-solves this equation and the only the **fundamental** component of our pricing 
-formula {eq}`eq:ptpveq` is present. 
+solves this equation and the only the **fundamental** component of our pricing
+formula {eq}`eq:ptpveq` is present.
 
-But let's activate the **bubble**  component by setting 
+But let's activate the **bubble**  component by setting
 
 $$
-p_{T+1}^* = c \delta^{-(T+1)} 
+p_{T+1}^* = c \delta^{-(T+1)}
 $$ (eq:eqbubbleterm)
 
 for some positive constant $c$.
 
 In this case,  when we multiply both sides of {eq}`eq:pieq2` by
-the matrix $A^{-1}$ presented in equation {eq}`eq:Ainv`, we 
+the matrix $A^{-1}$ presented in equation {eq}`eq:Ainv`, we
  find that
 
 $$
@@ -499,7 +499,7 @@ $$ (eq:bubble)
 ## Gross rate of return
 
 Define the gross rate of return on holding the asset from period $t$ to period $t+1$
-as 
+as
 
 $$
 R_t = \frac{p_{t+1}}{p_t}
@@ -515,11 +515,11 @@ $$
 ## Exercises
 
 
-```{exercise-start} 
+```{exercise-start}
 :label: pv_ex_a
 ```
 
-Assume that $g >1$ and that $\delta g \in (0,1)$. Give analytical expressions for an asset price $p_t$ under the 
+Assume that $g >1$ and that $\delta g \in (0,1)$. Give analytical expressions for an asset price $p_t$ under the
 following settings for $d$ and $p_{T+1}^*$:
 
 1. $p_{T+1}^* = 0, d_t = g^t d_0$ (a modified version of the Gordon growth formula)
@@ -528,7 +528,7 @@ following settings for $d$ and $p_{T+1}^*$:
 1. $p_{T+1}^* = c \delta^{-(T+1)}, d_t = 0$ (price of a pure bubble stock)
 
 
-```{exercise-end} 
+```{exercise-end}
 ```
 
 ```{solution-start} pv_ex_a
@@ -544,6 +544,7 @@ Plugging each of the above $p_{T+1}^*, d_t$  pairs into Equation {eq}`eq:ptpveq`
 
 
 ```{solution-end}
+```
 
 ```{exercise}
 :label: pv_ex_b
@@ -570,7 +571,6 @@ T = 6
 p_star = 10.0
 d = np.array([1.0 * 1.05**t for t in range(T+1)])
 
-# Method 1: matrix system
 A = np.zeros((T+1, T+1))
 for i in range(T+1):
     A[i, i] = 1
@@ -580,13 +580,12 @@ b = np.zeros(T+1)
 b[-1] = δ * p_star
 p_matrix = np.linalg.solve(A, d + b)
 
-# Method 2: direct formula from eq:ptpveq
 p_formula = np.array([
     sum(δ**(s-t) * d[s] for s in range(t, T+1)) + δ**(T+1-t) * p_star
     for t in range(T+1)
 ])
 
-print(f'{'t':>3} | {'matrix':>12} | {'formula':>12} | {'|diff|':>10}')
+print(f"{'t':>3} | {'matrix':>12} | {'formula':>12} | {'|diff|':>10}")
 print('-' * 44)
 for t in range(T+1):
     diff = abs(p_matrix[t] - p_formula[t])
@@ -601,14 +600,13 @@ for t in range(T+1):
 
 Suppose dividends are constant: $d_t = d = 1$ for all $t = 0, \ldots, T$.
 
-Set the terminal price to the **perpetuity value** $p_{T+1}^* = d / (R - 1)$,
-where $R = 1/\delta$.
+Set the terminal price to the perpetuity value $p_{T+1}^* = d / (1-\delta)$.
 
 (a) Compute the asset price sequence for $T = 100$ and $\delta = 0.99$.
-    Plot $p_t$ alongside the perpetuity value $d/(R-1)$ as a dashed line.
+    Plot $p_t$ alongside the perpetuity value $d/(1-\delta)$ as a dashed line.
 
 (b) Verify analytically (using formula {eq}`eq:ptpveq`) that
-    $p_t = d / (R-1)$ for all $t$.
+    $p_t = d / (1-\delta)$ for all $t$.
 ```
 
 ```{solution-start} pv_ex_c
@@ -618,9 +616,8 @@ where $R = 1/\delta$.
 ```{code-cell} ipython3
 T = 100
 δ = 0.99
-R = 1 / δ
 d_const = 1.0
-p_star_perp = d_const / (R - 1)   # perpetuity value
+p_star_perp = d_const / (1 - δ)
 
 d = d_const * np.ones(T+1)
 A = np.zeros((T+1, T+1))
@@ -637,28 +634,21 @@ p = np.linalg.solve(A, d + b)
 fig, ax = plt.subplots()
 ax.plot(p, 'o-', ms=3, label='Asset price $p_t$')
 ax.axhline(p_star_perp, linestyle='--', color='red',
-           label=f'Perpetuity value $d/(R-1) = {p_star_perp:.2f}$')
+           label=f'Perpetuity value $d/(1 - δ) = {p_star_perp:.2f}$')
 ax.set_xlabel('time')
 ax.set_title('Constant dividend: asset price equals perpetuity value')
 ax.legend()
 plt.show()
 
-print(f'Max deviation from d/(R-1): {np.max(np.abs(p - p_star_perp)):.2e}')
+print(f'Max deviation from d/(1 - δ): {np.max(np.abs(p - p_star_perp)):.2e}')
 ```
 
-For part (b): substituting $d_s = d$ and $p_{T+1}^* = d/(R-1) = d\delta/(1-\delta)$
-into {eq}`eq:ptpveq` gives
+For part (b), substituting $d_s = d$ and $p_{T+1}^* = d/(1-\delta)$ into {eq}`eq:ptpveq` gives
 
 $$
-p_t = d \frac{1 - \delta^{T+1-t}}{1-\delta} + \frac{d\delta^{T+2-t}}{1-\delta}
-     = \frac{d}{1-\delta}\bigl[1 - \delta^{T+1-t} + \delta^{T+2-t}\bigr]
-     = \frac{d}{1-\delta} = \frac{d}{R-1}
+p_t = d \frac{1 - \delta^{T+1-t}}{1-\delta} + \frac{d\delta^{T+1-t}}{1-\delta}
+     = \frac{d}{1-\delta}
 $$
-
-where the last step uses $1/\delta = R$, so $1-\delta = (R-1)/R$ and
-$d/(1-\delta) = dR/(R-1) \neq d/(R-1)$.  Actually the clean way to see it:
-set $p_{T+1}^* = c\delta^{-(T+1)}$ with $c = d\delta/(1-\delta)\cdot\delta^{T+1}$;
-because the bubble and fundamental terms sum to the perpetuity value, $p_t = d/(R-1)$.
 
 ```{solution-end}
 ```
@@ -705,10 +695,9 @@ ax.set_title('Asset price at $t=0$ as a function of $\\delta$')
 plt.show()
 ```
 
-Each term $\delta^{s-t} d_s$ in the fundamental component and the bubble
-term $\delta^{T+1-t} p_{T+1}^*$ are both increasing in $\delta$.  A higher
-discount factor therefore raises the present value of every future cash flow,
-pushing up $p_0$.
+Each term $\delta^{s-t} d_s$ in the fundamental component and the bubble term $\delta^{T+1-t} p_{T+1}^*$ are both increasing in $\delta$.
+
+A higher discount factor therefore raises the present value of every future cash flow, pushing up $p_0$.
 
 ```{solution-end}
 ```

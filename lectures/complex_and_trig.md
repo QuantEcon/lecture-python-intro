@@ -569,8 +569,9 @@ $$
 = \cos 2\theta + i\sin 2\theta.
 $$
 
-Matching real parts: $\cos 2\theta = \cos^2\theta - \sin^2\theta$.
-Matching imaginary parts: $\sin 2\theta = 2\sin\theta\cos\theta$.
+Matching real parts gives $\cos 2\theta = \cos^2\theta - \sin^2\theta$.
+
+Matching imaginary parts gives $\sin 2\theta = 2\sin\theta\cos\theta$.
 
 Substituting $\sin^2\theta = 1 - \cos^2\theta$ into the cosine formula gives
 $\cos 2\theta = 2\cos^2\theta - 1$, and substituting $\cos^2\theta = 1 - \sin^2\theta$
@@ -706,6 +707,7 @@ giving a total of 0.
 
 **Case $m = n$:** The formula becomes
 $\cos(m\phi)^2 = \tfrac{1}{2}[1 + \cos(2m\phi)]$.
+
 Since $\int_{-\pi}^{\pi} \cos(2m\phi)\,d\phi = 0$ for non-zero integer $m$,
 the integral equals $\tfrac{1}{2} \cdot 2\pi = \pi$.
 
@@ -722,11 +724,10 @@ for m in [1, 2, 3]:
         print(f"{m:>3}  {n:>3}  {str(val):>10}")
 ```
 
-The table confirms the rule: diagonal entries (where $m = n$) all equal $\pi$,
-and every off-diagonal entry equals $0$.  This orthogonality property is the
-foundation of Fourier series: it is why sinusoidal functions at different
-frequencies do not "interfere" when we decompose a signal into its frequency
-components.
+The table confirms the rule that diagonal entries, where $m = n$, all equal $\pi$ and every off-diagonal entry equals $0$.
+
+This orthogonality property is the foundation of Fourier series because sinusoidal
+functions at different frequencies do not "interfere" when we decompose a signal into its frequency components.
 
 ```{solution-end}
 ```
