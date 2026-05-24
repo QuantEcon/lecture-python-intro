@@ -608,23 +608,22 @@ Each `simplify` call returns 0, confirming all four identities.
 The angle-sum identities derived in the lecture are:
 
 $$
-\cos(\theta + w) = \cos\theta\cos w - \sin\theta\sin w \tag{i}
-$$
+\cos(\theta + w) = \cos\theta\cos w - \sin\theta\sin w
+$$ (ct-cos-sum)
 
 $$
-\cos(\theta - w) = \cos\theta\cos w + \sin\theta\sin w \tag{ii}
-$$
+\cos(\theta - w) = \cos\theta\cos w + \sin\theta\sin w
+$$ (ct-cos-diff)
 
 $$
-\sin(\theta + w) = \sin\theta\cos w + \cos\theta\sin w \tag{iii}
-$$
+\sin(\theta + w) = \sin\theta\cos w + \cos\theta\sin w
+$$ (ct-sin-sum)
 
 $$
-\sin(\theta - w) = \sin\theta\cos w - \cos\theta\sin w \tag{iv}
-$$
+\sin(\theta - w) = \sin\theta\cos w - \cos\theta\sin w
+$$ (ct-sin-diff)
 
-By adding and subtracting appropriate pairs of these four equations, derive
-the three **product-to-sum formulas**:
+By adding and subtracting appropriate pairs of equations {eq}`ct-cos-sum`--{eq}`ct-sin-diff`, derive the three **product-to-sum formulas**:
 
 $$
 \cos\theta\cos w = \frac{\cos(\theta+w) + \cos(\theta-w)}{2}

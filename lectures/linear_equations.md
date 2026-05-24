@@ -1317,7 +1317,7 @@ It can be verified that this system has no solutions.
 
 We will thus try to find the best approximate solution for $x$.
 
-1. Use {eq}`least_squares` and matrix algebra to find the least squares solution $\hat{x}$.
+1. Use the least-squares formula above and matrix algebra to find the least squares solution $\hat{x}$.
 2. Find the least squares solution using `numpy.linalg.lstsq` and compare the results.
 
 ```{exercise-end}
