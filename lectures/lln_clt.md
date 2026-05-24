@@ -474,7 +474,7 @@ $F(x) = 1 - e^{- \lambda x}$.
 # Set parameters
 n = 250         # Choice of n
 k = 1_000_000        # Number of draws of Y_n
-distribution = st.expon(2) # Exponential distribution, λ = 1/2
+distribution = st.expon(scale=2) # Exponential distribution, λ = 1/2
 μ, σ = distribution.mean(), distribution.std()
 
 # Draw underlying RVs. Each row contains a draw of X_1,..,X_n
@@ -621,7 +621,7 @@ However, the next exercise teaches us that LLN type convergence of the sample
 mean to the population mean still occurs.
 
 1. Prove that the sequence $X_1, X_2, \ldots$ is identically distributed.
-2. Show that LLN convergence holds using simulations with $\alpha = 0.8$, $\beta = 0.2$.
+2. Show that LLN convergence holds using simulations with $\alpha = 0.8$, $\beta = 0.2$, and $\sigma = 10$.
 
 ```
 
@@ -682,7 +682,7 @@ n = 100_000
 
 fig, ax = plt.subplots(figsize=(10, 6))
 x = np.ones(n)
-x[0] = st.norm.rvs(α/(1-β), α**2/(1-β**2))
+x[0] = st.norm.rvs(loc=α/(1-β), scale=σ / np.sqrt(1-β**2))
 ϵ = st.norm.rvs(size=n+1)
 means = np.ones(n)
 means[0] = x[0]

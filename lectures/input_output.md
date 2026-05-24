@@ -560,13 +560,13 @@ Another way to rank sectors in input-output networks is via output multipliers.
 The **output multiplier** of sector $j$ denoted by $\mu_j$ is usually defined as the
 total sector-wide impact of a unit change of demand in sector $j$.
 
-Earlier when disussing demand shocks we concluded that for $L = (l_{ij})$ the element
+Earlier when discussing demand shocks we concluded that for $L = (l_{ij})$ the element
 $l_{ij}$ represents the impact on sector $i$ of a unit change in demand in sector $j$.
 
 Thus,
 
 $$
-\mu_j = \sum_{j=1}^n l_{ij}
+\mu_j = \sum_{i=1}^n l_{ij}
 $$
 
 This can be written as $\mu^\top = \mathbb{1}^\top L$ or

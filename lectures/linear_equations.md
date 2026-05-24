@@ -1049,7 +1049,7 @@ $$
 
 where $C$, $D$ and $h$ are given by {eq}`two_eq_demand_mat` and {eq}`two_eq_supply_mat`.
 
-This equation is analogous to {eq}`la_se_inv` with $A = (C-D)^{-1}$, $b = h$, and $x = p$.
+This equation is analogous to {eq}`la_se_inv` with $A = C-D$, $b = h$, and $x = p$.
 
 We can now solve for equilibrium prices with NumPy's `linalg` submodule.
 
@@ -1231,7 +1231,7 @@ p
 
 The solution is given by:
 $$
-p_0 = 4.6925, \; p_1 = 7.0625 \;\; \text{and} \;\; p_2 = 7.675
+p_0 = 4.9625, \; p_1 = 7.0625 \;\; \text{and} \;\; p_2 = 7.675
 $$
 
 ```{solution-end}

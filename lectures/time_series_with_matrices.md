@@ -487,7 +487,7 @@ plt.ylabel('y')
 plt.show()
 ```
 
-Visually, notice how the  variance across realizations of $y_t$ decreases as $t$ increases.
+Because the initial conditions are fixed and shocks accumulate over time, the population variance of $y_t$ increases toward its limiting value.
 
 Let's plot the population variance of $y_t$ against $t$.
 

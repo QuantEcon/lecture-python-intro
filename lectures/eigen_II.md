@@ -117,7 +117,7 @@ Left eigenvectors will play important roles in what follows, including that of s
 
 A vector $w$ is called a left eigenvector of $A$ if $w$ is a right eigenvector of $A^\top$.
 
-In other words, if $w$ is a left eigenvector of matrix $A$, then $A^\top w = \lambda w$, where $\lambda$ is the eigenvalue associated with the left eigenvector $v$.
+In other words, if $w$ is a left eigenvector of matrix $A$, then $A^\top w = \lambda w$, where $\lambda$ is the eigenvalue associated with the left eigenvector $w$.
 
 This hints at how to compute left eigenvectors
 
@@ -257,7 +257,7 @@ We can see that if a matrix is primitive, then it implies the matrix is irreduci
 
 Now let's step back to the primitive matrices part of the Perron-Frobenius theorem
 
-```{prf:Theorem} Continous of Perron-Frobenius Theorem
+```{prf:Theorem} Continuity of Perron-Frobenius Theorem
 :label: con-perron-frobenius
 
 If $A$ is primitive then,

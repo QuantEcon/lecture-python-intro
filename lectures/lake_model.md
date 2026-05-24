@@ -541,24 +541,37 @@ Eq. {eq}`steady_x` implies that the long-run unemployment rate will increase, an
 if $\alpha$ increases or $\lambda$ decreases.
 
 Suppose first that $\alpha=0.01, \lambda=0.1, d=0.02, b=0.025$.
+
 Assume that $\alpha$ increases to $0.04$.
 
-The below graph illustrates that the line $D$ shifts clockwise downward, which indicates that
-the fraction of unemployment rises as the separation rate increases.
+Then compare this with a decrease in $\lambda$ from $0.1$ to $0.04$.
+
+The graphs show that both changes rotate the line $D$ clockwise downward, which indicates that the long-run unemployment rate rises.
 
 ```{code-cell} ipython3
-fig, ax = plt.subplots(figsize=(10, 8))
+fig, axes = plt.subplots(1, 2, figsize=(12, 5))
+s = 10
 
-lm = LakeModel(α=0.01, λ=0.1, d=0.02, b=0.025)
-plot_time_paths(lm, ax=ax)
-s=10
-ax.plot([0, s * lm.u_bar], [0, s * lm.e_bar], "k--", lw=1, label='set $D$, α=0.01')
+def add_D_line(ax, lm, label, color):
+    ax.plot([0, s * lm.u_bar], [0, s * lm.e_bar],
+            color=color, linestyle='--', lw=2, label=label)
 
-lm = LakeModel(α=0.04, λ=0.1, d=0.02, b=0.025)
-plot_time_paths(lm, ax=ax)
-ax.plot([0, s * lm.u_bar], [0, s * lm.e_bar], "r--", lw=1, label='set $D$, α=0.04')
+lm_base = LakeModel(α=0.01, λ=0.1, d=0.02, b=0.025)
+lm_high_α = LakeModel(α=0.04, λ=0.1, d=0.02, b=0.025)
+plot_time_paths(lm_base, ax=axes[0])
+add_D_line(axes[0], lm_base, r'set $D$, $\alpha=0.01$', 'black')
+plot_time_paths(lm_high_α, ax=axes[0])
+add_D_line(axes[0], lm_high_α, r'set $D$, $\alpha=0.04$', 'red')
+axes[0].legend(loc='best')
 
-ax.legend(loc='best')
+lm_low_λ = LakeModel(α=0.01, λ=0.04, d=0.02, b=0.025)
+plot_time_paths(lm_base, ax=axes[1])
+add_D_line(axes[1], lm_base, r'set $D$, $\lambda=0.1$', 'black')
+plot_time_paths(lm_low_λ, ax=axes[1])
+add_D_line(axes[1], lm_low_λ, r'set $D$, $\lambda=0.04$', 'red')
+axes[1].legend(loc='best')
+
+plt.tight_layout()
 plt.show()
 ```
 

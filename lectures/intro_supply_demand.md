@@ -789,8 +789,7 @@ $$
 
 Here $p$ is set to $i_s(q)$.
 
-Social welfare is the sum of consumer and producer surplus under the
-assumption that the price is the same for buyers and sellers:
+Planner welfare is the area between inverse demand and inverse supply:
 
 $$
 W(q)
@@ -801,6 +800,8 @@ Solve the integrals and write a function to compute this quantity numerically
 at given $q$. 
 
 Plot welfare as a function of $q$.
+
+At the competitive equilibrium, the common price lets this same area be interpreted as consumer surplus plus producer surplus.
 ```
 
 
@@ -883,8 +884,7 @@ print(f"{maximizing_q: .5f}")
 ````{exercise}
 :label: isd_ex4
 
-Now compute the equilibrium quantity by finding the price that equates supply
-and demand.
+Now compute the equilibrium quantity by finding the quantity that equates supply and demand.
 
 You can do this numerically by finding the root of the excess demand function
 
@@ -904,8 +904,7 @@ Initialize `newton` with a starting guess somewhere close to 1.0.
 
 (Similar initial conditions will give the same result.)
 
-You should find that the equilibrium price agrees with the welfare maximizing
-price, in line with the first fundamental welfare theorem.
+You should find that the equilibrium quantity agrees with the welfare maximizing quantity, in line with the first fundamental welfare theorem.
 
 ````
 

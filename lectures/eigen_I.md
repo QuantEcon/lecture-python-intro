@@ -1093,8 +1093,8 @@ Try to compute the trajectory of $v$ after being transformed by $A$ for $n=4$ it
 ```{code-cell} ipython3
 A = np.array([[1, 2],
               [1, 1]])
-v = (0.4, -0.4)
-n = 11
+v = (2, -2)
+n = 4
 
 # Compute eigenvectors and eigenvalues
 eigenvalues, eigenvectors = np.linalg.eig(A)
@@ -1105,7 +1105,7 @@ print(f'eigenvectors:\n {eigenvectors}')
 plot_series(A, v, n)
 ```
 
-The result seems to converge to the eigenvector of $A$ with the largest eigenvalue.
+The trajectory begins to turn toward the eigenvector of $A$ with the largest eigenvalue.
 
 Let's use a [vector field](https://en.wikipedia.org/wiki/Vector_field) to visualize the transformation brought by A.
 

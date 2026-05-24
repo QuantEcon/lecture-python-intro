@@ -505,11 +505,13 @@ for λ in λ_vals:
     print(f'{λ:>6.2f} | {ρ:>10.4f} | {str(abs(ρ) < 1):>8} | {peak:>20.4f}')
 ```
 
-All four values satisfy the stability condition $|\rho| < 1$ for the default $\alpha = 5$.
+All four values satisfy the stability condition $|\rho| < 1$ for the default $\alpha = 5$ and have $\rho > 0$.
 
-The case $\lambda = 0.86$ is closest to the stability boundary and therefore displays the largest oscillatory response.
+The case $\lambda = 0.86$ has the largest initial overshoot among these four values and then converges the fastest.
 
-As $\lambda$ moves closer to one, expectations become more inertial and the post-stabilization response decays more slowly but starts from a smaller jump.
+As $\lambda$ moves closer to one, expectations become more inertial, so the post-stabilization response decays more slowly but starts from a smaller jump.
+
+For $\alpha = 5$, an oscillatory stable response would require $0.8 < \lambda < 5/6$.
 
 ```{solution-end}
 ```

@@ -403,9 +403,9 @@ np.ones(24), np.ones(20)])
 plot_ts(tax_model, B0, G_seq_pos)
 ```
 
-#### Experiment 2: permanent expenditure shift
+#### Experiment 2: temporary expenditure shift
 
-Now we assume a permanent increase in government expenditures of $L$ in year 21 of the $G$-sequence.
+Now we assume a temporary increase in government expenditures of $L$ beginning in year 21 of the $G$-sequence.
 
 Again we can study positive and negative cases
 
@@ -521,7 +521,7 @@ $$
 which implies that
 
 $$
-\xi_1 \sum_{t=0}^S \phi_t R^{-t} - \xi_0 \sum_{t=0}^S R^{-t} = 0
+\xi_1 \sum_{t=0}^S \phi^t R^{-t} - \xi_0 \sum_{t=0}^S R^{-t} = 0
 $$
 
 which implies that

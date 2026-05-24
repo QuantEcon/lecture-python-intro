@@ -580,7 +580,7 @@ The government prints money to finance expenditure with the "velocity dividend" 
 
 The next code generates a multi-panel graph that includes outcomes of both experiments 1 and 2.
 
-That allows us to assess how important it is to understand whether the sudden permanent drop in $\mu_t$ at $t=T_1$ is fully unanticipated, as in experiment 1, or completely
+That allows us to assess how important it is to understand whether the sudden permanent drop in $\mu_t$ at $t=T_1$ is fully anticipated, as in experiment 1, or completely
 unanticipated, as in experiment 2.
 
 ```{code-cell} ipython3

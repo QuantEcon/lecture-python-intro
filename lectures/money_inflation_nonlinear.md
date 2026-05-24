@@ -210,7 +210,7 @@ $\overline p(m_0)$, which as initial conditions for $p_t$ at time $t$, imply tha
 
 The function $\underline p(m_0)$ will be associated with $\pi_l$ the lower steady-state inflation rate.
 
-The function $\overline p(m_0)$ will be associated with $\pi_u$ the lower steady-state inflation rate.
+The function $\overline p(m_0)$ will be associated with $\pi_u$ the higher steady-state inflation rate.
 
 
 
@@ -434,7 +434,7 @@ We discovered that
 As in {doc}`money_inflation`,
 on grounds of plausibility, we  again recommend  selecting the unique equilibrium that converges to the lower stationary inflation tax rate.
 
-As we shall see, we  accepting  this recommendation is a key ingredient of outcomes of the "unpleasant arithmetic" that we describe in {doc}`unpleasant`.
+As we shall see, accepting this recommendation is a key ingredient of outcomes of the "unpleasant arithmetic" that we describe in {doc}`unpleasant`.
 
 In {doc}`laffer_adaptive`, we shall explore how  {cite}`bruno1990seigniorage` and others justified our equilibrium selection in other ways.
 

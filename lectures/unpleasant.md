@@ -262,7 +262,7 @@ We define a mapping from $p_0$ to $\widehat p_0$ as follows.
 * Set $m_0$ and then compute $B_{-1}$ to satisfy the constraint on time $0$ **open market operations**
 
 $$
-B_{-1}- \check B_{-1}  = \frac{\widetilde R}{p_0} \left( \check m_0 - m_0 \right)
+B_{-1}- \check B_{-1}  = \frac{1}{p_0\widetilde R} \left( \check m_0 - m_0 \right)
 $$
 
 * Compute $B_{T-1}$ from

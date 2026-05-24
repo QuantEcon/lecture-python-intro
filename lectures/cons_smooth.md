@@ -522,7 +522,7 @@ $$
 which implies that
 
 $$
-\xi_1 \sum_{t=0}^T \phi_t R^{-t} - \xi_0 \sum_{t=0}^T R^{-t} = 0
+\xi_1 \sum_{t=0}^T \phi^t R^{-t} - \xi_0 \sum_{t=0}^T R^{-t} = 0
 $$
 
 which implies that

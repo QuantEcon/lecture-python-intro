@@ -356,9 +356,7 @@ In this equation, we can use observed data to evaluate the left hand side of {eq
 
 And we can use a theoretical AR(1) model to calculate the right hand side.
 
-If $\frac{1}{m} \sum_{t = 1}^m X_t$ is not close to $\psi^*(x)$, even for many
-observations, then our theory seems to be incorrect and we will need to revise
-it.
+If $\frac{1}{m} \sum_{t = 1}^m h(X_t)$ is not close to $\int h(x)\psi^*(x) dx$, even for many observations, then our theory seems to be incorrect and we will need to revise it.
 
 
 ## Exercises
@@ -427,8 +425,8 @@ def true_moments_ar1(k):
         return 0
 
 k_vals = np.arange(6) + 1
-sample_moments = np.empty_like(k_vals)
-true_moments = np.empty_like(k_vals)
+sample_moments = np.empty(len(k_vals), dtype=float)
+true_moments = np.empty(len(k_vals), dtype=float)
 
 for k_idx, k in enumerate(k_vals):
     sample_moments[k_idx] = sample_moments_ar1(k)
