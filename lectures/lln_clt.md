@@ -562,7 +562,8 @@ NumPy doesn't provide a `bernoulli` function that we can sample from.
 However, we can generate a draw of Bernoulli $X$ using NumPy via
 
 ```python3
-U = np.random.rand()
+rng = np.random.default_rng()
+U = rng.random()
 X = 1 if U < p else 0
 print(X)
 ```
