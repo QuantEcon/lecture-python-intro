@@ -77,13 +77,13 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=ca16d73eb23eeca4aff446ccb0673818c18f9cfc" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=ff5dcadef89fd2097ea5e28ddaad7eb5985f09c4" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=4c010e0d" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=3a5ece24" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -101,8 +101,8 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
-    <script src="_static/scripts/quantecon-book-theme.js?digest=239405dfbfda750f9038d3ea275d1490a4be841e"></script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=9980b4379844dc0b911d69b62b295f34ede88fac"></script>
     <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
     <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -158,8 +158,27 @@
 <meta property="og:site_name" content="A First Course in Quantitative Economics with Python" />
 <meta name="theme-color" content="#ffffff" />
 
+
+
+
   </head>
 <body>
+
+<!-- Prevent flash of light theme when dark mode is saved -->
+<script>
+(function() {
+  try {
+    if (localStorage.setContrast === '1') {
+      document.body.classList.add('dark-theme');
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  } catch(e) {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+})();
+</script>
 
 <!-- Override QuantEcon theme colors -->
 
@@ -180,7 +199,7 @@
                     
 
                     
-                    <div class="inner">
+                    <div class="inner sticky" data-autoexpand="true">
 
                         
                         <div class="qe-page__toc-header">
@@ -216,12 +235,14 @@
                             
                             
                             
-                            <p><a href="#top"><strong>Back to top</strong></a></p>
+                            
                             
                         </div>
 
                     </div>
 
+                    
+                    <a href="#top" class="back-to-top-btn" title="Back to top">↑ Top</a>
                     
 
                 </div>
@@ -249,7 +270,7 @@
 
                     <!-- Last modified / Changelog dropdown -->
                         <button class="qe-page__header-changed" id="changelog-toggle" aria-expanded="false">
-                            Last changed: Aug 20, 2024
+                            Last changed: May 24, 2026
                             <span class="changelog-icon">▼</span>
                         </button>
 
@@ -257,6 +278,24 @@
                     <div class="qe-page__header-changelog" id="changelog-content" aria-hidden="true">
                         <h4>Changelog (<a href="https://github.com/QuantEcon/lecture-python-intro/commits/main/lectures/time_series_with_matrices.md">full history</a>)</h4>
                         <ul class="changelog-list">
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/ae928c86" class="changelog-hash">ae928c86</a>
+                                
+                                <span class="changelog-author">Humphrey Yang</span>
+                                <span class="changelog-time">14 minutes ago</span>
+                                <span class="changelog-message">Adding Tom's Edits to Exercises (#748)</span>
+                            </li>
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/9483816b" class="changelog-hash">9483816b</a>
+                                
+                                <span class="changelog-author">Chihiro Watanabe</span>
+                                <span class="changelog-time">4 hours ago</span>
+                                <span class="changelog-message">[time_series_with_matrices.md] Update np.random → Generator API (#740)</span>
+                            </li>
                             
                             <li class="changelog-entry">
                                 
@@ -281,7 +320,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/a454f5da" class="changelog-hash">a454f5da</a>
                                 
                                 <span class="changelog-author">Longye Tian</span>
-                                <span class="changelog-time">1 year ago</span>
+                                <span class="changelog-time">2 years ago</span>
                                 <span class="changelog-message">Delete %matplotlib inline in ALL lectures (#429)</span>
                             </li>
                             
@@ -340,7 +379,7 @@
 <p>This lecture uses matrices to solve some linear difference equations.</p>
 <p>As a running example, we’ll study a <strong>second-order linear difference
 equation</strong> that was the key technical tool in Paul Samuelson’s 1939
-article <span id="id1">[<a class="reference internal" href="zreferences.html#id107" title="Paul A. Samuelson. Interactions between the multiplier analysis and the principle of acceleration. Review of Economic Studies, 21(2):75–78, 1939.">Samuelson, 1939</a>]</span> that introduced the <em>multiplier-accelerator model</em>.</p>
+article <span class="bibtex-citation" id="id1">[<a class="reference internal" href="zreferences.html#id107" title="Paul A. Samuelson. Interactions between the multiplier analysis and the principle of acceleration. Review of Economic Studies, 21(2):75–78, 1939.">Samuelson, 1939</a>]</span> that introduced the <em>multiplier-accelerator model</em>.</p>
 <p>This model became the workhorse that powered early econometric versions of
 Keynesian macroeconomic models in the United States.</p>
 <p>You can read about the details of that model in <a class="reference external" href="https://python.quantecon.org/samuelson.html" title="(in Project name not set)"><span>Samuelson Multiplier-Accelerator</span></a>.</p>
@@ -649,8 +688,10 @@ y = A^{-1} \left(b + u\right)
 <p>Let’s try it out in Python.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">σ_u</span> <span class="o">=</span> <span class="mf">2.</span>
-<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">σ_u</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
+
+<span class="n">σ_u</span> <span class="o">=</span> <span class="mf">2.</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">σ_u</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">A_inv</span> <span class="o">@</span> <span class="p">(</span><span class="n">b</span> <span class="o">+</span> <span class="n">u</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -667,7 +708,7 @@ y = A^{-1} \left(b + u\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/473d32fe1267c233d6d667ee59704792d9de63774bdcc932c08b89284658c4ec.png"><img alt="_images/473d32fe1267c233d6d667ee59704792d9de63774bdcc932c08b89284658c4ec.png" src="_images/473d32fe1267c233d6d667ee59704792d9de63774bdcc932c08b89284658c4ec.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/4a8c09eacf11aa26f08b0bc68fc3977f51857ce975ebbab3df595dfe0058a078.png"><img alt="_images/4a8c09eacf11aa26f08b0bc68fc3977f51857ce975ebbab3df595dfe0058a078.png" src="_images/4a8c09eacf11aa26f08b0bc68fc3977f51857ce975ebbab3df595dfe0058a078.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -679,8 +720,8 @@ number of advanced countries in recent decades.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">100</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
-    <span class="n">col</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">viridis</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">())</span>  <span class="c1"># Choose a random color from viridis</span>
-    <span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">σ_u</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
+    <span class="n">col</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">viridis</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">())</span>  <span class="c1"># Choose a random color from viridis</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">σ_u</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">A_inv</span> <span class="o">@</span> <span class="p">(</span><span class="n">b</span> <span class="o">+</span> <span class="n">u</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">T</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">col</span><span class="p">)</span>
 
@@ -692,7 +733,7 @@ number of advanced countries in recent decades.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/14d9600281d89c15fa9c88f44590390c0c1ae8a2564d63a11ad1f36f59bff522.png"><img alt="_images/14d9600281d89c15fa9c88f44590390c0c1ae8a2564d63a11ad1f36f59bff522.png" src="_images/14d9600281d89c15fa9c88f44590390c0c1ae8a2564d63a11ad1f36f59bff522.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/1551bc034a6f7bde2d5153e06f23f13ceacfa2af1cbb1c5df96ccd14580fa3a5.png"><img alt="_images/1551bc034a6f7bde2d5153e06f23f13ceacfa2af1cbb1c5df96ccd14580fa3a5.png" src="_images/1551bc034a6f7bde2d5153e06f23f13ceacfa2af1cbb1c5df96ccd14580fa3a5.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -703,8 +744,8 @@ steady state.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">100</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
-    <span class="n">col</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">viridis</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">())</span>  <span class="c1"># Choose a random color from viridis</span>
-    <span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">σ_u</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
+    <span class="n">col</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">viridis</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">())</span>  <span class="c1"># Choose a random color from viridis</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">σ_u</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
     <span class="n">y_steady</span> <span class="o">=</span> <span class="n">A_inv</span> <span class="o">@</span> <span class="p">(</span><span class="n">b_steady</span> <span class="o">+</span> <span class="n">u</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">T</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">y_steady</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">col</span><span class="p">)</span>
 
@@ -716,7 +757,7 @@ steady state.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/cff5479c8cc6e349dced6780b909f30e82eec7b8253525d4101bb84810102526.png"><img alt="_images/cff5479c8cc6e349dced6780b909f30e82eec7b8253525d4101bb84810102526.png" src="_images/cff5479c8cc6e349dced6780b909f30e82eec7b8253525d4101bb84810102526.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/cc7b06d31e507f8f9929f6803457ff4e06f9bf9bb4f5263c5846708ecbdbd712.png"><img alt="_images/cc7b06d31e507f8f9929f6803457ff4e06f9bf9bb4f5263c5846708ecbdbd712.png" src="_images/cc7b06d31e507f8f9929f6803457ff4e06f9bf9bb4f5263c5846708ecbdbd712.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -789,12 +830,14 @@ y \sim {\mathcal N}(\mu_y, \Sigma_y)
 
         <span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">A_inv</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">σ_u</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">T</span> <span class="o">=</span> <span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">A_inv</span><span class="p">,</span> <span class="n">σ_u</span><span class="p">,</span> <span class="n">T</span>
     
-    <span class="k">def</span><span class="w"> </span><span class="nf">sample_y</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">sample_y</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">rng</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Give a sample of size n of y.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">rng</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
         <span class="n">A_inv</span><span class="p">,</span> <span class="n">σ_u</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">T</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">A_inv</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">σ_u</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">T</span>
-        <span class="n">us</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">σ_u</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="n">T</span><span class="p">])</span>
+        <span class="n">us</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">σ_u</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="n">T</span><span class="p">])</span>
         <span class="n">ys</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">A_inv</span> <span class="o">@</span> <span class="p">(</span><span class="n">b</span> <span class="o">+</span> <span class="n">u</span><span class="p">)</span> <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">us</span><span class="p">])</span>
 
         <span class="k">return</span> <span class="n">ys</span>
@@ -829,8 +872,8 @@ y \sim {\mathcal N}(\mu_y, \Sigma_y)
 <span class="n">N</span> <span class="o">=</span> <span class="mi">100</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
-    <span class="n">col</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">viridis</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">())</span>  <span class="c1"># Choose a random color from viridis</span>
-    <span class="n">ys</span> <span class="o">=</span> <span class="n">series_process</span><span class="o">.</span><span class="n">sample_y</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">col</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">viridis</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">())</span>  <span class="c1"># Choose a random color from viridis</span>
+    <span class="n">ys</span> <span class="o">=</span> <span class="n">series_process</span><span class="o">.</span><span class="n">sample_y</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">rng</span><span class="o">=</span><span class="n">rng</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ys</span><span class="p">[</span><span class="n">i</span><span class="p">,:],</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">col</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">μ_y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
 
@@ -842,11 +885,11 @@ y \sim {\mathcal N}(\mu_y, \Sigma_y)
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/8cb26cf7520e7d295ef8faf5dd333c62d35bfd010c05a16ebb19ba3f94bd8de7.png"><img alt="_images/8cb26cf7520e7d295ef8faf5dd333c62d35bfd010c05a16ebb19ba3f94bd8de7.png" src="_images/8cb26cf7520e7d295ef8faf5dd333c62d35bfd010c05a16ebb19ba3f94bd8de7.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/bfa71d26cfe7fe01b4dc6b5c082aea09d78ffe8d4fed75add4ac56955ec184be.png"><img alt="_images/bfa71d26cfe7fe01b4dc6b5c082aea09d78ffe8d4fed75add4ac56955ec184be.png" src="_images/bfa71d26cfe7fe01b4dc6b5c082aea09d78ffe8d4fed75add4ac56955ec184be.png" style="width: 80%;" />
 </a>
 </div>
 </div>
-<p>Visually, notice how the  variance across realizations of <span class="math notranslate nohighlight">\(y_t\)</span> decreases as <span class="math notranslate nohighlight">\(t\)</span> increases.</p>
+<p>Because the initial conditions are fixed and shocks accumulate over time, the population variance of <span class="math notranslate nohighlight">\(y_t\)</span> increases toward its limiting value.</p>
 <p>Let’s plot the population variance of <span class="math notranslate nohighlight">\(y_t\)</span> against <span class="math notranslate nohighlight">\(t\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1054,7 +1097,7 @@ y_{T}
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">σ_u</span> <span class="o">=</span> <span class="mf">0.</span>
-<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">σ_u</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">σ_u</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">A_inv</span> <span class="o">@</span> <span class="p">(</span><span class="n">b</span> <span class="o">+</span> <span class="n">u</span><span class="p">)</span>
 <span class="n">y_steady</span> <span class="o">=</span> <span class="n">A_inv</span> <span class="o">@</span> <span class="p">(</span><span class="n">b_steady</span> <span class="o">+</span> <span class="n">u</span><span class="p">)</span>
 </pre></div>
@@ -1544,6 +1587,8 @@ steady state.</p>
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/time_series_with_matrices.md" download><i data-feather="github"></i></a></li>
                     -->
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro" download><i data-feather="github"></i></a></li>
+                    
+                    
                 </ul>
 
             </div>

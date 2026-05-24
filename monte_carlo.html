@@ -77,13 +77,13 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=ca16d73eb23eeca4aff446ccb0673818c18f9cfc" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=ff5dcadef89fd2097ea5e28ddaad7eb5985f09c4" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=4c010e0d" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=3a5ece24" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -101,8 +101,8 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
-    <script src="_static/scripts/quantecon-book-theme.js?digest=239405dfbfda750f9038d3ea275d1490a4be841e"></script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=9980b4379844dc0b911d69b62b295f34ede88fac"></script>
     <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
     <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -158,8 +158,27 @@
 <meta property="og:site_name" content="A First Course in Quantitative Economics with Python" />
 <meta name="theme-color" content="#ffffff" />
 
+
+
+
   </head>
 <body>
+
+<!-- Prevent flash of light theme when dark mode is saved -->
+<script>
+(function() {
+  try {
+    if (localStorage.setContrast === '1') {
+      document.body.classList.add('dark-theme');
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  } catch(e) {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+})();
+</script>
 
 <!-- Override QuantEcon theme colors -->
 
@@ -180,7 +199,7 @@
                     
 
                     
-                    <div class="inner">
+                    <div class="inner sticky" data-autoexpand="true">
 
                         
                         <div class="qe-page__toc-header">
@@ -237,12 +256,14 @@
                             
                             
                             
-                            <p><a href="#top"><strong>Back to top</strong></a></p>
+                            
                             
                         </div>
 
                     </div>
 
+                    
+                    <a href="#top" class="back-to-top-btn" title="Back to top">↑ Top</a>
                     
 
                 </div>
@@ -293,7 +314,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/0b46db17" class="changelog-hash">0b46db17</a>
                                 
                                 <span class="changelog-author">Longye Tian</span>
-                                <span class="changelog-time">1 year ago</span>
+                                <span class="changelog-time">2 years ago</span>
                                 <span class="changelog-message">update_monte_carlo</span>
                             </li>
                             
@@ -311,7 +332,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/cbf0b9db" class="changelog-hash">cbf0b9db</a>
                                 
                                 <span class="changelog-author">Smit-create</span>
-                                <span class="changelog-time">2 years ago</span>
+                                <span class="changelog-time">3 years ago</span>
                                 <span class="changelog-message">Add vectorized version</span>
                             </li>
                             
@@ -320,7 +341,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/5805cbd4" class="changelog-hash">5805cbd4</a>
                                 
                                 <span class="changelog-author">Smit-create</span>
-                                <span class="changelog-time">2 years ago</span>
+                                <span class="changelog-time">3 years ago</span>
                                 <span class="changelog-message">suggestion</span>
                             </li>
                             
@@ -329,7 +350,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/647f1a4b" class="changelog-hash">647f1a4b</a>
                                 
                                 <span class="changelog-author">Smit-create</span>
-                                <span class="changelog-time">2 years ago</span>
+                                <span class="changelog-time">3 years ago</span>
                                 <span class="changelog-message">Fixes</span>
                             </li>
                             
@@ -338,7 +359,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/3b625f22" class="changelog-hash">3b625f22</a>
                                 
                                 <span class="changelog-author">Smit-create</span>
-                                <span class="changelog-time">2 years ago</span>
+                                <span class="changelog-time">3 years ago</span>
                                 <span class="changelog-message">Add exercise 2</span>
                             </li>
                             
@@ -347,7 +368,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/aa9ccf36" class="changelog-hash">aa9ccf36</a>
                                 
                                 <span class="changelog-author">John Stachurski</span>
-                                <span class="changelog-time">2 years ago</span>
+                                <span class="changelog-time">3 years ago</span>
                                 <span class="changelog-message">misc</span>
                             </li>
                             
@@ -356,7 +377,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/c101e4bf" class="changelog-hash">c101e4bf</a>
                                 
                                 <span class="changelog-author">Shu</span>
-                                <span class="changelog-time">2 years ago</span>
+                                <span class="changelog-time">3 years ago</span>
                                 <span class="changelog-message">update exercise solution env</span>
                             </li>
                             
@@ -365,7 +386,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/f51b48b1" class="changelog-hash">f51b48b1</a>
                                 
                                 <span class="changelog-author">John Stachurski</span>
-                                <span class="changelog-time">2 years ago</span>
+                                <span class="changelog-time">3 years ago</span>
                                 <span class="changelog-message">misc</span>
                             </li>
                             
@@ -521,11 +542,11 @@ us that the mean and variance are</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3.8 s, sys: 1.14 ms, total: 3.8 s
-Wall time: 3.8 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3.89 s, sys: 867 μs, total: 3.89 s
+Wall time: 3.89 s
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(2.229583786136397)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(2.2298403501377178)
 </pre></div>
 </div>
 </div>
@@ -553,7 +574,7 @@ Wall time: 3.8 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(2.2296772650619796)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(2.229727023034853)
 </pre></div>
 </div>
 </div>
@@ -586,11 +607,11 @@ Wall time: 3.8 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 80.9 ms, sys: 7 ms, total: 87.9 ms
-Wall time: 87.7 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 78.5 ms, sys: 9.01 ms, total: 87.5 ms
+Wall time: 87.3 ms
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(2.229740241398839)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(2.2297133789305787)
 </pre></div>
 </div>
 </div>
@@ -606,11 +627,11 @@ Wall time: 87.7 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 816 ms, sys: 53 ms, total: 869 ms
-Wall time: 868 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 826 ms, sys: 23 ms, total: 849 ms
+Wall time: 849 ms
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(2.2297175955362976)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(2.2297356449704213)
 </pre></div>
 </div>
 </div>
@@ -752,7 +773,7 @@ can be calculated.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The Monte Carlo option price is approximately 1.036982
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The Monte Carlo option price is approximately 1.036928
 </pre></div>
 </div>
 </div>
@@ -874,7 +895,7 @@ volatility (measured by <span class="math notranslate nohighlight">\(\sigma\)</s
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/7f8b09e0d260788d78f7e5a583bb8119949139ecea2e2fdd0354953cc9e58b2d.png"><img alt="_images/7f8b09e0d260788d78f7e5a583bb8119949139ecea2e2fdd0354953cc9e58b2d.png" src="_images/7f8b09e0d260788d78f7e5a583bb8119949139ecea2e2fdd0354953cc9e58b2d.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/eeafd95afae6afbe7eef359e1c6663d8ca8eb38cf4b90ae5e7e69ec7f822b24b.png"><img alt="_images/eeafd95afae6afbe7eef359e1c6663d8ca8eb38cf4b90ae5e7e69ec7f822b24b.png" src="_images/eeafd95afae6afbe7eef359e1c6663d8ca8eb38cf4b90ae5e7e69ec7f822b24b.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -929,11 +950,11 @@ the law of large numbers:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 194 ms, sys: 4 μs, total: 194 ms
-Wall time: 194 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 186 ms, sys: 6 μs, total: 186 ms
+Wall time: 186 ms
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(616.3012431532786)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(676.8935863517772)
 </pre></div>
 </div>
 </div>
@@ -989,11 +1010,11 @@ accurate.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 5.7 ms, sys: 0 ns, total: 5.7 ms
-Wall time: 5.5 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 5.43 ms, sys: 8 μs, total: 5.44 ms
+Wall time: 5.2 ms
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(591.3625786788868)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(642.2226707996922)
 </pre></div>
 </div>
 </div>
@@ -1008,11 +1029,11 @@ Wall time: 5.5 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3min 11s, sys: 34 ms, total: 3min 11s
-Wall time: 3min 11s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3min 10s, sys: 29.9 ms, total: 3min 10s
+Wall time: 3min 10s
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(844.9603726521862)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(869.0476680592188)
 </pre></div>
 </div>
 </div>
@@ -1093,11 +1114,11 @@ Wall time: 3min 11s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.14 s, sys: 999 μs, total: 1.14 s
-Wall time: 1.14 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.12 s, sys: 0 ns, total: 1.12 s
+Wall time: 1.12 s
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.03792676281101194)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.03912185910192249)
 </pre></div>
 </div>
 </div>
@@ -1140,11 +1161,11 @@ Wall time: 1.14 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 28.8 ms, sys: 0 ns, total: 28.8 ms
-Wall time: 28.6 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 28.9 ms, sys: 0 ns, total: 28.9 ms
+Wall time: 28.7 ms
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.03854578034388481)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.04357257101614265)
 </pre></div>
 </div>
 </div>
@@ -1588,6 +1609,8 @@ Wall time: 28.6 ms
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/monte_carlo.md" download><i data-feather="github"></i></a></li>
                     -->
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro" download><i data-feather="github"></i></a></li>
+                    
+                    
                 </ul>
 
             </div>

@@ -77,13 +77,13 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=ca16d73eb23eeca4aff446ccb0673818c18f9cfc" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=ff5dcadef89fd2097ea5e28ddaad7eb5985f09c4" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=4c010e0d" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=3a5ece24" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -101,8 +101,8 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
-    <script src="_static/scripts/quantecon-book-theme.js?digest=239405dfbfda750f9038d3ea275d1490a4be841e"></script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=9980b4379844dc0b911d69b62b295f34ede88fac"></script>
     <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
     <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -158,8 +158,27 @@
 <meta property="og:site_name" content="A First Course in Quantitative Economics with Python" />
 <meta name="theme-color" content="#ffffff" />
 
+
+
+
   </head>
 <body>
+
+<!-- Prevent flash of light theme when dark mode is saved -->
+<script>
+(function() {
+  try {
+    if (localStorage.setContrast === '1') {
+      document.body.classList.add('dark-theme');
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  } catch(e) {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+})();
+</script>
 
 <!-- Override QuantEcon theme colors -->
 
@@ -180,7 +199,7 @@
                     
 
                     
-                    <div class="inner">
+                    <div class="inner sticky" data-autoexpand="true">
 
                         
                         <div class="qe-page__toc-header">
@@ -201,6 +220,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#before-time-t">30.6. Before time <span class="math notranslate nohighlight">\(T\)</span></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithm-pseudo-code">30.7. Algorithm (pseudo code)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-calculations">30.8. Example Calculations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">30.9. Exercises</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -221,12 +241,14 @@
                             
                             
                             
-                            <p><a href="#top"><strong>Back to top</strong></a></p>
+                            
                             
                         </div>
 
                     </div>
 
+                    
+                    <a href="#top" class="back-to-top-btn" title="Back to top">↑ Top</a>
                     
 
                 </div>
@@ -254,7 +276,7 @@
 
                     <!-- Last modified / Changelog dropdown -->
                         <button class="qe-page__header-changed" id="changelog-toggle" aria-expanded="false">
-                            Last changed: Dec 28, 2025
+                            Last changed: May 24, 2026
                             <span class="changelog-icon">▼</span>
                         </button>
 
@@ -265,10 +287,19 @@
                             
                             <li class="changelog-entry">
                                 
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/ae928c86" class="changelog-hash">ae928c86</a>
+                                
+                                <span class="changelog-author">Humphrey Yang</span>
+                                <span class="changelog-time">14 minutes ago</span>
+                                <span class="changelog-message">Adding Tom's Edits to Exercises (#748)</span>
+                            </li>
+                            
+                            <li class="changelog-entry">
+                                
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/21bd3b60" class="changelog-hash">21bd3b60</a>
                                 
                                 <span class="changelog-author">John Stachurski</span>
-                                <span class="changelog-time">1 month ago</span>
+                                <span class="changelog-time">4 months ago</span>
                                 <span class="changelog-message">Fix grammar and spelling errors across lecture files (#688)</span>
                             </li>
                             
@@ -344,15 +375,6 @@
                                 <span class="changelog-message">update links between lectures</span>
                             </li>
                             
-                            <li class="changelog-entry">
-                                
-                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/f4ccaef1" class="changelog-hash">f4ccaef1</a>
-                                
-                                <span class="changelog-author">JingkunZhao</span>
-                                <span class="changelog-time">1 year ago</span>
-                                <span class="changelog-message">[unpleasant] Update editorial suggestions</span>
-                            </li>
-                            
                         </ul>
                     </div>
 
@@ -379,7 +401,7 @@ on currency.</p>
 <p>The critical <strong>money-to-bonds</strong> ratio stabilizes only at time <span class="math notranslate nohighlight">\(T\)</span> and afterwards.</p>
 <p>And the larger is <span class="math notranslate nohighlight">\(T\)</span>, the higher is the gross-of-interest government deficit that must be financed
 by printing money at times <span class="math notranslate nohighlight">\(t \geq T\)</span>.</p>
-<p>These outcomes are the essential finding of Sargent and Wallace’s “unpleasant monetarist arithmetic” <span id="id1">[<a class="reference internal" href="zreferences.html#id293" title="Thomas J Sargent and Neil Wallace. Some unpleasant monetarist arithmetic. Federal reserve bank of minneapolis quarterly review, 5(3):1–17, 1981.">Sargent and Wallace, 1981</a>]</span>.</p>
+<p>These outcomes are the essential finding of Sargent and Wallace’s “unpleasant monetarist arithmetic” <span class="bibtex-citation" id="id1">[<a class="reference internal" href="zreferences.html#id293" title="Thomas J Sargent and Neil Wallace. Some unpleasant monetarist arithmetic. Federal reserve bank of minneapolis quarterly review, 5(3):1–17, 1981.">Sargent and Wallace, 1981</a>]</span>.</p>
 <p>That lecture  described  supplies and demands for money that appear in that lecture.</p>
 <p>It also   characterized the steady state equilibrium from which we work backwards in this lecture.</p>
 <p>In addition to learning about “unpleasant monetarist arithmetic”, in this lecture we’ll learn how to implement a <a class="reference external" href="https://en.wikipedia.org/wiki/Fixed_point_(mathematics)"><em>fixed point</em></a> algorithm for computing an initial price level.</p>
@@ -406,7 +428,7 @@ b_t - b_{t-1} R_{t-1} = g
 <p>The demand for real balances is</p>
 <div class="math notranslate nohighlight" id="equation-eq-up-bdemand">
 <span class="eqno">(30.2)<a class="headerlink" href="#equation-eq-up-bdemand" title="Link to this equation">#</a></span>\[
-b_t = \gamma_1 - \gamma_2 R_t^{-1} . 
+b_t = \gamma_1 - \gamma_2 R_t^{-1} .
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\gamma_1 &gt; \gamma_2 &gt; 0\)</span>.</p>
 </section>
@@ -433,7 +455,7 @@ and <span class="math notranslate nohighlight">\(\widetilde R \check B_{-1}\)</s
 <p>or</p>
 <div class="math notranslate nohighlight" id="equation-eq-openmarketconstraint">
 <span class="eqno">(30.3)<a class="headerlink" href="#equation-eq-openmarketconstraint" title="Link to this equation">#</a></span>\[
-B_{-1} - \check B_{-1} = \frac{1}{p_0 \widetilde R} \left( \check m_0 - m_0 \right)  
+B_{-1} - \check B_{-1} = \frac{1}{p_0 \widetilde R} \left( \check m_0 - m_0 \right)
 \]</div>
 <p>This equation says that the government (e.g., the central bank) can <em>decrease</em> <span class="math notranslate nohighlight">\(m_0\)</span> relative to
 <span class="math notranslate nohighlight">\(\check m_0\)</span> by <em>increasing</em> <span class="math notranslate nohighlight">\(B_{-1}\)</span> relative to <span class="math notranslate nohighlight">\(\check B_{-1}\)</span>.</p>
@@ -442,7 +464,7 @@ B_{-1} - \check B_{-1} = \frac{1}{p_0 \widetilde R} \left( \check m_0 - m_0 \rig
 </section>
 <section id="an-open-market-operation-at-t-0">
 <h2><span class="section-number">30.4. </span>An open market operation at <span class="math notranslate nohighlight">\(t=0\)</span><a class="headerlink" href="#an-open-market-operation-at-t-0" title="Link to this heading">#</a></h2>
-<p>Following Sargent and Wallace <span id="id2">[<a class="reference internal" href="zreferences.html#id293" title="Thomas J Sargent and Neil Wallace. Some unpleasant monetarist arithmetic. Federal reserve bank of minneapolis quarterly review, 5(3):1–17, 1981.">Sargent and Wallace, 1981</a>]</span>, we analyze consequences of a central bank policy that
+<p>Following Sargent and Wallace <span class="bibtex-citation" id="id2">[<a class="reference internal" href="zreferences.html#id293" title="Thomas J Sargent and Neil Wallace. Some unpleasant monetarist arithmetic. Federal reserve bank of minneapolis quarterly review, 5(3):1–17, 1981.">Sargent and Wallace, 1981</a>]</span>, we analyze consequences of a central bank policy that
 uses an open market operation to lower the price level in the face of a persistent fiscal
 deficit that takes the form of a positive <span class="math notranslate nohighlight">\(g\)</span>.</p>
 <p>Just before time <span class="math notranslate nohighlight">\(0\)</span>, the government chooses <span class="math notranslate nohighlight">\((m_0, B_{-1})\)</span>  subject to constraint
@@ -452,7 +474,7 @@ deficit that takes the form of a positive <span class="math notranslate nohighli
 \[
 \begin{aligned}
 B_t &amp; = \widetilde R B_{t-1} + g \cr
-m_{t+1} &amp;  = m_0 
+m_{t+1} &amp;  = m_0
 \end{aligned}
 \]</div>
 <p>while for <span class="math notranslate nohighlight">\(t \geq T\)</span>,</p>
@@ -502,7 +524,7 @@ p_T &amp; = \frac{m_0}{\gamma_1 - \overline g - \gamma_2 R_u^{-1}}
 b_t &amp; = b_{t-1} R_{t-1} + \overline g \cr
 R_t^{-1} &amp; = \frac{\gamma_1}{\gamma_2} - \gamma_2^{-1} b_t \cr
 p_t &amp; = R_t p_{t-1} \cr
-   m_t &amp; = b_{t-1} p_t 
+   m_t &amp; = b_{t-1} p_t
 \end{aligned}
 \]</div>
 </section>
@@ -516,7 +538,7 @@ p_t &amp; = R_t p_{t-1} \cr
 <p>Our restrictions that <span class="math notranslate nohighlight">\(\gamma_1 &gt; \gamma_2 &gt; 0\)</span> imply that <span class="math notranslate nohighlight">\(\lambda \in [0,1)\)</span>.</p>
 <p>We want to compute</p>
 <div class="math notranslate nohighlight">
-\[ 
+\[
 \begin{aligned}
 p_0 &amp;  = \gamma_1^{-1} \left[ \sum_{j=0}^\infty \lambda^j m_{j} \right] \cr
 &amp; = \gamma_1^{-1} \left[ \sum_{j=0}^{T-1} \lambda^j m_{0} + \sum_{j=T}^\infty \lambda^j m_{1+j} \right]
@@ -566,7 +588,7 @@ Python coder.</p>
 </ul>
 <div class="math notranslate nohighlight">
 \[
-B_{-1}- \check B_{-1}  = \frac{\widetilde R}{p_0} \left( \check m_0 - m_0 \right)
+B_{-1}- \check B_{-1}  = \frac{1}{p_0\widetilde R} \left( \check m_0 - m_0 \right)
 \]</div>
 <ul class="simple">
 <li><p>Compute <span class="math notranslate nohighlight">\(B_{T-1}\)</span> from</p></li>
@@ -597,7 +619,7 @@ B_{T-1} = \widetilde R^T B_{-1} + \left( \frac{1 - \widetilde R^T}{1-\widetilde 
 </ul>
 <div class="math notranslate nohighlight">
 \[
-p_{0,j+1} = (1-\theta)  {\mathcal S}(p_{0,j})  + \theta  p_{0,j}, 
+p_{0,j+1} = (1-\theta)  {\mathcal S}(p_{0,j})  + \theta  p_{0,j},
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\theta \in [0,1)\)</span> is a relaxation parameter.</p>
 </section>
@@ -606,8 +628,8 @@ p_{0,j+1} = (1-\theta)  {\mathcal S}(p_{0,j})  + \theta  p_{0,j},
 <h2><span class="section-number">30.8. </span>Example Calculations<a class="headerlink" href="#example-calculations" title="Link to this heading">#</a></h2>
 <p>We’ll set parameters of the model so that the steady state after time <span class="math notranslate nohighlight">\(T\)</span> is initially the same
 as in <a class="reference internal" href="money_inflation_nonlinear.html"><span class="doc">Inflation Rate Laffer Curves</span></a></p>
-<p>In particular, we set <span class="math notranslate nohighlight">\(\gamma_1=100, \gamma_2 =50, g=3.0\)</span>.  We set <span class="math notranslate nohighlight">\(m_0 = 100\)</span> in that lecture,
-but now the counterpart will be <span class="math notranslate nohighlight">\(M_T\)</span>, which is endogenous.</p>
+<p>In particular, we set <span class="math notranslate nohighlight">\(\gamma_1=100, \gamma_2 =50, g=3.0\)</span>.</p>
+<p>We set <span class="math notranslate nohighlight">\(m_0 = 100\)</span> in that lecture, but now the counterpart will be <span class="math notranslate nohighlight">\(M_T\)</span>, which is endogenous.</p>
 <p>As for new parameters, we’ll set <span class="math notranslate nohighlight">\(\tilde R = 1.01, \check B_{-1} = 0, \check m_0 = 105, T = 5\)</span>.</p>
 <p>We’ll study a “small” open market operation by setting <span class="math notranslate nohighlight">\(m_0 = 100\)</span>.</p>
 <p>These parameter settings mean that just before time <span class="math notranslate nohighlight">\(0\)</span>, the “central bank” sells the public bonds in exchange for <span class="math notranslate nohighlight">\(\check m_0 - m_0 = 5\)</span> units of currency.</p>
@@ -628,7 +650,7 @@ but now the counterpart will be <span class="math notranslate nohighlight">\(M_T
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a namedtuple that contains parameters</span>
-<span class="n">MoneySupplyModel</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">&quot;MoneySupplyModel&quot;</span><span class="p">,</span> 
+<span class="n">MoneySupplyModel</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">&quot;MoneySupplyModel&quot;</span><span class="p">,</span>
                               <span class="p">[</span><span class="s2">&quot;γ1&quot;</span><span class="p">,</span> <span class="s2">&quot;γ2&quot;</span><span class="p">,</span> <span class="s2">&quot;g&quot;</span><span class="p">,</span>
                                <span class="s2">&quot;R_tilde&quot;</span><span class="p">,</span> <span class="s2">&quot;m0_check&quot;</span><span class="p">,</span> <span class="s2">&quot;Bm1_check&quot;</span><span class="p">,</span>
                                <span class="s2">&quot;T&quot;</span><span class="p">])</span>
@@ -637,7 +659,7 @@ but now the counterpart will be <span class="math notranslate nohighlight">\(M_T
                  <span class="n">R_tilde</span><span class="o">=</span><span class="mf">1.01</span><span class="p">,</span>
                  <span class="n">Bm1_check</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">m0_check</span><span class="o">=</span><span class="mi">105</span><span class="p">,</span>
                  <span class="n">T</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
-    
+
     <span class="k">return</span> <span class="n">MoneySupplyModel</span><span class="p">(</span><span class="n">γ1</span><span class="o">=</span><span class="n">γ1</span><span class="p">,</span> <span class="n">γ2</span><span class="o">=</span><span class="n">γ2</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="n">g</span><span class="p">,</span>
                             <span class="n">R_tilde</span><span class="o">=</span><span class="n">R_tilde</span><span class="p">,</span>
                             <span class="n">m0_check</span><span class="o">=</span><span class="n">m0_check</span><span class="p">,</span> <span class="n">Bm1_check</span><span class="o">=</span><span class="n">Bm1_check</span><span class="p">,</span>
@@ -706,7 +728,7 @@ but now the counterpart will be <span class="math notranslate nohighlight">\(M_T
 money supply <span class="math notranslate nohighlight">\(m_0\)</span>.</p>
 <p>Notice that the slope of <span class="math notranslate nohighlight">\(p_0\)</span> as a function of <span class="math notranslate nohighlight">\(m_0\)</span> is constant.</p>
 <p>This outcome indicates that our model verifies a quantity theory of money outcome,
-something that Sargent and Wallace <span id="id3">[<a class="reference internal" href="zreferences.html#id293" title="Thomas J Sargent and Neil Wallace. Some unpleasant monetarist arithmetic. Federal reserve bank of minneapolis quarterly review, 5(3):1–17, 1981.">Sargent and Wallace, 1981</a>]</span> purposefully built into their model to justify
+something that Sargent and Wallace <span class="bibtex-citation" id="id3">[<a class="reference internal" href="zreferences.html#id293" title="Thomas J Sargent and Neil Wallace. Some unpleasant monetarist arithmetic. Federal reserve bank of minneapolis quarterly review, 5(3):1–17, 1981.">Sargent and Wallace, 1981</a>]</span> purposefully built into their model to justify
 the adjective <em>monetarist</em> in their title.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -788,13 +810,13 @@ the adjective <em>monetarist</em> in their title.</p>
 
     <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
     <span class="n">titles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;$p_t$&#39;</span><span class="p">,</span> <span class="s1">&#39;$m_t$&#39;</span><span class="p">,</span> <span class="s1">&#39;$b_t$&#39;</span><span class="p">,</span> <span class="s1">&#39;$R_t$&#39;</span><span class="p">]</span>
-    
+
     <span class="k">for</span> <span class="n">m0</span> <span class="ow">in</span> <span class="n">m0_arr</span><span class="p">:</span>
         <span class="n">paths</span> <span class="o">=</span> <span class="n">simulate</span><span class="p">(</span><span class="n">m0</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="n">length</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">axs</span><span class="o">.</span><span class="n">flat</span><span class="p">):</span>
             <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">paths</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
             <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">titles</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-    
+
     <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">m0_check</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
     <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">length</span> <span class="o">*</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">m0_check</span> <span class="o">*</span> <span class="mf">0.9</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$\check</span><span class="si">{m}</span><span class="s1">_0$&#39;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -818,13 +840,247 @@ the adjective <em>monetarist</em> in their title.</p>
 </figure>
 </div>
 </div>
-<p><a class="reference internal" href="#fig-unpl1"><span class="std std-numref">Fig. 30.1</span></a> summarizes outcomes of two experiments that convey messages of Sargent and Wallace <span id="id4">[<a class="reference internal" href="zreferences.html#id293" title="Thomas J Sargent and Neil Wallace. Some unpleasant monetarist arithmetic. Federal reserve bank of minneapolis quarterly review, 5(3):1–17, 1981.">Sargent and Wallace, 1981</a>]</span>.</p>
+<p><a class="reference internal" href="#fig-unpl1"><span class="std std-numref">Fig. 30.1</span></a> summarizes outcomes of two experiments that convey messages of Sargent and Wallace <span class="bibtex-citation" id="id4">[<a class="reference internal" href="zreferences.html#id293" title="Thomas J Sargent and Neil Wallace. Some unpleasant monetarist arithmetic. Federal reserve bank of minneapolis quarterly review, 5(3):1–17, 1981.">Sargent and Wallace, 1981</a>]</span>.</p>
 <ul class="simple">
 <li><p>An open market operation that reduces the supply of money at time <span class="math notranslate nohighlight">\(t=0\)</span> reduces  the price level at time <span class="math notranslate nohighlight">\(t=0\)</span></p></li>
 <li><p>The lower is the post-open-market-operation money supply at time <span class="math notranslate nohighlight">\(0\)</span>, lower is the price level at time <span class="math notranslate nohighlight">\(0\)</span>.</p></li>
 <li><p>An open  market operation that reduces the post open market operation money supply at time <span class="math notranslate nohighlight">\(0\)</span> also <em>lowers</em> the rate of return on money <span class="math notranslate nohighlight">\(R_u\)</span> at times <span class="math notranslate nohighlight">\(t \geq T\)</span> because it brings  a higher gross of interest government deficit that must be financed by printing money (i.e., levying an inflation tax) at time <span class="math notranslate nohighlight">\(t \geq T\)</span>.</p></li>
 <li><p><span class="math notranslate nohighlight">\(R\)</span> is important in the context of maintaining monetary stability and addressing the consequences of increased inflation due to government deficits. Thus, a larger <span class="math notranslate nohighlight">\(R\)</span> might be chosen to mitigate the negative impacts on the real rate of return caused by inflation.</p></li>
 </ul>
+</section>
+<section id="exercises">
+<h2><span class="section-number">30.9. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<div class="exercise admonition" id="un_ex1">
+
+<p class="admonition-title"><span class="caption-number">Exercise 30.1 </span></p>
+<section id="exercise-content">
+<p><strong>How the length of the tight-money period <span class="math notranslate nohighlight">\(T\)</span> amplifies unpleasant arithmetic.</strong></p>
+<p>The lecture shows that a central bank open-market operation that reduces <span class="math notranslate nohighlight">\(m_0\)</span>
+at <span class="math notranslate nohighlight">\(t = 0\)</span> lowers the price level immediately but forces a higher
+post-<span class="math notranslate nohighlight">\(T\)</span> deficit <span class="math notranslate nohighlight">\(\bar g\)</span> and therefore a lower rate of return <span class="math notranslate nohighlight">\(R_u\)</span> (higher
+inflation) forever after.</p>
+<p>The same mechanism operates as <span class="math notranslate nohighlight">\(T\)</span> grows: holding <span class="math notranslate nohighlight">\(m_0 = 100\)</span> fixed, a longer
+period of bond-financed deficits accumulates more interest-bearing debt
+<span class="math notranslate nohighlight">\(B_{T-1}\)</span> that must eventually be serviced by printing money.</p>
+<p>Fix <span class="math notranslate nohighlight">\(m_0 = 100\)</span> and vary <span class="math notranslate nohighlight">\(T \in \{1, 3, 5, 10, 20\}\)</span>.  For each <span class="math notranslate nohighlight">\(T\)</span>:</p>
+<p>a. Use <code class="docutils literal notranslate"><span class="pre">simulate</span></code> to obtain the stationary post-<span class="math notranslate nohighlight">\(T\)</span> rate of return
+<span class="math notranslate nohighlight">\(R_u\)</span> (it equals <code class="docutils literal notranslate"><span class="pre">paths[3,</span> <span class="pre">T]</span></code>).</p>
+<p>b. Compute the post-<span class="math notranslate nohighlight">\(T\)</span> government deficit
+<span class="math notranslate nohighlight">\(\bar g = g + (\tilde R - 1) B_{T-1}\)</span> directly from the model parameters
+and the fixed-point <span class="math notranslate nohighlight">\(p_0\)</span>.</p>
+<p>c. Plot <span class="math notranslate nohighlight">\(R_u\)</span> and <span class="math notranslate nohighlight">\(\bar g\)</span> against <span class="math notranslate nohighlight">\(T\)</span> on side-by-side panels and explain
+why <span class="math notranslate nohighlight">\(R_u\)</span> falls and <span class="math notranslate nohighlight">\(\bar g\)</span> rises as <span class="math notranslate nohighlight">\(T\)</span> increases.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="unpleasant-solution-3">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#un_ex1"> Exercise 30.1</a></p>
+<section id="solution-content">
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m0</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">T_values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
+
+<span class="n">R_u_list</span>  <span class="o">=</span> <span class="p">[]</span>
+<span class="n">g_bar_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">T_val</span> <span class="ow">in</span> <span class="n">T_values</span><span class="p">:</span>
+    <span class="n">model_T</span> <span class="o">=</span> <span class="n">create_model</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="n">T_val</span><span class="p">)</span>
+    <span class="c1"># equilibrium price level</span>
+    <span class="n">p0</span> <span class="o">=</span> <span class="n">compute_fixed_point</span><span class="p">(</span><span class="n">m0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">model_T</span><span class="p">)</span>
+    <span class="c1"># open-market operation creates bonds</span>
+    <span class="n">Bm1</span>   <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">p0</span> <span class="o">*</span> <span class="n">model_T</span><span class="o">.</span><span class="n">R_tilde</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="n">model_T</span><span class="o">.</span><span class="n">m0_check</span> <span class="o">-</span> <span class="n">m0</span><span class="p">)</span> \
+            <span class="o">+</span> <span class="n">model_T</span><span class="o">.</span><span class="n">Bm1_check</span>
+    <span class="n">BTm1</span>  <span class="o">=</span> <span class="p">(</span><span class="n">model_T</span><span class="o">.</span><span class="n">R_tilde</span> <span class="o">**</span> <span class="n">T_val</span> <span class="o">*</span> <span class="n">Bm1</span>
+             <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">model_T</span><span class="o">.</span><span class="n">R_tilde</span> <span class="o">**</span> <span class="n">T_val</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">model_T</span><span class="o">.</span><span class="n">R_tilde</span><span class="p">)</span> <span class="o">*</span> <span class="n">model_T</span><span class="o">.</span><span class="n">g</span><span class="p">)</span>
+    <span class="n">g_bar</span> <span class="o">=</span> <span class="n">model_T</span><span class="o">.</span><span class="n">g</span> <span class="o">+</span> <span class="p">(</span><span class="n">model_T</span><span class="o">.</span><span class="n">R_tilde</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">BTm1</span>
+    <span class="n">g_bar_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">g_bar</span><span class="p">)</span>
+    <span class="c1"># post-T rate of return from simulate</span>
+    <span class="n">paths</span> <span class="o">=</span> <span class="n">simulate</span><span class="p">(</span><span class="n">m0</span><span class="p">,</span> <span class="n">model_T</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="n">T_val</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">R_u_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">paths</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="n">T_val</span><span class="p">])</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_values</span><span class="p">,</span> <span class="n">R_u_list</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$T$&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$R_u$  (post-$T$ rate of return)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Longer tight-money period lowers $R_u$&#39;</span><span class="p">)</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_values</span><span class="p">,</span> <span class="n">g_bar_list</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:orange&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$T$&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\bar</span><span class="si">{g}</span><span class="s1">$  (post-$T$ deficit)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Longer tight-money period raises $</span><span class="se">\\</span><span class="s1">bar</span><span class="si">{g}</span><span class="s1">$&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="s1">&#39;T&#39;</span><span class="si">:</span><span class="s2">&gt;4</span><span class="si">}</span><span class="s2">  </span><span class="si">{</span><span class="s1">&#39;g_bar&#39;</span><span class="si">:</span><span class="s2">&gt;8</span><span class="si">}</span><span class="s2">  </span><span class="si">{</span><span class="s1">&#39;R_u&#39;</span><span class="si">:</span><span class="s2">&gt;8</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">26</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">T_val</span><span class="p">,</span> <span class="n">g_b</span><span class="p">,</span> <span class="n">Ru</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">T_values</span><span class="p">,</span> <span class="n">g_bar_list</span><span class="p">,</span> <span class="n">R_u_list</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">T_val</span><span class="si">:</span><span class="s2">&gt;4</span><span class="si">}</span><span class="s2">  </span><span class="si">{</span><span class="n">g_b</span><span class="si">:</span><span class="s2">&gt;8.4f</span><span class="si">}</span><span class="s2">  </span><span class="si">{</span><span class="n">Ru</span><span class="si">:</span><span class="s2">&gt;8.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/6bf5aa4aea0c1daf9e21c38b6b8150061c3f6e1cc052a8b921ed0271750953e9.png"><img alt="_images/6bf5aa4aea0c1daf9e21c38b6b8150061c3f6e1cc052a8b921ed0271750953e9.png" src="_images/6bf5aa4aea0c1daf9e21c38b6b8150061c3f6e1cc052a8b921ed0271750953e9.png" style="width: 80%;" />
+</a>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   T     g_bar       R_u
+--------------------------
+   1    3.0532    0.9343
+   3    3.1159    0.9328
+   5    3.1789    0.9314
+  10    3.3412    0.9275
+  20    3.6908    0.9191
+</pre></div>
+</div>
+</div>
+</div>
+<p>Each additional period that <span class="math notranslate nohighlight">\(m_t\)</span> is held fixed forces the government to roll
+over its bonds at gross rate <span class="math notranslate nohighlight">\(\tilde R &gt; 1\)</span>, compounding the stock <span class="math notranslate nohighlight">\(B_{T-1}\)</span> and therefore raising <span class="math notranslate nohighlight">\(\bar g\)</span>.</p>
+<p>A higher <span class="math notranslate nohighlight">\(\bar g\)</span> sits further up the seigniorage Laffer curve, requiring a
+lower <span class="math notranslate nohighlight">\(R_u\)</span>, or higher inflation tax rate.</p>
+<p>This is the core mechanism of “unpleasant monetarist arithmetic”: tighter
+money today makes the long-run inflation rate higher, not lower.</p>
+</section>
+</div>
+<div class="exercise admonition" id="un_ex2">
+
+<p class="admonition-title"><span class="caption-number">Exercise 30.2 </span></p>
+<section id="exercise-content">
+<p><strong>The fiscal limit: how large can <span class="math notranslate nohighlight">\(T\)</span> be?</strong></p>
+<p>The post-<span class="math notranslate nohighlight">\(T\)</span> deficit <span class="math notranslate nohighlight">\(\bar g\)</span> must be financeable by the inflation tax, which
+means it cannot exceed the maximum seigniorage revenue
+<span class="math notranslate nohighlight">\(g_{\rm max} = S(\bar R_{\rm max})\)</span> from the Laffer curve.</p>
+<p>With <span class="math notranslate nohighlight">\(m_0 = 100\)</span> and the default parameters, find the <strong>fiscal limit</strong>
+<span class="math notranslate nohighlight">\(T^*\)</span>: the largest integer <span class="math notranslate nohighlight">\(T\)</span> for which a feasible stationary equilibrium
+still exists after time <span class="math notranslate nohighlight">\(T\)</span> (i.e., <span class="math notranslate nohighlight">\(\bar g \leq g_{\rm max}\)</span>).</p>
+<p>a. Compute <span class="math notranslate nohighlight">\(g_{\rm max} = (\gamma_1 + \gamma_2) - \gamma_2/\bar R_{\rm max}
+    - \gamma_1 \bar R_{\rm max}\)</span> where <span class="math notranslate nohighlight">\(\bar R_{\rm max} = \sqrt{\gamma_2/\gamma_1}\)</span>.</p>
+<p>b. For <span class="math notranslate nohighlight">\(T = 1, 2, \ldots, 150\)</span>, compute <span class="math notranslate nohighlight">\(\bar g(T)\)</span> as in <a class="reference internal" href="#un_ex1"><span class="std std-numref">Exercise 30.1</span></a>.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Plot $\bar g(T)$ and $g_{\rm max}$ on the same axes and shade the infeasible region.
+</pre></div>
+</div>
+<p>c. Identify <span class="math notranslate nohighlight">\(T^*\)</span>, print <span class="math notranslate nohighlight">\(\bar g\)</span> at <span class="math notranslate nohighlight">\(T^*\)</span>, and verify that no feasible real fixed point exists at <span class="math notranslate nohighlight">\(T^* + 1\)</span>.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="unpleasant-solution-5">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#un_ex2"> Exercise 30.2</a></p>
+<section id="solution-content">
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">γ1</span><span class="p">,</span> <span class="n">γ2</span> <span class="o">=</span> <span class="n">msm</span><span class="o">.</span><span class="n">γ1</span><span class="p">,</span> <span class="n">msm</span><span class="o">.</span><span class="n">γ2</span>
+
+<span class="c1"># Part a: Laffer-curve peak</span>
+<span class="n">R_max</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">γ2</span> <span class="o">/</span> <span class="n">γ1</span><span class="p">)</span>
+<span class="n">g_max</span>   <span class="o">=</span> <span class="p">(</span><span class="n">γ1</span> <span class="o">+</span> <span class="n">γ2</span><span class="p">)</span> <span class="o">-</span> <span class="n">γ2</span> <span class="o">/</span> <span class="n">R_max</span> <span class="o">-</span> <span class="n">γ1</span> <span class="o">*</span> <span class="n">R_max</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;R_max  = </span><span class="si">{</span><span class="n">R_max</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;g_max  = </span><span class="si">{</span><span class="n">g_max</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Part b: g_bar for T = 1 ... 150</span>
+<span class="n">m0</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">T_candidates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">151</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">S_with_g_bar</span><span class="p">(</span><span class="n">p0</span><span class="p">,</span> <span class="n">m0</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+    <span class="n">γ1</span><span class="p">,</span> <span class="n">γ2</span><span class="p">,</span> <span class="n">g</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">γ1</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">γ2</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">g</span>
+    <span class="n">R_tilde</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">R_tilde</span>
+    <span class="n">m0_check</span><span class="p">,</span> <span class="n">Bm1_check</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">m0_check</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">Bm1_check</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">T</span>
+
+    <span class="n">Bm1</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">p0</span> <span class="o">*</span> <span class="n">R_tilde</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">m0_check</span> <span class="o">-</span> <span class="n">m0</span><span class="p">)</span> <span class="o">+</span> <span class="n">Bm1_check</span>
+    <span class="n">BTm1</span> <span class="o">=</span> <span class="p">(</span><span class="n">R_tilde</span> <span class="o">**</span> <span class="n">T</span> <span class="o">*</span> <span class="n">Bm1</span>
+            <span class="o">+</span> <span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">R_tilde</span> <span class="o">**</span> <span class="n">T</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">R_tilde</span><span class="p">))</span> <span class="o">*</span> <span class="n">g</span><span class="p">)</span>
+    <span class="n">g_bar</span> <span class="o">=</span> <span class="n">g</span> <span class="o">+</span> <span class="p">(</span><span class="n">R_tilde</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">BTm1</span>
+
+    <span class="n">disc</span> <span class="o">=</span> <span class="p">(</span><span class="n">γ1</span> <span class="o">+</span> <span class="n">γ2</span> <span class="o">-</span> <span class="n">g_bar</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">γ1</span> <span class="o">*</span> <span class="n">γ2</span>
+    <span class="k">if</span> <span class="n">disc</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="kc">False</span>
+
+    <span class="n">Ru</span> <span class="o">=</span> <span class="p">((</span><span class="n">γ1</span> <span class="o">+</span> <span class="n">γ2</span> <span class="o">-</span> <span class="n">g_bar</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">disc</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">γ1</span><span class="p">)</span>
+    <span class="n">λ</span> <span class="o">=</span> <span class="n">γ2</span> <span class="o">/</span> <span class="n">γ1</span>
+    <span class="n">p0_new</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">γ1</span><span class="p">)</span> <span class="o">*</span> <span class="n">m0</span> <span class="o">*</span> <span class="p">(</span>
+        <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">λ</span> <span class="o">**</span> <span class="n">T</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">λ</span><span class="p">)</span> <span class="o">+</span> <span class="n">λ</span> <span class="o">**</span> <span class="n">T</span> <span class="o">/</span> <span class="p">(</span><span class="n">Ru</span> <span class="o">-</span> <span class="n">λ</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">p0_new</span><span class="p">,</span> <span class="n">g_bar</span><span class="p">,</span> <span class="kc">True</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_fixed_point_and_g_bar</span><span class="p">(</span><span class="n">T_val</span><span class="p">,</span> <span class="n">m0</span><span class="p">,</span> <span class="n">p0_guess</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                                  <span class="n">θ</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">10_000</span><span class="p">):</span>
+    <span class="n">model_T</span> <span class="o">=</span> <span class="n">create_model</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">T_val</span><span class="p">))</span>
+    <span class="n">p0</span> <span class="o">=</span> <span class="n">p0_guess</span>
+
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_iter</span><span class="p">):</span>
+        <span class="n">p0_new</span><span class="p">,</span> <span class="n">g_bar</span><span class="p">,</span> <span class="n">real_roots</span> <span class="o">=</span> <span class="n">S_with_g_bar</span><span class="p">(</span><span class="n">p0</span><span class="p">,</span> <span class="n">m0</span><span class="p">,</span> <span class="n">model_T</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">real_roots</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="kc">False</span>
+
+        <span class="n">p0_next</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">θ</span><span class="p">)</span> <span class="o">*</span> <span class="n">p0_new</span> <span class="o">+</span> <span class="n">θ</span> <span class="o">*</span> <span class="n">p0</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">p0_next</span> <span class="o">-</span> <span class="n">p0</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">tol</span><span class="p">:</span>
+            <span class="n">_</span><span class="p">,</span> <span class="n">g_bar</span><span class="p">,</span> <span class="n">real_roots</span> <span class="o">=</span> <span class="n">S_with_g_bar</span><span class="p">(</span><span class="n">p0_next</span><span class="p">,</span> <span class="n">m0</span><span class="p">,</span> <span class="n">model_T</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">p0_next</span><span class="p">,</span> <span class="n">g_bar</span><span class="p">,</span> <span class="n">real_roots</span>
+
+        <span class="n">p0</span> <span class="o">=</span> <span class="n">p0_next</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="kc">False</span>
+
+<span class="n">g_bar_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">T_candidates</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+<span class="n">p0_guess</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">T_val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">T_candidates</span><span class="p">):</span>
+    <span class="n">p0_star</span><span class="p">,</span> <span class="n">g_bar</span><span class="p">,</span> <span class="n">real_roots</span> <span class="o">=</span> <span class="n">compute_fixed_point_and_g_bar</span><span class="p">(</span>
+        <span class="n">T_val</span><span class="p">,</span> <span class="n">m0</span><span class="p">,</span> <span class="n">p0_guess</span><span class="o">=</span><span class="n">p0_guess</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">real_roots</span><span class="p">:</span>
+        <span class="n">g_bar_arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">g_bar</span>
+        <span class="n">p0_guess</span> <span class="o">=</span> <span class="n">p0_star</span>
+
+<span class="n">finite</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">g_bar_arr</span><span class="p">)</span>
+<span class="n">feasible</span> <span class="o">=</span> <span class="n">finite</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">g_bar_arr</span> <span class="o">&lt;=</span> <span class="n">g_max</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_candidates</span><span class="p">[</span><span class="n">finite</span><span class="p">],</span> <span class="n">g_bar_arr</span><span class="p">[</span><span class="n">finite</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\bar</span><span class="si">{g}</span><span class="s1">(T)$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">g_max</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
+           <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$g_</span><span class="se">{{\\</span><span class="s1">rm max</span><span class="se">}}</span><span class="s1"> = </span><span class="si">{</span><span class="n">g_max</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">feasible</span><span class="p">):</span>
+    <span class="n">T_star</span> <span class="o">=</span> <span class="n">T_candidates</span><span class="p">[</span><span class="n">feasible</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="n">T_star</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">T_candidates</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span>
+               <span class="n">label</span><span class="o">=</span><span class="s1">&#39;infeasible region&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$T$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;post-$T$ deficit $\bar</span><span class="si">{g}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Fiscal limit: $</span><span class="se">\\</span><span class="s1">bar</span><span class="si">{g}</span><span class="s1">(T)$ vs Laffer-curve maximum&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Part c: fiscal limit T*</span>
+<span class="n">p0_next</span><span class="p">,</span> <span class="n">g_bar_next</span><span class="p">,</span> <span class="n">real_next</span> <span class="o">=</span> <span class="n">compute_fixed_point_and_g_bar</span><span class="p">(</span>
+    <span class="n">T_star</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">m0</span><span class="p">,</span> <span class="n">p0_guess</span><span class="o">=</span><span class="n">p0_guess</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Fiscal limit T* = </span><span class="si">{</span><span class="n">T_star</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  g_bar(T*)   = </span><span class="si">{</span><span class="n">g_bar_arr</span><span class="p">[</span><span class="n">T_star</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">  &lt;=  g_max = </span><span class="si">{</span><span class="n">g_max</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Feasible real fixed point at T*+1 = </span><span class="si">{</span><span class="n">T_star</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">real_next</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R_max  = 0.7071
+g_max  = 8.5786
+
+Fiscal limit T* = 104
+  g_bar(T*)   = 8.5136  &lt;=  g_max = 8.5786
+  Feasible real fixed point at T*+1 = 105: False
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/2800afc55328c237f2fbc399f2f3480df9f437b693310c3f5f4679e1a08cbc3d.png"><img alt="_images/2800afc55328c237f2fbc399f2f3480df9f437b693310c3f5f4679e1a08cbc3d.png" src="_images/2800afc55328c237f2fbc399f2f3480df9f437b693310c3f5f4679e1a08cbc3d.png" style="width: 80%;" />
+</a>
+</div>
+</div>
+<p>Beyond <span class="math notranslate nohighlight">\(T^*\)</span>, the accumulated bond debt <span class="math notranslate nohighlight">\(B_{T-1}\)</span> is so large that the
+implied <span class="math notranslate nohighlight">\(\bar g\)</span> exceeds the peak of the seigniorage Laffer curve.</p>
+<p>No matter how high the government sets the inflation tax rate, it cannot
+raise enough revenue to service that debt.</p>
+<p>The fiscal limit is therefore a hard constraint on how long a tight-money
+policy can be pursued before the underlying fiscal arithmetic becomes incoherent.</p>
+</section>
+</div>
 </section>
 </section>
 
@@ -1262,6 +1518,8 @@ the adjective <em>monetarist</em> in their title.</p>
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/unpleasant.md" download><i data-feather="github"></i></a></li>
                     -->
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro" download><i data-feather="github"></i></a></li>
+                    
+                    
                 </ul>
 
             </div>

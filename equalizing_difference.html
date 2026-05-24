@@ -77,13 +77,13 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=ca16d73eb23eeca4aff446ccb0673818c18f9cfc" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=ff5dcadef89fd2097ea5e28ddaad7eb5985f09c4" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=4c010e0d" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=3a5ece24" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -101,8 +101,8 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
-    <script src="_static/scripts/quantecon-book-theme.js?digest=239405dfbfda750f9038d3ea275d1490a4be841e"></script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=9980b4379844dc0b911d69b62b295f34ede88fac"></script>
     <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
     <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -158,8 +158,27 @@
 <meta property="og:site_name" content="A First Course in Quantitative Economics with Python" />
 <meta name="theme-color" content="#ffffff" />
 
+
+
+
   </head>
 <body>
+
+<!-- Prevent flash of light theme when dark mode is saved -->
+<script>
+(function() {
+  try {
+    if (localStorage.setContrast === '1') {
+      document.body.classList.add('dark-theme');
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  } catch(e) {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+})();
+</script>
 
 <!-- Override QuantEcon theme colors -->
 
@@ -180,7 +199,7 @@
                     
 
                     
-                    <div class="inner">
+                    <div class="inner sticky" data-autoexpand="true">
 
                         
                         <div class="qe-page__toc-header">
@@ -199,6 +218,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computations">14.3. Computations</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entrepreneur-worker-interpretation">14.4. Entrepreneur-worker interpretation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-application-of-calculus">14.5. An application of calculus</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">14.6. Exercises</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -219,12 +239,14 @@
                             
                             
                             
-                            <p><a href="#top"><strong>Back to top</strong></a></p>
+                            
                             
                         </div>
 
                     </div>
 
+                    
+                    <a href="#top" class="back-to-top-btn" title="Back to top">↑ Top</a>
                     
 
                 </div>
@@ -252,7 +274,7 @@
 
                     <!-- Last modified / Changelog dropdown -->
                         <button class="qe-page__header-changed" id="changelog-toggle" aria-expanded="false">
-                            Last changed: Jan 21, 2025
+                            Last changed: May 24, 2026
                             <span class="changelog-icon">▼</span>
                         </button>
 
@@ -260,6 +282,15 @@
                     <div class="qe-page__header-changelog" id="changelog-content" aria-hidden="true">
                         <h4>Changelog (<a href="https://github.com/QuantEcon/lecture-python-intro/commits/main/lectures/equalizing_difference.md">full history</a>)</h4>
                         <ul class="changelog-list">
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/ae928c86" class="changelog-hash">ae928c86</a>
+                                
+                                <span class="changelog-author">Humphrey Yang</span>
+                                <span class="changelog-time">14 minutes ago</span>
+                                <span class="changelog-message">Adding Tom's Edits to Exercises (#748)</span>
+                            </li>
                             
                             <li class="changelog-entry">
                                 
@@ -284,7 +315,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/568dcd50" class="changelog-hash">568dcd50</a>
                                 
                                 <span class="changelog-author">Humphrey Yang</span>
-                                <span class="changelog-time">1 year ago</span>
+                                <span class="changelog-time">2 years ago</span>
                                 <span class="changelog-message">use more explicit computation and move \pi to later part of the lecture</span>
                             </li>
                             
@@ -293,7 +324,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/4a6dd4ee" class="changelog-hash">4a6dd4ee</a>
                                 
                                 <span class="changelog-author">Humphrey Yang</span>
-                                <span class="changelog-time">1 year ago</span>
+                                <span class="changelog-time">2 years ago</span>
                                 <span class="changelog-message">update numpy code to remove vectorizations</span>
                             </li>
                             
@@ -342,15 +373,6 @@
                                 <span class="changelog-message">Tom's second edit June 27 -- fixed typo</span>
                             </li>
                             
-                            <li class="changelog-entry">
-                                
-                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/d61bb0d2" class="changelog-hash">d61bb0d2</a>
-                                
-                                <span class="changelog-author">thomassargent30</span>
-                                <span class="changelog-time">2 years ago</span>
-                                <span class="changelog-message">Tom's June 27 edits of bib file and equalizing diff lecture</span>
-                            </li>
-                            
                         </ul>
                     </div>
 
@@ -371,13 +393,13 @@
 “time to build” a college graduate plays a key role.</p>
 <p>Milton Friedman invented the   model  to study whether  differences in  earnings of US dentists and doctors were outcomes of  competitive labor markets or whether
 they reflected entry barriers imposed by governments working in conjunction with doctors’ professional organizations.</p>
-<p>Chapter 4 of Jennifer Burns <span id="id1">[<a class="reference internal" href="zreferences.html#id8" title="Jennifer Burns. Milton Friedman: The Last Conservative by Jennifer Burns. Farrar, Straus, and Giroux, New York, 2023.">Burns, 2023</a>]</span> describes  Milton Friedman’s joint work with Simon Kuznets that eventually  led to the publication of <span id="id2">[<a class="reference internal" href="zreferences.html#id9" title="Simon Kuznets and Milton Friedman. Incomes from independent professional practice, 1929-1936. National Bureau of Economic Research Bulletin, 1939.">Kuznets and Friedman, 1939</a>]</span> and <span id="id3">[<a class="reference internal" href="zreferences.html#id10" title="Milton Friedman and Simon Kuznets. Income from Independent Professional Practice. National Bureau of Economic Research, New York, 1945.">Friedman and Kuznets, 1945</a>]</span>.</p>
+<p>Chapter 4 of Jennifer Burns <span class="bibtex-citation" id="id1">[<a class="reference internal" href="zreferences.html#id8" title="Jennifer Burns. Milton Friedman: The Last Conservative by Jennifer Burns. Farrar, Straus, and Giroux, New York, 2023.">Burns, 2023</a>]</span> describes  Milton Friedman’s joint work with Simon Kuznets that eventually  led to the publication of <span class="bibtex-citation" id="id2">[<a class="reference internal" href="zreferences.html#id9" title="Simon Kuznets and Milton Friedman. Incomes from independent professional practice, 1929-1936. National Bureau of Economic Research Bulletin, 1939.">Kuznets and Friedman, 1939</a>]</span> and <span class="bibtex-citation" id="id3">[<a class="reference internal" href="zreferences.html#id10" title="Milton Friedman and Simon Kuznets. Income from Independent Professional Practice. National Bureau of Economic Research, New York, 1945.">Friedman and Kuznets, 1945</a>]</span>.</p>
 <p>To map  Friedman’s application into our model, think of our high school students as Friedman’s dentists and our college graduates as Friedman’s doctors.</p>
 <p>Our presentation is “incomplete” in the sense that it is based on  a single equation that would be part of set equilibrium conditions of a more fully articulated model.</p>
 <p>This ‘‘equalizing difference’’ equation  determines  a college-high-school wage ratio that equalizes present values of a high school educated  worker and a college educated worker.</p>
 <p>The idea  is that lifetime earnings somehow adjust to make a new high school worker indifferent between going to college and not going to college but instead going to work immediately.</p>
 <p>(The job of the “other equations” in a more complete model would be to describe what adjusts to bring about this outcome.)</p>
-<p>Our model is just one example  of an  “equalizing difference” theory of relative wage rates, a class of theories dating back at least to Adam Smith’s <strong>Wealth of Nations</strong> <span id="id4">[<a class="reference internal" href="zreferences.html#id11" title="Adam Smith. The Wealth of Nations: An inquiry into the nature and causes of the Wealth of Nations. Harriman House Limited, 2010.">Smith, 2010</a>]</span>.</p>
+<p>Our model is just one example  of an  “equalizing difference” theory of relative wage rates, a class of theories dating back at least to Adam Smith’s <strong>Wealth of Nations</strong> <span class="bibtex-citation" id="id4">[<a class="reference internal" href="zreferences.html#id11" title="Adam Smith. The Wealth of Nations: An inquiry into the nature and causes of the Wealth of Nations. Harriman House Limited, 2010.">Smith, 2010</a>]</span>.</p>
 <p>For most of this lecture, the only mathematical tools that we’ll use are from linear algebra, in particular, matrix multiplication and matrix inversion.</p>
 <p>However, near the  end of the lecture, we’ll use calculus just in case readers want to see how computing partial derivatives could let us present some findings more concisely.</p>
 <p>And doing that will let illustrate how good Python is at doing calculus!</p>
@@ -421,7 +443,7 @@ they reflected entry barriers imposed by governments working in conjunction with
 <p>If someone goes to work immediately after high school  and  works for the  <span class="math notranslate nohighlight">\(T+1\)</span> years <span class="math notranslate nohighlight">\(t=0, 1, 2, \ldots, T\)</span>, she earns present value</p>
 <div class="math notranslate nohighlight">
 \[
-h_0 = \sum_{t=0}^T R^{-t} w_t^h = w_0^h \left[ \frac{1 - (R^{-1} \gamma_h)^{T+1} }{1 - R^{-1} \gamma_h } \right] \equiv w_0^h A_h 
+h_0 = \sum_{t=0}^T R^{-t} w_t^h = w_0^h \left[ \frac{1 - (R^{-1} \gamma_h)^{T+1} }{1 - R^{-1} \gamma_h } \right] \equiv w_0^h A_h
 \]</div>
 <p>where</p>
 <div class="math notranslate nohighlight">
@@ -446,13 +468,13 @@ A_c = (R^{-1} \gamma_c)^4  \left[ \frac{1 - (R^{-1} \gamma_c)^{T-3} }{1 - R^{-1}
 <p>Assume that college tuition plus four years of room and board amount to  <span class="math notranslate nohighlight">\(D\)</span> and must be paid at time <span class="math notranslate nohighlight">\(0\)</span>.</p>
 <p>So net of monetary cost of college, the present value of attending college as of the first period after high school is</p>
 <div class="math notranslate nohighlight">
-\[ 
+\[
 c_0 - D
 \]</div>
 <p>We now formulate a pure <strong>equalizing difference</strong> model of the initial college-high school wage gap <span class="math notranslate nohighlight">\(\phi\)</span> that verifies</p>
 <div class="math notranslate nohighlight">
 \[
-w_0^c = \phi w_0^h 
+w_0^c = \phi w_0^h
 \]</div>
 <p>We suppose that <span class="math notranslate nohighlight">\(R, \gamma_h, \gamma_c, T\)</span> and also <span class="math notranslate nohighlight">\(w_0^h\)</span>  are fixed parameters.</p>
 <p>We start by noting that the pure equalizing difference model asserts that the college-high-school wage gap <span class="math notranslate nohighlight">\(\phi\)</span> solves an
@@ -463,7 +485,7 @@ h_0 = c_0 - D
 \]</div>
 <p>or</p>
 <div class="math notranslate nohighlight" id="equation-eq-equalize">
-<span class="eqno">(14.1)<a class="headerlink" href="#equation-eq-equalize" title="Link to this equation">#</a></span>\[ 
+<span class="eqno">(14.1)<a class="headerlink" href="#equation-eq-equalize" title="Link to this equation">#</a></span>\[
 w_0^h A_h  = \phi w_0^h A_c - D .
 \]</div>
 <p>This “indifference condition”  is the heart of the model.</p>
@@ -477,7 +499,7 @@ w_0^h A_h  = \phi w_0^h A_c - D .
 <p>In that case,</p>
 <div class="math notranslate nohighlight">
 \[
-\phi  = \frac{A_h}{A_c} . 
+\phi  = \frac{A_h}{A_c} .
 \]</div>
 <p>In the next section we’ll write Python code to compute <span class="math notranslate nohighlight">\(\phi\)</span>  and plot it as a function of its determinants.</p>
 </section>
@@ -499,16 +521,16 @@ prominently including <span class="math notranslate nohighlight">\(\gamma_h, \ga
                <span class="n">w_h0</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>   <span class="c1"># initial wage (high school)</span>
                <span class="n">D</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>     <span class="c1"># cost for college</span>
               <span class="p">):</span>
-    
+
     <span class="k">return</span> <span class="n">EqDiffModel</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">γ_h</span><span class="p">,</span> <span class="n">γ_c</span><span class="p">,</span> <span class="n">w_h0</span><span class="p">,</span> <span class="n">D</span><span class="p">)</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">compute_gap</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
     <span class="n">R</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">γ_h</span><span class="p">,</span> <span class="n">γ_c</span><span class="p">,</span> <span class="n">w_h0</span><span class="p">,</span> <span class="n">D</span> <span class="o">=</span> <span class="n">model</span>
-    
+
     <span class="n">A_h</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">γ_h</span><span class="o">/</span><span class="n">R</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">γ_h</span><span class="o">/</span><span class="n">R</span><span class="p">)</span>
     <span class="n">A_c</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">γ_c</span><span class="o">/</span><span class="n">R</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">T</span><span class="o">-</span><span class="mi">3</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">γ_c</span><span class="o">/</span><span class="n">R</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">γ_c</span><span class="o">/</span><span class="n">R</span><span class="p">)</span><span class="o">**</span><span class="mi">4</span>
     <span class="n">ϕ</span> <span class="o">=</span> <span class="n">A_h</span> <span class="o">/</span> <span class="n">A_c</span> <span class="o">+</span> <span class="n">D</span> <span class="o">/</span> <span class="p">(</span><span class="n">w_h0</span> <span class="o">*</span> <span class="n">A_c</span><span class="p">)</span>
-    
+
     <span class="k">return</span> <span class="n">ϕ</span>
 </pre></div>
 </div>
@@ -644,19 +666,19 @@ be an entrepreneur, the higher must be the reward for a successful project.</p>
                  <span class="n">D</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>     <span class="c1"># cost for college</span>
                  <span class="n">π</span><span class="o">=</span><span class="mi">0</span>       <span class="c1"># chance of business success</span>
               <span class="p">):</span>
-    
+
     <span class="k">return</span> <span class="n">EqDiffModel</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">γ_h</span><span class="p">,</span> <span class="n">γ_c</span><span class="p">,</span> <span class="n">w_h0</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">π</span><span class="p">)</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">compute_gap</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
     <span class="n">R</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">γ_h</span><span class="p">,</span> <span class="n">γ_c</span><span class="p">,</span> <span class="n">w_h0</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">π</span> <span class="o">=</span> <span class="n">model</span>
-    
+
     <span class="n">A_h</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">γ_h</span><span class="o">/</span><span class="n">R</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">γ_h</span><span class="o">/</span><span class="n">R</span><span class="p">)</span>
     <span class="n">A_c</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">γ_c</span><span class="o">/</span><span class="n">R</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">T</span><span class="o">-</span><span class="mi">3</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">γ_c</span><span class="o">/</span><span class="n">R</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">γ_c</span><span class="o">/</span><span class="n">R</span><span class="p">)</span><span class="o">**</span><span class="mi">4</span>
-    
+
     <span class="c1"># Incorprate chance of success</span>
     <span class="n">A_c</span> <span class="o">=</span> <span class="n">π</span> <span class="o">*</span> <span class="n">A_c</span>
-    
+
     <span class="n">ϕ</span> <span class="o">=</span> <span class="n">A_h</span> <span class="o">/</span> <span class="n">A_c</span> <span class="o">+</span> <span class="n">D</span> <span class="o">/</span> <span class="p">(</span><span class="n">w_h0</span> <span class="o">*</span> <span class="n">A_c</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">ϕ</span>
 </pre></div>
@@ -910,6 +932,221 @@ be an entrepreneur, the higher must be the reward for a successful project.</p>
 </div>
 </div>
 <p>We find that raising the gross interest rate <span class="math notranslate nohighlight">\(R\)</span> increases the initial college wage premium <span class="math notranslate nohighlight">\(\phi\)</span>, in line with our earlier graphical analysis.</p>
+</section>
+<section id="exercises">
+<h2><span class="section-number">14.6. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<div class="exercise admonition" id="eq_ex1">
+
+<p class="admonition-title"><span class="caption-number">Exercise 14.1 </span></p>
+<section id="exercise-content">
+<p>Using <code class="docutils literal notranslate"><span class="pre">compute_gap</span></code>, plot the college-high-school wage premium <span class="math notranslate nohighlight">\(\phi\)</span> as a function
+of tuition cost <span class="math notranslate nohighlight">\(D \in [0, 30]\)</span> with all other parameters at their default values.</p>
+<p>a. Add a horizontal dashed line at <span class="math notranslate nohighlight">\(\phi = 1\)</span> and explain why <span class="math notranslate nohighlight">\(\phi\)</span> does or does
+not reach 1 in this range in terms of the free-college formula <span class="math notranslate nohighlight">\(\phi = A_h / A_c\)</span>.</p>
+<p>b. Numerically estimate <span class="math notranslate nohighlight">\(\partial\phi/\partial D\)</span> as the slope of the plotted
+line and compare it to the symbolic derivative <span class="math notranslate nohighlight">\(\phi_D\)</span> computed with SymPy
+in this lecture.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="equalizing_difference-solution-1">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#eq_ex1"> Exercise 14.1</a></p>
+<section id="solution-content">
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">D_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="c1"># Use create_edm_π with π=1 (certainty) so compute_gap handles the 7-field model</span>
+<span class="n">models</span> <span class="o">=</span> <span class="p">[</span><span class="n">create_edm_π</span><span class="p">(</span><span class="n">D</span><span class="o">=</span><span class="n">d</span><span class="p">,</span> <span class="n">π</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">D_arr</span><span class="p">]</span>
+<span class="n">gaps</span> <span class="o">=</span> <span class="p">[</span><span class="n">compute_gap</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">models</span><span class="p">]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">D_arr</span><span class="p">,</span> <span class="n">gaps</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\phi(D)$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\phi = 1$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$D$ (tuition cost)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;College wage premium $\phi$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;College wage premium vs tuition cost&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Numerical slope (finite difference)</span>
+<span class="n">slope_num</span> <span class="o">=</span> <span class="p">(</span><span class="n">gaps</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">gaps</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">D_arr</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">D_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># Compare with SymPy ϕ_D_func already computed in this lecture</span>
+<span class="n">slope_sympy</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">ϕ_D_func</span><span class="p">(</span><span class="n">D_value</span><span class="p">,</span> <span class="n">γ_h_value</span><span class="p">,</span> <span class="n">γ_c_value</span><span class="p">,</span> <span class="n">R_value</span><span class="p">,</span> <span class="n">T_value</span><span class="p">,</span> <span class="n">w_h0_value</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Numerical dϕ/dD: </span><span class="si">{</span><span class="n">slope_num</span><span class="si">:</span><span class="s1">.6f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;SymPy     dϕ/dD: </span><span class="si">{</span><span class="n">slope_sympy</span><span class="si">:</span><span class="s1">.6f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Match: </span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><span class="n">slope_num</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">slope_sympy</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">1e-4</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/1f154c8c0b55563db47fb46a6927da8f559fa6cb8e6f4833bf657b3356f3600c.png"><img alt="_images/1f154c8c0b55563db47fb46a6927da8f559fa6cb8e6f4833bf657b3356f3600c.png" src="_images/1f154c8c0b55563db47fb46a6927da8f559fa6cb8e6f4833bf657b3356f3600c.png" style="width: 80%;" />
+</a>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Numerical dϕ/dD: 0.058368
+SymPy     dϕ/dD: 0.058368
+Match: True
+</pre></div>
+</div>
+</div>
+</div>
+<p>Because <span class="math notranslate nohighlight">\(A_h &gt; A_c\)</span> (forgone earnings dominate even with <span class="math notranslate nohighlight">\(D=0\)</span>), the free-college
+premium <span class="math notranslate nohighlight">\(A_h/A_c &gt; 1\)</span>, so <span class="math notranslate nohighlight">\(\phi\)</span> exceeds 1 for all <span class="math notranslate nohighlight">\(D \geq 0\)</span>.</p>
+</section>
+</div>
+<div class="exercise admonition" id="eq_ex2">
+
+<p class="admonition-title"><span class="caption-number">Exercise 14.2 </span></p>
+<section id="exercise-content">
+<p>Plot the college wage premium <span class="math notranslate nohighlight">\(\phi\)</span> as a function of career length
+<span class="math notranslate nohighlight">\(T \in \{10, 15, 20, \ldots, 60\}\)</span> for two cases:</p>
+<ol class="arabic simple">
+<li><p>Free college: <span class="math notranslate nohighlight">\(D = 0\)</span>.</p></li>
+<li><p>Costly college: <span class="math notranslate nohighlight">\(D = 10\)</span>.</p></li>
+</ol>
+<p>On the same graph, plot both curves, add a horizontal dashed line at <span class="math notranslate nohighlight">\(\phi = 1\)</span>,
+and explain the direction of the relationship between <span class="math notranslate nohighlight">\(T\)</span> and <span class="math notranslate nohighlight">\(\phi\)</span> in terms of
+the present-value factors <span class="math notranslate nohighlight">\(A_h\)</span> and <span class="math notranslate nohighlight">\(A_c\)</span>.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="equalizing_difference-solution-3">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#eq_ex2"> Exercise 14.2</a></p>
+<section id="solution-content">
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="n">gaps_free</span>   <span class="o">=</span> <span class="p">[</span><span class="n">compute_gap</span><span class="p">(</span><span class="n">create_edm_π</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>  <span class="n">π</span><span class="o">=</span><span class="mf">1.0</span><span class="p">))</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">T_arr</span><span class="p">]</span>
+<span class="n">gaps_costly</span> <span class="o">=</span> <span class="p">[</span><span class="n">compute_gap</span><span class="p">(</span><span class="n">create_edm_π</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">π</span><span class="o">=</span><span class="mf">1.0</span><span class="p">))</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">T_arr</span><span class="p">]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_arr</span><span class="p">,</span> <span class="n">gaps_free</span><span class="p">,</span>   <span class="s1">&#39;o-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$D = 0$ (free college)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_arr</span><span class="p">,</span> <span class="n">gaps_costly</span><span class="p">,</span> <span class="s1">&#39;s-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$D = 10$ (costly college)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\phi = 1$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Career length $T$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;College wage premium $\phi$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;College wage premium vs career length&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/59786613bfc3804f9911a7869ea27797e1d9a94aa19e3e101fc436db96fb4575.png"><img alt="_images/59786613bfc3804f9911a7869ea27797e1d9a94aa19e3e101fc436db96fb4575.png" src="_images/59786613bfc3804f9911a7869ea27797e1d9a94aa19e3e101fc436db96fb4575.png" style="width: 80%;" />
+</a>
+</div>
+</div>
+<p>As <span class="math notranslate nohighlight">\(T\)</span> rises, college graduates have more years over which to “recoup” the cost
+of their four-year delay in starting work because <span class="math notranslate nohighlight">\(A_c\)</span> grows faster than <span class="math notranslate nohighlight">\(A_h\)</span>
+when the 4-year discount factor <span class="math notranslate nohighlight">\((R^{-1}\gamma_c)^4\)</span> is amortised over more periods.</p>
+<p>This shrinks <span class="math notranslate nohighlight">\(A_h/A_c\)</span> and therefore <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
+</section>
+</div>
+<div class="exercise admonition" id="eq_ex3">
+
+<p class="admonition-title"><span class="caption-number">Exercise 14.3 </span></p>
+<section id="exercise-content">
+<p>Verify the SymPy partial derivative <span class="math notranslate nohighlight">\(\partial\phi/\partial R\)</span> numerically using a
+<strong>central finite-difference</strong> approximation</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial\phi}{\partial R}\bigg|_{R=R_0} \approx
+\frac{\phi(R_0 + \varepsilon) - \phi(R_0 - \varepsilon)}{2\varepsilon}
+\]</div>
+<p>for <span class="math notranslate nohighlight">\(\varepsilon = 10^{-5}\)</span>, evaluating at the default parameter values and
+comparing with the symbolic result computed in this lecture.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="equalizing_difference-solution-5">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#eq_ex3"> Exercise 14.3</a></p>
+<section id="solution-content">
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ε</span> <span class="o">=</span> <span class="mf">1e-5</span>
+
+<span class="c1"># Finite-difference estimate using create_edm_π (π=1 for the standard model)</span>
+<span class="n">gap_plus</span>  <span class="o">=</span> <span class="n">compute_gap</span><span class="p">(</span><span class="n">create_edm_π</span><span class="p">(</span><span class="n">R</span><span class="o">=</span><span class="n">R_value</span> <span class="o">+</span> <span class="n">ε</span><span class="p">,</span> <span class="n">π</span><span class="o">=</span><span class="mf">1.0</span><span class="p">))</span>
+<span class="n">gap_minus</span> <span class="o">=</span> <span class="n">compute_gap</span><span class="p">(</span><span class="n">create_edm_π</span><span class="p">(</span><span class="n">R</span><span class="o">=</span><span class="n">R_value</span> <span class="o">-</span> <span class="n">ε</span><span class="p">,</span> <span class="n">π</span><span class="o">=</span><span class="mf">1.0</span><span class="p">))</span>
+<span class="n">dϕ_dR_fd</span>  <span class="o">=</span> <span class="p">(</span><span class="n">gap_plus</span> <span class="o">-</span> <span class="n">gap_minus</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">ε</span><span class="p">)</span>
+
+<span class="c1"># SymPy result from ϕ_R_func already computed in this lecture</span>
+<span class="n">dϕ_dR_sym</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">ϕ_R_func</span><span class="p">(</span><span class="n">D_value</span><span class="p">,</span> <span class="n">γ_h_value</span><span class="p">,</span> <span class="n">γ_c_value</span><span class="p">,</span> <span class="n">R_value</span><span class="p">,</span> <span class="n">T_value</span><span class="p">,</span> <span class="n">w_h0_value</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Finite-difference dϕ/dR: </span><span class="si">{</span><span class="n">dϕ_dR_fd</span><span class="si">:</span><span class="s1">.6f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;SymPy             dϕ/dR: </span><span class="si">{</span><span class="n">dϕ_dR_sym</span><span class="si">:</span><span class="s1">.6f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Absolute error:           </span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><span class="n">dϕ_dR_fd</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">dϕ_dR_sym</span><span class="p">)</span><span class="si">:</span><span class="s1">.2e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finite-difference dϕ/dR: 13.264274
+SymPy             dϕ/dR: 13.264274
+Absolute error:           1.89e-09
+</pre></div>
+</div>
+</div>
+</div>
+<p>The two estimates agree to at least five significant figures, confirming that the
+symbolic calculus and numerical computation are consistent.</p>
+</section>
+</div>
+<div class="exercise admonition" id="eq_ex4">
+
+<p class="admonition-title"><span class="caption-number">Exercise 14.4 </span></p>
+<section id="exercise-content">
+<p>Using the entrepreneur-worker version of the model (<code class="docutils literal notranslate"><span class="pre">create_edm_π</span></code>), answer the
+following questions.</p>
+<p>a. Plot the required wage premium <span class="math notranslate nohighlight">\(\phi\)</span> for a successful entrepreneur as a
+function of the success probability <span class="math notranslate nohighlight">\(\pi \in [0.10, 1.00]\)</span> and mark the
+horizontal line <span class="math notranslate nohighlight">\(\phi = 2\)</span> as a dashed line.</p>
+<p>b. At what approximate value of <span class="math notranslate nohighlight">\(\pi\)</span> does the premium cross 2, and for which side of that threshold is the premium above 2?</p>
+<p>c. Explain intuitively why the premium rises as <span class="math notranslate nohighlight">\(\pi \to 0\)</span>.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="equalizing_difference-solution-7">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#eq_ex4"> Exercise 14.4</a></p>
+<section id="solution-content">
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">π_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.10</span><span class="p">,</span> <span class="mf">1.00</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="c1"># create_edm_π and compute_gap are already defined in this lecture</span>
+<span class="n">ϕ_arr_π</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">compute_gap</span><span class="p">(</span><span class="n">create_edm_π</span><span class="p">(</span><span class="n">π</span><span class="o">=</span><span class="n">p</span><span class="p">))</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">π_arr</span><span class="p">])</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">π_arr</span><span class="p">,</span> <span class="n">ϕ_arr_π</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\phi(\pi)$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\phi = 2$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Success probability $\pi$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Required wage premium $\phi$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Entrepreneur premium vs success probability&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Interpolate the crossing on the decreasing curve ϕ(π)</span>
+<span class="n">crossing</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">ϕ_arr_π</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">π_arr</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">above_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">ϕ_arr_π</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Premium equals 2 at π approximately </span><span class="si">{</span><span class="n">crossing</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;On the grid, premium exceeds 2 for π below about </span><span class="si">{</span><span class="n">π_arr</span><span class="p">[</span><span class="n">above_idx</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/62d5050e890c7df08c9b3d59004458058e1dff01d64f1a27e6cd5921bd9e928c.png"><img alt="_images/62d5050e890c7df08c9b3d59004458058e1dff01d64f1a27e6cd5921bd9e928c.png" src="_images/62d5050e890c7df08c9b3d59004458058e1dff01d64f1a27e6cd5921bd9e928c.png" style="width: 80%;" />
+</a>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Premium equals 2 at π approximately 0.902
+On the grid, premium exceeds 2 for π below about 0.901
+</pre></div>
+</div>
+</div>
+</div>
+<p>As <span class="math notranslate nohighlight">\(\pi \to 0\)</span> the expected lifetime earnings of an entrepreneur approach zero
+regardless of <span class="math notranslate nohighlight">\(\phi\)</span>, so <span class="math notranslate nohighlight">\(\phi\)</span> must rise without bound to keep the
+entrepreneur indifferent between entrepreneurship and wage work.</p>
+</section>
+</div>
 </section>
 </section>
 
@@ -1347,6 +1584,8 @@ be an entrepreneur, the higher must be the reward for a successful project.</p>
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/equalizing_difference.md" download><i data-feather="github"></i></a></li>
                     -->
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro" download><i data-feather="github"></i></a></li>
+                    
+                    
                 </ul>
 
             </div>

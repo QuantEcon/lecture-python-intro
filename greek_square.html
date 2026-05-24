@@ -77,13 +77,13 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=ca16d73eb23eeca4aff446ccb0673818c18f9cfc" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=ff5dcadef89fd2097ea5e28ddaad7eb5985f09c4" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=4c010e0d" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=3a5ece24" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -101,8 +101,8 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
-    <script src="_static/scripts/quantecon-book-theme.js?digest=239405dfbfda750f9038d3ea275d1490a4be841e"></script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=9980b4379844dc0b911d69b62b295f34ede88fac"></script>
     <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
     <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -158,8 +158,27 @@
 <meta property="og:site_name" content="A First Course in Quantitative Economics with Python" />
 <meta name="theme-color" content="#ffffff" />
 
+
+
+
   </head>
 <body>
+
+<!-- Prevent flash of light theme when dark mode is saved -->
+<script>
+(function() {
+  try {
+    if (localStorage.setContrast === '1') {
+      document.body.classList.add('dark-theme');
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  } catch(e) {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+})();
+</script>
 
 <!-- Override QuantEcon theme colors -->
 
@@ -180,7 +199,7 @@
                     
 
                     
-                    <div class="inner">
+                    <div class="inner sticky" data-autoexpand="true">
 
                         
                         <div class="qe-page__toc-header">
@@ -219,12 +238,14 @@
                             
                             
                             
-                            <p><a href="#top"><strong>Back to top</strong></a></p>
+                            
                             
                         </div>
 
                     </div>
 
+                    
+                    <a href="#top" class="back-to-top-btn" title="Back to top">↑ Top</a>
                     
 
                 </div>
@@ -266,7 +287,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/d4b08867" class="changelog-hash">d4b08867</a>
                                 
                                 <span class="changelog-author">Yuna Yan</span>
-                                <span class="changelog-time">11 months ago</span>
+                                <span class="changelog-time">1 year ago</span>
                                 <span class="changelog-message">[greek_square] Fix a minor mistake (#579)</span>
                             </li>
                             
@@ -340,7 +361,7 @@
 <h1><span class="section-number">18. </span>Computing Square Roots<a class="headerlink" href="#computing-square-roots" title="Link to this heading">#</a></h1>
 <section id="introduction">
 <h2><span class="section-number">18.1. </span>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
-<p>Chapter 24 of <span id="id1">[<a class="reference internal" href="zreferences.html#id3" title="Bertrand Russell. History of western philosophy. Routledge, 2004.">Russell, 2004</a>]</span> about early Greek mathematics and astronomy contains this
+<p>Chapter 24 of <span class="bibtex-citation" id="id1">[<a class="reference internal" href="zreferences.html#id3" title="Bertrand Russell. History of western philosophy. Routledge, 2004.">Russell, 2004</a>]</span> about early Greek mathematics and astronomy contains this
 fascinating passage:</p>
 <blockquote class="epigraph">
 <div><p>The square root of 2, which was the first irrational to be discovered, was known to the early Pythagoreans, and ingenious methods of approximating to its value were discovered. The best was as follows: Form two columns of numbers, which we will call the <span class="math notranslate nohighlight">\(a\)</span>’s and the <span class="math notranslate nohighlight">\(b\)</span>’s; each starts with a <span class="math notranslate nohighlight">\(1\)</span>. The next <span class="math notranslate nohighlight">\(a\)</span>, at each stage, is formed by adding the last <span class="math notranslate nohighlight">\(a\)</span> and the <span class="math notranslate nohighlight">\(b\)</span> already obtained; the next <span class="math notranslate nohighlight">\(b\)</span> is formed by adding twice the previous <span class="math notranslate nohighlight">\(a\)</span> to the previous <span class="math notranslate nohighlight">\(b\)</span>. The first 6 pairs so obtained are <span class="math notranslate nohighlight">\((1,1), (2,3), (5,7), (12,17), (29,41), (70,99)\)</span>. In each pair, <span class="math notranslate nohighlight">\(2 a^2 - b^2\)</span> is <span class="math notranslate nohighlight">\(1\)</span> or <span class="math notranslate nohighlight">\(-1\)</span>. Thus <span class="math notranslate nohighlight">\(b/a\)</span> is nearly the square root of two, and at each fresh step it gets nearer. For instance, the reader may satisy himself that the square of <span class="math notranslate nohighlight">\(99/70\)</span> is very nearly equal to <span class="math notranslate nohighlight">\(2\)</span>.</p>
@@ -1537,6 +1558,8 @@ Eigenvectors:
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/greek_square.md" download><i data-feather="github"></i></a></li>
                     -->
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro" download><i data-feather="github"></i></a></li>
+                    
+                    
                 </ul>
 
             </div>

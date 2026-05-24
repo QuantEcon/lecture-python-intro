@@ -77,13 +77,13 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=ca16d73eb23eeca4aff446ccb0673818c18f9cfc" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=ff5dcadef89fd2097ea5e28ddaad7eb5985f09c4" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=4c010e0d" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=3a5ece24" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -101,8 +101,8 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
-    <script src="_static/scripts/quantecon-book-theme.js?digest=239405dfbfda750f9038d3ea275d1490a4be841e"></script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=9980b4379844dc0b911d69b62b295f34ede88fac"></script>
     <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
     <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -156,8 +156,27 @@
 <meta property="og:site_name" content="A First Course in Quantitative Economics with Python" />
 <meta name="theme-color" content="#ffffff" />
 
+
+
+
   </head>
 <body>
+
+<!-- Prevent flash of light theme when dark mode is saved -->
+<script>
+(function() {
+  try {
+    if (localStorage.setContrast === '1') {
+      document.body.classList.add('dark-theme');
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  } catch(e) {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+})();
+</script>
 
 <!-- Override QuantEcon theme colors -->
 
@@ -178,7 +197,7 @@
                     
 
                     
-                    <div class="inner">
+                    <div class="inner sticky" data-autoexpand="true">
 
                         
                         <div class="qe-page__toc-header">
@@ -226,12 +245,14 @@
                             
                             
                             
-                            <p><a href="#top"><strong>Back to top</strong></a></p>
+                            
                             
                         </div>
 
                     </div>
 
+                    
+                    <a href="#top" class="back-to-top-btn" title="Back to top">↑ Top</a>
                     
 
                 </div>
@@ -259,7 +280,7 @@
 
                     <!-- Last modified / Changelog dropdown -->
                         <button class="qe-page__header-changed" id="changelog-toggle" aria-expanded="false">
-                            Last changed: Dec 28, 2025
+                            Last changed: May 24, 2026
                             <span class="changelog-icon">▼</span>
                         </button>
 
@@ -270,10 +291,19 @@
                             
                             <li class="changelog-entry">
                                 
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/ae928c86" class="changelog-hash">ae928c86</a>
+                                
+                                <span class="changelog-author">Humphrey Yang</span>
+                                <span class="changelog-time">14 minutes ago</span>
+                                <span class="changelog-message">Adding Tom's Edits to Exercises (#748)</span>
+                            </li>
+                            
+                            <li class="changelog-entry">
+                                
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/21bd3b60" class="changelog-hash">21bd3b60</a>
                                 
                                 <span class="changelog-author">John Stachurski</span>
-                                <span class="changelog-time">1 month ago</span>
+                                <span class="changelog-time">4 months ago</span>
                                 <span class="changelog-message">Fix grammar and spelling errors across lecture files (#688)</span>
                             </li>
                             
@@ -349,15 +379,6 @@
                                 <span class="changelog-message">Tom's July 25 edits of growth evidence lecture</span>
                             </li>
                             
-                            <li class="changelog-entry">
-                                
-                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/a852c6ce" class="changelog-hash">a852c6ce</a>
-                                
-                                <span class="changelog-author">mmcky</span>
-                                <span class="changelog-time">2 years ago</span>
-                                <span class="changelog-message">ENH: add Tooze graph for Tom's edits</span>
-                            </li>
-                            
                         </ul>
                     </div>
 
@@ -379,14 +400,14 @@
 <p>Such “growth facts” are interesting for a variety of reasons.</p>
 <p>Explaining growth facts is a principal purpose of both “development economics” and “economic history”.</p>
 <p>And growth facts are important inputs into historians’ studies of geopolitical forces and dynamics.</p>
-<p>Thus, Adam Tooze’s account of the geopolitical precedents and antecedents of World War I begins by describing how the Gross Domestic Products (GDP) of European Great Powers had evolved during the 70 years preceding 1914 (see chapter 1 of <span id="id1">[<a class="reference internal" href="zreferences.html#id16" title="Adam Tooze. The deluge: the great war, america and the remaking of the global order, 1916–1931. 2014.">Tooze, 2014</a>]</span>).</p>
+<p>Thus, Adam Tooze’s account of the geopolitical precedents and antecedents of World War I begins by describing how the Gross Domestic Products (GDP) of European Great Powers had evolved during the 70 years preceding 1914 (see chapter 1 of <span class="bibtex-citation" id="id1">[<a class="reference internal" href="zreferences.html#id16" title="Adam Tooze. The deluge: the great war, america and the remaking of the global order, 1916–1931. 2014.">Tooze, 2014</a>]</span>).</p>
 <p>Using the very same data that Tooze used to construct his figure (with a slightly longer timeline), here is our version of his chapter 1 figure.</p>
 <figure class="align-default">
 <a class="reference internal image-reference" href="_images/tooze_ch1_graph.png"><img alt="_images/tooze_ch1_graph.png" src="_images/tooze_ch1_graph.png" style="width: 100%;" />
 </a>
 </figure>
 <p>(This is just a copy of our figure <a class="reference internal" href="#gdp1"><span class="std std-numref">Fig. 2.6</span></a>.  We describe how we constructed it later in this lecture.)</p>
-<p>Chapter 1  of <span id="id2">[<a class="reference internal" href="zreferences.html#id16" title="Adam Tooze. The deluge: the great war, america and the remaking of the global order, 1916–1931. 2014.">Tooze, 2014</a>]</span> used his graph to show how US GDP started the 19th century way behind the GDP of the British Empire.</p>
+<p>Chapter 1  of <span class="bibtex-citation" id="id2">[<a class="reference internal" href="zreferences.html#id16" title="Adam Tooze. The deluge: the great war, america and the remaking of the global order, 1916–1931. 2014.">Tooze, 2014</a>]</span> used his graph to show how US GDP started the 19th century way behind the GDP of the British Empire.</p>
 <p>By the end of the nineteenth century, US GDP had caught up with GDP of the British Empire, and how during the first half of the 20th century,
 US GDP surpassed that of the British Empire.</p>
 <p>For Adam Tooze, that fact was a key geopolitical underpinning for the “American century”.</p>
@@ -424,7 +445,7 @@ some dating back to the first century.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_url</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/QuantEcon/lecture-python-intro/raw/main/lectures/datasets/mpd2020.xlsx&quot;</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">data_url</span><span class="p">,</span> 
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">data_url</span><span class="p">,</span>
                      <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Full data&#39;</span><span class="p">)</span>
 <span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
@@ -820,7 +841,7 @@ some dating back to the first century.</p>
 <span class="n">colors</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">tab20</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">country_names</span><span class="p">)))</span>
 
 <span class="c1"># Create a dictionary to map each country to its corresponding color</span>
-<span class="n">color_mapping</span> <span class="o">=</span> <span class="p">{</span><span class="n">country</span><span class="p">:</span> <span class="n">color</span> <span class="k">for</span> 
+<span class="n">color_mapping</span> <span class="o">=</span> <span class="p">{</span><span class="n">country</span><span class="p">:</span> <span class="n">color</span> <span class="k">for</span>
                  <span class="n">country</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">country_names</span><span class="p">,</span> <span class="n">colors</span><span class="p">)}</span>
 </pre></div>
 </div>
@@ -859,7 +880,8 @@ some dating back to the first century.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/international_dollar">International dollars</a> are a hypothetical unit of currency that has the same purchasing power parity that the U.S. Dollar has in the United States at a given point in time. They are also known as Geary–Khamis dollars (GK Dollars).</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/international_dollar">International dollars</a> are a hypothetical unit of currency that has the same purchasing power parity that the U.S. Dollar has in the United States at a given point in time.</p>
+<p>They are also known as Geary-Khamis dollars (GK Dollars).</p>
 </div>
 <p>We can see that the data is incomplete for longer periods in the early 250 years of this millennium, so we could choose to interpolate to get a continuous line plot.</p>
 <p>Here we use dashed lines to indicate interpolated trends</p>
@@ -927,10 +949,10 @@ some dating back to the first century.</p>
                 <span class="n">color</span><span class="o">=</span><span class="n">color_mapping</span><span class="p">[</span><span class="n">c</span><span class="p">],</span>
                 <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
                 <span class="n">label</span><span class="o">=</span><span class="n">code_to_name</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">c</span><span class="p">][</span><span class="s1">&#39;country&#39;</span><span class="p">])</span>
-        
+
         <span class="k">if</span> <span class="n">logscale</span><span class="p">:</span>
             <span class="n">ax</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
-    
+
     <span class="c1"># Draw the legend outside the plot</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">ylabel</span><span class="p">)</span>
@@ -955,7 +977,7 @@ some dating back to the first century.</p>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 
 <span class="n">country</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;CHN&#39;</span><span class="p">,</span> <span class="s1">&#39;GBR&#39;</span><span class="p">,</span> <span class="s1">&#39;USA&#39;</span><span class="p">]</span>
-<span class="n">draw_interp_plots</span><span class="p">(</span><span class="n">gdp_pc</span><span class="p">[</span><span class="n">country</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1500</span><span class="p">:],</span> 
+<span class="n">draw_interp_plots</span><span class="p">(</span><span class="n">gdp_pc</span><span class="p">[</span><span class="n">country</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1500</span><span class="p">:],</span>
                   <span class="n">country</span><span class="p">,</span>
                   <span class="s1">&#39;international dollars&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">,</span>
                   <span class="n">color_mapping</span><span class="p">,</span> <span class="n">code_to_name</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
@@ -963,31 +985,31 @@ some dating back to the first century.</p>
 <span class="c1"># Define the parameters for the events and the text</span>
 <span class="n">ylim</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">b_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">}</span>
-<span class="n">t_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;fontsize&#39;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> 
+<span class="n">t_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;fontsize&#39;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span>
             <span class="s1">&#39;va&#39;</span><span class="p">:</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="s1">&#39;ha&#39;</span><span class="p">:</span><span class="s1">&#39;center&#39;</span><span class="p">}</span>
 
 <span class="c1"># Create a list of events to annotate</span>
 <span class="n">events</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">Event</span><span class="p">((</span><span class="mi">1650</span><span class="p">,</span> <span class="mi">1652</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">0.04</span><span class="p">,</span> 
+    <span class="n">Event</span><span class="p">((</span><span class="mi">1650</span><span class="p">,</span> <span class="mi">1652</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">0.04</span><span class="p">,</span>
           <span class="s1">&#39;the Navigation Act</span><span class="se">\n</span><span class="s1">(1651)&#39;</span><span class="p">,</span>
           <span class="n">color_mapping</span><span class="p">[</span><span class="s1">&#39;GBR&#39;</span><span class="p">],</span> <span class="mi">1</span><span class="p">),</span>
-    <span class="n">Event</span><span class="p">((</span><span class="mi">1655</span><span class="p">,</span> <span class="mi">1684</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">0.13</span><span class="p">,</span> 
-          <span class="s1">&#39;Closed-door Policy</span><span class="se">\n</span><span class="s1">(1655-1684)&#39;</span><span class="p">,</span> 
+    <span class="n">Event</span><span class="p">((</span><span class="mi">1655</span><span class="p">,</span> <span class="mi">1684</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">0.13</span><span class="p">,</span>
+          <span class="s1">&#39;Closed-door Policy</span><span class="se">\n</span><span class="s1">(1655-1684)&#39;</span><span class="p">,</span>
           <span class="n">color_mapping</span><span class="p">[</span><span class="s1">&#39;CHN&#39;</span><span class="p">],</span> <span class="mf">1.1</span><span class="p">),</span>
     <span class="n">Event</span><span class="p">((</span><span class="mi">1848</span><span class="p">,</span> <span class="mi">1850</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">0.22</span><span class="p">,</span>
-          <span class="s1">&#39;the Repeal of Navigation Act</span><span class="se">\n</span><span class="s1">(1849)&#39;</span><span class="p">,</span> 
+          <span class="s1">&#39;the Repeal of Navigation Act</span><span class="se">\n</span><span class="s1">(1849)&#39;</span><span class="p">,</span>
           <span class="n">color_mapping</span><span class="p">[</span><span class="s1">&#39;GBR&#39;</span><span class="p">],</span> <span class="mf">1.18</span><span class="p">),</span>
-    <span class="n">Event</span><span class="p">((</span><span class="mi">1765</span><span class="p">,</span> <span class="mi">1791</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">0.04</span><span class="p">,</span> 
-          <span class="s1">&#39;American Revolution</span><span class="se">\n</span><span class="s1">(1765-1791)&#39;</span><span class="p">,</span> 
+    <span class="n">Event</span><span class="p">((</span><span class="mi">1765</span><span class="p">,</span> <span class="mi">1791</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">0.04</span><span class="p">,</span>
+          <span class="s1">&#39;American Revolution</span><span class="se">\n</span><span class="s1">(1765-1791)&#39;</span><span class="p">,</span>
           <span class="n">color_mapping</span><span class="p">[</span><span class="s1">&#39;USA&#39;</span><span class="p">],</span> <span class="mi">1</span><span class="p">),</span>
-    <span class="n">Event</span><span class="p">((</span><span class="mi">1760</span><span class="p">,</span> <span class="mi">1840</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">0.13</span><span class="p">,</span> 
-          <span class="s1">&#39;Industrial Revolution</span><span class="se">\n</span><span class="s1">(1760-1840)&#39;</span><span class="p">,</span> 
+    <span class="n">Event</span><span class="p">((</span><span class="mi">1760</span><span class="p">,</span> <span class="mi">1840</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">0.13</span><span class="p">,</span>
+          <span class="s1">&#39;Industrial Revolution</span><span class="se">\n</span><span class="s1">(1760-1840)&#39;</span><span class="p">,</span>
           <span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">),</span>
-    <span class="n">Event</span><span class="p">((</span><span class="mi">1929</span><span class="p">,</span> <span class="mi">1939</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">0.04</span><span class="p">,</span> 
-          <span class="s1">&#39;the Great Depression</span><span class="se">\n</span><span class="s1">(1929–1939)&#39;</span><span class="p">,</span> 
+    <span class="n">Event</span><span class="p">((</span><span class="mi">1929</span><span class="p">,</span> <span class="mi">1939</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">0.04</span><span class="p">,</span>
+          <span class="s1">&#39;the Great Depression</span><span class="se">\n</span><span class="s1">(1929-1939)&#39;</span><span class="p">,</span>
           <span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-    <span class="n">Event</span><span class="p">((</span><span class="mi">1978</span><span class="p">,</span> <span class="mi">1979</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">0.13</span><span class="p">,</span> 
-          <span class="s1">&#39;Reform and Opening-up</span><span class="se">\n</span><span class="s1">(1978-1979)&#39;</span><span class="p">,</span> 
+    <span class="n">Event</span><span class="p">((</span><span class="mi">1978</span><span class="p">,</span> <span class="mi">1979</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">0.13</span><span class="p">,</span>
+          <span class="s1">&#39;Reform and Opening-up</span><span class="se">\n</span><span class="s1">(1978-1979)&#39;</span><span class="p">,</span>
           <span class="n">color_mapping</span><span class="p">[</span><span class="s1">&#39;CHN&#39;</span><span class="p">],</span> <span class="mf">1.1</span><span class="p">)</span>
 <span class="p">]</span>
 
@@ -995,8 +1017,8 @@ some dating back to the first century.</p>
     <span class="c1"># Iterate over events and add annotations and vertical lines</span>
     <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">events</span><span class="p">:</span>
         <span class="n">event_mid</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">year_range</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">event_mid</span><span class="p">,</span> 
-                <span class="n">event</span><span class="o">.</span><span class="n">y_text</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> 
+        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">event_mid</span><span class="p">,</span>
+                <span class="n">event</span><span class="o">.</span><span class="n">y_text</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">text</span><span class="p">,</span>
                 <span class="n">color</span><span class="o">=</span><span class="n">event</span><span class="o">.</span><span class="n">color</span><span class="p">,</span> <span class="o">**</span><span class="n">t_params</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="o">*</span><span class="n">event</span><span class="o">.</span><span class="n">year_range</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">event</span><span class="o">.</span><span class="n">color</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">event_mid</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="n">event</span><span class="o">.</span><span class="n">ymax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">event</span><span class="o">.</span><span class="n">color</span><span class="p">,</span>
@@ -1011,7 +1033,7 @@ some dating back to the first century.</p>
 </details>
 <div class="cell_output docutils container">
 <figure class="align-default" id="gdppc-comparison">
-<a class="reference internal image-reference" href="_images/8b1ee5d08ce996fc7f872ae70e8c9ed6dd74665e89801555089bc8e800c883b4.png"><img alt="_images/8b1ee5d08ce996fc7f872ae70e8c9ed6dd74665e89801555089bc8e800c883b4.png" src="_images/8b1ee5d08ce996fc7f872ae70e8c9ed6dd74665e89801555089bc8e800c883b4.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/37782f240985a7aaa379737210350b86fbf6372467e7fd6f37445c543c6bbbe0.png"><img alt="_images/37782f240985a7aaa379737210350b86fbf6372467e7fd6f37445c543c6bbbe0.png" src="_images/37782f240985a7aaa379737210350b86fbf6372467e7fd6f37445c543c6bbbe0.png" style="width: 80%;" />
 </a>
 <figcaption>
 <p><span class="caption-number">Fig. 2.3 </span><span class="caption-text">GDP per Capita, 1500- (China, UK, USA)</span><a class="headerlink" href="#gdppc-comparison" title="Link to this image">#</a></p>
@@ -1049,7 +1071,7 @@ groups of people</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 
 <span class="n">country</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;CHN&#39;</span><span class="p">]</span>
-<span class="n">draw_interp_plots</span><span class="p">(</span><span class="n">gdp_pc</span><span class="p">[</span><span class="n">country</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1600</span><span class="p">:</span><span class="mi">2000</span><span class="p">],</span> 
+<span class="n">draw_interp_plots</span><span class="p">(</span><span class="n">gdp_pc</span><span class="p">[</span><span class="n">country</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1600</span><span class="p">:</span><span class="mi">2000</span><span class="p">],</span>
                   <span class="n">country</span><span class="p">,</span>
                   <span class="s1">&#39;international dollars&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">,</span>
                   <span class="n">color_mapping</span><span class="p">,</span> <span class="n">code_to_name</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
@@ -1057,29 +1079,29 @@ groups of people</p>
 <span class="n">ylim</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
 
 <span class="n">events</span> <span class="o">=</span> <span class="p">[</span>
-<span class="n">Event</span><span class="p">((</span><span class="mi">1655</span><span class="p">,</span> <span class="mi">1684</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">0.06</span><span class="p">,</span> 
-      <span class="s1">&#39;Closed-door Policy</span><span class="se">\n</span><span class="s1">(1655-1684)&#39;</span><span class="p">,</span> 
+<span class="n">Event</span><span class="p">((</span><span class="mi">1655</span><span class="p">,</span> <span class="mi">1684</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">0.06</span><span class="p">,</span>
+      <span class="s1">&#39;Closed-door Policy</span><span class="se">\n</span><span class="s1">(1655-1684)&#39;</span><span class="p">,</span>
       <span class="s1">&#39;tab:orange&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-<span class="n">Event</span><span class="p">((</span><span class="mi">1760</span><span class="p">,</span> <span class="mi">1840</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">0.06</span><span class="p">,</span> 
-      <span class="s1">&#39;Industrial Revolution</span><span class="se">\n</span><span class="s1">(1760-1840)&#39;</span><span class="p">,</span> 
+<span class="n">Event</span><span class="p">((</span><span class="mi">1760</span><span class="p">,</span> <span class="mi">1840</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">0.06</span><span class="p">,</span>
+      <span class="s1">&#39;Industrial Revolution</span><span class="se">\n</span><span class="s1">(1760-1840)&#39;</span><span class="p">,</span>
       <span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-<span class="n">Event</span><span class="p">((</span><span class="mi">1839</span><span class="p">,</span> <span class="mi">1842</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">0.2</span><span class="p">,</span> 
-      <span class="s1">&#39;First Opium War</span><span class="se">\n</span><span class="s1">(1839–1842)&#39;</span><span class="p">,</span> 
+<span class="n">Event</span><span class="p">((</span><span class="mi">1839</span><span class="p">,</span> <span class="mi">1842</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">0.2</span><span class="p">,</span>
+      <span class="s1">&#39;First Opium War</span><span class="se">\n</span><span class="s1">(1839-1842)&#39;</span><span class="p">,</span>
       <span class="s1">&#39;tab:red&#39;</span><span class="p">,</span> <span class="mf">1.07</span><span class="p">),</span>
-<span class="n">Event</span><span class="p">((</span><span class="mi">1861</span><span class="p">,</span> <span class="mi">1895</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">0.4</span><span class="p">,</span> 
-      <span class="s1">&#39;Self-Strengthening Movement</span><span class="se">\n</span><span class="s1">(1861–1895)&#39;</span><span class="p">,</span> 
+<span class="n">Event</span><span class="p">((</span><span class="mi">1861</span><span class="p">,</span> <span class="mi">1895</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">0.4</span><span class="p">,</span>
+      <span class="s1">&#39;Self-Strengthening Movement</span><span class="se">\n</span><span class="s1">(1861-1895)&#39;</span><span class="p">,</span>
       <span class="s1">&#39;tab:blue&#39;</span><span class="p">,</span> <span class="mf">1.14</span><span class="p">),</span>
-<span class="n">Event</span><span class="p">((</span><span class="mi">1939</span><span class="p">,</span> <span class="mi">1945</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">0.06</span><span class="p">,</span> 
-      <span class="s1">&#39;WW 2</span><span class="se">\n</span><span class="s1">(1939-1945)&#39;</span><span class="p">,</span> 
+<span class="n">Event</span><span class="p">((</span><span class="mi">1939</span><span class="p">,</span> <span class="mi">1945</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">0.06</span><span class="p">,</span>
+      <span class="s1">&#39;WW 2</span><span class="se">\n</span><span class="s1">(1939-1945)&#39;</span><span class="p">,</span>
       <span class="s1">&#39;tab:red&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-<span class="n">Event</span><span class="p">((</span><span class="mi">1948</span><span class="p">,</span> <span class="mi">1950</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">0.23</span><span class="p">,</span> 
-      <span class="s1">&#39;Founding of PRC</span><span class="se">\n</span><span class="s1">(1949)&#39;</span><span class="p">,</span> 
+<span class="n">Event</span><span class="p">((</span><span class="mi">1948</span><span class="p">,</span> <span class="mi">1950</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">0.23</span><span class="p">,</span>
+      <span class="s1">&#39;Founding of PRC</span><span class="se">\n</span><span class="s1">(1949)&#39;</span><span class="p">,</span>
       <span class="n">color_mapping</span><span class="p">[</span><span class="s1">&#39;CHN&#39;</span><span class="p">],</span> <span class="mf">1.08</span><span class="p">),</span>
-<span class="n">Event</span><span class="p">((</span><span class="mi">1958</span><span class="p">,</span> <span class="mi">1962</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">0.5</span><span class="p">,</span> 
-      <span class="s1">&#39;Great Leap Forward</span><span class="se">\n</span><span class="s1">(1958-1962)&#39;</span><span class="p">,</span> 
+<span class="n">Event</span><span class="p">((</span><span class="mi">1958</span><span class="p">,</span> <span class="mi">1962</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">0.5</span><span class="p">,</span>
+      <span class="s1">&#39;Great Leap Forward</span><span class="se">\n</span><span class="s1">(1958-1962)&#39;</span><span class="p">,</span>
       <span class="s1">&#39;tab:orange&#39;</span><span class="p">,</span> <span class="mf">1.18</span><span class="p">),</span>
-<span class="n">Event</span><span class="p">((</span><span class="mi">1978</span><span class="p">,</span> <span class="mi">1979</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">0.7</span><span class="p">,</span> 
-      <span class="s1">&#39;Reform and Opening-up</span><span class="se">\n</span><span class="s1">(1978-1979)&#39;</span><span class="p">,</span> 
+<span class="n">Event</span><span class="p">((</span><span class="mi">1978</span><span class="p">,</span> <span class="mi">1979</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">0.7</span><span class="p">,</span>
+      <span class="s1">&#39;Reform and Opening-up</span><span class="se">\n</span><span class="s1">(1978-1979)&#39;</span><span class="p">,</span>
       <span class="s1">&#39;tab:blue&#39;</span><span class="p">,</span> <span class="mf">1.24</span><span class="p">)</span>
 <span class="p">]</span>
 
@@ -1092,7 +1114,7 @@ groups of people</p>
 </details>
 <div class="cell_output docutils container">
 <figure class="align-default" id="gdppc-china">
-<a class="reference internal image-reference" href="_images/d81e9b376dbcf15928031b777d8a55d9cd334a4437bcf300c022e395407633c5.png"><img alt="_images/d81e9b376dbcf15928031b777d8a55d9cd334a4437bcf300c022e395407633c5.png" src="_images/d81e9b376dbcf15928031b777d8a55d9cd334a4437bcf300c022e395407633c5.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/da8362cf788d9ac55f7eec8597f2f25878f4e2674348211057a0a8b765fde871.png"><img alt="_images/da8362cf788d9ac55f7eec8597f2f25878f4e2674348211057a0a8b765fde871.png" src="_images/da8362cf788d9ac55f7eec8597f2f25878f4e2674348211057a0a8b765fde871.png" style="width: 80%;" />
 </a>
 <figcaption>
 <p><span class="caption-number">Fig. 2.4 </span><span class="caption-text">GDP per Capita, 1500-2000 (China)</span><a class="headerlink" href="#gdppc-china" title="Link to this image">#</a></p>
@@ -1131,29 +1153,29 @@ groups of people</p>
 
 <span class="c1"># Create a list of data points</span>
 <span class="n">events</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">Event</span><span class="p">((</span><span class="mi">1651</span><span class="p">,</span> <span class="mi">1651</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">0.15</span><span class="p">,</span> 
-          <span class="s1">&#39;Navigation Act (UK)</span><span class="se">\n</span><span class="s1">(1651)&#39;</span><span class="p">,</span> 
+    <span class="n">Event</span><span class="p">((</span><span class="mi">1651</span><span class="p">,</span> <span class="mi">1651</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">0.15</span><span class="p">,</span>
+          <span class="s1">&#39;Navigation Act (UK)</span><span class="se">\n</span><span class="s1">(1651)&#39;</span><span class="p">,</span>
           <span class="s1">&#39;tab:orange&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-    <span class="n">Event</span><span class="p">((</span><span class="mi">1765</span><span class="p">,</span> <span class="mi">1791</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">0.15</span><span class="p">,</span> 
+    <span class="n">Event</span><span class="p">((</span><span class="mi">1765</span><span class="p">,</span> <span class="mi">1791</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">0.15</span><span class="p">,</span>
           <span class="s1">&#39;American Revolution</span><span class="se">\n</span><span class="s1">(1765-1791)&#39;</span><span class="p">,</span>
           <span class="n">color_mapping</span><span class="p">[</span><span class="s1">&#39;USA&#39;</span><span class="p">],</span> <span class="mi">1</span><span class="p">),</span>
-    <span class="n">Event</span><span class="p">((</span><span class="mi">1760</span><span class="p">,</span> <span class="mi">1840</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">0.6</span><span class="p">,</span> 
-          <span class="s1">&#39;Industrial Revolution</span><span class="se">\n</span><span class="s1">(1760-1840)&#39;</span><span class="p">,</span> 
+    <span class="n">Event</span><span class="p">((</span><span class="mi">1760</span><span class="p">,</span> <span class="mi">1840</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">0.6</span><span class="p">,</span>
+          <span class="s1">&#39;Industrial Revolution</span><span class="se">\n</span><span class="s1">(1760-1840)&#39;</span><span class="p">,</span>
           <span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="mf">1.08</span><span class="p">),</span>
-    <span class="n">Event</span><span class="p">((</span><span class="mi">1848</span><span class="p">,</span> <span class="mi">1850</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">1.1</span><span class="p">,</span> 
-          <span class="s1">&#39;Repeal of Navigation Act (UK)</span><span class="se">\n</span><span class="s1">(1849)&#39;</span><span class="p">,</span> 
+    <span class="n">Event</span><span class="p">((</span><span class="mi">1848</span><span class="p">,</span> <span class="mi">1850</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">1.1</span><span class="p">,</span>
+          <span class="s1">&#39;Repeal of Navigation Act (UK)</span><span class="se">\n</span><span class="s1">(1849)&#39;</span><span class="p">,</span>
           <span class="s1">&#39;tab:blue&#39;</span><span class="p">,</span> <span class="mf">1.14</span><span class="p">),</span>
-    <span class="n">Event</span><span class="p">((</span><span class="mi">1861</span><span class="p">,</span> <span class="mi">1865</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">1.8</span><span class="p">,</span> 
-          <span class="s1">&#39;American Civil War</span><span class="se">\n</span><span class="s1">(1861-1865)&#39;</span><span class="p">,</span> 
+    <span class="n">Event</span><span class="p">((</span><span class="mi">1861</span><span class="p">,</span> <span class="mi">1865</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">1.8</span><span class="p">,</span>
+          <span class="s1">&#39;American Civil War</span><span class="se">\n</span><span class="s1">(1861-1865)&#39;</span><span class="p">,</span>
           <span class="n">color_mapping</span><span class="p">[</span><span class="s1">&#39;USA&#39;</span><span class="p">],</span> <span class="mf">1.21</span><span class="p">),</span>
-    <span class="n">Event</span><span class="p">((</span><span class="mi">1914</span><span class="p">,</span> <span class="mi">1918</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">0.15</span><span class="p">,</span> 
-          <span class="s1">&#39;WW 1</span><span class="se">\n</span><span class="s1">(1914-1918)&#39;</span><span class="p">,</span> 
+    <span class="n">Event</span><span class="p">((</span><span class="mi">1914</span><span class="p">,</span> <span class="mi">1918</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">0.15</span><span class="p">,</span>
+          <span class="s1">&#39;WW 1</span><span class="se">\n</span><span class="s1">(1914-1918)&#39;</span><span class="p">,</span>
           <span class="s1">&#39;tab:red&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-    <span class="n">Event</span><span class="p">((</span><span class="mi">1929</span><span class="p">,</span> <span class="mi">1939</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">0.6</span><span class="p">,</span> 
-          <span class="s1">&#39;the Great Depression</span><span class="se">\n</span><span class="s1">(1929–1939)&#39;</span><span class="p">,</span> 
+    <span class="n">Event</span><span class="p">((</span><span class="mi">1929</span><span class="p">,</span> <span class="mi">1939</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">0.6</span><span class="p">,</span>
+          <span class="s1">&#39;the Great Depression</span><span class="se">\n</span><span class="s1">(1929-1939)&#39;</span><span class="p">,</span>
           <span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="mf">1.08</span><span class="p">),</span>
-    <span class="n">Event</span><span class="p">((</span><span class="mi">1939</span><span class="p">,</span> <span class="mi">1945</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">1.1</span><span class="p">,</span> 
-          <span class="s1">&#39;WW 2</span><span class="se">\n</span><span class="s1">(1939-1945)&#39;</span><span class="p">,</span> 
+    <span class="n">Event</span><span class="p">((</span><span class="mi">1939</span><span class="p">,</span> <span class="mi">1945</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">+</span> <span class="n">ylim</span><span class="o">*</span><span class="mf">1.1</span><span class="p">,</span>
+          <span class="s1">&#39;WW 2</span><span class="se">\n</span><span class="s1">(1939-1945)&#39;</span><span class="p">,</span>
           <span class="s1">&#39;tab:red&#39;</span><span class="p">,</span> <span class="mf">1.14</span><span class="p">)</span>
 <span class="p">]</span>
 
@@ -1166,7 +1188,7 @@ groups of people</p>
 </details>
 <div class="cell_output docutils container">
 <figure class="align-default" id="gdppc-ukus">
-<a class="reference internal image-reference" href="_images/33acb966a78dabbb5a745c9b2ce465e53d5947a1059b13ce3296b9f7a963cb60.png"><img alt="_images/33acb966a78dabbb5a745c9b2ce465e53d5947a1059b13ce3296b9f7a963cb60.png" src="_images/33acb966a78dabbb5a745c9b2ce465e53d5947a1059b13ce3296b9f7a963cb60.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/520ea36b20510dc5bc45d44999032c7dafe0ff21adfbc11a454d44d25535ee06.png"><img alt="_images/520ea36b20510dc5bc45d44999032c7dafe0ff21adfbc11a454d44d25535ee06.png" src="_images/520ea36b20510dc5bc45d44999032c7dafe0ff21adfbc11a454d44d25535ee06.png" style="width: 80%;" />
 </a>
 <figcaption>
 <p><span class="caption-number">Fig. 2.5 </span><span class="caption-text">GDP per Capita, 1500-2000 (UK and US)</span><a class="headerlink" href="#gdppc-ukus" title="Link to this image">#</a></p>
@@ -1201,7 +1223,7 @@ groups of people</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
 <span class="n">country</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;CHN&#39;</span><span class="p">,</span> <span class="s1">&#39;SUN&#39;</span><span class="p">,</span> <span class="s1">&#39;JPN&#39;</span><span class="p">,</span> <span class="s1">&#39;GBR&#39;</span><span class="p">,</span> <span class="s1">&#39;USA&#39;</span><span class="p">]</span>
 <span class="n">start_year</span><span class="p">,</span> <span class="n">end_year</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1820</span><span class="p">,</span> <span class="mi">1945</span><span class="p">)</span>
-<span class="n">draw_interp_plots</span><span class="p">(</span><span class="n">gdp</span><span class="p">[</span><span class="n">country</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">start_year</span><span class="p">:</span><span class="n">end_year</span><span class="p">],</span> 
+<span class="n">draw_interp_plots</span><span class="p">(</span><span class="n">gdp</span><span class="p">[</span><span class="n">country</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">start_year</span><span class="p">:</span><span class="n">end_year</span><span class="p">],</span>
                   <span class="n">country</span><span class="p">,</span>
                   <span class="s1">&#39;international dollars&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span>
                   <span class="n">color_mapping</span><span class="p">,</span> <span class="n">code_to_name</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
@@ -1220,7 +1242,7 @@ groups of people</p>
 </div>
 <section id="constructing-a-plot-similar-to-toozes">
 <h4><span class="section-number">2.4.1.1. </span>Constructing a plot similar to Tooze’s<a class="headerlink" href="#constructing-a-plot-similar-to-toozes" title="Link to this heading">#</a></h4>
-<p>In this section we describe how we have constructed a version of the striking figure from chapter 1 of <span id="id3">[<a class="reference internal" href="zreferences.html#id16" title="Adam Tooze. The deluge: the great war, america and the remaking of the global order, 1916–1931. 2014.">Tooze, 2014</a>]</span> that we discussed at the start of this lecture.</p>
+<p>In this section we describe how we have constructed a version of the striking figure from chapter 1 of <span class="bibtex-citation" id="id3">[<a class="reference internal" href="zreferences.html#id16" title="Adam Tooze. The deluge: the great war, america and the remaking of the global order, 1916–1931. 2014.">Tooze, 2014</a>]</span> that we discussed at the start of this lecture.</p>
 <p>Let’s first define a collection of countries that consist of the British Empire (BEM) so we can replicate that series in  Tooze’s chart.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1249,7 +1271,7 @@ groups of people</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
 <span class="n">country</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;DEU&#39;</span><span class="p">,</span> <span class="s1">&#39;USA&#39;</span><span class="p">,</span> <span class="s1">&#39;SUN&#39;</span><span class="p">,</span> <span class="s1">&#39;BEM&#39;</span><span class="p">,</span> <span class="s1">&#39;FRA&#39;</span><span class="p">,</span> <span class="s1">&#39;JPN&#39;</span><span class="p">]</span>
 <span class="n">start_year</span><span class="p">,</span> <span class="n">end_year</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1821</span><span class="p">,</span> <span class="mi">1945</span><span class="p">)</span>
-<span class="n">draw_interp_plots</span><span class="p">(</span><span class="n">gdp</span><span class="p">[</span><span class="n">country</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">start_year</span><span class="p">:</span><span class="n">end_year</span><span class="p">],</span> 
+<span class="n">draw_interp_plots</span><span class="p">(</span><span class="n">gdp</span><span class="p">[</span><span class="n">country</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">start_year</span><span class="p">:</span><span class="n">end_year</span><span class="p">],</span>
                   <span class="n">country</span><span class="p">,</span>
                   <span class="s1">&#39;international dollars&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span>
                   <span class="n">color_mapping</span><span class="p">,</span> <span class="n">code_to_name</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
@@ -1279,7 +1301,7 @@ by the end of the 19th century, setting the geopolitical stage for the “Americ
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
 <span class="n">country</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;CHN&#39;</span><span class="p">,</span> <span class="s1">&#39;SUN&#39;</span><span class="p">,</span> <span class="s1">&#39;JPN&#39;</span><span class="p">,</span> <span class="s1">&#39;GBR&#39;</span><span class="p">,</span> <span class="s1">&#39;USA&#39;</span><span class="p">]</span>
 <span class="n">start_year</span><span class="p">,</span> <span class="n">end_year</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1950</span><span class="p">,</span> <span class="mi">2020</span><span class="p">)</span>
-<span class="n">draw_interp_plots</span><span class="p">(</span><span class="n">gdp</span><span class="p">[</span><span class="n">country</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">start_year</span><span class="p">:</span><span class="n">end_year</span><span class="p">],</span> 
+<span class="n">draw_interp_plots</span><span class="p">(</span><span class="n">gdp</span><span class="p">[</span><span class="n">country</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">start_year</span><span class="p">:</span><span class="n">end_year</span><span class="p">],</span>
                   <span class="n">country</span><span class="p">,</span>
                   <span class="s1">&#39;international dollars&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span>
                   <span class="n">color_mapping</span><span class="p">,</span> <span class="n">code_to_name</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
@@ -1296,7 +1318,7 @@ by the end of the 19th century, setting the geopolitical stage for the “Americ
 </figure>
 </div>
 </div>
-<p>It is tempting to compare this graph with figure <a class="reference internal" href="#gdp1"><span class="std std-numref">Fig. 2.6</span></a> that showed the US overtaking the UK near the start of the “American Century”, a version of the graph featured in chapter 1 of  <span id="id4">[<a class="reference internal" href="zreferences.html#id16" title="Adam Tooze. The deluge: the great war, america and the remaking of the global order, 1916–1931. 2014.">Tooze, 2014</a>]</span>.</p>
+<p>It is tempting to compare this graph with figure <a class="reference internal" href="#gdp1"><span class="std std-numref">Fig. 2.6</span></a> that showed the US overtaking the UK near the start of the “American Century”, a version of the graph featured in chapter 1 of  <span class="bibtex-citation" id="id4">[<a class="reference internal" href="zreferences.html#id16" title="Adam Tooze. The deluge: the great war, america and the remaking of the global order, 1916–1931. 2014.">Tooze, 2014</a>]</span>.</p>
 </section>
 </section>
 <section id="regional-analysis">
@@ -1305,8 +1327,8 @@ by the end of the 19th century, setting the geopolitical stage for the “Americ
 <p>The <a class="reference external" href="https://www.rug.nl/ggdc/historicaldevelopment/maddison/">Maddison Historical Statistics</a> dataset also includes regional aggregations</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">data_url</span><span class="p">,</span> 
-                     <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Regional data&#39;</span><span class="p">,</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">data_url</span><span class="p">,</span>
+                     <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Regional data&#39;</span><span class="p">,</span>
                      <span class="n">header</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
                      <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">data</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">droplevel</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
@@ -1793,6 +1815,8 @@ by the end of the 19th century, setting the geopolitical stage for the “Americ
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/long_run_growth.md" download><i data-feather="github"></i></a></li>
                     -->
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro" download><i data-feather="github"></i></a></li>
+                    
+                    
                 </ul>
 
             </div>

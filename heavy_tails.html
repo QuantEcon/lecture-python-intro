@@ -77,13 +77,13 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=ca16d73eb23eeca4aff446ccb0673818c18f9cfc" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=ff5dcadef89fd2097ea5e28ddaad7eb5985f09c4" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=4c010e0d" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=3a5ece24" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -101,8 +101,8 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
-    <script src="_static/scripts/quantecon-book-theme.js?digest=239405dfbfda750f9038d3ea275d1490a4be841e"></script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=9980b4379844dc0b911d69b62b295f34ede88fac"></script>
     <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
     <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -158,8 +158,27 @@
 <meta property="og:site_name" content="A First Course in Quantitative Economics with Python" />
 <meta name="theme-color" content="#ffffff" />
 
+
+
+
   </head>
 <body>
+
+<!-- Prevent flash of light theme when dark mode is saved -->
+<script>
+(function() {
+  try {
+    if (localStorage.setContrast === '1') {
+      document.body.classList.add('dark-theme');
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  } catch(e) {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+})();
+</script>
 
 <!-- Override QuantEcon theme colors -->
 
@@ -180,7 +199,7 @@
                     
 
                     
-                    <div class="inner">
+                    <div class="inner sticky" data-autoexpand="true">
 
                         
                         <div class="qe-page__toc-header">
@@ -248,12 +267,14 @@
                             
                             
                             
-                            <p><a href="#top"><strong>Back to top</strong></a></p>
+                            
                             
                         </div>
 
                     </div>
 
+                    
+                    <a href="#top" class="back-to-top-btn" title="Back to top">↑ Top</a>
                     
 
                 </div>
@@ -295,7 +316,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/3e07d3bd" class="changelog-hash">3e07d3bd</a>
                                 
                                 <span class="changelog-author">Matt McKay</span>
-                                <span class="changelog-time">11 months ago</span>
+                                <span class="changelog-time">1 year ago</span>
                                 <span class="changelog-message">FIX: FutureWarning in heavy_tails (#581)</span>
                             </li>
                             
@@ -331,7 +352,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/735bf78f" class="changelog-hash">735bf78f</a>
                                 
                                 <span class="changelog-author">JingkunZhao</span>
-                                <span class="changelog-time">1 year ago</span>
+                                <span class="changelog-time">2 years ago</span>
                                 <span class="changelog-message">Update heavy_tails.md</span>
                             </li>
                             
@@ -340,7 +361,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/a44a5df4" class="changelog-hash">a44a5df4</a>
                                 
                                 <span class="changelog-author">mmcky</span>
-                                <span class="changelog-time">1 year ago</span>
+                                <span class="changelog-time">2 years ago</span>
                                 <span class="changelog-message">remove bolding as not formal</span>
                             </li>
                             
@@ -349,7 +370,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/f32785b7" class="changelog-hash">f32785b7</a>
                                 
                                 <span class="changelog-author">mmcky</span>
-                                <span class="changelog-time">1 year ago</span>
+                                <span class="changelog-time">2 years ago</span>
                                 <span class="changelog-message">follow wikipedia style for capitalization, Normal -> normal in text</span>
                             </li>
                             
@@ -358,7 +379,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/90bf2c26" class="changelog-hash">90bf2c26</a>
                                 
                                 <span class="changelog-author">mmcky</span>
-                                <span class="changelog-time">1 year ago</span>
+                                <span class="changelog-time">2 years ago</span>
                                 <span class="changelog-message">qq-plot multiples of 3 and horizontal</span>
                             </li>
                             
@@ -367,7 +388,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/15f9e14d" class="changelog-hash">15f9e14d</a>
                                 
                                 <span class="changelog-author">mmcky</span>
-                                <span class="changelog-time">1 year ago</span>
+                                <span class="changelog-time">2 years ago</span>
                                 <span class="changelog-message">square q-q plots</span>
                             </li>
                             
@@ -376,7 +397,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/d6f57500" class="changelog-hash">d6f57500</a>
                                 
                                 <span class="changelog-author">mmcky</span>
-                                <span class="changelog-time">1 year ago</span>
+                                <span class="changelog-time">2 years ago</span>
                                 <span class="changelog-message">add wiki links and idea on less formal discussion on heavy-tails</span>
                             </li>
                             
@@ -407,33 +428,37 @@
 <p class="expanded admonition-title">Hide code cell output</p>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: yfinance in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (1.2.0)
-Requirement already satisfied: wbgapi in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (1.0.13)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: yfinance in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (1.3.0)
+Requirement already satisfied: wbgapi in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (1.0.14)
 Requirement already satisfied: pandas&gt;=1.3.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (2.3.3)
 Requirement already satisfied: numpy&gt;=1.16.5 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (2.3.5)
 Requirement already satisfied: requests&gt;=2.31 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (2.32.5)
-Requirement already satisfied: multitasking&gt;=0.0.7 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (0.0.12)
+Requirement already satisfied: multitasking&gt;=0.0.7 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (0.0.13)
 Requirement already satisfied: platformdirs&gt;=2.0.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (4.5.0)
 Requirement already satisfied: pytz&gt;=2022.5 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (2025.2)
 Requirement already satisfied: frozendict&gt;=2.3.4 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (2.4.7)
-Requirement already satisfied: peewee&gt;=3.16.2 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (4.0.0)
+Requirement already satisfied: peewee&gt;=3.16.2 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (4.0.5)
 Requirement already satisfied: beautifulsoup4&gt;=4.11.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (4.13.5)
-Requirement already satisfied: curl_cffi&lt;0.14,&gt;=0.7 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (0.13.0)
+Requirement already satisfied: curl_cffi&gt;=0.15 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (0.15.0)
 Requirement already satisfied: protobuf&gt;=3.19.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (5.29.3)
 Requirement already satisfied: websockets&gt;=13.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (16.0)
-Requirement already satisfied: cffi&gt;=1.12.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from curl_cffi&lt;0.14,&gt;=0.7-&gt;yfinance) (2.0.0)
-Requirement already satisfied: certifi&gt;=2024.2.2 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from curl_cffi&lt;0.14,&gt;=0.7-&gt;yfinance) (2025.11.12)
 Requirement already satisfied: PyYAML in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from wbgapi) (6.0.3)
 Requirement already satisfied: tabulate in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from wbgapi) (0.9.0)
 Requirement already satisfied: soupsieve&gt;1.2 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from beautifulsoup4&gt;=4.11.1-&gt;yfinance) (2.5)
 Requirement already satisfied: typing-extensions&gt;=4.0.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from beautifulsoup4&gt;=4.11.1-&gt;yfinance) (4.15.0)
-Requirement already satisfied: pycparser in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from cffi&gt;=1.12.0-&gt;curl_cffi&lt;0.14,&gt;=0.7-&gt;yfinance) (2.23)
+Requirement already satisfied: cffi&gt;=2.0.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from curl_cffi&gt;=0.15-&gt;yfinance) (2.0.0)
+Requirement already satisfied: certifi&gt;=2024.2.2 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from curl_cffi&gt;=0.15-&gt;yfinance) (2025.11.12)
+Requirement already satisfied: rich in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from curl_cffi&gt;=0.15-&gt;yfinance) (14.2.0)
+Requirement already satisfied: pycparser in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from cffi&gt;=2.0.0-&gt;curl_cffi&gt;=0.15-&gt;yfinance) (2.23)
 Requirement already satisfied: python-dateutil&gt;=2.8.2 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from pandas&gt;=1.3.0-&gt;yfinance) (2.9.0.post0)
 Requirement already satisfied: tzdata&gt;=2022.7 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from pandas&gt;=1.3.0-&gt;yfinance) (2025.2)
 Requirement already satisfied: six&gt;=1.5 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas&gt;=1.3.0-&gt;yfinance) (1.17.0)
 Requirement already satisfied: charset_normalizer&lt;4,&gt;=2 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from requests&gt;=2.31-&gt;yfinance) (3.4.4)
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from requests&gt;=2.31-&gt;yfinance) (3.11)
 Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from requests&gt;=2.31-&gt;yfinance) (2.5.0)
+Requirement already satisfied: markdown-it-py&gt;=2.2.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from rich-&gt;curl_cffi&gt;=0.15-&gt;yfinance) (3.0.0)
+Requirement already satisfied: pygments&lt;3.0.0,&gt;=2.13.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from rich-&gt;curl_cffi&gt;=0.15-&gt;yfinance) (2.19.2)
+Requirement already satisfied: mdurl~=0.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from markdown-it-py&gt;=2.2.0-&gt;rich-&gt;curl_cffi&gt;=0.15-&gt;yfinance) (0.1.2)
 </pre></div>
 </div>
 </div>
@@ -501,7 +526,7 @@ as with the following code (which assumes <span class="math notranslate nohighli
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="hist-obs">
-<a class="reference internal image-reference" href="_images/4d8b3fd1f32fe1f93bc5a53592c8bfb1692bd03f2d857835ff60d683e3850147.png"><img alt="_images/4d8b3fd1f32fe1f93bc5a53592c8bfb1692bd03f2d857835ff60d683e3850147.png" src="_images/4d8b3fd1f32fe1f93bc5a53592c8bfb1692bd03f2d857835ff60d683e3850147.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/33711a00e3c91d755a82675f379015e39b1eb2528552d50faa9f0a7aa19dd36f.png"><img alt="_images/33711a00e3c91d755a82675f379015e39b1eb2528552d50faa9f0a7aa19dd36f.png" src="_images/33711a00e3c91d755a82675f379015e39b1eb2528552d50faa9f0a7aa19dd36f.png" style="width: 80%;" />
 </a>
 <figcaption>
 <p><span class="caption-number">Fig. 22.1 </span><span class="caption-text">Histogram of observations</span><a class="headerlink" href="#hist-obs" title="Link to this image">#</a></p>
@@ -522,7 +547,7 @@ as with the following code (which assumes <span class="math notranslate nohighli
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(np.float64(-5.147008196661676), np.float64(5.257859577217398))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(np.float64(-4.911182746159787), np.float64(4.798137202692221))
 </pre></div>
 </div>
 </div>
@@ -544,7 +569,7 @@ as with the following code (which assumes <span class="math notranslate nohighli
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="hist-obs2">
-<a class="reference internal image-reference" href="_images/cfd583159f1f5f3bcfe32acbf7566cad31e8755ed020f3cf6da04b0b01a4cac6.png"><img alt="_images/cfd583159f1f5f3bcfe32acbf7566cad31e8755ed020f3cf6da04b0b01a4cac6.png" src="_images/cfd583159f1f5f3bcfe32acbf7566cad31e8755ed020f3cf6da04b0b01a4cac6.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/8e8034c876c01fc65ca2d70897c5c79fa6ea652cd0b001b8b1cc89323ddfbb36.png"><img alt="_images/8e8034c876c01fc65ca2d70897c5c79fa6ea652cd0b001b8b1cc89323ddfbb36.png" src="_images/8e8034c876c01fc65ca2d70897c5c79fa6ea652cd0b001b8b1cc89323ddfbb36.png" style="width: 80%;" />
 </a>
 <figcaption>
 <p><span class="caption-number">Fig. 22.2 </span><span class="caption-text">Histogram of observations</span><a class="headerlink" href="#hist-obs2" title="Link to this image">#</a></p>
@@ -702,7 +727,7 @@ distribution:</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="hist-normal-btc">
-<a class="reference internal image-reference" href="_images/990c3b1356417cdeb090ef8f415ab94dd85e44cdb71a54d2b38b85f97d3a6428.png"><img alt="_images/990c3b1356417cdeb090ef8f415ab94dd85e44cdb71a54d2b38b85f97d3a6428.png" src="_images/990c3b1356417cdeb090ef8f415ab94dd85e44cdb71a54d2b38b85f97d3a6428.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/d2b1c75b652b35c0197f6114f0b8db4b9c0c4b4147b1757694c39b2361d8914e.png"><img alt="_images/d2b1c75b652b35c0197f6114f0b8db4b9c0c4b4147b1757694c39b2361d8914e.png" src="_images/d2b1c75b652b35c0197f6114f0b8db4b9c0c4b4147b1757694c39b2361d8914e.png" style="width: 80%;" />
 </a>
 <figcaption>
 <p><span class="caption-number">Fig. 22.5 </span><span class="caption-text">Histogram (normal vs bitcoin returns)</span><a class="headerlink" href="#hist-normal-btc" title="Link to this image">#</a></p>
@@ -712,7 +737,7 @@ distribution:</p>
 </div>
 <p>If we look at higher frequency returns data (e.g., tick-by-tick), we often see
 even more extreme observations.</p>
-<p>See, for example, <span id="id1">[<a class="reference internal" href="zreferences.html#id86" title="Benoit Mandelbrot. The variation of certain speculative prices. The Journal of Business, 36(4):394–419, 1963.">Mandelbrot, 1963</a>]</span> or <span id="id2">[<a class="reference internal" href="zreferences.html#id85" title="Svetlozar Todorov Rachev. Handbook of heavy tailed distributions in finance: Handbooks in finance. Volume 1. Elsevier, 2003.">Rachev, 2003</a>]</span>.</p>
+<p>See, for example, <span class="bibtex-citation" id="id1">[<a class="reference internal" href="zreferences.html#id86" title="Benoit Mandelbrot. The variation of certain speculative prices. The Journal of Business, 36(4):394–419, 1963.">Mandelbrot, 1963</a>]</span> or <span class="bibtex-citation" id="id2">[<a class="reference internal" href="zreferences.html#id85" title="Svetlozar Todorov Rachev. Handbook of heavy tailed distributions in finance: Handbooks in finance. Volume 1. Elsevier, 2003.">Rachev, 2003</a>]</span>.</p>
 </section>
 <section id="other-data">
 <h3><span class="section-number">22.1.4. </span>Other data<a class="headerlink" href="#other-data" title="Link to this heading">#</a></h3>
@@ -1567,13 +1592,13 @@ m(t) = \frac{\lambda}{\lambda - t} \quad \text{when } t &lt; \lambda
 </section>
 <section id="further-reading">
 <h2><span class="section-number">22.7. </span>Further reading<a class="headerlink" href="#further-reading" title="Link to this heading">#</a></h2>
-<p>For more on heavy tails in the wealth distribution, see e.g., <span id="id3">[<a class="reference internal" href="zreferences.html#id90" title="Pareto Vilfredo. Cours d'économie politique. Rouge, Lausanne, 1896.">Vilfredo, 1896</a>]</span> and <span id="id4">[<a class="reference internal" href="zreferences.html#id89" title="Jess Benhabib and Alberto Bisin. Skewed wealth distributions: theory and empirics. Journal of Economic Literature, 56(4):1261–91, 2018.">Benhabib and Bisin, 2018</a>]</span>.</p>
-<p>For more on heavy tails in the firm size distribution, see e.g., <span id="id5">[<a class="reference internal" href="zreferences.html#id88" title="Robert L Axtell. Zipf distribution of us firm sizes. science, 293(5536):1818–1820, 2001.">Axtell, 2001</a>]</span>, <span id="id6">[<a class="reference internal" href="zreferences.html#id87" title="Xavier Gabaix. Power laws in economics: an introduction. Journal of Economic Perspectives, 30(1):185–206, 2016.">Gabaix, 2016</a>]</span>.</p>
-<p>For more on heavy tails in the city size distribution, see e.g., <span id="id7">[<a class="reference internal" href="zreferences.html#id84" title="Hernán D Rozenfeld, Diego Rybski, Xavier Gabaix, and Hernán A Makse. The area and population of cities: new insights from a different perspective on cities. American Economic Review, 101(5):2205–25, 2011.">Rozenfeld <em>et al.</em>, 2011</a>]</span>, <span id="id8">[<a class="reference internal" href="zreferences.html#id87" title="Xavier Gabaix. Power laws in economics: an introduction. Journal of Economic Perspectives, 30(1):185–206, 2016.">Gabaix, 2016</a>]</span>.</p>
+<p>For more on heavy tails in the wealth distribution, see e.g., <span class="bibtex-citation" id="id3">[<a class="reference internal" href="zreferences.html#id90" title="Pareto Vilfredo. Cours d'économie politique. Rouge, Lausanne, 1896.">Vilfredo, 1896</a>]</span> and <span class="bibtex-citation" id="id4">[<a class="reference internal" href="zreferences.html#id89" title="Jess Benhabib and Alberto Bisin. Skewed wealth distributions: theory and empirics. Journal of Economic Literature, 56(4):1261–91, 2018.">Benhabib and Bisin, 2018</a>]</span>.</p>
+<p>For more on heavy tails in the firm size distribution, see e.g., <span class="bibtex-citation" id="id5">[<a class="reference internal" href="zreferences.html#id88" title="Robert L Axtell. Zipf distribution of us firm sizes. science, 293(5536):1818–1820, 2001.">Axtell, 2001</a>]</span>, <span class="bibtex-citation" id="id6">[<a class="reference internal" href="zreferences.html#id87" title="Xavier Gabaix. Power laws in economics: an introduction. Journal of Economic Perspectives, 30(1):185–206, 2016.">Gabaix, 2016</a>]</span>.</p>
+<p>For more on heavy tails in the city size distribution, see e.g., <span class="bibtex-citation" id="id7">[<a class="reference internal" href="zreferences.html#id84" title="Hernán D Rozenfeld, Diego Rybski, Xavier Gabaix, and Hernán A Makse. The area and population of cities: new insights from a different perspective on cities. American Economic Review, 101(5):2205–25, 2011.">Rozenfeld <em>et al.</em>, 2011</a>]</span>, <span class="bibtex-citation" id="id8">[<a class="reference internal" href="zreferences.html#id87" title="Xavier Gabaix. Power laws in economics: an introduction. Journal of Economic Perspectives, 30(1):185–206, 2016.">Gabaix, 2016</a>]</span>.</p>
 <p>There are other important implications of heavy tails, aside from those
 discussed above.</p>
 <p>For example, heavy tails in income and wealth affect productivity growth, business cycles, and political economy.</p>
-<p>For further reading, see, for example, <span id="id9">[<a class="reference internal" href="zreferences.html#id83" title="Daron Acemoglu and James A. Robinson. The political economy of the Kuznets curve. Review of Development Economics, 6(2):183–203, 2002.">Acemoglu and Robinson, 2002</a>]</span>, <span id="id10">[<a class="reference internal" href="zreferences.html#id82" title="Edward Glaeser, Jose Scheinkman, and Andrei Shleifer. The injustice of inequality. Journal of Monetary Economics, 50(1):199–222, 2003.">Glaeser <em>et al.</em>, 2003</a>]</span>, <span id="id11">[<a class="reference internal" href="zreferences.html#id81" title="Anmol Bhandari, David Evans, Mikhail Golosov, and Thomas J Sargent. Inequality, business cycles, and monetary-fiscal policy. Technical Report, National Bureau of Economic Research, 2018.">Bhandari <em>et al.</em>, 2018</a>]</span> or <span id="id12">[<a class="reference internal" href="zreferences.html#id80" title="SeHyoun Ahn, Greg Kaplan, Benjamin Moll, Thomas Winberry, and Christian Wolf. When inequality matters for macro and macro matters for inequality. NBER Macroeconomics Annual, 32(1):1–75, 2018.">Ahn <em>et al.</em>, 2018</a>]</span>.</p>
+<p>For further reading, see, for example, <span class="bibtex-citation" id="id9">[<a class="reference internal" href="zreferences.html#id83" title="Daron Acemoglu and James A. Robinson. The political economy of the Kuznets curve. Review of Development Economics, 6(2):183–203, 2002.">Acemoglu and Robinson, 2002</a>]</span>, <span class="bibtex-citation" id="id10">[<a class="reference internal" href="zreferences.html#id82" title="Edward Glaeser, Jose Scheinkman, and Andrei Shleifer. The injustice of inequality. Journal of Monetary Economics, 50(1):199–222, 2003.">Glaeser <em>et al.</em>, 2003</a>]</span>, <span class="bibtex-citation" id="id11">[<a class="reference internal" href="zreferences.html#id81" title="Anmol Bhandari, David Evans, Mikhail Golosov, and Thomas J Sargent. Inequality, business cycles, and monetary-fiscal policy. Technical Report, National Bureau of Economic Research, 2018.">Bhandari <em>et al.</em>, 2018</a>]</span> or <span class="bibtex-citation" id="id12">[<a class="reference internal" href="zreferences.html#id80" title="SeHyoun Ahn, Greg Kaplan, Benjamin Moll, Thomas Winberry, and Christian Wolf. When inequality matters for macro and macro matters for inequality. NBER Macroeconomics Annual, 32(1):1–75, 2018.">Ahn <em>et al.</em>, 2018</a>]</span>.</p>
 </section>
 <section id="exercises">
 <h2><span class="section-number">22.8. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
@@ -1660,7 +1685,7 @@ Cauchy) with three Pareto distributions using different choices of
 <section id="exercise-content">
 <p>There is an ongoing argument about whether the firm size distribution should
 be modeled as a Pareto distribution or a lognormal distribution (see, e.g.,
-<span id="id13">[<a class="reference internal" href="zreferences.html#id73" title="Yoshi Fujiwara, Corrado Di Guilmi, Hideaki Aoyama, Mauro Gallegati, and Wataru Souma. Do pareto–zipf and gibrat laws hold true? an analysis with european firms. Physica A: Statistical Mechanics and its Applications, 335(1-2):197–216, 2004.">Fujiwara <em>et al.</em>, 2004</a>]</span>, <span id="id14">[<a class="reference internal" href="zreferences.html#id71" title="Illenin Kondo, Logan T Lewis, and Andrea Stella. On the us firm and establishment size distributions. Technical Report, SSRN, 2018.">Kondo <em>et al.</em>, 2018</a>]</span> or <span id="id15">[<a class="reference internal" href="zreferences.html#id72" title="Christian Schluter and Mark Trede. Size distributions reconsidered. Econometric Reviews, 38(6):695–710, 2019.">Schluter and Trede, 2019</a>]</span>).</p>
+<span class="bibtex-citation" id="id13">[<a class="reference internal" href="zreferences.html#id73" title="Yoshi Fujiwara, Corrado Di Guilmi, Hideaki Aoyama, Mauro Gallegati, and Wataru Souma. Do pareto–zipf and gibrat laws hold true? an analysis with european firms. Physica A: Statistical Mechanics and its Applications, 335(1-2):197–216, 2004.">Fujiwara <em>et al.</em>, 2004</a>]</span>, <span class="bibtex-citation" id="id14">[<a class="reference internal" href="zreferences.html#id71" title="Illenin Kondo, Logan T Lewis, and Andrea Stella. On the us firm and establishment size distributions. Technical Report, SSRN, 2018.">Kondo <em>et al.</em>, 2018</a>]</span> or <span class="bibtex-citation" id="id15">[<a class="reference internal" href="zreferences.html#id72" title="Christian Schluter and Mark Trede. Size distributions reconsidered. Econometric Reviews, 38(6):695–710, 2019.">Schluter and Trede, 2019</a>]</span>).</p>
 <p>This sounds esoteric but has real implications for a variety of economic
 phenomena.</p>
 <p>To illustrate this fact in a simple way, let us consider an economy with
@@ -1681,7 +1706,7 @@ tax revenue over the next 10 years.</p>
 <li><p>summing the results with discounting to obtain present value.</p></li>
 </ol>
 <p>The Pareto distribution is assumed to take the form <a class="reference internal" href="#equation-pareto">(22.1)</a> with <span class="math notranslate nohighlight">\(\bar x = 1\)</span> and <span class="math notranslate nohighlight">\(\alpha = 1.05\)</span>.</p>
-<p>(The value of the tail index <span class="math notranslate nohighlight">\(\alpha\)</span> is plausible given the data <span id="id16">[<a class="reference internal" href="zreferences.html#id87" title="Xavier Gabaix. Power laws in economics: an introduction. Journal of Economic Perspectives, 30(1):185–206, 2016.">Gabaix, 2016</a>]</span>.)</p>
+<p>(The value of the tail index <span class="math notranslate nohighlight">\(\alpha\)</span> is plausible given the data <span class="bibtex-citation" id="id16">[<a class="reference internal" href="zreferences.html#id87" title="Xavier Gabaix. Power laws in economics: an introduction. Journal of Economic Perspectives, 30(1):185–206, 2016.">Gabaix, 2016</a>]</span>.)</p>
 <p>To make the lognormal option as similar as possible to the Pareto option, choose
 its parameters such that the mean and median of both distributions are the same.</p>
 <p>Note that, for each distribution, your estimate of tax revenue will be random
@@ -2305,6 +2330,8 @@ X_n\)</span> from the Cauchy distribution has the same characteristic function a
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/heavy_tails.md" download><i data-feather="github"></i></a></li>
                     -->
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro" download><i data-feather="github"></i></a></li>
+                    
+                    
                 </ul>
 
             </div>

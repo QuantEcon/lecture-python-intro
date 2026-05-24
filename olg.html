@@ -77,13 +77,13 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=ca16d73eb23eeca4aff446ccb0673818c18f9cfc" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=ff5dcadef89fd2097ea5e28ddaad7eb5985f09c4" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=4c010e0d" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=3a5ece24" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -101,8 +101,8 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
-    <script src="_static/scripts/quantecon-book-theme.js?digest=239405dfbfda750f9038d3ea275d1490a4be841e"></script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=9980b4379844dc0b911d69b62b295f34ede88fac"></script>
     <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
     <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -158,8 +158,27 @@
 <meta property="og:site_name" content="A First Course in Quantitative Economics with Python" />
 <meta name="theme-color" content="#ffffff" />
 
+
+
+
   </head>
 <body>
+
+<!-- Prevent flash of light theme when dark mode is saved -->
+<script>
+(function() {
+  try {
+    if (localStorage.setContrast === '1') {
+      document.body.classList.add('dark-theme');
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  } catch(e) {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+})();
+</script>
 
 <!-- Override QuantEcon theme colors -->
 
@@ -180,7 +199,7 @@
                     
 
                     
-                    <div class="inner">
+                    <div class="inner sticky" data-autoexpand="true">
 
                         
                         <div class="qe-page__toc-header">
@@ -240,12 +259,14 @@
                             
                             
                             
-                            <p><a href="#top"><strong>Back to top</strong></a></p>
+                            
                             
                         </div>
 
                     </div>
 
+                    
+                    <a href="#top" class="back-to-top-btn" title="Back to top">↑ Top</a>
                     
 
                 </div>
@@ -314,7 +335,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/742e6f6f" class="changelog-hash">742e6f6f</a>
                                 
                                 <span class="changelog-author">Longye Tian</span>
-                                <span class="changelog-time">1 year ago</span>
+                                <span class="changelog-time">2 years ago</span>
                                 <span class="changelog-message">Update olg.md</span>
                             </li>
                             
@@ -323,7 +344,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/d513790c" class="changelog-hash">d513790c</a>
                                 
                                 <span class="changelog-author">Longye Tian</span>
-                                <span class="changelog-time">1 year ago</span>
+                                <span class="changelog-time">2 years ago</span>
                                 <span class="changelog-message">update_olg.md</span>
                             </li>
                             
@@ -359,7 +380,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/c0806f5e" class="changelog-hash">c0806f5e</a>
                                 
                                 <span class="changelog-author">John Stachurski</span>
-                                <span class="changelog-time">2 years ago</span>
+                                <span class="changelog-time">3 years ago</span>
                                 <span class="changelog-message">misc</span>
                             </li>
                             
@@ -368,7 +389,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/649ef8c3" class="changelog-hash">649ef8c3</a>
                                 
                                 <span class="changelog-author">John Stachurski</span>
-                                <span class="changelog-time">2 years ago</span>
+                                <span class="changelog-time">3 years ago</span>
                                 <span class="changelog-message">misc</span>
                             </li>
                             
@@ -395,7 +416,7 @@ is used by policy makers and researchers to examine</p>
 </ul>
 <p>and many other topics.</p>
 <p>The first rigorous version of the OLG model was developed by Paul Samuelson
-<span id="id1">[<a class="reference internal" href="zreferences.html#id23" title="Paul A Samuelson. An exact consumption-loan model of interest with or without the social contrivance of money. Journal of political economy, 66(6):467–482, 1958.">Samuelson, 1958</a>]</span>.</p>
+<span class="bibtex-citation" id="id1">[<a class="reference internal" href="zreferences.html#id23" title="Paul A Samuelson. An exact consumption-loan model of interest with or without the social contrivance of money. Journal of political economy, 66(6):467–482, 1958.">Samuelson, 1958</a>]</span>.</p>
 <p>Our aim is to gain a good understanding of a simple version of the OLG
 model.</p>
 <section id="overview">
@@ -1545,6 +1566,8 @@ three distinct initial conditions, under the parameterization listed above.</p>
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/olg.md" download><i data-feather="github"></i></a></li>
                     -->
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro" download><i data-feather="github"></i></a></li>
+                    
+                    
                 </ul>
 
             </div>

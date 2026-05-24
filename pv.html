@@ -77,13 +77,13 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=ca16d73eb23eeca4aff446ccb0673818c18f9cfc" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=ff5dcadef89fd2097ea5e28ddaad7eb5985f09c4" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=4c010e0d" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=3a5ece24" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -101,8 +101,8 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
-    <script src="_static/scripts/quantecon-book-theme.js?digest=239405dfbfda750f9038d3ea275d1490a4be841e"></script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=9980b4379844dc0b911d69b62b295f34ede88fac"></script>
     <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
     <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -158,8 +158,27 @@
 <meta property="og:site_name" content="A First Course in Quantitative Economics with Python" />
 <meta name="theme-color" content="#ffffff" />
 
+
+
+
   </head>
 <body>
+
+<!-- Prevent flash of light theme when dark mode is saved -->
+<script>
+(function() {
+  try {
+    if (localStorage.setContrast === '1') {
+      document.body.classList.add('dark-theme');
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  } catch(e) {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+})();
+</script>
 
 <!-- Override QuantEcon theme colors -->
 
@@ -180,7 +199,7 @@
                     
 
                     
-                    <div class="inner">
+                    <div class="inner sticky" data-autoexpand="true">
 
                         
                         <div class="qe-page__toc-header">
@@ -217,12 +236,14 @@
                             
                             
                             
-                            <p><a href="#top"><strong>Back to top</strong></a></p>
+                            
                             
                         </div>
 
                     </div>
 
+                    
+                    <a href="#top" class="back-to-top-btn" title="Back to top">↑ Top</a>
                     
 
                 </div>
@@ -250,7 +271,7 @@
 
                     <!-- Last modified / Changelog dropdown -->
                         <button class="qe-page__header-changed" id="changelog-toggle" aria-expanded="false">
-                            Last changed: Aug 01, 2025
+                            Last changed: May 24, 2026
                             <span class="changelog-icon">▼</span>
                         </button>
 
@@ -261,10 +282,19 @@
                             
                             <li class="changelog-entry">
                                 
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/ae928c86" class="changelog-hash">ae928c86</a>
+                                
+                                <span class="changelog-author">Humphrey Yang</span>
+                                <span class="changelog-time">14 minutes ago</span>
+                                <span class="changelog-message">Adding Tom's Edits to Exercises (#748)</span>
+                            </li>
+                            
+                            <li class="changelog-entry">
+                                
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/1ed3d4f5" class="changelog-hash">1ed3d4f5</a>
                                 
                                 <span class="changelog-author">Matt McKay</span>
-                                <span class="changelog-time">6 months ago</span>
+                                <span class="changelog-time">9 months ago</span>
                                 <span class="changelog-message">MAINT: update anaconda=2025.06 and python=3.13 (#637)</span>
                             </li>
                             
@@ -291,7 +321,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/47b44fc9" class="changelog-hash">47b44fc9</a>
                                 
                                 <span class="changelog-author">JingkunZhao</span>
-                                <span class="changelog-time">1 year ago</span>
+                                <span class="changelog-time">2 years ago</span>
                                 <span class="changelog-message">Update the quotation mark</span>
                             </li>
                             
@@ -338,15 +368,6 @@
                                 <span class="changelog-author">Tom Sargent</span>
                                 <span class="changelog-time">2 years ago</span>
                                 <span class="changelog-message">Tom's June 23 edits of pv.md lecture</span>
-                            </li>
-                            
-                            <li class="changelog-entry">
-                                
-                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/9afbf9a1" class="changelog-hash">9afbf9a1</a>
-                                
-                                <span class="changelog-author">Shu</span>
-                                <span class="changelog-time">2 years ago</span>
-                                <span class="changelog-message">Update lecture pv</span>
                             </li>
                             
                         </ul>
@@ -448,12 +469,12 @@ studying in their own right, being the foundation for the analysis of many inter
                     \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; 0 &amp; 0 \cr
                     0 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots &amp; 1 &amp; -\delta \cr
                     0 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; 1 \end{bmatrix}
-    \begin{bmatrix} p_0 \cr p_1 \cr p_2 \cr \vdots \cr p_{T-1} \cr p_T 
-    \end{bmatrix} 
-    =  \begin{bmatrix}  
+    \begin{bmatrix} p_0 \cr p_1 \cr p_2 \cr \vdots \cr p_{T-1} \cr p_T
+    \end{bmatrix}
+    =  \begin{bmatrix}
     d_0 \cr d_1 \cr d_2 \cr \vdots \cr d_{T-1} \cr d_T
     \end{bmatrix}
-    + \begin{bmatrix} 
+    + \begin{bmatrix}
     0 \cr 0 \cr 0 \cr \vdots \cr 0 \cr \delta p_{T+1}^*
     \end{bmatrix}
 \]</div>
@@ -465,6 +486,49 @@ studying in their own right, being the foundation for the analysis of many inter
 recover the equations in <a class="reference internal" href="#equation-eq-euler-stack">(11.2)</a>.</p>
 </section>
 </div>
+<div class="solution dropdown admonition" id="pv-solution-1">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#pv_ex_1"> Exercise 11.1</a></p>
+<section id="solution-content">
+<p>Multiplying row <span class="math notranslate nohighlight">\(t\)</span> of the matrix (which has <span class="math notranslate nohighlight">\(1\)</span> in column <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(-\delta\)</span> in
+column <span class="math notranslate nohighlight">\(t+1\)</span>) against the price vector gives <span class="math notranslate nohighlight">\(p_t - \delta p_{t+1}\)</span>.</p>
+<p>The last row has only a <span class="math notranslate nohighlight">\(1\)</span> in column <span class="math notranslate nohighlight">\(T\)</span>, giving <span class="math notranslate nohighlight">\(p_T\)</span>.</p>
+<p>Setting these equal to the right-hand side recovers exactly the equations in <a class="reference internal" href="#equation-eq-euler-stack">(11.2)</a>.</p>
+<p>We can verify the result numerically.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">δ</span> <span class="o">=</span> <span class="mf">0.99</span>
+<span class="n">p_star</span> <span class="o">=</span> <span class="mf">10.0</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span> <span class="o">*</span> <span class="mf">1.05</span><span class="o">**</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">)])</span>
+
+<span class="c1"># Build A</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">T</span><span class="p">:</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">δ</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">b</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">δ</span> <span class="o">*</span> <span class="n">p_star</span>
+
+<span class="c1"># Solve for p</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">d</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
+
+<span class="c1"># Check that A @ p == d + b  (residual should be zero)</span>
+<span class="n">residual</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">p</span> <span class="o">-</span> <span class="p">(</span><span class="n">d</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Max residual |A p - (d + b)|:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">residual</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Max residual |A p - (d + b)|: 1.1102230246251565e-15
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</div>
 <p>In vector-matrix notation, we can write  system <a class="reference internal" href="#equation-eq-pvpieq">(11.3)</a> as</p>
 <div class="math notranslate nohighlight" id="equation-eq-apdb">
 <span class="eqno">(11.4)<a class="headerlink" href="#equation-eq-apdb" title="Link to this equation">#</a></span>\[
@@ -473,7 +537,7 @@ recover the equations in <a class="reference internal" href="#equation-eq-euler-
 <p>Here <span class="math notranslate nohighlight">\(A\)</span> is the matrix on the left side of equation <a class="reference internal" href="#equation-eq-pvpieq">(11.3)</a>, while</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-    p = 
+    p =
     \begin{bmatrix}
         p_0 \\
         p_1 \\
@@ -481,7 +545,7 @@ recover the equations in <a class="reference internal" href="#equation-eq-euler-
         p_T
     \end{bmatrix},
     \quad
-    d = 
+    d =
     \begin{bmatrix}
         d_0 \\
         d_1 \\
@@ -489,7 +553,7 @@ recover the equations in <a class="reference internal" href="#equation-eq-euler-
         d_T
     \end{bmatrix},
     \quad \text{and} \quad
-    b = 
+    b =
     \begin{bmatrix}
         0 \\
         0 \\
@@ -515,7 +579,7 @@ recover the equations in <a class="reference internal" href="#equation-eq-euler-
 <span class="n">d</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
     <span class="n">d</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_d</span><span class="p">)</span>
-    <span class="n">current_d</span> <span class="o">=</span> <span class="n">current_d</span> <span class="o">*</span> <span class="mf">1.05</span> 
+    <span class="n">current_d</span> <span class="o">=</span> <span class="n">current_d</span> <span class="o">*</span> <span class="mf">1.05</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;dividends&#39;</span><span class="p">)</span>
@@ -627,7 +691,7 @@ recover the equations in <a class="reference internal" href="#equation-eq-euler-
 = 0.98\)</span>.</p>
 </section>
 </div>
-<div class="solution dropdown admonition" id="pv-solution-2">
+<div class="solution dropdown admonition" id="pv-solution-3">
 
 <p class="admonition-title">Solution to<a class="reference internal" href="#pv_ex_cyc"> Exercise 11.2</a></p>
 <section id="solution-content">
@@ -670,7 +734,7 @@ eliminates the cycles.</p>
 <p>By the <a class="reference external" href="https://en.wikipedia.org/wiki/Invertible_matrix">inverse matrix theorem</a>, a matrix <span class="math notranslate nohighlight">\(B\)</span> is the inverse of <span class="math notranslate nohighlight">\(A\)</span> whenever <span class="math notranslate nohighlight">\(A B\)</span> is the identity.</p>
 <p>It can be verified that the  inverse of the matrix <span class="math notranslate nohighlight">\(A\)</span> in <a class="reference internal" href="#equation-eq-pvpieq">(11.3)</a> is</p>
 <div class="math notranslate nohighlight" id="equation-eq-ainv">
-<span class="eqno">(11.6)<a class="headerlink" href="#equation-eq-ainv" title="Link to this equation">#</a></span>\[ A^{-1} = 
+<span class="eqno">(11.6)<a class="headerlink" href="#equation-eq-ainv" title="Link to this equation">#</a></span>\[ A^{-1} =
     \begin{bmatrix}
         1 &amp; \delta &amp; \delta^2 &amp; \cdots &amp; \delta^{T-1} &amp; \delta^T \cr
         0 &amp; 1 &amp; \delta &amp; \cdots &amp; \delta^{T-2} &amp; \delta^{T-1} \cr
@@ -684,6 +748,51 @@ eliminates the cycles.</p>
 <p class="admonition-title"><span class="caption-number">Exercise 11.3 </span></p>
 <section id="exercise-content">
 <p>Check this by showing that <span class="math notranslate nohighlight">\(A A^{-1}\)</span> is equal to the identity matrix.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="pv-solution-5">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#pv_ex_2"> Exercise 11.3</a></p>
+<section id="solution-content">
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">δ</span> <span class="o">=</span> <span class="mf">0.99</span>
+
+<span class="c1"># Build A</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">T</span><span class="p">:</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">δ</span>
+
+<span class="c1"># Analytical inverse from eq:Ainv: A_inv[i,j] = δ^(j-i) for j &gt;= i, else 0</span>
+<span class="n">A_inv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">A_inv</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">δ</span><span class="o">**</span><span class="p">(</span><span class="n">j</span> <span class="o">-</span> <span class="n">i</span><span class="p">)</span>
+
+<span class="c1"># Verify</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A @ A_inv (should be identity):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">A</span> <span class="o">@</span> <span class="n">A_inv</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Is identity:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">A</span> <span class="o">@</span> <span class="n">A_inv</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A @ A_inv (should be identity):
+[[ 1.  0.  0.  0. -0.  0.  0.]
+ [ 0.  1.  0.  0.  0. -0.  0.]
+ [ 0.  0.  1.  0.  0.  0. -0.]
+ [ 0.  0.  0.  1.  0.  0.  0.]
+ [ 0.  0.  0.  0.  1.  0.  0.]
+ [ 0.  0.  0.  0.  0.  1.  0.]
+ [ 0.  0.  0.  0.  0.  0.  1.]]
+Is identity: True
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </div>
 <p>If we use the expression <a class="reference internal" href="#equation-eq-ainv">(11.6)</a> in <a class="reference internal" href="#equation-eq-apdb-sol">(11.5)</a> and perform the indicated matrix multiplication, we shall find  that</p>
@@ -703,12 +812,12 @@ payout of the asset (in this case,  dividends).</p>
 fundamentals.</p>
 <p>It is sometimes convenient to rewrite the bubble component as</p>
 <div class="math notranslate nohighlight">
-\[ 
+\[
 c \delta^{-t}
 \]</div>
 <p>where</p>
 <div class="math notranslate nohighlight">
-\[ 
+\[
 c \equiv \delta^{T+1}p_{T+1}^*
 \]</div>
 </section>
@@ -717,10 +826,10 @@ c \equiv \delta^{T+1}p_{T+1}^*
 <p>For a few moments, let’s focus on  the special case of an asset that   never pays dividends, in which case</p>
 <div class="math notranslate nohighlight">
 \[
-\begin{bmatrix}  
+\begin{bmatrix}
 d_0 \cr d_1 \cr d_2 \cr \vdots \cr d_{T-1} \cr d_T
-\end{bmatrix} = 
-\begin{bmatrix}  
+\end{bmatrix} =
+\begin{bmatrix}
 0 \cr 0 \cr 0 \cr \vdots \cr 0 \cr 0
 \end{bmatrix}
 \]</div>
@@ -734,9 +843,9 @@ form of the single matrix equation</p>
                 \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; 0 &amp; 0 \cr
                 0 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots &amp; 1 &amp; -\delta \cr
                 0 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; 1 \end{bmatrix}
-\begin{bmatrix} p_0 \cr p_1 \cr p_2 \cr \vdots \cr p_{T-1} \cr p_T 
+\begin{bmatrix} p_0 \cr p_1 \cr p_2 \cr \vdots \cr p_{T-1} \cr p_T
 \end{bmatrix}  =
-\begin{bmatrix} 
+\begin{bmatrix}
 0 \cr 0 \cr 0 \cr \vdots \cr 0 \cr \delta p_{T+1}^*
 \end{bmatrix}
 \]</div>
@@ -746,7 +855,7 @@ formula <a class="reference internal" href="#equation-eq-ptpveq">(11.7)</a> is p
 <p>But let’s activate the <strong>bubble</strong>  component by setting</p>
 <div class="math notranslate nohighlight" id="equation-eq-eqbubbleterm">
 <span class="eqno">(11.9)<a class="headerlink" href="#equation-eq-eqbubbleterm" title="Link to this equation">#</a></span>\[
-p_{T+1}^* = c \delta^{-(T+1)} 
+p_{T+1}^* = c \delta^{-(T+1)}
 \]</div>
 <p>for some positive constant <span class="math notranslate nohighlight">\(c\)</span>.</p>
 <p>In this case,  when we multiply both sides of <a class="reference internal" href="#equation-eq-pieq2">(11.8)</a> by
@@ -787,7 +896,7 @@ following settings for <span class="math notranslate nohighlight">\(d\)</span> a
 </ol>
 </section>
 </div>
-<div class="solution dropdown admonition" id="pv-solution-5">
+<div class="solution dropdown admonition" id="pv-solution-7">
 
 <p class="admonition-title">Solution to<a class="reference internal" href="#pv_ex_a"> Exercise 11.4</a></p>
 <section id="solution-content">
@@ -798,6 +907,187 @@ following settings for <span class="math notranslate nohighlight">\(d\)</span> a
 <li><p><span class="math notranslate nohighlight">\(p_t = 0\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(p_t = c \delta^{-t}\)</span></p></li>
 </ol>
+</section>
+</div>
+<div class="exercise admonition" id="pv_ex_b">
+
+<p class="admonition-title"><span class="caption-number">Exercise 11.5 </span></p>
+<section id="exercise-content">
+<p>Verify pricing formula <a class="reference internal" href="#equation-eq-ptpveq">(11.7)</a> numerically for the growing dividend example
+in the lecture (<span class="math notranslate nohighlight">\(d_{t+1} = 1.05 d_t\)</span>, <span class="math notranslate nohighlight">\(d_0 = 1\)</span>, <span class="math notranslate nohighlight">\(T = 6\)</span>, <span class="math notranslate nohighlight">\(\delta = 0.99\)</span>,
+<span class="math notranslate nohighlight">\(p_{T+1}^* = 10\)</span>).</p>
+<p>For each <span class="math notranslate nohighlight">\(t = 0, 1, \ldots, T\)</span>, compute <span class="math notranslate nohighlight">\(p_t\)</span> both</p>
+<ol class="arabic simple">
+<li><p>by solving the linear system <span class="math notranslate nohighlight">\(Ap = d + b\)</span> (as in the lecture), and</p></li>
+<li><p>by directly evaluating the sum <span class="math notranslate nohighlight">\(\sum_{s=t}^T \delta^{s-t} d_s + \delta^{T+1-t} p_{T+1}^*\)</span>.</p></li>
+</ol>
+<p>Print both results side by side and confirm they match.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="pv-solution-9">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#pv_ex_b"> Exercise 11.5</a></p>
+<section id="solution-content">
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">δ</span> <span class="o">=</span> <span class="mf">0.99</span>
+<span class="n">p_star</span> <span class="o">=</span> <span class="mf">10.0</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span> <span class="o">*</span> <span class="mf">1.05</span><span class="o">**</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">)])</span>
+
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">T</span><span class="p">:</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">δ</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">b</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">δ</span> <span class="o">*</span> <span class="n">p_star</span>
+<span class="n">p_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">d</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
+
+<span class="n">p_formula</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="nb">sum</span><span class="p">(</span><span class="n">δ</span><span class="o">**</span><span class="p">(</span><span class="n">s</span><span class="o">-</span><span class="n">t</span><span class="p">)</span> <span class="o">*</span> <span class="n">d</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="n">δ</span><span class="o">**</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="n">t</span><span class="p">)</span> <span class="o">*</span> <span class="n">p_star</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;t&#39;</span><span class="si">:</span><span class="s2">&gt;3</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="s1">&#39;matrix&#39;</span><span class="si">:</span><span class="s2">&gt;12</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="s1">&#39;formula&#39;</span><span class="si">:</span><span class="s2">&gt;12</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="s1">&#39;|diff|&#39;</span><span class="si">:</span><span class="s2">&gt;10</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">44</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">diff</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">p_matrix</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">-</span> <span class="n">p_formula</span><span class="p">[</span><span class="n">t</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">t</span><span class="si">:</span><span class="s1">&gt;3</span><span class="si">}</span><span class="s1"> | </span><span class="si">{</span><span class="n">p_matrix</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="si">:</span><span class="s1">&gt;12.6f</span><span class="si">}</span><span class="s1"> | </span><span class="si">{</span><span class="n">p_formula</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="si">:</span><span class="s1">&gt;12.6f</span><span class="si">}</span><span class="s1"> | </span><span class="si">{</span><span class="n">diff</span><span class="si">:</span><span class="s1">&gt;10.2e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  t |       matrix |      formula |     |diff|
+--------------------------------------------
+  0 |    17.206971 |    17.206971 |   3.55e-15
+  1 |    16.370678 |    16.370678 |   0.00e+00
+  2 |    15.475432 |    15.475432 |   3.55e-15
+  3 |    14.518113 |    14.518113 |   1.78e-15
+  4 |    13.495443 |    13.495443 |   1.78e-15
+  5 |    12.403976 |    12.403976 |   1.78e-15
+  6 |    11.240096 |    11.240096 |   0.00e+00
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<div class="exercise admonition" id="pv_ex_c">
+
+<p class="admonition-title"><span class="caption-number">Exercise 11.6 </span></p>
+<section id="exercise-content">
+<p>Suppose dividends are constant: <span class="math notranslate nohighlight">\(d_t = d = 1\)</span> for all <span class="math notranslate nohighlight">\(t = 0, \ldots, T\)</span>.</p>
+<p>Set the terminal price to the perpetuity value <span class="math notranslate nohighlight">\(p_{T+1}^* = d / (1-\delta)\)</span>.</p>
+<p>a. Compute the asset price sequence for <span class="math notranslate nohighlight">\(T = 100\)</span> and <span class="math notranslate nohighlight">\(\delta = 0.99\)</span> and plot
+<span class="math notranslate nohighlight">\(p_t\)</span> alongside the perpetuity value <span class="math notranslate nohighlight">\(d/(1-\delta)\)</span> as a dashed line.</p>
+<p>b. Verify analytically (using formula <a class="reference internal" href="#equation-eq-ptpveq">(11.7)</a>) that
+<span class="math notranslate nohighlight">\(p_t = d / (1-\delta)\)</span> for all <span class="math notranslate nohighlight">\(t\)</span>.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="pv-solution-11">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#pv_ex_c"> Exercise 11.6</a></p>
+<section id="solution-content">
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">δ</span> <span class="o">=</span> <span class="mf">0.99</span>
+<span class="n">d_const</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">p_star_perp</span> <span class="o">=</span> <span class="n">d_const</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">δ</span><span class="p">)</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="n">d_const</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">T</span><span class="p">:</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">δ</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">b</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">δ</span> <span class="o">*</span> <span class="n">p_star_perp</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">d</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s1">&#39;o-&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Asset price $p_t$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">p_star_perp</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span>
+           <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Perpetuity value $d/(1 - δ) = </span><span class="si">{</span><span class="n">p_star_perp</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Constant dividend: asset price equals perpetuity value&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Max deviation from d/(1 - δ): </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">p_star_perp</span><span class="p">))</span><span class="si">:</span><span class="s1">.2e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/868a1fdc1bdc45f7d3fb914c3ab573e7e6c81731e336f81fa2e155b82d47fef5.png"><img alt="_images/868a1fdc1bdc45f7d3fb914c3ab573e7e6c81731e336f81fa2e155b82d47fef5.png" src="_images/868a1fdc1bdc45f7d3fb914c3ab573e7e6c81731e336f81fa2e155b82d47fef5.png" style="width: 80%;" />
+</a>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Max deviation from d/(1 - δ): 0.00e+00
+</pre></div>
+</div>
+</div>
+</div>
+<p>For part b, substituting <span class="math notranslate nohighlight">\(d_s = d\)</span> and <span class="math notranslate nohighlight">\(p_{T+1}^* = d/(1-\delta)\)</span> into <a class="reference internal" href="#equation-eq-ptpveq">(11.7)</a> gives</p>
+<div class="math notranslate nohighlight">
+\[
+p_t = d \frac{1 - \delta^{T+1-t}}{1-\delta} + \frac{d\delta^{T+1-t}}{1-\delta}
+     = \frac{d}{1-\delta}
+\]</div>
+</section>
+</div>
+<div class="exercise admonition" id="pv_ex_d">
+
+<p class="admonition-title"><span class="caption-number">Exercise 11.7 </span></p>
+<section id="exercise-content">
+<p>For the growing dividend stream (<span class="math notranslate nohighlight">\(d_{t+1} = 1.05 d_t\)</span>, <span class="math notranslate nohighlight">\(d_0 = 1\)</span>, <span class="math notranslate nohighlight">\(T = 6\)</span>,
+<span class="math notranslate nohighlight">\(p_{T+1}^* = 10\)</span>), plot the asset price at <span class="math notranslate nohighlight">\(t = 0\)</span> as a function of the
+discount factor <span class="math notranslate nohighlight">\(\delta \in [0.90,\, 0.99]\)</span>.</p>
+<p>Verify that <span class="math notranslate nohighlight">\(p_0\)</span> is strictly increasing in <span class="math notranslate nohighlight">\(\delta\)</span> and explain why in terms
+of the formula <a class="reference internal" href="#equation-eq-ptpveq">(11.7)</a>.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="pv-solution-13">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#pv_ex_d"> Exercise 11.7</a></p>
+<section id="solution-content">
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">p_star</span> <span class="o">=</span> <span class="mf">10.0</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span> <span class="o">*</span> <span class="mf">1.05</span><span class="o">**</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">)])</span>
+
+<span class="n">δ_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.90</span><span class="p">,</span> <span class="mf">0.99</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="n">p0_vals</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">δ</span> <span class="ow">in</span> <span class="n">δ_vals</span><span class="p">:</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">T</span><span class="p">:</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">δ</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">b</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">δ</span> <span class="o">*</span> <span class="n">p_star</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">d</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
+    <span class="n">p0_vals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">δ_vals</span><span class="p">,</span> <span class="n">p0_vals</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\delta$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p_0$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Asset price at $t=0$ as a function of $</span><span class="se">\\</span><span class="s1">delta$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/822d30aa67193f371cbfdc8a8b483410d1725ad404e661303ca9a3176ab6e108.png"><img alt="_images/822d30aa67193f371cbfdc8a8b483410d1725ad404e661303ca9a3176ab6e108.png" src="_images/822d30aa67193f371cbfdc8a8b483410d1725ad404e661303ca9a3176ab6e108.png" style="width: 80%;" />
+</a>
+</div>
+</div>
+<p>Each term <span class="math notranslate nohighlight">\(\delta^{s-t} d_s\)</span> in the fundamental component and the bubble term <span class="math notranslate nohighlight">\(\delta^{T+1-t} p_{T+1}^*\)</span> are both increasing in <span class="math notranslate nohighlight">\(\delta\)</span>.</p>
+<p>A higher discount factor therefore raises the present value of every future cash flow, pushing up <span class="math notranslate nohighlight">\(p_0\)</span>.</p>
 </section>
 </div>
 </section>
@@ -1237,6 +1527,8 @@ following settings for <span class="math notranslate nohighlight">\(d\)</span> a
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/pv.md" download><i data-feather="github"></i></a></li>
                     -->
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro" download><i data-feather="github"></i></a></li>
+                    
+                    
                 </ul>
 
             </div>

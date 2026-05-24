@@ -77,13 +77,13 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=ca16d73eb23eeca4aff446ccb0673818c18f9cfc" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=ff5dcadef89fd2097ea5e28ddaad7eb5985f09c4" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=4c010e0d" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=3a5ece24" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -101,8 +101,8 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
-    <script src="_static/scripts/quantecon-book-theme.js?digest=239405dfbfda750f9038d3ea275d1490a4be841e"></script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=9980b4379844dc0b911d69b62b295f34ede88fac"></script>
     <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
     <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -158,8 +158,27 @@
 <meta property="og:site_name" content="A First Course in Quantitative Economics with Python" />
 <meta name="theme-color" content="#ffffff" />
 
+
+
+
   </head>
 <body>
+
+<!-- Prevent flash of light theme when dark mode is saved -->
+<script>
+(function() {
+  try {
+    if (localStorage.setContrast === '1') {
+      document.body.classList.add('dark-theme');
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  } catch(e) {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+})();
+</script>
 
 <!-- Override QuantEcon theme colors -->
 
@@ -180,7 +199,7 @@
                     
 
                     
-                    <div class="inner">
+                    <div class="inner sticky" data-autoexpand="true">
 
                         
                         <div class="qe-page__toc-header">
@@ -208,7 +227,8 @@
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sequel">15.4. Sequel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">15.4. Exercises</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sequel">15.5. Sequel</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -229,12 +249,14 @@
                             
                             
                             
-                            <p><a href="#top"><strong>Back to top</strong></a></p>
+                            
                             
                         </div>
 
                     </div>
 
+                    
+                    <a href="#top" class="back-to-top-btn" title="Back to top">↑ Top</a>
                     
 
                 </div>
@@ -262,7 +284,7 @@
 
                     <!-- Last modified / Changelog dropdown -->
                         <button class="qe-page__header-changed" id="changelog-toggle" aria-expanded="false">
-                            Last changed: Aug 02, 2024
+                            Last changed: May 24, 2026
                             <span class="changelog-icon">▼</span>
                         </button>
 
@@ -270,6 +292,15 @@
                     <div class="qe-page__header-changelog" id="changelog-content" aria-hidden="true">
                         <h4>Changelog (<a href="https://github.com/QuantEcon/lecture-python-intro/commits/main/lectures/cagan_ree.md">full history</a>)</h4>
                         <ul class="changelog-list">
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/ae928c86" class="changelog-hash">ae928c86</a>
+                                
+                                <span class="changelog-author">Humphrey Yang</span>
+                                <span class="changelog-time">14 minutes ago</span>
+                                <span class="changelog-message">Adding Tom's Edits to Exercises (#748)</span>
+                            </li>
                             
                             <li class="changelog-entry">
                                 
@@ -294,7 +325,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/585a66f9" class="changelog-hash">585a66f9</a>
                                 
                                 <span class="changelog-author">Humphrey Yang</span>
-                                <span class="changelog-time">1 year ago</span>
+                                <span class="changelog-time">2 years ago</span>
                                 <span class="changelog-message">Address comments for `cagan_ree` lecture (#387)</span>
                             </li>
                             
@@ -352,15 +383,6 @@
                                 <span class="changelog-message">Tom's edits of two lectures in the branch</span>
                             </li>
                             
-                            <li class="changelog-entry">
-                                
-                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/3412ef21" class="changelog-hash">3412ef21</a>
-                                
-                                <span class="changelog-author">mmcky</span>
-                                <span class="changelog-time">2 years ago</span>
-                                <span class="changelog-message">MAINT: review workflows and actions (#251)</span>
-                            </li>
-                            
                         </ul>
                     </div>
 
@@ -385,9 +407,9 @@
 <li><p>that leads to effects on the price level as price level path adjusts to equate the supply of money to the demand for money</p></li>
 </ul>
 <p>Such a theory of price levels was described by Thomas Sargent and Neil Wallace in chapter 5 of
-<span id="id1">[<a class="reference internal" href="zreferences.html#id13" title="Thomas J Sargent. Rational Expectations and Inflation. Princeton University Press, Princeton, New Jersey, 2013.">Sargent, 2013</a>]</span>, which reprints a 1981 Federal Reserve Bank of Minneapolis article entitled “Unpleasant Monetarist Arithmetic”.</p>
+<span class="bibtex-citation" id="id1">[<a class="reference internal" href="zreferences.html#id13" title="Thomas J Sargent. Rational Expectations and Inflation. Princeton University Press, Princeton, New Jersey, 2013.">Sargent, 2013</a>]</span>, which reprints a 1981 Federal Reserve Bank of Minneapolis article entitled “Unpleasant Monetarist Arithmetic”.</p>
 <p>Sometimes this theory is also called a “fiscal theory of price levels” to emphasize the importance of fiscal deficits in shaping changes in the money supply.</p>
-<p>The theory has been extended, criticized, and applied by John Cochrane <span id="id2">[<a class="reference internal" href="zreferences.html#id14" title="John H Cochrane. The Fiscal Theory of the Price Level. Princeton University Press, Princeton, New Jersey, 2023.">Cochrane, 2023</a>]</span>.</p>
+<p>The theory has been extended, criticized, and applied by John Cochrane <span class="bibtex-citation" id="id2">[<a class="reference internal" href="zreferences.html#id14" title="John H Cochrane. The Fiscal Theory of the Price Level. Princeton University Press, Princeton, New Jersey, 2023.">Cochrane, 2023</a>]</span>.</p>
 <p>In another lecture <a class="reference internal" href="inflation_history.html"><span class="doc">price level histories</span></a>, we described some European hyperinflations that occurred in the wake of World War I.</p>
 <p>Elemental forces at work in the fiscal theory of the price level help to understand those episodes.</p>
 <p>According to this theory, when the government persistently spends more than it collects in taxes and prints money to finance the shortfall (the “shortfall” is called the “government deficit”), it puts upward pressure on the price level and generates
@@ -397,8 +419,8 @@ persistent inflation.</p>
 <li><p>to <em>start</em> a persistent inflation the government begins persistently to run a money-financed government deficit</p></li>
 <li><p>to <em>stop</em> a persistent inflation the government stops persistently running a money-financed government deficit</p></li>
 </ul>
-<p>The model in this lecture is a “rational expectations” (or “perfect foresight”) version of a model that Philip Cagan <span id="id3">[<a class="reference internal" href="zreferences.html#id112" title="Philip Cagan. The monetary dynamics of hyperinflation. In Milton Friedman, editor, Studies in the Quantity Theory of Money, pages 25–117. University of Chicago Press, Chicago, 1956.">Cagan, 1956</a>]</span> used to study the monetary dynamics of hyperinflations.</p>
-<p>While Cagan didn’t use that “rational expectations” version of the model, Thomas Sargent <span id="id4">[<a class="reference internal" href="zreferences.html#id15" title="Thomas J Sargent. The ends of four big inflations. In Robert E Hall, editor, Inflation: Causes and effects, pages 41–98. University of Chicago Press, 1982.">Sargent, 1982</a>]</span> did when he studied the Ends of Four Big Inflations in Europe after World War I.</p>
+<p>The model in this lecture is a “rational expectations” (or “perfect foresight”) version of a model that Philip Cagan <span class="bibtex-citation" id="id3">[<a class="reference internal" href="zreferences.html#id112" title="Philip Cagan. The monetary dynamics of hyperinflation. In Milton Friedman, editor, Studies in the Quantity Theory of Money, pages 25–117. University of Chicago Press, Chicago, 1956.">Cagan, 1956</a>]</span> used to study the monetary dynamics of hyperinflations.</p>
+<p>While Cagan didn’t use that “rational expectations” version of the model, Thomas Sargent <span class="bibtex-citation" id="id4">[<a class="reference internal" href="zreferences.html#id15" title="Thomas J Sargent. The ends of four big inflations. In Robert E Hall, editor, Inflation: Causes and effects, pages 41–98. University of Chicago Press, 1982.">Sargent, 1982</a>]</span> did when he studied the Ends of Four Big Inflations in Europe after World War I.</p>
 <ul class="simple">
 <li><p>this lecture <a class="reference internal" href="cagan_adaptive.html"><span class="doc">fiscal theory of the price level with adaptive expectations</span></a> describes a version of the model that does not impose “rational expectations” but instead uses
 what Cagan and his teacher Milton Friedman called “adaptive expectations”</p>
@@ -434,7 +456,7 @@ what Cagan and his teacher Milton Friedman called “adaptive expectations”</p
 </ul>
 <p>The demand for real balances <span class="math notranslate nohighlight">\(\exp\left(m_t^d - p_t\right)\)</span> is governed by the following version of the Cagan demand function</p>
 <div class="math notranslate nohighlight" id="equation-eq-caganmd">
-<span class="eqno">(15.1)<a class="headerlink" href="#equation-eq-caganmd" title="Link to this equation">#</a></span>\[ 
+<span class="eqno">(15.1)<a class="headerlink" href="#equation-eq-caganmd" title="Link to this equation">#</a></span>\[
 m_t^d - p_t = -\alpha \pi_t^* \: , \: \alpha &gt; 0 ; \quad t = 0, 1, \ldots, T .
 \]</div>
 <p>This equation asserts that the demand for real balances
@@ -443,8 +465,8 @@ is inversely related to the public’s expected rate of inflation with sensitivi
 problem.</p>
 <p>This lets us set</p>
 <div class="math notranslate nohighlight" id="equation-eq-ree">
-<span class="eqno">(15.2)<a class="headerlink" href="#equation-eq-ree" title="Link to this equation">#</a></span>\[ 
-\pi_t^* = \pi_t , % \forall t 
+<span class="eqno">(15.2)<a class="headerlink" href="#equation-eq-ree" title="Link to this equation">#</a></span>\[
+\pi_t^* = \pi_t , % \forall t
 \]</div>
 <p>while equating demand for money to supply lets us set <span class="math notranslate nohighlight">\(m_t^d = m_t\)</span> for all <span class="math notranslate nohighlight">\(t \geq 0\)</span>.</p>
 <p>The preceding equations then imply</p>
@@ -462,7 +484,7 @@ to have perfect foresight, we subtract equation <a class="reference internal" hr
 equation in <span class="math notranslate nohighlight">\(\pi_s\)</span> with <span class="math notranslate nohighlight">\(\mu_s\)</span> as a “forcing variable”:</p>
 <div class="math notranslate nohighlight">
 \[
-\pi_t = \frac{\alpha}{1+\alpha} \pi_{t+1} + \frac{1}{1+\alpha} \mu_t , \quad t= 0, 1, \ldots , T 
+\pi_t = \frac{\alpha}{1+\alpha} \pi_{t+1} + \frac{1}{1+\alpha} \mu_t , \quad t= 0, 1, \ldots , T
 \]</div>
 <p>where <span class="math notranslate nohighlight">\( 0&lt; \frac{\alpha}{1+\alpha} &lt;1 \)</span>.</p>
 <p>Setting <span class="math notranslate nohighlight">\(\delta =\frac{\alpha}{1+\alpha}\)</span>, let’s us represent the preceding equation as</p>
@@ -479,20 +501,20 @@ equation in <span class="math notranslate nohighlight">\(\pi_s\)</span> with <sp
                 \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; -\delta &amp; 0 \cr
                 0 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots &amp; 1 &amp; -\delta \cr
                 0 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; 1 \end{bmatrix}
-\begin{bmatrix} \pi_0 \cr \pi_1 \cr \pi_2 \cr \vdots \cr \pi_{T-1} \cr \pi_T 
-\end{bmatrix} 
-= (1 - \delta) \begin{bmatrix} 
+\begin{bmatrix} \pi_0 \cr \pi_1 \cr \pi_2 \cr \vdots \cr \pi_{T-1} \cr \pi_T
+\end{bmatrix}
+= (1 - \delta) \begin{bmatrix}
 \mu_0 \cr \mu_1 \cr \mu_2 \cr \vdots \cr \mu_{T-1} \cr \mu_T
 \end{bmatrix}
-+ \begin{bmatrix} 
++ \begin{bmatrix}
 0 \cr 0 \cr 0 \cr \vdots \cr 0 \cr \delta \pi_{T+1}^*
 \end{bmatrix}
 \]</div>
 <p>By multiplying both sides of equation <a class="reference internal" href="#equation-eq-pieq">(15.4)</a> by the inverse of the matrix on the left side, we can calculate</p>
 <div class="math notranslate nohighlight">
 \[
-\pi \equiv \begin{bmatrix} \pi_0 \cr \pi_1 \cr \pi_2 \cr \vdots \cr \pi_{T-1} \cr \pi_T 
-\end{bmatrix} 
+\pi \equiv \begin{bmatrix} \pi_0 \cr \pi_1 \cr \pi_2 \cr \vdots \cr \pi_{T-1} \cr \pi_T
+\end{bmatrix}
 \]</div>
 <p>It turns out that</p>
 <div class="math notranslate nohighlight" id="equation-eq-fisctheory1">
@@ -501,7 +523,7 @@ equation in <span class="math notranslate nohighlight">\(\pi_s\)</span> with <sp
 \]</div>
 <p>We can represent the equations</p>
 <div class="math notranslate nohighlight">
-\[ 
+\[
 m_{t+1} = m_t + \mu_t , \quad t = 0, 1, \ldots, T
 \]</div>
 <p>as the matrix equation</p>
@@ -513,15 +535,15 @@ m_{t+1} = m_t + \mu_t , \quad t = 0, 1, \ldots, T
 0 &amp; -1 &amp; 1 &amp; \cdots &amp; 0 &amp; 0 \cr
 \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; 0 &amp; 0 \cr
 0 &amp; 0 &amp; 0 &amp; \cdots &amp; 1 &amp; 0 \cr
-0 &amp; 0 &amp; 0 &amp; \cdots &amp; -1 &amp; 1 
+0 &amp; 0 &amp; 0 &amp; \cdots &amp; -1 &amp; 1
 \end{bmatrix}
-\begin{bmatrix} 
+\begin{bmatrix}
 m_1 \cr m_2 \cr m_3 \cr \vdots \cr m_T \cr m_{T+1}
 \end{bmatrix}
-= \begin{bmatrix} 
+= \begin{bmatrix}
 \mu_0 \cr \mu_1 \cr \mu_2 \cr \vdots \cr \mu_{T-1} \cr \mu_T
 \end{bmatrix}
-+ \begin{bmatrix} 
++ \begin{bmatrix}
 m_0 \cr 0 \cr 0 \cr \vdots \cr 0 \cr 0
 \end{bmatrix}
 \]</div>
@@ -539,7 +561,7 @@ plus accumulation of rates of money growth between times <span class="math notra
 version of equation <a class="reference internal" href="#equation-eq-fisctheory1">(15.5)</a> at time <span class="math notranslate nohighlight">\(t = T+1\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-eq-fisctheory2">
 <span class="eqno">(15.8)<a class="headerlink" href="#equation-eq-fisctheory2" title="Link to this equation">#</a></span>\[
-\pi_t = (1-\delta) \sum_{s=t}^\infty \delta^{s-t} \mu_s , 
+\pi_t = (1-\delta) \sum_{s=t}^\infty \delta^{s-t} \mu_s ,
 \]</div>
 <p>and by also assuming the following continuation path for <span class="math notranslate nohighlight">\(\mu_t\)</span> beyond <span class="math notranslate nohighlight">\(T\)</span>:</p>
 <div class="math notranslate nohighlight">
@@ -548,7 +570,7 @@ version of equation <a class="reference internal" href="#equation-eq-fisctheory1
 \]</div>
 <p>Plugging the preceding equation into equation <a class="reference internal" href="#equation-eq-fisctheory2">(15.8)</a> at <span class="math notranslate nohighlight">\(t = T+1\)</span> and rearranging we can deduce that</p>
 <div class="math notranslate nohighlight" id="equation-eq-piterm">
-<span class="eqno">(15.9)<a class="headerlink" href="#equation-eq-piterm" title="Link to this equation">#</a></span>\[ 
+<span class="eqno">(15.9)<a class="headerlink" href="#equation-eq-piterm" title="Link to this equation">#</a></span>\[
 \pi_{T+1}^* = \frac{1 - \delta}{1 - \delta \gamma^*} \gamma^* \mu_T
 \]</div>
 <p>where we require that <span class="math notranslate nohighlight">\(\vert \gamma^* \delta \vert &lt; 1\)</span>.</p>
@@ -567,7 +589,7 @@ version of equation <a class="reference internal" href="#equation-eq-fisctheory1
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the rational expectation version of Cagan model in finite time</span>
-<span class="n">CaganREE</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">&quot;CaganREE&quot;</span><span class="p">,</span> 
+<span class="n">CaganREE</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">&quot;CaganREE&quot;</span><span class="p">,</span>
                         <span class="p">[</span><span class="s2">&quot;m0&quot;</span><span class="p">,</span>    <span class="c1"># initial money supply</span>
                          <span class="s2">&quot;μ_seq&quot;</span><span class="p">,</span> <span class="c1"># sequence of rate of growth</span>
                          <span class="s2">&quot;α&quot;</span><span class="p">,</span>     <span class="c1"># sensitivity parameter</span>
@@ -587,9 +609,9 @@ version of equation <a class="reference internal" href="#equation-eq-fisctheory1
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">T</span><span class="p">):</span>
-    <span class="n">m0</span><span class="p">,</span> <span class="n">π_end</span><span class="p">,</span> <span class="n">μ_seq</span><span class="p">,</span> <span class="n">α</span><span class="p">,</span> <span class="n">δ</span> <span class="o">=</span> <span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">m0</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">π_end</span><span class="p">,</span> 
+    <span class="n">m0</span><span class="p">,</span> <span class="n">π_end</span><span class="p">,</span> <span class="n">μ_seq</span><span class="p">,</span> <span class="n">α</span><span class="p">,</span> <span class="n">δ</span> <span class="o">=</span> <span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">m0</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">π_end</span><span class="p">,</span>
                               <span class="n">model</span><span class="o">.</span><span class="n">μ_seq</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">α</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">δ</span><span class="p">)</span>
-    
+
     <span class="c1"># Create matrix representation above</span>
     <span class="n">A1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">δ</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">A2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
@@ -618,7 +640,7 @@ version of equation <a class="reference internal" href="#equation-eq-fisctheory1
 <p>We  describe several such experiments.</p>
 <p>In all of them,</p>
 <div class="math notranslate nohighlight">
-\[ 
+\[
 \mu_t = \mu^* , \quad t \geq T_1
 \]</div>
 <p>so that, in terms of our notation and formula for <span class="math notranslate nohighlight">\(\pi_{T+1}^*\)</span> above, <span class="math notranslate nohighlight">\(\gamma^* = 1\)</span>.</p>
@@ -700,8 +722,8 @@ p_t = m_t + \alpha \pi_t
 \]</div>
 <p>or, by using equation <a class="reference internal" href="#equation-eq-fisctheory1">(15.5)</a>,</p>
 <div class="math notranslate nohighlight" id="equation-eq-pfiscaltheory2">
-<span class="eqno">(15.11)<a class="headerlink" href="#equation-eq-pfiscaltheory2" title="Link to this equation">#</a></span>\[ 
-p_t = m_t + \alpha \left[ (1-\delta) \sum_{s=t}^T \delta^{s-t} \mu_s + \delta^{T+1-t} \pi_{T+1}^* \right] 
+<span class="eqno">(15.11)<a class="headerlink" href="#equation-eq-pfiscaltheory2" title="Link to this equation">#</a></span>\[
+p_t = m_t + \alpha \left[ (1-\delta) \sum_{s=t}^T \delta^{s-t} \mu_s + \delta^{T+1-t} \pi_{T+1}^* \right]
 \]</div>
 <p>In our next experiment, we’ll study a “surprise” permanent change in the money growth that beforehand
 was completely unanticipated.</p>
@@ -749,8 +771,8 @@ m_{T_{1}}&amp;=m_{T_{1}-1}+\mu_{0}\\\pi_{T_{1}}&amp;=\mu^{*}\\p_{T_{1}}&amp;=m_{
 <p>We reset <span class="math notranslate nohighlight">\(m_{T_{1}}\)</span> so that <span class="math notranslate nohighlight">\(p_{T_{1}}=\left(m_{T_{1}-1}+\mu_{0}\right)+\alpha\mu_{0}\)</span>, with <span class="math notranslate nohighlight">\(\pi_{T_{1}}=\mu^{*}\)</span>.</p>
 <p>Then,</p>
 <div class="math notranslate nohighlight">
-\[ 
-m_{T_{1}}=p_{T_{1}}-\alpha\pi_{T_{1}}=\left(m_{T_{1}-1}+\mu_{0}\right)+\alpha\left(\mu_{0}-\mu^{*}\right) 
+\[
+m_{T_{1}}=p_{T_{1}}-\alpha\pi_{T_{1}}=\left(m_{T_{1}-1}+\mu_{0}\right)+\alpha\left(\mu_{0}-\mu^{*}\right)
 \]</div>
 <p>We then compute for the remaining <span class="math notranslate nohighlight">\(T-T_{1}\)</span> periods with <span class="math notranslate nohighlight">\(\mu_{s}=\mu^{*},\forall s\geq T_{1}\)</span> and the initial condition <span class="math notranslate nohighlight">\(m_{T_{1}}\)</span> from above.</p>
 <p>We are now technically equipped to discuss our next experiment.</p>
@@ -762,8 +784,8 @@ assumption by assuming that a sudden permanent reduction in <span class="math no
 analyzed in experiment 1 is completely unanticipated.</p>
 <p>Such a completely unanticipated shock is popularly known as an “MIT shock”.</p>
 <p>The mental experiment involves switching at time <span class="math notranslate nohighlight">\(T_1\)</span> from an initial “continuation path” for <span class="math notranslate nohighlight">\(\{\mu_t, \pi_t\} \)</span> to another path that involves a permanently lower inflation rate.</p>
-<p><strong>Initial Path:</strong> <span class="math notranslate nohighlight">\(\mu_t = \mu_0\)</span> for all <span class="math notranslate nohighlight">\(t \geq 0\)</span>. So this path is for <span class="math notranslate nohighlight">\(\{\mu_t\}_{t=0}^\infty\)</span>; the associated
-path for <span class="math notranslate nohighlight">\(\pi_t\)</span> has <span class="math notranslate nohighlight">\(\pi_t = \mu_0\)</span>.</p>
+<p><strong>Initial Path:</strong> <span class="math notranslate nohighlight">\(\mu_t = \mu_0\)</span> for all <span class="math notranslate nohighlight">\(t \geq 0\)</span>.</p>
+<p>This path is for <span class="math notranslate nohighlight">\(\{\mu_t\}_{t=0}^\infty\)</span>; the associated path for <span class="math notranslate nohighlight">\(\pi_t\)</span> has <span class="math notranslate nohighlight">\(\pi_t = \mu_0\)</span>.</p>
 <p><strong>Revised Continuation Path</strong> Where <span class="math notranslate nohighlight">\( \mu_0 &gt; \mu^*\)</span>, we construct a continuation path <span class="math notranslate nohighlight">\(\{\mu_s\}_{s=T_1}^\infty\)</span>
 by setting <span class="math notranslate nohighlight">\(\mu_s = \mu^*\)</span> for all <span class="math notranslate nohighlight">\(s \geq T_1\)</span>. The perfect foresight continuation path for
 <span class="math notranslate nohighlight">\(\pi\)</span> is <span class="math notranslate nohighlight">\(\pi_s = \mu^*\)</span></p>
@@ -789,7 +811,7 @@ are identical to those for experiment 1, the foreseen sudden stabilization.</p>
 <span class="c1"># continuation path</span>
 <span class="n">μ_seq_2_cont</span> <span class="o">=</span> <span class="n">μ_star</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">T</span><span class="o">-</span><span class="n">T1</span><span class="p">)</span>
 
-<span class="n">cm2</span> <span class="o">=</span> <span class="n">create_cagan_model</span><span class="p">(</span><span class="n">m0</span><span class="o">=</span><span class="n">m_seq_2_path1</span><span class="p">[</span><span class="n">T1</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> 
+<span class="n">cm2</span> <span class="o">=</span> <span class="n">create_cagan_model</span><span class="p">(</span><span class="n">m0</span><span class="o">=</span><span class="n">m_seq_2_path1</span><span class="p">[</span><span class="n">T1</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span>
                          <span class="n">μ_seq</span><span class="o">=</span><span class="n">μ_seq_2_cont</span><span class="p">)</span>
 <span class="n">π_seq_2_cont</span><span class="p">,</span> <span class="n">m_seq_2_cont1</span><span class="p">,</span> <span class="n">p_seq_2_cont1</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">cm2</span><span class="p">,</span> <span class="n">T</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">T1</span><span class="p">)</span>
 
@@ -797,11 +819,11 @@ are identical to those for experiment 1, the foreseen sudden stabilization.</p>
 <span class="c1"># regime 1 - simply glue π_seq, μ_seq</span>
 <span class="n">μ_seq_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">μ_seq_2_path1</span><span class="p">[:</span><span class="n">T1</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span>
                           <span class="n">μ_seq_2_cont</span><span class="p">))</span>
-<span class="n">π_seq_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">π_seq_2_path1</span><span class="p">[:</span><span class="n">T1</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> 
+<span class="n">π_seq_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">π_seq_2_path1</span><span class="p">[:</span><span class="n">T1</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span>
                           <span class="n">π_seq_2_cont</span><span class="p">))</span>
-<span class="n">m_seq_2_regime1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">m_seq_2_path1</span><span class="p">[:</span><span class="n">T1</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> 
+<span class="n">m_seq_2_regime1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">m_seq_2_path1</span><span class="p">[:</span><span class="n">T1</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span>
                                   <span class="n">m_seq_2_cont1</span><span class="p">))</span>
-<span class="n">p_seq_2_regime1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">p_seq_2_path1</span><span class="p">[:</span><span class="n">T1</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> 
+<span class="n">p_seq_2_regime1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">p_seq_2_path1</span><span class="p">[:</span><span class="n">T1</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span>
                                   <span class="n">p_seq_2_cont1</span><span class="p">))</span>
 
 <span class="c1"># regime 2 - reset m_T1</span>
@@ -810,7 +832,7 @@ are identical to those for experiment 1, the foreseen sudden stabilization.</p>
 <span class="n">cm3</span> <span class="o">=</span> <span class="n">create_cagan_model</span><span class="p">(</span><span class="n">m0</span><span class="o">=</span><span class="n">m_T1</span><span class="p">,</span> <span class="n">μ_seq</span><span class="o">=</span><span class="n">μ_seq_2_cont</span><span class="p">)</span>
 <span class="n">π_seq_2_cont2</span><span class="p">,</span> <span class="n">m_seq_2_cont2</span><span class="p">,</span> <span class="n">p_seq_2_cont2</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">cm3</span><span class="p">,</span> <span class="n">T</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">T1</span><span class="p">)</span>
 
-<span class="n">m_seq_2_regime2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">m_seq_2_path1</span><span class="p">[:</span><span class="n">T1</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> 
+<span class="n">m_seq_2_regime2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">m_seq_2_path1</span><span class="p">[:</span><span class="n">T1</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span>
                                   <span class="n">m_seq_2_cont2</span><span class="p">))</span>
 <span class="n">p_seq_2_regime2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">p_seq_2_path1</span><span class="p">[:</span><span class="n">T1</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span>
                                   <span class="n">p_seq_2_cont2</span><span class="p">))</span>
@@ -834,13 +856,13 @@ are identical to those for experiment 1, the foreseen sudden stabilization.</p>
 <span class="n">plot_configs</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">{</span><span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="n">T_seq</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">μ_seq_2</span><span class="p">)],</span> <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$\mu$&#39;</span><span class="p">},</span>
     <span class="p">{</span><span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">π_seq_2</span><span class="p">)],</span> <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$\pi$&#39;</span><span class="p">},</span>
-    <span class="p">{</span><span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">m_seq_2_regime1</span> <span class="o">-</span> <span class="n">p_seq_2_regime1</span><span class="p">)],</span> 
+    <span class="p">{</span><span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">m_seq_2_regime1</span> <span class="o">-</span> <span class="n">p_seq_2_regime1</span><span class="p">)],</span>
      <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$m - p$&#39;</span><span class="p">},</span>
-    <span class="p">{</span><span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">m_seq_2_regime1</span><span class="p">,</span> <span class="s1">&#39;Smooth $m_</span><span class="si">{T_1}</span><span class="s1">$&#39;</span><span class="p">),</span> 
-              <span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">m_seq_2_regime2</span><span class="p">,</span> <span class="s1">&#39;Jumpy $m_</span><span class="si">{T_1}</span><span class="s1">$&#39;</span><span class="p">)],</span> 
+    <span class="p">{</span><span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">m_seq_2_regime1</span><span class="p">,</span> <span class="s1">&#39;Smooth $m_</span><span class="si">{T_1}</span><span class="s1">$&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">m_seq_2_regime2</span><span class="p">,</span> <span class="s1">&#39;Jumpy $m_</span><span class="si">{T_1}</span><span class="s1">$&#39;</span><span class="p">)],</span>
      <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$m$&#39;</span><span class="p">},</span>
-    <span class="p">{</span><span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">p_seq_2_regime1</span><span class="p">,</span> <span class="s1">&#39;Smooth $p_</span><span class="si">{T_1}</span><span class="s1">$&#39;</span><span class="p">),</span> 
-              <span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">p_seq_2_regime2</span><span class="p">,</span> <span class="s1">&#39;Jumpy $p_</span><span class="si">{T_1}</span><span class="s1">$&#39;</span><span class="p">)],</span> 
+    <span class="p">{</span><span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">p_seq_2_regime1</span><span class="p">,</span> <span class="s1">&#39;Smooth $p_</span><span class="si">{T_1}</span><span class="s1">$&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">p_seq_2_regime2</span><span class="p">,</span> <span class="s1">&#39;Jumpy $p_</span><span class="si">{T_1}</span><span class="s1">$&#39;</span><span class="p">)],</span>
      <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$p$&#39;</span><span class="p">}</span>
 <span class="p">]</span>
 
@@ -857,7 +879,7 @@ are identical to those for experiment 1, the foreseen sudden stabilization.</p>
         <span class="n">axi</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-    
+
 <span class="n">experiment_plot</span><span class="p">(</span><span class="n">plot_configs</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -880,7 +902,7 @@ as required by the upward jump in <span class="math notranslate nohighlight">\(m
 <p>Here is a way to interpret what the government is doing when the orange line policy is in place.</p>
 <p>The government prints money to finance expenditure with the “velocity dividend” that it reaps from the increased demand for real balances brought about by the permanent decrease in the rate of growth of the money supply.</p>
 <p>The next code generates a multi-panel graph that includes outcomes of both experiments 1 and 2.</p>
-<p>That allows us to assess how important it is to understand whether the sudden permanent drop in <span class="math notranslate nohighlight">\(\mu_t\)</span> at <span class="math notranslate nohighlight">\(t=T_1\)</span> is fully unanticipated, as in experiment 1, or completely
+<p>That allows us to assess how important it is to understand whether the sudden permanent drop in <span class="math notranslate nohighlight">\(\mu_t\)</span> at <span class="math notranslate nohighlight">\(t=T_1\)</span> is fully anticipated, as in experiment 1, or completely
 unanticipated, as in experiment 2.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="admonition hide above-input">
@@ -894,16 +916,16 @@ unanticipated, as in experiment 2.</p>
 
 <span class="n">plot_configs</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">{</span><span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="n">T_seq</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">μ_seq_2</span><span class="p">)],</span> <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$\mu$&#39;</span><span class="p">},</span>
-    <span class="p">{</span><span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">π_seq_2</span><span class="p">,</span> <span class="s1">&#39;Unforeseen&#39;</span><span class="p">),</span> 
-              <span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">π_seq_1</span><span class="p">,</span> <span class="s1">&#39;Foreseen&#39;</span><span class="p">)],</span> <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$p$&#39;</span><span class="p">},</span>
-    <span class="p">{</span><span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">m_seq_2_regime1</span> <span class="o">-</span> <span class="n">p_seq_2_regime1</span><span class="p">,</span> <span class="s1">&#39;Unforeseen&#39;</span><span class="p">),</span> 
+    <span class="p">{</span><span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">π_seq_2</span><span class="p">,</span> <span class="s1">&#39;Unforeseen&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">π_seq_1</span><span class="p">,</span> <span class="s1">&#39;Foreseen&#39;</span><span class="p">)],</span> <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$\pi$&#39;</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">m_seq_2_regime1</span> <span class="o">-</span> <span class="n">p_seq_2_regime1</span><span class="p">,</span> <span class="s1">&#39;Unforeseen&#39;</span><span class="p">),</span>
               <span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">m_seq_1</span> <span class="o">-</span> <span class="n">p_seq_1</span><span class="p">,</span> <span class="s1">&#39;Foreseen&#39;</span><span class="p">)],</span> <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$m - p$&#39;</span><span class="p">},</span>
-    <span class="p">{</span><span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">m_seq_2_regime1</span><span class="p">,</span> <span class="s1">&#39;Unforeseen (Smooth $m_</span><span class="si">{T_1}</span><span class="s1">$)&#39;</span><span class="p">),</span> 
+    <span class="p">{</span><span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">m_seq_2_regime1</span><span class="p">,</span> <span class="s1">&#39;Unforeseen (Smooth $m_</span><span class="si">{T_1}</span><span class="s1">$)&#39;</span><span class="p">),</span>
               <span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">m_seq_2_regime2</span><span class="p">,</span> <span class="s1">&#39;Unforeseen ($m_</span><span class="si">{T_1}</span><span class="s1">$ jumps)&#39;</span><span class="p">),</span>
-              <span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">m_seq_1</span><span class="p">,</span> <span class="s1">&#39;Foreseen&#39;</span><span class="p">)],</span> <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$m$&#39;</span><span class="p">},</span>   
-    <span class="p">{</span><span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">p_seq_2_regime1</span><span class="p">,</span> <span class="s1">&#39;Unforeseen (Smooth $m_</span><span class="si">{T_1}</span><span class="s1">$)&#39;</span><span class="p">),</span> 
+              <span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">m_seq_1</span><span class="p">,</span> <span class="s1">&#39;Foreseen&#39;</span><span class="p">)],</span> <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$m$&#39;</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">p_seq_2_regime1</span><span class="p">,</span> <span class="s1">&#39;Unforeseen (Smooth $m_</span><span class="si">{T_1}</span><span class="s1">$)&#39;</span><span class="p">),</span>
           <span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">p_seq_2_regime2</span><span class="p">,</span> <span class="s1">&#39;Unforeseen ($m_</span><span class="si">{T_1}</span><span class="s1">$ jumps)&#39;</span><span class="p">),</span>
-          <span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">p_seq_1</span><span class="p">,</span> <span class="s1">&#39;Foreseen&#39;</span><span class="p">)],</span> <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$p$&#39;</span><span class="p">}</span>   
+          <span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">p_seq_1</span><span class="p">,</span> <span class="s1">&#39;Foreseen&#39;</span><span class="p">)],</span> <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$p$&#39;</span><span class="p">}</span>
 <span class="p">]</span>
 
 <span class="n">experiment_plot</span><span class="p">(</span><span class="n">plot_configs</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
@@ -912,7 +934,7 @@ unanticipated, as in experiment 2.</p>
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/6ecc31b00e75a82e3160499b623eec12065f4dacff0d41186065d886a1298843.png"><img alt="_images/6ecc31b00e75a82e3160499b623eec12065f4dacff0d41186065d886a1298843.png" src="_images/6ecc31b00e75a82e3160499b623eec12065f4dacff0d41186065d886a1298843.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/490d598ca771aed7769689dcbf97c10cc46f7036daa4f43e124ed24d90302a7d.png"><img alt="_images/490d598ca771aed7769689dcbf97c10cc46f7036daa4f43e124ed24d90302a7d.png" src="_images/490d598ca771aed7769689dcbf97c10cc46f7036daa4f43e124ed24d90302a7d.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -947,9 +969,9 @@ it is also interesting to study the consequences of a foreseen gradual stabiliza
 
 <span class="n">π_seq_4</span><span class="p">,</span> <span class="n">m_seq_4</span><span class="p">,</span> <span class="n">p_seq_4</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">cm4</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
 
-<span class="n">sequences</span> <span class="o">=</span> <span class="p">(</span><span class="n">μ_seq_stab</span><span class="p">,</span> <span class="n">π_seq_4</span><span class="p">,</span> 
+<span class="n">sequences</span> <span class="o">=</span> <span class="p">(</span><span class="n">μ_seq_stab</span><span class="p">,</span> <span class="n">π_seq_4</span><span class="p">,</span>
              <span class="n">m_seq_4</span> <span class="o">-</span> <span class="n">p_seq_4</span><span class="p">,</span> <span class="n">m_seq_4</span><span class="p">,</span> <span class="n">p_seq_4</span><span class="p">)</span>
-<span class="n">plot_sequences</span><span class="p">(</span><span class="n">sequences</span><span class="p">,</span> <span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\mu$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$\pi$&#39;</span><span class="p">,</span> 
+<span class="n">plot_sequences</span><span class="p">(</span><span class="n">sequences</span><span class="p">,</span> <span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\mu$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$\pi$&#39;</span><span class="p">,</span>
                            <span class="sa">r</span><span class="s1">&#39;$m - p$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$m$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$p$&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -962,8 +984,263 @@ it is also interesting to study the consequences of a foreseen gradual stabiliza
 </section>
 </section>
 </section>
+<section id="exercises">
+<h2><span class="section-number">15.4. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<div class="exercise admonition" id="cagan_ex1">
+
+<p class="admonition-title"><span class="caption-number">Exercise 15.1 </span></p>
+<section id="exercise-content">
+<p><strong>Sensitivity to <span class="math notranslate nohighlight">\(\alpha\)</span>.</strong></p>
+<p>For Experiment 1 (foreseen sudden stabilization from <span class="math notranslate nohighlight">\(\mu_0 = 0.5\)</span> to <span class="math notranslate nohighlight">\(\mu^* = 0\)</span>
+at <span class="math notranslate nohighlight">\(T_1 = 60\)</span>, with <span class="math notranslate nohighlight">\(T = 80\)</span>), solve the model for
+<span class="math notranslate nohighlight">\(\alpha \in \{1,\, 3,\, 5,\, 10,\, 25\}\)</span> and plot the inflation path <span class="math notranslate nohighlight">\(\pi_t\)</span> for
+each value on a single graph.</p>
+<p>Describe how the <strong>anticipation effect</strong>, the pre-stabilization fall in inflation,
+changes with <span class="math notranslate nohighlight">\(\alpha\)</span>.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="cagan_ree-solution-1">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#cagan_ex1"> Exercise 15.1</a></p>
+<section id="solution-content">
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T1</span> <span class="o">=</span> <span class="mi">60</span>
+<span class="n">μ0</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">μ_star</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mi">80</span>
+<span class="n">μ_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">μ0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">T1</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">μ_star</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">T</span> <span class="o">-</span> <span class="n">T1</span><span class="p">))</span>
+
+<span class="n">α_vals</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">]</span>
+<span class="n">T_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">α</span> <span class="ow">in</span> <span class="n">α_vals</span><span class="p">:</span>
+    <span class="n">cm</span> <span class="o">=</span> <span class="n">create_cagan_model</span><span class="p">(</span><span class="n">α</span><span class="o">=</span><span class="n">α</span><span class="p">,</span> <span class="n">μ_seq</span><span class="o">=</span><span class="n">μ_seq</span><span class="p">)</span>
+    <span class="n">π_seq</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">π_seq</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;α = </span><span class="si">{</span><span class="n">α</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">T1</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Stabilization $T_1$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\pi_t$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Inflation paths for different α (foreseen stabilization)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/61bbfc8832c76bc192ba94b03cd3706f5a675163a75fd3dba0a1aa2fa4f1a3f3.png"><img alt="_images/61bbfc8832c76bc192ba94b03cd3706f5a675163a75fd3dba0a1aa2fa4f1a3f3.png" src="_images/61bbfc8832c76bc192ba94b03cd3706f5a675163a75fd3dba0a1aa2fa4f1a3f3.png" style="width: 80%;" />
+</a>
+</div>
+</div>
+<p>For small <span class="math notranslate nohighlight">\(\alpha\)</span>, real-balance demand is insensitive to inflation, so
+the model behaves almost like the exogenous-money case and inflation tracks <span class="math notranslate nohighlight">\(\mu_t\)</span> closely.</p>
+<p>For large <span class="math notranslate nohighlight">\(\alpha\)</span>, agents strongly revalue money in response to expected
+future inflation, so the announcement of a future stabilization pulls
+inflation down gradually before <span class="math notranslate nohighlight">\(T_1\)</span>.</p>
+</section>
+</div>
+<div class="exercise admonition" id="cagan_ex2">
+
+<p class="admonition-title"><span class="caption-number">Exercise 15.2 </span></p>
+<section id="exercise-content">
+<p><strong>Verify the analytical formula.</strong></p>
+<p>For Experiment 1 (<span class="math notranslate nohighlight">\(\alpha = 5\)</span>, <span class="math notranslate nohighlight">\(T_1 = 60\)</span>, <span class="math notranslate nohighlight">\(T = 80\)</span>, <span class="math notranslate nohighlight">\(\mu_0 = 0.5\)</span>,
+<span class="math notranslate nohighlight">\(\mu^* = 0\)</span>), the closed-form solution for the inflation rate is given by
+equation <a class="reference internal" href="#equation-eq-fisctheory1">(15.5)</a>:</p>
+<div class="math notranslate nohighlight">
+\[
+\pi_t = (1-\delta) \sum_{s=t}^T \delta^{s-t} \mu_s + \delta^{T+1-t} \pi_{T+1}^*
+\]</div>
+<p>Compute <span class="math notranslate nohighlight">\(\pi_t\)</span> directly from this formula for each <span class="math notranslate nohighlight">\(t = 0, 1, \ldots, T\)</span>,
+compare it to the matrix solution returned by <code class="docutils literal notranslate"><span class="pre">solve</span></code>, plot both on the same
+graph, and print the maximum absolute difference.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="cagan_ree-solution-3">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#cagan_ex2"> Exercise 15.2</a></p>
+<section id="solution-content">
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T1</span> <span class="o">=</span> <span class="mi">60</span>
+<span class="n">μ0</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">μ_star</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mi">80</span>
+<span class="n">α</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">μ_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">μ0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">T1</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">μ_star</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">T</span> <span class="o">-</span> <span class="n">T1</span><span class="p">))</span>
+
+<span class="n">cm</span> <span class="o">=</span> <span class="n">create_cagan_model</span><span class="p">(</span><span class="n">α</span><span class="o">=</span><span class="n">α</span><span class="p">,</span> <span class="n">μ_seq</span><span class="o">=</span><span class="n">μ_seq</span><span class="p">)</span>
+<span class="n">π_matrix</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
+<span class="n">π_matrix</span> <span class="o">=</span> <span class="n">π_matrix</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">δ</span> <span class="o">=</span> <span class="n">α</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">α</span><span class="p">)</span>
+<span class="n">π_term</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">π_end</span>
+<span class="n">π_formula</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">δ</span><span class="p">)</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span><span class="n">δ</span><span class="o">**</span><span class="p">(</span><span class="n">s</span><span class="o">-</span><span class="n">t</span><span class="p">)</span> <span class="o">*</span> <span class="n">μ_seq</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="o">+</span> <span class="n">δ</span><span class="o">**</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="n">t</span><span class="p">)</span> <span class="o">*</span> <span class="n">π_term</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="p">])</span>
+
+<span class="n">T_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">π_matrix</span><span class="p">,</span>  <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Matrix solution&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">π_formula</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Analytical formula&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\pi_t$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Matrix vs analytical inflation path&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Max absolute difference: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">π_matrix</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">π_formula</span><span class="p">))</span><span class="si">:</span><span class="s1">.2e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/849890f64b8f78959baf592560519bd33fc245c0a1f5e8348f3b3b76fd77eea8.png"><img alt="_images/849890f64b8f78959baf592560519bd33fc245c0a1f5e8348f3b3b76fd77eea8.png" src="_images/849890f64b8f78959baf592560519bd33fc245c0a1f5e8348f3b3b76fd77eea8.png" style="width: 80%;" />
+</a>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Max absolute difference: 2.78e-16
+</pre></div>
+</div>
+</div>
+</div>
+<p>The two methods agree to machine precision, confirming that the matrix system
+<a class="reference internal" href="#equation-eq-pieq">(15.4)</a> correctly implements formula <a class="reference internal" href="#equation-eq-fisctheory1">(15.5)</a>.</p>
+</section>
+</div>
+<div class="exercise admonition" id="cagan_ex3">
+
+<p class="admonition-title"><span class="caption-number">Exercise 15.3 </span></p>
+<section id="exercise-content">
+<p><strong>Foreseen gradual vs sudden stabilization.</strong></p>
+<p>Experiment 1 features a <em>sudden</em> foreseen drop in money growth at <span class="math notranslate nohighlight">\(T_1 = 60\)</span>.</p>
+<p>Experiment 3 features a <em>gradual</em> foreseen path <span class="math notranslate nohighlight">\(\mu_t = \phi^t \mu_0 + (1-\phi^t)\mu^*\)</span>.</p>
+<p>On a single graph, plot the inflation paths for:</p>
+<ul class="simple">
+<li><p>Experiment 1 (sudden), and</p></li>
+<li><p>Experiment 3 with <span class="math notranslate nohighlight">\(\phi \in \{0.95, 0.85, 0.70\}\)</span> (increasingly fast gradualism).</p></li>
+</ul>
+<p>Use <span class="math notranslate nohighlight">\(\alpha = 5\)</span>, <span class="math notranslate nohighlight">\(\mu_0 = 0.5\)</span>, <span class="math notranslate nohighlight">\(\mu^* = 0\)</span>, and <span class="math notranslate nohighlight">\(T = 80\)</span> to determine which
+approach generates the smoothest pre-stabilization decline in inflation.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="cagan_ree-solution-5">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#cagan_ex3"> Exercise 15.3</a></p>
+<section id="solution-content">
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="mi">80</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="mi">60</span>
+<span class="n">μ0</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">μ_star</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">α</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">T_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">μ_sudden</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">μ0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">T1</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">μ_star</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">T</span> <span class="o">-</span> <span class="n">T1</span><span class="p">))</span>
+<span class="n">cm_sudden</span> <span class="o">=</span> <span class="n">create_cagan_model</span><span class="p">(</span><span class="n">α</span><span class="o">=</span><span class="n">α</span><span class="p">,</span> <span class="n">μ_seq</span><span class="o">=</span><span class="n">μ_sudden</span><span class="p">)</span>
+<span class="n">π_sudden</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">cm_sudden</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">π_sudden</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Sudden (Exp. 1)&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">ϕ</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.95</span><span class="p">,</span> <span class="mf">0.85</span><span class="p">,</span> <span class="mf">0.70</span><span class="p">]:</span>
+    <span class="n">μ_grad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">ϕ</span><span class="o">**</span><span class="n">t</span> <span class="o">*</span> <span class="n">μ0</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">ϕ</span><span class="o">**</span><span class="n">t</span><span class="p">)</span> <span class="o">*</span> <span class="n">μ_star</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="p">)])</span>
+    <span class="n">μ_grad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">μ_grad</span><span class="p">,</span> <span class="n">μ_star</span><span class="p">)</span>
+    <span class="n">cm_grad</span> <span class="o">=</span> <span class="n">create_cagan_model</span><span class="p">(</span><span class="n">α</span><span class="o">=</span><span class="n">α</span><span class="p">,</span> <span class="n">μ_seq</span><span class="o">=</span><span class="n">μ_grad</span><span class="p">)</span>
+    <span class="n">π_grad</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">cm_grad</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">π_grad</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Gradual ϕ = </span><span class="si">{</span><span class="n">ϕ</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\pi_t$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Inflation: sudden vs gradual foreseen stabilization&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/9fbe847484234547630673407881e37b6e1dd53c477bb90b8032faa5e2ff2065.png"><img alt="_images/9fbe847484234547630673407881e37b6e1dd53c477bb90b8032faa5e2ff2065.png" src="_images/9fbe847484234547630673407881e37b6e1dd53c477bb90b8032faa5e2ff2065.png" style="width: 80%;" />
+</a>
+</div>
+</div>
+<p>Faster gradual stabilization, corresponding to a smaller <span class="math notranslate nohighlight">\(\phi\)</span>, pulls <span class="math notranslate nohighlight">\(\mu_t\)</span> down more quickly.</p>
+<p>With less future inflation to discount, <span class="math notranslate nohighlight">\(\pi_t\)</span> falls sooner and more steeply.</p>
+<p>The sudden stabilization has the largest discontinuity in the path of <span class="math notranslate nohighlight">\(\mu_t\)</span>,
+but because it is fully anticipated the inflation path is smooth throughout.</p>
+</section>
+</div>
+<div class="exercise admonition" id="cagan_ex4">
+
+<p class="admonition-title"><span class="caption-number">Exercise 15.4 </span></p>
+<section id="exercise-content">
+<p><strong>Real-balance dynamics.</strong></p>
+<p>For Experiments 1 and 2 (foreseen and unforeseen sudden stabilization, regime 1
+where <span class="math notranslate nohighlight">\(m_{T_1}\)</span> is kept smooth), compute and plot the path of log real balances
+<span class="math notranslate nohighlight">\(m_t - p_t\)</span> for <span class="math notranslate nohighlight">\(t = 0, 1, \ldots, T\)</span>.</p>
+<p>Use <span class="math notranslate nohighlight">\(\alpha = 5\)</span>, <span class="math notranslate nohighlight">\(T_1 = 60\)</span>, <span class="math notranslate nohighlight">\(T = 80\)</span>, <span class="math notranslate nohighlight">\(\mu_0 = 0.5\)</span>, <span class="math notranslate nohighlight">\(\mu^* = 0\)</span>.</p>
+<p>Describe the qualitative difference between the two paths and explain it using
+the money-demand equation <a class="reference internal" href="#equation-eq-caganmd">(15.1)</a>.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="cagan_ree-solution-7">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#cagan_ex4"> Exercise 15.4</a></p>
+<section id="solution-content">
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="mi">80</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="mi">60</span>
+<span class="n">μ0</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">μ_star</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">α</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="n">μ_seq_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">μ0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">T1</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">μ_star</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">T</span> <span class="o">-</span> <span class="n">T1</span><span class="p">))</span>
+<span class="n">cm1</span> <span class="o">=</span> <span class="n">create_cagan_model</span><span class="p">(</span><span class="n">α</span><span class="o">=</span><span class="n">α</span><span class="p">,</span> <span class="n">μ_seq</span><span class="o">=</span><span class="n">μ_seq_1</span><span class="p">)</span>
+<span class="n">π_seq_1</span><span class="p">,</span> <span class="n">m_seq_1</span><span class="p">,</span> <span class="n">p_seq_1</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">cm1</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
+
+<span class="n">μ_seq_2a</span> <span class="o">=</span> <span class="n">μ0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">cm2a</span> <span class="o">=</span> <span class="n">create_cagan_model</span><span class="p">(</span><span class="n">α</span><span class="o">=</span><span class="n">α</span><span class="p">,</span> <span class="n">μ_seq</span><span class="o">=</span><span class="n">μ_seq_2a</span><span class="p">)</span>
+<span class="n">π_pre</span><span class="p">,</span> <span class="n">m_pre</span><span class="p">,</span> <span class="n">p_pre</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">cm2a</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
+
+<span class="n">μ_seq_2_cont</span> <span class="o">=</span> <span class="n">μ_star</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">T</span><span class="o">-</span><span class="n">T1</span><span class="p">)</span>
+<span class="n">cm2b</span> <span class="o">=</span> <span class="n">create_cagan_model</span><span class="p">(</span><span class="n">m0</span><span class="o">=</span><span class="n">m_pre</span><span class="p">[</span><span class="n">T1</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">α</span><span class="o">=</span><span class="n">α</span><span class="p">,</span>
+                          <span class="n">μ_seq</span><span class="o">=</span><span class="n">μ_seq_2_cont</span><span class="p">)</span>
+<span class="n">π_post</span><span class="p">,</span> <span class="n">m_post</span><span class="p">,</span> <span class="n">p_post</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">cm2b</span><span class="p">,</span> <span class="n">T</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">T1</span><span class="p">)</span>
+
+<span class="n">m_unforeseen</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">m_pre</span><span class="p">[:</span><span class="n">T1</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">m_post</span><span class="p">))</span>
+<span class="n">p_unforeseen</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">p_pre</span><span class="p">[:</span><span class="n">T1</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">p_post</span><span class="p">))</span>
+<span class="n">T_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="p">(</span><span class="n">m_seq_1</span> <span class="o">-</span> <span class="n">p_seq_1</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Foreseen (Exp. 1)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="p">(</span><span class="n">m_unforeseen</span> <span class="o">-</span> <span class="n">p_unforeseen</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+        <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Unforeseen (Exp. 2)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">T1</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$m_t - p_t$ (log real balances)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Real-balance paths: foreseen vs unforeseen stabilization&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/054e72f6e73fa93ce0d5388e23fceaff14e8fc868853e8a9a40d2dd7e4eb21d3.png"><img alt="_images/054e72f6e73fa93ce0d5388e23fceaff14e8fc868853e8a9a40d2dd7e4eb21d3.png" src="_images/054e72f6e73fa93ce0d5388e23fceaff14e8fc868853e8a9a40d2dd7e4eb21d3.png" style="width: 80%;" />
+</a>
+</div>
+</div>
+<p>From equation <a class="reference internal" href="#equation-eq-caganmd">(15.1)</a>, <span class="math notranslate nohighlight">\(m_t - p_t = -\alpha \pi_t\)</span>.</p>
+<p>In the foreseen case, inflation falls gradually before <span class="math notranslate nohighlight">\(T_1\)</span>, so real
+balances rise smoothly as the public anticipates lower future inflation.</p>
+<p>In the unforeseen case, there is no pre-announcement effect, so real balances
+are flat until the surprise at <span class="math notranslate nohighlight">\(T_1\)</span> and then jump upward with the drop in inflation.</p>
+</section>
+</div>
+</section>
 <section id="sequel">
-<h2><span class="section-number">15.4. </span>Sequel<a class="headerlink" href="#sequel" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">15.5. </span>Sequel<a class="headerlink" href="#sequel" title="Link to this heading">#</a></h2>
 <p>Another lecture <a class="reference internal" href="cagan_adaptive.html"><span class="doc">monetarist theory of price levels with adaptive expectations</span></a> describes an “adaptive expectations” version of Cagan’s model.</p>
 <p>The dynamics become more complicated and so does the algebra.</p>
 <p>Nowadays, the “rational expectations” version of the model is more popular among central bankers and economists advising them.</p>
@@ -1404,6 +1681,8 @@ it is also interesting to study the consequences of a foreseen gradual stabiliza
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/cagan_ree.md" download><i data-feather="github"></i></a></li>
                     -->
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro" download><i data-feather="github"></i></a></li>
+                    
+                    
                 </ul>
 
             </div>

@@ -77,13 +77,13 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=ca16d73eb23eeca4aff446ccb0673818c18f9cfc" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=ff5dcadef89fd2097ea5e28ddaad7eb5985f09c4" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=4c010e0d" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=3a5ece24" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -101,8 +101,8 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
-    <script src="_static/scripts/quantecon-book-theme.js?digest=239405dfbfda750f9038d3ea275d1490a4be841e"></script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=9980b4379844dc0b911d69b62b295f34ede88fac"></script>
     <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
     <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -158,8 +158,27 @@
 <meta property="og:site_name" content="A First Course in Quantitative Economics with Python" />
 <meta name="theme-color" content="#ffffff" />
 
+
+
+
   </head>
 <body>
+
+<!-- Prevent flash of light theme when dark mode is saved -->
+<script>
+(function() {
+  try {
+    if (localStorage.setContrast === '1') {
+      document.body.classList.add('dark-theme');
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  } catch(e) {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+})();
+</script>
 
 <!-- Override QuantEcon theme colors -->
 
@@ -180,7 +199,7 @@
                     
 
                     
-                    <div class="inner">
+                    <div class="inner sticky" data-autoexpand="true">
 
                         
                         <div class="qe-page__toc-header">
@@ -199,7 +218,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3">13.4.3. Step 3</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#experiments">13.4.4. Experiments</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-1-one-time-spending-shock">13.4.4.1. Experiment 1: one-time spending shock</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-2-permanent-expenditure-shift">13.4.4.2. Experiment 2: permanent expenditure shift</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-2-temporary-expenditure-shift">13.4.4.2. Experiment 2: temporary expenditure shift</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-3-delayed-spending-surge">13.4.4.3. Experiment 3: delayed spending surge</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-4-growing-expenditures">13.4.4.4. Experiment 4: growing expenditures</a></li>
 </ul>
@@ -207,6 +226,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feasible-tax-variations">13.4.5. Feasible Tax Variations</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">13.5. Exercises</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -227,12 +247,14 @@
                             
                             
                             
-                            <p><a href="#top"><strong>Back to top</strong></a></p>
+                            
                             
                         </div>
 
                     </div>
 
+                    
+                    <a href="#top" class="back-to-top-btn" title="Back to top">↑ Top</a>
                     
 
                 </div>
@@ -260,7 +282,7 @@
 
                     <!-- Last modified / Changelog dropdown -->
                         <button class="qe-page__header-changed" id="changelog-toggle" aria-expanded="false">
-                            Last changed: Dec 28, 2025
+                            Last changed: May 24, 2026
                             <span class="changelog-icon">▼</span>
                         </button>
 
@@ -271,10 +293,19 @@
                             
                             <li class="changelog-entry">
                                 
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/ae928c86" class="changelog-hash">ae928c86</a>
+                                
+                                <span class="changelog-author">Humphrey Yang</span>
+                                <span class="changelog-time">14 minutes ago</span>
+                                <span class="changelog-message">Adding Tom's Edits to Exercises (#748)</span>
+                            </li>
+                            
+                            <li class="changelog-entry">
+                                
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/21bd3b60" class="changelog-hash">21bd3b60</a>
                                 
                                 <span class="changelog-author">John Stachurski</span>
-                                <span class="changelog-time">1 month ago</span>
+                                <span class="changelog-time">4 months ago</span>
                                 <span class="changelog-message">Fix grammar and spelling errors across lecture files (#688)</span>
                             </li>
                             
@@ -313,7 +344,7 @@
 <section id="overview">
 <h2><span class="section-number">13.1. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
 <p>This  is a sister lecture to our  lecture on <a class="reference internal" href="cons_smooth.html"><span class="doc">consumption-smoothing</span></a>.</p>
-<p>By renaming variables, we  obtain  a  version of a model “tax-smoothing model” that  Robert Barro <span id="id1">[<a class="reference internal" href="zreferences.html#id168" title="Robert J Barro. On the Determination of the Public Debt. Journal of Political Economy, 87(5):940–971, 1979.">Barro, 1979</a>]</span> used  to explain why governments sometimes choose not to balance their budgets every period but instead issue debt to smooth tax rates over time.</p>
+<p>By renaming variables, we  obtain  a  version of a model “tax-smoothing model” that  Robert Barro <span class="bibtex-citation" id="id1">[<a class="reference internal" href="zreferences.html#id168" title="Robert J Barro. On the Determination of the Public Debt. Journal of Political Economy, 87(5):940–971, 1979.">Barro, 1979</a>]</span> used  to explain why governments sometimes choose not to balance their budgets every period but instead issue debt to smooth tax rates over time.</p>
 <p>The government chooses a tax collection path that minimizes the present value of its costs of raising revenue.</p>
 <p>The government minimizes those costs by smoothing  tax collections  over time and by issuing government debt during temporary surges in government expenditures.</p>
 <p>The present value of government expenditures is at the core of the tax-smoothing model,
@@ -383,7 +414,7 @@ a candidate tax collection path <span class="math notranslate nohighlight">\(T\)
 <div class="math notranslate nohighlight" id="equation-cost">
 <span class="eqno">(13.2)<a class="headerlink" href="#equation-cost" title="Link to this equation">#</a></span>\[L = - \sum_{t=0}^S \beta^t (g_1 T_t - \frac{g_2}{2} T_t^2 )\]</div>
 <p>where <span class="math notranslate nohighlight">\(g_1 &gt; 0, g_2 &gt; 0\)</span>.</p>
-<p>This is called the “present value of revenue-raising costs” in <span id="id2">[<a class="reference internal" href="zreferences.html#id168" title="Robert J Barro. On the Determination of the Public Debt. Journal of Political Economy, 87(5):940–971, 1979.">Barro, 1979</a>]</span>.</p>
+<p>This is called the “present value of revenue-raising costs” in <span class="bibtex-citation" id="id2">[<a class="reference internal" href="zreferences.html#id168" title="Robert J Barro. On the Determination of the Public Debt. Journal of Political Economy, 87(5):940–971, 1979.">Barro, 1979</a>]</span>.</p>
 <p>The quadratic term <span class="math notranslate nohighlight">\(-\frac{g_2}{2} T_t^2\)</span> captures increasing marginal costs of taxation, implying that tax distortions rise more than proportionally with tax rates.</p>
 <p>This creates an incentive for tax smoothing.</p>
 <p>Indeed, we shall see that when <span class="math notranslate nohighlight">\(\beta R = 1\)</span>, criterion <a class="reference internal" href="#equation-cost">(13.2)</a> leads to smoother tax paths.</p>
@@ -397,7 +428,7 @@ a candidate tax collection path <span class="math notranslate nohighlight">\(T\)
 <p>We create a Python <code class="docutils literal notranslate"><span class="pre">namedtuple</span></code> to store these parameters with default values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TaxSmoothing</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">&quot;TaxSmoothing&quot;</span><span class="p">,</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TaxSmoothing</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">&quot;TaxSmoothing&quot;</span><span class="p">,</span>
                         <span class="p">[</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;g1&quot;</span><span class="p">,</span> <span class="s2">&quot;g2&quot;</span><span class="p">,</span> <span class="s2">&quot;β_seq&quot;</span><span class="p">,</span> <span class="s2">&quot;S&quot;</span><span class="p">])</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">create_tax_smoothing_model</span><span class="p">(</span><span class="n">R</span><span class="o">=</span><span class="mf">1.01</span><span class="p">,</span> <span class="n">g1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">g2</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">S</span><span class="o">=</span><span class="mi">65</span><span class="p">):</span>
@@ -431,13 +462,13 @@ B_{S+1} = 0,
 \]</div>
 <p>it is possible to convert a sequence of budget constraints <a class="reference internal" href="#equation-eq-b-t">(13.1)</a> into a single intertemporal constraint</p>
 <div class="math notranslate nohighlight" id="equation-eq-budget-intertemp-tax">
-<span class="eqno">(13.4)<a class="headerlink" href="#equation-eq-budget-intertemp-tax" title="Link to this equation">#</a></span>\[ 
-\sum_{t=0}^S R^{-t} T_t = B_0 + h_0. 
+<span class="eqno">(13.4)<a class="headerlink" href="#equation-eq-budget-intertemp-tax" title="Link to this equation">#</a></span>\[
+\sum_{t=0}^S R^{-t} T_t = B_0 + h_0.
 \]</div>
 <p>Equation <a class="reference internal" href="#equation-eq-budget-intertemp-tax">(13.4)</a> says that the present value of tax collections must equal the sum of initial debt and the present value of government expenditures.</p>
 <p>When <span class="math notranslate nohighlight">\(\beta R = 1\)</span>, it is optimal for a government to smooth taxes by setting</p>
 <div class="math notranslate nohighlight">
-\[ 
+\[
 T_t = T_0 \quad t =0, 1, \ldots, S
 \]</div>
 <p>(Later we’ll present a “variational argument” that shows that this constant path minimizes
@@ -476,17 +507,17 @@ T_t = T_0 = \left( \frac{1 - R^{-1}}{1 - R^{-(S+1)}} \right) (B_0 + \sum_{t=0}^S
 <p>To do this, we transform  that system of difference equations into a single matrix equation as follows:</p>
 <div class="math notranslate nohighlight">
 \[
-\begin{bmatrix} 
+\begin{bmatrix}
 1 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 &amp; 0 \cr
 -R &amp; 1 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 &amp; 0 \cr
 0 &amp; -R &amp; 1 &amp; \cdots &amp; 0 &amp; 0 &amp; 0 \cr
 \vdots  &amp;\vdots &amp; \vdots &amp; \cdots &amp; \vdots &amp; \vdots &amp; \vdots \cr
 0 &amp; 0 &amp; 0 &amp; \cdots &amp; -R &amp; 1 &amp; 0 \cr
 0 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; -R &amp; 1
-\end{bmatrix} 
-\begin{bmatrix} B_1 \cr B_2 \cr B_3 \cr \vdots \cr B_S \cr B_{S+1} 
 \end{bmatrix}
-= R 
+\begin{bmatrix} B_1 \cr B_2 \cr B_3 \cr \vdots \cr B_S \cr B_{S+1}
+\end{bmatrix}
+= R
 \begin{bmatrix} G_0 + B_0 - T_0 \cr G_1 - T_0 \cr G_2 - T_0 \cr \vdots\cr G_{S-1} - T_0 \cr G_S - T_0
 \end{bmatrix}
 \]</div>
@@ -541,7 +572,7 @@ B_{S+1} = 0.
 <span class="n">tax_model</span> <span class="o">=</span> <span class="n">create_tax_smoothing_model</span><span class="p">()</span>
 <span class="n">T_seq</span><span class="p">,</span> <span class="n">B_seq</span><span class="p">,</span> <span class="n">h0</span> <span class="o">=</span> <span class="n">compute_optimal</span><span class="p">(</span><span class="n">tax_model</span><span class="p">,</span> <span class="n">B0</span><span class="p">,</span> <span class="n">G_seq</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;check B_S+1=0:&#39;</span><span class="p">,</span> 
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;check B_S+1=0:&#39;</span><span class="p">,</span>
       <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">B_seq</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mf">1e-8</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -613,31 +644,31 @@ Welfare: 41.46532630469102
 <p>This will help us avoid rewriting code to plot outcomes for different government expenditure sequences.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_ts</span><span class="p">(</span><span class="n">model</span><span class="p">,</span>    <span class="c1"># tax-smoothing model      </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_ts</span><span class="p">(</span><span class="n">model</span><span class="p">,</span>    <span class="c1"># tax-smoothing model</span>
             <span class="n">B0</span><span class="p">,</span>       <span class="c1"># initial government debt</span>
             <span class="n">G_seq</span>     <span class="c1"># government expenditure process</span>
            <span class="p">):</span>
-    
+
     <span class="c1"># Compute optimal tax path</span>
     <span class="n">T_seq</span><span class="p">,</span> <span class="n">B_seq</span><span class="p">,</span> <span class="n">h0</span> <span class="o">=</span> <span class="n">compute_optimal</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">B0</span><span class="p">,</span> <span class="n">G_seq</span><span class="p">)</span>
-    
+
     <span class="c1"># Sequence length</span>
     <span class="n">S</span> <span class="o">=</span> <span class="n">tax_model</span><span class="o">.</span><span class="n">S</span>
-    
+
     <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-    
+
     <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">S</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">G_seq</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;expenditures&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">S</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">T_seq</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;taxes&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">S</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="n">B_seq</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;debt&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$T_t,G_t$&#39;</span><span class="p">)</span>
     <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$B_t$&#39;</span><span class="p">)</span>
-    
+
     <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axes</span><span class="p">:</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">S</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">S</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
-    
-    
+
+
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -651,7 +682,7 @@ Welfare: 41.46532630469102
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Spending surge W_0 = 2.5</span>
-<span class="n">G_seq_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">21</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2.5</span><span class="p">]),</span> 
+<span class="n">G_seq_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">21</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2.5</span><span class="p">]),</span>
 <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">24</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">20</span><span class="p">)])</span>
 
 <span class="n">plot_ts</span><span class="p">(</span><span class="n">tax_model</span><span class="p">,</span> <span class="n">B0</span><span class="p">,</span> <span class="n">G_seq_pos</span><span class="p">)</span>
@@ -664,9 +695,9 @@ Welfare: 41.46532630469102
 </div>
 </div>
 </section>
-<section id="experiment-2-permanent-expenditure-shift">
-<h4><span class="section-number">13.4.4.2. </span>Experiment 2: permanent expenditure shift<a class="headerlink" href="#experiment-2-permanent-expenditure-shift" title="Link to this heading">#</a></h4>
-<p>Now we assume a permanent increase in government expenditures of <span class="math notranslate nohighlight">\(L\)</span> in year 21 of the <span class="math notranslate nohighlight">\(G\)</span>-sequence.</p>
+<section id="experiment-2-temporary-expenditure-shift">
+<h4><span class="section-number">13.4.4.2. </span>Experiment 2: temporary expenditure shift<a class="headerlink" href="#experiment-2-temporary-expenditure-shift" title="Link to this heading">#</a></h4>
+<p>Now we assume a temporary increase in government expenditures of <span class="math notranslate nohighlight">\(L\)</span> beginning in year 21 of the <span class="math notranslate nohighlight">\(G\)</span>-sequence.</p>
 <p>Again we can study positive and negative cases</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -730,7 +761,7 @@ Welfare: 41.46532630469102
 <span class="n">t_max</span> <span class="o">=</span> <span class="mi">46</span>
 
 <span class="c1"># Generate geometric G sequence</span>
-<span class="n">geo_seq</span> <span class="o">=</span> <span class="n">λ</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t_max</span><span class="p">)</span> <span class="o">*</span> <span class="n">G_0</span> 
+<span class="n">geo_seq</span> <span class="o">=</span> <span class="n">λ</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t_max</span><span class="p">)</span> <span class="o">*</span> <span class="n">G_0</span>
 <span class="n">G_seq_geo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
             <span class="p">[</span><span class="n">geo_seq</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">geo_seq</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">20</span><span class="p">)])</span>
 
@@ -747,7 +778,7 @@ Welfare: 41.46532630469102
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">λ</span> <span class="o">=</span> <span class="mf">0.95</span>
-<span class="n">geo_seq</span> <span class="o">=</span> <span class="n">λ</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t_max</span><span class="p">)</span> <span class="o">*</span> <span class="n">G_0</span> 
+<span class="n">geo_seq</span> <span class="o">=</span> <span class="n">λ</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t_max</span><span class="p">)</span> <span class="o">*</span> <span class="n">G_0</span>
 <span class="n">G_seq_geo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
             <span class="p">[</span><span class="n">geo_seq</span><span class="p">,</span> <span class="n">λ</span> <span class="o">**</span> <span class="n">t_max</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">20</span><span class="p">)])</span>
 
@@ -811,7 +842,7 @@ v_t = \xi_1 \phi^t - \xi_0.
 <p>which implies that</p>
 <div class="math notranslate nohighlight">
 \[
-\xi_1 \sum_{t=0}^S \phi_t R^{-t} - \xi_0 \sum_{t=0}^S R^{-t} = 0
+\xi_1 \sum_{t=0}^S \phi^t R^{-t} - \xi_0 \sum_{t=0}^S R^{-t} = 0
 \]</div>
 <p>which implies that</p>
 <div class="math notranslate nohighlight">
@@ -836,9 +867,9 @@ to compute alternative tax paths, then evaluate their welfare costs.</p>
 
     <span class="n">ξ0</span> <span class="o">=</span> <span class="n">ξ1</span><span class="o">*</span><span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="n">R</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">R</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">S</span><span class="o">+</span><span class="mi">1</span><span class="p">)))</span> <span class="o">*</span> <span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">ϕ</span><span class="o">/</span><span class="n">R</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">S</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">ϕ</span><span class="o">/</span><span class="n">R</span><span class="p">))</span>
     <span class="n">v_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="n">ξ1</span><span class="o">*</span><span class="n">ϕ</span><span class="o">**</span><span class="n">t</span> <span class="o">-</span> <span class="n">ξ0</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">S</span><span class="o">+</span><span class="mi">1</span><span class="p">)])</span>
-    
+
     <span class="k">if</span> <span class="n">verbose</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;check feasible:&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">β_seq</span> <span class="o">@</span> <span class="n">v_seq</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>     
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;check feasible:&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">β_seq</span> <span class="o">@</span> <span class="n">v_seq</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
 
     <span class="n">T_opt</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">compute_optimal</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">B0</span><span class="p">,</span> <span class="n">G_seq</span><span class="p">)</span>
     <span class="n">Tvar_seq</span> <span class="o">=</span> <span class="n">T_opt</span> <span class="o">+</span> <span class="n">v_seq</span>
@@ -862,8 +893,8 @@ to compute alternative tax paths, then evaluate their welfare costs.</p>
     <span class="n">ξ1</span><span class="p">,</span> <span class="n">ϕ</span> <span class="o">=</span> <span class="n">param</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;variation </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">: ξ1=</span><span class="si">{</span><span class="n">ξ1</span><span class="si">}</span><span class="s1">, ϕ=</span><span class="si">{</span><span class="n">ϕ</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-    <span class="n">Tvar_seq</span> <span class="o">=</span> <span class="n">compute_variation</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">tax_model</span><span class="p">,</span> 
-                                 <span class="n">ξ1</span><span class="o">=</span><span class="n">ξ1</span><span class="p">,</span> <span class="n">ϕ</span><span class="o">=</span><span class="n">ϕ</span><span class="p">,</span> <span class="n">B0</span><span class="o">=</span><span class="n">B0</span><span class="p">,</span> 
+    <span class="n">Tvar_seq</span> <span class="o">=</span> <span class="n">compute_variation</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">tax_model</span><span class="p">,</span>
+                                 <span class="n">ξ1</span><span class="o">=</span><span class="n">ξ1</span><span class="p">,</span> <span class="n">ϕ</span><span class="o">=</span><span class="n">ϕ</span><span class="p">,</span> <span class="n">B0</span><span class="o">=</span><span class="n">B0</span><span class="p">,</span>
                                  <span class="n">G_seq</span><span class="o">=</span><span class="n">G_seq</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;welfare=</span><span class="si">{</span><span class="n">welfare</span><span class="p">(</span><span class="n">tax_model</span><span class="p">,</span><span class="w"> </span><span class="n">Tvar_seq</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;welfare &lt; optimal: </span><span class="si">{</span><span class="n">welfare</span><span class="p">(</span><span class="n">tax_model</span><span class="p">,</span><span class="w"> </span><span class="n">Tvar_seq</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">wel_opt</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
@@ -871,13 +902,13 @@ to compute alternative tax paths, then evaluate their welfare costs.</p>
 
     <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">ls</span> <span class="o">=</span> <span class="s1">&#39;-.&#39;</span>
-    <span class="k">else</span><span class="p">:</span> 
-        <span class="n">ls</span> <span class="o">=</span> <span class="s1">&#39;-&#39;</span>  
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">S</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">Tvar_seq</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="n">ls</span><span class="p">,</span> 
-            <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">ξ1</span><span class="p">],</span> 
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ls</span> <span class="o">=</span> <span class="s1">&#39;-&#39;</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">S</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">Tvar_seq</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="n">ls</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">ξ1</span><span class="p">],</span>
             <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$\xi_1 = </span><span class="si">{</span><span class="n">ξ1</span><span class="si">}</span><span class="s1">, \phi = </span><span class="si">{</span><span class="n">ϕ</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">S</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">T_seq</span><span class="p">,</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">S</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">T_seq</span><span class="p">,</span>
          <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Optimal $\vec</span><span class="si">{T}</span><span class="s1">$ &#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
@@ -921,13 +952,13 @@ First, we define the cost with respect to <span class="math notranslate nohighli
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">cost_rel</span><span class="p">(</span><span class="n">ξ1</span><span class="p">,</span> <span class="n">ϕ</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Compute cost of variation sequence </span>
+<span class="sd">    Compute cost of variation sequence</span>
 <span class="sd">    for given ϕ, ξ1 with a tax-smoothing model</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    
-    <span class="n">Tvar_seq</span> <span class="o">=</span> <span class="n">compute_variation</span><span class="p">(</span><span class="n">tax_model</span><span class="p">,</span> <span class="n">ξ1</span><span class="o">=</span><span class="n">ξ1</span><span class="p">,</span> 
-                                 <span class="n">ϕ</span><span class="o">=</span><span class="n">ϕ</span><span class="p">,</span> <span class="n">B0</span><span class="o">=</span><span class="n">B0</span><span class="p">,</span> 
-                                 <span class="n">G_seq</span><span class="o">=</span><span class="n">G_seq</span><span class="p">,</span> 
+
+    <span class="n">Tvar_seq</span> <span class="o">=</span> <span class="n">compute_variation</span><span class="p">(</span><span class="n">tax_model</span><span class="p">,</span> <span class="n">ξ1</span><span class="o">=</span><span class="n">ξ1</span><span class="p">,</span>
+                                 <span class="n">ϕ</span><span class="o">=</span><span class="n">ϕ</span><span class="p">,</span> <span class="n">B0</span><span class="o">=</span><span class="n">B0</span><span class="p">,</span>
+                                 <span class="n">G_seq</span><span class="o">=</span><span class="n">G_seq</span><span class="p">,</span>
                                  <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">cost</span><span class="p">(</span><span class="n">tax_model</span><span class="p">,</span> <span class="n">Tvar_seq</span><span class="p">)</span>
 
@@ -975,7 +1006,7 @@ First, we define the cost with respect to <span class="math notranslate nohighli
 
 <span class="n">cost_grad</span> <span class="o">=</span> <span class="n">cost_vec</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">ϕ_arr</span><span class="p">)</span>
 <span class="n">cost_grad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">cost_grad</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ξ1_arr</span><span class="p">,</span> <span class="n">cost_grad</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ϕ_arr</span><span class="p">,</span> <span class="n">cost_grad</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;derivative of cost&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\phi$&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -990,6 +1021,263 @@ First, we define the cost with respect to <span class="math notranslate nohighli
 </div>
 </div>
 </section>
+</section>
+<section id="exercises">
+<h2><span class="section-number">13.5. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<div class="exercise admonition" id="tax_ex1">
+
+<p class="admonition-title"><span class="caption-number">Exercise 13.1 </span></p>
+<section id="exercise-content">
+<p>For the default expenditure sequence and <span class="math notranslate nohighlight">\(B_0 = 0\)</span>, suppose a one-time spending
+spike of size <span class="math notranslate nohighlight">\(W_0 = 1\)</span> occurs at period <span class="math notranslate nohighlight">\(t^* = 20\)</span>.</p>
+<p>a. Compute the optimal constant tax rate <span class="math notranslate nohighlight">\(T_0\)</span> for the baseline expenditure
+sequence (without the spike) and for the sequence with the spike, then print
+the difference <span class="math notranslate nohighlight">\(\Delta T_0\)</span>.</p>
+<p>b. The present value of the spike is <span class="math notranslate nohighlight">\(W_0 R^{-t^*}\)</span>.  Show analytically that the
+increase in the optimal flat tax equals the <strong>annuity value</strong> of that present
+value:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$$
+\Delta T_0 = \left(\frac{1 - R^{-1}}{1 - R^{-(S+1)}}\right) W_0 R^{-t^*}
+$$
+
+Verify numerically that the formula matches the computed $\Delta T_0$.
+</pre></div>
+</div>
+</section>
+</div>
+<div class="solution dropdown admonition" id="tax_smooth-solution-1">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#tax_ex1"> Exercise 13.1</a></p>
+<section id="solution-content">
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tax_model</span> <span class="o">=</span> <span class="n">create_tax_smoothing_model</span><span class="p">()</span>
+<span class="n">S</span><span class="p">,</span> <span class="n">R</span> <span class="o">=</span> <span class="n">tax_model</span><span class="o">.</span><span class="n">S</span><span class="p">,</span> <span class="n">tax_model</span><span class="o">.</span><span class="n">R</span>
+<span class="n">B0</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">G_base</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">46</span><span class="p">),</span> <span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">15</span><span class="p">)])</span>
+<span class="n">T_base</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">compute_optimal</span><span class="p">(</span><span class="n">tax_model</span><span class="p">,</span> <span class="n">B0</span><span class="p">,</span> <span class="n">G_base</span><span class="p">)</span>
+
+<span class="n">t_star</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">W0</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">G_shock</span> <span class="o">=</span> <span class="n">G_base</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">G_shock</span><span class="p">[</span><span class="n">t_star</span><span class="p">]</span> <span class="o">+=</span> <span class="n">W0</span>
+<span class="n">T_shock</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">compute_optimal</span><span class="p">(</span><span class="n">tax_model</span><span class="p">,</span> <span class="n">B0</span><span class="p">,</span> <span class="n">G_shock</span><span class="p">)</span>
+
+<span class="n">delta_T0_numerical</span> <span class="o">=</span> <span class="n">T_shock</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">T_base</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">annuity_factor</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="n">R</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">R</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">S</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">delta_T0_formula</span> <span class="o">=</span> <span class="n">annuity_factor</span> <span class="o">*</span> <span class="n">W0</span> <span class="o">*</span> <span class="n">R</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="n">t_star</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Numerical ΔT0:           </span><span class="si">{</span><span class="n">delta_T0_numerical</span><span class="si">:</span><span class="s1">.10f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Annuity-value formula:   </span><span class="si">{</span><span class="n">delta_T0_formula</span><span class="si">:</span><span class="s1">.10f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Match: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">delta_T0_numerical</span><span class="p">,</span><span class="w"> </span><span class="n">delta_T0_formula</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Numerical ΔT0:           0.0168538277
+Annuity-value formula:   0.0168538277
+Match: True
+</pre></div>
+</div>
+</div>
+</div>
+<p>The spike raises <span class="math notranslate nohighlight">\(h_0\)</span>, the present value of expenditures, by exactly <span class="math notranslate nohighlight">\(W_0 R^{-t^*}\)</span>.</p>
+<p>Since the optimal flat tax is the annuity value of <span class="math notranslate nohighlight">\((B_0 + h_0)\)</span>, the increase
+in <span class="math notranslate nohighlight">\(T_0\)</span> is the annuity value of the extra present-value cost.</p>
+</section>
+</div>
+<div class="exercise admonition" id="tax_ex2">
+
+<p class="admonition-title"><span class="caption-number">Exercise 13.2 </span></p>
+<section id="exercise-content">
+<p>Using <code class="docutils literal notranslate"><span class="pre">compute_optimal</span></code>, compute the optimal flat tax <span class="math notranslate nohighlight">\(T_0\)</span> for four geometrically
+growing expenditure paths <span class="math notranslate nohighlight">\(G_t = \lambda^t G_0\)</span> (for the working years
+<span class="math notranslate nohighlight">\(t = 0, \ldots, 45\)</span>, then <span class="math notranslate nohighlight">\(G_t = 0\)</span> thereafter), with <span class="math notranslate nohighlight">\(G_0 = 1\)</span> and
+<span class="math notranslate nohighlight">\(\lambda \in \{0.95,\, 1.00,\, 1.05,\, 1.10\}\)</span>.</p>
+<p>a. Plot the four expenditure sequences on one set of axes and the corresponding
+debt paths <span class="math notranslate nohighlight">\(B_t\)</span> on a second set.</p>
+<p>b. Identify which <span class="math notranslate nohighlight">\(\lambda\)</span> requires the highest flat tax and explain why in
+terms of the present-value formula for <span class="math notranslate nohighlight">\(h_0\)</span>.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="tax_smooth-solution-3">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#tax_ex2"> Exercise 13.2</a></p>
+<section id="solution-content">
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tax_model</span> <span class="o">=</span> <span class="n">create_tax_smoothing_model</span><span class="p">()</span>
+<span class="n">S</span> <span class="o">=</span> <span class="n">tax_model</span><span class="o">.</span><span class="n">S</span>
+<span class="n">B0</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">t_max</span> <span class="o">=</span> <span class="mi">46</span>
+<span class="n">λ_vals</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.95</span><span class="p">,</span> <span class="mf">1.00</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">,</span> <span class="mf">1.10</span><span class="p">]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">λ</span> <span class="ow">in</span> <span class="n">λ_vals</span><span class="p">:</span>
+    <span class="n">G_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+        <span class="p">[</span><span class="n">λ</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t_max</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">S</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">t_max</span><span class="p">)])</span>
+    <span class="n">T_seq</span><span class="p">,</span> <span class="n">B_seq</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">compute_optimal</span><span class="p">(</span><span class="n">tax_model</span><span class="p">,</span> <span class="n">B0</span><span class="p">,</span> <span class="n">G_seq</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">S</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">G_seq</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;λ = </span><span class="si">{</span><span class="n">λ</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">S</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="n">B_seq</span><span class="p">,</span>
+                 <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;λ = </span><span class="si">{</span><span class="n">λ</span><span class="si">}</span><span class="s1">,  T0 = </span><span class="si">{</span><span class="n">T_seq</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axes</span><span class="p">:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$G_t$&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Expenditure sequences&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$B_t$&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Debt paths&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;λ&#39;</span><span class="si">:</span><span class="s2">&gt;6</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="s1">&#39;T0&#39;</span><span class="si">:</span><span class="s2">&gt;10</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="s1">&#39;h0&#39;</span><span class="si">:</span><span class="s2">&gt;12</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">34</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">λ</span> <span class="ow">in</span> <span class="n">λ_vals</span><span class="p">:</span>
+    <span class="n">G_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+        <span class="p">[</span><span class="n">λ</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t_max</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">S</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">t_max</span><span class="p">)])</span>
+    <span class="n">T_seq</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">h0</span> <span class="o">=</span> <span class="n">compute_optimal</span><span class="p">(</span><span class="n">tax_model</span><span class="p">,</span> <span class="n">B0</span><span class="p">,</span> <span class="n">G_seq</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">λ</span><span class="si">:</span><span class="s1">&gt;6.2f</span><span class="si">}</span><span class="s1"> | </span><span class="si">{</span><span class="n">T_seq</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">&gt;10.4f</span><span class="si">}</span><span class="s1"> | </span><span class="si">{</span><span class="n">h0</span><span class="si">:</span><span class="s1">&gt;12.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/cefa4b69a140b82c0202355e4784b58f8def719a916181833b41242317713724.png"><img alt="_images/cefa4b69a140b82c0202355e4784b58f8def719a916181833b41242317713724.png" src="_images/cefa4b69a140b82c0202355e4784b58f8def719a916181833b41242317713724.png" style="width: 80%;" />
+</a>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     λ |         T0 |           h0
+----------------------------------
+  0.95 |     0.3666 |      15.8272
+  1.00 |     0.8040 |      37.0945
+  1.05 |     2.6215 |     125.4752
+  1.10 |    11.5184 |     558.1014
+</pre></div>
+</div>
+</div>
+</div>
+<p>Faster spending growth, or a higher <span class="math notranslate nohighlight">\(\lambda\)</span>, leaves initial spending unchanged but raises later spending enough to increase the present value <span class="math notranslate nohighlight">\(h_0\)</span> despite discounting.</p>
+<p>A higher <span class="math notranslate nohighlight">\(h_0\)</span> translates directly into a higher required flat tax.</p>
+</section>
+</div>
+<div class="exercise admonition" id="tax_ex3">
+
+<p class="admonition-title"><span class="caption-number">Exercise 13.3 </span></p>
+<section id="exercise-content">
+<p>Show numerically that the constant (optimal) tax path yields strictly lower cost
+<a class="reference internal" href="#equation-cost">(13.2)</a>, equivalently, strictly higher welfare <a class="reference internal" href="#equation-welfare-tax">(13.3)</a>, than any
+non-constant budget-feasible tax path.</p>
+<p>Use the default expenditure sequence and <span class="math notranslate nohighlight">\(B_0 = 2\)</span> to evaluate welfare for the
+optimal flat path and for four variations generated by <code class="docutils literal notranslate"><span class="pre">compute_variation</span></code> with
+<span class="math notranslate nohighlight">\((\xi_1, \phi) \in \{(0.2, 0.95),\, (0.2, 1.05),\, (-0.2, 0.90),\, (-0.2, 1.10)\}\)</span>,
+then print a table showing each path’s welfare and its gap relative to the optimum.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="tax_smooth-solution-5">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#tax_ex3"> Exercise 13.3</a></p>
+<section id="solution-content">
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tax_model</span> <span class="o">=</span> <span class="n">create_tax_smoothing_model</span><span class="p">()</span>
+<span class="n">S</span> <span class="o">=</span> <span class="n">tax_model</span><span class="o">.</span><span class="n">S</span>
+<span class="n">B0</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">G_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">46</span><span class="p">),</span> <span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">15</span><span class="p">)])</span>
+
+<span class="n">T_seq</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">compute_optimal</span><span class="p">(</span><span class="n">tax_model</span><span class="p">,</span> <span class="n">B0</span><span class="p">,</span> <span class="n">G_seq</span><span class="p">)</span>
+<span class="n">w_opt</span> <span class="o">=</span> <span class="n">welfare</span><span class="p">(</span><span class="n">tax_model</span><span class="p">,</span> <span class="n">T_seq</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Optimal (flat) welfare: </span><span class="si">{</span><span class="n">w_opt</span><span class="si">:</span><span class="s1">.6f</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">params</span> <span class="o">=</span> <span class="p">[(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.90</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.10</span><span class="p">)]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="s2">&quot;ξ1&quot;</span><span class="si">:</span><span class="s1">&gt;6</span><span class="si">}</span><span class="s1"> | </span><span class="si">{</span><span class="s2">&quot;ϕ&quot;</span><span class="si">:</span><span class="s1">&gt;6</span><span class="si">}</span><span class="s1"> | </span><span class="si">{</span><span class="s2">&quot;welfare&quot;</span><span class="si">:</span><span class="s1">&gt;12</span><span class="si">}</span><span class="s1"> | </span><span class="si">{</span><span class="s2">&quot;gap&quot;</span><span class="si">:</span><span class="s1">&gt;14</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">46</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ξ1</span><span class="p">,</span> <span class="n">ϕ</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
+    <span class="n">Tvar</span> <span class="o">=</span> <span class="n">compute_variation</span><span class="p">(</span><span class="n">tax_model</span><span class="p">,</span> <span class="n">ξ1</span><span class="o">=</span><span class="n">ξ1</span><span class="p">,</span> <span class="n">ϕ</span><span class="o">=</span><span class="n">ϕ</span><span class="p">,</span>
+                             <span class="n">B0</span><span class="o">=</span><span class="n">B0</span><span class="p">,</span> <span class="n">G_seq</span><span class="o">=</span><span class="n">G_seq</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">welfare</span><span class="p">(</span><span class="n">tax_model</span><span class="p">,</span> <span class="n">Tvar</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ξ1</span><span class="si">:</span><span class="s1">&gt;6.2f</span><span class="si">}</span><span class="s1"> | </span><span class="si">{</span><span class="n">ϕ</span><span class="si">:</span><span class="s1">&gt;6.2f</span><span class="si">}</span><span class="s1"> | </span><span class="si">{</span><span class="n">w</span><span class="si">:</span><span class="s1">&gt;12.6f</span><span class="si">}</span><span class="s1"> | </span><span class="si">{</span><span class="n">w</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">w_opt</span><span class="si">:</span><span class="s1">&gt;+14.6f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal (flat) welfare: 41.465326
+
+    ξ1 |      ϕ |      welfare |            gap
+----------------------------------------------
+  0.20 |   0.95 |    41.427673 |      -0.037653
+  0.20 |   1.05 |    24.915043 |     -16.550284
+ -0.20 |   0.90 |    41.432147 |      -0.033180
+ -0.20 |   1.10 | -5565.980135 |   -5607.445462
+</pre></div>
+</div>
+</div>
+</div>
+<p>Every variation yields strictly lower welfare, or a more negative gap, than the flat path.</p>
+<p>This confirms that the constant tax schedule is the global welfare maximiser
+under the quadratic criterion <a class="reference internal" href="#equation-welfare-tax">(13.3)</a> when <span class="math notranslate nohighlight">\(\beta R = 1\)</span>.</p>
+</section>
+</div>
+<div class="exercise admonition" id="tax_ex4">
+
+<p class="admonition-title"><span class="caption-number">Exercise 13.4 </span></p>
+<section id="exercise-content">
+<p>Show that the optimal flat tax <span class="math notranslate nohighlight">\(T_0\)</span> is an affine (linear) function of initial
+government debt <span class="math notranslate nohighlight">\(B_0\)</span>.</p>
+<p>For the default expenditure sequence <span class="math notranslate nohighlight">\(G\)</span>, compute <span class="math notranslate nohighlight">\(T_0\)</span> for
+<span class="math notranslate nohighlight">\(B_0 \in \{-4, -2, 0, 2, 4, 6\}\)</span>, plot <span class="math notranslate nohighlight">\(T_0\)</span> against <span class="math notranslate nohighlight">\(B_0\)</span>, and verify that the
+slope equals the annuity factor <span class="math notranslate nohighlight">\(\left(\frac{1-R^{-1}}{1-R^{-(S+1)}}\right)\)</span>.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="tax_smooth-solution-7">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#tax_ex4"> Exercise 13.4</a></p>
+<section id="solution-content">
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tax_model</span> <span class="o">=</span> <span class="n">create_tax_smoothing_model</span><span class="p">()</span>
+<span class="n">S</span><span class="p">,</span> <span class="n">R</span> <span class="o">=</span> <span class="n">tax_model</span><span class="o">.</span><span class="n">S</span><span class="p">,</span> <span class="n">tax_model</span><span class="o">.</span><span class="n">R</span>
+<span class="n">G_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">46</span><span class="p">),</span> <span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">15</span><span class="p">)])</span>
+
+<span class="n">B0_vals</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="n">T0_vals</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">B0</span> <span class="ow">in</span> <span class="n">B0_vals</span><span class="p">:</span>
+    <span class="n">T_seq</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">compute_optimal</span><span class="p">(</span><span class="n">tax_model</span><span class="p">,</span> <span class="n">B0</span><span class="p">,</span> <span class="n">G_seq</span><span class="p">)</span>
+    <span class="n">T0_vals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">T_seq</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">B0_vals</span><span class="p">,</span> <span class="n">T0_vals</span><span class="p">,</span> <span class="s1">&#39;o-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$B_0$ (initial government debt)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Optimal flat tax $T_0$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;$T_0$ is an affine function of $B_0$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">slope</span> <span class="o">=</span> <span class="p">(</span><span class="n">T0_vals</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">T0_vals</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">B0_vals</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">B0_vals</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">annuity</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="n">R</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">R</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">S</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Numerical slope of T0 w.r.t. B0: </span><span class="si">{</span><span class="n">slope</span><span class="si">:</span><span class="s1">.8f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Annuity factor:                   </span><span class="si">{</span><span class="n">annuity</span><span class="si">:</span><span class="s1">.8f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Match: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">slope</span><span class="p">,</span><span class="w"> </span><span class="n">annuity</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/0b73fa13243f565efa7b241984f2f60e83bb16e42b77f8f93aac05b675900a68.png"><img alt="_images/0b73fa13243f565efa7b241984f2f60e83bb16e42b77f8f93aac05b675900a68.png" src="_images/0b73fa13243f565efa7b241984f2f60e83bb16e42b77f8f93aac05b675900a68.png" style="width: 80%;" />
+</a>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Numerical slope of T0 w.r.t. B0: 0.02056487
+Annuity factor:                   0.02056487
+Match: True
+</pre></div>
+</div>
+</div>
+</div>
+<p>From equation <a class="reference internal" href="#equation-eq-taxsmoothing">(13.5)</a>, <span class="math notranslate nohighlight">\(T_0 = \text{annuity factor} \times (B_0 + h_0)\)</span>.</p>
+<p>The coefficient on <span class="math notranslate nohighlight">\(B_0\)</span> is exactly the annuity factor, confirming the linear relationship.</p>
+<p>Higher initial debt forces the government to collect more tax in every period to satisfy its intertemporal budget constraint.</p>
+</section>
+</div>
 </section>
 </section>
 
@@ -1427,6 +1715,8 @@ First, we define the cost with respect to <span class="math notranslate nohighli
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/tax_smooth.md" download><i data-feather="github"></i></a></li>
                     -->
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro" download><i data-feather="github"></i></a></li>
+                    
+                    
                 </ul>
 
             </div>

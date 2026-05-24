@@ -77,13 +77,13 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=ca16d73eb23eeca4aff446ccb0673818c18f9cfc" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=ff5dcadef89fd2097ea5e28ddaad7eb5985f09c4" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=4c010e0d" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=3a5ece24" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -101,8 +101,8 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
-    <script src="_static/scripts/quantecon-book-theme.js?digest=239405dfbfda750f9038d3ea275d1490a4be841e"></script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=9980b4379844dc0b911d69b62b295f34ede88fac"></script>
     <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
     <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -158,8 +158,27 @@
 <meta property="og:site_name" content="A First Course in Quantitative Economics with Python" />
 <meta name="theme-color" content="#ffffff" />
 
+
+
+
   </head>
 <body>
+
+<!-- Prevent flash of light theme when dark mode is saved -->
+<script>
+(function() {
+  try {
+    if (localStorage.setContrast === '1') {
+      document.body.classList.add('dark-theme');
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  } catch(e) {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+})();
+</script>
 
 <!-- Override QuantEcon theme colors -->
 
@@ -180,7 +199,7 @@
                     
 
                     
-                    <div class="inner">
+                    <div class="inner sticky" data-autoexpand="true">
 
                         
                         <div class="qe-page__toc-header">
@@ -213,6 +232,7 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#back-to-the-keynesian-multiplier">10.6. Back to the Keynesian multiplier</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">10.7. Exercises</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -233,12 +253,14 @@
                             
                             
                             
-                            <p><a href="#top"><strong>Back to top</strong></a></p>
+                            
                             
                         </div>
 
                     </div>
 
+                    
+                    <a href="#top" class="back-to-top-btn" title="Back to top">↑ Top</a>
                     
 
                 </div>
@@ -266,7 +288,7 @@
 
                     <!-- Last modified / Changelog dropdown -->
                         <button class="qe-page__header-changed" id="changelog-toggle" aria-expanded="false">
-                            Last changed: Jan 21, 2025
+                            Last changed: May 24, 2026
                             <span class="changelog-icon">▼</span>
                         </button>
 
@@ -274,6 +296,15 @@
                     <div class="qe-page__header-changelog" id="changelog-content" aria-hidden="true">
                         <h4>Changelog (<a href="https://github.com/QuantEcon/lecture-python-intro/commits/main/lectures/geom_series.md">full history</a>)</h4>
                         <ul class="changelog-list">
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/ae928c86" class="changelog-hash">ae928c86</a>
+                                
+                                <span class="changelog-author">Humphrey Yang</span>
+                                <span class="changelog-time">14 minutes ago</span>
+                                <span class="changelog-message">Adding Tom's Edits to Exercises (#748)</span>
+                            </li>
                             
                             <li class="changelog-entry">
                                 
@@ -307,7 +338,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/a454f5da" class="changelog-hash">a454f5da</a>
                                 
                                 <span class="changelog-author">Longye Tian</span>
-                                <span class="changelog-time">1 year ago</span>
+                                <span class="changelog-time">2 years ago</span>
                                 <span class="changelog-message">Delete %matplotlib inline in ALL lectures (#429)</span>
                             </li>
                             
@@ -316,7 +347,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/b6fbcedf" class="changelog-hash">b6fbcedf</a>
                                 
                                 <span class="changelog-author">JingkunZhao</span>
-                                <span class="changelog-time">1 year ago</span>
+                                <span class="changelog-time">2 years ago</span>
                                 <span class="changelog-message">[geom_series] Update editorial suggestions</span>
                             </li>
                             
@@ -354,15 +385,6 @@
                                 <span class="changelog-author">porntipapoonpolsub</span>
                                 <span class="changelog-time">2 years ago</span>
                                 <span class="changelog-message">Make all titles and headings in line with manual</span>
-                            </li>
-                            
-                            <li class="changelog-entry">
-                                
-                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/7e407a6c" class="changelog-hash">7e407a6c</a>
-                                
-                                <span class="changelog-author">Subhamon Supantha</span>
-                                <span class="changelog-time">2 years ago</span>
-                                <span class="changelog-message">Fixed a minor typo (#217)</span>
                             </li>
                             
                         </ul>
@@ -1250,6 +1272,285 @@ path of output over time.</p>
 investment increases from 0.3 to 0.4, the shifts in the graphs are
 identical.</p>
 </section>
+<section id="exercises">
+<h2><span class="section-number">10.7. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<div class="exercise admonition" id="geom_ex1">
+
+<p class="admonition-title"><span class="caption-number">Exercise 10.1 </span></p>
+<section id="exercise-content">
+<p>Numerically verify the infinite geometric series formula</p>
+<div class="math notranslate nohighlight">
+\[
+1 + c + c^2 + \cdots = \frac{1}{1-c}
+\]</div>
+<p>for <span class="math notranslate nohighlight">\(c = 0.9\)</span>.</p>
+<p>Compute the partial sums <span class="math notranslate nohighlight">\(S_T = \sum_{t=0}^{T} c^t\)</span> for <span class="math notranslate nohighlight">\(T = 0, 1, \ldots, 80\)</span>
+and plot them alongside the theoretical limit <span class="math notranslate nohighlight">\(\frac{1}{1-c}\)</span>.</p>
+<p>On a second subplot, plot the absolute error <span class="math notranslate nohighlight">\(\left|S_T - \frac{1}{1-c}\right|\)</span>
+on a log scale to illustrate the rate of convergence.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="geom_series-solution-2">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#geom_ex1"> Exercise 10.1</a></p>
+<section id="solution-content">
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="mf">0.9</span>
+<span class="n">T_max</span> <span class="o">=</span> <span class="mi">80</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T_max</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Partial sums: S_T = sum_{t=0}^{T} c^t</span>
+<span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">c</span><span class="o">**</span><span class="n">T</span><span class="p">)</span>
+
+<span class="c1"># Theoretical limit</span>
+<span class="n">limit</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">c</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="c1"># Left panel: partial sums converging to the limit</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Partial sum $S_T$&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">limit</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span>
+                <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Limit $1/(1-c) = </span><span class="si">{</span><span class="n">limit</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$T$&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$S_T$&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Convergence of partial sums&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># Right panel: absolute error on log scale</span>
+<span class="n">error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">S</span> <span class="o">-</span> <span class="n">limit</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$T$&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$|S_T - 1/(1-c)|$&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Absolute error (log scale)&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/27b78c8c9bd9e03bdfcd6d8cdbcc4634e8c9c1697e25ab7e7924acf231f2abf2.png"><img alt="_images/27b78c8c9bd9e03bdfcd6d8cdbcc4634e8c9c1697e25ab7e7924acf231f2abf2.png" src="_images/27b78c8c9bd9e03bdfcd6d8cdbcc4634e8c9c1697e25ab7e7924acf231f2abf2.png" style="width: 80%;" />
+</a>
+</div>
+</div>
+<p>The left panel confirms that <span class="math notranslate nohighlight">\(S_T\)</span> converges smoothly to <span class="math notranslate nohighlight">\(1/(1-c) = 10\)</span>.</p>
+<p>The right panel shows that the error decays geometrically, a straight line on a log scale, reflecting the fact that the remainder after <span class="math notranslate nohighlight">\(T\)</span> terms equals <span class="math notranslate nohighlight">\(c^{T+1}/(1-c)\)</span>.</p>
+</section>
+</div>
+<div class="exercise admonition" id="geom_ex2">
+
+<p class="admonition-title"><span class="caption-number">Exercise 10.2 </span></p>
+<section id="exercise-content">
+<p>Using the fractional reserve banking model from this lecture, suppose the
+initial deposit is <span class="math notranslate nohighlight">\(D_0 = 1\)</span>.</p>
+<p>a. For each reserve ratio <span class="math notranslate nohighlight">\(r \in \{0.05, 0.10, 0.20, 0.40\}\)</span>, plot the
+<strong>cumulative deposits</strong> <span class="math notranslate nohighlight">\(\sum_{i=0}^{N} D_i\)</span> as a function of the number
+of banks <span class="math notranslate nohighlight">\(N\)</span> (for <span class="math notranslate nohighlight">\(N = 0, 1, \ldots, 50\)</span>) and add a dashed horizontal line
+at the theoretical limit <span class="math notranslate nohighlight">\(D_0/r\)</span> for each.</p>
+<p>b. Print the theoretical money multiplier <span class="math notranslate nohighlight">\(1/r\)</span> for each reserve ratio.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="geom_series-solution-4">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#geom_ex2"> Exercise 10.2</a></p>
+<section id="solution-content">
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">D_0</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">N_max</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N_max</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">reserve_ratios</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.10</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">,</span> <span class="mf">0.40</span><span class="p">]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">reserve_ratios</span><span class="p">:</span>
+    <span class="c1"># D_i = (1 - r)^i * D_0</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="n">D_0</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">r</span><span class="p">)</span><span class="o">**</span><span class="n">N</span>
+    <span class="n">cumulative</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">cumulative</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$r = </span><span class="si">{</span><span class="n">r</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">D_0</span> <span class="o">/</span> <span class="n">r</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Number of banks $N$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Cumulative deposits&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Convergence to the money multiplier $D_0/r$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Part b</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;Reserve ratio&#39;</span><span class="si">:</span><span class="s2">&gt;15</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="s1">&#39;Money multiplier 1/r&#39;</span><span class="si">:</span><span class="s2">&gt;20</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">reserve_ratios</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">r</span><span class="si">:</span><span class="s2">&gt;15.2f</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="mi">1</span><span class="o">/</span><span class="n">r</span><span class="si">:</span><span class="s2">&gt;20.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/ca1c159299895bb470afd3792be30c1985a2ac06db54312b29dfbf22f970aa40.png"><img alt="_images/ca1c159299895bb470afd3792be30c1985a2ac06db54312b29dfbf22f970aa40.png" src="_images/ca1c159299895bb470afd3792be30c1985a2ac06db54312b29dfbf22f970aa40.png" style="width: 80%;" />
+</a>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Reserve ratio | Money multiplier 1/r
+----------------------------------------
+           0.05 |                20.00
+           0.10 |                10.00
+           0.20 |                 5.00
+           0.40 |                 2.50
+</pre></div>
+</div>
+</div>
+</div>
+<p>A lower reserve ratio means banks lend out a larger fraction of each deposit, so the money-creation process takes longer to run down and the total deposits created are much larger.</p>
+<p>The dashed lines mark the theoretical limit <span class="math notranslate nohighlight">\(D_0/r\)</span>, which the cumulative series approaches from below.</p>
+</section>
+</div>
+<div class="exercise admonition" id="geom_ex3">
+
+<p class="admonition-title"><span class="caption-number">Exercise 10.3 </span></p>
+<section id="exercise-content">
+<p>The <strong>Gordon formula</strong> approximates the present value of an infinite lease as</p>
+<div class="math notranslate nohighlight">
+\[
+p_0 \approx \frac{x_0}{r - g}
+\]</div>
+<p>Using the <code class="docutils literal notranslate"><span class="pre">infinite_lease</span></code> function defined earlier, set <span class="math notranslate nohighlight">\(x_0 = 1\)</span> and
+<span class="math notranslate nohighlight">\(r = 0.05\)</span>, and let <span class="math notranslate nohighlight">\(g\)</span> range over <span class="math notranslate nohighlight">\([0,\, 0.045]\)</span>.</p>
+<p>a. Plot the exact present value and the Gordon approximation on the same
+graph as functions of <span class="math notranslate nohighlight">\(g\)</span>.</p>
+<p>b. On a second subplot, plot the percentage approximation error</p>
+<div class="math notranslate nohighlight">
+\[
+\text{error}(\%) = \frac{|\text{Gordon} - \text{exact}|}{\text{exact}} \times 100
+\]</div>
+<p>and comment on whether the percentage error varies with <span class="math notranslate nohighlight">\(g\)</span>.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="geom_series-solution-6">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#geom_ex3"> Exercise 10.3</a></p>
+<section id="solution-content">
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r_val</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">x_0</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">g_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.045</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
+
+<span class="n">exact</span> <span class="o">=</span> <span class="n">infinite_lease</span><span class="p">(</span><span class="n">g_vals</span><span class="p">,</span> <span class="n">r_val</span><span class="p">,</span> <span class="n">x_0</span><span class="p">)</span>
+<span class="n">gordon</span> <span class="o">=</span> <span class="n">x_0</span> <span class="o">/</span> <span class="p">(</span><span class="n">r_val</span> <span class="o">-</span> <span class="n">g_vals</span><span class="p">)</span>
+<span class="n">pct_error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">gordon</span> <span class="o">-</span> <span class="n">exact</span><span class="p">)</span> <span class="o">/</span> <span class="n">exact</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="n">pct_error_formula</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">r_val</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">r_val</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">g_vals</span><span class="p">,</span> <span class="n">exact</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Exact $p_0$&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">g_vals</span><span class="p">,</span> <span class="n">gordon</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Gordon approximation&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$g$&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$p_0$&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Infinite lease present value ($r = </span><span class="si">{</span><span class="n">r_val</span><span class="si">}</span><span class="s1">$)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">g_vals</span><span class="p">,</span> <span class="n">pct_error</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">pct_error_formula</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span>
+                <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$100r/(1+r) = </span><span class="si">{</span><span class="n">pct_error_formula</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">\%$&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$g$&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Percentage error (%)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Gordon formula approximation error&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/5e02253b43a907dffb2f20b9493804b9e4e1e0550186efe0034cd69c126517b2.png"><img alt="_images/5e02253b43a907dffb2f20b9493804b9e4e1e0550186efe0034cd69c126517b2.png" src="_images/5e02253b43a907dffb2f20b9493804b9e4e1e0550186efe0034cd69c126517b2.png" style="width: 80%;" />
+</a>
+</div>
+</div>
+<p>For a fixed <span class="math notranslate nohighlight">\(r\)</span>, the percentage error is constant in <span class="math notranslate nohighlight">\(g\)</span> because the exact value is <span class="math notranslate nohighlight">\(x_0(1+r)/(r-g)\)</span> while the Gordon approximation is <span class="math notranslate nohighlight">\(x_0/(r-g)\)</span>.</p>
+<p>The approximation becomes accurate when <span class="math notranslate nohighlight">\(r\)</span> is small because the exact value differs from the Gordon formula by the factor <span class="math notranslate nohighlight">\(1+r\)</span>.</p>
+</section>
+</div>
+<div class="exercise admonition" id="geom_ex4">
+
+<p class="admonition-title"><span class="caption-number">Exercise 10.4 </span></p>
+<section id="exercise-content">
+<p>The <code class="docutils literal notranslate"><span class="pre">calculate_y</span></code> function simulates the Keynesian dynamic model.</p>
+<p>a. For <span class="math notranslate nohighlight">\(i = 0.3\)</span>, <span class="math notranslate nohighlight">\(g = 0.3\)</span>, <span class="math notranslate nohighlight">\(y_{-1} = 0\)</span>, and <span class="math notranslate nohighlight">\(T = 60\)</span>, plot the path
+of national income <span class="math notranslate nohighlight">\(y_t\)</span> for each <span class="math notranslate nohighlight">\(b \in \{0.25,\, 0.50,\, 0.75,\, 0.90\}\)</span>
+and mark the long-run equilibrium <span class="math notranslate nohighlight">\(y^* = (i + g)/(1 - b)\)</span> with a dashed
+horizontal line for each <span class="math notranslate nohighlight">\(b\)</span>.</p>
+<p>b. For each value of <span class="math notranslate nohighlight">\(b\)</span>, find the first period <span class="math notranslate nohighlight">\(T^*\)</span> at which <span class="math notranslate nohighlight">\(y_t\)</span>
+reaches 95 percent of <span class="math notranslate nohighlight">\(y^*\)</span>, plot <span class="math notranslate nohighlight">\(T^*\)</span> against <span class="math notranslate nohighlight">\(b\)</span>, and comment on how
+the speed of convergence relates to the size of the Keynesian multiplier.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="geom_series-solution-8">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#geom_ex4"> Exercise 10.4</a></p>
+<section id="solution-content">
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">i_0</span><span class="p">,</span> <span class="n">g_0</span><span class="p">,</span> <span class="n">y_init</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mi">0</span>
+<span class="n">bs</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.50</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.90</span><span class="p">]</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mi">60</span>
+
+<span class="c1"># Part a</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bs</span><span class="p">:</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">calculate_y</span><span class="p">(</span><span class="n">i_0</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">g_0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">y_init</span><span class="p">)</span>
+    <span class="n">y_star</span> <span class="o">=</span> <span class="p">(</span><span class="n">i_0</span> <span class="o">+</span> <span class="n">g_0</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">T</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$b = </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1">$, $y^* = </span><span class="si">{</span><span class="n">y_star</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y_star</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$y_t$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;National income paths for different $b$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Part b</span>
+<span class="n">T_long</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">T_star_vals</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bs</span><span class="p">:</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">calculate_y</span><span class="p">(</span><span class="n">i_0</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">g_0</span><span class="p">,</span> <span class="n">T_long</span><span class="p">,</span> <span class="n">y_init</span><span class="p">)</span>
+    <span class="n">y_star</span> <span class="o">=</span> <span class="p">(</span><span class="n">i_0</span> <span class="o">+</span> <span class="n">g_0</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y</span> <span class="o">&gt;=</span> <span class="mf">0.95</span> <span class="o">*</span> <span class="n">y_star</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">T_star_vals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">idx</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">T_long</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bs</span><span class="p">],</span> <span class="n">T_star_vals</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Marginal propensity to consume $b$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Periods to reach 95</span><span class="si">% o</span><span class="s1">f $y^*$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Speed of convergence to long-run equilibrium&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;b&#39;</span><span class="si">:</span><span class="s2">&gt;6</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="s1">&#39;Multiplier 1/(1-b)&#39;</span><span class="si">:</span><span class="s2">&gt;20</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="s1">&#39;T* (periods)&#39;</span><span class="si">:</span><span class="s2">&gt;14</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">46</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">b</span><span class="p">,</span> <span class="n">T_star</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">bs</span><span class="p">,</span> <span class="n">T_star_vals</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">b</span><span class="si">:</span><span class="s2">&gt;6.2f</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">b</span><span class="p">)</span><span class="si">:</span><span class="s2">&gt;20.2f</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">T_star</span><span class="si">:</span><span class="s2">&gt;14</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/aabab3114521f0f7fe33443a0b5396525d9ea0d3db3bc8db253da85776571b3c.png"><img alt="_images/aabab3114521f0f7fe33443a0b5396525d9ea0d3db3bc8db253da85776571b3c.png" src="_images/aabab3114521f0f7fe33443a0b5396525d9ea0d3db3bc8db253da85776571b3c.png" style="width: 80%;" />
+</a>
+<a class="reference internal image-reference" href="_images/9964485dcdb11052654a791a8ee4fe7b9a6f41066c807091e684b102af306b8e.png"><img alt="_images/9964485dcdb11052654a791a8ee4fe7b9a6f41066c807091e684b102af306b8e.png" src="_images/9964485dcdb11052654a791a8ee4fe7b9a6f41066c807091e684b102af306b8e.png" style="width: 80%;" />
+</a>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     b |   Multiplier 1/(1-b) |   T* (periods)
+----------------------------------------------
+  0.25 |                 1.33 |              2
+  0.50 |                 2.00 |              4
+  0.75 |                 4.00 |             10
+  0.90 |                10.00 |             28
+</pre></div>
+</div>
+</div>
+</div>
+<p>As <span class="math notranslate nohighlight">\(b\)</span> rises toward 1, the Keynesian multiplier <span class="math notranslate nohighlight">\(1/(1-b)\)</span> grows large and convergence slows markedly.</p>
+<p>This reflects the fact that the geometric series <span class="math notranslate nohighlight">\(\sum_{t=0}^\infty b^t\)</span> converges
+more slowly when <span class="math notranslate nohighlight">\(b\)</span> is close to 1 because each additional round of spending adds
+a term <span class="math notranslate nohighlight">\(b^t\)</span> that shrinks only gradually.</p>
+</section>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1686,6 +1987,8 @@ identical.</p>
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/geom_series.md" download><i data-feather="github"></i></a></li>
                     -->
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro" download><i data-feather="github"></i></a></li>
+                    
+                    
                 </ul>
 
             </div>

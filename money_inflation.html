@@ -77,13 +77,13 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=ca16d73eb23eeca4aff446ccb0673818c18f9cfc" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=ff5dcadef89fd2097ea5e28ddaad7eb5985f09c4" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=4c010e0d" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=3a5ece24" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -101,8 +101,8 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
-    <script src="_static/scripts/quantecon-book-theme.js?digest=239405dfbfda750f9038d3ea275d1490a4be841e"></script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=9980b4379844dc0b911d69b62b295f34ede88fac"></script>
     <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
     <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -158,8 +158,27 @@
 <meta property="og:site_name" content="A First Course in Quantitative Economics with Python" />
 <meta name="theme-color" content="#ffffff" />
 
+
+
+
   </head>
 <body>
+
+<!-- Prevent flash of light theme when dark mode is saved -->
+<script>
+(function() {
+  try {
+    if (localStorage.setContrast === '1') {
+      document.body.classList.add('dark-theme');
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  } catch(e) {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+})();
+</script>
 
 <!-- Override QuantEcon theme colors -->
 
@@ -180,7 +199,7 @@
                     
 
                     
-                    <div class="inner">
+                    <div class="inner sticky" data-autoexpand="true">
 
                         
                         <div class="qe-page__toc-header">
@@ -209,6 +228,7 @@
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#peculiar-stationary-outcomes">29.8. Peculiar stationary outcomes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium-selection">29.9. Equilibrium selection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">29.10. Exercises</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -229,12 +249,14 @@
                             
                             
                             
-                            <p><a href="#top"><strong>Back to top</strong></a></p>
+                            
                             
                         </div>
 
                     </div>
 
+                    
+                    <a href="#top" class="back-to-top-btn" title="Back to top">↑ Top</a>
                     
 
                 </div>
@@ -262,7 +284,7 @@
 
                     <!-- Last modified / Changelog dropdown -->
                         <button class="qe-page__header-changed" id="changelog-toggle" aria-expanded="false">
-                            Last changed: Feb 18, 2025
+                            Last changed: May 24, 2026
                             <span class="changelog-icon">▼</span>
                         </button>
 
@@ -270,6 +292,15 @@
                     <div class="qe-page__header-changelog" id="changelog-content" aria-hidden="true">
                         <h4>Changelog (<a href="https://github.com/QuantEcon/lecture-python-intro/commits/main/lectures/money_inflation.md">full history</a>)</h4>
                         <ul class="changelog-list">
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/ae928c86" class="changelog-hash">ae928c86</a>
+                                
+                                <span class="changelog-author">Humphrey Yang</span>
+                                <span class="changelog-time">14 minutes ago</span>
+                                <span class="changelog-message">Adding Tom's Edits to Exercises (#748)</span>
+                            </li>
                             
                             <li class="changelog-entry">
                                 
@@ -312,7 +343,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/ac1d5d31" class="changelog-hash">ac1d5d31</a>
                                 
                                 <span class="changelog-author">Longye Tian</span>
-                                <span class="changelog-time">1 year ago</span>
+                                <span class="changelog-time">2 years ago</span>
                                 <span class="changelog-message">Update money_inflation.md (#440)</span>
                             </li>
                             
@@ -321,7 +352,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/a1ed6bc8" class="changelog-hash">a1ed6bc8</a>
                                 
                                 <span class="changelog-author">Matt McKay</span>
-                                <span class="changelog-time">1 year ago</span>
+                                <span class="changelog-time">2 years ago</span>
                                 <span class="changelog-message">FIX: aligned and general tidy up for new Monetary Lectures (#409)</span>
                             </li>
                             
@@ -330,7 +361,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/46e870ed" class="changelog-hash">46e870ed</a>
                                 
                                 <span class="changelog-author">Humphrey Yang</span>
-                                <span class="changelog-time">1 year ago</span>
+                                <span class="changelog-time">2 years ago</span>
                                 <span class="changelog-message">Promote lectures to the intro series and update related files (#405)</span>
                             </li>
                             
@@ -454,12 +485,12 @@ b_t - b_{t-1} R_{t-1} = g
 <p>The demand for real balances is</p>
 <div class="math notranslate nohighlight" id="equation-eq-bdemand">
 <span class="eqno">(29.5)<a class="headerlink" href="#equation-eq-bdemand" title="Link to this equation">#</a></span>\[
-b_t = \gamma_1 - \gamma_2 R_t^{-1} . 
+b_t = \gamma_1 - \gamma_2 R_t^{-1} .
 \]</div>
 <p>We’ll restrict our attention to  parameter values and  associated gross real rates of return on real balances that assure that the demand for real balances is positive, which according to <a class="reference internal" href="#equation-eq-bdemand">(29.5)</a> means that</p>
 <div class="math notranslate nohighlight">
 \[
-b_t = \gamma_1 - \gamma_2 R_t^{-1} &gt; 0 
+b_t = \gamma_1 - \gamma_2 R_t^{-1} &gt; 0
 \]</div>
 <p>which implies that</p>
 <div class="math notranslate nohighlight" id="equation-eq-requation">
@@ -506,13 +537,13 @@ g &amp; = \bar b ( 1 - \bar R)  \cr
 <span class="eqno">(29.8)<a class="headerlink" href="#equation-eq-sssigng" title="Link to this equation">#</a></span>\[
 S(\bar R) = (\gamma_1 + \gamma_2) - \frac{\gamma_2}{\bar R} - \gamma_1 \bar R
 \]</div>
-<p>Notice that <span class="math notranslate nohighlight">\(S(\bar R) \geq 0\)</span> only when <span class="math notranslate nohighlight">\(\bar R \in [\frac{\gamma_2}{\gamma_1}, 1] 
+<p>Notice that <span class="math notranslate nohighlight">\(S(\bar R) \geq 0\)</span> only when <span class="math notranslate nohighlight">\(\bar R \in [\frac{\gamma_2}{\gamma_1}, 1]
 \equiv [\underline R, \overline R]\)</span> and that <span class="math notranslate nohighlight">\(S(\bar R) = 0\)</span> if <span class="math notranslate nohighlight">\(\bar R  = \underline R\)</span>
 or if <span class="math notranslate nohighlight">\(\bar R  = \overline R\)</span>.</p>
 <p>We shall study equilibrium sequences that  satisfy</p>
 <div class="math notranslate nohighlight">
 \[
-R_t \in  [\underline R, \overline R],  \quad t \geq 0. 
+R_t \in  [\underline R, \overline R],  \quad t \geq 0.
 \]</div>
 <p>Maximizing steady-state seigniorage  <a class="reference internal" href="#equation-eq-sssigng">(29.8)</a> with respect to <span class="math notranslate nohighlight">\(\bar R\)</span>, we find that the maximizing rate of return on currency is</p>
 <div class="math notranslate nohighlight">
@@ -552,17 +583,17 @@ R_t \in  [\underline R, \overline R],  \quad t \geq 0.
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a namedtuple that contains parameters</span>
-<span class="n">MoneySupplyModel</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">&quot;MoneySupplyModel&quot;</span><span class="p">,</span> 
-                        <span class="p">[</span><span class="s2">&quot;γ1&quot;</span><span class="p">,</span> <span class="s2">&quot;γ2&quot;</span><span class="p">,</span> <span class="s2">&quot;g&quot;</span><span class="p">,</span> 
+<span class="n">MoneySupplyModel</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">&quot;MoneySupplyModel&quot;</span><span class="p">,</span>
+                        <span class="p">[</span><span class="s2">&quot;γ1&quot;</span><span class="p">,</span> <span class="s2">&quot;γ2&quot;</span><span class="p">,</span> <span class="s2">&quot;g&quot;</span><span class="p">,</span>
                          <span class="s2">&quot;M0&quot;</span><span class="p">,</span> <span class="s2">&quot;R_u&quot;</span><span class="p">,</span> <span class="s2">&quot;R_l&quot;</span><span class="p">])</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">create_model</span><span class="p">(</span><span class="n">γ1</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">γ2</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">M0</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
-    
+
     <span class="c1"># Calculate the steady states for R</span>
     <span class="n">R_steady</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">roots</span><span class="p">((</span><span class="o">-</span><span class="n">γ1</span><span class="p">,</span> <span class="n">γ1</span> <span class="o">+</span> <span class="n">γ2</span> <span class="o">-</span> <span class="n">g</span><span class="p">,</span> <span class="o">-</span><span class="n">γ2</span><span class="p">))</span>
     <span class="n">R_u</span><span class="p">,</span> <span class="n">R_l</span> <span class="o">=</span> <span class="n">R_steady</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[R_u, R_l] =&quot;</span><span class="p">,</span> <span class="n">R_steady</span><span class="p">)</span>
-    
+
     <span class="k">return</span> <span class="n">MoneySupplyModel</span><span class="p">(</span><span class="n">γ1</span><span class="o">=</span><span class="n">γ1</span><span class="p">,</span> <span class="n">γ2</span><span class="o">=</span><span class="n">γ2</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="n">g</span><span class="p">,</span> <span class="n">M0</span><span class="o">=</span><span class="n">M0</span><span class="p">,</span> <span class="n">R_u</span><span class="o">=</span><span class="n">R_u</span><span class="p">,</span> <span class="n">R_l</span><span class="o">=</span><span class="n">R_l</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -667,7 +698,7 @@ R_l, g_l = 0.5344, 3.0000
 <span class="eqno">(29.10)<a class="headerlink" href="#equation-eq-rtbt" title="Link to this equation">#</a></span>\[
 \begin{aligned}
 b_t &amp; = b_{t-1} R_{t-1} + g \cr
-R_t^{-1} &amp; = \frac{\gamma_1}{\gamma_2} - \gamma_2^{-1} b_t 
+R_t^{-1} &amp; = \frac{\gamma_1}{\gamma_2} - \gamma_2^{-1} b_t
 \end{aligned}
 \]</div>
 <ul class="simple">
@@ -684,7 +715,7 @@ p_0 = \frac{m_0}{\gamma_1 - g - \gamma_2/R_0}
 <span class="eqno">(29.12)<a class="headerlink" href="#equation-eq-method1" title="Link to this equation">#</a></span>\[
 \begin{aligned}
 p_t &amp; = R_t p_{t-1} \cr
-m_t &amp; = b_{t-1} p_t 
+m_t &amp; = b_{t-1} p_t
 \end{aligned}
 \]</div>
 <div class="proof remark admonition" id="method_1">
@@ -695,7 +726,9 @@ m_t &amp; = b_{t-1} p_t
 </div><div class="proof remark admonition" id="initial_condition">
 <p class="admonition-title"><span class="caption-number">Remark 29.2 </span></p>
 <section class="remark-content" id="proof-content">
-<p>Notice that  method 1 starts by picking an <strong>initial condition</strong> <span class="math notranslate nohighlight">\(R_0\)</span> from a set <span class="math notranslate nohighlight">\([\frac{\gamma_2}{\gamma_1}, R_u]\)</span>. Equilibrium <span class="math notranslate nohighlight">\(\{p_t, m_t\}_{t=0}^\infty\)</span> sequences are not unique.  There is actually a continuum of equilibria indexed by a choice of <span class="math notranslate nohighlight">\(R_0\)</span> from the set <span class="math notranslate nohighlight">\([\frac{\gamma_2}{\gamma_1}, R_u]\)</span>.</p>
+<p>Notice that method 1 starts by picking an <strong>initial condition</strong> <span class="math notranslate nohighlight">\(R_0\)</span> from a set <span class="math notranslate nohighlight">\([\frac{\gamma_2}{\gamma_1}, R_u]\)</span>.</p>
+<p>Equilibrium <span class="math notranslate nohighlight">\(\{p_t, m_t\}_{t=0}^\infty\)</span> sequences are not unique.</p>
+<p>There is actually a continuum of equilibria indexed by a choice of <span class="math notranslate nohighlight">\(R_0\)</span> from the set <span class="math notranslate nohighlight">\([\frac{\gamma_2}{\gamma_1}, R_u]\)</span>.</p>
 </section>
 </div><div class="proof remark admonition" id="unique_selection">
 <p class="admonition-title"><span class="caption-number">Remark 29.3 </span></p>
@@ -756,8 +789,9 @@ condition <span class="math notranslate nohighlight">\(R_0\)</span>.</p></li>
 that serve to finance the government deficit of <span class="math notranslate nohighlight">\(g\)</span> indicates the presence of a <strong>Laffer curve</strong> in the inflation tax rate.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Arthur Laffer’s curve plots a hump shaped curve of revenue raised from a tax against the tax rate.<br />
-Its hump shape indicates that there are typically two tax rates that yield the same amount of revenue. This is due to two countervailing courses, one being that raising a tax rate typically decreases the <strong>base</strong> of the tax as people take decisions to reduce their exposure to the tax.</p>
+<p>Arthur Laffer’s curve plots a hump shaped curve of revenue raised from a tax against the tax rate.</p>
+<p>Its hump shape indicates that there are typically two tax rates that yield the same amount of revenue.</p>
+<p>This is due to two countervailing courses, one being that raising a tax rate typically decreases the <strong>base</strong> of the tax as people take decisions to reduce their exposure to the tax.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -791,43 +825,43 @@ Its hump shape indicates that there are typically two tax rates that yield the s
 <p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">line_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;lw&#39;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">line_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;lw&#39;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span>
               <span class="s1">&#39;marker&#39;</span><span class="p">:</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span>
               <span class="s1">&#39;markersize&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">annotate_graph</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="p">[(</span><span class="n">model</span><span class="o">.</span><span class="n">R_u</span><span class="p">,</span> <span class="s1">&#39;$R_u$&#39;</span><span class="p">),</span> <span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">R_l</span><span class="p">,</span> <span class="s1">&#39;$R_l$&#39;</span><span class="p">),</span> 
+    <span class="k">for</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="p">[(</span><span class="n">model</span><span class="o">.</span><span class="n">R_u</span><span class="p">,</span> <span class="s1">&#39;$R_u$&#39;</span><span class="p">),</span> <span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">R_l</span><span class="p">,</span> <span class="s1">&#39;$R_l$&#39;</span><span class="p">),</span>
                      <span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">γ2</span> <span class="o">/</span> <span class="n">model</span><span class="o">.</span><span class="n">γ1</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$\frac{\gamma_2}{\gamma_1}$&#39;</span><span class="p">)]:</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">num_steps</span> <span class="o">*</span> <span class="mf">1.02</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> 
+        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">num_steps</span> <span class="o">*</span> <span class="mf">1.02</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
                 <span class="n">color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">draw_paths</span><span class="p">(</span><span class="n">R0_values</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">line_params</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">):</span>
 
     <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    
+
     <span class="c1"># Pre-compute time steps</span>
-    <span class="n">time_steps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">num_steps</span><span class="p">)</span> 
-    
-    <span class="c1"># Iterate over R_0s and simulate the system </span>
+    <span class="n">time_steps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">num_steps</span><span class="p">)</span>
+
+    <span class="c1"># Iterate over R_0s and simulate the system</span>
     <span class="k">for</span> <span class="n">R0</span> <span class="ow">in</span> <span class="n">R0_values</span><span class="p">:</span>
         <span class="n">b_values</span><span class="p">,</span> <span class="n">R_values</span> <span class="o">=</span> <span class="n">simulate_system</span><span class="p">(</span><span class="n">R0</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">)</span>
-        
+
         <span class="c1"># Plot R_t against time</span>
         <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_steps</span><span class="p">,</span> <span class="n">R_values</span><span class="p">,</span> <span class="o">**</span><span class="n">line_params</span><span class="p">)</span>
-        
+
         <span class="c1"># Plot b_t against time</span>
         <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_steps</span><span class="p">,</span> <span class="n">b_values</span><span class="p">,</span> <span class="o">**</span><span class="n">line_params</span><span class="p">)</span>
-        
-    <span class="c1"># Add line and text annotations to the subgraph </span>
+
+    <span class="c1"># Add line and text annotations to the subgraph</span>
     <span class="n">annotate_graph</span><span class="p">(</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">model</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">)</span>
-    
+
     <span class="c1"># Add Labels</span>
     <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$R_t$&#39;</span><span class="p">)</span>
     <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;timestep&#39;</span><span class="p">)</span>
     <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$b_t$&#39;</span><span class="p">)</span>
     <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="n">integer</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-    
+
     <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -872,12 +906,12 @@ y_t =  \begin{bmatrix} m_{t} \cr p_{t} \end{bmatrix} .
 \begin{bmatrix} 1 &amp; \gamma_2 \cr
                  1 &amp; 0 \end{bmatrix} \begin{bmatrix} m_{t+1} \cr p_{t+1} \end{bmatrix} =
                  \begin{bmatrix} 0 &amp; \gamma_1 \cr
-                 1 &amp; g \end{bmatrix} \begin{bmatrix} m_{t} \cr p_{t} \end{bmatrix} 
+                 1 &amp; g \end{bmatrix} \begin{bmatrix} m_{t} \cr p_{t} \end{bmatrix}
 \]</div>
 <p>or</p>
 <div class="math notranslate nohighlight">
-\[ 
-H_1 y_t = H_2  y_{t-1} 
+\[
+H_1 y_t = H_2  y_{t-1}
 \]</div>
 <p>where</p>
 <div class="math notranslate nohighlight">
@@ -885,15 +919,15 @@ H_1 y_t = H_2  y_{t-1}
 \begin{aligned} H_1 &amp; = \begin{bmatrix} 1 &amp; \gamma_2 \cr
                  1 &amp; 0 \end{bmatrix} \cr
                 H_2 &amp; = \begin{bmatrix} 0 &amp; \gamma_1 \cr
-                 1 &amp; g \end{bmatrix}  
+                 1 &amp; g \end{bmatrix}
 \end{aligned}
 \]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">H1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="n">msm</span><span class="o">.</span><span class="n">γ2</span><span class="p">],</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">H1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="n">msm</span><span class="o">.</span><span class="n">γ2</span><span class="p">],</span>
                <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
-<span class="n">H2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="n">msm</span><span class="o">.</span><span class="n">γ1</span><span class="p">],</span> 
-               <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">msm</span><span class="o">.</span><span class="n">g</span><span class="p">]])</span> 
+<span class="n">H2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="n">msm</span><span class="o">.</span><span class="n">γ1</span><span class="p">],</span>
+               <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">msm</span><span class="o">.</span><span class="n">g</span><span class="p">]])</span>
 </pre></div>
 </div>
 </div>
@@ -921,7 +955,7 @@ H = H_1^{-1} H_2
 <p>and write the system  <a class="reference internal" href="#equation-eq-sytem101">(29.13)</a> as</p>
 <div class="math notranslate nohighlight" id="equation-eq-vaughn">
 <span class="eqno">(29.14)<a class="headerlink" href="#equation-eq-vaughn" title="Link to this equation">#</a></span>\[
-y_{t+1} = H y_t, \quad t \geq 0 
+y_{t+1} = H y_t, \quad t \geq 0
 \]</div>
 <p>so that <span class="math notranslate nohighlight">\(\{y_t\}_{t=0}\)</span> can be computed from</p>
 <div class="math notranslate nohighlight" id="equation-eq-ytiterate">
@@ -941,13 +975,13 @@ it is something that we actually wanted to be determined by the model.</p>
 <p>Compute the eigenvector decomposition</p>
 <div class="math notranslate nohighlight">
 \[
-H =  Q \Lambda Q^{-1} 
+H =  Q \Lambda Q^{-1}
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\Lambda\)</span> is a diagonal matrix of eigenvalues and the columns of <span class="math notranslate nohighlight">\(Q\)</span> are eigenvectors corresponding to those eigenvalues.</p>
 <p>It turns out that</p>
 <div class="math notranslate nohighlight">
 \[
-\Lambda = \begin{bmatrix} {R_\ell}^{-1} &amp; 0 \cr 
+\Lambda = \begin{bmatrix} {R_\ell}^{-1} &amp; 0 \cr
                 0 &amp; {R_u}^{-1} \end{bmatrix}
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(R_\ell\)</span> and <span class="math notranslate nohighlight">\(R_u\)</span> are the lower and higher steady-state rates of return on currency that we computed above.</p>
@@ -988,7 +1022,7 @@ R_u = 0.5344
 </div>
 <p>Partition <span class="math notranslate nohighlight">\(Q\)</span> as</p>
 <div class="math notranslate nohighlight">
-\[ 
+\[
 Q =\begin{bmatrix} Q_{11} &amp; Q_{12} \cr
                    Q_{21} &amp; Q_{22} \end{bmatrix}
 \]</div>
@@ -1000,12 +1034,12 @@ p_0 = \overline p_0 \equiv Q_{21} Q_{11}^{-1}  m_{0} ,
 \]</div>
 <p>it turns out that</p>
 <div class="math notranslate nohighlight">
-\[ 
+\[
 \frac{p_{t+1}}{p_t} = {R_u}^{-1}, \quad t \geq 0
 \]</div>
 <p>However, if we set</p>
 <div class="math notranslate nohighlight">
-\[ 
+\[
 p_0 &gt; \bar p_0
 \]</div>
 <p>then</p>
@@ -1031,7 +1065,7 @@ y_t = Q \Lambda^t Q^{-1} y_0
     <span class="n">Q_inv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span>
         <span class="p">[</span><span class="n">Q</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">Λ</span><span class="o">**</span><span class="n">t</span><span class="p">)</span> <span class="o">@</span> <span class="n">Q_inv</span> <span class="o">@</span> <span class="n">y_0</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_steps</span><span class="p">)],</span> <span class="mi">1</span><span class="p">)</span>
-    
+
     <span class="k">return</span> <span class="n">y</span>
 </pre></div>
 </div>
@@ -1043,7 +1077,7 @@ y_t = Q \Lambda^t Q^{-1} y_0
 transformation</p>
 <div class="math notranslate nohighlight">
 \[
-y^*_t = Q^{-1} y_t . 
+y^*_t = Q^{-1} y_t .
 \]</div>
 <p>Dynamics of <span class="math notranslate nohighlight">\(y^*_t\)</span> are evidently governed by</p>
 <div class="math notranslate nohighlight" id="equation-eq-stardynamics">
@@ -1147,10 +1181,10 @@ Q^{21} Q_{11} + Q^{22} Q_{21} = 0.
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">draw_iterations</span><span class="p">(</span><span class="n">p0s</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">line_params</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">):</span>
 
     <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    
+
     <span class="c1"># Pre-compute time steps</span>
-    <span class="n">time_steps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">num_steps</span><span class="p">)</span> 
-    
+    <span class="n">time_steps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">num_steps</span><span class="p">)</span>
+
     <span class="c1"># Plot the first two y-axes in log scale</span>
     <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axes</span><span class="p">[:</span><span class="mi">2</span><span class="p">]:</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
@@ -1166,20 +1200,20 @@ Q^{21} Q_{11} + Q^{22} Q_{21} = 0.
 
         <span class="c1"># Plot b_t against time</span>
         <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_steps</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="o">**</span><span class="n">line_params</span><span class="p">)</span>
-        
+
         <span class="c1"># Calculate R_t</span>
         <span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">P</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">P</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
         <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_steps</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="o">**</span><span class="n">line_params</span><span class="p">)</span>
-        
-    <span class="c1"># Add line and text annotations to the subgraph </span>
+
+    <span class="c1"># Add line and text annotations to the subgraph</span>
     <span class="n">annotate_graph</span><span class="p">(</span><span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">model</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">)</span>
-    
+
     <span class="c1"># Draw labels</span>
     <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$m_t$&#39;</span><span class="p">)</span>
     <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$p_t$&#39;</span><span class="p">)</span>
     <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$R_t$&#39;</span><span class="p">)</span>
     <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;timestep&#39;</span><span class="p">)</span>
-    
+
     <span class="c1"># Enforce integar axis label</span>
     <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="n">integer</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 
@@ -1247,7 +1281,287 @@ Q^{21} Q_{11} + Q^{22} Q_{21} = 0.
 </ul>
 <p>On grounds of plausibility, we recommend following many macroeconomists in selecting the unique equilibrium that converges to the lower stationary inflation tax rate.</p>
 <p>As we shall see, we shall accept this recommendation in  lecture <a class="reference internal" href="unpleasant.html"><span class="doc">Some Unpleasant Monetarist Arithmetic</span></a>.</p>
-<p>In lecture, <a class="reference internal" href="laffer_adaptive.html"><span class="doc">Laffer Curves  with Adaptive Expectations</span></a>, we shall explore how  <span id="id1">[<a class="reference internal" href="zreferences.html#id296" title="Michael Bruno and Stanley Fischer. Seigniorage, operating rules, and the high inflation trap. The Quarterly Journal of Economics, 105(2):353–374, 1990.">Bruno and Fischer, 1990</a>]</span> and others justified this in other ways.</p>
+<p>In lecture, <a class="reference internal" href="laffer_adaptive.html"><span class="doc">Laffer Curves  with Adaptive Expectations</span></a>, we shall explore how  <span class="bibtex-citation" id="id1">[<a class="reference internal" href="zreferences.html#id296" title="Michael Bruno and Stanley Fischer. Seigniorage, operating rules, and the high inflation trap. The Quarterly Journal of Economics, 105(2):353–374, 1990.">Bruno and Fischer, 1990</a>]</span> and others justified this in other ways.</p>
+</section>
+<section id="exercises">
+<h2><span class="section-number">29.10. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<div class="exercise admonition" id="mi_ex1">
+
+<p class="admonition-title"><span class="caption-number">Exercise 29.1 </span></p>
+<section id="exercise-content">
+<p><strong>The seigniorage Laffer curve: peak revenue and fiscal limits.</strong></p>
+<p>The lecture states that steady-state seigniorage</p>
+<div class="math notranslate nohighlight">
+\[
+S(\bar R) = (\gamma_1 + \gamma_2) - \frac{\gamma_2}{\bar R} - \gamma_1 \bar R
+\]</div>
+<p>is maximized at <span class="math notranslate nohighlight">\(\bar R_{\rm max} = \sqrt{\gamma_2/\gamma_1}\)</span>.</p>
+<p>a. Verify this analytically by differentiating <span class="math notranslate nohighlight">\(S(\bar R)\)</span> with respect to
+<span class="math notranslate nohighlight">\(\bar R\)</span>, setting the derivative to zero, and solving for <span class="math notranslate nohighlight">\(\bar R\)</span>.</p>
+<p>b. Using the default model <code class="docutils literal notranslate"><span class="pre">msm</span></code>, compute <span class="math notranslate nohighlight">\(\bar R_{\rm max}\)</span> and the
+corresponding maximum revenue <span class="math notranslate nohighlight">\(g_{\rm max} = S(\bar R_{\rm max})\)</span>, then
+plot the seigniorage curve together with a horizontal line at <span class="math notranslate nohighlight">\(g_{\rm max}\)</span>.</p>
+<p>c. Evaluate the discriminant of the steady-state quadratic
+<a class="reference internal" href="#equation-eq-steadyquadratic">(29.9)</a> for <span class="math notranslate nohighlight">\(g = g_{\rm max} + 1\)</span> and explain
+what happens if the government tries to finance a deficit <span class="math notranslate nohighlight">\(g &gt; g_{\rm max}\)</span>.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="money_inflation-solution-4">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#mi_ex1"> Exercise 29.1</a></p>
+<section id="solution-content">
+<p><strong>Part a.</strong> Differentiating with respect to <span class="math notranslate nohighlight">\(\bar R\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+S'(\bar R) = \frac{\gamma_2}{\bar R^2} - \gamma_1 = 0
+\quad \Longrightarrow \quad
+\bar R^2 = \frac{\gamma_2}{\gamma_1}
+\quad \Longrightarrow \quad
+\bar R_{\rm max} = \sqrt{\frac{\gamma_2}{\gamma_1}}.
+\]</div>
+<p>Since <span class="math notranslate nohighlight">\(S''(\bar R) = -2\gamma_2/\bar R^3 &lt; 0\)</span>, this is indeed a maximum.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">γ1</span><span class="p">,</span> <span class="n">γ2</span> <span class="o">=</span> <span class="n">msm</span><span class="o">.</span><span class="n">γ1</span><span class="p">,</span> <span class="n">msm</span><span class="o">.</span><span class="n">γ2</span>
+
+<span class="n">R_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">γ2</span> <span class="o">/</span> <span class="n">γ1</span><span class="p">)</span>
+<span class="n">g_max</span> <span class="o">=</span> <span class="n">seign</span><span class="p">(</span><span class="n">R_max</span><span class="p">,</span> <span class="n">msm</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;R_max = sqrt(γ2/γ1) = sqrt(</span><span class="si">{</span><span class="n">γ2</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">γ1</span><span class="si">}</span><span class="s2">) = </span><span class="si">{</span><span class="n">R_max</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;g_max = S(R_max)     = </span><span class="si">{</span><span class="n">g_max</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">R_plot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">γ2</span><span class="o">/</span><span class="n">γ1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">R_plot</span><span class="p">,</span> <span class="n">seign</span><span class="p">(</span><span class="n">R_plot</span><span class="p">,</span> <span class="n">msm</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$S(</span><span class="se">\\</span><span class="s1">bar R)$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">g_max</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$g_</span><span class="se">{{\\</span><span class="s1">rm max</span><span class="se">}}</span><span class="s1">=</span><span class="si">{</span><span class="n">g_max</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">R_max</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">bar R$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;seigniorage&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Seigniorage Laffer curve and peak revenue&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R_max = sqrt(γ2/γ1) = sqrt(50/100) = 0.7071
+g_max = S(R_max)     = 8.5786
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/bf353acd62e2ebf3dd1553e3fa107cf37b591708ab2175d44b9b3c20fa093b0f.png"><img alt="_images/bf353acd62e2ebf3dd1553e3fa107cf37b591708ab2175d44b9b3c20fa093b0f.png" src="_images/bf353acd62e2ebf3dd1553e3fa107cf37b591708ab2175d44b9b3c20fa093b0f.png" style="width: 80%;" />
+</a>
+</div>
+</div>
+<p><strong>Part c.</strong> The steady-state quadratic is <span class="math notranslate nohighlight">\(-\gamma_1 \bar R^2 + (\gamma_1+\gamma_2-g)\bar R - \gamma_2 = 0\)</span>.</p>
+<p>Its discriminant is <span class="math notranslate nohighlight">\((\gamma_1+\gamma_2-g)^2 - 4\gamma_1\gamma_2\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g_too_high</span> <span class="o">=</span> <span class="n">g_max</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">discriminant</span> <span class="o">=</span> <span class="p">(</span><span class="n">γ1</span> <span class="o">+</span> <span class="n">γ2</span> <span class="o">-</span> <span class="n">g_too_high</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">γ1</span> <span class="o">*</span> <span class="n">γ2</span>
+<span class="n">roots</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">roots</span><span class="p">((</span><span class="o">-</span><span class="n">γ1</span><span class="p">,</span> <span class="n">γ1</span> <span class="o">+</span> <span class="n">γ2</span> <span class="o">-</span> <span class="n">g_too_high</span><span class="p">,</span> <span class="o">-</span><span class="n">γ2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;g = g_max + 1 = </span><span class="si">{</span><span class="n">g_too_high</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Discriminant  = </span><span class="si">{</span><span class="n">discriminant</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">  (</span><span class="si">{</span><span class="s1">&#39;negative&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">discriminant</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;positive&#39;</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;np.roots      = </span><span class="si">{</span><span class="n">roots</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Roots are real: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isreal</span><span class="p">(</span><span class="n">roots</span><span class="p">))</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>g = g_max + 1 = 9.5786
+Discriminant  = -281.8427  (negative)
+np.roots      = [0.70210678+0.08394086j 0.70210678-0.08394086j]
+Roots are real: False
+</pre></div>
+</div>
+</div>
+</div>
+<p>When <span class="math notranslate nohighlight">\(g &gt; g_{\rm max}\)</span> the discriminant is negative and there are no real
+steady-state rates of return on currency.</p>
+<p>Economically, the government is trying to finance a deficit that exceeds the maximum amount of seigniorage the inflation tax can ever raise, regardless of the inflation rate chosen.</p>
+<p>No stationary equilibrium exists.</p>
+</section>
+</div>
+<div class="exercise admonition" id="mi_ex2">
+
+<p class="admonition-title"><span class="caption-number">Exercise 29.2 </span></p>
+<section id="exercise-content">
+<p><strong>How steady-state rates of return vary with the government deficit.</strong></p>
+<p>The two steady-state roots <span class="math notranslate nohighlight">\(R_l &lt; R_u\)</span> of the quadratic
+<a class="reference internal" href="#equation-eq-steadyquadratic">(29.9)</a> depend on the government deficit <span class="math notranslate nohighlight">\(g\)</span>.</p>
+<p>a. For <span class="math notranslate nohighlight">\(g\)</span> ranging from a value near <span class="math notranslate nohighlight">\(0\)</span> to just below <span class="math notranslate nohighlight">\(g_{\rm max}\)</span>,
+compute both roots <span class="math notranslate nohighlight">\(R_l(g)\)</span> and <span class="math notranslate nohighlight">\(R_u(g)\)</span> and plot them against <span class="math notranslate nohighlight">\(g\)</span> on
+the same graph.</p>
+<p>b. Verify the following boundary conditions analytically and numerically:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>* At $g = 0$: the two roots should be $R = 1$ and $R = \gamma_2/\gamma_1$.
+* As $g \to g_{\rm max}$: the two roots should merge at $\bar R_{\rm max} = \sqrt{\gamma_2/\gamma_1}$.
+</pre></div>
+</div>
+<p>c. Mark the benchmark deficit <span class="math notranslate nohighlight">\(g = 3\)</span> on your graph, read off <span class="math notranslate nohighlight">\(R_u\)</span> and <span class="math notranslate nohighlight">\(R_l\)</span>,
+and check whether your graph values agree with <code class="docutils literal notranslate"><span class="pre">msm.R_u</span></code> and <code class="docutils literal notranslate"><span class="pre">msm.R_l</span></code>.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="money_inflation-solution-6">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#mi_ex2"> Exercise 29.2</a></p>
+<section id="solution-content">
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">msm</span><span class="o">.</span><span class="n">γ2</span> <span class="o">/</span> <span class="n">msm</span><span class="o">.</span><span class="n">γ1</span><span class="p">)</span>
+<span class="n">g_max</span> <span class="o">=</span> <span class="n">seign</span><span class="p">(</span><span class="n">R_max</span><span class="p">,</span> <span class="n">msm</span><span class="p">)</span>
+
+<span class="n">g_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">1e-6</span><span class="p">,</span> <span class="n">g_max</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mf">1e-4</span><span class="p">),</span> <span class="mi">300</span><span class="p">)</span>
+<span class="n">R_u_curve</span><span class="p">,</span> <span class="n">R_l_curve</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">g_grid</span><span class="p">:</span>
+    <span class="n">roots</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">roots</span><span class="p">((</span><span class="o">-</span><span class="n">msm</span><span class="o">.</span><span class="n">γ1</span><span class="p">,</span> <span class="n">msm</span><span class="o">.</span><span class="n">γ1</span> <span class="o">+</span> <span class="n">msm</span><span class="o">.</span><span class="n">γ2</span> <span class="o">-</span> <span class="n">g</span><span class="p">,</span> <span class="o">-</span><span class="n">msm</span><span class="o">.</span><span class="n">γ2</span><span class="p">))</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
+    <span class="n">R_l_curve</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">roots</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">R_u_curve</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">roots</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">g_grid</span><span class="p">,</span> <span class="n">R_u_curve</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$R_u(g)$ - low inflation steady state&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">g_grid</span><span class="p">,</span> <span class="n">R_l_curve</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$R_l(g)$ - high inflation steady state&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">msm</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+           <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;benchmark $g = </span><span class="si">{</span><span class="n">msm</span><span class="o">.</span><span class="n">g</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;government deficit $g$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;steady-state rate of return $</span><span class="se">\\</span><span class="s1">bar R$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Steady-state rates of return vs government deficit&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Boundary conditions</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Boundary checks:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  g -&gt; 0:     R_u -&gt; </span><span class="si">{</span><span class="n">R_u_curve</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">  (expected 1.0)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;              R_l -&gt; </span><span class="si">{</span><span class="n">R_l_curve</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">  (expected γ2/γ1 = </span><span class="si">{</span><span class="n">msm</span><span class="o">.</span><span class="n">γ2</span><span class="o">/</span><span class="n">msm</span><span class="o">.</span><span class="n">γ1</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  g -&gt; g_max: R_u -&gt; </span><span class="si">{</span><span class="n">R_u_curve</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;              R_l -&gt; </span><span class="si">{</span><span class="n">R_l_curve</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;             R_max = </span><span class="si">{</span><span class="n">R_max</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">  (roots should merge here)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">At benchmark g = </span><span class="si">{</span><span class="n">msm</span><span class="o">.</span><span class="n">g</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  R_u from curve = </span><span class="si">{</span><span class="n">R_u_curve</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">g_grid</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">msm</span><span class="o">.</span><span class="n">g</span><span class="p">))]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">,  &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;msm.R_u = </span><span class="si">{</span><span class="n">msm</span><span class="o">.</span><span class="n">R_u</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  R_l from curve = </span><span class="si">{</span><span class="n">R_l_curve</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">g_grid</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">msm</span><span class="o">.</span><span class="n">g</span><span class="p">))]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">,  &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;msm.R_l = </span><span class="si">{</span><span class="n">msm</span><span class="o">.</span><span class="n">R_l</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/6132e0b5d2d5887b87ed82d5194c6bf8dc608c01456500389700a303f4481238.png"><img alt="_images/6132e0b5d2d5887b87ed82d5194c6bf8dc608c01456500389700a303f4481238.png" src="_images/6132e0b5d2d5887b87ed82d5194c6bf8dc608c01456500389700a303f4481238.png" style="width: 80%;" />
+</a>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Boundary checks:
+  g -&gt; 0:     R_u -&gt; 1.0000  (expected 1.0)
+              R_l -&gt; 0.5000  (expected γ2/γ1 = 0.5000)
+  g -&gt; g_max: R_u -&gt; 0.7096
+              R_l -&gt; 0.7046
+             R_max = 0.7071  (roots should merge here)
+
+At benchmark g = 3.0:
+  R_u from curve = 0.9353,  msm.R_u = 0.9356
+  R_l from curve = 0.5346,  msm.R_l = 0.5344
+</pre></div>
+</div>
+</div>
+</div>
+<p>The two branches of the Laffer curve start apart at <span class="math notranslate nohighlight">\(g=0\)</span> and merge at
+<span class="math notranslate nohighlight">\(g = g_{\rm max}\)</span>.</p>
+<p>For <span class="math notranslate nohighlight">\(g &gt; g_{\rm max}\)</span> no real steady state exists.</p>
+<p>The upper branch <span class="math notranslate nohighlight">\(R_u(g)\)</span> falls and the lower branch <span class="math notranslate nohighlight">\(R_l(g)\)</span> rises as
+<span class="math notranslate nohighlight">\(g\)</span> increases, reflecting the increasing inflation tax needed to finance a
+larger deficit.</p>
+</section>
+</div>
+<div class="exercise admonition" id="mi_ex3">
+
+<p class="admonition-title"><span class="caption-number">Exercise 29.3 </span></p>
+<section id="exercise-content">
+<p><strong>Quantity theory of money via the eigendecomposition.</strong></p>
+<p>Method 2 identifies a unique “magic” initial price level</p>
+<div class="math notranslate nohighlight">
+\[
+\bar p_0 = \frac{Q_{21}}{Q_{11}} m_0
+\]</div>
+<p>(where <span class="math notranslate nohighlight">\(Q_{ij}\)</span> denotes the <span class="math notranslate nohighlight">\((i,j)\)</span> element of the eigenvector matrix <span class="math notranslate nohighlight">\(Q\)</span>)
+that places the economy on the low-inflation equilibrium path.</p>
+<p>a. Using <code class="docutils literal notranslate"><span class="pre">iterate_H</span></code>, simulate the path of <span class="math notranslate nohighlight">\(y_t = (m_t, p_t)\)</span> starting from
+<span class="math notranslate nohighlight">\(y_0 = (m_0,\, \bar p_0)\)</span>, compute <span class="math notranslate nohighlight">\(R_t = p_t/p_{t+1}\)</span> for <span class="math notranslate nohighlight">\(t = 0, \ldots, 10\)</span>,
+and verify that it equals <code class="docutils literal notranslate"><span class="pre">msm.R_u</span></code> at every step.</p>
+<p>b. Use the formula <span class="math notranslate nohighlight">\(\bar p_0 = (Q_{21}/Q_{11})\, m_0\)</span> to interpret the initial
+price level as proportional to the money supply, compute <span class="math notranslate nohighlight">\(\bar p_0\)</span> for
+<span class="math notranslate nohighlight">\(m_0 \in [50, 300]\)</span>, plot <span class="math notranslate nohighlight">\(\bar p_0\)</span> against <span class="math notranslate nohighlight">\(m_0\)</span>, and report the slope.</p>
+<p>c. Set <span class="math notranslate nohighlight">\(R_0 = R_u\)</span> in the Method 1 formula for <span class="math notranslate nohighlight">\(p_0\)</span> from equation
+<a class="reference internal" href="#equation-eq-p0fromr0">(29.11)</a> and confirm that you recover <span class="math notranslate nohighlight">\(\bar p_0\)</span>.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="money_inflation-solution-8">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#mi_ex3"> Exercise 29.3</a></p>
+<section id="solution-content">
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Part a: verify R_t = R_u along the magic-p0 path</span>
+<span class="n">p0_bar</span> <span class="o">=</span> <span class="p">(</span><span class="n">Q</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">Q</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="n">msm</span><span class="o">.</span><span class="n">M0</span>
+<span class="n">y0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">msm</span><span class="o">.</span><span class="n">M0</span><span class="p">,</span> <span class="n">p0_bar</span><span class="p">])</span>
+<span class="n">num_steps</span> <span class="o">=</span> <span class="mi">12</span>
+
+<span class="n">y_series</span> <span class="o">=</span> <span class="n">iterate_H</span><span class="p">(</span><span class="n">y0</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">)</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">y_series</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
+<span class="n">R_path</span> <span class="o">=</span> <span class="n">P</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">P</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>      <span class="c1"># R_t = p_t / p_{t+1}</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;R_t along the magic-p0 path (first </span><span class="si">{</span><span class="n">num_steps</span><span class="o">-</span><span class="mi">1</span><span class="si">}</span><span class="s2"> periods):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">R_path</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;msm.R_u = </span><span class="si">{</span><span class="n">msm</span><span class="o">.</span><span class="n">R_u</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R_t along the magic-p0 path (first 11 periods):
+[0.935562 0.935562 0.935562 0.935562 0.935562 0.935562 0.935562 0.935562
+ 0.935562 0.935562 0.935562]
+msm.R_u = 0.935562
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Part b: plot p0_bar vs m0</span>
+<span class="n">m0_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">80</span><span class="p">)</span>
+<span class="n">p0_bar_values</span> <span class="o">=</span> <span class="p">(</span><span class="n">Q</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">Q</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="n">m0_values</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">m0_values</span><span class="p">,</span> <span class="n">p0_bar_values</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$m_0$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">bar p_0$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Quantity theory: $</span><span class="se">\\</span><span class="s1">bar p_0$ proportional to $m_0$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">slope</span> <span class="o">=</span> <span class="n">Q</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">Q</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Slope = Q_21 / Q_11 = </span><span class="si">{</span><span class="n">slope</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Part c: compare with Method 1 formula eq:p0fromR0</span>
+<span class="n">p0_method1</span> <span class="o">=</span> <span class="n">msm</span><span class="o">.</span><span class="n">M0</span> <span class="o">/</span> <span class="p">(</span><span class="n">msm</span><span class="o">.</span><span class="n">γ1</span> <span class="o">-</span> <span class="n">msm</span><span class="o">.</span><span class="n">g</span> <span class="o">-</span> <span class="n">msm</span><span class="o">.</span><span class="n">γ2</span> <span class="o">/</span> <span class="n">msm</span><span class="o">.</span><span class="n">R_u</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Method 1 formula (R_0 = R_u):  p0 = </span><span class="si">{</span><span class="n">p0_method1</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Eigendecomposition formula:    p0 = </span><span class="si">{</span><span class="n">p0_bar</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/1c95c0e2fab5c8af5e3f04185c6d5cdc3d180feb710861f02b9262ec1608b1a9.png"><img alt="_images/1c95c0e2fab5c8af5e3f04185c6d5cdc3d180feb710861f02b9262ec1608b1a9.png" src="_images/1c95c0e2fab5c8af5e3f04185c6d5cdc3d180feb710861f02b9262ec1608b1a9.png" style="width: 80%;" />
+</a>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Slope = Q_21 / Q_11 = 0.022959
+
+Method 1 formula (R_0 = R_u):  p0 = 2.295886
+Eigendecomposition formula:    p0 = 2.295886
+</pre></div>
+</div>
+</div>
+</div>
+<p>Parts a and c confirm that both methods select exactly the same unique
+initial price level.</p>
+<p>Part b shows the quantity-theory proportionality that doubling <span class="math notranslate nohighlight">\(m_0\)</span> exactly doubles <span class="math notranslate nohighlight">\(\bar p_0\)</span>, with constant slope <span class="math notranslate nohighlight">\(Q_{21}/Q_{11}\)</span>.</p>
+<p>This linearity is a direct consequence of the linearity of the model.</p>
+</section>
+</div>
 </section>
 </section>
 
@@ -1685,6 +1999,8 @@ Q^{21} Q_{11} + Q^{22} Q_{21} = 0.
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/money_inflation.md" download><i data-feather="github"></i></a></li>
                     -->
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro" download><i data-feather="github"></i></a></li>
+                    
+                    
                 </ul>
 
             </div>

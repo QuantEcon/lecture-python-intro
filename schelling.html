@@ -77,13 +77,13 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=ca16d73eb23eeca4aff446ccb0673818c18f9cfc" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=ff5dcadef89fd2097ea5e28ddaad7eb5985f09c4" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=4c010e0d" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=3a5ece24" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -101,8 +101,8 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
-    <script src="_static/scripts/quantecon-book-theme.js?digest=239405dfbfda750f9038d3ea275d1490a4be841e"></script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=9980b4379844dc0b911d69b62b295f34ede88fac"></script>
     <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
     <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -158,8 +158,27 @@
 <meta property="og:site_name" content="A First Course in Quantitative Economics with Python" />
 <meta name="theme-color" content="#ffffff" />
 
+
+
+
   </head>
 <body>
+
+<!-- Prevent flash of light theme when dark mode is saved -->
+<script>
+(function() {
+  try {
+    if (localStorage.setContrast === '1') {
+      document.body.classList.add('dark-theme');
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  } catch(e) {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+})();
+</script>
 
 <!-- Override QuantEcon theme colors -->
 
@@ -180,7 +199,7 @@
                     
 
                     
-                    <div class="inner">
+                    <div class="inner sticky" data-autoexpand="true">
 
                         
                         <div class="qe-page__toc-header">
@@ -219,12 +238,14 @@
                             
                             
                             
-                            <p><a href="#top"><strong>Back to top</strong></a></p>
+                            
                             
                         </div>
 
                     </div>
 
+                    
+                    <a href="#top" class="back-to-top-btn" title="Back to top">↑ Top</a>
                     
 
                 </div>
@@ -252,7 +273,7 @@
 
                     <!-- Last modified / Changelog dropdown -->
                         <button class="qe-page__header-changed" id="changelog-toggle" aria-expanded="false">
-                            Last changed: Jun 21, 2024
+                            Last changed: May 24, 2026
                             <span class="changelog-icon">▼</span>
                         </button>
 
@@ -260,6 +281,15 @@
                     <div class="qe-page__header-changelog" id="changelog-content" aria-hidden="true">
                         <h4>Changelog (<a href="https://github.com/QuantEcon/lecture-python-intro/commits/main/lectures/schelling.md">full history</a>)</h4>
                         <ul class="changelog-list">
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/ae928c86" class="changelog-hash">ae928c86</a>
+                                
+                                <span class="changelog-author">Humphrey Yang</span>
+                                <span class="changelog-time">14 minutes ago</span>
+                                <span class="changelog-message">Adding Tom's Edits to Exercises (#748)</span>
+                            </li>
                             
                             <li class="changelog-entry">
                                 
@@ -275,7 +305,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/a454f5da" class="changelog-hash">a454f5da</a>
                                 
                                 <span class="changelog-author">Longye Tian</span>
-                                <span class="changelog-time">1 year ago</span>
+                                <span class="changelog-time">2 years ago</span>
                                 <span class="changelog-message">Delete %matplotlib inline in ALL lectures (#429)</span>
                             </li>
                             
@@ -311,7 +341,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/4142cc78" class="changelog-hash">4142cc78</a>
                                 
                                 <span class="changelog-author">Smit-create</span>
-                                <span class="changelog-time">2 years ago</span>
+                                <span class="changelog-time">3 years ago</span>
                                 <span class="changelog-message">Remove numba njit and use vectorized version</span>
                             </li>
                             
@@ -320,7 +350,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/b59c8b9d" class="changelog-hash">b59c8b9d</a>
                                 
                                 <span class="changelog-author">mmcky</span>
-                                <span class="changelog-time">2 years ago</span>
+                                <span class="changelog-time">3 years ago</span>
                                 <span class="changelog-message">ENH: Set a default image size across all lectures (#165)</span>
                             </li>
                             
@@ -329,7 +359,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/337beaa1" class="changelog-hash">337beaa1</a>
                                 
                                 <span class="changelog-author">Pietro Monticone</span>
-                                <span class="changelog-time">2 years ago</span>
+                                <span class="changelog-time">3 years ago</span>
                                 <span class="changelog-message">Fix a few typos</span>
                             </li>
                             
@@ -340,15 +370,6 @@
                                 <span class="changelog-author">John Stachurski</span>
                                 <span class="changelog-time">3 years ago</span>
                                 <span class="changelog-message">Schelling update (#68)</span>
-                            </li>
-                            
-                            <li class="changelog-entry">
-                                
-                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/2c42e29a" class="changelog-hash">2c42e29a</a>
-                                
-                                <span class="changelog-author">mmcky</span>
-                                <span class="changelog-time">3 years ago</span>
-                                <span class="changelog-message">Initial setup of GitHub actions + Lecture Transfer</span>
                             </li>
                             
                         </ul>
@@ -372,7 +393,7 @@
 <section id="outline">
 <span id="index-1"></span><span id="index-0"></span><h2><span class="section-number">23.1. </span>Outline<a class="headerlink" href="#outline" title="Link to this heading">#</a></h2>
 <p>In 1969, Thomas C. Schelling developed a simple but striking model of racial
-segregation <span id="id1">[<a class="reference internal" href="zreferences.html#id231" title="Thomas C Schelling. Models of Segregation. American Economic Review, 59(2):488–493, 1969.">Schelling, 1969</a>]</span>.</p>
+segregation <span class="bibtex-citation" id="id1">[<a class="reference internal" href="zreferences.html#id231" title="Thomas C Schelling. Models of Segregation. American Economic Review, 59(2):488–493, 1969.">Schelling, 1969</a>]</span>.</p>
 <p>His model studies the dynamics of racially mixed neighborhoods.</p>
 <p>Like much of Schelling’s work, the model shows how local interactions can lead
 to surprising aggregate outcomes.</p>
@@ -542,7 +563,7 @@ green dots.</p>
     <span class="s2">&quot;Plot the distribution of agents after cycle_num rounds of the loop.&quot;</span>
     <span class="n">x_values_0</span><span class="p">,</span> <span class="n">y_values_0</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
     <span class="n">x_values_1</span><span class="p">,</span> <span class="n">y_values_1</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
-    <span class="c1"># == Obtain locations of each type == #</span>
+    <span class="c1"># Obtain locations of each type</span>
     <span class="k">for</span> <span class="n">agent</span> <span class="ow">in</span> <span class="n">agents</span><span class="p">:</span>
         <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">location</span>
         <span class="k">if</span> <span class="n">agent</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -801,17 +822,17 @@ with small probability, is replaced by an agent of the other type.)</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/d93fceb38d8edff4f811e1c15ad1ff2d422d3c3d2e8b626d3950f1429f8d4fe5.png"><img alt="_images/d93fceb38d8edff4f811e1c15ad1ff2d422d3c3d2e8b626d3950f1429f8d4fe5.png" src="_images/d93fceb38d8edff4f811e1c15ad1ff2d422d3c3d2e8b626d3950f1429f8d4fe5.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/c622d3f6ea833d3fe1ece9cd955f47f938082fe5d6f86ffeb3961f80d16abd20.png"><img alt="_images/c622d3f6ea833d3fe1ece9cd955f47f938082fe5d6f86ffeb3961f80d16abd20.png" src="_images/c622d3f6ea833d3fe1ece9cd955f47f938082fe5d6f86ffeb3961f80d16abd20.png" style="width: 80%;" />
 </a>
-<a class="reference internal image-reference" href="_images/8062b6b986d5a2c5d6bbf87b331f96bb2ffc471e979e1febbd59e14e2061af6c.png"><img alt="_images/8062b6b986d5a2c5d6bbf87b331f96bb2ffc471e979e1febbd59e14e2061af6c.png" src="_images/8062b6b986d5a2c5d6bbf87b331f96bb2ffc471e979e1febbd59e14e2061af6c.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/5694a927f6167cfd9218fd566f89438e91924c237fdae0ade96003e599d74782.png"><img alt="_images/5694a927f6167cfd9218fd566f89438e91924c237fdae0ade96003e599d74782.png" src="_images/5694a927f6167cfd9218fd566f89438e91924c237fdae0ade96003e599d74782.png" style="width: 80%;" />
 </a>
-<a class="reference internal image-reference" href="_images/b9e3771c2a44f107eec34a166830086d403ed504caa23ba237bd8b7bd7688e1c.png"><img alt="_images/b9e3771c2a44f107eec34a166830086d403ed504caa23ba237bd8b7bd7688e1c.png" src="_images/b9e3771c2a44f107eec34a166830086d403ed504caa23ba237bd8b7bd7688e1c.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/32c937a759988ffba980bee9f5cebe4778093dbe7e6dc1d6d12b5197f8750cba.png"><img alt="_images/32c937a759988ffba980bee9f5cebe4778093dbe7e6dc1d6d12b5197f8750cba.png" src="_images/32c937a759988ffba980bee9f5cebe4778093dbe7e6dc1d6d12b5197f8750cba.png" style="width: 80%;" />
 </a>
-<a class="reference internal image-reference" href="_images/0ca7ddf7a632d391c2db64bc7ed8acb3847266a9af05d9d31e131b349d910535.png"><img alt="_images/0ca7ddf7a632d391c2db64bc7ed8acb3847266a9af05d9d31e131b349d910535.png" src="_images/0ca7ddf7a632d391c2db64bc7ed8acb3847266a9af05d9d31e131b349d910535.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/c24e5f53b50a58632d9d61eb76a5ec0ccd03ea10ba28a368c47139ed8b8f5c2e.png"><img alt="_images/c24e5f53b50a58632d9d61eb76a5ec0ccd03ea10ba28a368c47139ed8b8f5c2e.png" src="_images/c24e5f53b50a58632d9d61eb76a5ec0ccd03ea10ba28a368c47139ed8b8f5c2e.png" style="width: 80%;" />
 </a>
-<a class="reference internal image-reference" href="_images/f4f04f5c2ef31cddf1354042c73f6a25032fa493b5e704c3fd04513a504c3709.png"><img alt="_images/f4f04f5c2ef31cddf1354042c73f6a25032fa493b5e704c3fd04513a504c3709.png" src="_images/f4f04f5c2ef31cddf1354042c73f6a25032fa493b5e704c3fd04513a504c3709.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/ecfb944a1c0d012c3db843e0c13103e983717582128ef5e4f012534e2888ac08.png"><img alt="_images/ecfb944a1c0d012c3db843e0c13103e983717582128ef5e4f012534e2888ac08.png" src="_images/ecfb944a1c0d012c3db843e0c13103e983717582128ef5e4f012534e2888ac08.png" style="width: 80%;" />
 </a>
-<a class="reference internal image-reference" href="_images/8c2d0aee82bf626e33b9ce9c81a31e50523a832c21c605e439dd104988194ee8.png"><img alt="_images/8c2d0aee82bf626e33b9ce9c81a31e50523a832c21c605e439dd104988194ee8.png" src="_images/8c2d0aee82bf626e33b9ce9c81a31e50523a832c21c605e439dd104988194ee8.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/969d0fe4d5280687efb0af6dcab225e5657b65579bb7cd0ec80585531eb0df8a.png"><img alt="_images/969d0fe4d5280687efb0af6dcab225e5657b65579bb7cd0ec80585531eb0df8a.png" src="_images/969d0fe4d5280687efb0af6dcab225e5657b65579bb7cd0ec80585531eb0df8a.png" style="width: 80%;" />
 </a>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Terminating at iteration 50001
 </pre></div>
@@ -1255,6 +1276,8 @@ with small probability, is replaced by an agent of the other type.)</p>
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/schelling.md" download><i data-feather="github"></i></a></li>
                     -->
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro" download><i data-feather="github"></i></a></li>
+                    
+                    
                 </ul>
 
             </div>

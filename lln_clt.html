@@ -77,13 +77,13 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=ca16d73eb23eeca4aff446ccb0673818c18f9cfc" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=ff5dcadef89fd2097ea5e28ddaad7eb5985f09c4" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=4c010e0d" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=3a5ece24" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -101,8 +101,8 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
-    <script src="_static/scripts/quantecon-book-theme.js?digest=239405dfbfda750f9038d3ea275d1490a4be841e"></script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=9980b4379844dc0b911d69b62b295f34ede88fac"></script>
     <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
     <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -158,8 +158,27 @@
 <meta property="og:site_name" content="A First Course in Quantitative Economics with Python" />
 <meta name="theme-color" content="#ffffff" />
 
+
+
+
   </head>
 <body>
+
+<!-- Prevent flash of light theme when dark mode is saved -->
+<script>
+(function() {
+  try {
+    if (localStorage.setContrast === '1') {
+      document.body.classList.add('dark-theme');
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  } catch(e) {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+})();
+</script>
 
 <!-- Override QuantEcon theme colors -->
 
@@ -180,7 +199,7 @@
                     
 
                     
-                    <div class="inner">
+                    <div class="inner sticky" data-autoexpand="true">
 
                         
                         <div class="qe-page__toc-header">
@@ -229,12 +248,14 @@
                             
                             
                             
-                            <p><a href="#top"><strong>Back to top</strong></a></p>
+                            
                             
                         </div>
 
                     </div>
 
+                    
+                    <a href="#top" class="back-to-top-btn" title="Back to top">↑ Top</a>
                     
 
                 </div>
@@ -262,7 +283,7 @@
 
                     <!-- Last modified / Changelog dropdown -->
                         <button class="qe-page__header-changed" id="changelog-toggle" aria-expanded="false">
-                            Last changed: Jan 21, 2025
+                            Last changed: May 24, 2026
                             <span class="changelog-icon">▼</span>
                         </button>
 
@@ -270,6 +291,24 @@
                     <div class="qe-page__header-changelog" id="changelog-content" aria-hidden="true">
                         <h4>Changelog (<a href="https://github.com/QuantEcon/lecture-python-intro/commits/main/lectures/lln_clt.md">full history</a>)</h4>
                         <ul class="changelog-list">
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/ae928c86" class="changelog-hash">ae928c86</a>
+                                
+                                <span class="changelog-author">Humphrey Yang</span>
+                                <span class="changelog-time">14 minutes ago</span>
+                                <span class="changelog-message">Adding Tom's Edits to Exercises (#748)</span>
+                            </li>
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/c1629780" class="changelog-hash">c1629780</a>
+                                
+                                <span class="changelog-author">Chihiro Watanabe</span>
+                                <span class="changelog-time">2 days ago</span>
+                                <span class="changelog-message">Update rng usage in lln_clt.md (#738)</span>
+                            </li>
                             
                             <li class="changelog-entry">
                                 
@@ -303,7 +342,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/ecaa6d86" class="changelog-hash">ecaa6d86</a>
                                 
                                 <span class="changelog-author">JingkunZhao</span>
-                                <span class="changelog-time">1 year ago</span>
+                                <span class="changelog-time">2 years ago</span>
                                 <span class="changelog-message">Update lln_clt.md</span>
                             </li>
                             
@@ -312,7 +351,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/c54d169f" class="changelog-hash">c54d169f</a>
                                 
                                 <span class="changelog-author">JingkunZhao</span>
-                                <span class="changelog-time">1 year ago</span>
+                                <span class="changelog-time">2 years ago</span>
                                 <span class="changelog-message">[lln_clt] Update editorial suggestions</span>
                             </li>
                             
@@ -339,26 +378,8 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/4d5d4929" class="changelog-hash">4d5d4929</a>
                                 
                                 <span class="changelog-author">mmcky</span>
-                                <span class="changelog-time">2 years ago</span>
+                                <span class="changelog-time">3 years ago</span>
                                 <span class="changelog-message">FIX: fix error commited to LLN (#133)</span>
-                            </li>
-                            
-                            <li class="changelog-entry">
-                                
-                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/337beaa1" class="changelog-hash">337beaa1</a>
-                                
-                                <span class="changelog-author">Pietro Monticone</span>
-                                <span class="changelog-time">2 years ago</span>
-                                <span class="changelog-message">Fix a few typos</span>
-                            </li>
-                            
-                            <li class="changelog-entry">
-                                
-                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/8e9acfb2" class="changelog-hash">8e9acfb2</a>
-                                
-                                <span class="changelog-author">John Stachurski</span>
-                                <span class="changelog-time">2 years ago</span>
-                                <span class="changelog-message">misc</span>
                             </li>
                             
                         </ul>
@@ -420,7 +441,7 @@ will converge to their population means.</p>
 <p>The (population) mean of <span class="math notranslate nohighlight">\(X\)</span> is</p>
 <div class="math notranslate nohighlight">
 \[
-    \mathbb E X 
+    \mathbb E X
     = 0 \cdot \mathbb P\{X=0\} + 1 \cdot \mathbb P\{X=1\} = \mathbb P\{X=1\} = p
 \]</div>
 </section>
@@ -452,7 +473,7 @@ of heads that we see will be close to the mean <span class="math notranslate noh
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.800149
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.800037
 </pre></div>
 </div>
 </div>
@@ -467,7 +488,7 @@ of heads that we see will be close to the mean <span class="math notranslate noh
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.300363
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.29958
 </pre></div>
 </div>
 </div>
@@ -503,7 +524,7 @@ distribution.</p>
 <p>The last statement means that for any <span class="math notranslate nohighlight">\(i\)</span> in <span class="math notranslate nohighlight">\(\{1, \ldots, n\}\)</span> and any
 numbers <span class="math notranslate nohighlight">\(a, b\)</span>,</p>
 <div class="math notranslate nohighlight">
-\[ 
+\[
   \mathbb P\{a \leq X_i \leq b\} = \int_a^b f(x) dx
 \]</div>
 <p>(For the discrete case, we need to replace densities with probability mass
@@ -586,13 +607,13 @@ random variables <span class="math notranslate nohighlight">\(X_1, \ldots, X_n\)
 <p>Now we write a function to generate <span class="math notranslate nohighlight">\(m\)</span> sample means and histogram them.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">generate_histogram</span><span class="p">(</span><span class="n">X_distribution</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">generate_histogram</span><span class="p">(</span><span class="n">X_distribution</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
 
     <span class="c1"># Compute m sample means</span>
 
     <span class="n">sample_means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
-      <span class="n">sample_means</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">draw_means</span><span class="p">(</span><span class="n">X_distribution</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> 
+      <span class="n">sample_means</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">draw_means</span><span class="p">(</span><span class="n">X_distribution</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
 
     <span class="c1"># Generate a histogram</span>
 
@@ -601,7 +622,7 @@ random variables <span class="math notranslate nohighlight">\(X_1, \ldots, X_n\)
     <span class="n">μ</span> <span class="o">=</span> <span class="n">X_distribution</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>  <span class="c1"># Get the population mean</span>
     <span class="n">σ</span> <span class="o">=</span> <span class="n">X_distribution</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>    <span class="c1"># and the standard deviation</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">μ</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s2">&quot;$\mu = </span><span class="si">{</span><span class="n">μ</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
-     
+
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">μ</span> <span class="o">-</span> <span class="n">σ</span><span class="p">,</span> <span class="n">μ</span> <span class="o">+</span> <span class="n">σ</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\bar X_n$&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;density&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
@@ -615,14 +636,14 @@ random variables <span class="math notranslate nohighlight">\(X_1, \ldots, X_n\)
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pick a distribution to draw each $X_i$ from</span>
-<span class="n">X_distribution</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> 
+<span class="n">X_distribution</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="c1"># Call the function</span>
 <span class="n">generate_histogram</span><span class="p">(</span><span class="n">X_distribution</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1_000</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/097c24e1020eecaa617ec3ac96b57b420ac1bb064705688f2cd4bec5074e9b48.png"><img alt="_images/097c24e1020eecaa617ec3ac96b57b420ac1bb064705688f2cd4bec5074e9b48.png" src="_images/097c24e1020eecaa617ec3ac96b57b420ac1bb064705688f2cd4bec5074e9b48.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/bac257a776782b3a03462bd93f068d9e183423cd5ed8f0165bb382902bac7444.png"><img alt="_images/bac257a776782b3a03462bd93f068d9e183423cd5ed8f0165bb382902bac7444.png" src="_images/bac257a776782b3a03462bd93f068d9e183423cd5ed8f0165bb382902bac7444.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -633,7 +654,7 @@ as expected.</p>
 <p>Each distribution in the violin plot represents the distribution of <span class="math notranslate nohighlight">\(X_n\)</span> for some <span class="math notranslate nohighlight">\(n\)</span>, calculated by simulation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">means_violin_plot</span><span class="p">(</span><span class="n">distribution</span><span class="p">,</span>  
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">means_violin_plot</span><span class="p">(</span><span class="n">distribution</span><span class="p">,</span>
                       <span class="n">ns</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1_000</span><span class="p">,</span> <span class="mi">10_000</span><span class="p">,</span> <span class="mi">100_000</span><span class="p">],</span>
                       <span class="n">m</span> <span class="o">=</span> <span class="mi">10_000</span><span class="p">):</span>
 
@@ -671,7 +692,7 @@ as expected.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/a8202198d81e1e67c69c709d4e37a3bd5bc0ca890b5f5bfb602d75e774483528.png"><img alt="_images/a8202198d81e1e67c69c709d4e37a3bd5bc0ca890b5f5bfb602d75e774483528.png" src="_images/a8202198d81e1e67c69c709d4e37a3bd5bc0ca890b5f5bfb602d75e774483528.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/9145ac1a3f558697a56ad3e1afd38a00178df2f1d15a00c13db5b66b880097e5.png"><img alt="_images/9145ac1a3f558697a56ad3e1afd38a00178df2f1d15a00c13db5b66b880097e5.png" src="_images/9145ac1a3f558697a56ad3e1afd38a00178df2f1d15a00c13db5b66b880097e5.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -684,7 +705,7 @@ as expected.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/0f81c6152894037ef9efb4f19321df0f63bf76ce5e9d4843e9487e0e1f39b01d.png"><img alt="_images/0f81c6152894037ef9efb4f19321df0f63bf76ce5e9d4843e9487e0e1f39b01d.png" src="_images/0f81c6152894037ef9efb4f19321df0f63bf76ce5e9d4843e9487e0e1f39b01d.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/14b95fdd8b34231ff5939b2ec8f558471761fb98fed7c2ad60c11707b5e7b6a9.png"><img alt="_images/14b95fdd8b34231ff5939b2ec8f558471761fb98fed7c2ad60c11707b5e7b6a9.png" src="_images/14b95fdd8b34231ff5939b2ec8f558471761fb98fed7c2ad60c11707b5e7b6a9.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -778,7 +799,7 @@ copies always leads to a Gaussian(Normal) curve.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set parameters</span>
 <span class="n">n</span> <span class="o">=</span> <span class="mi">250</span>         <span class="c1"># Choice of n</span>
 <span class="n">k</span> <span class="o">=</span> <span class="mi">1_000_000</span>        <span class="c1"># Number of draws of Y_n</span>
-<span class="n">distribution</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">expon</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># Exponential distribution, λ = 1/2</span>
+<span class="n">distribution</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">expon</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># Exponential distribution, λ = 1/2</span>
 <span class="n">μ</span><span class="p">,</span> <span class="n">σ</span> <span class="o">=</span> <span class="n">distribution</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">distribution</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
 
 <span class="c1"># Draw underlying RVs. Each row contains a draw of X_1,..,X_n</span>
@@ -794,7 +815,7 @@ copies always leads to a Gaussian(Normal) curve.</p>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">xgrid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xgrid</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">xgrid</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">σ</span><span class="p">),</span> 
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xgrid</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">xgrid</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">σ</span><span class="p">),</span>
         <span class="s1">&#39;k-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$N(0, \sigma^2)$&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$Y_n$&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$density$&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
@@ -806,7 +827,7 @@ copies always leads to a Gaussian(Normal) curve.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/f27427484944872a190247a2bfe44aa8738bec5c94a6143bae11e19df557d35a.png"><img alt="_images/f27427484944872a190247a2bfe44aa8738bec5c94a6143bae11e19df557d35a.png" src="_images/f27427484944872a190247a2bfe44aa8738bec5c94a6143bae11e19df557d35a.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/a64a4cb691b31694005080f924e6103e8bfd64d36f5421852495070de74ffa3b.png"><img alt="_images/a64a4cb691b31694005080f924e6103e8bfd64d36f5421852495070de74ffa3b.png" src="_images/a64a4cb691b31694005080f924e6103e8bfd64d36f5421852495070de74ffa3b.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -859,7 +880,7 @@ copies always leads to a Gaussian(Normal) curve.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/8ed25633958bcd3b245980fb02b5f84496af30063c104cabd7c25cb0ca0ab7f4.png"><img alt="_images/8ed25633958bcd3b245980fb02b5f84496af30063c104cabd7c25cb0ca0ab7f4.png" src="_images/8ed25633958bcd3b245980fb02b5f84496af30063c104cabd7c25cb0ca0ab7f4.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/7d04e76a3dd18dc458383dc2b8e32d52a074203c39d46642adbc4e18699ef19c.png"><img alt="_images/7d04e76a3dd18dc458383dc2b8e32d52a074203c39d46642adbc4e18699ef19c.png" src="_images/7d04e76a3dd18dc458383dc2b8e32d52a074203c39d46642adbc4e18699ef19c.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -872,7 +893,8 @@ copies always leads to a Gaussian(Normal) curve.</p>
 <p>At the start of this lecture we discussed Bernoulli random variables.</p>
 <p>NumPy doesn’t provide a <code class="docutils literal notranslate"><span class="pre">bernoulli</span></code> function that we can sample from.</p>
 <p>However, we can generate a draw of Bernoulli <span class="math notranslate nohighlight">\(X\)</span> using NumPy via</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
+<span class="n">U</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
 <span class="n">X</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">U</span> <span class="o">&lt;</span> <span class="n">p</span> <span class="k">else</span> <span class="mi">0</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 </pre></div>
@@ -919,7 +941,7 @@ copies always leads to a Gaussian(Normal) curve.</p>
 mean to the population mean still occurs.</p>
 <ol class="arabic simple">
 <li><p>Prove that the sequence <span class="math notranslate nohighlight">\(X_1, X_2, \ldots\)</span> is identically distributed.</p></li>
-<li><p>Show that LLN convergence holds using simulations with <span class="math notranslate nohighlight">\(\alpha = 0.8\)</span>, <span class="math notranslate nohighlight">\(\beta = 0.2\)</span>.</p></li>
+<li><p>Show that LLN convergence holds using simulations with <span class="math notranslate nohighlight">\(\alpha = 0.8\)</span>, <span class="math notranslate nohighlight">\(\beta = 0.2\)</span>, and <span class="math notranslate nohighlight">\(\sigma = 10\)</span>.</p></li>
 </ol>
 </section>
 </div>
@@ -956,8 +978,8 @@ also normally distributed.</p>
 <p>We have now shown that</p>
 <div class="math notranslate nohighlight">
 \[
-    X_{t+1} \sim 
-    N \left(\frac{\alpha}{1-\beta}, \frac{\sigma^2}{1-\beta^2}\right) 
+    X_{t+1} \sim
+    N \left(\frac{\alpha}{1-\beta}, \frac{\sigma^2}{1-\beta^2}\right)
 \]</div>
 <p>We can conclude this AR(1) process violates the independence assumption but is
 identically distributed.</p>
@@ -971,7 +993,7 @@ identically distributed.</p>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-<span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">α</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">β</span><span class="p">),</span> <span class="n">α</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">β</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">α</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">β</span><span class="p">),</span> <span class="n">scale</span><span class="o">=</span><span class="n">σ</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">β</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
 <span class="n">ϵ</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 <span class="n">means</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -985,8 +1007,8 @@ identically distributed.</p>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$n$&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\bar X_n$&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">yabs_max</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="nb">abs</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">α</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">β</span><span class="p">),</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> 
-           <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\mu = \frac{\alpha}{1-\beta}$&quot;</span><span class="p">,</span> 
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">α</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">β</span><span class="p">),</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+           <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\mu = \frac{\alpha}{1-\beta}$&quot;</span><span class="p">,</span>
            <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
@@ -995,7 +1017,7 @@ identically distributed.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/e7eb33be68e74ad46bd972aa52b1882c816f319b7414e8851cfa9b929fda4dad.png"><img alt="_images/e7eb33be68e74ad46bd972aa52b1882c816f319b7414e8851cfa9b929fda4dad.png" src="_images/e7eb33be68e74ad46bd972aa52b1882c816f319b7414e8851cfa9b929fda4dad.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/7b7ea9b997d351b146a1b78dc1254220cb5e9f03eb2fb83cb4a4fc1143ca6c21.png"><img alt="_images/7b7ea9b997d351b146a1b78dc1254220cb5e9f03eb2fb83cb4a4fc1143ca6c21.png" src="_images/7b7ea9b997d351b146a1b78dc1254220cb5e9f03eb2fb83cb4a4fc1143ca6c21.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -1439,6 +1461,8 @@ identically distributed.</p>
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/lln_clt.md" download><i data-feather="github"></i></a></li>
                     -->
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro" download><i data-feather="github"></i></a></li>
+                    
+                    
                 </ul>
 
             </div>

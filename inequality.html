@@ -77,13 +77,13 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=ca16d73eb23eeca4aff446ccb0673818c18f9cfc" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=ff5dcadef89fd2097ea5e28ddaad7eb5985f09c4" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=4c010e0d" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=3a5ece24" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -101,8 +101,8 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
-    <script src="_static/scripts/quantecon-book-theme.js?digest=239405dfbfda750f9038d3ea275d1490a4be841e"></script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=9980b4379844dc0b911d69b62b295f34ede88fac"></script>
     <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
     <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -158,8 +158,27 @@
 <meta property="og:site_name" content="A First Course in Quantitative Economics with Python" />
 <meta name="theme-color" content="#ffffff" />
 
+
+
+
   </head>
 <body>
+
+<!-- Prevent flash of light theme when dark mode is saved -->
+<script>
+(function() {
+  try {
+    if (localStorage.setContrast === '1') {
+      document.body.classList.add('dark-theme');
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  } catch(e) {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+})();
+</script>
 
 <!-- Override QuantEcon theme colors -->
 
@@ -180,7 +199,7 @@
                     
 
                     
-                    <div class="inner">
+                    <div class="inner sticky" data-autoexpand="true">
 
                         
                         <div class="qe-page__toc-header">
@@ -235,12 +254,14 @@
                             
                             
                             
-                            <p><a href="#top"><strong>Back to top</strong></a></p>
+                            
                             
                         </div>
 
                     </div>
 
+                    
+                    <a href="#top" class="back-to-top-btn" title="Back to top">↑ Top</a>
                     
 
                 </div>
@@ -268,7 +289,7 @@
 
                     <!-- Last modified / Changelog dropdown -->
                         <button class="qe-page__header-changed" id="changelog-toggle" aria-expanded="false">
-                            Last changed: Aug 01, 2025
+                            Last changed: May 24, 2026
                             <span class="changelog-icon">▼</span>
                         </button>
 
@@ -279,10 +300,19 @@
                             
                             <li class="changelog-entry">
                                 
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/ae928c86" class="changelog-hash">ae928c86</a>
+                                
+                                <span class="changelog-author">Humphrey Yang</span>
+                                <span class="changelog-time">14 minutes ago</span>
+                                <span class="changelog-message">Adding Tom's Edits to Exercises (#748)</span>
+                            </li>
+                            
+                            <li class="changelog-entry">
+                                
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/1ed3d4f5" class="changelog-hash">1ed3d4f5</a>
                                 
                                 <span class="changelog-author">Matt McKay</span>
-                                <span class="changelog-time">6 months ago</span>
+                                <span class="changelog-time">9 months ago</span>
                                 <span class="changelog-message">MAINT: update anaconda=2025.06 and python=3.13 (#637)</span>
                             </li>
                             
@@ -327,7 +357,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/bce65a81" class="changelog-hash">bce65a81</a>
                                 
                                 <span class="changelog-author">Matt McKay</span>
-                                <span class="changelog-time">1 year ago</span>
+                                <span class="changelog-time">2 years ago</span>
                                 <span class="changelog-message">[inequality] Review of lecture and incorporate updates (#384)</span>
                             </li>
                             
@@ -336,7 +366,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/b51ec912" class="changelog-hash">b51ec912</a>
                                 
                                 <span class="changelog-author">Matt McKay</span>
-                                <span class="changelog-time">1 year ago</span>
+                                <span class="changelog-time">2 years ago</span>
                                 <span class="changelog-message">MAINT: Upgrade anaconda and README (#398)</span>
                             </li>
                             
@@ -356,15 +386,6 @@
                                 <span class="changelog-author">hengchengzhang</span>
                                 <span class="changelog-time">2 years ago</span>
                                 <span class="changelog-message">Minor fixes</span>
-                            </li>
-                            
-                            <li class="changelog-entry">
-                                
-                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/792c47e9" class="changelog-hash">792c47e9</a>
-                                
-                                <span class="changelog-author">hengchengzhang</span>
-                                <span class="changelog-time">2 years ago</span>
-                                <span class="changelog-message">Minor updates</span>
                             </li>
                             
                         </ul>
@@ -406,7 +427,7 @@ starving, even though one person is fabulously rich).</p>
 then applying them to wealth and income data from the US and other countries.</p>
 <section id="some-history">
 <h3><span class="section-number">6.1.1. </span>Some history<a class="headerlink" href="#some-history" title="Link to this heading">#</a></h3>
-<p>Many historians argue that inequality played a role in the fall of the Roman Republic (see, e.g., <span id="id1">[<a class="reference internal" href="zreferences.html#id7" title="Malcolm Levitt. Why did ancient states collapse?: the dysfunctional state. Why Did Ancient States Collapse?, pages 1–56, 2019.">Levitt, 2019</a>]</span>).</p>
+<p>Many historians argue that inequality played a role in the fall of the Roman Republic (see, e.g., <span class="bibtex-citation" id="id1">[<a class="reference internal" href="zreferences.html#id7" title="Malcolm Levitt. Why did ancient states collapse?: the dysfunctional state. Why Did Ancient States Collapse?, pages 1–56, 2019.">Levitt, 2019</a>]</span>).</p>
 <p>Following the defeat of Carthage and the invasion of Spain, money flowed into
 Rome from across the empire, greatly enriched those in power.</p>
 <p>Meanwhile, ordinary citizens were taken from their farms to fight for long
@@ -437,7 +458,7 @@ can quantify and analyze it.</p>
 <p class="expanded admonition-title">Hide code cell output</p>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: wbgapi in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (1.0.13)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: wbgapi in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (1.0.14)
 Requirement already satisfied: plotly in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (6.3.0)
 Requirement already satisfied: requests in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from wbgapi) (2.32.5)
 Requirement already satisfied: PyYAML in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from wbgapi) (6.0.3)
@@ -594,7 +615,7 @@ households own just over 40% of total wealth.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="lorenz-simulated">
-<a class="reference internal image-reference" href="_images/cdd02dbbc289b7eec4112de95a36687a87c8771c7bf31d5968ea3215a0a3b743.png"><img alt="_images/cdd02dbbc289b7eec4112de95a36687a87c8771c7bf31d5968ea3215a0a3b743.png" src="_images/cdd02dbbc289b7eec4112de95a36687a87c8771c7bf31d5968ea3215a0a3b743.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/eb66cea836ddfa7a36094229c8d6a5cc95ca3cf285dbb7fd41ca5c7744f03d66.png"><img alt="_images/eb66cea836ddfa7a36094229c8d6a5cc95ca3cf285dbb7fd41ca5c7744f03d66.png" src="_images/eb66cea836ddfa7a36094229c8d6a5cc95ca3cf285dbb7fd41ca5c7744f03d66.png" style="width: 80%;" />
 </a>
 <figcaption>
 <p><span class="caption-number">Fig. 6.1 </span><span class="caption-text">Lorenz curve of simulated wealth data</span><a class="headerlink" href="#lorenz-simulated" title="Link to this image">#</a></p>
@@ -716,9 +737,9 @@ population weights supplied by the SCF.)</p>
 <p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df_income_wealth</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df_income_wealth</span>
 
-<span class="n">varlist</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;n_wealth&#39;</span><span class="p">,</span>    <span class="c1"># net wealth </span>
+<span class="n">varlist</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;n_wealth&#39;</span><span class="p">,</span>    <span class="c1"># net wealth</span>
            <span class="s1">&#39;t_income&#39;</span><span class="p">,</span>    <span class="c1"># total income</span>
            <span class="s1">&#39;l_income&#39;</span><span class="p">]</span>    <span class="c1"># labor income</span>
 
@@ -735,18 +756,18 @@ population weights supplied by the SCF.)</p>
     <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>
 
         <span class="c1"># Repeat the observations according to their weights</span>
-        <span class="n">counts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">year</span><span class="p">][</span><span class="s1">&#39;weights&#39;</span><span class="p">]</span> <span class="p">))</span> 
+        <span class="n">counts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">year</span><span class="p">][</span><span class="s1">&#39;weights&#39;</span><span class="p">]</span> <span class="p">))</span>
         <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">year</span><span class="p">][</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
         <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-        
+
         <span class="c1"># Shuffle the sequence to improve the plot</span>
-        <span class="n">rd</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>    
-               
+        <span class="n">rd</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
         <span class="c1"># calculate and store Lorenz curve data</span>
         <span class="n">f_val</span><span class="p">,</span> <span class="n">l_val</span> <span class="o">=</span> <span class="n">lorenz_curve</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
         <span class="n">f_vals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f_val</span><span class="p">)</span>
         <span class="n">l_vals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">l_val</span><span class="p">)</span>
-        
+
     <span class="n">F_vals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f_vals</span><span class="p">)</span>
     <span class="n">L_vals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">l_vals</span><span class="p">)</span>
 
@@ -829,7 +850,7 @@ equality and the Lorenz curve (e.g., the shaded area in <a class="reference inte
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="lorenz-gini">
-<a class="reference internal image-reference" href="_images/9e6ce6d8d4df3c644a26199c9b125f27247a81f5ff8d695584951ccbc021ff41.png"><img alt="_images/9e6ce6d8d4df3c644a26199c9b125f27247a81f5ff8d695584951ccbc021ff41.png" src="_images/9e6ce6d8d4df3c644a26199c9b125f27247a81f5ff8d695584951ccbc021ff41.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/176a483e83d0347fff9db4e2f7ca24d1635f02b8f4ba58987df23475cd9b47f5.png"><img alt="_images/176a483e83d0347fff9db4e2f7ca24d1635f02b8f4ba58987df23475cd9b47f5.png" src="_images/176a483e83d0347fff9db4e2f7ca24d1635f02b8f4ba58987df23475cd9b47f5.png" style="width: 80%;" />
 </a>
 <figcaption>
 <p><span class="caption-number">Fig. 6.3 </span><span class="caption-text">Gini coefficient (simulated wealth data)</span><a class="headerlink" href="#lorenz-gini" title="Link to this image">#</a></p>
@@ -865,7 +886,7 @@ perfect equality and the Lorenz curve, while <span class="math notranslate nohig
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="lorenz-gini2">
-<a class="reference internal image-reference" href="_images/12ba4633375647cc5890ff99b9f6f6870d5e7446683d04ae7fb6cfd80de789ff.png"><img alt="_images/12ba4633375647cc5890ff99b9f6f6870d5e7446683d04ae7fb6cfd80de789ff.png" src="_images/12ba4633375647cc5890ff99b9f6f6870d5e7446683d04ae7fb6cfd80de789ff.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/d0b875dd2a82d51169a7e399090655aff906021948ca294a747308ab3148ae6e.png"><img alt="_images/d0b875dd2a82d51169a7e399090655aff906021948ca294a747308ab3148ae6e.png" src="_images/d0b875dd2a82d51169a7e399090655aff906021948ca294a747308ab3148ae6e.png" style="width: 80%;" />
 </a>
 <figcaption>
 <p><span class="caption-number">Fig. 6.4 </span><span class="caption-text">Lorenz curve and Gini coefficient</span><a class="headerlink" href="#lorenz-gini2" title="Link to this image">#</a></p>
@@ -940,8 +961,8 @@ distribution.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 7.34 s, sys: 0 ns, total: 7.34 s
-Wall time: 7.34 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 7.33 s, sys: 0 ns, total: 7.33 s
+Wall time: 7.33 s
 </pre></div>
 </div>
 </div>
@@ -964,10 +985,10 @@ Wall time: 7.34 s
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fix</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plot_inequality_measures</span><span class="p">(</span><span class="n">σ_vals</span><span class="p">,</span> 
-                                  <span class="n">ginis</span><span class="p">,</span> 
-                                  <span class="s1">&#39;simulated&#39;</span><span class="p">,</span> 
-                                  <span class="sa">r</span><span class="s1">&#39;$\sigma$&#39;</span><span class="p">,</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fix</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plot_inequality_measures</span><span class="p">(</span><span class="n">σ_vals</span><span class="p">,</span>
+                                  <span class="n">ginis</span><span class="p">,</span>
+                                  <span class="s1">&#39;simulated&#39;</span><span class="p">,</span>
+                                  <span class="sa">r</span><span class="s1">&#39;$\sigma$&#39;</span><span class="p">,</span>
                                   <span class="s1">&#39;Gini coefficients&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -975,7 +996,7 @@ Wall time: 7.34 s
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="gini-simulated">
-<a class="reference internal image-reference" href="_images/9b9b93649c465932142146b65eb1a085075a5f3df824c7249bc4ff17a83cb6eb.png"><img alt="_images/9b9b93649c465932142146b65eb1a085075a5f3df824c7249bc4ff17a83cb6eb.png" src="_images/9b9b93649c465932142146b65eb1a085075a5f3df824c7249bc4ff17a83cb6eb.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/3b02efea052b82ae215b23309f20407e5f2e639db40db5959fda16b1758f9ee6.png"><img alt="_images/3b02efea052b82ae215b23309f20407e5f2e639db40db5959fda16b1758f9ee6.png" src="_images/3b02efea052b82ae215b23309f20407e5f2e639db40db5959fda16b1758f9ee6.png" style="width: 80%;" />
 </a>
 <figcaption>
 <p><span class="caption-number">Fig. 6.5 </span><span class="caption-text">Gini coefficients of simulated data</span><a class="headerlink" href="#gini-simulated" title="Link to this image">#</a></p>
@@ -1022,7 +1043,7 @@ coefficient.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fetch gini data for all countries</span>
 <span class="n">gini_all</span> <span class="o">=</span> <span class="n">wb</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="s2">&quot;SI.POV.GINI&quot;</span><span class="p">)</span>
 <span class="c1"># remove &#39;YR&#39; in index and convert to integer</span>
-<span class="n">gini_all</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">gini_all</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;YR&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)))</span> 
+<span class="n">gini_all</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">gini_all</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;YR&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)))</span>
 
 <span class="c1"># Create a long series with a multi-index of the data to get global min and max values</span>
 <span class="n">gini_all</span> <span class="o">=</span> <span class="n">gini_all</span><span class="o">.</span><span class="n">unstack</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="s1">&#39;economy&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
@@ -1037,7 +1058,7 @@ coefficient.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="gini-histogram">
-<a class="reference internal image-reference" href="_images/07e24ec1481fb4129e0fbcac469ff184f3e010f17ad61a26fb1e703e013fca81.png"><img alt="_images/07e24ec1481fb4129e0fbcac469ff184f3e010f17ad61a26fb1e703e013fca81.png" src="_images/07e24ec1481fb4129e0fbcac469ff184f3e010f17ad61a26fb1e703e013fca81.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/f42b6ff593008f40486a9f4119c3941fc91f0024d0ed6197aed23a10595779fa.png"><img alt="_images/f42b6ff593008f40486a9f4119c3941fc91f0024d0ed6197aed23a10595779fa.png" src="_images/f42b6ff593008f40486a9f4119c3941fc91f0024d0ed6197aed23a10595779fa.png" style="width: 80%;" />
 </a>
 <figcaption>
 <p><span class="caption-number">Fig. 6.6 </span><span class="caption-text">Histogram of Gini coefficients across countries</span><a class="headerlink" href="#gini-histogram" title="Link to this image">#</a></p>
@@ -1080,7 +1101,7 @@ coefficient.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="gini-usa1">
-<a class="reference internal image-reference" href="_images/928ba9a59aa0ff5f0b5c630372d62c04efda6df4ea4da8547987f0873ff864bf.png"><img alt="_images/928ba9a59aa0ff5f0b5c630372d62c04efda6df4ea4da8547987f0873ff864bf.png" src="_images/928ba9a59aa0ff5f0b5c630372d62c04efda6df4ea4da8547987f0873ff864bf.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/dfabdce60e1548f8cd0a1a0e54a9ada97a3ea6f4d9659bfe441752e9229e463a.png"><img alt="_images/dfabdce60e1548f8cd0a1a0e54a9ada97a3ea6f4d9659bfe441752e9229e463a.png" src="_images/dfabdce60e1548f8cd0a1a0e54a9ada97a3ea6f4d9659bfe441752e9229e463a.png" style="width: 80%;" />
 </a>
 <figcaption>
 <p><span class="caption-number">Fig. 6.7 </span><span class="caption-text">Gini coefficients for income distribution (USA)</span><a class="headerlink" href="#gini-usa1" title="Link to this image">#</a></p>
@@ -1252,7 +1273,7 @@ to look at the evolution in their respective income Ginis.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="gini-usa-gbr-nor1">
-<a class="reference internal image-reference" href="_images/c6fdd695f02a5fbe5d17a8463c2b068df590b1c951200e67dc1481023d13d0e3.png"><img alt="_images/c6fdd695f02a5fbe5d17a8463c2b068df590b1c951200e67dc1481023d13d0e3.png" src="_images/c6fdd695f02a5fbe5d17a8463c2b068df590b1c951200e67dc1481023d13d0e3.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/971c498831496c2bf166863a895b385f5943720dc514c22923b58df2aa9c4dac.png"><img alt="_images/971c498831496c2bf166863a895b385f5943720dc514c22923b58df2aa9c4dac.png" src="_images/971c498831496c2bf166863a895b385f5943720dc514c22923b58df2aa9c4dac.png" style="width: 80%;" />
 </a>
 <figcaption>
 <p><span class="caption-number">Fig. 6.9 </span><span class="caption-text">Gini coefficients for income (USA, United Kingdom, and Norway)</span><a class="headerlink" href="#gini-usa-gbr-nor1" title="Link to this image">#</a></p>
@@ -1330,7 +1351,7 @@ to look at the evolution in their respective income Ginis.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="gini-usa-gbr-nor2">
-<a class="reference internal image-reference" href="_images/750b919c016c764e40b4689368c74806cd4464bd2d2f59c59168471764b53fde.png"><img alt="_images/750b919c016c764e40b4689368c74806cd4464bd2d2f59c59168471764b53fde.png" src="_images/750b919c016c764e40b4689368c74806cd4464bd2d2f59c59168471764b53fde.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/ea3ce1c60b0e3d8dfc7f7bfa0bb25e16f84a3e8862254fcad93bd1dbdc630f86.png"><img alt="_images/ea3ce1c60b0e3d8dfc7f7bfa0bb25e16f84a3e8862254fcad93bd1dbdc630f86.png" src="_images/ea3ce1c60b0e3d8dfc7f7bfa0bb25e16f84a3e8862254fcad93bd1dbdc630f86.png" style="width: 80%;" />
 </a>
 <figcaption>
 <p><span class="caption-number">Fig. 6.10 </span><span class="caption-text">Gini coefficients for income (USA, United Kingdom, and Norway)</span><a class="headerlink" href="#gini-usa-gbr-nor2" title="Link to this image">#</a></p>
@@ -1352,7 +1373,7 @@ the Gini coefficient shows no upward trend.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">countries</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;USA&#39;</span><span class="p">,</span> <span class="s1">&#39;NOR&#39;</span><span class="p">,</span> <span class="s1">&#39;GBR&#39;</span><span class="p">]</span>
 <span class="n">gdppc</span> <span class="o">=</span> <span class="n">wb</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="s2">&quot;NY.GDP.PCAP.KD&quot;</span><span class="p">,</span> <span class="n">countries</span><span class="p">)</span>
 <span class="c1"># remove &#39;YR&#39; in index and convert to integer</span>
-<span class="n">gdppc</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">gdppc</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;YR&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)))</span> 
+<span class="n">gdppc</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">gdppc</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;YR&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)))</span>
 <span class="n">gdppc</span> <span class="o">=</span> <span class="n">gdppc</span><span class="o">.</span><span class="n">T</span>
 </pre></div>
 </div>
@@ -1402,11 +1423,11 @@ the Gini coefficient shows no upward trend.</p>
 </div>
 <div class="cell docutils container" id="fig-plotly-gini-gdppc-years">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">plot_data</span><span class="p">,</span> 
-              <span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;gini&quot;</span><span class="p">,</span> 
-              <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;gdppc&quot;</span><span class="p">,</span> 
-              <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;country&quot;</span><span class="p">,</span> 
-              <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;year&quot;</span><span class="p">,</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">plot_data</span><span class="p">,</span>
+              <span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;gini&quot;</span><span class="p">,</span>
+              <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;gdppc&quot;</span><span class="p">,</span>
+              <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;country&quot;</span><span class="p">,</span>
+              <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;year&quot;</span><span class="p">,</span>
               <span class="n">height</span> <span class="o">=</span> <span class="mi">800</span><span class="p">,</span>
               <span class="n">labels</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;gini&quot;</span> <span class="p">:</span> <span class="s2">&quot;Gini coefficient&quot;</span><span class="p">,</span> <span class="s2">&quot;gdppc&quot;</span> <span class="p">:</span> <span class="s2">&quot;GDP per capita&quot;</span><span class="p">}</span>
              <span class="p">)</span>
@@ -1440,7 +1461,7 @@ share is defined as</p>
 <section class="definition-content" id="proof-content">
 <div class="math notranslate nohighlight" id="equation-topshares">
 <span class="eqno">(6.1)<a class="headerlink" href="#equation-topshares" title="Link to this equation">#</a></span>\[
-T(p) = 1 - L (1-p) 
+T(p) = 1 - L (1-p)
     \approx \frac{\sum_{j\geq i} w_j}{ \sum_{j \leq n} w_j}, \quad i = \lfloor n (1-p)\rfloor
 \]</div>
 </section>
@@ -1554,7 +1575,7 @@ generates more dispersion in the sample, and hence greater inequality.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">calculate_top_share</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
-    
+
     <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
     <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
     <span class="n">index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p</span><span class="p">))</span>
@@ -1588,26 +1609,26 @@ generates more dispersion in the sample, and hence greater inequality.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plot_inequality_measures</span><span class="p">(</span><span class="n">σ_vals</span><span class="p">,</span> 
-                                  <span class="n">topshares</span><span class="p">,</span> 
-                                  <span class="s2">&quot;simulated data&quot;</span><span class="p">,</span> 
-                                  <span class="s2">&quot;$\sigma$&quot;</span><span class="p">,</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plot_inequality_measures</span><span class="p">(</span><span class="n">σ_vals</span><span class="p">,</span>
+                                  <span class="n">topshares</span><span class="p">,</span>
+                                  <span class="s2">&quot;simulated data&quot;</span><span class="p">,</span>
+                                  <span class="s2">&quot;$\sigma$&quot;</span><span class="p">,</span>
                                   <span class="s2">&quot;top $10\%$ share&quot;</span><span class="p">,</span>
-                                  <span class="s2">&quot;Top shares of simulated data&quot;</span><span class="p">)</span> 
+                                  <span class="s2">&quot;Top shares of simulated data&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="top_shares_simulated" src="_images/346d9dc991aaa7926676091fcd59fe71731b9f811f4588edc976960b9ea0bd87.png" />
+<img alt="top_shares_simulated" src="_images/9484a6c1c9077b24c4f5986af8a8fb1303459e08c7082e161d98672e3f9942d5.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plot_inequality_measures</span><span class="p">(</span><span class="n">σ_vals</span><span class="p">,</span> 
-                                  <span class="n">ginis</span><span class="p">,</span> 
-                                  <span class="s2">&quot;simulated data&quot;</span><span class="p">,</span> 
-                                  <span class="s2">&quot;$\sigma$&quot;</span><span class="p">,</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plot_inequality_measures</span><span class="p">(</span><span class="n">σ_vals</span><span class="p">,</span>
+                                  <span class="n">ginis</span><span class="p">,</span>
+                                  <span class="s2">&quot;simulated data&quot;</span><span class="p">,</span>
+                                  <span class="s2">&quot;$\sigma$&quot;</span><span class="p">,</span>
                                   <span class="s2">&quot;gini coefficient&quot;</span><span class="p">,</span>
                                   <span class="s2">&quot;Gini coefficients of simulated data&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1615,7 +1636,7 @@ generates more dispersion in the sample, and hence greater inequality.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="gini_coef_simulated" src="_images/ac62b111d80e6336b7f7a481a6932feaf8571382a8b302b4b66e27370db93906.png" />
+<img alt="gini_coef_simulated" src="_images/3e1a6037a5b39573f1730175c498df90fcb4d048496a708c28861ce45ca9c826.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1631,7 +1652,7 @@ generates more dispersion in the sample, and hence greater inequality.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="lorenz_curve_simulated" src="_images/a214bf5b710cdf3bf15119ecb0ba473aa26d0936ab3fcdd51033f01765e16e65.png" />
+<img alt="lorenz_curve_simulated" src="_images/60d9c258e9d53630baa50c1f151f18f889c83f5ab0175d3736dddc3c4b637e38.png" />
 </div>
 </div>
 </section>
@@ -2015,8 +2036,8 @@ generates more dispersion in the sample, and hence greater inequality.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 35.9 ms, sys: 3 ms, total: 38.9 ms
-Wall time: 38.7 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 30.6 ms, sys: 5.03 ms, total: 35.6 ms
+Wall time: 35.3 ms
 </pre></div>
 </div>
 </div>
@@ -2030,11 +2051,11 @@ This gives us the Gini coefficients for these five households.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[np.float64(0.11316321818793416),
- np.float64(0.5792897006349511),
- np.float64(0.8504981575541397),
- np.float64(0.9540773436328166),
- np.float64(0.9839190441063463)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[np.float64(0.11022681684942175),
+ np.float64(0.5842545814331335),
+ np.float64(0.8613646161709281),
+ np.float64(0.9578581813480194),
+ np.float64(0.9841489754823977)]
 </pre></div>
 </div>
 </div>
@@ -2478,6 +2499,8 @@ This gives us the Gini coefficients for these five households.</p>
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/inequality.md" download><i data-feather="github"></i></a></li>
                     -->
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro" download><i data-feather="github"></i></a></li>
+                    
+                    
                 </ul>
 
             </div>

@@ -77,13 +77,13 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=ca16d73eb23eeca4aff446ccb0673818c18f9cfc" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=ff5dcadef89fd2097ea5e28ddaad7eb5985f09c4" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=4c010e0d" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=3a5ece24" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -101,8 +101,8 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
-    <script src="_static/scripts/quantecon-book-theme.js?digest=239405dfbfda750f9038d3ea275d1490a4be841e"></script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=9980b4379844dc0b911d69b62b295f34ede88fac"></script>
     <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
     <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -158,8 +158,27 @@
 <meta property="og:site_name" content="A First Course in Quantitative Economics with Python" />
 <meta name="theme-color" content="#ffffff" />
 
+
+
+
   </head>
 <body>
+
+<!-- Prevent flash of light theme when dark mode is saved -->
+<script>
+(function() {
+  try {
+    if (localStorage.setContrast === '1') {
+      document.body.classList.add('dark-theme');
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  } catch(e) {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+})();
+</script>
 
 <!-- Override QuantEcon theme colors -->
 
@@ -180,7 +199,7 @@
                     
 
                     
-                    <div class="inner">
+                    <div class="inner sticky" data-autoexpand="true">
 
                         
                         <div class="qe-page__toc-header">
@@ -223,12 +242,14 @@
                             
                             
                             
-                            <p><a href="#top"><strong>Back to top</strong></a></p>
+                            
                             
                         </div>
 
                     </div>
 
+                    
+                    <a href="#top" class="back-to-top-btn" title="Back to top">↑ Top</a>
                     
 
                 </div>
@@ -382,7 +403,7 @@
 <p class="expanded admonition-title">Hide code cell output</p>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: quantecon in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (0.11.0)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: quantecon in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (0.11.2)
 Requirement already satisfied: numba&gt;=0.49.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from quantecon) (0.62.1)
 Requirement already satisfied: numpy&gt;=1.17.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from quantecon) (2.3.5)
 Requirement already satisfied: requests in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from quantecon) (2.32.5)
@@ -515,8 +536,8 @@ in terms of long-run outcomes.</p>
 <p>If <span class="math notranslate nohighlight">\(P\)</span> is irreducible, then <span class="math notranslate nohighlight">\(P\)</span> has exactly one stationary
 distribution.</p>
 </section>
-</div><p>For proof, see Chapter 4 of <span id="id1">[<a class="reference internal" href="zreferences.html#id24" title="Thomas J Sargent and John Stachurski. Economic networks: theory and computation. arXiv preprint arXiv:2203.11972, 2023.">Sargent and Stachurski, 2023</a>]</span> or
-Theorem 5.2 of <span id="id2">[<a class="reference internal" href="zreferences.html#id155" title="Olle Häggström. Finite Markov chains and algorithmic applications. Volume 52. Cambridge University Press, 2002.">Häggström, 2002</a>]</span>.</p>
+</div><p>For proof, see Chapter 4 of <span class="bibtex-citation" id="id1">[<a class="reference internal" href="zreferences.html#id24" title="Thomas J Sargent and John Stachurski. Economic networks: theory and computation. arXiv preprint arXiv:2203.11972, 2023.">Sargent and Stachurski, 2023</a>]</span> or
+Theorem 5.2 of <span class="bibtex-citation" id="id2">[<a class="reference internal" href="zreferences.html#id155" title="Olle Häggström. Finite Markov chains and algorithmic applications. Volume 52. Cambridge University Press, 2002.">Häggström, 2002</a>]</span>.</p>
 </section>
 </section>
 <section id="ergodicity">
@@ -600,7 +621,7 @@ ergodicity holds.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/cfa88ab5b075bca749b07b9f12fa2241ef8d8d267f385a161336b645bd02188f.png"><img alt="_images/cfa88ab5b075bca749b07b9f12fa2241ef8d8d267f385a161336b645bd02188f.png" src="_images/cfa88ab5b075bca749b07b9f12fa2241ef8d8d267f385a161336b645bd02188f.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/f90876ce469d324115ba2793c912509c3012692becf54fdeee3b79949f626812.png"><img alt="_images/f90876ce469d324115ba2793c912509c3012692becf54fdeee3b79949f626812.png" src="_images/f90876ce469d324115ba2793c912509c3012692becf54fdeee3b79949f626812.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -730,7 +751,7 @@ indicating that this chain is irreducible.</p>
 
 <p class="admonition-title"><span class="caption-number">Exercise 35.1 </span></p>
 <section id="exercise-content">
-<p>Benhabib et al. <span id="id4">[<a class="reference internal" href="zreferences.html#id278" title="Jess Benhabib, Alberto Bisin, and Mi Luo. Wealth Distribution and Social Mobility in the US: A Quantitative Approach. American Economic Review, 109(5):1623–1647, May 2019.">Benhabib <em>et al.</em>, 2019</a>]</span> estimated that the transition matrix for social mobility as the following</p>
+<p>Benhabib et al. <span class="bibtex-citation" id="id4">[<a class="reference internal" href="zreferences.html#id278" title="Jess Benhabib, Alberto Bisin, and Mi Luo. Wealth Distribution and Social Mobility in the US: A Quantitative Approach. American Economic Review, 109(5):1623–1647, May 2019.">Benhabib <em>et al.</em>, 2019</a>]</span> estimated that the transition matrix for social mobility as the following</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 P:=
@@ -935,7 +956,7 @@ conditions.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/20f0f7a1e00c9995baf5f9dfcaa32d397a76dc185a91f6eb8a07d36714a05bf3.png"><img alt="_images/20f0f7a1e00c9995baf5f9dfcaa32d397a76dc185a91f6eb8a07d36714a05bf3.png" src="_images/20f0f7a1e00c9995baf5f9dfcaa32d397a76dc185a91f6eb8a07d36714a05bf3.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/dfde751ff1570950d76fe32ff7975858aa484b1aecd998ccf11730b29253275c.png"><img alt="_images/dfde751ff1570950d76fe32ff7975858aa484b1aecd998ccf11730b29253275c.png" src="_images/dfde751ff1570950d76fe32ff7975858aa484b1aecd998ccf11730b29253275c.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -949,7 +970,7 @@ conditions.</p>
 <p>Another way to test irreducibility is via the following statement:</p>
 <p>The <span class="math notranslate nohighlight">\(n \times n\)</span> matrix <span class="math notranslate nohighlight">\(A\)</span> is irreducible if and only if <span class="math notranslate nohighlight">\(\sum_{k=0}^{n-1}A^k\)</span>
 is a strictly positive matrix.</p>
-<p>(see, e.g., <span id="id5">[<a class="reference internal" href="zreferences.html#id277" title="Dongmei Zhao. Power Distribution and Performance Analysis for Wireless Communication Networks. SpringerBriefs in Computer Science. Springer US, Boston, MA, 2012. ISBN 978-1-4614-3283-8 978-1-4614-3284-5. URL: https://link.springer.com/10.1007/978-1-4614-3284-5 (visited on 2023-02-03), doi:10.1007/978-1-4614-3284-5.">Zhao, 2012</a>]</span> and <a class="reference external" href="https://math.stackexchange.com/questions/3336616/how-to-prove-this-matrix-is-a-irreducible-matrix">this StackExchange post</a>)</p>
+<p>(see, e.g., <span class="bibtex-citation" id="id5">[<a class="reference internal" href="zreferences.html#id277" title="Dongmei Zhao. Power Distribution and Performance Analysis for Wireless Communication Networks. SpringerBriefs in Computer Science. Springer US, Boston, MA, 2012. ISBN 978-1-4614-3283-8 978-1-4614-3284-5. URL: https://link.springer.com/10.1007/978-1-4614-3284-5 (visited on 2023-02-03), doi:10.1007/978-1-4614-3284-5.">Zhao, 2012</a>]</span> and <a class="reference external" href="https://math.stackexchange.com/questions/3336616/how-to-prove-this-matrix-is-a-irreducible-matrix">this StackExchange post</a>)</p>
 <p>Based on this claim, write a function to test irreducibility.</p>
 </section>
 </div>
@@ -1439,6 +1460,8 @@ is a strictly positive matrix.</p>
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/markov_chains_II.md" download><i data-feather="github"></i></a></li>
                     -->
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro" download><i data-feather="github"></i></a></li>
+                    
+                    
                 </ul>
 
             </div>

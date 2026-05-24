@@ -77,13 +77,13 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=ca16d73eb23eeca4aff446ccb0673818c18f9cfc" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=ff5dcadef89fd2097ea5e28ddaad7eb5985f09c4" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=4c010e0d" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=3a5ece24" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -101,8 +101,8 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
-    <script src="_static/scripts/quantecon-book-theme.js?digest=239405dfbfda750f9038d3ea275d1490a4be841e"></script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=9980b4379844dc0b911d69b62b295f34ede88fac"></script>
     <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
     <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -158,8 +158,27 @@
 <meta property="og:site_name" content="A First Course in Quantitative Economics with Python" />
 <meta name="theme-color" content="#ffffff" />
 
+
+
+
   </head>
 <body>
+
+<!-- Prevent flash of light theme when dark mode is saved -->
+<script>
+(function() {
+  try {
+    if (localStorage.setContrast === '1') {
+      document.body.classList.add('dark-theme');
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  } catch(e) {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+})();
+</script>
 
 <!-- Override QuantEcon theme colors -->
 
@@ -180,7 +199,7 @@
                     
 
                     
-                    <div class="inner">
+                    <div class="inner sticky" data-autoexpand="true">
 
                         
                         <div class="qe-page__toc-header">
@@ -197,6 +216,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#remaking-the-tax-code-and-tax-administration">5.5. Remaking the tax code and tax administration</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hyperinflation-ends">5.6. Hyperinflation Ends</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#underlying-theories">5.7. Underlying Theories</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">5.8. Exercises</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -217,12 +237,14 @@
                             
                             
                             
-                            <p><a href="#top"><strong>Back to top</strong></a></p>
+                            
                             
                         </div>
 
                     </div>
 
+                    
+                    <a href="#top" class="back-to-top-btn" title="Back to top">↑ Top</a>
                     
 
                 </div>
@@ -250,7 +272,7 @@
 
                     <!-- Last modified / Changelog dropdown -->
                         <button class="qe-page__header-changed" id="changelog-toggle" aria-expanded="false">
-                            Last changed: Mar 27, 2025
+                            Last changed: May 24, 2026
                             <span class="changelog-icon">▼</span>
                         </button>
 
@@ -261,10 +283,19 @@
                             
                             <li class="changelog-entry">
                                 
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/ae928c86" class="changelog-hash">ae928c86</a>
+                                
+                                <span class="changelog-author">Humphrey Yang</span>
+                                <span class="changelog-time">14 minutes ago</span>
+                                <span class="changelog-message">Adding Tom's Edits to Exercises (#748)</span>
+                            </li>
+                            
+                            <li class="changelog-entry">
+                                
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/58c49526" class="changelog-hash">58c49526</a>
                                 
                                 <span class="changelog-author">Matt McKay</span>
-                                <span class="changelog-time">11 months ago</span>
+                                <span class="changelog-time">1 year ago</span>
                                 <span class="changelog-message">[french_rev] review of FutureWarnings (#580)</span>
                             </li>
                             
@@ -273,7 +304,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/7cbbc836" class="changelog-hash">7cbbc836</a>
                                 
                                 <span class="changelog-author">thomassargent30</span>
-                                <span class="changelog-time">11 months ago</span>
+                                <span class="changelog-time">1 year ago</span>
                                 <span class="changelog-message">Tom's edits of typo in french revolution lecture</span>
                             </li>
                             
@@ -318,7 +349,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/46e870ed" class="changelog-hash">46e870ed</a>
                                 
                                 <span class="changelog-author">Humphrey Yang</span>
-                                <span class="changelog-time">1 year ago</span>
+                                <span class="changelog-time">2 years ago</span>
                                 <span class="changelog-message">Promote lectures to the intro series and update related files (#405)</span>
                             </li>
                             
@@ -338,13 +369,13 @@
 <h1><span class="section-number">5. </span>Inflation During French Revolution<a class="headerlink" href="#inflation-during-french-revolution" title="Link to this heading">#</a></h1>
 <section id="overview">
 <h2><span class="section-number">5.1. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
-<p>This lecture describes some  of the monetary and fiscal  features of the French Revolution (1789-1799) described by <span id="id1">[<a class="reference internal" href="zreferences.html#id292" title="Thomas J Sargent and Francois R Velde. Macroeconomic features of the french revolution. Journal of Political Economy, 103(3):474–518, 1995.">Sargent and Velde, 1995</a>]</span>.</p>
+<p>This lecture describes some  of the monetary and fiscal  features of the French Revolution (1789-1799) described by <span class="bibtex-citation" id="id1">[<a class="reference internal" href="zreferences.html#id292" title="Thomas J Sargent and Francois R Velde. Macroeconomic features of the french revolution. Journal of Political Economy, 103(3):474–518, 1995.">Sargent and Velde, 1995</a>]</span>.</p>
 <p>To finance public expenditures and service its debts,
 the French government embarked on   policy experiments.</p>
 <p>The authors of these experiments  had in mind theories about how government  monetary and fiscal policies affected economic outcomes.</p>
 <p>Some of those theories about monetary and fiscal policies still interest us today.</p>
 <ul class="simple">
-<li><p>a <strong>tax-smoothing</strong> model like Robert Barro’s <span id="id2">[<a class="reference internal" href="zreferences.html#id168" title="Robert J Barro. On the Determination of the Public Debt. Journal of Political Economy, 87(5):940–971, 1979.">Barro, 1979</a>]</span></p>
+<li><p>a <strong>tax-smoothing</strong> model like Robert Barro’s <span class="bibtex-citation" id="id2">[<a class="reference internal" href="zreferences.html#id168" title="Robert J Barro. On the Determination of the Public Debt. Journal of Political Economy, 87(5):940–971, 1979.">Barro, 1979</a>]</span></p>
 <ul>
 <li><p>this normative (i.e., prescriptive model) advises a government to finance temporary war-time surges in expenditures mostly by issuing government debt, raising taxes by just enough to service the additional debt issued during the wary; then,   after the war,  to roll over whatever debt the government had accumulated during the war;  and  to increase taxes after the war permanently by just enough to finance interest payments on that post-war government  debt</p></li>
 </ul>
@@ -357,7 +388,7 @@ the French government embarked on   policy experiments.</p>
 <li><p>a <em>real bills</em> theory of the effects of government open market operations in which the government <em>backs</em> new  issues of paper money with government holdings of valuable real property or financial assets that holders of money can purchase from the government in exchange for their money.</p>
 <ul>
 <li><p>The Revolutionaries learned about this theory from Adam Smith’s 1776 book The Wealth of Nations
-<span id="id3">[<a class="reference internal" href="zreferences.html#id11" title="Adam Smith. The Wealth of Nations: An inquiry into the nature and causes of the Wealth of Nations. Harriman House Limited, 2010.">Smith, 2010</a>]</span> and other contemporary sources</p></li>
+<span class="bibtex-citation" id="id3">[<a class="reference internal" href="zreferences.html#id11" title="Adam Smith. The Wealth of Nations: An inquiry into the nature and causes of the Wealth of Nations. Harriman House Limited, 2010.">Smith, 2010</a>]</span> and other contemporary sources</p></li>
 <li><p>It shaped how the Revolutionaries issued a paper money called <strong>assignats</strong> from 1789 to 1791</p></li>
 </ul>
 </li>
@@ -366,7 +397,7 @@ the French government embarked on   policy experiments.</p>
 <li><p>Napoleon Bonaparte became head of the French government in 1799. He  used this theory to guide his monetary and fiscal policies</p></li>
 </ul>
 </li>
-<li><p>a classical <strong>inflation-tax</strong> theory of inflation in which Philip Cagan’s (<span id="id4">[<a class="reference internal" href="zreferences.html#id112" title="Philip Cagan. The monetary dynamics of hyperinflation. In Milton Friedman, editor, Studies in the Quantity Theory of Money, pages 25–117. University of Chicago Press, Chicago, 1956.">Cagan, 1956</a>]</span>) demand for money studied in this lecture  <a class="reference internal" href="cagan_ree.html"><span class="doc">A Monetarist Theory of Price Levels</span></a> is a key component</p>
+<li><p>a classical <strong>inflation-tax</strong> theory of inflation in which Philip Cagan’s (<span class="bibtex-citation" id="id4">[<a class="reference internal" href="zreferences.html#id112" title="Philip Cagan. The monetary dynamics of hyperinflation. In Milton Friedman, editor, Studies in the Quantity Theory of Money, pages 25–117. University of Chicago Press, Chicago, 1956.">Cagan, 1956</a>]</span>) demand for money studied in this lecture  <a class="reference internal" href="cagan_ree.html"><span class="doc">A Monetarist Theory of Price Levels</span></a> is a key component</p>
 <ul>
 <li><p>This theory helps  explain French price level and money supply data from 1794 to 1797</p></li>
 </ul>
@@ -377,11 +408,11 @@ the French government embarked on   policy experiments.</p>
 </ul>
 </li>
 </ul>
-<p>We use matplotlib to replicate several of the graphs with which  <span id="id5">[<a class="reference internal" href="zreferences.html#id292" title="Thomas J Sargent and Francois R Velde. Macroeconomic features of the french revolution. Journal of Political Economy, 103(3):474–518, 1995.">Sargent and Velde, 1995</a>]</span> portrayed outcomes of these experiments</p>
+<p>We use matplotlib to replicate several of the graphs with which  <span class="bibtex-citation" id="id5">[<a class="reference internal" href="zreferences.html#id292" title="Thomas J Sargent and Francois R Velde. Macroeconomic features of the french revolution. Journal of Political Economy, 103(3):474–518, 1995.">Sargent and Velde, 1995</a>]</span> portrayed outcomes of these experiments</p>
 </section>
 <section id="data-sources">
 <h2><span class="section-number">5.2. </span>Data Sources<a class="headerlink" href="#data-sources" title="Link to this heading">#</a></h2>
-<p>This lecture uses data from three spreadsheets assembled by <span id="id6">[<a class="reference internal" href="zreferences.html#id292" title="Thomas J Sargent and Francois R Velde. Macroeconomic features of the french revolution. Journal of Political Economy, 103(3):474–518, 1995.">Sargent and Velde, 1995</a>]</span>:</p>
+<p>This lecture uses data from three spreadsheets assembled by <span class="bibtex-citation" id="id6">[<a class="reference internal" href="zreferences.html#id292" title="Thomas J Sargent and Francois R Velde. Macroeconomic features of the french revolution. Journal of Political Economy, 103(3):474–518, 1995.">Sargent and Velde, 1995</a>]</span>:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/datasets/fig_3.xlsx">datasets/fig_3.xlsx</a></p></li>
 <li><p><a class="reference external" href="https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/datasets/dette.xlsx">datasets/dette.xlsx</a></p></li>
@@ -408,7 +439,7 @@ the French government embarked on   policy experiments.</p>
 <section id="government-expenditures-and-taxes-collected">
 <h2><span class="section-number">5.3. </span>Government Expenditures and Taxes Collected<a class="headerlink" href="#government-expenditures-and-taxes-collected" title="Link to this heading">#</a></h2>
 <p>We’ll start by using <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> to construct several  graphs that will provide important historical context.</p>
-<p>These graphs are versions of ones that appear in <span id="id7">[<a class="reference internal" href="zreferences.html#id292" title="Thomas J Sargent and Francois R Velde. Macroeconomic features of the french revolution. Journal of Political Economy, 103(3):474–518, 1995.">Sargent and Velde, 1995</a>]</span>.</p>
+<p>These graphs are versions of ones that appear in <span class="bibtex-citation" id="id7">[<a class="reference internal" href="zreferences.html#id292" title="Thomas J Sargent and Francois R Velde. Macroeconomic features of the french revolution. Journal of Political Economy, 103(3):474–518, 1995.">Sargent and Velde, 1995</a>]</span>.</p>
 <p>These graphs show that during the 18th century</p>
 <ul class="simple">
 <li><p>government expenditures in France and Great Britain both surged during four big wars, and by comparable amounts</p></li>
@@ -419,15 +450,15 @@ but were substantially less than government expenditures during wars</p></li>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read the data from Excel file</span>
-<span class="n">data2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">dette_url</span><span class="p">,</span> 
-        <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Militspe&#39;</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="s1">&#39;M:X&#39;</span><span class="p">,</span> 
+<span class="n">data2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">dette_url</span><span class="p">,</span>
+        <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Militspe&#39;</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="s1">&#39;M:X&#39;</span><span class="p">,</span>
         <span class="n">skiprows</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">102</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 
 <span class="c1"># French military spending, 1685-1789, in 1726 livres</span>
-<span class="n">data4</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">dette_url</span><span class="p">,</span> 
-        <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Militspe&#39;</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> 
+<span class="n">data4</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">dette_url</span><span class="p">,</span>
+        <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Militspe&#39;</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">,</span>
         <span class="n">skiprows</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">105</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span>
-        
+
 <span class="n">years</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1685</span><span class="p">,</span> <span class="mi">1790</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
@@ -464,11 +495,11 @@ but were substantially less than government expenditures during wars</p></li>
 <p>Figure <a class="reference internal" href="#fr-fig4"><span class="std std-numref">Fig. 5.1</span></a> shows surges in military expenditures in France (in blue) and Great Britain.
 during those four wars.</p>
 <p>A remarkable aspect of figure <a class="reference internal" href="#fr-fig4"><span class="std std-numref">Fig. 5.1</span></a> is that despite having a population less than half of France’s, Britain was able to finance military expenses of about the same amounts as France’s.</p>
-<p>This testifies to Britain’s  having created state institutions that could sustain high  tax collections, government spending , and government borrowing. See  <span id="id8">[<a class="reference internal" href="zreferences.html#id4" title="Douglass C North and Barry R Weingast. Constitutions and commitment: the evolution of institutions governing public choice in seventeenth-century england. The journal of economic history, 49(4):803–832, 1989.">North and Weingast, 1989</a>]</span>.</p>
+<p>This testifies to Britain’s  having created state institutions that could sustain high  tax collections, government spending , and government borrowing. See  <span class="bibtex-citation" id="id8">[<a class="reference internal" href="zreferences.html#id4" title="Douglass C North and Barry R Weingast. Constitutions and commitment: the evolution of institutions governing public choice in seventeenth-century england. The journal of economic history, 49(4):803–832, 1989.">North and Weingast, 1989</a>]</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read the data from Excel file</span>
-<span class="n">data2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">dette_url</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Militspe&#39;</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="s1">&#39;M:X&#39;</span><span class="p">,</span> 
+<span class="n">data2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">dette_url</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Militspe&#39;</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="s1">&#39;M:X&#39;</span><span class="p">,</span>
                       <span class="n">skiprows</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">102</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 
 <span class="c1"># Plot the data</span>
@@ -476,7 +507,7 @@ during those four wars.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1689</span><span class="p">,</span> <span class="mi">1791</span><span class="p">),</span> <span class="n">data2</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1689</span><span class="p">,</span> <span class="mi">1791</span><span class="p">),</span> <span class="n">data2</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">11</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1689</span><span class="p">,</span> <span class="mi">1791</span><span class="p">),</span> <span class="n">data2</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">9</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1689</span><span class="p">,</span> <span class="mi">1791</span><span class="p">),</span> <span class="n">data2</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">8</span><span class="p">],</span> <span class="s1">&#39;o-&#39;</span><span class="p">,</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1689</span><span class="p">,</span> <span class="mi">1791</span><span class="p">),</span> <span class="n">data2</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">8</span><span class="p">],</span> <span class="s1">&#39;o-&#39;</span><span class="p">,</span>
          <span class="n">markerfacecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">)</span>
 
 <span class="c1"># Customize the plot</span>
@@ -539,7 +570,7 @@ in these four wars</p>
 </ul>
 </li>
 </ul>
-<p>Eighteenth-century British fiscal policy portrayed Figure <a class="reference internal" href="#fr-fig2"><span class="std std-numref">Fig. 5.2</span></a> thus looks very much like a text-book example of a <em>tax-smoothing</em> model like Robert Barro’s <span id="id9">[<a class="reference internal" href="zreferences.html#id168" title="Robert J Barro. On the Determination of the Public Debt. Journal of Political Economy, 87(5):940–971, 1979.">Barro, 1979</a>]</span>.</p>
+<p>Eighteenth-century British fiscal policy portrayed Figure <a class="reference internal" href="#fr-fig2"><span class="std std-numref">Fig. 5.2</span></a> thus looks very much like a text-book example of a <em>tax-smoothing</em> model like Robert Barro’s <span class="bibtex-citation" id="id9">[<a class="reference internal" href="zreferences.html#id168" title="Robert J Barro. On the Determination of the Public Debt. Journal of Political Economy, 87(5):940–971, 1979.">Barro, 1979</a>]</span>.</p>
 <p>A striking feature of the graph is what we’ll label a <em>law of gravity</em> between tax collections and government expenditures.</p>
 <ul class="simple">
 <li><p>levels of government expenditures at taxes attract each other</p></li>
@@ -549,9 +580,9 @@ in these four wars</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read the data from the Excel file</span>
-<span class="n">data1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">dette_url</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Debt&#39;</span><span class="p">,</span> 
+<span class="n">data1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">dette_url</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Debt&#39;</span><span class="p">,</span>
             <span class="n">usecols</span><span class="o">=</span><span class="s1">&#39;R:S&#39;</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">99</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-<span class="n">data1a</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">dette_url</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Debt&#39;</span><span class="p">,</span> 
+<span class="n">data1a</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">dette_url</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Debt&#39;</span><span class="p">,</span>
             <span class="n">usecols</span><span class="o">=</span><span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">89</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 
 <span class="c1"># Plot the data</span>
@@ -560,7 +591,7 @@ in these four wars</p>
 
 <span class="n">date</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1690</span><span class="p">,</span> <span class="mi">1789</span><span class="p">)</span>
 <span class="n">index</span> <span class="o">=</span> <span class="p">(</span><span class="n">date</span> <span class="o">&lt;</span> <span class="mi">1774</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">data1</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">date</span><span class="p">[</span><span class="n">index</span><span class="p">],</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">data1</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">date</span><span class="p">[</span><span class="n">index</span><span class="p">],</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">data1</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span>
          <span class="s1">&#39;*:&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
 
 <span class="c1"># Plot the additional data</span>
@@ -596,7 +627,7 @@ in these four wars</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read the data from the Excel file</span>
-<span class="n">data1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">fig_3_url</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Sheet1&#39;</span><span class="p">,</span> 
+<span class="n">data1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">fig_3_url</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Sheet1&#39;</span><span class="p">,</span>
           <span class="n">usecols</span><span class="o">=</span><span class="s1">&#39;C:F&#39;</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 
 <span class="n">data1</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -611,7 +642,7 @@ in these four wars</p>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1759</span><span class="p">,</span> <span class="mi">1789</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">data1</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;-x&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1759</span><span class="p">,</span> <span class="mi">1789</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">data1</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;--*&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1759</span><span class="p">,</span> <span class="mi">1789</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">data1</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1759</span><span class="p">,</span> <span class="mi">1789</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">data1</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span>
          <span class="s1">&#39;-o&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">markerfacecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1759</span><span class="p">,</span> <span class="mi">1789</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">data1</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">],</span> <span class="s1">&#39;-*&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
 
@@ -645,7 +676,7 @@ in these four wars</p>
 <p>Especially during and after France’s expenditures to help the Americans in their War of Independence from Great Britain,   growing government debt service (i.e., interest payments)
 contributed to this situation.</p>
 <p>This was partly a consequence of the unfolding of the debt dynamics that underlies the Unpleasant Arithmetic discussed in this quantecon lecture  <a class="reference internal" href="unpleasant.html"><span class="doc">Some Unpleasant Monetarist Arithmetic</span></a>.</p>
-<p><span id="id10">[<a class="reference internal" href="zreferences.html#id292" title="Thomas J Sargent and Francois R Velde. Macroeconomic features of the french revolution. Journal of Political Economy, 103(3):474–518, 1995.">Sargent and Velde, 1995</a>]</span> describe how the Ancient Regime that until 1788 had  governed France  had stable institutional features that made it difficult for the government to balance its budget.</p>
+<p><span class="bibtex-citation" id="id10">[<a class="reference internal" href="zreferences.html#id292" title="Thomas J Sargent and Francois R Velde. Macroeconomic features of the french revolution. Journal of Political Economy, 103(3):474–518, 1995.">Sargent and Velde, 1995</a>]</span> describe how the Ancient Regime that until 1788 had  governed France  had stable institutional features that made it difficult for the government to balance its budget.</p>
 <p>Powerful contending interests had prevented from the government from closing the gap between its
 total expenditures and its tax revenues by either</p>
 <ul class="simple">
@@ -660,14 +691,14 @@ total expenditures and its tax revenues by either</p>
 <li><p>government creditors (i.e., owners of government bonds)</p></li>
 </ul>
 <p>When the French government had confronted a similar situation around 1720 after King  Louis XIV’s
-Wars had left it with a debt crisis, it had sacrificed the interests of<br />
+Wars had left it with a debt crisis, it had sacrificed the interests of
 government creditors, i.e., by defaulting enough of its debt to bring  reduce interest payments down enough to balance the budget.</p>
 <p>Somehow, in 1789, creditors of the French government were more powerful than they had been in 1720.</p>
 <p>Therefore, King Louis XVI convened the Estates General together to ask them to redesign the French constitution in a way that would lower government expenditures or increase taxes, thereby
 allowing him to balance the budget while also honoring his promises to creditors of the French government.</p>
 <p>The King called the Estates General together in an effort to promote the reforms that would
 would bring sustained budget balance.</p>
-<p><span id="id11">[<a class="reference internal" href="zreferences.html#id292" title="Thomas J Sargent and Francois R Velde. Macroeconomic features of the french revolution. Journal of Political Economy, 103(3):474–518, 1995.">Sargent and Velde, 1995</a>]</span> describe how the French Revolutionaries set out to accomplish that.</p>
+<p><span class="bibtex-citation" id="id11">[<a class="reference internal" href="zreferences.html#id292" title="Thomas J Sargent and Francois R Velde. Macroeconomic features of the french revolution. Journal of Political Economy, 103(3):474–518, 1995.">Sargent and Velde, 1995</a>]</span> describe how the French Revolutionaries set out to accomplish that.</p>
 </section>
 <section id="nationalization-privatization-debt-reduction">
 <h2><span class="section-number">5.4. </span>Nationalization, Privatization, Debt Reduction<a class="headerlink" href="#nationalization-privatization-debt-reduction" title="Link to this heading">#</a></h2>
@@ -686,7 +717,7 @@ about the same amount as the entire French government debt.</p>
 <li><p>use the proceeds from those sales to service or even retire French government debt</p></li>
 </ul>
 <p>The monetary theory underlying this plan had been set out by Adam Smith in his analysis of what he called <em>real bills</em>  in his  1776 book
-<strong>The Wealth of Nations</strong>   <span id="id12">[<a class="reference internal" href="zreferences.html#id11" title="Adam Smith. The Wealth of Nations: An inquiry into the nature and causes of the Wealth of Nations. Harriman House Limited, 2010.">Smith, 2010</a>]</span>, which many of the revolutionaries had read.</p>
+<strong>The Wealth of Nations</strong>   <span class="bibtex-citation" id="id12">[<a class="reference internal" href="zreferences.html#id11" title="Adam Smith. The Wealth of Nations: An inquiry into the nature and causes of the Wealth of Nations. Harriman House Limited, 2010.">Smith, 2010</a>]</span>, which many of the revolutionaries had read.</p>
 <p>Adam Smith defined a <em>real bill</em> as a paper money note that is backed by a claims on a real asset like productive capital or inventories.</p>
 <p>The National Assembly put together an ingenious institutional  arrangement to implement this plan.</p>
 <p>In response to a motion by Catholic Bishop Talleyrand (an atheist),
@@ -713,7 +744,7 @@ earlier as examples of how paper money schemes can go awry</p></li>
 <li><p>Knowing pitfalls, they set out to avoid them</p></li>
 </ul>
 <p>They succeeded for two or three years.</p>
-<p>But after that, France entered a big War that disrupted the plan in ways that completely altered the character of France’s paper money. <span id="id13">[<a class="reference internal" href="zreferences.html#id292" title="Thomas J Sargent and Francois R Velde. Macroeconomic features of the french revolution. Journal of Political Economy, 103(3):474–518, 1995.">Sargent and Velde, 1995</a>]</span> describe what happened.</p>
+<p>But after that, France entered a big War that disrupted the plan in ways that completely altered the character of France’s paper money. <span class="bibtex-citation" id="id13">[<a class="reference internal" href="zreferences.html#id292" title="Thomas J Sargent and Francois R Velde. Macroeconomic features of the french revolution. Journal of Political Economy, 103(3):474–518, 1995.">Sargent and Velde, 1995</a>]</span> describe what happened.</p>
 </section>
 <section id="remaking-the-tax-code-and-tax-administration">
 <h2><span class="section-number">5.5. </span>Remaking the tax code and tax administration<a class="headerlink" href="#remaking-the-tax-code-and-tax-administration" title="Link to this heading">#</a></h2>
@@ -735,7 +766,7 @@ fiscal policy.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read data from Excel file</span>
-<span class="n">data5</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">dette_url</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Debt&#39;</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="s1">&#39;K&#39;</span><span class="p">,</span> 
+<span class="n">data5</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">dette_url</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Debt&#39;</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="s1">&#39;K&#39;</span><span class="p">,</span>
                     <span class="n">skiprows</span><span class="o">=</span><span class="mi">41</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 
 <span class="c1"># Plot the data</span>
@@ -825,7 +856,7 @@ of goods and services, including military goods and soldiers’ pay.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read data from Excel file</span>
-<span class="n">data12</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">assignat_url</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;seignor&#39;</span><span class="p">,</span> 
+<span class="n">data12</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">assignat_url</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;seignor&#39;</span><span class="p">,</span>
          <span class="n">usecols</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">75</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span>
 
 <span class="c1"># Create a figure and plot the data</span>
@@ -837,12 +868,12 @@ of goods and services, including military goods and soldiers’ pay.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mf">472.42</span><span class="o">/</span><span class="mi">12</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">ticks</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;1790&#39;</span><span class="p">,</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">ticks</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;1790&#39;</span><span class="p">,</span>
            <span class="n">end</span><span class="o">=</span><span class="s1">&#39;1796&#39;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;YS&#39;</span><span class="p">),</span> <span class="n">labels</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">1790</span><span class="p">,</span> <span class="mi">1797</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;1791&#39;</span><span class="p">),</span>
          <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;1796-02&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">DateOffset</span><span class="p">(</span><span class="n">months</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;millions of livres&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;1793-11&#39;</span><span class="p">),</span> <span class="mf">39.5</span><span class="p">,</span> <span class="s1">&#39;revenues in 1788&#39;</span><span class="p">,</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;1793-11&#39;</span><span class="p">),</span> <span class="mf">39.5</span><span class="p">,</span> <span class="s1">&#39;revenues in 1788&#39;</span><span class="p">,</span>
          <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
@@ -887,9 +918,9 @@ of goods and services, including military goods and soldiers’ pay.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read the data from Excel file</span>
-<span class="n">data7</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">assignat_url</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Data&#39;</span><span class="p">,</span> 
+<span class="n">data7</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">assignat_url</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Data&#39;</span><span class="p">,</span>
           <span class="n">usecols</span><span class="o">=</span><span class="s1">&#39;P:Q&#39;</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-<span class="n">data7a</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">assignat_url</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Data&#39;</span><span class="p">,</span> 
+<span class="n">data7a</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">assignat_url</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Data&#39;</span><span class="p">,</span>
           <span class="n">usecols</span><span class="o">=</span><span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 <span class="c1"># Create the figure and plot</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
@@ -940,14 +971,14 @@ of our episodes, in which real balances decline and prices rise rapidly.</p>
 <p>We interpret
 these three episodes in terms of distinct  theories</p>
 <ul class="simple">
-<li><p>a <em>backing</em> or <em>real bills</em> theory (the classic text for this theory is  Adam Smith  <span id="id14">[<a class="reference internal" href="zreferences.html#id11" title="Adam Smith. The Wealth of Nations: An inquiry into the nature and causes of the Wealth of Nations. Harriman House Limited, 2010.">Smith, 2010</a>]</span>)</p></li>
-<li><p>a legal restrictions theory ( <span id="id15">[<a class="reference internal" href="zreferences.html#id5" title="John Maynard Keynes. How to pay for the war. In Essays in persuasion, pages 367–439. Springer, 1940.">Keynes, 1940</a>]</span>, <span id="id16">[<a class="reference internal" href="zreferences.html#id6" title="John Bryant and Neil Wallace. A price discrimination analysis of monetary policy. The Review of Economic Studies, 51(2):279–288, 1984.">Bryant and Wallace, 1984</a>]</span> )</p></li>
-<li><p>a classical hyperinflation theory (<span id="id17">[<a class="reference internal" href="zreferences.html#id112" title="Philip Cagan. The monetary dynamics of hyperinflation. In Milton Friedman, editor, Studies in the Quantity Theory of Money, pages 25–117. University of Chicago Press, Chicago, 1956.">Cagan, 1956</a>]</span>)</p></li>
+<li><p>a <em>backing</em> or <em>real bills</em> theory (the classic text for this theory is  Adam Smith  <span class="bibtex-citation" id="id14">[<a class="reference internal" href="zreferences.html#id11" title="Adam Smith. The Wealth of Nations: An inquiry into the nature and causes of the Wealth of Nations. Harriman House Limited, 2010.">Smith, 2010</a>]</span>)</p></li>
+<li><p>a legal restrictions theory ( <span class="bibtex-citation" id="id15">[<a class="reference internal" href="zreferences.html#id5" title="John Maynard Keynes. How to pay for the war. In Essays in persuasion, pages 367–439. Springer, 1940.">Keynes, 1940</a>]</span>, <span class="bibtex-citation" id="id16">[<a class="reference internal" href="zreferences.html#id6" title="John Bryant and Neil Wallace. A price discrimination analysis of monetary policy. The Review of Economic Studies, 51(2):279–288, 1984.">Bryant and Wallace, 1984</a>]</span> )</p></li>
+<li><p>a classical hyperinflation theory (<span class="bibtex-citation" id="id17">[<a class="reference internal" href="zreferences.html#id112" title="Philip Cagan. The monetary dynamics of hyperinflation. In Milton Friedman, editor, Studies in the Quantity Theory of Money, pages 25–117. University of Chicago Press, Chicago, 1956.">Cagan, 1956</a>]</span>)</p></li>
 <li></li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>According to the empirical  definition of hyperinflation adopted by <span id="id18">[<a class="reference internal" href="zreferences.html#id112" title="Philip Cagan. The monetary dynamics of hyperinflation. In Milton Friedman, editor, Studies in the Quantity Theory of Money, pages 25–117. University of Chicago Press, Chicago, 1956.">Cagan, 1956</a>]</span>,
+<p>According to the empirical  definition of hyperinflation adopted by <span class="bibtex-citation" id="id18">[<a class="reference internal" href="zreferences.html#id112" title="Philip Cagan. The monetary dynamics of hyperinflation. In Milton Friedman, editor, Studies in the Quantity Theory of Money, pages 25–117. University of Chicago Press, Chicago, 1956.">Cagan, 1956</a>]</span>,
 beginning in the month that inflation exceeds 50 percent
 per month and ending in the month before inflation drops below 50 percent per month
 for at least a year, the <em>assignat</em>  experienced a hyperinflation from May to December
@@ -960,20 +991,20 @@ nearly met in one of these episodes than in the other two.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read the data from Excel file</span>
-<span class="n">data7</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">assignat_url</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Data&#39;</span><span class="p">,</span> 
+<span class="n">data7</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">assignat_url</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Data&#39;</span><span class="p">,</span>
         <span class="n">usecols</span><span class="o">=</span><span class="s1">&#39;P:Q&#39;</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-<span class="n">data7a</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">assignat_url</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Data&#39;</span><span class="p">,</span> 
+<span class="n">data7a</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">assignat_url</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Data&#39;</span><span class="p">,</span>
         <span class="n">usecols</span><span class="o">=</span><span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 
 <span class="c1"># Create the figure and plot</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">h</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;1789-11-01&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">data7</span><span class="p">),</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;ME&#39;</span><span class="p">),</span> 
+<span class="n">h</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;1789-11-01&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">data7</span><span class="p">),</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;ME&#39;</span><span class="p">),</span>
             <span class="p">(</span><span class="n">data7a</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="n">data7</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">h</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">([</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;1793-07-15&#39;</span><span class="p">),</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;1793-07-15&#39;</span><span class="p">)],</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">([</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;1793-07-15&#39;</span><span class="p">),</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;1793-07-15&#39;</span><span class="p">)],</span>
            <span class="mi">0</span><span class="p">,</span> <span class="mi">3000</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">([</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;1794-07-15&#39;</span><span class="p">),</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;1794-07-15&#39;</span><span class="p">)],</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">([</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;1794-07-15&#39;</span><span class="p">),</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;1794-07-15&#39;</span><span class="p">)],</span>
            <span class="mi">0</span><span class="p">,</span> <span class="mi">3000</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3000</span><span class="p">])</span>
@@ -1036,7 +1067,7 @@ hyperinflations.</p>
 <span class="n">caron</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;datasets/caron.npy&#39;</span><span class="p">)</span>
 <span class="n">nom_balances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;datasets/nom_balances.npy&#39;</span><span class="p">)</span>
 
-<span class="n">infl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(([</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">],</span> 
+<span class="n">infl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(([</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">],</span>
       <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">caron</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">63</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">caron</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">62</span><span class="p">,</span> <span class="mi">1</span><span class="p">])))</span>
 <span class="n">bal</span> <span class="o">=</span> <span class="n">nom_balances</span><span class="p">[</span><span class="mi">14</span><span class="p">:</span><span class="mi">77</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">caron</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="mi">1000</span>
 </pre></div>
@@ -1065,14 +1096,14 @@ hyperinflations.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="c1"># First subsample</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bal</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">31</span><span class="p">],</span> <span class="n">infl</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">31</span><span class="p">],</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markerfacecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bal</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">31</span><span class="p">],</span> <span class="n">infl</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">31</span><span class="p">],</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markerfacecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span>
          <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;real bills period&#39;</span><span class="p">)</span>
 
 <span class="c1"># Second subsample</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bal</span><span class="p">[</span><span class="mi">31</span><span class="p">:</span><span class="mi">44</span><span class="p">],</span> <span class="n">infl</span><span class="p">[</span><span class="mi">31</span><span class="p">:</span><span class="mi">44</span><span class="p">],</span> <span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;terror&#39;</span><span class="p">)</span>
 
 <span class="c1"># Third subsample</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bal</span><span class="p">[</span><span class="mi">44</span><span class="p">:</span><span class="mi">63</span><span class="p">],</span> <span class="n">infl</span><span class="p">[</span><span class="mi">44</span><span class="p">:</span><span class="mi">63</span><span class="p">],</span> <span class="s1">&#39;*&#39;</span><span class="p">,</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bal</span><span class="p">[</span><span class="mi">44</span><span class="p">:</span><span class="mi">63</span><span class="p">],</span> <span class="n">infl</span><span class="p">[</span><span class="mi">44</span><span class="p">:</span><span class="mi">63</span><span class="p">],</span> <span class="s1">&#39;*&#39;</span><span class="p">,</span>
         <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;classic Cagan hyperinflation&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;real balances&#39;</span><span class="p">)</span>
@@ -1161,7 +1192,7 @@ line.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="c1"># First subsample</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bal</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">31</span><span class="p">],</span> <span class="n">infl</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">31</span><span class="p">],</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markerfacecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bal</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">31</span><span class="p">],</span> <span class="n">infl</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">31</span><span class="p">],</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markerfacecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span>
         <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;real bills period&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bal</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">31</span><span class="p">],</span> <span class="n">a1</span> <span class="o">+</span> <span class="n">bal</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">31</span><span class="p">]</span> <span class="o">*</span> <span class="n">b1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
 
@@ -1169,7 +1200,7 @@ line.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bal</span><span class="p">[</span><span class="mi">31</span><span class="p">:</span><span class="mi">44</span><span class="p">],</span> <span class="n">infl</span><span class="p">[</span><span class="mi">31</span><span class="p">:</span><span class="mi">44</span><span class="p">],</span> <span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;terror&#39;</span><span class="p">)</span>
 
 <span class="c1"># Third subsample</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bal</span><span class="p">[</span><span class="mi">44</span><span class="p">:</span><span class="mi">63</span><span class="p">],</span> <span class="n">infl</span><span class="p">[</span><span class="mi">44</span><span class="p">:</span><span class="mi">63</span><span class="p">],</span> <span class="s1">&#39;*&#39;</span><span class="p">,</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bal</span><span class="p">[</span><span class="mi">44</span><span class="p">:</span><span class="mi">63</span><span class="p">],</span> <span class="n">infl</span><span class="p">[</span><span class="mi">44</span><span class="p">:</span><span class="mi">63</span><span class="p">],</span> <span class="s1">&#39;*&#39;</span><span class="p">,</span>
         <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;classic Cagan hyperinflation&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;real balances&#39;</span><span class="p">)</span>
@@ -1207,7 +1238,7 @@ line.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="c1"># First subsample</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bal</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">31</span><span class="p">],</span> <span class="n">infl</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">31</span><span class="p">],</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markerfacecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bal</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">31</span><span class="p">],</span> <span class="n">infl</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">31</span><span class="p">],</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markerfacecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span>
         <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;real bills period&#39;</span><span class="p">)</span>
 
 <span class="c1"># Second subsample</span>
@@ -1215,7 +1246,7 @@ line.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">a2_rev</span> <span class="o">+</span> <span class="n">b2_rev</span> <span class="o">*</span> <span class="n">infl</span><span class="p">[</span><span class="mi">31</span><span class="p">:</span><span class="mi">44</span><span class="p">],</span> <span class="n">infl</span><span class="p">[</span><span class="mi">31</span><span class="p">:</span><span class="mi">44</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
 
 <span class="c1"># Third subsample</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bal</span><span class="p">[</span><span class="mi">44</span><span class="p">:</span><span class="mi">63</span><span class="p">],</span> <span class="n">infl</span><span class="p">[</span><span class="mi">44</span><span class="p">:</span><span class="mi">63</span><span class="p">],</span> <span class="s1">&#39;*&#39;</span><span class="p">,</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bal</span><span class="p">[</span><span class="mi">44</span><span class="p">:</span><span class="mi">63</span><span class="p">],</span> <span class="n">infl</span><span class="p">[</span><span class="mi">44</span><span class="p">:</span><span class="mi">63</span><span class="p">],</span> <span class="s1">&#39;*&#39;</span><span class="p">,</span>
         <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;classic Cagan hyperinflation&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;real balances&#39;</span><span class="p">)</span>
@@ -1240,11 +1271,12 @@ line.</p>
 <p>The regression line in <a class="reference internal" href="#fr-fig104d"><span class="std std-numref">Fig. 5.13</span></a> shows that large increases in real balances of
 assignats (paper money) were accompanied by little upward price  level pressure, even some declines in prices.</p>
 <p>This reflects how well legal restrictions – financial repression – was working during the period of the Terror.</p>
-<p>But the Terror ended in July 1794.  That unleashed a big inflation as people tried to find other ways to transact and store values.</p>
+<p>But the Terror ended in July 1794.</p>
+<p>That unleashed a big inflation as people tried to find other ways to transact and store values.</p>
 <p>The following two graphs are for the classical hyperinflation period.</p>
 <p>One regresses inflation on real balances, the other regresses real balances on inflation.</p>
 <p>Both show a prounced inverse relationship that is the hallmark of the hyperinflations studied by
-Cagan <span id="id19">[<a class="reference internal" href="zreferences.html#id112" title="Philip Cagan. The monetary dynamics of hyperinflation. In Milton Friedman, editor, Studies in the Quantity Theory of Money, pages 25–117. University of Chicago Press, Chicago, 1956.">Cagan, 1956</a>]</span>.</p>
+Cagan <span class="bibtex-citation" id="id19">[<a class="reference internal" href="zreferences.html#id112" title="Philip Cagan. The monetary dynamics of hyperinflation. In Milton Friedman, editor, Studies in the Quantity Theory of Money, pages 25–117. University of Chicago Press, Chicago, 1956.">Cagan, 1956</a>]</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
@@ -1252,14 +1284,14 @@ Cagan <span id="id19">[<a class="reference internal" href="zreferences.html#id11
 <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="c1"># First subsample</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bal</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">31</span><span class="p">],</span> <span class="n">infl</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">31</span><span class="p">],</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markerfacecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bal</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">31</span><span class="p">],</span> <span class="n">infl</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">31</span><span class="p">],</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markerfacecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span>
         <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;real bills period&#39;</span><span class="p">)</span>
 
 <span class="c1"># Second subsample</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bal</span><span class="p">[</span><span class="mi">31</span><span class="p">:</span><span class="mi">44</span><span class="p">],</span> <span class="n">infl</span><span class="p">[</span><span class="mi">31</span><span class="p">:</span><span class="mi">44</span><span class="p">],</span> <span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;terror&#39;</span><span class="p">)</span>
 
 <span class="c1"># Third subsample</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bal</span><span class="p">[</span><span class="mi">44</span><span class="p">:</span><span class="mi">63</span><span class="p">],</span> <span class="n">infl</span><span class="p">[</span><span class="mi">44</span><span class="p">:</span><span class="mi">63</span><span class="p">],</span> <span class="s1">&#39;*&#39;</span><span class="p">,</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bal</span><span class="p">[</span><span class="mi">44</span><span class="p">:</span><span class="mi">63</span><span class="p">],</span> <span class="n">infl</span><span class="p">[</span><span class="mi">44</span><span class="p">:</span><span class="mi">63</span><span class="p">],</span> <span class="s1">&#39;*&#39;</span><span class="p">,</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;classic Cagan hyperinflation&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bal</span><span class="p">[</span><span class="mi">44</span><span class="p">:</span><span class="mi">63</span><span class="p">],</span> <span class="n">a3</span> <span class="o">+</span> <span class="n">bal</span><span class="p">[</span><span class="mi">44</span><span class="p">:</span><span class="mi">63</span><span class="p">]</span> <span class="o">*</span> <span class="n">b3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">)</span>
 
@@ -1291,14 +1323,14 @@ period of the hyperinflation.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="c1"># First subsample</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bal</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">31</span><span class="p">],</span> <span class="n">infl</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">31</span><span class="p">],</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bal</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">31</span><span class="p">],</span> <span class="n">infl</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">31</span><span class="p">],</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span>
     <span class="n">markerfacecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;real bills period&#39;</span><span class="p">)</span>
 
 <span class="c1"># Second subsample</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bal</span><span class="p">[</span><span class="mi">31</span><span class="p">:</span><span class="mi">44</span><span class="p">],</span> <span class="n">infl</span><span class="p">[</span><span class="mi">31</span><span class="p">:</span><span class="mi">44</span><span class="p">],</span> <span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;terror&#39;</span><span class="p">)</span>
 
 <span class="c1"># Third subsample</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bal</span><span class="p">[</span><span class="mi">44</span><span class="p">:</span><span class="mi">63</span><span class="p">],</span> <span class="n">infl</span><span class="p">[</span><span class="mi">44</span><span class="p">:</span><span class="mi">63</span><span class="p">],</span> <span class="s1">&#39;*&#39;</span><span class="p">,</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bal</span><span class="p">[</span><span class="mi">44</span><span class="p">:</span><span class="mi">63</span><span class="p">],</span> <span class="n">infl</span><span class="p">[</span><span class="mi">44</span><span class="p">:</span><span class="mi">63</span><span class="p">],</span> <span class="s1">&#39;*&#39;</span><span class="p">,</span>
         <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;classic Cagan hyperinflation&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">a3_rev</span> <span class="o">+</span> <span class="n">b3_rev</span> <span class="o">*</span> <span class="n">infl</span><span class="p">[</span><span class="mi">44</span><span class="p">:</span><span class="mi">63</span><span class="p">],</span> <span class="n">infl</span><span class="p">[</span><span class="mi">44</span><span class="p">:</span><span class="mi">63</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">)</span>
 
@@ -1326,7 +1358,7 @@ period of the hyperinflation.</p>
 </section>
 <section id="hyperinflation-ends">
 <h2><span class="section-number">5.6. </span>Hyperinflation Ends<a class="headerlink" href="#hyperinflation-ends" title="Link to this heading">#</a></h2>
-<p><span id="id20">[<a class="reference internal" href="zreferences.html#id292" title="Thomas J Sargent and Francois R Velde. Macroeconomic features of the french revolution. Journal of Political Economy, 103(3):474–518, 1995.">Sargent and Velde, 1995</a>]</span> tell how in 1797 the Revolutionary government abruptly ended the inflation by</p>
+<p><span class="bibtex-citation" id="id20">[<a class="reference internal" href="zreferences.html#id292" title="Thomas J Sargent and Francois R Velde. Macroeconomic features of the french revolution. Journal of Political Economy, 103(3):474–518, 1995.">Sargent and Velde, 1995</a>]</span> tell how in 1797 the Revolutionary government abruptly ended the inflation by</p>
 <ul class="simple">
 <li><p>repudiating 2/3 of the national debt, and thereby</p></li>
 <li><p>eliminating the net-of-interest government defict</p></li>
@@ -1340,6 +1372,260 @@ period of the hyperinflation.</p>
 <p>This lecture  sets the stage for studying  theories of inflation and the  government monetary and fiscal policies that bring it about.</p>
 <p>A  <em>monetarist theory of the price level</em> is described in this quantecon lecture <a class="reference internal" href="cagan_ree.html"><span class="doc">A Monetarist Theory of Price Levels</span></a>.</p>
 <p>That lecture sets the stage for these quantecon lectures <a class="reference internal" href="money_inflation.html"><span class="doc">Money Financed Government Deficits and Price Levels</span></a> and <a class="reference internal" href="unpleasant.html"><span class="doc">Some Unpleasant Monetarist Arithmetic</span></a>.</p>
+</section>
+<section id="exercises">
+<h2><span class="section-number">5.8. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<div class="exercise admonition" id="fr_ex1">
+
+<p class="admonition-title"><span class="caption-number">Exercise 5.1 </span></p>
+<section id="exercise-content">
+<p><strong>Identifying the hyperinflation: Cagan’s 50 per cent threshold.</strong></p>
+<p>The “Note” callout box in this lecture states that France experienced a
+hyperinflation from May to December 1795, using Cagan’s definition: a
+hyperinflation begins in the first month that the monthly inflation rate exceeds
+50 per cent and ends in the first month it stays below 50 per cent for at least
+a year.</p>
+<p>Because <code class="docutils literal notranslate"><span class="pre">infl</span></code> measures the <em>log</em> change in the price level, the 50 per cent
+threshold in simple-ratio terms (<span class="math notranslate nohighlight">\(P_{t+1}/P_t - 1 \geq 0.5\)</span>) corresponds to
+<span class="math notranslate nohighlight">\(\log(1.5) \approx 0.405\)</span> in the <code class="docutils literal notranslate"><span class="pre">infl</span></code> units.</p>
+<p>a. Using the approximate date grid
+<code class="docutils literal notranslate"><span class="pre">pd.date_range(start='1791-01',</span> <span class="pre">periods=63,</span> <span class="pre">freq='ME')</span></code>, plot the full
+monthly inflation series <code class="docutils literal notranslate"><span class="pre">infl[1:]</span></code> (skip the leading <code class="docutils literal notranslate"><span class="pre">NaN</span></code>), draw a dashed
+horizontal line at the 50 per cent threshold, and shade the months that
+exceed it.</p>
+<p>b. Print the number of months above the threshold and their approximate dates to
+check whether they match the “May to December 1795” statement in the lecture.</p>
+<p>c. Using the lecture’s boundary at index 44 (August 1794, roughly), compute how
+many Cagan-hyperinflation months fall inside the third sub-period
+<code class="docutils literal notranslate"><span class="pre">infl[44:63]</span></code>.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="french_rev-solution-1">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#fr_ex1"> Exercise 5.1</a></p>
+<section id="solution-content">
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">dates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;1791-01&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">63</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;ME&#39;</span><span class="p">)</span>
+<span class="n">threshold</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dates</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">infl</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Monthly inflation (log change)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">threshold</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+           <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;50%/month threshold (log 1.5 approx </span><span class="si">{</span><span class="n">threshold</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">dates</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">infl</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">threshold</span><span class="p">,</span>
+                <span class="n">where</span><span class="o">=</span><span class="n">infl</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">,</span>
+                <span class="n">alpha</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Above Cagan threshold&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;1793-07&#39;</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span>
+           <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Sub-period boundaries&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;1794-08&#39;</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Monthly inflation (log change)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Monthly inflation in Revolutionary France, 1791-1796&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/4a32a0da3d84f469337c08b26591cbea896615e43b1d1d37c5a651698e9c4716.png"><img alt="_images/4a32a0da3d84f469337c08b26591cbea896615e43b1d1d37c5a651698e9c4716.png" src="_images/4a32a0da3d84f469337c08b26591cbea896615e43b1d1d37c5a651698e9c4716.png" style="width: 80%;" />
+</a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">above</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">infl</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Months above 50%/month threshold: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">above</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">above</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  index </span><span class="si">{</span><span class="n">idx</span><span class="si">:</span><span class="s1">3d</span><span class="si">}</span><span class="s1">  approx </span><span class="si">{</span><span class="n">dates</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%b %Y&quot;</span><span class="p">)</span><span class="si">}</span><span class="s1">  &#39;</span>
+          <span class="sa">f</span><span class="s1">&#39;(inflation = </span><span class="si">{</span><span class="n">infl</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+
+<span class="c1"># Part c</span>
+<span class="n">in_subperiod3</span> <span class="o">=</span> <span class="n">above</span><span class="p">[</span><span class="n">above</span> <span class="o">&gt;=</span> <span class="mi">44</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Of those, </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">in_subperiod3</span><span class="p">)</span><span class="si">}</span><span class="s1"> fall in sub-period 3 (index &gt;= 44)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Months above 50%/month threshold: 3
+  index  52  approx May 1795  (inflation = 0.447)
+  index  53  approx Jun 1795  (inflation = 0.482)
+  index  58  approx Nov 1795  (inflation = 0.569)
+
+Of those, 3 fall in sub-period 3 (index &gt;= 44)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The concentrated cluster of months above the threshold falls in 1795,
+consistent with the lecture’s “May to December 1795” statement.</p>
+<p>All Cagan-hyperinflation threshold months sit inside sub-period 3, confirming that the boundary the lecture uses is a good approximation to Cagan’s own criterion.</p>
+</section>
+</div>
+<div class="exercise admonition" id="fr_ex2">
+
+<p class="admonition-title"><span class="caption-number">Exercise 5.2 </span></p>
+<section id="exercise-content">
+<p><strong>Estimating Cagan’s money-demand sensitivity <span class="math notranslate nohighlight">\(\alpha\)</span> from the data.</strong></p>
+<p>The Cagan demand-for-money function (see <a class="reference internal" href="cagan_ree.html"><span class="doc">A Monetarist Theory of Price Levels</span></a>) implies a
+<em>log-linear</em> relationship between real money balances and inflation:</p>
+<div class="math notranslate nohighlight">
+\[
+\log(M_t/p_t) = c - \alpha \pi_t
+\]</div>
+<p>The lecture fits a <em>linear</em> (levels) regression of <code class="docutils literal notranslate"><span class="pre">infl</span></code> on <code class="docutils literal notranslate"><span class="pre">bal</span></code> for the
+hyperinflation sub-period, but Cagan’s theory predicts a log-linear
+relationship.</p>
+<p>a. Compute <code class="docutils literal notranslate"><span class="pre">log_bal</span> <span class="pre">=</span> <span class="pre">np.log(bal)</span></code>, use the <code class="docutils literal notranslate"><span class="pre">fit</span></code> helper defined in this lecture
+to regress <code class="docutils literal notranslate"><span class="pre">log_bal[44:63]</span></code> on <code class="docutils literal notranslate"><span class="pre">infl[44:63]</span></code>, extract the slope <span class="math notranslate nohighlight">\(b\)</span>, and set
+<span class="math notranslate nohighlight">\(\hat\alpha = -b\)</span>.</p>
+<p>b. Plot <code class="docutils literal notranslate"><span class="pre">infl[44:63]</span></code> on the horizontal axis and <code class="docutils literal notranslate"><span class="pre">log_bal[44:63]</span></code> on the
+vertical axis, then overlay the fitted line and label it with the estimated
+<span class="math notranslate nohighlight">\(\hat\alpha\)</span>.</p>
+<p>c. Explain why the slope <span class="math notranslate nohighlight">\(b_3\)</span> from the lecture’s levels regression of <code class="docutils literal notranslate"><span class="pre">infl</span></code> on
+<code class="docutils literal notranslate"><span class="pre">bal</span></code> is less consistent with Cagan’s model than the log-linear
+specification in part a, and identify the distortion that arises from using
+<code class="docutils literal notranslate"><span class="pre">bal</span></code> in levels during a hyperinflation.</p>
+<p>d. Compare <span class="math notranslate nohighlight">\(\hat\alpha\)</span> from part a to the default value <span class="math notranslate nohighlight">\(\alpha = 5\)</span> used in
+the quantecon lecture <a class="reference internal" href="cagan_ree.html"><span class="doc">A Monetarist Theory of Price Levels</span></a> and assess whether the order of
+magnitude is consistent.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="french_rev-solution-3">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#fr_ex2"> Exercise 5.2</a></p>
+<section id="solution-content">
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">log_bal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">bal</span><span class="p">)</span>
+
+<span class="c1"># Fit log_bal = a + b * infl.</span>
+<span class="n">a_log</span><span class="p">,</span> <span class="n">b_log</span> <span class="o">=</span> <span class="n">fit</span><span class="p">(</span><span class="n">infl</span><span class="p">[</span><span class="mi">44</span><span class="p">:</span><span class="mi">63</span><span class="p">],</span> <span class="n">log_bal</span><span class="p">[</span><span class="mi">44</span><span class="p">:</span><span class="mi">63</span><span class="p">])</span>
+<span class="n">α_hat</span> <span class="o">=</span> <span class="o">-</span><span class="n">b_log</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Log-linear estimate:  alpha_hat = </span><span class="si">{</span><span class="n">α_hat</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Default in cagan_ree: α  = 5.00&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Log-linear estimate:  alpha_hat = 3.75
+Default in cagan_ree: α  = 5.00
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">infl_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">infl</span><span class="p">[</span><span class="mi">44</span><span class="p">:</span><span class="mi">63</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">infl</span><span class="p">[</span><span class="mi">44</span><span class="p">:</span><span class="mi">63</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">infl</span><span class="p">[</span><span class="mi">44</span><span class="p">:</span><span class="mi">63</span><span class="p">],</span> <span class="n">log_bal</span><span class="p">[</span><span class="mi">44</span><span class="p">:</span><span class="mi">63</span><span class="p">],</span>
+           <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;data (hyperinflation)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">infl_grid</span><span class="p">,</span> <span class="n">a_log</span> <span class="o">+</span> <span class="n">b_log</span> <span class="o">*</span> <span class="n">infl_grid</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;log-linear fit: $\hat</span><span class="se">{{</span><span class="s1">\alpha</span><span class="se">}}</span><span class="s1"> = </span><span class="si">{</span><span class="n">α_hat</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Monthly inflation rate $</span><span class="se">\\</span><span class="s1">pi_t$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">log(</span><span class="se">\\</span><span class="s1">mathrm{real</span><span class="se">\\</span><span class="s1">;balances})$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Cagan demand for money - hyperinflation period&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/f3cf09123df39526d1004aa8b66d9c8c9ee2feccb5b04ff8e61d605fb61f3b75.png"><img alt="_images/f3cf09123df39526d1004aa8b66d9c8c9ee2feccb5b04ff8e61d605fb61f3b75.png" src="_images/f3cf09123df39526d1004aa8b66d9c8c9ee2feccb5b04ff8e61d605fb61f3b75.png" style="width: 80%;" />
+</a>
+</div>
+</div>
+<p><strong>Part c:</strong> Cagan’s model postulates an exponential fall in real balances as
+inflation rises, <span class="math notranslate nohighlight">\(M/p = e^{c - \alpha\pi}\)</span>.</p>
+<p>Over a hyperinflation real balances vary by orders of magnitude, so a linear
+fit of <code class="docutils literal notranslate"><span class="pre">infl</span></code> on <code class="docutils literal notranslate"><span class="pre">bal</span></code> is a poor global approximation because it imposes a straight line on what is an exponential curve.</p>
+<p>Taking logs first makes the relationship linear and the regression well-specified
+across the full range of the data.</p>
+<p><strong>Part d:</strong> <span class="math notranslate nohighlight">\(\hat\alpha\)</span> should come out in the range of 3-6, consistent with the
+default <span class="math notranslate nohighlight">\(\alpha = 5\)</span> in <a class="reference internal" href="cagan_ree.html"><span class="doc">A Monetarist Theory of Price Levels</span></a>, confirming that the same model estimated
+on 18th-century French data gives a parameter value similar to those obtained from
+20th-century hyperinflations.</p>
+</section>
+</div>
+<div class="exercise admonition" id="fr_ex3">
+
+<p class="admonition-title"><span class="caption-number">Exercise 5.3 </span></p>
+<section id="exercise-content">
+<p><strong>A single-figure portrait of the three monetary regimes.</strong></p>
+<p>The lecture presents the three monetary regimes through five separate scatter plots.</p>
+<p>Here you will synthesise them into a single figure that makes the contrasting theories visually obvious.</p>
+<p>Produce a figure with all three scatter clouds (blue circles, red pluses, orange
+stars) and one regression line per cloud, using the coefficients already computed
+in the lecture:</p>
+<ul class="simple">
+<li><p><strong>Real bills</strong> (indices 1:31): draw the regression line
+<code class="docutils literal notranslate"><span class="pre">infl</span> <span class="pre">=</span> <span class="pre">a1</span> <span class="pre">+</span> <span class="pre">b1</span> <span class="pre">*</span> <span class="pre">bal</span></code>  (theory says growing <em>backed</em> real balances accompany
+only modest inflation).</p></li>
+<li><p><strong>Terror</strong> (indices 31:44): because legal restrictions suspended the normal
+money-demand relationship, draw the <em>reversed</em> regression
+<code class="docutils literal notranslate"><span class="pre">bal</span> <span class="pre">=</span> <span class="pre">a2_rev</span> <span class="pre">+</span> <span class="pre">b2_rev</span> <span class="pre">*</span> <span class="pre">infl</span></code> as a function of <code class="docutils literal notranslate"><span class="pre">infl</span></code>, which produces a
+nearly <em>horizontal</em> line in <code class="docutils literal notranslate"><span class="pre">(bal,</span> <span class="pre">infl)</span></code> space and shows that real balances
+were held roughly fixed by force regardless of inflation.</p></li>
+<li><p><strong>Hyperinflation</strong> (indices 44:63): draw <code class="docutils literal notranslate"><span class="pre">infl</span> <span class="pre">=</span> <span class="pre">a3</span> <span class="pre">+</span> <span class="pre">b3</span> <span class="pre">*</span> <span class="pre">bal</span></code>  (the classic
+negative Cagan slope, since higher inflation accompanies lower real balances).</p></li>
+</ul>
+<p>After producing the figure, write 2-3 sentences explaining why the Terror
+regression line takes a different orientation from the other two.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="french_rev-solution-5">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#fr_ex3"> Exercise 5.3</a></p>
+<section id="solution-content">
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="c1"># Real bills</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bal</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">31</span><span class="p">],</span> <span class="n">infl</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">31</span><span class="p">],</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markerfacecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Real bills (1791-1793)&#39;</span><span class="p">)</span>
+<span class="n">bal_grid1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">bal</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">31</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">bal</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">31</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bal_grid1</span><span class="p">,</span> <span class="n">a1</span> <span class="o">+</span> <span class="n">b1</span> <span class="o">*</span> <span class="n">bal_grid1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Terror</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bal</span><span class="p">[</span><span class="mi">31</span><span class="p">:</span><span class="mi">44</span><span class="p">],</span> <span class="n">infl</span><span class="p">[</span><span class="mi">31</span><span class="p">:</span><span class="mi">44</span><span class="p">],</span> <span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Terror (1793-1794)&#39;</span><span class="p">)</span>
+<span class="n">infl_grid2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">infl</span><span class="p">[</span><span class="mi">31</span><span class="p">:</span><span class="mi">44</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">infl</span><span class="p">[</span><span class="mi">31</span><span class="p">:</span><span class="mi">44</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">a2_rev</span> <span class="o">+</span> <span class="n">b2_rev</span> <span class="o">*</span> <span class="n">infl_grid2</span><span class="p">,</span> <span class="n">infl_grid2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Hyperinflation</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bal</span><span class="p">[</span><span class="mi">44</span><span class="p">:</span><span class="mi">63</span><span class="p">],</span> <span class="n">infl</span><span class="p">[</span><span class="mi">44</span><span class="p">:</span><span class="mi">63</span><span class="p">],</span> <span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Hyperinflation (1794-1796)&#39;</span><span class="p">)</span>
+<span class="n">bal_grid3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">bal</span><span class="p">[</span><span class="mi">44</span><span class="p">:</span><span class="mi">63</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">bal</span><span class="p">[</span><span class="mi">44</span><span class="p">:</span><span class="mi">63</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bal_grid3</span><span class="p">,</span> <span class="n">a3</span> <span class="o">+</span> <span class="n">b3</span> <span class="o">*</span> <span class="n">bal_grid3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Real balances (millions of livres)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Monthly inflation rate&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Three monetary regimes in Revolutionary France&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/7909ce25027a5061e0b5dcbc21c45410043e18cd5a481ac87afe60895a401b21.png"><img alt="_images/7909ce25027a5061e0b5dcbc21c45410043e18cd5a481ac87afe60895a401b21.png" src="_images/7909ce25027a5061e0b5dcbc21c45410043e18cd5a481ac87afe60895a401b21.png" style="width: 80%;" />
+</a>
+</div>
+</div>
+<p>During the Terror the Committee of Public Safety imposed legal restrictions, including the death penalty for refusing assignats, that forced citizens to hold high real balances regardless of how fast prices were rising.</p>
+<p>This broke the normal money-demand relationship because real balances were determined by government decree rather than by inflation.</p>
+<p>Regressing <code class="docutils literal notranslate"><span class="pre">bal</span></code> on <code class="docutils literal notranslate"><span class="pre">infl</span></code> and plotting the result as a nearly horizontal line reflects this altered direction of causation.</p>
+<p>Inflation varied substantially during the Terror, but real balances barely moved.</p>
+<p>By contrast, both the real-bills and hyperinflation clouds obey a theory in which real balances are chosen by the public and hence respond to inflation.</p>
+</section>
+</div>
 </section>
 </section>
 
@@ -1777,6 +2063,8 @@ period of the hyperinflation.</p>
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/french_rev.md" download><i data-feather="github"></i></a></li>
                     -->
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro" download><i data-feather="github"></i></a></li>
+                    
+                    
                 </ul>
 
             </div>

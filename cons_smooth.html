@@ -77,13 +77,13 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=ca16d73eb23eeca4aff446ccb0673818c18f9cfc" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=ff5dcadef89fd2097ea5e28ddaad7eb5985f09c4" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=4c010e0d" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=3a5ece24" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -101,8 +101,8 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
-    <script src="_static/scripts/quantecon-book-theme.js?digest=239405dfbfda750f9038d3ea275d1490a4be841e"></script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=9980b4379844dc0b911d69b62b295f34ede88fac"></script>
     <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
     <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -158,8 +158,27 @@
 <meta property="og:site_name" content="A First Course in Quantitative Economics with Python" />
 <meta name="theme-color" content="#ffffff" />
 
+
+
+
   </head>
 <body>
+
+<!-- Prevent flash of light theme when dark mode is saved -->
+<script>
+(function() {
+  try {
+    if (localStorage.setContrast === '1') {
+      document.body.classList.add('dark-theme');
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  } catch(e) {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+})();
+</script>
 
 <!-- Override QuantEcon theme colors -->
 
@@ -180,7 +199,7 @@
                     
 
                     
-                    <div class="inner">
+                    <div class="inner sticky" data-autoexpand="true">
 
                         
                         <div class="qe-page__toc-header">
@@ -213,6 +232,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#second-order-difference-equation">12.6.2. Second-order difference equation</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">12.7. Exercises</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -233,12 +253,14 @@
                             
                             
                             
-                            <p><a href="#top"><strong>Back to top</strong></a></p>
+                            
                             
                         </div>
 
                     </div>
 
+                    
+                    <a href="#top" class="back-to-top-btn" title="Back to top">↑ Top</a>
                     
 
                 </div>
@@ -266,7 +288,7 @@
 
                     <!-- Last modified / Changelog dropdown -->
                         <button class="qe-page__header-changed" id="changelog-toggle" aria-expanded="false">
-                            Last changed: Jan 31, 2025
+                            Last changed: May 24, 2026
                             <span class="changelog-icon">▼</span>
                         </button>
 
@@ -274,6 +296,15 @@
                     <div class="qe-page__header-changelog" id="changelog-content" aria-hidden="true">
                         <h4>Changelog (<a href="https://github.com/QuantEcon/lecture-python-intro/commits/main/lectures/cons_smooth.md">full history</a>)</h4>
                         <ul class="changelog-list">
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/ae928c86" class="changelog-hash">ae928c86</a>
+                                
+                                <span class="changelog-author">Humphrey Yang</span>
+                                <span class="changelog-time">14 minutes ago</span>
+                                <span class="changelog-message">Adding Tom's Edits to Exercises (#748)</span>
+                            </li>
                             
                             <li class="changelog-entry">
                                 
@@ -356,15 +387,6 @@
                                 <span class="changelog-message">Tom and Humphrey's edit of cons_smooth.md lecture</span>
                             </li>
                             
-                            <li class="changelog-entry">
-                                
-                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/456e1933" class="changelog-hash">456e1933</a>
-                                
-                                <span class="changelog-author">Matt McKay</span>
-                                <span class="changelog-time">2 years ago</span>
-                                <span class="changelog-message">FIX: fix missing h0 returned from compute_optimal (#348)</span>
-                            </li>
-                            
                         </ul>
                     </div>
 
@@ -381,7 +403,7 @@
 <h1><span class="section-number">12. </span>Consumption Smoothing<a class="headerlink" href="#consumption-smoothing" title="Link to this heading">#</a></h1>
 <section id="overview">
 <h2><span class="section-number">12.1. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
-<p>In this lecture, we’ll study a famous model of the “consumption function” that Milton Friedman <span id="id1">[<a class="reference internal" href="zreferences.html#id183" title="M. Friedman. A Theory of the Consumption Function. Princeton University Press, 1956.">Friedman, 1956</a>]</span> and Robert Hall <span id="id2">[<a class="reference internal" href="zreferences.html#id184" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hall, 1978</a>]</span>)  proposed to fit some empirical data patterns that the original  Keynesian consumption function  described in this QuantEcon lecture <a class="reference internal" href="geom_series.html"><span class="doc">geometric series</span></a>  missed.</p>
+<p>In this lecture, we’ll study a famous model of the “consumption function” that Milton Friedman <span class="bibtex-citation" id="id1">[<a class="reference internal" href="zreferences.html#id183" title="M. Friedman. A Theory of the Consumption Function. Princeton University Press, 1956.">Friedman, 1956</a>]</span> and Robert Hall <span class="bibtex-citation" id="id2">[<a class="reference internal" href="zreferences.html#id184" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hall, 1978</a>]</span>)  proposed to fit some empirical data patterns that the original  Keynesian consumption function  described in this QuantEcon lecture <a class="reference internal" href="geom_series.html"><span class="doc">geometric series</span></a>  missed.</p>
 <p>We’ll study what is often  called the “consumption-smoothing model.”</p>
 <p>We’ll use  matrix multiplication and matrix inversion, the same tools that we used in this QuantEcon lecture <a class="reference internal" href="pv.html"><span class="doc">present values</span></a>.</p>
 <p>Formulas presented in  <a class="reference internal" href="pv.html"><span class="doc">present value formulas</span></a> are at the core of the consumption-smoothing model because we shall use them to define a consumer’s “human wealth”.</p>
@@ -393,7 +415,7 @@ and that standard asset-pricing formulas can be applied to compute
 <p class="admonition-title">Note</p>
 <p>As we’ll see in this QuantEcon lecture  <a class="reference internal" href="equalizing_difference.html"><span class="doc">equalizing difference model</span></a>,
 Milton Friedman had used this idea  in his PhD thesis at Columbia University,
-eventually published as <span id="id3">[<a class="reference internal" href="zreferences.html#id9" title="Simon Kuznets and Milton Friedman. Incomes from independent professional practice, 1929-1936. National Bureau of Economic Research Bulletin, 1939.">Kuznets and Friedman, 1939</a>]</span> and <span id="id4">[<a class="reference internal" href="zreferences.html#id10" title="Milton Friedman and Simon Kuznets. Income from Independent Professional Practice. National Bureau of Economic Research, New York, 1945.">Friedman and Kuznets, 1945</a>]</span>.</p>
+eventually published as <span class="bibtex-citation" id="id3">[<a class="reference internal" href="zreferences.html#id9" title="Simon Kuznets and Milton Friedman. Incomes from independent professional practice, 1929-1936. National Bureau of Economic Research Bulletin, 1939.">Kuznets and Friedman, 1939</a>]</span> and <span class="bibtex-citation" id="id4">[<a class="reference internal" href="zreferences.html#id10" title="Milton Friedman and Simon Kuznets. Income from Independent Professional Practice. National Bureau of Economic Research, New York, 1945.">Friedman and Kuznets, 1945</a>]</span>.</p>
 </div>
 <p>It will take a while for a “present value” or asset price explicitly to appear in this lecture, but when it does it will be a key actor.</p>
 </section>
@@ -462,7 +484,7 @@ with the exogenous non-financial income stream <span class="math notranslate noh
 <span class="eqno">(12.2)<a class="headerlink" href="#equation-welfare" title="Link to this equation">#</a></span>\[W = \sum_{t=0}^T \beta^t (g_1 c_t - \frac{g_2}{2} c_t^2 )\]</div>
 <p>where <span class="math notranslate nohighlight">\(g_1 &gt; 0, g_2 &gt; 0\)</span>.</p>
 <p>When <span class="math notranslate nohighlight">\(\beta R \approx 1\)</span>, the fact that the utility function <span class="math notranslate nohighlight">\(g_1 c_t - \frac{g_2}{2} c_t^2\)</span> has diminishing marginal utility imparts a preference for consumption that is very smooth.</p>
-<p>Indeed, we shall see that when <span class="math notranslate nohighlight">\(\beta R = 1\)</span> (a condition assumed by Milton Friedman <span id="id5">[<a class="reference internal" href="zreferences.html#id183" title="M. Friedman. A Theory of the Consumption Function. Princeton University Press, 1956.">Friedman, 1956</a>]</span> and Robert Hall <span id="id6">[<a class="reference internal" href="zreferences.html#id184" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hall, 1978</a>]</span>),  criterion <a class="reference internal" href="#equation-welfare">(12.2)</a> assigns higher welfare to smoother consumption paths.</p>
+<p>Indeed, we shall see that when <span class="math notranslate nohighlight">\(\beta R = 1\)</span> (a condition assumed by Milton Friedman <span class="bibtex-citation" id="id5">[<a class="reference internal" href="zreferences.html#id183" title="M. Friedman. A Theory of the Consumption Function. Princeton University Press, 1956.">Friedman, 1956</a>]</span> and Robert Hall <span class="bibtex-citation" id="id6">[<a class="reference internal" href="zreferences.html#id184" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hall, 1978</a>]</span>),  criterion <a class="reference internal" href="#equation-welfare">(12.2)</a> assigns higher welfare to smoother consumption paths.</p>
 <p>By <strong>smoother</strong> we mean as close as possible to being constant over time.</p>
 <p>The preference for smooth consumption paths that is built into the model gives it the  name “consumption-smoothing model”.</p>
 <p>We’ll postpone verifying our claim that a constant consumption path is optimal when <span class="math notranslate nohighlight">\(\beta R=1\)</span>
@@ -472,13 +494,13 @@ by comparing welfare levels that comes from a constant path with ones that invol
 <p>We create a Python <strong>namedtuple</strong> to store these parameters with default values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ConsumptionSmoothing</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">&quot;ConsumptionSmoothing&quot;</span><span class="p">,</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ConsumptionSmoothing</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">&quot;ConsumptionSmoothing&quot;</span><span class="p">,</span>
                         <span class="p">[</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;g1&quot;</span><span class="p">,</span> <span class="s2">&quot;g2&quot;</span><span class="p">,</span> <span class="s2">&quot;β_seq&quot;</span><span class="p">,</span> <span class="s2">&quot;T&quot;</span><span class="p">])</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">create_consumption_smoothing_model</span><span class="p">(</span><span class="n">R</span><span class="o">=</span><span class="mf">1.05</span><span class="p">,</span> <span class="n">g1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">g2</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">65</span><span class="p">):</span>
     <span class="n">β</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">R</span>
     <span class="n">β_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">β</span><span class="o">**</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">)])</span>
-    <span class="k">return</span> <span class="n">ConsumptionSmoothing</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">g1</span><span class="p">,</span> <span class="n">g2</span><span class="p">,</span> 
+    <span class="k">return</span> <span class="n">ConsumptionSmoothing</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">g1</span><span class="p">,</span> <span class="n">g2</span><span class="p">,</span>
                                 <span class="n">β_seq</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -503,13 +525,13 @@ a_{T+1} = 0,
 \]</div>
 <p>it is possible to convert a sequence of budget constraints <a class="reference internal" href="#equation-eq-a-t">(12.1)</a> into a single intertemporal constraint</p>
 <div class="math notranslate nohighlight" id="equation-eq-budget-intertemp">
-<span class="eqno">(12.3)<a class="headerlink" href="#equation-eq-budget-intertemp" title="Link to this equation">#</a></span>\[ 
-\sum_{t=0}^T R^{-t} c_t = a_0 + h_0. 
+<span class="eqno">(12.3)<a class="headerlink" href="#equation-eq-budget-intertemp" title="Link to this equation">#</a></span>\[
+\sum_{t=0}^T R^{-t} c_t = a_0 + h_0.
 \]</div>
 <p>Equation <a class="reference internal" href="#equation-eq-budget-intertemp">(12.3)</a>  says that the present value of the consumption stream equals the sum of financial and non-financial (or human) wealth.</p>
-<p>Robert Hall <span id="id7">[<a class="reference internal" href="zreferences.html#id184" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hall, 1978</a>]</span> showed that when <span class="math notranslate nohighlight">\(\beta R = 1\)</span>, a condition Milton Friedman had also  assumed, it is “optimal” for a consumer to smooth consumption by setting</p>
+<p>Robert Hall <span class="bibtex-citation" id="id7">[<a class="reference internal" href="zreferences.html#id184" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hall, 1978</a>]</span> showed that when <span class="math notranslate nohighlight">\(\beta R = 1\)</span>, a condition Milton Friedman had also  assumed, it is “optimal” for a consumer to smooth consumption by setting</p>
 <div class="math notranslate nohighlight">
-\[ 
+\[
 c_t = c_0 \quad t =0, 1, \ldots, T
 \]</div>
 <p>(Later we’ll present a “variational argument” that shows that this constant path maximizes
@@ -548,17 +570,17 @@ c_t = c_0 = \left( \frac{1 - R^{-1}}{1 - R^{-(T+1)}} \right) (a_0 + \sum_{t=0}^T
 <p>To do this, we translate that system of difference equations into a single matrix equation as follows:</p>
 <div class="math notranslate nohighlight">
 \[
-\begin{bmatrix} 
+\begin{bmatrix}
 1 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 &amp; 0 \cr
 -R &amp; 1 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 &amp; 0 \cr
 0 &amp; -R &amp; 1 &amp; \cdots &amp; 0 &amp; 0 &amp; 0 \cr
 \vdots  &amp;\vdots &amp; \vdots &amp; \cdots &amp; \vdots &amp; \vdots &amp; \vdots \cr
 0 &amp; 0 &amp; 0 &amp; \cdots &amp; -R &amp; 1 &amp; 0 \cr
 0 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; -R &amp; 1
-\end{bmatrix} 
-\begin{bmatrix} a_1 \cr a_2 \cr a_3 \cr \vdots \cr a_T \cr a_{T+1} 
 \end{bmatrix}
-= R 
+\begin{bmatrix} a_1 \cr a_2 \cr a_3 \cr \vdots \cr a_T \cr a_{T+1}
+\end{bmatrix}
+= R
 \begin{bmatrix} y_0 + a_0 - c_0 \cr y_1 - c_0 \cr y_2 - c_0 \cr \vdots\cr y_{T-1} - c_0 \cr y_T - c_0
 \end{bmatrix}
 \]</div>
@@ -615,7 +637,7 @@ a_{T+1} = 0.
 <span class="n">cs_model</span> <span class="o">=</span> <span class="n">create_consumption_smoothing_model</span><span class="p">()</span>
 <span class="n">c_seq</span><span class="p">,</span> <span class="n">a_seq</span><span class="p">,</span> <span class="n">h0</span> <span class="o">=</span> <span class="n">compute_optimal</span><span class="p">(</span><span class="n">cs_model</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">y_seq</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;check a_T+1=0:&#39;</span><span class="p">,</span> 
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;check a_T+1=0:&#39;</span><span class="p">,</span>
       <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">a_seq</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mf">1e-8</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -682,30 +704,30 @@ a_{T+1} = 0.
 <p>This will  help us avoid rewriting code to plot outcomes for different non-financial income sequences.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_cs</span><span class="p">(</span><span class="n">model</span><span class="p">,</span>    <span class="c1"># consumption-smoothing model      </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_cs</span><span class="p">(</span><span class="n">model</span><span class="p">,</span>    <span class="c1"># consumption-smoothing model</span>
             <span class="n">a0</span><span class="p">,</span>       <span class="c1"># initial financial wealth</span>
             <span class="n">y_seq</span>     <span class="c1"># non-financial income process</span>
            <span class="p">):</span>
-    
+
     <span class="c1"># Compute optimal consumption</span>
     <span class="n">c_seq</span><span class="p">,</span> <span class="n">a_seq</span><span class="p">,</span> <span class="n">h0</span> <span class="o">=</span> <span class="n">compute_optimal</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">y_seq</span><span class="p">)</span>
-    
+
     <span class="c1"># Sequence length</span>
     <span class="n">T</span> <span class="o">=</span> <span class="n">cs_model</span><span class="o">.</span><span class="n">T</span>
-    
+
     <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-    
+
     <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">y_seq</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;non-financial income&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">c_seq</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;consumption&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="n">a_seq</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;financial wealth&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$c_t,y_t$&#39;</span><span class="p">)</span>
     <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$a_t$&#39;</span><span class="p">)</span>
-    
+
     <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axes</span><span class="p">:</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
-    
+
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -811,7 +833,7 @@ a_{T+1} = 0.
 <span class="n">t_max</span> <span class="o">=</span> <span class="mi">46</span>
 
 <span class="c1"># Generate geometric y sequence</span>
-<span class="n">geo_seq</span> <span class="o">=</span> <span class="n">λ</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t_max</span><span class="p">)</span> <span class="o">*</span> <span class="n">y_0</span> 
+<span class="n">geo_seq</span> <span class="o">=</span> <span class="n">λ</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t_max</span><span class="p">)</span> <span class="o">*</span> <span class="n">y_0</span>
 <span class="n">y_seq_geo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
             <span class="p">[</span><span class="n">geo_seq</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">20</span><span class="p">)])</span>
 
@@ -829,7 +851,7 @@ a_{T+1} = 0.
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">λ</span> <span class="o">=</span> <span class="mf">0.95</span>
 
-<span class="n">geo_seq</span> <span class="o">=</span> <span class="n">λ</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t_max</span><span class="p">)</span> <span class="o">*</span> <span class="n">y_0</span> 
+<span class="n">geo_seq</span> <span class="o">=</span> <span class="n">λ</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t_max</span><span class="p">)</span> <span class="o">*</span> <span class="n">y_0</span>
 <span class="n">y_seq_geo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
             <span class="p">[</span><span class="n">geo_seq</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">20</span><span class="p">)])</span>
 
@@ -895,7 +917,7 @@ v_t = \xi_1 \phi^t - \xi_0
 <p>which implies that</p>
 <div class="math notranslate nohighlight">
 \[
-\xi_1 \sum_{t=0}^T \phi_t R^{-t} - \xi_0 \sum_{t=0}^T R^{-t} = 0
+\xi_1 \sum_{t=0}^T \phi^t R^{-t} - \xi_0 \sum_{t=0}^T R^{-t} = 0
 \]</div>
 <p>which implies that</p>
 <div class="math notranslate nohighlight">
@@ -918,9 +940,16 @@ to compute alternative consumption paths, then evaluate their welfare.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">compute_variation</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">ξ1</span><span class="p">,</span> <span class="n">ϕ</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">y_seq</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="n">R</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">β_seq</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">R</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">β_seq</span>
 
-    <span class="n">ξ0</span> <span class="o">=</span> <span class="n">ξ1</span><span class="o">*</span><span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="n">R</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">R</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">)))</span> <span class="o">*</span> <span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">ϕ</span><span class="o">/</span><span class="n">R</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">ϕ</span><span class="o">/</span><span class="n">R</span><span class="p">))</span>
+    <span class="n">growth</span> <span class="o">=</span> <span class="n">ϕ</span> <span class="o">/</span> <span class="n">R</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">growth</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">pv_sum</span> <span class="o">=</span> <span class="n">T</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">pv_sum</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">growth</span><span class="o">**</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">growth</span><span class="p">)</span>
+
+    <span class="n">annuity</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="n">R</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">R</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">ξ0</span> <span class="o">=</span> <span class="n">ξ1</span> <span class="o">*</span> <span class="n">annuity</span> <span class="o">*</span> <span class="n">pv_sum</span>
     <span class="n">v_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="n">ξ1</span><span class="o">*</span><span class="n">ϕ</span><span class="o">**</span><span class="n">t</span> <span class="o">-</span> <span class="n">ξ0</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">)])</span>
-    
+
     <span class="k">if</span> <span class="n">verbose</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;check feasible:&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">β_seq</span> <span class="o">@</span> <span class="n">v_seq</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>     <span class="c1"># since β = 1/R</span>
 
@@ -946,20 +975,20 @@ to compute alternative consumption paths, then evaluate their welfare.</p>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">param</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">params</span><span class="p">):</span>
     <span class="n">ξ1</span><span class="p">,</span> <span class="n">ϕ</span> <span class="o">=</span> <span class="n">param</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;variation </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">: ξ1=</span><span class="si">{</span><span class="n">ξ1</span><span class="si">}</span><span class="s1">, ϕ=</span><span class="si">{</span><span class="n">ϕ</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">cvar_seq</span> <span class="o">=</span> <span class="n">compute_variation</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">cs_model</span><span class="p">,</span> 
-                                 <span class="n">ξ1</span><span class="o">=</span><span class="n">ξ1</span><span class="p">,</span> <span class="n">ϕ</span><span class="o">=</span><span class="n">ϕ</span><span class="p">,</span> <span class="n">a0</span><span class="o">=</span><span class="n">a0</span><span class="p">,</span> 
+    <span class="n">cvar_seq</span> <span class="o">=</span> <span class="n">compute_variation</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">cs_model</span><span class="p">,</span>
+                                 <span class="n">ξ1</span><span class="o">=</span><span class="n">ξ1</span><span class="p">,</span> <span class="n">ϕ</span><span class="o">=</span><span class="n">ϕ</span><span class="p">,</span> <span class="n">a0</span><span class="o">=</span><span class="n">a0</span><span class="p">,</span>
                                  <span class="n">y_seq</span><span class="o">=</span><span class="n">y_seq</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;welfare=</span><span class="si">{</span><span class="n">welfare</span><span class="p">(</span><span class="n">cs_model</span><span class="p">,</span><span class="w"> </span><span class="n">cvar_seq</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">64</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">ls</span> <span class="o">=</span> <span class="s1">&#39;-.&#39;</span>
-    <span class="k">else</span><span class="p">:</span> 
-        <span class="n">ls</span> <span class="o">=</span> <span class="s1">&#39;-&#39;</span>  
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">cvar_seq</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="n">ls</span><span class="p">,</span> 
-            <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">ξ1</span><span class="p">],</span> 
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ls</span> <span class="o">=</span> <span class="s1">&#39;-&#39;</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">cvar_seq</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="n">ls</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">ξ1</span><span class="p">],</span>
             <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$\xi_1 = </span><span class="si">{</span><span class="n">ξ1</span><span class="si">}</span><span class="s1">, \phi = </span><span class="si">{</span><span class="n">ϕ</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">c_seq</span><span class="p">,</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">c_seq</span><span class="p">,</span>
          <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Optimal $\vec</span><span class="si">{c}</span><span class="s1">$ &#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
@@ -999,13 +1028,13 @@ welfare=13.28156768298361
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">welfare_rel</span><span class="p">(</span><span class="n">ξ1</span><span class="p">,</span> <span class="n">ϕ</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Compute welfare of variation sequence </span>
+<span class="sd">    Compute welfare of variation sequence</span>
 <span class="sd">    for given ϕ, ξ1 with a consumption-smoothing model</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    
-    <span class="n">cvar_seq</span> <span class="o">=</span> <span class="n">compute_variation</span><span class="p">(</span><span class="n">cs_model</span><span class="p">,</span> <span class="n">ξ1</span><span class="o">=</span><span class="n">ξ1</span><span class="p">,</span> 
-                                 <span class="n">ϕ</span><span class="o">=</span><span class="n">ϕ</span><span class="p">,</span> <span class="n">a0</span><span class="o">=</span><span class="n">a0</span><span class="p">,</span> 
-                                 <span class="n">y_seq</span><span class="o">=</span><span class="n">y_seq</span><span class="p">,</span> 
+
+    <span class="n">cvar_seq</span> <span class="o">=</span> <span class="n">compute_variation</span><span class="p">(</span><span class="n">cs_model</span><span class="p">,</span> <span class="n">ξ1</span><span class="o">=</span><span class="n">ξ1</span><span class="p">,</span>
+                                 <span class="n">ϕ</span><span class="o">=</span><span class="n">ϕ</span><span class="p">,</span> <span class="n">a0</span><span class="o">=</span><span class="n">a0</span><span class="p">,</span>
+                                 <span class="n">y_seq</span><span class="o">=</span><span class="n">y_seq</span><span class="p">,</span>
                                  <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">welfare</span><span class="p">(</span><span class="n">cs_model</span><span class="p">,</span> <span class="n">cvar_seq</span><span class="p">)</span>
 
@@ -1071,7 +1100,7 @@ welfare=13.28156768298361
 </section>
 <section id="wrapping-up-the-consumption-smoothing-model">
 <h2><span class="section-number">12.5. </span>Wrapping up the consumption-smoothing model<a class="headerlink" href="#wrapping-up-the-consumption-smoothing-model" title="Link to this heading">#</a></h2>
-<p>The consumption-smoothing model of Milton Friedman <span id="id8">[<a class="reference internal" href="zreferences.html#id183" title="M. Friedman. A Theory of the Consumption Function. Princeton University Press, 1956.">Friedman, 1956</a>]</span> and Robert Hall <span id="id9">[<a class="reference internal" href="zreferences.html#id184" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hall, 1978</a>]</span>) is a cornerstone of modern economics that has important ramifications for the size of the Keynesian  “fiscal policy multiplier” that we  described in
+<p>The consumption-smoothing model of Milton Friedman <span class="bibtex-citation" id="id8">[<a class="reference internal" href="zreferences.html#id183" title="M. Friedman. A Theory of the Consumption Function. Princeton University Press, 1956.">Friedman, 1956</a>]</span> and Robert Hall <span class="bibtex-citation" id="id9">[<a class="reference internal" href="zreferences.html#id184" title="Robert E Hall. Stochastic Implications of the Life Cycle-Permanent Income Hypothesis: Theory and Evidence. Journal of Political Economy, 86(6):971–987, 1978.">Hall, 1978</a>]</span>) is a cornerstone of modern economics that has important ramifications for the size of the Keynesian  “fiscal policy multiplier” that we  described in
 QuantEcon lecture <a class="reference internal" href="geom_series.html"><span class="doc">geometric series</span></a>.</p>
 <p>The consumption-smoothingmodel   <strong>lowers</strong> the government expenditure  multiplier relative to  one implied by the original Keynesian consumption function presented in <a class="reference internal" href="geom_series.html"><span class="doc">geometric series</span></a>.</p>
 <p>Friedman’s   work opened the door to an enlightening literature on the aggregate consumption function and associated government expenditure  multipliers that remains  active today.</p>
@@ -1095,36 +1124,36 @@ y_{t} = \lambda y_{t-1}, \quad t = 1, 2, \ldots, T
 <p>We can cast this set of <span class="math notranslate nohighlight">\(T\)</span> equations as a single  matrix equation</p>
 <div class="math notranslate nohighlight" id="equation-eq-first-order-lin-diff">
 <span class="eqno">(12.5)<a class="headerlink" href="#equation-eq-first-order-lin-diff" title="Link to this equation">#</a></span>\[
-\begin{bmatrix} 
+\begin{bmatrix}
 1 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \cr
 -\lambda &amp; 1 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \cr
 0 &amp; -\lambda &amp; 1 &amp; \cdots &amp; 0 &amp; 0 \cr
  \vdots &amp; \vdots &amp; \vdots &amp; \cdots &amp; \vdots &amp; \vdots \cr
-0 &amp; 0 &amp; 0 &amp; \cdots &amp; -\lambda &amp; 1 
-\end{bmatrix} 
-\begin{bmatrix}
-y_1 \cr y_2 \cr y_3 \cr \vdots \cr y_T 
+0 &amp; 0 &amp; 0 &amp; \cdots &amp; -\lambda &amp; 1
 \end{bmatrix}
-= 
-\begin{bmatrix} 
-\lambda y_0 \cr 0 \cr 0 \cr \vdots \cr 0 
+\begin{bmatrix}
+y_1 \cr y_2 \cr y_3 \cr \vdots \cr y_T
+\end{bmatrix}
+=
+\begin{bmatrix}
+\lambda y_0 \cr 0 \cr 0 \cr \vdots \cr 0
 \end{bmatrix}
 \]</div>
 <p>Multiplying both sides of <a class="reference internal" href="#equation-eq-first-order-lin-diff">(12.5)</a>  by the  inverse of the matrix on the left provides the solution</p>
 <div class="math notranslate nohighlight" id="equation-fst-ord-inverse">
-<span class="eqno">(12.6)<a class="headerlink" href="#equation-fst-ord-inverse" title="Link to this equation">#</a></span>\[\begin{bmatrix} 
-y_1 \cr y_2 \cr y_3 \cr \vdots \cr y_T 
-\end{bmatrix} 
-= 
-\begin{bmatrix} 
+<span class="eqno">(12.6)<a class="headerlink" href="#equation-fst-ord-inverse" title="Link to this equation">#</a></span>\[\begin{bmatrix}
+y_1 \cr y_2 \cr y_3 \cr \vdots \cr y_T
+\end{bmatrix}
+=
+\begin{bmatrix}
 1 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \cr
 \lambda &amp; 1 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \cr
 \lambda^2 &amp; \lambda &amp; 1 &amp; \cdots &amp; 0 &amp; 0 \cr
  \vdots &amp; \vdots &amp; \vdots &amp; \cdots &amp; \vdots &amp; \vdots \cr
-\lambda^{T-1} &amp; \lambda^{T-2} &amp; \lambda^{T-3} &amp; \cdots &amp; \lambda &amp; 1 
+\lambda^{T-1} &amp; \lambda^{T-2} &amp; \lambda^{T-3} &amp; \cdots &amp; \lambda &amp; 1
 \end{bmatrix}
-\begin{bmatrix} 
-\lambda y_0 \cr 0 \cr 0 \cr \vdots \cr 0 
+\begin{bmatrix}
+\lambda y_0 \cr 0 \cr 0 \cr \vdots \cr 0
 \end{bmatrix}\]</div>
 <div class="exercise admonition" id="consmooth_ex1">
 
@@ -1133,15 +1162,55 @@ y_1 \cr y_2 \cr y_3 \cr \vdots \cr y_T
 <p>To get <a class="reference internal" href="#equation-fst-ord-inverse">(12.6)</a>, we multiplied both sides of  <a class="reference internal" href="#equation-eq-first-order-lin-diff">(12.5)</a> by  the inverse of the matrix <span class="math notranslate nohighlight">\(A\)</span>. Please confirm that</p>
 <div class="math notranslate nohighlight">
 \[
-\begin{bmatrix} 
+\begin{bmatrix}
 1 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \cr
 \lambda &amp; 1 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \cr
 \lambda^2 &amp; \lambda &amp; 1 &amp; \cdots &amp; 0 &amp; 0 \cr
  \vdots &amp; \vdots &amp; \vdots &amp; \cdots &amp; \vdots &amp; \vdots \cr
-\lambda^{T-1} &amp; \lambda^{T-2} &amp; \lambda^{T-3} &amp; \cdots &amp; \lambda &amp; 1 
+\lambda^{T-1} &amp; \lambda^{T-2} &amp; \lambda^{T-3} &amp; \cdots &amp; \lambda &amp; 1
 \end{bmatrix}
 \]</div>
 <p>is the inverse of <span class="math notranslate nohighlight">\(A\)</span> and check that <span class="math notranslate nohighlight">\(A A^{-1} = I\)</span></p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="cons_smooth-solution-1">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#consmooth_ex1"> Exercise 12.1</a></p>
+<section id="solution-content">
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">λ</span> <span class="o">=</span> <span class="mf">0.9</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mi">6</span>
+
+<span class="c1"># Matrix A: ones on diagonal, -λ on the first subdiagonal</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="o">-</span> <span class="n">λ</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">T</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">k</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Purported inverse: lower triangular, A_inv[i,j] = λ^(i-j) for i &gt;= j</span>
+<span class="n">A_inv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">A_inv</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">λ</span><span class="o">**</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="n">j</span><span class="p">)</span>
+
+<span class="c1"># Verify A @ A_inv = I</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A @ A_inv (should be identity):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">A</span> <span class="o">@</span> <span class="n">A_inv</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Is identity:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">A</span> <span class="o">@</span> <span class="n">A_inv</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">T</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A @ A_inv (should be identity):
+[[ 1.  0.  0.  0.  0.  0.]
+ [ 0.  1.  0.  0.  0.  0.]
+ [ 0.  0.  1.  0.  0.  0.]
+ [ 0.  0.  0.  1.  0.  0.]
+ [-0.  0.  0.  0.  1.  0.]
+ [ 0. -0.  0.  0.  0.  1.]]
+Is identity: True
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </div>
 </section>
@@ -1156,19 +1225,19 @@ y_{t} = \lambda_1 y_{t-1} + \lambda_2 y_{t-2}, \quad t = 1, 2, \ldots, T
 <p>As we did with the first-order difference equation, we can cast this set of <span class="math notranslate nohighlight">\(T\)</span> equations as a single matrix equation</p>
 <div class="math notranslate nohighlight">
 \[
-\begin{bmatrix} 
+\begin{bmatrix}
 1 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 &amp; 0 \cr
 -\lambda_1 &amp; 1 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 &amp; 0 \cr
 -\lambda_2 &amp; -\lambda_1 &amp; 1 &amp; \cdots &amp; 0 &amp; 0 &amp; 0 \cr
  \vdots &amp; \vdots &amp; \vdots &amp; \cdots &amp; \vdots &amp; \vdots \cr
-0 &amp; 0 &amp; 0 &amp; \cdots &amp; -\lambda_2 &amp; -\lambda_1 &amp; 1 
-\end{bmatrix} 
-\begin{bmatrix} 
-y_1 \cr y_2 \cr y_3 \cr \vdots \cr y_T 
+0 &amp; 0 &amp; 0 &amp; \cdots &amp; -\lambda_2 &amp; -\lambda_1 &amp; 1
 \end{bmatrix}
-= 
-\begin{bmatrix} 
-\lambda_1 y_0 + \lambda_2 y_{-1} \cr \lambda_2 y_0 \cr 0 \cr \vdots \cr 0 
+\begin{bmatrix}
+y_1 \cr y_2 \cr y_3 \cr \vdots \cr y_T
+\end{bmatrix}
+=
+\begin{bmatrix}
+\lambda_1 y_0 + \lambda_2 y_{-1} \cr \lambda_2 y_0 \cr 0 \cr \vdots \cr 0
 \end{bmatrix}
 \]</div>
 <p>Multiplying both sides by  inverse of the matrix on the left again provides the solution.</p>
@@ -1180,7 +1249,243 @@ y_1 \cr y_2 \cr y_3 \cr \vdots \cr y_T
 How many initial conditions must you specify?</p>
 </section>
 </div>
+<div class="solution dropdown admonition" id="cons_smooth-solution-3">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#consmooth_ex2"> Exercise 12.2</a></p>
+<section id="solution-content">
+<p>A third-order linear difference equation is</p>
+<div class="math notranslate nohighlight">
+\[
+y_t = \lambda_1 y_{t-1} + \lambda_2 y_{t-2} + \lambda_3 y_{t-3}, \quad t = 1, 2, \ldots, T
+\]</div>
+<p>Three initial conditions are required: <span class="math notranslate nohighlight">\(y_0\)</span>, <span class="math notranslate nohighlight">\(y_{-1}\)</span>, and <span class="math notranslate nohighlight">\(y_{-2}\)</span>.</p>
+<p>The matrix representation stacks the <span class="math notranslate nohighlight">\(T\)</span> equations as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots \\
+-\lambda_1 &amp; 1 &amp; 0 &amp; 0 &amp; \cdots \\
+-\lambda_2 &amp; -\lambda_1 &amp; 1 &amp; 0 &amp; \cdots \\
+-\lambda_3 &amp; -\lambda_2 &amp; -\lambda_1 &amp; 1 &amp; \cdots \\
+\vdots &amp; \ddots &amp; \ddots &amp; \ddots &amp; \ddots
+\end{bmatrix}
+\begin{bmatrix} y_1 \\ y_2 \\ y_3 \\ y_4 \\ \vdots \end{bmatrix}
+=
+\begin{bmatrix}
+\lambda_1 y_0 + \lambda_2 y_{-1} + \lambda_3 y_{-2} \\
+\lambda_2 y_0 + \lambda_3 y_{-1} \\
+\lambda_3 y_0 \\
+0 \\
+\vdots
+\end{bmatrix}
+\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">λ1</span><span class="p">,</span> <span class="n">λ2</span><span class="p">,</span> <span class="n">λ3</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.1</span>
+<span class="n">y0</span><span class="p">,</span> <span class="n">y_m1</span><span class="p">,</span> <span class="n">y_m2</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.25</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mi">15</span>
+
+<span class="c1"># Build the 3rd-order coefficient matrix</span>
+<span class="n">A3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">A3</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">λ1</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">A3</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">λ2</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">A3</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">λ3</span>
+
+<span class="c1"># Right-hand side</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+<span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">λ1</span> <span class="o">*</span> <span class="n">y0</span>  <span class="o">+</span> <span class="n">λ2</span> <span class="o">*</span> <span class="n">y_m1</span> <span class="o">+</span> <span class="n">λ3</span> <span class="o">*</span> <span class="n">y_m2</span>
+<span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">λ2</span> <span class="o">*</span> <span class="n">y0</span>  <span class="o">+</span> <span class="n">λ3</span> <span class="o">*</span> <span class="n">y_m1</span>
+<span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">λ3</span> <span class="o">*</span> <span class="n">y0</span>
+
+<span class="c1"># Solve</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A3</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="n">y_full</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([[</span><span class="n">y_m2</span><span class="p">,</span> <span class="n">y_m1</span><span class="p">,</span> <span class="n">y0</span><span class="p">],</span> <span class="n">y</span><span class="p">])</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">y_full</span><span class="p">,</span> <span class="s1">&#39;o-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$y_t$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Third-order linear difference equation&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/e989cefd8ed3c7fcd398e821c1fb93ed237d5dcc77e1e831469b64b6d29c723b.png"><img alt="_images/e989cefd8ed3c7fcd398e821c1fb93ed237d5dcc77e1e831469b64b6d29c723b.png" src="_images/e989cefd8ed3c7fcd398e821c1fb93ed237d5dcc77e1e831469b64b6d29c723b.png" style="width: 80%;" />
+</a>
+</div>
+</div>
 </section>
+</div>
+</section>
+</section>
+<section id="exercises">
+<h2><span class="section-number">12.7. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<div class="exercise admonition" id="consmooth_ex3">
+
+<p class="admonition-title"><span class="caption-number">Exercise 12.3 </span></p>
+<section id="exercise-content">
+<p>Using <code class="docutils literal notranslate"><span class="pre">compute_optimal</span></code>, compute the optimal constant consumption level <span class="math notranslate nohighlight">\(c_0\)</span> for
+initial financial wealth values <span class="math notranslate nohighlight">\(a_0 \in \{-4, -2, 0, 2\}\)</span>, holding fixed the income
+sequence</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+y_t = \begin{cases} 1 &amp; t = 0, 1, \ldots, 45 \\ 0 &amp; t = 46, \ldots, 65 \end{cases}
+\end{split}\]</div>
+<p>and the default model parameters.</p>
+<p>a. Plot all four consumption paths on a single graph and describe their shapes
+relative to one another.</p>
+<p>b. Plot <span class="math notranslate nohighlight">\(c_0\)</span> against <span class="math notranslate nohighlight">\(a_0\)</span>, compute the slope of the resulting line, and verify
+that the slope equals the annuity factor
+<span class="math notranslate nohighlight">\(\left(\frac{1-R^{-1}}{1-R^{-(T+1)}}\right)\)</span> from equation <a class="reference internal" href="#equation-eq-conssmoothing">(12.4)</a>.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="cons_smooth-solution-5">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#consmooth_ex3"> Exercise 12.3</a></p>
+<section id="solution-content">
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cs_model</span> <span class="o">=</span> <span class="n">create_consumption_smoothing_model</span><span class="p">()</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">cs_model</span><span class="o">.</span><span class="n">T</span>
+<span class="n">y_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">46</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">20</span><span class="p">)])</span>
+
+<span class="n">a0_vals</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">c0_vals</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">a0</span> <span class="ow">in</span> <span class="n">a0_vals</span><span class="p">:</span>
+    <span class="n">c_seq</span><span class="p">,</span> <span class="n">a_seq</span><span class="p">,</span> <span class="n">h0</span> <span class="o">=</span> <span class="n">compute_optimal</span><span class="p">(</span><span class="n">cs_model</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">y_seq</span><span class="p">)</span>
+    <span class="n">c0_vals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c_seq</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">c_seq</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$a_0 = </span><span class="si">{</span><span class="n">a0</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$c_t$&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Consumption paths for different $a_0$&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">a0_vals</span><span class="p">,</span> <span class="n">c0_vals</span><span class="p">,</span> <span class="s1">&#39;o-&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$a_0$&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$c_0$&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Optimal $c_0$ as a function of $a_0$&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Verify slope = annuity factor</span>
+<span class="n">R</span> <span class="o">=</span> <span class="n">cs_model</span><span class="o">.</span><span class="n">R</span>
+<span class="n">slope</span> <span class="o">=</span> <span class="p">(</span><span class="n">c0_vals</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">c0_vals</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">a0_vals</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">a0_vals</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">annuity</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="n">R</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">R</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Numerical slope of c0 w.r.t. a0: </span><span class="si">{</span><span class="n">slope</span><span class="si">:</span><span class="s1">.8f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Annuity factor (1 - R**(-1))/(1 - R**(-(T+1))): </span><span class="si">{</span><span class="n">annuity</span><span class="si">:</span><span class="s1">.8f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Match: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">slope</span><span class="p">,</span><span class="w"> </span><span class="n">annuity</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/afd7631829cf38cac87c12075bc1a260f864cb8ea47fd38b0855b1727998a939.png"><img alt="_images/afd7631829cf38cac87c12075bc1a260f864cb8ea47fd38b0855b1727998a939.png" src="_images/afd7631829cf38cac87c12075bc1a260f864cb8ea47fd38b0855b1727998a939.png" style="width: 80%;" />
+</a>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Numerical slope of c0 w.r.t. a0: 0.04960054
+Annuity factor (1 - R**(-1))/(1 - R**(-(T+1))): 0.04960054
+Match: True
+</pre></div>
+</div>
+</div>
+</div>
+<p>The four paths are parallel horizontal lines, all flat but shifted vertically.</p>
+<p>The slope of <span class="math notranslate nohighlight">\(c_0\)</span> with respect to <span class="math notranslate nohighlight">\(a_0\)</span> exactly equals the annuity factor,
+confirming that an extra dollar of initial wealth is spread evenly over all
+<span class="math notranslate nohighlight">\(T+1\)</span> periods as a constant additional flow.</p>
+</section>
+</div>
+<div class="exercise admonition" id="consmooth_ex4">
+
+<p class="admonition-title"><span class="caption-number">Exercise 12.4 </span></p>
+<section id="exercise-content">
+<p>The variational argument in this lecture says that the constant consumption path
+maximizes welfare <a class="reference internal" href="#equation-welfare">(12.2)</a> among all budget-feasible paths.</p>
+<p>Using <code class="docutils literal notranslate"><span class="pre">compute_variation</span></code> with <span class="math notranslate nohighlight">\(\xi_1 = 0.1\)</span> and the Experiment 1 income sequence
+(<span class="math notranslate nohighlight">\(W_0 = 2.5\)</span> windfall at <span class="math notranslate nohighlight">\(t=21\)</span>, with <span class="math notranslate nohighlight">\(a_0 = -2\)</span>):</p>
+<p>a. Compute welfare for the optimal flat path and for variations with <span class="math notranslate nohighlight">\(\phi \in \{0.7,\, 0.9,\, 0.98,\, 1.02,\, 1.1\}\)</span>.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Print the results in a table.
+</pre></div>
+</div>
+<p>b. Plot welfare as a function of <span class="math notranslate nohighlight">\(\phi\)</span> on a fine grid in <span class="math notranslate nohighlight">\([0.7, 1.1]\)</span> and mark
+the welfare of the optimal flat path as a dashed horizontal line to confirm
+that it lies above these budget-feasible variations.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="cons_smooth-solution-7">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#consmooth_ex4"> Exercise 12.4</a></p>
+<section id="solution-content">
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a0</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
+<span class="n">y_seq_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">21</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2.5</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">24</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">20</span><span class="p">)])</span>
+
+<span class="n">c_opt</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">compute_optimal</span><span class="p">(</span><span class="n">cs_model</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">y_seq_pos</span><span class="p">)</span>
+<span class="n">w_opt</span> <span class="o">=</span> <span class="n">welfare</span><span class="p">(</span><span class="n">cs_model</span><span class="p">,</span> <span class="n">c_opt</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Optimal (flat) welfare: </span><span class="si">{</span><span class="n">w_opt</span><span class="si">:</span><span class="s1">.6f</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">ϕ_vals</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.98</span><span class="p">,</span> <span class="mf">1.02</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="s2">&quot;ϕ&quot;</span><span class="si">:</span><span class="s1">&gt;6</span><span class="si">}</span><span class="s1"> | </span><span class="si">{</span><span class="s2">&quot;welfare&quot;</span><span class="si">:</span><span class="s1">&gt;12</span><span class="si">}</span><span class="s1"> | </span><span class="si">{</span><span class="s2">&quot;vs. optimal&quot;</span><span class="si">:</span><span class="s1">&gt;14</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">38</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ϕ</span> <span class="ow">in</span> <span class="n">ϕ_vals</span><span class="p">:</span>
+    <span class="n">cvar</span> <span class="o">=</span> <span class="n">compute_variation</span><span class="p">(</span><span class="n">cs_model</span><span class="p">,</span> <span class="n">ξ1</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">ϕ</span><span class="o">=</span><span class="n">ϕ</span><span class="p">,</span> <span class="n">a0</span><span class="o">=</span><span class="n">a0</span><span class="p">,</span>
+                             <span class="n">y_seq</span><span class="o">=</span><span class="n">y_seq_pos</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">welfare</span><span class="p">(</span><span class="n">cs_model</span><span class="p">,</span> <span class="n">cvar</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ϕ</span><span class="si">:</span><span class="s1">&gt;6.2f</span><span class="si">}</span><span class="s1"> | </span><span class="si">{</span><span class="n">w</span><span class="si">:</span><span class="s1">&gt;12.6f</span><span class="si">}</span><span class="s1"> | </span><span class="si">{</span><span class="n">w</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">w_opt</span><span class="si">:</span><span class="s1">&gt;+14.6f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># Fine grid</span>
+<span class="n">ϕ_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="n">w_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="n">welfare</span><span class="p">(</span><span class="n">cs_model</span><span class="p">,</span>
+            <span class="n">compute_variation</span><span class="p">(</span><span class="n">cs_model</span><span class="p">,</span> <span class="n">ξ1</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">ϕ</span><span class="o">=</span><span class="n">ϕ</span><span class="p">,</span> <span class="n">a0</span><span class="o">=</span><span class="n">a0</span><span class="p">,</span>
+                              <span class="n">y_seq</span><span class="o">=</span><span class="n">y_seq_pos</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">ϕ</span> <span class="ow">in</span> <span class="n">ϕ_grid</span>
+<span class="p">])</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ϕ_grid</span><span class="p">,</span> <span class="n">w_grid</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Welfare of variation&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">w_opt</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Optimal flat path&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\phi$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Welfare&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Welfare of consumption path variations ($</span><span class="se">\\</span><span class="s1">xi_1 = 0.1$)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal (flat) welfare: 13.595889
+
+     ϕ |      welfare |    vs. optimal
+--------------------------------------
+  0.70 |    13.592318 |      -0.003571
+  0.90 |    13.591027 |      -0.004862
+  0.98 |    13.593989 |      -0.001900
+  1.02 |    13.581956 |      -0.013933
+  1.10 |  -153.996624 |    -167.592513
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/4225d29ed34057843d9f8a0ee4e4464aa37c5add6a795d2b96bdbd6dd2190fbc.png"><img alt="_images/4225d29ed34057843d9f8a0ee4e4464aa37c5add6a795d2b96bdbd6dd2190fbc.png" src="_images/4225d29ed34057843d9f8a0ee4e4464aa37c5add6a795d2b96bdbd6dd2190fbc.png" style="width: 80%;" />
+</a>
+</div>
+</div>
+<p>Every non-zero variation in the plotted family delivers strictly lower welfare than the flat path marked by the horizontal dashed line.</p>
+<p>The wider interval <span class="math notranslate nohighlight">\((0.5, 1.5)\)</span> is not informative here because values of <span class="math notranslate nohighlight">\(\phi\)</span> well above one make the late-life variation <span class="math notranslate nohighlight">\(\xi_1\phi^t\)</span> very large.</p>
+<p>This numerically confirms the variational principle that the constant consumption path is the global welfare maximizer when <span class="math notranslate nohighlight">\(\beta R = 1\)</span>.</p>
+</section>
+</div>
 </section>
 </section>
 
@@ -1618,6 +1923,8 @@ How many initial conditions must you specify?</p>
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/cons_smooth.md" download><i data-feather="github"></i></a></li>
                     -->
                     <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro" download><i data-feather="github"></i></a></li>
+                    
+                    
                 </ul>
 
             </div>
