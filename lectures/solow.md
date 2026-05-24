@@ -589,13 +589,14 @@ s = 0.6
 α = 0.3
 δ = 0.5
 x0 = [.25, 3.25] # list of initial values used for simulation
+rng = np.random.default_rng()
 ```
 
 Let's define the function *k_next* to find the next value of $k$
 
 ```{code-cell} ipython3
 def lgnorm():
-    return np.exp(μ + σ * np.random.randn())
+    return np.exp(μ + σ * rng.standard_normal())
 
 def k_next(s, α, δ, k):
     return lgnorm() * s * k**α + (1 - δ) * k
