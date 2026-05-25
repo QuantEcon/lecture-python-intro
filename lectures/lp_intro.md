@@ -487,11 +487,11 @@ The optimal plan tells the  factory to produce $2.5$ units of Product 1 and $5$ 
 
 We are using the `linprog` function as a *black box*.
 
-Internally, after a presolve step, SciPy transforms the problem into a standard form before applying the selected solver.
+SciPy accepts inequality constraints in the form $A_{ub} x \leq b_{ub}$, equality constraints in the form $A_{eq} x = b_{eq}$, and variable bounds.
 
-In this transformation, one slack variable is added for each inequality constraint.
+In this lecture, `linprog` uses SciPy's default `highs` method, which calls the HiGHS optimization solver.
 
-Here the vector of slack variables is a two-dimensional NumPy array that  equals $b_{ub} - A_{ub}x$.
+The slack value returned by `linprog` is a one-dimensional NumPy array whose entries measure the difference $b_{ub} - A_{ub}x$ for each inequality constraint.
 
 See the [official documentation](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.linprog.html#scipy.optimize.linprog) for more details.
 
