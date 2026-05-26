@@ -1021,7 +1021,7 @@ directed graph with adjacency matrix $A$ is defined as the vector $\kappa$
 that solves
  
 $$
-\kappa_i =  \beta \sum_{1 \leq j 1} a_{ij} \kappa_j + 1
+\kappa_i =  \beta \sum_{j=0}^{n-1} a_{ij} \kappa_j + 1
 \qquad  \text{for all } i \in \{0, \ldots, n-1\}.
 $$ (katz_central)
 

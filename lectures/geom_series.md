@@ -955,3 +955,254 @@ plt.show()
 Notice here, whether government spending increases from 0.3 to 0.4 or
 investment increases from 0.3 to 0.4, the shifts in the graphs are
 identical.
+
+## Exercises
+
+```{exercise}
+:label: geom_ex1
+
+Numerically verify the infinite geometric series formula
+
+$$
+1 + c + c^2 + \cdots = \frac{1}{1-c}
+$$
+
+for $c = 0.9$.
+
+Compute the partial sums $S_T = \sum_{t=0}^{T} c^t$ for $T = 0, 1, \ldots, 80$
+and plot them alongside the theoretical limit $\frac{1}{1-c}$.
+
+On a second subplot, plot the absolute error $\left|S_T - \frac{1}{1-c}\right|$
+on a log scale to illustrate the rate of convergence.
+```
+
+```{solution-start} geom_ex1
+:class: dropdown
+```
+
+```{code-cell} ipython3
+c = 0.9
+T_max = 80
+T = np.arange(0, T_max + 1)
+
+# Partial sums: S_T = sum_{t=0}^{T} c^t
+S = np.cumsum(c**T)
+
+# Theoretical limit
+limit = 1 / (1 - c)
+
+fig, axes = plt.subplots(1, 2, figsize=(12, 4))
+
+# Left panel: partial sums converging to the limit
+axes[0].plot(T, S, label='Partial sum $S_T$')
+axes[0].axhline(limit, linestyle='--', color='red',
+                label=f'Limit $1/(1-c) = {limit:.1f}$')
+axes[0].set_xlabel('$T$')
+axes[0].set_ylabel('$S_T$')
+axes[0].set_title('Convergence of partial sums')
+axes[0].legend()
+
+# Right panel: absolute error on log scale
+error = np.abs(S - limit)
+axes[1].semilogy(T, error)
+axes[1].set_xlabel('$T$')
+axes[1].set_ylabel(r'$|S_T - 1/(1-c)|$')
+axes[1].set_title('Absolute error (log scale)')
+
+plt.tight_layout()
+plt.show()
+```
+
+The left panel confirms that $S_T$ converges smoothly to $1/(1-c) = 10$.
+
+The right panel shows that the error decays geometrically, a straight line on a log scale, reflecting the fact that the remainder after $T$ terms equals $c^{T+1}/(1-c)$.
+
+```{solution-end}
+```
+
+```{exercise}
+:label: geom_ex2
+
+Using the fractional reserve banking model from this lecture, suppose the
+initial deposit is $D_0 = 1$.
+
+a. For each reserve ratio $r \in \{0.05, 0.10, 0.20, 0.40\}$, plot the
+    **cumulative deposits** $\sum_{i=0}^{N} D_i$ as a function of the number
+    of banks $N$ (for $N = 0, 1, \ldots, 50$) and add a dashed horizontal line
+    at the theoretical limit $D_0/r$ for each.
+
+b. Print the theoretical money multiplier $1/r$ for each reserve ratio.
+```
+
+```{solution-start} geom_ex2
+:class: dropdown
+```
+
+```{code-cell} ipython3
+D_0 = 1
+N_max = 50
+N = np.arange(0, N_max + 1)
+reserve_ratios = [0.05, 0.10, 0.20, 0.40]
+
+fig, ax = plt.subplots()
+for r in reserve_ratios:
+    # D_i = (1 - r)^i * D_0
+    D = D_0 * (1 - r)**N
+    cumulative = np.cumsum(D)
+    ax.plot(N, cumulative, label=f'$r = {r}$')
+    ax.axhline(D_0 / r, linestyle='--', alpha=0.4)
+
+ax.set_xlabel('Number of banks $N$')
+ax.set_ylabel('Cumulative deposits')
+ax.set_title('Convergence to the money multiplier $D_0/r$')
+ax.legend()
+plt.show()
+
+# Part b
+print(f"{'Reserve ratio':>15} | {'Money multiplier 1/r':>20}")
+print('-' * 40)
+for r in reserve_ratios:
+    print(f"{r:>15.2f} | {1/r:>20.2f}")
+```
+
+A lower reserve ratio means banks lend out a larger fraction of each deposit, so the money-creation process takes longer to run down and the total deposits created are much larger.
+
+The dashed lines mark the theoretical limit $D_0/r$, which the cumulative series approaches from below.
+
+```{solution-end}
+```
+
+```{exercise}
+:label: geom_ex3
+
+The **Gordon formula** approximates the present value of an infinite lease as
+
+$$
+p_0 \approx \frac{x_0}{r - g}
+$$
+
+Using the `infinite_lease` function defined earlier, set $x_0 = 1$ and
+$r = 0.05$, and let $g$ range over $[0,\, 0.045]$.
+
+a. Plot the exact present value and the Gordon approximation on the same
+    graph as functions of $g$.
+
+b. On a second subplot, plot the percentage approximation error
+
+$$
+\text{error}(\%) = \frac{|\text{Gordon} - \text{exact}|}{\text{exact}} \times 100
+$$
+
+and comment on whether the percentage error varies with $g$.
+```
+
+```{solution-start} geom_ex3
+:class: dropdown
+```
+
+```{code-cell} ipython3
+r_val = 0.05
+x_0 = 1
+g_vals = np.linspace(0, 0.045, 300)
+
+exact = infinite_lease(g_vals, r_val, x_0)
+gordon = x_0 / (r_val - g_vals)
+pct_error = np.abs(gordon - exact) / exact * 100
+pct_error_formula = 100 * r_val / (1 + r_val)
+
+fig, axes = plt.subplots(1, 2, figsize=(12, 4))
+
+axes[0].plot(g_vals, exact, label='Exact $p_0$')
+axes[0].plot(g_vals, gordon, '--', label='Gordon approximation')
+axes[0].set_xlabel('$g$')
+axes[0].set_ylabel('$p_0$')
+axes[0].set_title(f'Infinite lease present value ($r = {r_val}$)')
+axes[0].legend()
+
+axes[1].plot(g_vals, pct_error)
+axes[1].axhline(pct_error_formula, linestyle='--', color='red',
+                label=fr'$100r/(1+r) = {pct_error_formula:.2f}\%$')
+axes[1].set_xlabel('$g$')
+axes[1].set_ylabel('Percentage error (%)')
+axes[1].set_title('Gordon formula approximation error')
+axes[1].legend()
+
+plt.tight_layout()
+plt.show()
+```
+
+For a fixed $r$, the percentage error is constant in $g$ because the exact value is $x_0(1+r)/(r-g)$ while the Gordon approximation is $x_0/(r-g)$.
+
+The approximation becomes accurate when $r$ is small because the exact value differs from the Gordon formula by the factor $1+r$.
+
+```{solution-end}
+```
+
+```{exercise}
+:label: geom_ex4
+
+The `calculate_y` function simulates the Keynesian dynamic model.
+
+a. For $i = 0.3$, $g = 0.3$, $y_{-1} = 0$, and $T = 60$, plot the path
+    of national income $y_t$ for each $b \in \{0.25,\, 0.50,\, 0.75,\, 0.90\}$
+    and mark the long-run equilibrium $y^* = (i + g)/(1 - b)$ with a dashed
+    horizontal line for each $b$.
+
+b. For each value of $b$, find the first period $T^*$ at which $y_t$
+    reaches 95 percent of $y^*$, plot $T^*$ against $b$, and comment on how
+    the speed of convergence relates to the size of the Keynesian multiplier.
+```
+
+```{solution-start} geom_ex4
+:class: dropdown
+```
+
+```{code-cell} ipython3
+i_0, g_0, y_init = 0.3, 0.3, 0
+bs = [0.25, 0.50, 0.75, 0.90]
+T = 60
+
+# Part a
+fig, ax = plt.subplots()
+for b in bs:
+    y = calculate_y(i_0, b, g_0, T, y_init)
+    y_star = (i_0 + g_0) / (1 - b)
+    ax.plot(np.arange(T + 1), y, label=f'$b = {b}$, $y^* = {y_star:.1f}$')
+    ax.axhline(y_star, linestyle='--', alpha=0.4)
+
+ax.set_xlabel('$t$')
+ax.set_ylabel('$y_t$')
+ax.set_title('National income paths for different $b$')
+ax.legend()
+plt.show()
+
+# Part b
+T_long = 1000
+T_star_vals = []
+for b in bs:
+    y = calculate_y(i_0, b, g_0, T_long, y_init)
+    y_star = (i_0 + g_0) / (1 - b)
+    idx = np.where(y >= 0.95 * y_star)[0]
+    T_star_vals.append(int(idx[0]) if len(idx) > 0 else T_long)
+
+fig, ax = plt.subplots()
+ax.bar([str(b) for b in bs], T_star_vals)
+ax.set_xlabel('Marginal propensity to consume $b$')
+ax.set_ylabel('Periods to reach 95% of $y^*$')
+ax.set_title('Speed of convergence to long-run equilibrium')
+plt.show()
+
+print(f"{'b':>6} | {'Multiplier 1/(1-b)':>20} | {'T* (periods)':>14}")
+print('-' * 46)
+for b, T_star in zip(bs, T_star_vals):
+    print(f"{b:>6.2f} | {1/(1-b):>20.2f} | {T_star:>14}")
+```
+
+As $b$ rises toward 1, the Keynesian multiplier $1/(1-b)$ grows large and convergence slows markedly.
+
+This reflects the fact that the geometric series $\sum_{t=0}^\infty b^t$ converges
+more slowly when $b$ is close to 1 because each additional round of spending adds
+a term $b^t$ that shrinks only gradually.
+
+```{solution-end}
+```
