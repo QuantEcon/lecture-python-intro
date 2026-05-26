@@ -128,8 +128,8 @@ class LakeModel:
                            [        (1-d)*λ,   (1-α)*(1-d)]])
 
 
-        self.ū = (1 + g - (1 - d) * (1 - α)) / (1 + g - (1 - d) * (1 - α) + (1 - d) * λ)
-        self.ē = 1 - self.ū
+        self.u_bar = (1 + g - (1 - d) * (1 - α)) / (1 + g - (1 - d) * (1 - α) + (1 - d) * λ)
+        self.e_bar = 1 - self.u_bar
 
 
     def simulate_path(self, x0, T=1000):
@@ -179,9 +179,6 @@ axes[1].set_title('Employment')
 
 axes[2].plot(x_path.sum(0), lw=2)
 axes[2].set_title('Labor force')
-
-for ax in axes:
-    ax.grid()
 
 plt.tight_layout()
 plt.show()
@@ -310,7 +307,7 @@ def plot_time_paths(lm, x0=None, T=1000, ax=None):
         if x0 is None:
             x0 = np.array([[5.0, 0.1]])
 
-        ū, ē = lm.ū, lm.ē
+        u_bar, e_bar = lm.u_bar, lm.e_bar
 
         x0 = np.atleast_2d(x0)
 
@@ -318,7 +315,7 @@ def plot_time_paths(lm, x0=None, T=1000, ax=None):
             fig, ax = plt.subplots(figsize=(10, 8))
             # Plot line D
             s = 10
-            ax.plot([0, s * ū], [0, s * ē], "k--", lw=1, label='set $D$')
+            ax.plot([0, s * u_bar], [0, s * e_bar], "k--", lw=1, label='set $D$')
 
         # Set the axes through the origin
         for spine in ["left", "bottom"]:
@@ -351,9 +348,9 @@ def plot_time_paths(lm, x0=None, T=1000, ax=None):
                         textcoords="offset points",
                         arrowprops=dict(arrowstyle = "->"))
 
-        ax.plot([ū], [ē], "ko", ms=4, alpha=0.6)
+        ax.plot([u_bar], [e_bar], "ko", ms=4, alpha=0.6)
         ax.annotate(r'$\bar{x}$',
-                xy=(ū, ē),
+                xy=(u_bar, e_bar),
                 xycoords="data",
                 xytext=(20, -20),
                 textcoords="offset points",
@@ -472,9 +469,9 @@ rate_path = x_path / x_path.sum(0)
 
 fig, axes = plt.subplots(2, 1, figsize=(10, 8))
 
-# Plot steady ū and ē
-axes[0].hlines(lm.ū, 0, T, 'r', '--', lw=2, label='ū')
-axes[1].hlines(lm.ē, 0, T, 'r', '--', lw=2, label='ē')
+# Plot steady-state rates
+axes[0].hlines(lm.u_bar, 0, T, 'r', '--', lw=2, label='u_bar')
+axes[1].hlines(lm.e_bar, 0, T, 'r', '--', lw=2, label='e_bar')
 
 titles = ['Unemployment rate', 'Employment rate']
 locations = ['lower right', 'upper right']
@@ -483,7 +480,6 @@ locations = ['lower right', 'upper right']
 for i, ax in enumerate(axes):
     ax.plot(rate_path[i, :], lw=2, alpha=0.6)
     ax.set_title(titles[i])
-    ax.grid()
     ax.legend(loc=locations[i])
 
 
@@ -545,24 +541,37 @@ Eq. {eq}`steady_x` implies that the long-run unemployment rate will increase, an
 if $\alpha$ increases or $\lambda$ decreases.
 
 Suppose first that $\alpha=0.01, \lambda=0.1, d=0.02, b=0.025$.
+
 Assume that $\alpha$ increases to $0.04$.
 
-The below graph illustrates that the line $D$ shifts clockwise downward, which indicates that
-the fraction of unemployment rises as the separation rate increases.
+Then compare this with a decrease in $\lambda$ from $0.1$ to $0.04$.
+
+The graphs show that both changes rotate the line $D$ clockwise downward, which indicates that the long-run unemployment rate rises.
 
 ```{code-cell} ipython3
-fig, ax = plt.subplots(figsize=(10, 8))
+fig, axes = plt.subplots(1, 2, figsize=(12, 5))
+s = 10
 
-lm = LakeModel(α=0.01, λ=0.1, d=0.02, b=0.025)
-plot_time_paths(lm, ax=ax)
-s=10
-ax.plot([0, s * lm.ū], [0, s * lm.ē], "k--", lw=1, label='set $D$, α=0.01')
+def add_D_line(ax, lm, label, color):
+    ax.plot([0, s * lm.u_bar], [0, s * lm.e_bar],
+            color=color, linestyle='--', lw=2, label=label)
 
-lm = LakeModel(α=0.04, λ=0.1, d=0.02, b=0.025)
-plot_time_paths(lm, ax=ax)
-ax.plot([0, s * lm.ū], [0, s * lm.ē], "r--", lw=1, label='set $D$, α=0.04')
+lm_base = LakeModel(α=0.01, λ=0.1, d=0.02, b=0.025)
+lm_high_α = LakeModel(α=0.04, λ=0.1, d=0.02, b=0.025)
+plot_time_paths(lm_base, ax=axes[0])
+add_D_line(axes[0], lm_base, r'set $D$, $\alpha=0.01$', 'black')
+plot_time_paths(lm_high_α, ax=axes[0])
+add_D_line(axes[0], lm_high_α, r'set $D$, $\alpha=0.04$', 'red')
+axes[0].legend(loc='best')
 
-ax.legend(loc='best')
+lm_low_λ = LakeModel(α=0.01, λ=0.04, d=0.02, b=0.025)
+plot_time_paths(lm_base, ax=axes[1])
+add_D_line(axes[1], lm_base, r'set $D$, $\lambda=0.1$', 'black')
+plot_time_paths(lm_low_λ, ax=axes[1])
+add_D_line(axes[1], lm_low_λ, r'set $D$, $\lambda=0.04$', 'red')
+axes[1].legend(loc='best')
+
+plt.tight_layout()
 plt.show()
 ```
 

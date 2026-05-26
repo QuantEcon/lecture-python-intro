@@ -26,8 +26,8 @@ kernelspec:
 
 This lecture uses matrices to solve some linear difference equations.
 
-As a running example, we’ll study a **second-order linear difference
-equation** that was the key technical tool in Paul Samuelson’s 1939
+As a running example, we'll study a **second-order linear difference
+equation** that was the key technical tool in Paul Samuelson's 1939
 article {cite}`Samuelson1939` that introduced the *multiplier-accelerator model*.
 
 This model became the workhorse that powered early econometric versions of
@@ -87,7 +87,7 @@ either of two *initial conditions*, two *terminal conditions* or
 possibly one of each.
 ```
 
-Let’s write our equations as a stacked system
+Let's write our equations as a stacked system
 
 $$
 \underset{\equiv A}{\underbrace{\left[\begin{array}{cccccccc}
@@ -134,8 +134,8 @@ $$
 
 The vector $y$ is a complete time path $\{y_t\}_{t=1}^T$.
 
-Let’s put Python to work on an example that captures the flavor of
-Samuelson’s multiplier-accelerator model.
+Let's put Python to work on an example that captures the flavor of
+Samuelson's multiplier-accelerator model.
 
 We'll set parameters equal to the same values we used in {doc}`intermediate:samuelson`.
 
@@ -169,17 +169,17 @@ b[0] = α_0 + α_1 * y_0 + α_2 * y_neg1
 b[1] = α_0 + α_2 * y_0
 ```
 
-Let’s look at the matrix $A$ and the vector $b$ for our
+Let's look at the matrix $A$ and the vector $b$ for our
 example.
 
 ```{code-cell} ipython3
 A, b
 ```
 
-Now let’s solve for the path of $y$.
+Now let's solve for the path of $y$.
 
 If $y_t$ is GNP at time $t$, then we have a version of
-Samuelson’s model of the dynamics for GNP.
+Samuelson's model of the dynamics for GNP.
 
 To solve $y = A^{-1} b$ we can either invert $A$ directly, as in
 
@@ -275,10 +275,10 @@ y_{t} = \alpha_{0} + \alpha_{1} y_{t-1} + \alpha_{2} y_{t-2} + u_t
 where $u_{t} \sim N\left(0, \sigma_{u}^{2}\right)$ and is {ref}`IID <iid-theorem>`,
 meaning independent and identically distributed.
 
-We’ll stack these $T$ equations into a system cast in terms of
+We'll stack these $T$ equations into a system cast in terms of
 matrix algebra.
 
-Let’s define the random vector
+Let's define the random vector
 
 $$
 u=\left[\begin{array}{c}
@@ -302,11 +302,13 @@ $$
 y = A^{-1} \left(b + u\right)
 $$ (eq:eqma)
 
-Let’s try it out in Python.
+Let's try it out in Python.
 
 ```{code-cell} ipython3
+rng = np.random.default_rng()
+
 σ_u = 2.
-u = np.random.normal(0, σ_u, size=T)
+u = rng.normal(0, σ_u, size=T)
 y = A_inv @ (b + u)
 ```
 
@@ -327,8 +329,8 @@ We can simulate $N$ paths.
 N = 100
 
 for i in range(N):
-    col = cm.viridis(np.random.rand())  # Choose a random color from viridis
-    u = np.random.normal(0, σ_u, size=T)
+    col = cm.viridis(rng.random())  # Choose a random color from viridis
+    u = rng.normal(0, σ_u, size=T)
     y = A_inv @ (b + u)
     plt.plot(np.arange(T)+1, y, lw=0.5, color=col)
 
@@ -345,8 +347,8 @@ steady state.
 N = 100
 
 for i in range(N):
-    col = cm.viridis(np.random.rand())  # Choose a random color from viridis
-    u = np.random.normal(0, σ_u, size=T)
+    col = cm.viridis(rng.random())  # Choose a random color from viridis
+    u = rng.normal(0, σ_u, size=T)
     y_steady = A_inv @ (b_steady + u)
     plt.plot(np.arange(T)+1, y_steady, lw=0.5, color=col)
 
@@ -432,12 +434,14 @@ class population_moments:
 
         self.A, self.b, self.A_inv, self.σ_u, self.T = A, b, A_inv, σ_u, T
     
-    def sample_y(self, n):
+    def sample_y(self, n, rng=None):
         """
         Give a sample of size n of y.
         """
+        if rng is None:
+            rng = np.random.default_rng()
         A_inv, σ_u, b, T = self.A_inv, self.σ_u, self.b, self.T
-        us = np.random.normal(0, σ_u, size=[n, T])
+        us = rng.normal(0, σ_u, size=[n, T])
         ys = np.vstack([A_inv @ (b + u) for u in us])
 
         return ys
@@ -472,8 +476,8 @@ Let's begin by generating $N$ time realizations of $y$ plotting them together wi
 N = 100
 
 for i in range(N):
-    col = cm.viridis(np.random.rand())  # Choose a random color from viridis
-    ys = series_process.sample_y(N)
+    col = cm.viridis(rng.random())  # Choose a random color from viridis
+    ys = series_process.sample_y(N, rng=rng)
     plt.plot(ys[i,:], lw=0.5, color=col)
     plt.plot(μ_y, color='red')
 
@@ -483,7 +487,7 @@ plt.ylabel('y')
 plt.show()
 ```
 
-Visually, notice how the  variance across realizations of $y_t$ decreases as $t$ increases.
+Because the initial conditions are fixed and shocks accumulate over time, the population variance of $y_t$ increases toward its limiting value.
 
 Let's plot the population variance of $y_t$ against $t$.
 
@@ -577,10 +581,10 @@ Just as system {eq}`eq:eqma` constitutes  a
 
 ## A forward looking model
 
-Samuelson’s model is *backward looking* in the sense that we give it *initial conditions* and let it
+Samuelson's model is *backward looking* in the sense that we give it *initial conditions* and let it
 run.
 
-Let’s now turn to model  that is *forward looking*.
+Let's now turn to model  that is *forward looking*.
 
 We apply similar linear algebra machinery to study a *perfect
 foresight* model widely used as a benchmark in macroeconomics and
@@ -649,7 +653,7 @@ print(B)
 
 ```{code-cell} ipython3
 σ_u = 0.
-u = np.random.normal(0, σ_u, size=T)
+u = rng.normal(0, σ_u, size=T)
 y = A_inv @ (b + u)
 y_steady = A_inv @ (b_steady + u)
 ```
