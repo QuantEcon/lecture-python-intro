@@ -36,7 +36,7 @@ These simple models are used again and again in economic research to represent t
 * productivity, etc.
 
 We are going to study AR(1) processes partly because they are useful and
-partly because they help us understand important concepts. 
+partly because they help us understand important concepts.
 
 Let's start with some imports:
 
@@ -56,14 +56,14 @@ The **AR(1) model** (autoregressive model of order 1) takes the form
 X_{t+1} = a X_t + b + c W_{t+1}
 ```
 
-where $a, b, c$ are scalar-valued parameters 
+where $a, b, c$ are scalar-valued parameters
 
 (Equation {eq}`can_ar1` is sometimes called a **stochastic difference equation**.)
 
 ```{prf:example}
 :label: ar1_ex_ar
 
-For example, $X_t$ might be 
+For example, $X_t$ might be
 
 * the log of labor income for a given household, or
 * the log of money demand in a given economy.
@@ -356,9 +356,7 @@ In this equation, we can use observed data to evaluate the left hand side of {eq
 
 And we can use a theoretical AR(1) model to calculate the right hand side.
 
-If $\frac{1}{m} \sum_{t = 1}^m X_t$ is not close to $\psi^*(x)$, even for many
-observations, then our theory seems to be incorrect and we will need to revise
-it.
+If $\frac{1}{m} \sum_{t = 1}^m h(X_t)$ is not close to $\int h(x)\psi^*(x) dx$, even for many observations, then our theory seems to be incorrect and we will need to revise it.
 
 
 ## Exercises
@@ -427,8 +425,8 @@ def true_moments_ar1(k):
         return 0
 
 k_vals = np.arange(6) + 1
-sample_moments = np.empty_like(k_vals)
-true_moments = np.empty_like(k_vals)
+sample_moments = np.empty(len(k_vals), dtype=float)
+true_moments = np.empty(len(k_vals), dtype=float)
 
 for k_idx, k in enumerate(k_vals):
     sample_moments[k_idx] = sample_moments_ar1(k)
@@ -464,8 +462,8 @@ $$
 For $K$ use the Gaussian kernel ($K$ is the standard normal
 density).
 
-Write the class so that the bandwidth defaults to Silverman’s rule (see
-the “rule of thumb” discussion on [this
+Write the class so that the bandwidth defaults to Silverman's rule (see
+the "rule of thumb" discussion on [this
 page](https://en.wikipedia.org/wiki/Kernel_density_estimation)). Test
 the class you have written by going through the steps
 

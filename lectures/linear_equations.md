@@ -250,7 +250,6 @@ for spine in ['right', 'top']:
     ax.spines[spine].set_color('none')
 
 ax.set(xlim=(-2, 10), ylim=(-4, 4))
-# ax.grid()
 vecs = ((4, -2), (3, 3), (7, 1))
 tags = ('(x1, x2)', '(y1, y2)', '(x1+x2, y1+y2)')
 colors = ('blue', 'green', 'red')
@@ -1050,7 +1049,7 @@ $$
 
 where $C$, $D$ and $h$ are given by {eq}`two_eq_demand_mat` and {eq}`two_eq_supply_mat`.
 
-This equation is analogous to {eq}`la_se_inv` with $A = (C-D)^{-1}$, $b = h$, and $x = p$.
+This equation is analogous to {eq}`la_se_inv` with $A = C-D$, $b = h$, and $x = p$.
 
 We can now solve for equilibrium prices with NumPy's `linalg` submodule.
 
@@ -1232,7 +1231,7 @@ p
 
 The solution is given by:
 $$
-p_0 = 4.6925, \; p_1 = 7.0625 \;\; \text{and} \;\; p_2 = 7.675
+p_0 = 4.9625, \; p_1 = 7.0625 \;\; \text{and} \;\; p_2 = 7.675
 $$
 
 ```{solution-end}
@@ -1317,7 +1316,7 @@ It can be verified that this system has no solutions.
 
 We will thus try to find the best approximate solution for $x$.
 
-1. Use {eq}`least_squares` and matrix algebra to find the least squares solution $\hat{x}$.
+1. Use the least-squares formula above and matrix algebra to find the least squares solution $\hat{x}$.
 2. Find the least squares solution using `numpy.linalg.lstsq` and compare the results.
 
 ```{exercise-end}
