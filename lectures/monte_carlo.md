@@ -181,9 +181,7 @@ S / n
 We can also construct a function that contains these operations:
 
 ```{code-cell} ipython3
-def compute_mean(n=1_000_000, rng=None):
-    if rng is None:
-        rng = np.random.default_rng()
+def compute_mean(n=1_000_000, rng=rng):
     S = 0.0
     for i in range(n):
         X_1 = np.exp(μ_1 + σ_1 * rng.standard_normal())
@@ -212,9 +210,7 @@ But the code above runs quite slowly.
 To make it faster, let's implement a vectorized routine using NumPy.
 
 ```{code-cell} ipython3
-def compute_mean_vectorized(n=1_000_000, rng=None):
-    if rng is None:
-        rng = np.random.default_rng()
+def compute_mean_vectorized(n=1_000_000, rng=rng):
     X_1 = np.exp(μ_1 + σ_1 * rng.standard_normal(n))
     X_2 = np.exp(μ_2 + σ_2 * rng.standard_normal(n))
     X_3 = np.exp(μ_3 + σ_3 * rng.standard_normal(n))
@@ -519,9 +515,13 @@ $$ s_{t+1} = s_t + \mu + \exp(h_t) \xi_{t+1} $$
 Here is a function to simulate a path using this equation:
 
 ```{code-cell} ipython3
-def simulate_asset_price_path(μ=default_μ, S0=default_S0, h0=default_h0, n=default_n, ρ=default_ρ, ν=default_ν, rng=None):
-    if rng is None:
-        rng = np.random.default_rng()
+def simulate_asset_price_path(μ=default_μ,
+                               S0=default_S0,
+                               h0=default_h0,
+                               n=default_n,
+                               ρ=default_ρ,
+                               ν=default_ν,
+                               rng=rng):
     s = np.empty(n+1)
     s[0] = np.log(S0)
 
@@ -583,9 +583,7 @@ def compute_call_price(β=default_β,
                        ρ=default_ρ,
                        ν=default_ν,
                        M=10_000,
-                       rng=None):
-    if rng is None:
-        rng = np.random.default_rng()
+                       rng=rng):
     current_sum = 0.0
     # For each sample path
     for m in range(M):
@@ -635,9 +633,7 @@ def compute_call_price_vector(β=default_β,
                        ρ=default_ρ,
                        ν=default_ν,
                        M=10_000,
-                       rng=None):
-    if rng is None:
-        rng = np.random.default_rng()
+                       rng=rng):
     s = np.full(M, np.log(S0))
     h = np.full(M, h0)
     for t in range(n):
@@ -709,9 +705,7 @@ def compute_call_price_with_barrier(β=default_β,
                                     ν=default_ν,
                                     bp=default_bp,
                                     M=50_000,
-                                    rng=None):
-    if rng is None:
-        rng = np.random.default_rng()
+                                    rng=rng):
     current_sum = 0.0
     # For each sample path
     for m in range(M):
@@ -755,9 +749,7 @@ def compute_call_price_with_barrier_vector(β=default_β,
                                            ν=default_ν,
                                            bp=default_bp,
                                            M=50_000,
-                                           rng=None):
-    if rng is None:
-        rng = np.random.default_rng()
+                                           rng=rng):
     s = np.full(M, np.log(S0))
     h = np.full(M, h0)
     option_is_null = np.full(M, False)
