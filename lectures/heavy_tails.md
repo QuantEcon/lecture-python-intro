@@ -366,7 +366,7 @@ for ax, s in zip(axes[:2], s_vals):
 
 ax = axes[2]
 distribution = cauchy()
-data = distribution.rvs(n)
+data = distribution.rvs(n, random_state=rng)
 ax.plot(list(range(n)), data, linestyle='', marker='o', alpha=0.5, ms=4)
 ax.vlines(list(range(n)), 0, data, lw=0.2)
 ax.set_title(f"draws from the Cauchy distribution", fontsize=11)
@@ -979,7 +979,7 @@ mystnb:
 ---
 from scipy.stats import cauchy
 
-rng = np.random.default_rng(1234)
+rng = np.random.default_rng(9403)
 N = 1_000
 
 distribution = cauchy()
@@ -1195,7 +1195,7 @@ Since $r \geq \alpha$, we have $\mathbb E X^r = \infty$.
 ```{exercise}
 :label: ht_ex3
 
-Repeat exercise 1, but replace the three distributions (two normal, one
+Repeat the simulation in {numref}`draws-normal-cauchy`, but replace the three distributions (two normal, one
 Cauchy) with three Pareto distributions using different choices of
 $\alpha$.
 
@@ -1236,7 +1236,7 @@ plt.show()
 
 
 ```{exercise}
-:label: ht_ex5
+:label: ht_ex4
 
 There is an ongoing argument about whether the firm size distribution should
 be modeled as a Pareto distribution or a lognormal distribution (see, e.g.,
@@ -1290,7 +1290,7 @@ try to track individual firms given the current distribution.  We will discuss
 firm dynamics in later lectures.)
 ```
 
-```{solution-start} ht_ex5
+```{solution-start} ht_ex4
 :class: dropdown
 ```
 
