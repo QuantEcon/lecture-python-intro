@@ -96,7 +96,7 @@ $$
 
 The following graph illustrates the firm's constraints and iso-revenue lines.
 
-Iso-revenue lines show all the combinations of materials and labor that produce the same revenue.
+Iso-revenue lines show all the combinations of Product 1 and Product 2 that generate the same revenue.
 
 ```{code-cell} ipython3
 ---
@@ -133,9 +133,9 @@ The blue region is the feasible set within which all constraints are satisfied.
 
 Parallel black lines are iso-revenue lines.
 
-The firm's objective is to find the  parallel black lines to the upper boundary of the feasible set.
+The firm's objective is to push the iso-revenue line as high as possible while remaining in the feasible set.
 
-The intersection of the feasible set and the highest black line delineates the optimal set.
+The intersection of the feasible set and the highest iso-revenue line delineates the optimal set.
 
 In this example, the optimal set is the point $(2.5, 5)$.
 
@@ -278,7 +278,7 @@ $$
 
 Let's try to solve the above problem using the package `ortools.linear_solver`.
 
-The following cell instantiates a solver and creates two variables specifying the range of values that they can have.
+The following cell instantiates a solver.
 
 ```{code-cell} ipython3
 # Instantiate a GLOP(Google Linear Optimization Package) solver
@@ -338,9 +338,9 @@ OR-Tools tells us that  the best investment strategy is:
 
 1. At the beginning of the first year, the mutual fund should buy $ \$24,927.755$ of the annuity. Its bank account balance should be $ \$75,072.245$.
 
-2. At the beginning of the second year, the mutual fund should buy $ \$4,648.825$ of the corporate bond and borrow $ \$20,000$ from the bank.
+2. At the beginning of the second year, the mutual fund should buy $ \$50,000$ of the corporate bond and keep investing in the annuity. Its bank account balance should be $ \$4,648.825$.
 
-3. At the beginning of the third year, the bank balance should be $ \$50,000$.
+3. At the beginning of the third year, the mutual fund should borrow $ \$20,000$ from the bank and invest in the annuity.
 
 4. At the end of the third year, the mutual fund will get payouts from the annuity and corporate bond and repay its loan from the bank, leaving it with $ \$141,018.24$ and a total net rate of return over the three periods of $41.02\%$.
 
@@ -407,7 +407,7 @@ By deploying the following steps, any linear programming problem can be transfor
 
 2. Decision variables: Given a variable $x_j$ satisfying $x_j \le 0$, we can introduce a new variable $x_j' = - x_j$ and substitute it into original problem. Given a free variable $x_i$ with no restriction on its sign, we can introduce two new variables $x_j^+$ and $x_j^-$ satisfying $x_j^+, x_j^- \ge 0$ and replace $x_j$ by $x_j^+ - x_j^-$.
 
-3. Inequality constraints: Given an inequality constraint $\sum_{j=1}^n a_{ij}x_j \le 0$, we can introduce a new variable $s_i$, called a **slack variable** that satisfies $s_i \ge 0$ and replace the original constraint by $\sum_{j=1}^n a_{ij}x_j + s_i = 0$.
+3. Inequality constraints: Given an inequality constraint $\sum_{j=1}^n a_{ij}x_j \le b_i$, we can introduce a new variable $s_i$, called a **slack variable** that satisfies $s_i \ge 0$ and replace the original constraint by $\sum_{j=1}^n a_{ij}x_j + s_i = b_i$.
 
 Let's apply the above steps to the two examples described above.
 
@@ -545,7 +545,7 @@ rate = 1.06
 # Objective function parameters
 c_ex2 = np.array([1.30*3, 0, 0, 1.06, 1.30])
 
-# Inequality constraints
+# Equality constraints
 A_ex2 = np.array([[1,  1,  0,  0,  0],
                   [1, -rate, 1, 0, 1],
                   [1, 0, -rate, 1, 0]])
@@ -584,17 +584,12 @@ SciPy tells us that  the best investment strategy is:
 
 1. At the beginning of the first year, the mutual fund should buy $ \$24,927.75$ of the annuity. Its bank account balance should be $ \$75,072.25$.
 
-2. At the beginning of the second year, the mutual fund should buy $ \$50,000 $ of the corporate bond and keep invest in the annuity. Its bank account balance should be $ \$ 4,648.83$.
+2. At the beginning of the second year, the mutual fund should buy $ \$50,000 $ of the corporate bond and keep investing in the annuity. Its bank account balance should be $ \$ 4,648.83$.
 
 3. At the beginning of the third year, the mutual fund should borrow $ \$20,000$ from the bank and invest in the annuity.
 
-4. At the end of the third year, the mutual fund will get payouts from the annuity and corporate bond and repay its loan from the bank. At the end  it will own $ \$141,018.24 $, so that it's total net  rate of return over the three periods is $ 41.02\% $.
+4. At the end of the third year, the mutual fund will get payouts from the annuity and corporate bond and repay its loan from the bank. At the end  it will own $ \$141,018.24 $, so that its total net rate of return over the three periods is $ 41.02\% $.
 
-
-
-```{note}
-You might notice the difference in the values of optimal solution using OR-Tools and SciPy but the optimal value is the same. It is because there can be many optimal solutions for the same problem.
-```
 
 
 
@@ -604,7 +599,7 @@ You might notice the difference in the values of optimal solution using OR-Tools
 :label: lp_intro_ex1
 ```
 
-Implement a new extended solution for the Problem 1 where in the factory owner decides that number of units of Product 1 should not be less than the number of units of Product 2.
+Implement a new extended solution for Problem 1 where the factory owner decides that the number of units of Product 1 should not be less than the number of units of Product 2.
 
 ```{exercise-end}
 ```
@@ -700,6 +695,7 @@ $$
 \max_{x,y} \ & z = 23 x + 10 y \\
 \mbox{subject to } \ & x + y \le 20 \\
 & 2 x + 0.8 y \le 25 \\
+& x, y \ge 0 \\
 \end{aligned}
 $$
 
