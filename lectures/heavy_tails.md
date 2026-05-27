@@ -349,7 +349,7 @@ mystnb:
     name: draws-normal-cauchy
 ---
 n = 120
-rng = np.random.default_rng(11)
+rng = np.random.default_rng(10)
 
 fig, axes = plt.subplots(3, 1, figsize=(6, 12))
 
