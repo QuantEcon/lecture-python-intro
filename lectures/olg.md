@@ -70,7 +70,7 @@ import matplotlib.pyplot as plt
 
 ## Environment
 
-We assume that time is discrete, so that $t=0, 1, \ldots$.
+We assume that time is discrete, so that $t=0, 1, 2, \ldots$.
 
 An individual born at time $t$ lives for two periods, $t$ and $t + 1$.
 
@@ -85,8 +85,8 @@ They also decide how much to save.
 
 Old agents do not work, so all income is financial.
 
-Their financial income is from interest on their savings from wage income,
-which is then combined with the labor of the new young generation at $t+1$.
+Their savings from prior wages become capital, which earns interest when
+combined with the labor of the new young generation at $t+1$.
 
 The wage and interest rates are determined in equilibrium by supply and
 demand.
@@ -94,7 +94,7 @@ demand.
 To make the algebra slightly easier, we are going to assume a constant
 population size.
 
-We normalize the constant population size in each period to 1.
+We normalize the population size to 1.
 
 We also suppose that each agent supplies one "unit" of labor hours, so total
 labor supply is 1.
@@ -144,7 +144,7 @@ Here
 
 - $s_t$ is savings by an individual born at time $t$ 
 - $w_t$ is the wage rate at time $t$
-- $R_{t+1}$ is the gross interest rate on savings invested at time $t$, paid at time $t+1$
+- $R_{t+1}$ is the gross interest rate on savings invested at time $t$, paid at time $t+1$ (i.e., $R_{t+1} = 1 + r_{t+1}$, where $r_{t+1}$ is the net interest rate)
 
 Since $u$ is strictly increasing, both of these constraints will hold as equalities at the maximum.
 
@@ -185,13 +185,15 @@ We write this as
 The precise form of the function $s$ will depend on the choice of flow utility
 function $u$.
 
+Higher wages increase the resources available to save, while the interest rate affects the tradeoff between consuming today and saving for tomorrow.
+
 Together, $w_t$ and $R_{t+1}$ represent the *prices* in the economy (price of
 labor and rental rate of capital).
 
 Thus, [](saving_1_olg) states the quantity of savings given prices.
 
 
-### Example: log preferences
+### Special case: log preferences
 
 In the special case $u(c) = \log c$, the Euler equation simplifies to
     $s_t= \beta (w_t - s_t)$.
@@ -259,6 +261,8 @@ them to zero:
     \alpha (k_t / \ell_t)^{\alpha - 1} = R_t
 ```
 
+These equate the wage $w_t$ to the marginal product of labor and the interest rate $R_t$ to the marginal product of capital.
+
 
 ### Demand 
 
@@ -286,6 +290,10 @@ at time $t+1$
     := \left (\frac{\alpha}{R_{t+1}} \right )^{1/(1-\alpha)}
 ```
 
+Here $k^d(R_{t+1})$ is the amount of capital firms wish to employ when the gross interest rate is $R_{t+1}$.
+
+Since the marginal product of capital is decreasing, demand for capital is a decreasing function of its cost $R_{t+1}$.
+
 In Python code this is
 
 ```{code-cell} ipython3
@@ -298,10 +306,6 @@ def capital_supply(R, β, w):
     R = np.ones_like(R)
     return R * (β / (1 + β)) * w
 ```
-
-The next figure plots the supply of capital, as in [](saving_log_2_olg), as well as the demand for capital, as in [](aggregate_demand_capital_olg), as functions of the interest rate $R_{t+1}$.
-
-(For the special case of log utility, supply does not depend on the interest rate, so we have a constant function.)
 
 ## Equilibrium
 
@@ -374,7 +378,7 @@ That is,
     k_{t+1} = s(w_t, R_{t+1}) = \frac{\beta }{1+\beta} w_t
 ```
 
-Let's redo our plot above but now inserting the equilibrium quantity and price.
+The next figure plots capital supply and demand as functions of the interest rate $R_{t+1}$, together with the equilibrium quantity and price.
 
 ```{code-cell} ipython3
 R_vals = np.linspace(0.3, 1)
@@ -409,7 +413,7 @@ For now we will focus on the case of log utility, so that the equilibrium is det
 
 The discussion above shows how equilibrium $k_{t+1}$ is obtained given $w_t$.
 
-From [](wage_one) we can translate this into $k_{t+1}$ as a function of $k_t$
+From [](wage_one) we can translate this into $k_{t+1}$ as a function of $k_t$.
 
 In particular, since $w_t = (1-\alpha)k_t^\alpha$, we have
 
@@ -442,8 +446,6 @@ k_grid = np.linspace(kmin, kmax, n)
 k_grid_next = k_update(k_grid,α,β)
 
 fig, ax = plt.subplots(figsize=(6, 6))
-
-ymin, ymax = np.min(k_grid_next), np.max(k_grid_next)
 
 ax.plot(k_grid, k_grid_next,  lw=2, alpha=0.6, label='$g$')
 ax.plot(k_grid, k_grid, 'k-', lw=1, alpha=0.7, label=r'$45^{\circ}$')
@@ -504,7 +506,7 @@ for t in range(ts_length - 1):
 
 fig, ax = plt.subplots()
 ax.plot(k_series, label="capital series")
-ax.plot(range(ts_length), np.full(ts_length, k_star), 'k--', label="$k^*$")
+ax.plot(range(ts_length), np.full(ts_length, k_star), 'k--', label=fr'$k^* = {k_star:.4f}$')
 ax.set_ylim(0, 0.1)
 ax.set_ylabel("capital")
 ax.set_xlabel("$t$")
@@ -537,14 +539,19 @@ The interest rate reflects the marginal product of capital, which is high when c
 
 ## CRRA preferences
 
-Previously, in our examples, we looked at the case of log utility.
+In this section we generalize from log utility to the CRRA (constant relative risk aversion) utility function
 
-Log utility is a rather special case of CRRA utility with $\gamma \to 1$.
+$$
+u(c) = \frac{ c^{1-\gamma}-1}{1-\gamma}
+$$
 
-In this section, we are going to assume that $u(c) = \frac{ c^{1-
-\gamma}-1}{1-\gamma}$, where $\gamma >0, \gamma\neq 1$.
+where $\gamma >0, \gamma\neq 1$.
 
-This function is called the CRRA utility function.
+CRRA utility is popular in macroeconomics because the parameter $\gamma$ controls the coefficient of relative risk aversion.
+
+It also controls the elasticity of intertemporal substitution, which governs how willing agents are to shift consumption over time in response to changes in the interest rate.
+
+The log utility case studied above is a special case, obtained when $\gamma \to 1$.
 
 In other respects, the model is the same.
 
@@ -567,7 +574,7 @@ Let's also redefine the capital demand function to work with this `namedtuple`.
 
 ```{code-cell} ipython3
 def capital_demand(R, model):
-    return (α/R)**(1/(1-model.α)) 
+    return (model.α/R)**(1/(1-model.α)) 
 ```
 
 ### Supply
@@ -719,8 +726,6 @@ for i in range(n):
 
 fig, ax = plt.subplots(figsize=(6, 6))
 
-ymin, ymax = np.min(k_grid_next), np.max(k_grid_next)
-
 ax.plot(k_grid, k_grid_next,  lw=2, alpha=0.6, label='$g$')
 ax.plot(k_grid, k_grid, 'k-', lw=1, alpha=0.7, label=r'$45^{\circ}$')
 
@@ -763,7 +768,7 @@ Instead, we solve for $k^*$ using Newton's method.
 ```
 
 We introduce a function $h$ such that
-positive steady state is the root of $h$.
+the positive steady state is the root of $h$.
 
 ```{math}
 :label: crra_newton_2
@@ -814,7 +819,7 @@ Use initial conditions for $k_0$ of $0.001, 1.2, 2.6$ and time series length 10.
 ```
 
 
-Let's define the constants and three distinct intital conditions
+Let's define the constants and three distinct initial conditions
 
 ```{code-cell} ipython3
 ts_length = 10
