@@ -41,7 +41,7 @@ mpl.rcParams.update(mpl.rcParamsDefault)
 ```
 
 The following figure illustrates a network of linkages among 15 sectors
-obtained from the US Bureau of Economic Analysis’s 2021 Input-Output Accounts
+obtained from the US Bureau of Economic Analysis's 2021 Input-Output Accounts
 Data.
 
 
@@ -200,7 +200,6 @@ This can be graphically represented as follows.
 :tags: [hide-input]
 
 fig, ax = plt.subplots()
-ax.grid()
 
 # Draw constraint lines
 ax.hlines(0, -1, 400)
@@ -457,7 +456,6 @@ The dual problem can be graphically represented as follows.
 :tags: [hide-input]
 
 fig, ax = plt.subplots()
-ax.grid()
 
 # Draw constraint lines
 ax.hlines(0, -1, 50)
@@ -562,13 +560,13 @@ Another way to rank sectors in input-output networks is via output multipliers.
 The **output multiplier** of sector $j$ denoted by $\mu_j$ is usually defined as the
 total sector-wide impact of a unit change of demand in sector $j$.
 
-Earlier when disussing demand shocks we concluded that for $L = (l_{ij})$ the element
+Earlier when discussing demand shocks we concluded that for $L = (l_{ij})$ the element
 $l_{ij}$ represents the impact on sector $i$ of a unit change in demand in sector $j$.
 
 Thus,
 
 $$
-\mu_j = \sum_{j=1}^n l_{ij}
+\mu_j = \sum_{i=1}^n l_{ij}
 $$
 
 This can be written as $\mu^\top = \mathbb{1}^\top L$ or
