@@ -231,7 +231,7 @@ def plot_distribution(agents, cycle_num):
     "Plot the distribution of agents after cycle_num rounds of the loop."
     x_values_0, y_values_0 = [], []
     x_values_1, y_values_1 = [], []
-    # == Obtain locations of each type == #
+    # Obtain locations of each type
     for agent in agents:
         x, y = agent.location
         if agent.type == 0:

@@ -976,7 +976,7 @@ The red, yellow, and green dots represent different initial probability distribu
 
 The blue dot represents the unique stationary distribution.
 
-Unlike Hamilton’s Markov chain, these initial distributions do not converge to the unique stationary distribution.
+Unlike Hamilton's Markov chain, these initial distributions do not converge to the unique stationary distribution.
 
 Instead, they cycle periodically around the probability simplex, illustrating that asymptotic stability fails.
 
@@ -1063,7 +1063,7 @@ $$
         \sum_{j=0}^\infty \beta^j h(X_{t+j}) \mid X_t
         = x
     \right]
-    = x + \beta (Ph)(x) + \beta^2 (P^2 h)(x) + \cdots
+    = h(x) + \beta (Ph)(x) + \beta^2 (P^2 h)(x) + \cdots
 $$
 
 By the {ref}`Neumann series lemma <la_neumann>`, this sum can be calculated using
@@ -1094,7 +1094,7 @@ where rows, from top to down, correspond to growth, stagnation, and collapse.
 In this exercise,
 
 1. visualize the transition matrix and show this process is asymptotically stationary
-1. calculate the stationary distribution using simulations
+1. calculate the stationary distribution using matrix powers and QuantEcon package
 1. visualize the dynamics of  $(\psi_0 P^t)(i)$ where $t \in 0, ..., 25$ and compare the convergent path with the previous transition matrix
 
 Compare your solution to the paper.
@@ -1171,7 +1171,7 @@ In this exercise,
 
 Solution 1:
 
-Although $P$ is not every positive, $P^m$ when $m=3$ is everywhere positive.
+Although $P$ is not everywhere positive, $P^m$ when $m=3$ is everywhere positive.
 
 ```{code-cell} ipython3
 P = np.array([[0.86, 0.11, 0.03, 0.00, 0.00, 0.00],
