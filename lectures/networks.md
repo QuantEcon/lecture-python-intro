@@ -37,8 +37,7 @@ intricate connections between simple processing units.
 Epidemiologists studying [transmission of diseases](https://en.wikipedia.org/wiki/Network_medicine#Network_epidemics)
 like COVID-19 analyze interactions between groups of human hosts.
 
-In operations research, network analysis is used to study fundamental problems
-as on minimum cost flow, the traveling salesman, [shortest paths](https://en.wikipedia.org/wiki/Shortest_path_problem),
+In operations research, network analysis is used to study fundamental problems such as minimum cost flow, the traveling salesman, [shortest paths](https://en.wikipedia.org/wiki/Shortest_path_problem),
 and assignment.
 
 This lecture gives an introduction to economic and financial networks.
@@ -1022,7 +1021,7 @@ directed graph with adjacency matrix $A$ is defined as the vector $\kappa$
 that solves
  
 $$
-\kappa_i =  \beta \sum_{1 \leq j 1} a_{ij} \kappa_j + 1
+\kappa_i =  \beta \sum_{j=0}^{n-1} a_{ij} \kappa_j + 1
 \qquad  \text{for all } i \in \{0, \ldots, n-1\}.
 $$ (katz_central)
 

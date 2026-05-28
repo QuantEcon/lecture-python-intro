@@ -82,7 +82,6 @@ ax.plot(years, hog_prices, '-o', ms=4, label='hog price')
 ax.set_xlabel('year')
 ax.set_ylabel('dollars')
 ax.legend()
-ax.grid()
 plt.show()
 ```
 
@@ -531,7 +530,7 @@ ts_plot_supply(m, 5, 15)
 
 Backward looking average expectations refers to the case where producers form
 expectations for the next period price as a linear combination of their last
-guess and the second last guess.
+observed price and the price observed one period before that.
 
 That is,
 
@@ -588,9 +587,9 @@ def ts_plot_price_blae(model, p0, p1, alphas, ts_length=15):
 ```{code-cell} ipython3
 m = Market()
 ts_plot_price_blae(m, 
-                   p0=5, 
-                   p1=6, 
-                   alphas=[0.1, 0.3, 0.5, 0.8], 
+                   p0=1,
+                   p1=2.5,
+                   alphas=[0.1, 0.3, 0.5, 0.8],
                    ts_length=20)
 ```
 
