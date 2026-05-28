@@ -131,7 +131,7 @@ Each agent stays if they are happy and moves if they are unhappy.
 
 The algorithm for moving is as follows
 
-```{prf:algorithm} Jump Chain Algorithm
+```{prf:algorithm} Move algorithm
 :label: move_algo
 
 1. Draw a random location in $S$
@@ -244,24 +244,26 @@ def plot_distribution(agents, cycle_num):
     plot_args = {'markersize': 8, 'alpha': 0.8}
     ax.set_facecolor('azure')
     ax.plot(x_values_0, y_values_0,
-        'o', markerfacecolor='orange', **plot_args)
+        'o', markerfacecolor='orange', label='Type 0', **plot_args)
     ax.plot(x_values_1, y_values_1,
-        'o', markerfacecolor='green', **plot_args)
+        'o', markerfacecolor='green', label='Type 1', **plot_args)
     ax.set_title(f'Cycle {cycle_num-1}')
+    ax.legend()
     plt.show()
 ```
 
-And here's some pseudocode for the main loop, where we cycle through the
-agents until no one wishes to move.
+Here's the main loop, where we cycle through the agents until no one wishes
+to move.
 
-The pseudocode is
+```{prf:algorithm} Main loop
+:label: schelling_main_loop
 
-```{code-block} none
-plot the distribution
-while agents are still moving
-    for agent in agents
-        give agent the opportunity to move
-plot the distribution
+1. plot the distribution
+1. while agents are still moving
+    1. for agent in agents
+        1. give agent the opportunity to move
+1. plot the distribution
+
 ```
 
 The real code is below
@@ -288,7 +290,6 @@ def run_simulation(num_of_type_0=600,
 
     # Loop until no agent wishes to move
     while count < max_iter:
-        print('Entering loop ', count)
         count += 1
         no_one_moved = True
         for agent in agents:
@@ -428,8 +429,10 @@ def plot_distribution(locations, types, title, savepdf=False):
                 'o',
                 markersize=8,
                 markerfacecolor=color,
-                alpha=0.8)
+                alpha=0.8,
+                label=f'Type {agent_type}')
     ax.set_title(title)
+    ax.legend()
     plt.show()
 
 def sim_random_select(max_iter=100_000, flip_prob=0.01, test_freq=10_000):
@@ -470,11 +473,6 @@ def sim_random_select(max_iter=100_000, flip_prob=0.01, test_freq=10_000):
         print(f"Terminating at iteration {current_iter}")
 ```
 
-```{solution-end}
-```
-
-+++
-
 When we run this we again find that mixed neighborhoods break down and segregation emerges.
 
 Here's a sample run.
@@ -483,6 +481,5 @@ Here's a sample run.
 sim_random_select(max_iter=50_000, flip_prob=0.01, test_freq=10_000)
 ```
 
-```{code-cell} ipython3
-
+```{solution-end}
 ```
