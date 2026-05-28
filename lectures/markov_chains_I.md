@@ -738,6 +738,8 @@ We will come back to this when we introduce irreducibility in the {doc}`next lec
 
 
 ```{prf:example} Steady-State Unemployment Probability
+:label: steady-state-unemployment
+
 Recall our model of the employment/unemployment dynamics of a particular worker discussed in {ref}`Example 2: Unemployment <mc_eg1>`.
 
 If $\alpha \in (0,1)$ and $\beta \in (0,1)$, then the transition matrix is everywhere positive.
@@ -891,9 +893,9 @@ HTML(anim.to_jshtml())
 Here
 
 * $P$ is the stochastic matrix for recession and growth considered in {ref}`Example 1: Economic states <mc_eg2>`.
-* The highest red dot is an arbitrarily chosen initial marginal probability distribution  $\psi_0$, represented as a vector in $\mathbb R^3$.
-* The other red dots are the marginal distributions $\psi_0 P^t$ for $t = 1, 2, \ldots$.
-* The black dot is $\psi^*$.
+* The red, blue and green dots are initial marginal probability distributions $\psi_1, \psi_2, \psi_3$, each of which is represented as a vector in $\mathbb R^3$.
+* The transparent dots are the marginal distributions $\psi_i P^t$ for $t = 1, 2, \ldots$, for $i=1,2,3.$
+* The yellow dot is $\psi^*$.
 
 You might like to try experimenting with different initial conditions.
 
