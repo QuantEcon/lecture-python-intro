@@ -41,7 +41,7 @@ We provide a standard form of a linear program and methods to transform other fo
 We tell how to solve a linear programming problem using [SciPy](https://scipy.org/) and [Google OR-Tools](https://developers.google.com/optimization).
 
 ```{seealso}
-In another lecture, we will employ the linear programming method to solve the 
+In another lecture, we will employ the linear programming method to solve the
 {doc}`optimal transport problem <tools:opt_transport>`.
 ```
 
@@ -326,9 +326,9 @@ if status == pywraplp.Solver.OPTIMAL:
     print('Objective value =', solver.Objective().Value())
     x1_sol = round(x1.solution_value(), 3)
     x2_sol = round(x2.solution_value(), 3)
-    x3_sol = round(x1.solution_value(), 3)
-    x4_sol = round(x2.solution_value(), 3)
-    x5_sol = round(x1.solution_value(), 3)
+    x3_sol = round(x3.solution_value(), 3)
+    x4_sol = round(x4.solution_value(), 3)
+    x5_sol = round(x5.solution_value(), 3)
     print(f'(x1, x2, x3, x4, x5): ({x1_sol}, {x2_sol}, {x3_sol}, {x4_sol}, {x5_sol})')
 else:
     print('The problem does not have an optimal solution.')
@@ -338,11 +338,11 @@ OR-Tools tells us that  the best investment strategy is:
 
 1. At the beginning of the first year, the mutual fund should buy $ \$24,927.755$ of the annuity. Its bank account balance should be $ \$75,072.245$.
 
-2. At the beginning of the second year, the mutual fund should buy $ \$24,927.755$ of the corporate bond and keep invest in the annuity. Its bank balance should be $ \$24,927.755$.
+2. At the beginning of the second year, the mutual fund should buy $ \$4,648.825$ of the corporate bond and borrow $ \$20,000$ from the bank.
 
-3. At the beginning of the third year, the bank balance should be $ \$75,072.245 $.
+3. At the beginning of the third year, the bank balance should be $ \$50,000$.
 
-4. At the end of the third year, the mutual fund will get payouts from the annuity and corporate bond and repay its loan from the bank. At the end  it will own $ \$141,018.24 $, so that it's total net  rate of return over the three periods is $ 41.02\%$.
+4. At the end of the third year, the mutual fund will get payouts from the annuity and corporate bond and repay its loan from the bank, leaving it with $ \$141,018.24$ and a total net rate of return over the three periods of $41.02\%$.
 
 
 

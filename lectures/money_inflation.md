@@ -16,17 +16,17 @@ kernelspec:
 ## Overview
 
 This lecture extends and modifies the model in this lecture {doc}`cagan_ree` by modifying the
-law of motion that governed the supply of money.  
+law of motion that governed the supply of money.
 
 The model in this lecture consists of two components
 
-* a demand function for money 
+* a demand function for money
 * a law of motion for the supply of money
- 
+
 The demand function describes the public's demand for "real balances", defined as the ratio of nominal money balances to the price level
 
 * it assumes that the demand for real balance today varies inversely with the rate of inflation that the public forecasts to prevail between today and tomorrow
-* it assumes that the public's forecast of that rate of inflation is perfect 
+* it assumes that the public's forecast of that rate of inflation is perfect
 
 The law of motion for the supply of money assumes that the government prints money to finance government expenditures
 
@@ -35,7 +35,7 @@ Our model equates the demand for money to the supply at each time $t \geq 0$.
 Equality between those demands and supply gives a *dynamic* model in which   money supply
 and  price level *sequences* are simultaneously determined by a  set of simultaneous linear  equations.
 
-These equations take the form of what is often called vector linear **difference equations**.  
+These equations take the form of what is often called vector linear **difference equations**.
 
 In this lecture, we'll roll up our sleeves and solve those equations in two different ways.
 
@@ -47,15 +47,15 @@ In this lecture we will encounter these concepts from macroeconomics:
 * an **inflation tax** that a government gathers by printing paper or electronic money
 * a dynamic **Laffer curve** in the inflation tax rate that has two stationary equilibria
 * perverse dynamics under rational expectations in which the system converges to the higher stationary inflation tax rate
-* a peculiar comparative stationary-state outcome connected with that stationary inflation rate: it asserts that inflation can be *reduced* by running *higher*  government deficits, i.e., by raising more resources by printing money. 
+* a peculiar comparative stationary-state outcome connected with that stationary inflation rate: it asserts that inflation can be *reduced* by running *higher*  government deficits, i.e., by raising more resources by printing money.
 
-The same qualitative outcomes prevail in this lecture {doc}`money_inflation_nonlinear` that studies a nonlinear version of the model in this lecture.  
+The same qualitative outcomes prevail in this lecture {doc}`money_inflation_nonlinear` that studies a nonlinear version of the model in this lecture.
 
 These outcomes  set the stage for the analysis to be presented in this lecture {doc}`laffer_adaptive` that studies a nonlinear version of the present model; it   assumes a version of "adaptive expectations" instead of rational expectations.
 
-That lecture will show that 
+That lecture will show that
 
-* replacing rational expectations with adaptive expectations leaves the two stationary inflation rates unchanged, but that $\ldots$ 
+* replacing rational expectations with adaptive expectations leaves the two stationary inflation rates unchanged, but that $\ldots$
 * it reverses the perverse dynamics by making the *lower* stationary inflation rate the one to which the system typically converges
 * a more plausible comparative dynamic outcome emerges in which now inflation can be *reduced* by running *lower*  government deficits
 
@@ -72,26 +72,26 @@ We'll use these tools from linear algebra:
 
 We say demand*s* and suppl*ies* (plurals) because there is one of each for each $t \geq 0$.
 
-Let 
+Let
 
 * $m_{t+1}$ be the supply of currency at the end of time $t \geq 0$
 * $m_{t}$ be the supply  of currency brought into time $t$ from time $t-1$
 * $g$ be the government deficit that is financed by printing currency at $t \geq 1$
 * $m_{t+1}^d$ be the demand at time $t$ for currency  to bring into time $t+1$
 * $p_t$ be  the price level at time $t$
-* $b_t = \frac{m_{t+1}}{p_t}$ is real balances at the end of time $t$ 
+* $b_t = \frac{m_{t+1}}{p_t}$ is real balances at the end of time $t$
 * $R_t = \frac{p_t}{p_{t+1}} $ be the gross rate of return on currency held from time $t$ to time $t+1$
-  
+
 It is often helpful to state units in which quantities are measured:
 
 * $m_t$ and $m_t^d$ are measured in dollars
-* $g$ is measured in time $t$ goods 
+* $g$ is measured in time $t$ goods
 * $p_t$ is measured in dollars per time $t$ goods
 * $R_t$ is measured in time $t+1$ goods per unit of time $t$ goods
 * $b_t$ is measured in time $t$ goods
-   
-  
-Our job now is to specify demand and supply functions for money. 
+
+
+Our job now is to specify demand and supply functions for money.
 
 We assume that the demand for  currency satisfies the Cagan-like demand function
 
@@ -99,20 +99,20 @@ $$
 \frac{m_{t+1}^d}{p_t}=\gamma_1 - \gamma_2 \frac{p_{t+1}}{p_t}, \quad t \geq 0
 $$ (eq:demandmoney)
 where $\gamma_1, \gamma_2$ are positive parameters.
-  
+
 Now we turn to the supply of money.
 
-We assume that $m_0 >0$ is an "initial condition" determined outside the model. 
+We assume that $m_0 >0$ is an "initial condition" determined outside the model.
 
 We set $m_0$ at some arbitrary positive value, say \$100.
-  
+
 For $ t \geq 1$, we assume that the supply of money is determined by the government's budget constraint
 
 $$
 m_{t+1} - m_{t} = p_t g , \quad t \geq 0
 $$ (eq:budgcontraint)
 
-According to this equation, each period, the government prints money to pay for quantity $g$ of goods. 
+According to this equation, each period, the government prints money to pay for quantity $g$ of goods.
 
 In an **equilibrium**, the demand for currency equals the supply:
 
@@ -145,25 +145,25 @@ $$
 b_t - b_{t-1} R_{t-1} = g
 $$ (eq:bmotion)
 
-The demand for real balances is 
+The demand for real balances is
 
 $$
-b_t = \gamma_1 - \gamma_2 R_t^{-1} . 
+b_t = \gamma_1 - \gamma_2 R_t^{-1} .
 $$ (eq:bdemand)
-  
+
 We'll restrict our attention to  parameter values and  associated gross real rates of return on real balances that assure that the demand for real balances is positive, which according to {eq}`eq:bdemand` means that
 
 $$
-b_t = \gamma_1 - \gamma_2 R_t^{-1} > 0 
-$$ 
+b_t = \gamma_1 - \gamma_2 R_t^{-1} > 0
+$$
 
-which implies that 
+which implies that
 
 $$
 R_t \geq \left( \frac{\gamma_2}{\gamma_1} \right) \equiv \underline R
 $$ (eq:Requation)
 
-Gross real rate of return $\underline R$ is the smallest rate of return on currency 
+Gross real rate of return $\underline R$ is the smallest rate of return on currency
 that is consistent with a nonnegative demand for real balances.
 
 We shall describe two distinct but closely related ways of computing a pair   $\{p_t, m_t\}_{t=0}^\infty$ of sequences for the price level and money supply.
@@ -172,15 +172,15 @@ But first it is instructive to describe a special type of equilibrium known as a
 
 In a  steady-state equilibrium, a subset of key variables remain constant or **invariant** over time, while remaining variables can be expressed as functions of  those constant variables.
 
-Finding such state variables is something of an art.  
+Finding such state variables is something of an art.
 
-In many models, a good source of candidates for such invariant variables is a set of *ratios*.   
+In many models, a good source of candidates for such invariant variables is a set of *ratios*.
 
 This is true in the present model.
 
 ### Steady states
 
-In a steady-state equilibrium of the  model we are studying, 
+In a steady-state equilibrium of the  model we are studying,
 
 $$
 \begin{aligned}
@@ -189,7 +189,7 @@ b_t & = \bar b
 \end{aligned}
 $$
 
-for $t \geq 0$.  
+for $t \geq 0$.
 
 Notice that both $R_t = \frac{p_t}{p_{t+1}}$ and $b_t = \frac{m_{t+1}}{p_t} $ are *ratios*.
 
@@ -209,7 +209,7 @@ $$
 $$ (eq:seignsteady)
 
 
-The left side is the steady-state amount of **seigniorage** or government revenues that the government gathers by paying a gross rate of return $\bar R \le 1$ on currency. 
+The left side is the steady-state amount of **seigniorage** or government revenues that the government gathers by paying a gross rate of return $\bar R \le 1$ on currency.
 
 The right side is government expenditures.
 
@@ -219,17 +219,17 @@ $$
 S(\bar R) = (\gamma_1 + \gamma_2) - \frac{\gamma_2}{\bar R} - \gamma_1 \bar R
 $$ (eq:SSsigng)
 
-Notice that $S(\bar R) \geq 0$ only when $\bar R \in [\frac{\gamma_2}{\gamma_1}, 1] 
+Notice that $S(\bar R) \geq 0$ only when $\bar R \in [\frac{\gamma_2}{\gamma_1}, 1]
 \equiv [\underline R, \overline R]$ and that $S(\bar R) = 0$ if $\bar R  = \underline R$
 or if $\bar R  = \overline R$.
 
 We shall study equilibrium sequences that  satisfy
 
 $$
-R_t \in  [\underline R, \overline R],  \quad t \geq 0. 
+R_t \in  [\underline R, \overline R],  \quad t \geq 0.
 $$
 
-Maximizing steady-state seigniorage  {eq}`eq:SSsigng` with respect to $\bar R$, we find that the maximizing rate of return on currency is 
+Maximizing steady-state seigniorage  {eq}`eq:SSsigng` with respect to $\bar R$, we find that the maximizing rate of return on currency is
 
 $$
 \bar R_{\rm max} = \sqrt{\frac{\gamma_2}{\gamma_1}}
@@ -249,7 +249,7 @@ $$ (eq:steadyquadratic)
 
 A steady state gross rate of return  $\bar R$ solves quadratic equation {eq}`eq:steadyquadratic`.
 
-So two steady states typically exist. 
+So two steady states typically exist.
 
 ## Some code
 
@@ -269,17 +269,17 @@ First, we create a `namedtuple` to store parameters so that we can reuse this `n
 
 ```{code-cell} ipython3
 # Create a namedtuple that contains parameters
-MoneySupplyModel = namedtuple("MoneySupplyModel", 
-                        ["γ1", "γ2", "g", 
+MoneySupplyModel = namedtuple("MoneySupplyModel",
+                        ["γ1", "γ2", "g",
                          "M0", "R_u", "R_l"])
 
 def create_model(γ1=100, γ2=50, g=3.0, M0=100):
-    
+
     # Calculate the steady states for R
     R_steady = np.roots((-γ1, γ1 + γ2 - g, -γ2))
     R_u, R_l = R_steady
     print("[R_u, R_l] =", R_steady)
-    
+
     return MoneySupplyModel(γ1=γ1, γ2=γ2, g=g, M0=M0, R_u=R_u, R_l=R_l)
 ```
 
@@ -357,20 +357,20 @@ We now proceed to compute equilibria, not necessarily steady states.
 
 We shall  deploy two distinct computation strategies.
 
-### Method 1 
+### Method 1
 
 * set $R_0 \in [\frac{\gamma_2}{\gamma_1}, R_u]$ and compute $b_0 = \gamma_1 - \gamma_2/R_0$.
 
-* compute sequences $\{R_t, b_t\}_{t=1}^\infty$ of rates of return and real balances that are associated with an equilibrium by solving equation {eq}`eq:bmotion` and {eq}`eq:bdemand` sequentially  for $t \geq 1$:  
-   
+* compute sequences $\{R_t, b_t\}_{t=1}^\infty$ of rates of return and real balances that are associated with an equilibrium by solving equation {eq}`eq:bmotion` and {eq}`eq:bdemand` sequentially  for $t \geq 1$:
+
 $$
 \begin{aligned}
 b_t & = b_{t-1} R_{t-1} + g \cr
-R_t^{-1} & = \frac{\gamma_1}{\gamma_2} - \gamma_2^{-1} b_t 
+R_t^{-1} & = \frac{\gamma_1}{\gamma_2} - \gamma_2^{-1} b_t
 \end{aligned}
 $$ (eq:rtbt)
 
-* Construct the associated equilibrium $p_0$ from 
+* Construct the associated equilibrium $p_0$ from
 
 $$
 p_0 = \frac{m_0}{\gamma_1 - g - \gamma_2/R_0}
@@ -381,10 +381,10 @@ $$ (eq:p0fromR0)
 $$
 \begin{aligned}
 p_t & = R_t p_{t-1} \cr
-m_t & = b_{t-1} p_t 
+m_t & = b_{t-1} p_t
 \end{aligned}
-$$ (eq:method1) 
-   
+$$ (eq:method1)
+
 ```{prf:remark}
 :label: method_1
 Method 1 uses an indirect approach to computing an equilibrium by first computing an equilibrium  $\{R_t, b_t\}_{t=0}^\infty$ sequence and then using it to back out an equilibrium  $\{p_t, m_t\}_{t=0}^\infty$  sequence.
@@ -392,7 +392,11 @@ Method 1 uses an indirect approach to computing an equilibrium by first computin
 
 ```{prf:remark}
 :label: initial_condition
-Notice that  method 1 starts by picking an **initial condition** $R_0$ from a set $[\frac{\gamma_2}{\gamma_1}, R_u]$. Equilibrium $\{p_t, m_t\}_{t=0}^\infty$ sequences are not unique.  There is actually a continuum of equilibria indexed by a choice of $R_0$ from the set $[\frac{\gamma_2}{\gamma_1}, R_u]$. 
+Notice that method 1 starts by picking an **initial condition** $R_0$ from a set $[\frac{\gamma_2}{\gamma_1}, R_u]$.
+
+Equilibrium $\{p_t, m_t\}_{t=0}^\infty$ sequences are not unique.
+
+There is actually a continuum of equilibria indexed by a choice of $R_0$ from the set $[\frac{\gamma_2}{\gamma_1}, R_u]$.
 ```
 
 ```{prf:remark}
@@ -400,11 +404,11 @@ Notice that  method 1 starts by picking an **initial condition** $R_0$ from a se
 Associated with each selection of $R_0$ there is a unique $p_0$ described by
 equation {eq}`eq:p0fromR0`.
 ```
- 
+
 ### Method 2
 
-This method deploys a direct approach. 
-It defines a "state vector" 
+This method deploys a direct approach.
+It defines a "state vector"
 $y_t = \begin{bmatrix} m_t \cr p_t\end{bmatrix} $
 and formulates  equilibrium conditions {eq}`eq:demandmoney`, {eq}`eq:budgcontraint`, and
 {eq}`eq:syeqdemand`
@@ -414,66 +418,69 @@ $$
 y_{t+1} = M y_t, \quad t \geq 0 ,
 $$
 
-where we temporarily take $y_0 = \begin{bmatrix} m_0 \cr p_0 \end{bmatrix}$ as an **initial condition**. 
+where we temporarily take $y_0 = \begin{bmatrix} m_0 \cr p_0 \end{bmatrix}$ as an **initial condition**.
 
-The solution is 
+The solution is
 
 $$
 y_t = M^t y_0 .
 $$
 
-Now let's think about the initial condition $y_0$. 
+Now let's think about the initial condition $y_0$.
 
 It is natural to take the initial stock of money $m_0 >0$ as an initial condition.
 
-But what about $p_0$?  
+But what about $p_0$?
 
 Isn't it  something that we want  to be *determined* by our model?
 
-Yes, but sometimes we want too much, because there is actually a continuum of initial $p_0$ levels that are compatible with the existence of an equilibrium.  
+Yes, but sometimes we want too much, because there is actually a continuum of initial $p_0$ levels that are compatible with the existence of an equilibrium.
 
-As we shall see soon, selecting an initial $p_0$ in method 2 is intimately tied to selecting an initial rate of return on currency $R_0$ in method 1. 
-   
-## Computation method 1  
+As we shall see soon, selecting an initial $p_0$ in method 2 is intimately tied to selecting an initial rate of return on currency $R_0$ in method 1.
 
-%We start from an arbitrary $R_0$ and  $b_t = \frac{m_{t+1}}{p_t}$, we have 
+## Computation method 1
+
+%We start from an arbitrary $R_0$ and  $b_t = \frac{m_{t+1}}{p_t}$, we have
 
 %$$
-%b_0 = \gamma_1 - \gamma_0 R_0^{-1} 
+%b_0 = \gamma_1 - \gamma_0 R_0^{-1}
 %$$
 
 Remember that there exist  two steady-state equilibrium  values $ R_\ell <  R_u$  of the rate of return on currency  $R_t$.
 
 We proceed as follows.
 
-Start at $t=0$ 
-* select a  $R_0 \in [\frac{\gamma_2}{\gamma_1}, R_u]$  
-* compute   $b_0 = \gamma_1 - \gamma_0 R_0^{-1} $ 
- 
+Start at $t=0$
+* select a  $R_0 \in [\frac{\gamma_2}{\gamma_1}, R_u]$
+* compute   $b_0 = \gamma_1 - \gamma_0 R_0^{-1} $
+
 Then  for $t \geq 1$ construct $b_t, R_t$ by
 iterating  on equation {eq}`eq:rtbt`.
 
-When we implement this part of method 1, we shall discover the following  striking 
+When we implement this part of method 1, we shall discover the following  striking
 outcome:
 
-* starting from an $R_0$ in  $[\frac{\gamma_2}{\gamma_1}, R_u]$, we shall find that 
+* starting from an $R_0$ in  $[\frac{\gamma_2}{\gamma_1}, R_u]$, we shall find that
 $\{R_t\}$ always converges to a limiting "steady state" value  $\bar R$ that depends on the initial
 condition $R_0$.
 
-* there are only two possible limit points $\{ R_\ell, R_u\}$. 
+* there are only two possible limit points $\{ R_\ell, R_u\}$.
 
 * for almost every initial condition $R_0$, $\lim_{t \rightarrow +\infty} R_t = R_\ell$.
 
 * if and only if $R_0 = R_u$, $\lim_{t \rightarrow +\infty} R_t = R_u$.
-  
+
 The quantity $1 - R_t$ can be interpreted as an **inflation tax rate** that the government imposes on holders of its currency.
 
 We shall soon  see that the existence of two steady-state rates of return on currency
-that serve to finance the government deficit of $g$ indicates the presence of a **Laffer curve** in the inflation tax rate.  
+that serve to finance the government deficit of $g$ indicates the presence of a **Laffer curve** in the inflation tax rate.
 
 ```{note}
-Arthur Laffer's curve plots a hump shaped curve of revenue raised from a tax against the tax rate.  
-Its hump shape indicates that there are typically two tax rates that yield the same amount of revenue. This is due to two countervailing courses, one being that raising a tax rate typically decreases the **base** of the tax as people take decisions to reduce their exposure to the tax.
+Arthur Laffer's curve plots a hump shaped curve of revenue raised from a tax against the tax rate.
+
+Its hump shape indicates that there are typically two tax rates that yield the same amount of revenue.
+
+This is due to two countervailing courses, one being that raising a tax rate typically decreases the **base** of the tax as people take decisions to reduce their exposure to the tax.
 ```
 
 ```{code-cell} ipython3
@@ -502,43 +509,43 @@ Let's write some code to plot outcomes for several possible initial values $R_0$
 ```{code-cell} ipython3
 :tags: [hide-cell]
 
-line_params = {'lw': 1.5, 
+line_params = {'lw': 1.5,
               'marker': 'o',
               'markersize': 3}
 
 def annotate_graph(ax, model, num_steps):
-    for y, label in [(model.R_u, '$R_u$'), (model.R_l, '$R_l$'), 
+    for y, label in [(model.R_u, '$R_u$'), (model.R_l, '$R_l$'),
                      (model.γ2 / model.γ1, r'$\frac{\gamma_2}{\gamma_1}$')]:
         ax.axhline(y=y, color='grey', linestyle='--', lw=1.5, alpha=0.6)
-        ax.text(num_steps * 1.02, y, label, verticalalignment='center', 
+        ax.text(num_steps * 1.02, y, label, verticalalignment='center',
                 color='grey', size=12)
 
 def draw_paths(R0_values, model, line_params, num_steps):
 
     fig, axes = plt.subplots(2, 1, figsize=(8, 8), sharex=True)
-    
+
     # Pre-compute time steps
-    time_steps = np.arange(num_steps) 
-    
-    # Iterate over R_0s and simulate the system 
+    time_steps = np.arange(num_steps)
+
+    # Iterate over R_0s and simulate the system
     for R0 in R0_values:
         b_values, R_values = simulate_system(R0, model, num_steps)
-        
+
         # Plot R_t against time
         axes[0].plot(time_steps, R_values, **line_params)
-        
+
         # Plot b_t against time
         axes[1].plot(time_steps, b_values, **line_params)
-        
-    # Add line and text annotations to the subgraph 
+
+    # Add line and text annotations to the subgraph
     annotate_graph(axes[0], model, num_steps)
-    
+
     # Add Labels
     axes[0].set_ylabel('$R_t$')
     axes[1].set_xlabel('timestep')
     axes[1].set_ylabel('$b_t$')
     axes[1].xaxis.set_major_locator(MaxNLocator(integer=True))
-    
+
     plt.tight_layout()
     plt.show()
 ```
@@ -564,11 +571,11 @@ draw_paths(R0s, msm, line_params, num_steps=20)
 
 Notice how sequences that  start from $R_0$ in the half-open interval $[R_\ell, R_u)$ converge to the steady state  associated with  to $ R_\ell$.
 
-## Computation method 2 
+## Computation method 2
 
-Set $m_t = m_t^d $ for all $t \geq -1$. 
+Set $m_t = m_t^d $ for all $t \geq -1$.
 
-Let 
+Let
 
 $$
 y_t =  \begin{bmatrix} m_{t} \cr p_{t} \end{bmatrix} .
@@ -580,30 +587,30 @@ $$
 \begin{bmatrix} 1 & \gamma_2 \cr
                  1 & 0 \end{bmatrix} \begin{bmatrix} m_{t+1} \cr p_{t+1} \end{bmatrix} =
                  \begin{bmatrix} 0 & \gamma_1 \cr
-                 1 & g \end{bmatrix} \begin{bmatrix} m_{t} \cr p_{t} \end{bmatrix} 
+                 1 & g \end{bmatrix} \begin{bmatrix} m_{t} \cr p_{t} \end{bmatrix}
 $$ (eq:sytem101)
 
 or
 
-$$ 
-H_1 y_t = H_2  y_{t-1} 
+$$
+H_1 y_t = H_2  y_{t-1}
 $$
 
-where 
+where
 
 $$
 \begin{aligned} H_1 & = \begin{bmatrix} 1 & \gamma_2 \cr
                  1 & 0 \end{bmatrix} \cr
                 H_2 & = \begin{bmatrix} 0 & \gamma_1 \cr
-                 1 & g \end{bmatrix}  
+                 1 & g \end{bmatrix}
 \end{aligned}
 $$
 
 ```{code-cell} ipython3
-H1 = np.array([[1, msm.γ2], 
+H1 = np.array([[1, msm.γ2],
                [1, 0]])
-H2 = np.array([[0, msm.γ1], 
-               [1, msm.g]]) 
+H2 = np.array([[0, msm.γ1],
+               [1, msm.g]])
 ```
 
 Define
@@ -620,7 +627,7 @@ print('H = \n', H)
 and write the system  {eq}`eq:sytem101` as
 
 $$
-y_{t+1} = H y_t, \quad t \geq 0 
+y_{t+1} = H y_t, \quad t \geq 0
 $$ (eq:Vaughn)
 
 so that $\{y_t\}_{t=0}$ can be computed from
@@ -629,7 +636,7 @@ $$
 y_t = H^t y_0, t \geq 0
 $$ (eq:ytiterate)
 
-where 
+where
 
 $$
 y_0 = \begin{bmatrix} m_{0} \cr p_0 \end{bmatrix} .
@@ -642,20 +649,20 @@ it is something that we actually wanted to be determined by the model.
 
 (As usual, we should listen when mathematics talks to us.)
 
-For now, let's just proceed mechanically on faith. 
+For now, let's just proceed mechanically on faith.
 
-Compute the eigenvector decomposition 
+Compute the eigenvector decomposition
 
 $$
-H =  Q \Lambda Q^{-1} 
-$$ 
+H =  Q \Lambda Q^{-1}
+$$
 
 where $\Lambda$ is a diagonal matrix of eigenvalues and the columns of $Q$ are eigenvectors corresponding to those eigenvalues.
 
-It turns out that  
+It turns out that
 
 $$
-\Lambda = \begin{bmatrix} {R_\ell}^{-1} & 0 \cr 
+\Lambda = \begin{bmatrix} {R_\ell}^{-1} & 0 \cr
                 0 & {R_u}^{-1} \end{bmatrix}
 $$
 
@@ -677,30 +684,30 @@ print(f'R_u = {R_u:.4f}')
 
 Partition $Q$ as
 
-$$ 
+$$
 Q =\begin{bmatrix} Q_{11} & Q_{12} \cr
                    Q_{21} & Q_{22} \end{bmatrix}
 $$
 
-Below we shall verify the following claims: 
+Below we shall verify the following claims:
 
 
-**Claims:** If we set 
+**Claims:** If we set
 
 $$
 p_0 = \overline p_0 \equiv Q_{21} Q_{11}^{-1}  m_{0} ,
 $$ (eq:magicp0)
 
-it turns out that 
+it turns out that
 
-$$ 
+$$
 \frac{p_{t+1}}{p_t} = {R_u}^{-1}, \quad t \geq 0
 $$
 
 
-However, if we set 
+However, if we set
 
-$$ 
+$$
 p_0 > \bar p_0
 $$
 
@@ -732,7 +739,7 @@ def iterate_H(y_0, H, num_steps):
     Q_inv = np.linalg.inv(Q)
     y = np.stack(
         [Q @ np.diag(Λ**t) @ Q_inv @ y_0 for t in range(num_steps)], 1)
-    
+
     return y
 ```
 
@@ -744,10 +751,10 @@ To understand  this situation,  we  use the following
 transformation
 
 $$
-y^*_t = Q^{-1} y_t . 
+y^*_t = Q^{-1} y_t .
 $$
 
-Dynamics of $y^*_t$ are evidently governed by 
+Dynamics of $y^*_t$ are evidently governed by
 
 $$
 y^*_{t+1} = \Lambda^t y^*_t .
@@ -755,7 +762,7 @@ $$ (eq:stardynamics)
 
 This equation represents the dynamics of our system  in a way that lets us  isolate the
 force that causes  gross inflation to converge to the inverse of the lower steady-state rate
-of inflation $R_\ell$ that we discovered earlier. 
+of inflation $R_\ell$ that we discovered earlier.
 
 Staring at  equation {eq}`eq:stardynamics` indicates that unless
 
@@ -766,11 +773,11 @@ y^*_0 = \begin{bmatrix} y^*_{1,0} \cr 0 \end{bmatrix}
 ```
 
 the path of $y^*_t$,  and therefore the paths of both $m_t$ and $p_t$ given by
-$y_t = Q y^*_t$ will eventually grow at gross rates ${R_\ell}^{-1}$ as 
-$t \rightarrow +\infty$. 
+$y_t = Q y^*_t$ will eventually grow at gross rates ${R_\ell}^{-1}$ as
+$t \rightarrow +\infty$.
 
 Equation {eq}`equation_11` also leads us to conclude that there is a unique setting
-for the initial vector $y_0$ for which both components forever grow at the lower rate ${R_u}^{-1}$. 
+for the initial vector $y_0$ for which both components forever grow at the lower rate ${R_u}^{-1}$.
 
 
 For this to occur, the required setting of $y_0$ must evidently have the property
@@ -821,7 +828,7 @@ p_0 = - (Q^{22})^{-1} Q^{21} m_0.
 ```
 
 
-### More convenient formula 
+### More convenient formula
 
 We can get the equivalent but perhaps more convenient formula {eq}`eq:magicp0` for $p_0$ that is cast
 in terms of components of $Q$ instead of components of
@@ -880,10 +887,10 @@ We create a function `draw_iterations` to generate the plot
 def draw_iterations(p0s, model, line_params, num_steps):
 
     fig, axes = plt.subplots(3, 1, figsize=(8, 10), sharex=True)
-    
+
     # Pre-compute time steps
-    time_steps = np.arange(num_steps) 
-    
+    time_steps = np.arange(num_steps)
+
     # Plot the first two y-axes in log scale
     for ax in axes[:2]:
         ax.set_yscale('log')
@@ -899,20 +906,20 @@ def draw_iterations(p0s, model, line_params, num_steps):
 
         # Plot b_t against time
         axes[1].plot(time_steps, P, **line_params)
-        
+
         # Calculate R_t
         R = np.insert(P[:-1] / P[1:], 0, np.nan)
         axes[2].plot(time_steps, R, **line_params)
-        
-    # Add line and text annotations to the subgraph 
+
+    # Add line and text annotations to the subgraph
     annotate_graph(axes[2], model, num_steps)
-    
+
     # Draw labels
     axes[0].set_ylabel('$m_t$')
     axes[1].set_ylabel('$p_t$')
     axes[2].set_ylabel('$R_t$')
     axes[2].set_xlabel('timestep')
-    
+
     # Enforce integar axis label
     axes[2].xaxis.set_major_locator(MaxNLocator(integer=True))
 
@@ -935,7 +942,7 @@ p0s = [p0_bar, 2.34, 2.5, 3, 4, 7, 30, 100_000]
 draw_iterations(p0s, msm, line_params, num_steps=20)
 ```
 
-Please notice that for $m_t$ and $p_t$, we have used  log scales for the coordinate (i.e., vertical) axes.  
+Please notice that for $m_t$ and $p_t$, we have used  log scales for the coordinate (i.e., vertical) axes.
 
 Using log scales allows us to spot distinct constant limiting gross  rates of growth ${R_u}^{-1}$ and
 ${R_\ell}^{-1}$ by eye.
@@ -948,13 +955,13 @@ As promised at the start of this lecture, we have encountered these concepts fro
 * an **inflation tax** that a government gathers by printing paper or electronic money
 * a dynamic **Laffer curve** in the inflation tax rate that has two stationary equilibria
 
-Staring at the paths of rates of return on the price level in  figure  {numref}`R0_path` and price levels in  {numref}`p0_path` show indicate that almost all paths converge to the *higher* inflation tax rate displayed in the stationary state Laffer curve displayed in figure  {numref}`infl_tax`.  
+Staring at the paths of rates of return on the price level in  figure  {numref}`R0_path` and price levels in  {numref}`p0_path` show indicate that almost all paths converge to the *higher* inflation tax rate displayed in the stationary state Laffer curve displayed in figure  {numref}`infl_tax`.
 
 Thus, we have indeed discovered what we earlier called "perverse" dynamics under rational expectations in which the system converges to the higher of two possible stationary inflation tax rates.
 
 Those dynamics are "perverse" not only in the sense that they imply that the monetary and fiscal authorities that have chosen to finance government expenditures eventually impose a higher inflation tax than required to finance government expenditures, but because of the following "counterintuitive" situation that we can deduce by staring at the stationary state Laffer curve displayed in figure  {numref}`infl_tax`:
 
-* the figure indicates that inflation can be *reduced* by running *higher*  government deficits, i.e., by raising more resources through  printing money. 
+* the figure indicates that inflation can be *reduced* by running *higher*  government deficits, i.e., by raising more resources through  printing money.
 
 
 ```{note}
@@ -962,25 +969,265 @@ The same qualitative outcomes prevail in this lecture {doc}`money_inflation_nonl
 ```
 
 
-## Equilibrium selection 
+## Equilibrium selection
 
 We have discovered that as a model of price level paths or model is **incomplete** because there is a continuum of "equilibrium" paths for $\{m_{t+1}, p_t\}_{t=0}^\infty$ that are consistent with the demand for real balances always equaling the supply.
-  
+
 
 Through application of our computational methods 1 and 2, we have  learned that this continuum can be indexed by choice of one of two scalars:
 
-* for computational method 1, $R_0$ 
+* for computational method 1, $R_0$
 * for computational method 2, $p_0$
 
-To apply our model, we have somehow to *complete* it by *selecting* an equilibrium path from among the continuum of possible paths. 
+To apply our model, we have somehow to *complete* it by *selecting* an equilibrium path from among the continuum of possible paths.
 
-We discovered that 
+We discovered that
 
  * all but one of the equilibrium paths converge to limits in which the higher of two possible stationary inflation tax prevails
  * there is a unique equilibrium path associated with "plausible" statements about how reductions in government deficits affect a stationary  inflation rate
 
-On grounds of plausibility, we recommend following many macroeconomists in selecting the unique equilibrium that converges to the lower stationary inflation tax rate. 
+On grounds of plausibility, we recommend following many macroeconomists in selecting the unique equilibrium that converges to the lower stationary inflation tax rate.
 
 As we shall see, we shall accept this recommendation in  lecture {doc}`unpleasant`.
 
 In lecture, {doc}`laffer_adaptive`, we shall explore how  {cite}`bruno1990seigniorage` and others justified this in other ways.
+
+## Exercises
+
+```{exercise}
+:label: mi_ex1
+
+**The seigniorage Laffer curve: peak revenue and fiscal limits.**
+
+The lecture states that steady-state seigniorage
+
+$$
+S(\bar R) = (\gamma_1 + \gamma_2) - \frac{\gamma_2}{\bar R} - \gamma_1 \bar R
+$$
+
+is maximized at $\bar R_{\rm max} = \sqrt{\gamma_2/\gamma_1}$.
+
+a. Verify this analytically by differentiating $S(\bar R)$ with respect to
+    $\bar R$, setting the derivative to zero, and solving for $\bar R$.
+
+b. Using the default model `msm`, compute $\bar R_{\rm max}$ and the
+    corresponding maximum revenue $g_{\rm max} = S(\bar R_{\rm max})$, then
+    plot the seigniorage curve together with a horizontal line at $g_{\rm max}$.
+
+c. Evaluate the discriminant of the steady-state quadratic
+    {eq}`eq:steadyquadratic` for $g = g_{\rm max} + 1$ and explain
+    what happens if the government tries to finance a deficit $g > g_{\rm max}$.
+```
+
+```{solution-start} mi_ex1
+:class: dropdown
+```
+
+**Part a.** Differentiating with respect to $\bar R$:
+
+$$
+S'(\bar R) = \frac{\gamma_2}{\bar R^2} - \gamma_1 = 0
+\quad \Longrightarrow \quad
+\bar R^2 = \frac{\gamma_2}{\gamma_1}
+\quad \Longrightarrow \quad
+\bar R_{\rm max} = \sqrt{\frac{\gamma_2}{\gamma_1}}.
+$$
+
+Since $S''(\bar R) = -2\gamma_2/\bar R^3 < 0$, this is indeed a maximum.
+
+```{code-cell} ipython3
+γ1, γ2 = msm.γ1, msm.γ2
+
+R_max = np.sqrt(γ2 / γ1)
+g_max = seign(R_max, msm)
+print(f"R_max = sqrt(γ2/γ1) = sqrt({γ2}/{γ1}) = {R_max:.4f}")
+print(f"g_max = S(R_max)     = {g_max:.4f}")
+
+R_plot = np.linspace(γ2/γ1, 1, 300)
+fig, ax = plt.subplots()
+ax.plot(R_plot, seign(R_plot, msm), label='$S(\\bar R)$')
+ax.axhline(g_max, color='red', linestyle='--', label=f'$g_{{\\rm max}}={g_max:.2f}$')
+ax.axvline(R_max, color='grey', linestyle=':', lw=1)
+ax.set_xlabel('$\\bar R$')
+ax.set_ylabel('seigniorage')
+ax.set_title('Seigniorage Laffer curve and peak revenue')
+ax.legend()
+plt.tight_layout()
+plt.show()
+```
+
+**Part c.** The steady-state quadratic is $-\gamma_1 \bar R^2 + (\gamma_1+\gamma_2-g)\bar R - \gamma_2 = 0$.
+
+Its discriminant is $(\gamma_1+\gamma_2-g)^2 - 4\gamma_1\gamma_2$.
+
+```{code-cell} ipython3
+g_too_high = g_max + 1
+discriminant = (γ1 + γ2 - g_too_high)**2 - 4 * γ1 * γ2
+roots = np.roots((-γ1, γ1 + γ2 - g_too_high, -γ2))
+print(f"g = g_max + 1 = {g_too_high:.4f}")
+print(f"Discriminant  = {discriminant:.4f}  ({'negative' if discriminant < 0 else 'positive'})")
+print(f"np.roots      = {roots}")
+print(f"Roots are real: {np.all(np.isreal(roots))}")
+```
+
+When $g > g_{\rm max}$ the discriminant is negative and there are no real
+steady-state rates of return on currency.
+
+Economically, the government is trying to finance a deficit that exceeds the maximum amount of seigniorage the inflation tax can ever raise, regardless of the inflation rate chosen.
+
+No stationary equilibrium exists.
+
+```{solution-end}
+```
+
+```{exercise}
+:label: mi_ex2
+
+**How steady-state rates of return vary with the government deficit.**
+
+The two steady-state roots $R_l < R_u$ of the quadratic
+{eq}`eq:steadyquadratic` depend on the government deficit $g$.
+
+a. For $g$ ranging from a value near $0$ to just below $g_{\rm max}$,
+    compute both roots $R_l(g)$ and $R_u(g)$ and plot them against $g$ on
+    the same graph.
+
+b. Verify the following boundary conditions analytically and numerically:
+
+    * At $g = 0$: the two roots should be $R = 1$ and $R = \gamma_2/\gamma_1$.
+    * As $g \to g_{\rm max}$: the two roots should merge at $\bar R_{\rm max} = \sqrt{\gamma_2/\gamma_1}$.
+
+c. Mark the benchmark deficit $g = 3$ on your graph, read off $R_u$ and $R_l$,
+    and check whether your graph values agree with `msm.R_u` and `msm.R_l`.
+```
+
+```{solution-start} mi_ex2
+:class: dropdown
+```
+
+```{code-cell} ipython3
+R_max = np.sqrt(msm.γ2 / msm.γ1)
+g_max = seign(R_max, msm)
+
+g_grid = np.linspace(1e-6, g_max * (1 - 1e-4), 300)
+R_u_curve, R_l_curve = [], []
+
+for g in g_grid:
+    roots = np.sort(np.roots((-msm.γ1, msm.γ1 + msm.γ2 - g, -msm.γ2)).real)
+    R_l_curve.append(roots[0])
+    R_u_curve.append(roots[1])
+
+fig, ax = plt.subplots()
+ax.plot(g_grid, R_u_curve, label='$R_u(g)$ - low inflation steady state')
+ax.plot(g_grid, R_l_curve, label='$R_l(g)$ - high inflation steady state')
+ax.axvline(msm.g, color='grey', linestyle='--', lw=1,
+           label=f'benchmark $g = {msm.g}$')
+ax.set_xlabel('government deficit $g$')
+ax.set_ylabel('steady-state rate of return $\\bar R$')
+ax.set_title('Steady-state rates of return vs government deficit')
+ax.legend()
+plt.tight_layout()
+plt.show()
+
+# Boundary conditions
+print("Boundary checks:")
+print(f"  g -> 0:     R_u -> {R_u_curve[0]:.4f}  (expected 1.0)")
+print(f"              R_l -> {R_l_curve[0]:.4f}  (expected γ2/γ1 = {msm.γ2/msm.γ1:.4f})")
+print(f"  g -> g_max: R_u -> {R_u_curve[-1]:.4f}")
+print(f"              R_l -> {R_l_curve[-1]:.4f}")
+print(f"             R_max = {R_max:.4f}  (roots should merge here)")
+print(f"\nAt benchmark g = {msm.g}:")
+print(f"  R_u from curve = {R_u_curve[np.argmin(np.abs(g_grid - msm.g))]:.4f},  "
+      f"msm.R_u = {msm.R_u:.4f}")
+print(f"  R_l from curve = {R_l_curve[np.argmin(np.abs(g_grid - msm.g))]:.4f},  "
+      f"msm.R_l = {msm.R_l:.4f}")
+```
+
+The two branches of the Laffer curve start apart at $g=0$ and merge at
+$g = g_{\rm max}$.
+
+For $g > g_{\rm max}$ no real steady state exists.
+
+The upper branch $R_u(g)$ falls and the lower branch $R_l(g)$ rises as
+$g$ increases, reflecting the increasing inflation tax needed to finance a
+larger deficit.
+
+```{solution-end}
+```
+
+```{exercise}
+:label: mi_ex3
+
+**Quantity theory of money via the eigendecomposition.**
+
+Method 2 identifies a unique "magic" initial price level
+
+$$
+\bar p_0 = \frac{Q_{21}}{Q_{11}} m_0
+$$
+
+(where $Q_{ij}$ denotes the $(i,j)$ element of the eigenvector matrix $Q$)
+that places the economy on the low-inflation equilibrium path.
+
+a. Using `iterate_H`, simulate the path of $y_t = (m_t, p_t)$ starting from
+    $y_0 = (m_0,\, \bar p_0)$, compute $R_t = p_t/p_{t+1}$ for $t = 0, \ldots, 10$,
+    and verify that it equals `msm.R_u` at every step.
+
+b. Use the formula $\bar p_0 = (Q_{21}/Q_{11})\, m_0$ to interpret the initial
+    price level as proportional to the money supply, compute $\bar p_0$ for
+    $m_0 \in [50, 300]$, plot $\bar p_0$ against $m_0$, and report the slope.
+
+c. Set $R_0 = R_u$ in the Method 1 formula for $p_0$ from equation
+    {eq}`eq:p0fromR0` and confirm that you recover $\bar p_0$.
+```
+
+```{solution-start} mi_ex3
+:class: dropdown
+```
+
+```{code-cell} ipython3
+# Part a: verify R_t = R_u along the magic-p0 path
+p0_bar = (Q[1, 0] / Q[0, 0]) * msm.M0
+y0 = np.array([msm.M0, p0_bar])
+num_steps = 12
+
+y_series = iterate_H(y0, H, num_steps)
+P = y_series[1, :]
+R_path = P[:-1] / P[1:]      # R_t = p_t / p_{t+1}
+
+print(f"R_t along the magic-p0 path (first {num_steps-1} periods):")
+print(np.round(R_path, 6))
+print(f"msm.R_u = {msm.R_u:.6f}")
+```
+
+```{code-cell} ipython3
+# Part b: plot p0_bar vs m0
+m0_values = np.linspace(50, 300, 80)
+p0_bar_values = (Q[1, 0] / Q[0, 0]) * m0_values
+
+fig, ax = plt.subplots()
+ax.plot(m0_values, p0_bar_values)
+ax.set_xlabel('$m_0$')
+ax.set_ylabel('$\\bar p_0$')
+ax.set_title('Quantity theory: $\\bar p_0$ proportional to $m_0$')
+plt.tight_layout()
+plt.show()
+
+slope = Q[1, 0] / Q[0, 0]
+print(f"Slope = Q_21 / Q_11 = {slope:.6f}")
+
+# Part c: compare with Method 1 formula eq:p0fromR0
+p0_method1 = msm.M0 / (msm.γ1 - msm.g - msm.γ2 / msm.R_u)
+print(f"\nMethod 1 formula (R_0 = R_u):  p0 = {p0_method1:.6f}")
+print(f"Eigendecomposition formula:    p0 = {p0_bar:.6f}")
+```
+
+Parts a and c confirm that both methods select exactly the same unique
+initial price level.
+
+Part b shows the quantity-theory proportionality that doubling $m_0$ exactly doubles $\bar p_0$, with constant slope $Q_{21}/Q_{11}$.
+
+This linearity is a direct consequence of the linearity of the model.
+
+```{solution-end}
+```
