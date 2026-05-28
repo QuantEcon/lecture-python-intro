@@ -554,7 +554,7 @@ distribution of $S_n$.
 
 So to compute the price $P$ of the option, we use Monte Carlo.
 
-We average over realizations $S_n^1, \ldots, S_n^M$ of $S_n$ and appealing to
+We average over realizations $S_n^1, \ldots, S_n^M$ of $S_n$ and appeal to
 the law of large numbers:
 
 $$
