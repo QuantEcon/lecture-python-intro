@@ -369,15 +369,15 @@ with small probability, is replaced by an agent of the other type.)
 solution here
 
 ```{code-cell} ipython3
-from numpy.random import uniform, randint
-
 n = 1000                # number of agents (agents = 0, ..., n-1)
 k = 10                  # number of agents regarded as neighbors
 require_same_type = 5   # want >= require_same_type neighbors of the same type
 
+rng = np.random.default_rng()
+
 def initialize_state():
-    locations = uniform(size=(n, 2))
-    types = randint(0, high=2, size=n)   # label zero or one
+    locations = rng.uniform(size=(n, 2))
+    types = rng.integers(0, 2, size=n)   # label zero or one
     return locations, types
 
 
@@ -414,7 +414,7 @@ def update_agent(i, locations, types):
     moved = False
     while not is_happy(i, locations, types):
         moved = True
-        locations[i, :] = uniform(), uniform()
+        locations[i, :] = rng.uniform(), rng.uniform()
     return moved
 
 def plot_distribution(locations, types, title, savepdf=False):
@@ -446,12 +446,12 @@ def sim_random_select(max_iter=100_000, flip_prob=0.01, test_freq=10_000):
     while current_iter <= max_iter:
 
         # Choose a random agent and update them
-        i = randint(0, n)
+        i = rng.integers(0, n)
         moved = update_agent(i, locations, types)
 
         if flip_prob > 0:
             # flip agent i's type with probability epsilon
-            U = uniform()
+            U = rng.uniform()
             if U < flip_prob:
                 current_type = types[i]
                 types[i] = 0 if current_type == 1 else 1
