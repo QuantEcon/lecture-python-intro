@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.15.1
+    jupytext_version: 1.17.2
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -55,11 +55,11 @@ Rome from across the empire, greatly enriched those in power.
 Meanwhile, ordinary citizens were taken from their farms to fight for long
 periods, diminishing their wealth.
 
-The resulting growth in inequality was a driving factor behind political turmoil that shook the foundations of the republic. 
+The resulting growth in inequality was a driving factor behind political turmoil that shook the foundations of the republic.
 
 Eventually, the Roman Republic gave way to a series of dictatorships, starting with [Octavian](https://en.wikipedia.org/wiki/Augustus) (Augustus) in 27 BCE.
 
-This history tells us that inequality matters, in the sense that it can drive major world events. 
+This history tells us that inequality matters, in the sense that it can drive major world events.
 
 There are other reasons that inequality might matter, such as how it affects
 human welfare.
@@ -95,8 +95,6 @@ import wbgapi as wb
 import plotly.express as px
 ```
 
-
-
 ## The Lorenz curve
 
 One popular measure of inequality is the Lorenz curve.
@@ -110,7 +108,7 @@ The Lorenz curve takes a sample $w_1, \ldots, w_n$ and produces a curve $L$.
 
 We suppose that the sample has been sorted from smallest to largest.
 
-To aid our interpretation, suppose that we are measuring wealth 
+To aid our interpretation, suppose that we are measuring wealth
 
 *  $w_1$ is the wealth of the poorest member of the population, and
 *  $w_n$ is the wealth of the richest member of the population.
@@ -203,11 +201,11 @@ def lorenz_curve(y):
 ```
 
 In the next figure, we generate $n=2000$ draws from a lognormal
-distribution and treat these draws as our population.  
+distribution and treat these draws as our population.
 
-The straight 45-degree line ($x=L(x)$ for all $x$) corresponds to perfect equality.  
+The straight 45-degree line ($x=L(x)$ for all $x$) corresponds to perfect equality.
 
-The log-normal draws produce a less equal distribution.  
+The log-normal draws produce a less equal distribution.
 
 For example, if we imagine these draws as being observations of wealth across
 a sample of households, then the dashed lines show that the bottom 80\% of
@@ -239,9 +237,6 @@ ax.legend()
 plt.show()
 ```
 
-
-
-
 ### Lorenz curves for US data
 
 Next let's look at US data for both income and wealth.
@@ -268,9 +263,9 @@ population weights supplied by the SCF.)
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-df = df_income_wealth 
+df = df_income_wealth
 
-varlist = ['n_wealth',    # net wealth 
+varlist = ['n_wealth',    # net wealth
            't_income',    # total income
            'l_income']    # labor income
 
@@ -287,18 +282,18 @@ for var in varlist:
     for year in years:
 
         # Repeat the observations according to their weights
-        counts = list(round(df[df['year'] == year]['weights'] )) 
+        counts = list(round(df[df['year'] == year]['weights'] ))
         y = df[df['year'] == year][var].repeat(counts)
         y = np.asarray(y)
-        
+
         # Shuffle the sequence to improve the plot
-        rd.shuffle(y)    
-               
+        rd.shuffle(y)
+
         # calculate and store Lorenz curve data
         f_val, l_val = lorenz_curve(y)
         f_vals.append(f_val)
         l_vals.append(l_val)
-        
+
     F_vals.append(f_vals)
     L_vals.append(l_vals)
 
@@ -333,8 +328,7 @@ ax.legend()
 plt.show()
 ```
 
-
-One key finding from this figure is that wealth inequality is more extreme than income inequality. 
+One key finding from this figure is that wealth inequality is more extreme than income inequality.
 
 
 
@@ -355,7 +349,7 @@ In this section we discuss the Gini coefficient and its relationship to the Lore
 
 As before, suppose that the sample $w_1, \ldots, w_n$ has been sorted from smallest to largest.
 
-The Gini coefficient is defined for the sample above as 
+The Gini coefficient is defined for the sample above as
 
 ```{prf:definition}
 :label: define-gini
@@ -401,8 +395,8 @@ $$
 G = \frac{A}{A+B}
 $$
 
-where $A$ is the area between the 45-degree line of 
-perfect equality and the Lorenz curve, while $B$ is the area below the Lorenze curve -- see {numref}`lorenz_gini2`. 
+where $A$ is the area between the 45-degree line of
+perfect equality and the Lorenz curve, while $B$ is the area below the Lorenze curve -- see {numref}`lorenz_gini2`.
 
 ```{code-cell} ipython3
 ---
@@ -427,8 +421,6 @@ ax.legend()
 plt.show()
 ```
 
-
-
 ```{seealso}
 The World in Data project has a [graphical exploration of the Lorenz curve and the Gini coefficient](https://ourworldindata.org/what-is-the-gini-coefficient)
 ```
@@ -442,7 +434,6 @@ The code below computes the Gini coefficient from a sample.
 (code:gini-coefficient)=
 
 ```{code-cell} ipython3
-
 def gini_coefficient(y):
     r"""
     Implements the Gini inequality index
@@ -473,7 +464,7 @@ def gini_coefficient(y):
 
 Now we can compute the Gini coefficients for five different populations.
 
-Each of these populations is generated by drawing from a 
+Each of these populations is generated by drawing from a
 lognormal distribution with parameters $\mu$ (mean) and $\sigma$ (standard deviation).
 
 To create the five populations, we vary $\sigma$ over a grid of length $5$
@@ -481,7 +472,7 @@ between $0.2$ and $4$.
 
 In each case we set $\mu = - \sigma^2 / 2$.
 
-This implies that the mean of the distribution does not change with $\sigma$. 
+This implies that the mean of the distribution does not change with $\sigma$.
 
 You can check this by looking up the expression for the mean of a lognormal
 distribution.
@@ -503,11 +494,13 @@ for σ in σ_vals:
 Let's build a function that returns a figure (so that we can use it later in the lecture).
 
 ```{code-cell} ipython3
-def plot_inequality_measures(x, y, legend, xlabel, ylabel):
+def plot_inequality_measures(x, y, legend, xlabel, ylabel, title=None):
     fig, ax = plt.subplots()
     ax.plot(x, y, marker='o', label=legend)
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
+    if title is not None:
+        ax.set_title(title)
     ax.legend()
     return fig, ax
 ```
@@ -519,10 +512,10 @@ mystnb:
     caption: Gini coefficients of simulated data
     name: gini_simulated
 ---
-fix, ax = plot_inequality_measures(σ_vals, 
-                                  ginis, 
-                                  'simulated', 
-                                  r'$\sigma$', 
+fix, ax = plot_inequality_measures(σ_vals,
+                                  ginis,
+                                  'simulated',
+                                  r'$\sigma$',
                                   'Gini coefficients')
 plt.show()
 ```
@@ -546,7 +539,7 @@ We now know the series ID is `SI.POV.GINI`.
 
 (Another way to find the series ID is to use the [World Bank data portal](https://data.worldbank.org) and then use `wbgapi` to fetch the data.)
 
-To get a quick overview, let's histogram Gini coefficients across all countries and all years in the World Bank dataset. 
+To get a quick overview, let's histogram Gini coefficients across all countries and all years in the World Bank dataset.
 
 ```{code-cell} ipython3
 ---
@@ -558,7 +551,7 @@ mystnb:
 # Fetch gini data for all countries
 gini_all = wb.data.DataFrame("SI.POV.GINI")
 # remove 'YR' in index and convert to integer
-gini_all.columns = gini_all.columns.map(lambda x: int(x.replace('YR',''))) 
+gini_all.columns = gini_all.columns.map(lambda x: int(x.replace('YR','')))
 
 # Create a long series with a multi-index of the data to get global min and max values
 gini_all = gini_all.unstack(level='economy').dropna()
@@ -572,7 +565,7 @@ plt.show()
 
 We can see in {numref}`gini_histogram` that across 50 years of data and all countries the measure varies between 20 and 65.
 
-Let us fetch the data `DataFrame` for the USA. 
+Let us fetch the data `DataFrame` for the USA.
 
 ```{code-cell} ipython3
 data = wb.data.DataFrame("SI.POV.GINI", "USA")
@@ -582,7 +575,6 @@ data.columns = data.columns.map(lambda x: int(x.replace('YR','')))
 ```
 
 (This package often returns data with year information contained in the columns. This is not always convenient for simple plotting with pandas so it can be useful to transpose the results before plotting.)
-
 
 ```{code-cell} ipython3
 data = data.T           # Obtain years as rows
@@ -616,8 +608,7 @@ In the previous section we looked at the Gini coefficient for income, focusing o
 
 Now let's look at the Gini coefficient for the distribution of wealth.
 
-We will use US data from the {ref}`Survey of Consumer Finances<data:survey-consumer-finance>` 
-
+We will use US data from the {ref}`Survey of Consumer Finances<data:survey-consumer-finance>`
 
 ```{code-cell} ipython3
 df_income_wealth.year.describe()
@@ -667,7 +658,7 @@ data = gini_all.unstack()
 data.columns
 ```
 
-There are 167 countries represented in this dataset. 
+There are 167 countries represented in this dataset.
 
 Let us compare three advanced economies: the US, the UK, and Norway
 
@@ -693,7 +684,7 @@ Let us take a closer look at the underlying data and see if we can rectify this.
 data[['NOR']].dropna().head(n=5)
 ```
 
-The data for Norway in this dataset goes back to 1979 but there are gaps in the time series and matplotlib is not showing those data points. 
+The data for Norway in this dataset goes back to 1979 but there are gaps in the time series and matplotlib is not showing those data points.
 
 We can use the `.ffill()` method to copy and bring forward the last known value in a series to fill in these gaps
 
@@ -713,7 +704,7 @@ plt.show()
 ```
 
 From this plot we can observe that the US has a higher Gini coefficient (i.e.
-higher income inequality) when compared to the UK and Norway. 
+higher income inequality) when compared to the UK and Norway.
 
 Norway has the lowest Gini coefficient over the three economies and, moreover,
 the Gini coefficient shows no upward trend.
@@ -722,7 +713,7 @@ the Gini coefficient shows no upward trend.
 
 ### Gini Coefficient and GDP per capita (over time)
 
-We can also look at how the Gini coefficient compares with GDP per capita (over time). 
+We can also look at how the Gini coefficient compares with GDP per capita (over time).
 
 Let's take another look at the US, Norway, and the UK.
 
@@ -730,7 +721,7 @@ Let's take another look at the US, Norway, and the UK.
 countries = ['USA', 'NOR', 'GBR']
 gdppc = wb.data.DataFrame("NY.GDP.PCAP.KD", countries)
 # remove 'YR' in index and convert to integer
-gdppc.columns = gdppc.columns.map(lambda x: int(x.replace('YR',''))) 
+gdppc.columns = gdppc.columns.map(lambda x: int(x.replace('YR','')))
 gdppc = gdppc.T
 ```
 
@@ -759,7 +750,7 @@ min_year = plot_data.year.min()
 max_year = plot_data.year.max()
 ```
 
-The time series for all three countries start and stop in different years. 
+The time series for all three countries start and stop in different years.
 
 We will add a year mask to the data to improve clarity in the chart including the different end years associated with each country's time series.
 
@@ -772,11 +763,11 @@ plot_data.year = plot_data.year.map(lambda x: x if x in labels else None)
 (fig:plotly-gini-gdppc-years)=
 
 ```{code-cell} ipython3
-fig = px.line(plot_data, 
-              x = "gini", 
-              y = "gdppc", 
-              color = "country", 
-              text = "year", 
+fig = px.line(plot_data,
+              x = "gini",
+              y = "gdppc",
+              color = "country",
+              text = "year",
               height = 800,
               labels = {"gini" : "Gini coefficient", "gdppc" : "GDP per capita"}
              )
@@ -789,13 +780,13 @@ This figure is built using `plotly` and is {ref}` available on the website <fig:
 ```
 
 This plot shows that all three Western economies' GDP per capita has grown over
-time with some fluctuations in the Gini coefficient. 
+time with some fluctuations in the Gini coefficient.
 
 From the early 80's the United Kingdom and the US economies both saw increases
-in income inequality. 
+in income inequality.
 
 Interestingly, since the year 2000, the United Kingdom saw a decline in income inequality while
-the US exhibits persistent but stable levels around a Gini coefficient of 40. 
+the US exhibits persistent but stable levels around a Gini coefficient of 40.
 
 
 ## Top shares
@@ -816,7 +807,7 @@ share is defined as
 :label: top-shares
 
 $$
-T(p) = 1 - L (1-p) 
+T(p) = 1 - L (1-p)
     \approx \frac{\sum_{j\geq i} w_j}{ \sum_{j \leq n} w_j}, \quad i = \lfloor n (1-p)\rfloor
 $$ (topshares)
 ```
@@ -901,15 +892,15 @@ plt.show()
 Using simulation, compute the top 10 percent shares for the collection of
 lognormal distributions associated with the random variables $w_\sigma =
 \exp(\mu + \sigma Z)$, where $Z \sim N(0, 1)$ and $\sigma$ varies over a
-finite grid between $0.2$ and $4$.  
+finite grid between $0.2$ and $4$.
 
-As $\sigma$ increases, so does the variance of $w_\sigma$.  
+As $\sigma$ increases, so does the variance of $w_\sigma$.
 
 To focus on volatility, adjust $\mu$ at each step to maintain the equality
 $\mu=-\sigma^2/2$.
 
 For each $\sigma$, generate 2,000 independent draws of $w_\sigma$ and
-calculate the Lorenz curve and Gini coefficient.  
+calculate the Lorenz curve and Gini coefficient.
 
 Confirm that higher variance
 generates more dispersion in the sample, and hence greater inequality.
@@ -923,7 +914,7 @@ Here is one solution:
 
 ```{code-cell} ipython3
 def calculate_top_share(s, p=0.1):
-    
+
     s = np.sort(s)
     n = len(s)
     index = int(n * (1 - p))
@@ -953,43 +944,36 @@ for σ in σ_vals:
 ```{code-cell} ipython3
 ---
 mystnb:
-  figure:
-    caption: Top shares of simulated data
-    name: top_shares_simulated
   image:
     alt: top_shares_simulated
 ---
-fig, ax = plot_inequality_measures(σ_vals, 
-                                  topshares, 
-                                  "simulated data", 
-                                  "$\sigma$", 
-                                  "top $10\%$ share") 
+fig, ax = plot_inequality_measures(σ_vals,
+                                  topshares,
+                                  "simulated data",
+                                  "$\sigma$",
+                                  "top $10\%$ share",
+                                  "Top shares of simulated data")
 plt.show()
 ```
 
 ```{code-cell} ipython3
 ---
 mystnb:
-  figure:
-    caption: Gini coefficients of simulated data
-    name: gini_coef_simulated
   image:
     alt: gini_coef_simulated
 ---
-fig, ax = plot_inequality_measures(σ_vals, 
-                                  ginis, 
-                                  "simulated data", 
-                                  "$\sigma$", 
-                                  "gini coefficient")
+fig, ax = plot_inequality_measures(σ_vals,
+                                  ginis,
+                                  "simulated data",
+                                  "$\sigma$",
+                                  "gini coefficient",
+                                  "Gini coefficients of simulated data")
 plt.show()
 ```
 
 ```{code-cell} ipython3
 ---
 mystnb:
-  figure:
-    caption: Lorenz curves for simulated data
-    name: lorenz_curve_simulated
   image:
     alt: lorenz_curve_simulated
 ---
@@ -997,6 +981,7 @@ fig, ax = plt.subplots()
 ax.plot([0,1],[0,1], label=f"equality")
 for i in range(len(f_vals)):
     ax.plot(f_vals[i], l_vals[i], label=f"$\sigma$ = {σ_vals[i]}")
+ax.set_title("Lorenz curves for simulated data")
 plt.legend()
 plt.show()
 ```
@@ -1037,9 +1022,6 @@ for f_val, l_val in zip(f_vals_nw, l_vals_nw):
 ```{code-cell} ipython3
 ---
 mystnb:
-  figure:
-    caption: 'US top shares: approximation vs Lorenz'
-    name: top_shares_us_al
   image:
     alt: top_shares_us_al
 ---
@@ -1051,6 +1033,7 @@ ax.plot(years, top_shares_nw, marker='o', label="net wealth-lorenz")
 
 ax.set_xlabel("year")
 ax.set_ylabel("top $10\%$ share")
+ax.set_title('US top shares: approximation vs Lorenz')
 ax.legend()
 plt.show()
 ```
@@ -1069,7 +1052,7 @@ This function can be re-written using vectorization which will greatly improve t
 
 Re-write the function `gini_coefficient` using `numpy` and vectorized code.
 
-You can compare the output of this new function with the one above, and note the speed differences. 
+You can compare the output of this new function with the one above, and note the speed differences.
 ```
 
 ```{solution-start} inequality_ex3
@@ -1112,9 +1095,11 @@ def gini(y):
     g_sum = np.sum(np.abs(y_1 - y_2))
     return g_sum / (2 * n * np.sum(y))
 ```
+
 ```{code-cell} ipython3
 gini(data.n_wealth.values)
 ```
+
 Let's simulate five populations by drawing from a lognormal distribution as before
 
 ```{code-cell} ipython3
@@ -1125,6 +1110,7 @@ n = 2_000
 μ_vals = -σ_vals**2/2
 y_vals = np.exp(μ_vals + σ_vals*np.random.randn(n))
 ```
+
 We can compute the Gini coefficient for these five populations using the vectorized function, the computation time is shown below:
 
 ```{code-cell} ipython3
@@ -1133,14 +1119,13 @@ gini_coefficients =[]
 for i in range(k):
      gini_coefficients.append(gini(y_vals[i]))
 ```
+
 This shows the vectorized function is much faster.
 This gives us the Gini coefficients for these five households.
 
 ```{code-cell} ipython3
 gini_coefficients
 ```
+
 ```{solution-end}
 ```
-
-
-

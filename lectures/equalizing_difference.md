@@ -20,11 +20,11 @@ This lecture presents a model of the college-high-school wage gap in which the
 
 
 Milton Friedman invented the   model  to study whether  differences in  earnings of US dentists and doctors were outcomes of  competitive labor markets or whether
-they reflected entry barriers imposed by governments working in conjunction with doctors' professional organizations. 
+they reflected entry barriers imposed by governments working in conjunction with doctors' professional organizations.
 
 Chapter 4 of Jennifer Burns {cite}`Burns_2023` describes  Milton Friedman's joint work with Simon Kuznets that eventually  led to the publication of {cite}`kuznets1939incomes` and {cite}`friedman1954incomes`.
 
-To map  Friedman's application into our model, think of our high school students as Friedman's dentists and our college graduates as Friedman's doctors.  
+To map  Friedman's application into our model, think of our high school students as Friedman's dentists and our college graduates as Friedman's doctors.
 
 
 Our presentation is "incomplete" in the sense that it is based on  a single equation that would be part of set equilibrium conditions of a more fully articulated model.
@@ -35,11 +35,11 @@ The idea  is that lifetime earnings somehow adjust to make a new high school wor
 
 (The job of the "other equations" in a more complete model would be to describe what adjusts to bring about this outcome.)
 
-Our model is just one example  of an  "equalizing difference" theory of relative wage rates, a class of theories dating back at least to Adam Smith's **Wealth of Nations** {cite}`smith2010wealth`.  
+Our model is just one example  of an  "equalizing difference" theory of relative wage rates, a class of theories dating back at least to Adam Smith's **Wealth of Nations** {cite}`smith2010wealth`.
 
 For most of this lecture, the only mathematical tools that we'll use are from linear algebra, in particular, matrix multiplication and matrix inversion.
 
-However, near the  end of the lecture, we'll use calculus just in case readers want to see how computing partial derivatives could let us present some findings more concisely.  
+However, near the  end of the lecture, we'll use calculus just in case readers want to see how computing partial derivatives could let us present some findings more concisely.
 
 And doing that will let illustrate how good Python is at doing calculus!
 
@@ -63,18 +63,18 @@ Let
  * $R > 1$ be the gross rate of return on a one-period bond
 
  * $t = 0, 1, 2, \ldots T$ denote the years that a person either works or attends college
- 
+
  * $0$ denote the first period after high school that a person can work if he does not go to college
- 
+
  * $T$ denote the last period  that a person  works
- 
+
  * $w_t^h$ be the wage at time $t$ of a high school graduate
- 
+
  * $w_t^c$ be the wage at time $t$ of a college graduate
- 
+
  * $\gamma_h > 1$ be the (gross) rate of growth of wages of a  high school graduate, so that
  $ w_t^h = w_0^h \gamma_h^t$
- 
+
  * $\gamma_c > 1$ be the (gross) rate of growth of wages of a  college  graduate, so that
  $ w_t^c = w_0^c \gamma_c^t$
 
@@ -90,10 +90,10 @@ We now compute present values that a new high school graduate earns if
 If someone goes to work immediately after high school  and  works for the  $T+1$ years $t=0, 1, 2, \ldots, T$, she earns present value
 
 $$
-h_0 = \sum_{t=0}^T R^{-t} w_t^h = w_0^h \left[ \frac{1 - (R^{-1} \gamma_h)^{T+1} }{1 - R^{-1} \gamma_h } \right] \equiv w_0^h A_h 
+h_0 = \sum_{t=0}^T R^{-t} w_t^h = w_0^h \left[ \frac{1 - (R^{-1} \gamma_h)^{T+1} }{1 - R^{-1} \gamma_h } \right] \equiv w_0^h A_h
 $$
 
-where 
+where
 
 $$
 A_h = \left[ \frac{1 - (R^{-1} \gamma_h)^{T+1} }{1 - R^{-1} \gamma_h } \right].
@@ -114,7 +114,7 @@ where
 
 $$
 A_c = (R^{-1} \gamma_c)^4  \left[ \frac{1 - (R^{-1} \gamma_c)^{T-3} }{1 - R^{-1} \gamma_c } \right] .
-$$ 
+$$
 
 The present value $c_0$  is the "human wealth" at the beginning of time $0$ of someone who chooses to attend college for four years and then start to work at time $t=4$ at the wage of a college graduate.
 
@@ -123,29 +123,29 @@ Assume that college tuition plus four years of room and board amount to  $D$ and
 
 So net of monetary cost of college, the present value of attending college as of the first period after high school is
 
-$$ 
+$$
 c_0 - D
 $$
 
-We now formulate a pure **equalizing difference** model of the initial college-high school wage gap $\phi$ that verifies 
+We now formulate a pure **equalizing difference** model of the initial college-high school wage gap $\phi$ that verifies
 
 $$
-w_0^c = \phi w_0^h 
+w_0^c = \phi w_0^h
 $$
 
-We suppose that $R, \gamma_h, \gamma_c, T$ and also $w_0^h$  are fixed parameters. 
+We suppose that $R, \gamma_h, \gamma_c, T$ and also $w_0^h$  are fixed parameters.
 
-We start by noting that the pure equalizing difference model asserts that the college-high-school wage gap $\phi$ solves an 
+We start by noting that the pure equalizing difference model asserts that the college-high-school wage gap $\phi$ solves an
 "equalizing" equation that sets the present value not going to college equal to the present value of going to college:
 
 
 $$
 h_0 = c_0 - D
-$$ 
+$$
 
 or
 
-$$ 
+$$
 w_0^h A_h  = \phi w_0^h A_c - D .
 $$ (eq:equalize)
 
@@ -159,12 +159,12 @@ $$ (eq:wagepremium)
 
 In a **free college** special case $D =0$.
 
-Here  the only cost of going to college is the forgone earnings from being  a high school educated worker.  
+Here  the only cost of going to college is the forgone earnings from being  a high school educated worker.
 
 In that case,
 
 $$
-\phi  = \frac{A_h}{A_c} . 
+\phi  = \frac{A_h}{A_c} .
 $$
 
 In the next section we'll write Python code to compute $\phi$  and plot it as a function of its determinants.
@@ -188,16 +188,16 @@ def create_edm(R=1.05,   # gross rate of return
                w_h0=1,   # initial wage (high school)
                D=10,     # cost for college
               ):
-    
+
     return EqDiffModel(R, T, γ_h, γ_c, w_h0, D)
 
 def compute_gap(model):
     R, T, γ_h, γ_c, w_h0, D = model
-    
+
     A_h = (1 - (γ_h/R)**(T+1)) / (1 - γ_h/R)
     A_c = (1 - (γ_c/R)**(T-3)) / (1 - γ_c/R) * (γ_c/R)**4
     ϕ = A_h / A_c + D / (w_h0 * A_c)
-    
+
     return ϕ
 ```
 
@@ -226,7 +226,7 @@ gap2 = compute_gap(ex2)
 gap2
 ```
 
-Let us construct some graphs that show us how the initial college-high-school wage ratio $\phi$ would change if one of its determinants were to change. 
+Let us construct some graphs that show us how the initial college-high-school wage ratio $\phi$ would change if one of its determinants were to change.
 
 Let's start with the gross interest rate $R$.
 
@@ -243,7 +243,7 @@ plt.show()
 
 Evidently, the initial wage ratio $\phi$ must rise to compensate a prospective high school student for **waiting** to start receiving income -- remember that while she is earning nothing in years $t=0, 1, 2, 3$, the high school worker is earning a salary.
 
-Not let's study what happens to the initial wage ratio $\phi$ if the rate of growth of college wages rises, holding constant other 
+Not let's study what happens to the initial wage ratio $\phi$ if the rate of growth of college wages rises, holding constant other
 determinants of $\phi$.
 
 ```{code-cell} ipython3
@@ -257,11 +257,11 @@ plt.ylabel(r'wage gap')
 plt.show()
 ```
 
-Notice how  the initial wage gap falls when the rate of growth $\gamma_c$ of college wages rises.  
+Notice how  the initial wage gap falls when the rate of growth $\gamma_c$ of college wages rises.
 
 The wage gap falls to "equalize" the present values of the two types of career, one as a high school worker, the other as a college worker.
 
-Can you guess what happens to the initial wage ratio $\phi$ when next we vary the rate of growth of high school wages, holding all other determinants of $\phi$ constant?  
+Can you guess what happens to the initial wage ratio $\phi$ when next we vary the rate of growth of high school wages, holding all other determinants of $\phi$ constant?
 
 The following graph shows what happens.
 
@@ -290,15 +290,15 @@ $$
 
 where $\pi \in (0,1) $ is  the probability that an entrepreneur's "project" succeeds.
 
-For our model of workers and firms, we'll interpret $D$ as the cost of becoming an entrepreneur.  
+For our model of workers and firms, we'll interpret $D$ as the cost of becoming an entrepreneur.
 
-This cost might include costs of hiring workers, office space, and lawyers. 
+This cost might include costs of hiring workers, office space, and lawyers.
 
 What we used to call the college, high school wage gap $\phi$ now becomes the ratio
-of a successful entrepreneur's earnings to a worker's earnings.  
+of a successful entrepreneur's earnings to a worker's earnings.
 
 We'll find that as $\pi$ decreases, $\phi$ increases, indicating that the riskier it is to
-be an entrepreneur, the higher must be the reward for a successful project. 
+be an entrepreneur, the higher must be the reward for a successful project.
 
 Now let's adopt the entrepreneur-worker interpretation of our model
 
@@ -314,19 +314,19 @@ def create_edm_π(R=1.05,   # gross rate of return
                  D=10,     # cost for college
                  π=0       # chance of business success
               ):
-    
+
     return EqDiffModel(R, T, γ_h, γ_c, w_h0, D, π)
 
 
 def compute_gap(model):
     R, T, γ_h, γ_c, w_h0, D, π = model
-    
+
     A_h = (1 - (γ_h/R)**(T+1)) / (1 - γ_h/R)
     A_c = (1 - (γ_c/R)**(T-3)) / (1 - γ_c/R) * (γ_c/R)**4
-    
+
     # Incorprate chance of success
     A_c = π * A_c
-    
+
     ϕ = A_h / A_c + D / (w_h0 * A_c)
     return ϕ
 ```
@@ -367,7 +367,7 @@ We'll do that now.
 
 A reader who doesn't know calculus could read no further and feel confident that applying linear algebra has taught us the main properties of the model.
 
-But for a reader interested in how we can get Python to do all the hard work involved in computing partial derivatives, we'll say a few things about that now.  
+But for a reader interested in how we can get Python to do all the hard work involved in computing partial derivatives, we'll say a few things about that now.
 
 We'll use the Python module 'sympy' to compute partial derivatives of $\phi$ with respect to the parameters that determine it.
 
@@ -440,7 +440,7 @@ Compute $\frac{\partial \phi}{\partial T}$ and evaluate it at default parameters
 ϕ_T_func(D_value, γ_h_value, γ_c_value, R_value, T_value, w_h0_value)
 ```
 
-We find that raising $T$ decreases the initial college wage premium $\phi$. 
+We find that raising $T$ decreases the initial college wage premium $\phi$.
 
 This is because college graduates now have longer career lengths to "pay off" the time and other costs they paid to go to college
 
@@ -488,3 +488,188 @@ Let's compute $\frac{\partial \phi}{\partial R}$ and evaluate it numerically at 
 ```
 
 We find that raising the gross interest rate $R$ increases the initial college wage premium $\phi$, in line with our earlier graphical analysis.
+
+## Exercises
+
+```{exercise}
+:label: eq_ex1
+
+Using `compute_gap`, plot the college-high-school wage premium $\phi$ as a function
+of tuition cost $D \in [0, 30]$ with all other parameters at their default values.
+
+a. Add a horizontal dashed line at $\phi = 1$ and explain why $\phi$ does or does
+    not reach 1 in this range in terms of the free-college formula $\phi = A_h / A_c$.
+
+b. Numerically estimate $\partial\phi/\partial D$ as the slope of the plotted
+    line and compare it to the symbolic derivative $\phi_D$ computed with SymPy
+    in this lecture.
+```
+
+```{solution-start} eq_ex1
+:class: dropdown
+```
+
+```{code-cell} ipython3
+D_arr = np.linspace(0, 30, 200)
+# Use create_edm_π with π=1 (certainty) so compute_gap handles the 7-field model
+models = [create_edm_π(D=d, π=1.0) for d in D_arr]
+gaps = [compute_gap(m) for m in models]
+
+fig, ax = plt.subplots()
+ax.plot(D_arr, gaps, label=r'$\phi(D)$')
+ax.axhline(1, linestyle='--', color='red', label=r'$\phi = 1$')
+ax.set_xlabel('$D$ (tuition cost)')
+ax.set_ylabel(r'College wage premium $\phi$')
+ax.set_title('College wage premium vs tuition cost')
+ax.legend()
+plt.show()
+
+# Numerical slope (finite difference)
+slope_num = (gaps[-1] - gaps[0]) / (D_arr[-1] - D_arr[0])
+
+# Compare with SymPy ϕ_D_func already computed in this lecture
+slope_sympy = float(ϕ_D_func(D_value, γ_h_value, γ_c_value, R_value, T_value, w_h0_value))
+
+print(f'Numerical dϕ/dD: {slope_num:.6f}')
+print(f'SymPy     dϕ/dD: {slope_sympy:.6f}')
+print(f'Match: {abs(slope_num - slope_sympy) < 1e-4}')
+```
+
+Because $A_h > A_c$ (forgone earnings dominate even with $D=0$), the free-college
+premium $A_h/A_c > 1$, so $\phi$ exceeds 1 for all $D \geq 0$.
+
+```{solution-end}
+```
+
+```{exercise}
+:label: eq_ex2
+
+Plot the college wage premium $\phi$ as a function of career length
+$T \in \{10, 15, 20, \ldots, 60\}$ for two cases:
+
+1. Free college: $D = 0$.
+2. Costly college: $D = 10$.
+
+On the same graph, plot both curves, add a horizontal dashed line at $\phi = 1$,
+and explain the direction of the relationship between $T$ and $\phi$ in terms of
+the present-value factors $A_h$ and $A_c$.
+```
+
+```{solution-start} eq_ex2
+:class: dropdown
+```
+
+```{code-cell} ipython3
+T_arr = np.arange(10, 65, 5)
+
+gaps_free   = [compute_gap(create_edm_π(T=t, D=0,  π=1.0)) for t in T_arr]
+gaps_costly = [compute_gap(create_edm_π(T=t, D=10, π=1.0)) for t in T_arr]
+
+fig, ax = plt.subplots()
+ax.plot(T_arr, gaps_free,   'o-', label='$D = 0$ (free college)')
+ax.plot(T_arr, gaps_costly, 's-', label='$D = 10$ (costly college)')
+ax.axhline(1, linestyle='--', color='gray', label=r'$\phi = 1$')
+ax.set_xlabel('Career length $T$')
+ax.set_ylabel(r'College wage premium $\phi$')
+ax.set_title('College wage premium vs career length')
+ax.legend()
+plt.show()
+```
+
+As $T$ rises, college graduates have more years over which to "recoup" the cost
+of their four-year delay in starting work because $A_c$ grows faster than $A_h$
+when the 4-year discount factor $(R^{-1}\gamma_c)^4$ is amortised over more periods.
+
+This shrinks $A_h/A_c$ and therefore $\phi$.
+
+```{solution-end}
+```
+
+```{exercise}
+:label: eq_ex3
+
+Verify the SymPy partial derivative $\partial\phi/\partial R$ numerically using a
+**central finite-difference** approximation
+
+$$
+\frac{\partial\phi}{\partial R}\bigg|_{R=R_0} \approx
+\frac{\phi(R_0 + \varepsilon) - \phi(R_0 - \varepsilon)}{2\varepsilon}
+$$
+
+for $\varepsilon = 10^{-5}$, evaluating at the default parameter values and
+comparing with the symbolic result computed in this lecture.
+```
+
+```{solution-start} eq_ex3
+:class: dropdown
+```
+
+```{code-cell} ipython3
+ε = 1e-5
+
+# Finite-difference estimate using create_edm_π (π=1 for the standard model)
+gap_plus  = compute_gap(create_edm_π(R=R_value + ε, π=1.0))
+gap_minus = compute_gap(create_edm_π(R=R_value - ε, π=1.0))
+dϕ_dR_fd  = (gap_plus - gap_minus) / (2 * ε)
+
+# SymPy result from ϕ_R_func already computed in this lecture
+dϕ_dR_sym = float(ϕ_R_func(D_value, γ_h_value, γ_c_value, R_value, T_value, w_h0_value))
+
+print(f'Finite-difference dϕ/dR: {dϕ_dR_fd:.6f}')
+print(f'SymPy             dϕ/dR: {dϕ_dR_sym:.6f}')
+print(f'Absolute error:           {abs(dϕ_dR_fd - dϕ_dR_sym):.2e}')
+```
+
+The two estimates agree to at least five significant figures, confirming that the
+symbolic calculus and numerical computation are consistent.
+
+```{solution-end}
+```
+
+```{exercise}
+:label: eq_ex4
+
+Using the entrepreneur-worker version of the model (`create_edm_π`), answer the
+following questions.
+
+a. Plot the required wage premium $\phi$ for a successful entrepreneur as a
+    function of the success probability $\pi \in [0.10, 1.00]$ and mark the
+    horizontal line $\phi = 2$ as a dashed line.
+
+b. At what approximate value of $\pi$ does the premium cross 2, and for which side of that threshold is the premium above 2?
+
+c. Explain intuitively why the premium rises as $\pi \to 0$.
+```
+
+```{solution-start} eq_ex4
+:class: dropdown
+```
+
+```{code-cell} ipython3
+π_arr = np.linspace(0.10, 1.00, 200)
+# create_edm_π and compute_gap are already defined in this lecture
+ϕ_arr_π = np.array([compute_gap(create_edm_π(π=p)) for p in π_arr])
+
+fig, ax = plt.subplots()
+ax.plot(π_arr, ϕ_arr_π, label=r'$\phi(\pi)$')
+ax.axhline(2, linestyle='--', color='red', label=r'$\phi = 2$')
+ax.set_xlabel(r'Success probability $\pi$')
+ax.set_ylabel(r'Required wage premium $\phi$')
+ax.set_title('Entrepreneur premium vs success probability')
+ax.legend()
+plt.show()
+
+# Interpolate the crossing on the decreasing curve ϕ(π)
+crossing = np.interp(2, ϕ_arr_π[::-1], π_arr[::-1])
+above_idx = np.where(ϕ_arr_π > 2)[0]
+
+print(f'Premium equals 2 at π approximately {crossing:.3f}')
+print(f'On the grid, premium exceeds 2 for π below about {π_arr[above_idx[-1]]:.3f}')
+```
+
+As $\pi \to 0$ the expected lifetime earnings of an entrepreneur approach zero
+regardless of $\phi$, so $\phi$ must rise without bound to keep the
+entrepreneur indifferent between entrepreneurship and wage work.
+
+```{solution-end}
+```
