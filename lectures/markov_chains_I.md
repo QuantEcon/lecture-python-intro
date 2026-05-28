@@ -347,7 +347,7 @@ P(x, y) := \mathbb P \{ X_{t+1} = y \,|\, X_t = x \}
 By construction,
 
 * $P(x, y)$ is the probability of going from $x$ to $y$ in one unit of time (one step)
-* $P(x, \cdot)$ is the conditional distribution(probability mass function) of $X_{t+1}$ given $X_t = x$
+* $P(x, \cdot)$ is the conditional distribution (probability mass function) of $X_{t+1}$ given $X_t = x$
 
 We can view $P$ as a stochastic matrix where
 
@@ -625,7 +625,7 @@ $$
 ```
 
 ```{prf:example} Probability of Recession
-:label: prob-recesession
+:label: prob-recession
 
 Recall the stochastic matrix $P$ for recession and growth considered in {ref}`Example 1: Economic states <mc_eg2>`.
 
