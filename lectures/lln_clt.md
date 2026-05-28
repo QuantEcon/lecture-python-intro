@@ -107,6 +107,8 @@ converges to the "population mean".
 
 Think of $X_1, \ldots, X_n$ as independent flips of the coin.
 
+* Independent means that the outcome of flip $i$ does not affect the outcome of any other flip
+
 The population mean is the mean in an infinite sample, which equals the
 expectation $\mathbb E X$.
 
@@ -184,7 +186,7 @@ If $X_1, \ldots, X_n$ are IID and $\mathbb E |X|$ is finite, then
 
 Here
 
-* IID means independent and identically distributed and
+* IID means [independent and identically distributed](https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables) 
 * $\mathbb E |X| = \int_{-\infty}^\infty |x| f(x) dx$
 
 
