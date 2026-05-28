@@ -68,7 +68,7 @@ ax = df.plot(
     y='Y', 
     kind='scatter', 
     ylabel='Ice-cream sales ($\'s)', 
-    xlabel='Degrees celcius'
+    xlabel='Degrees Celsius'
 )
 ```
 
