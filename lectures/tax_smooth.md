@@ -19,7 +19,7 @@ kernelspec:
 This  is a sister lecture to our  lecture on {doc}`consumption-smoothing <cons_smooth>`.
 
 
-By renaming variables, we  obtain  a  version of a model "tax-smoothing model" that  Robert Barro {cite}`Barro1979` used  to explain why governments sometimes choose not to balance their budgets every period but instead use issue debt to smooth tax rates over time.
+By renaming variables, we  obtain  a  version of a model "tax-smoothing model" that  Robert Barro {cite}`Barro1979` used  to explain why governments sometimes choose not to balance their budgets every period but instead issue debt to smooth tax rates over time.
 
 The government chooses a tax collection path that minimizes the present value of its costs of raising revenue.
 
@@ -30,7 +30,7 @@ The government minimizes those costs by smoothing  tax collections  over time an
 The present value of government expenditures is at the core of the tax-smoothing model,
 so we'll again use formulas presented in {doc}`present value formulas<pv>`.
 
-We'll again use the matrix multiplication and matrix inversion tools that we used in  {doc}`present value formulas <pv>`. 
+We'll again use the matrix multiplication and matrix inversion tools that we used in  {doc}`present value formulas <pv>`.
 
 
 
@@ -49,7 +49,7 @@ from collections import namedtuple
 
 A government exists at times $t=0, 1, \ldots, S$ and  faces an exogenous stream of expenditures $\{G_t\}_{t=0}^S$.
 
-It chooses  chooses a stream of tax collections $\{T_t\}_{t=0}^S$.
+It chooses a stream of tax collections $\{T_t\}_{t=0}^S$.
 
 The model takes a government expenditure stream as an "exogenous" input that is somehow determined  outside the model.
 
@@ -59,14 +59,14 @@ The government can borrow or lend at interest rate $R$, subject to some limits o
 
 Let
 
- * $S \geq 2$  be a positive integer that constitutes a time-horizon. 
- * $G = \{G_t\}_{t=0}^S$ be a sequence of government expenditures. 
- * $B = \{B_t\}_{t=0}^{S+1}$ be a sequence of government debt.  
- * $T = \{T_t\}_{t=0}^S$ be a sequence of tax collections. 
- * $R \geq 1$ be a fixed gross one period interest rate. 
- * $\beta \in (0,1)$ be a fixed discount factor.  
+ * $S \geq 2$  be a positive integer that constitutes a time-horizon.
+ * $G = \{G_t\}_{t=0}^S$ be a sequence of government expenditures.
+ * $B = \{B_t\}_{t=0}^{S+1}$ be a sequence of government debt.
+ * $T = \{T_t\}_{t=0}^S$ be a sequence of tax collections.
+ * $R \geq 1$ be a fixed gross one period interest rate.
+ * $\beta \in (0,1)$ be a fixed discount factor.
  * $B_0$ be a given initial level of government debt
- * $B_{S+1} \geq 0$  be a terminal condition. 
+ * $B_{S+1} \geq 0$  be a terminal condition.
 
 The sequence of government debt $B$ is to be determined by the model.
 
@@ -90,17 +90,17 @@ Given a sequence $G$ of government expenditures, a large set of pairs $(B, T)$ o
 
 The  model follows the following logical flow:
 
- * start with an exogenous government expenditure sequence $G$, an initial government debt $B_0$, and 
+ * start with an exogenous government expenditure sequence $G$, an initial government debt $B_0$, and
  a candidate tax collection path $T$.
- 
+
  * use the system of equations {eq}`eq:B_t` for $t=0, \ldots, S$ to compute a path $B$ of government debt
- 
- * verify that $B_{S+1}$ satisfies the terminal debt constraint $B_{S+1} \geq 0$. 
-    
-     * If it does, declare that the candidate path is **budget feasible**. 
- 
+
+ * verify that $B_{S+1}$ satisfies the terminal debt constraint $B_{S+1} \geq 0$.
+
+     * If it does, declare that the candidate path is **budget feasible**.
+
      * if the candidate tax path is not budget feasible, propose a different tax path and start over
-     
+
 Below, we'll describe how to execute these steps using linear algebra -- matrix inversion and multiplication.
 
 The above procedure seems like a sensible way to find "budget-feasible" tax paths $T$, i.e., paths that are consistent with the exogenous government expenditure stream $G$, the initial debt level $B_0$, and the terminal debt level $B_{S+1}$.
@@ -117,18 +117,18 @@ To answer this question, we assess  alternative budget feasible tax paths $T$ us
 L = - \sum_{t=0}^S \beta^t (g_1 T_t - \frac{g_2}{2} T_t^2 )
 ```
 
-where $g_1 > 0, g_2 > 0$.  
+where $g_1 > 0, g_2 > 0$.
 
 
 This is called the "present value of revenue-raising costs" in {cite}`Barro1979`.
 
-The quadratic term $-\frac{g_2}{2} T_t^2$ captures increasing marginal costs of taxation, implying that tax distortions rise more than proportionally with tax rates. 
+The quadratic term $-\frac{g_2}{2} T_t^2$ captures increasing marginal costs of taxation, implying that tax distortions rise more than proportionally with tax rates.
 
 This creates an incentive for tax smoothing.
 
 Indeed, we shall see that when $\beta R = 1$, criterion {eq}`cost` leads to smoother tax paths.
 
-By **smoother** we mean tax rates that are as close as possible to being constant over time.  
+By **smoother** we mean tax rates that are as close as possible to being constant over time.
 
 The preference for smooth tax paths that is built into the model gives it the name "tax-smoothing model".
 
@@ -140,14 +140,14 @@ Or equivalently, we can transform this into the same problem as in the {doc}`con
 W = \sum_{t=0}^S \beta^t (g_1 T_t - \frac{g_2}{2} T_t^2 )
 ```
 
-Let's dive in and do some calculations that will help us understand how the model works. 
+Let's dive in and do some calculations that will help us understand how the model works.
 
-Here we use default parameters $R = 1.05$, $g_1 = 1$, $g_2 = 1/2$, and $S = 65$. 
+Here we use default parameters $R = 1.05$, $g_1 = 1$, $g_2 = 1/2$, and $S = 65$.
 
 We create a Python ``namedtuple`` to store these parameters with default values.
 
 ```{code-cell} ipython3
-TaxSmoothing = namedtuple("TaxSmoothing", 
+TaxSmoothing = namedtuple("TaxSmoothing",
                         ["R", "g1", "g2", "β_seq", "S"])
 
 def create_tax_smoothing_model(R=1.01, g1=1, g2=1/2, S=65):
@@ -175,7 +175,7 @@ Formally it resembles the present value calculations we saw in this QuantEcon le
 
 This present value calculation is crucial for determining the government's total financing needs.
 
-By iterating on equation {eq}`eq:B_t` and imposing the terminal condition 
+By iterating on equation {eq}`eq:B_t` and imposing the terminal condition
 
 $$
 B_{S+1} = 0,
@@ -183,15 +183,15 @@ $$
 
 it is possible to convert a sequence of budget constraints {eq}`eq:B_t` into a single intertemporal constraint
 
-$$ 
-\sum_{t=0}^S R^{-t} T_t = B_0 + h_0. 
+$$
+\sum_{t=0}^S R^{-t} T_t = B_0 + h_0.
 $$ (eq:budget_intertemp_tax)
 
 Equation {eq}`eq:budget_intertemp_tax` says that the present value of tax collections must equal the sum of initial debt and the present value of government expenditures.
 
-When $\beta R = 1$, it is optimal for a government to smooth taxes by setting 
+When $\beta R = 1$, it is optimal for a government to smooth taxes by setting
 
-$$ 
+$$
 T_t = T_0 \quad t =0, 1, \ldots, S
 $$
 
@@ -206,7 +206,7 @@ $$ (eq:taxsmoothing)
 
 Equation {eq}`eq:taxsmoothing` is the tax-smoothing model in a nutshell.
 
-## Mechanics of tax-smoothing 
+## Mechanics of tax-smoothing
 
 As promised, we'll provide step-by-step instructions on how to use linear algebra, readily implemented in Python, to compute all objects in play in the tax-smoothing model.
 
@@ -236,17 +236,17 @@ Use the system of equations {eq}`eq:B_t` for $t=0, \ldots, S$ to compute a path 
 To do this, we transform  that system of difference equations into a single matrix equation as follows:
 
 $$
-\begin{bmatrix} 
+\begin{bmatrix}
 1 & 0 & 0 & \cdots & 0 & 0 & 0 \cr
 -R & 1 & 0 & \cdots & 0 & 0 & 0 \cr
 0 & -R & 1 & \cdots & 0 & 0 & 0 \cr
 \vdots  &\vdots & \vdots & \cdots & \vdots & \vdots & \vdots \cr
 0 & 0 & 0 & \cdots & -R & 1 & 0 \cr
 0 & 0 & 0 & \cdots & 0 & -R & 1
-\end{bmatrix} 
-\begin{bmatrix} B_1 \cr B_2 \cr B_3 \cr \vdots \cr B_S \cr B_{S+1} 
 \end{bmatrix}
-= R 
+\begin{bmatrix} B_1 \cr B_2 \cr B_3 \cr \vdots \cr B_S \cr B_{S+1}
+\end{bmatrix}
+= R
 \begin{bmatrix} G_0 + B_0 - T_0 \cr G_1 - T_0 \cr G_2 - T_0 \cr \vdots\cr G_{S-1} - T_0 \cr G_S - T_0
 \end{bmatrix}
 $$
@@ -258,12 +258,12 @@ $$
 $$
 
 Because we have built into our calculations that the government must satisfy its intertemporal budget constraint and end with zero debt, just barely satisfying the
-terminal condition that $B_{S+1} \geq 0$, it should turn out that 
+terminal condition that $B_{S+1} \geq 0$, it should turn out that
 
 $$
 B_{S+1} = 0.
 $$
- 
+
 Let's verify this with Python code.
 
 First we implement the model with `compute_optimal`
@@ -306,7 +306,7 @@ G_seq = np.concatenate([np.ones(46), 4*np.ones(5), np.ones(15)])
 tax_model = create_tax_smoothing_model()
 T_seq, B_seq, h0 = compute_optimal(tax_model, B0, G_seq)
 
-print('check B_S+1=0:', 
+print('check B_S+1=0:',
       np.abs(B_seq[-1] - 0) <= 1e-8)
 ```
 
@@ -359,31 +359,31 @@ First we create a function `plot_ts` that generates graphs for different instanc
 This will help us avoid rewriting code to plot outcomes for different government expenditure sequences.
 
 ```{code-cell} ipython3
-def plot_ts(model,    # tax-smoothing model      
+def plot_ts(model,    # tax-smoothing model
             B0,       # initial government debt
             G_seq     # government expenditure process
            ):
-    
+
     # Compute optimal tax path
     T_seq, B_seq, h0 = compute_optimal(model, B0, G_seq)
-    
+
     # Sequence length
     S = tax_model.S
-    
+
     fig, axes = plt.subplots(1, 2, figsize=(12,5))
-    
+
     axes[0].plot(range(S+1), G_seq, label='expenditures', lw=2)
     axes[0].plot(range(S+1), T_seq, label='taxes', lw=2)
     axes[1].plot(range(S+2), B_seq, label='debt', color='green', lw=2)
     axes[0].set_ylabel(r'$T_t,G_t$')
     axes[1].set_ylabel(r'$B_t$')
-    
+
     for ax in axes:
         ax.plot(range(S+2), np.zeros(S+2), '--', lw=1, color='black')
         ax.legend()
         ax.set_xlabel(r'$t$')
-    
-    
+
+
     plt.show()
 ```
 
@@ -391,21 +391,21 @@ In the experiments below, please study how tax and government debt sequences var
 
 #### Experiment 1: one-time spending shock
 
-We first assume a one-time spending shock of $W_0$ in year 21 of the expenditure sequence $G$.  
+We first assume a one-time spending shock of $W_0$ in year 21 of the expenditure sequence $G$.
 
 We'll make $W_0$ big - positive to indicate a spending surge (like a war or disaster), and negative to indicate a spending cut.
 
 ```{code-cell} ipython3
 # Spending surge W_0 = 2.5
-G_seq_pos = np.concatenate([np.ones(21), np.array([2.5]), 
+G_seq_pos = np.concatenate([np.ones(21), np.array([2.5]),
 np.ones(24), np.ones(20)])
 
 plot_ts(tax_model, B0, G_seq_pos)
 ```
 
-#### Experiment 2: permanent expenditure shift
+#### Experiment 2: temporary expenditure shift
 
-Now we assume a permanent increase in government expenditures of $L$ in year 21 of the $G$-sequence.
+Now we assume a temporary increase in government expenditures of $L$ beginning in year 21 of the $G$-sequence.
 
 Again we can study positive and negative cases
 
@@ -450,7 +450,7 @@ G_0 = 1
 t_max = 46
 
 # Generate geometric G sequence
-geo_seq = λ ** np.arange(t_max) * G_0 
+geo_seq = λ ** np.arange(t_max) * G_0
 G_seq_geo = np.concatenate(
             [geo_seq, np.max(geo_seq)*np.ones(20)])
 
@@ -461,7 +461,7 @@ Now we show the behavior when $\lambda = 0.95$ (declining expenditures)
 
 ```{code-cell} ipython3
 λ = 0.95
-geo_seq = λ ** np.arange(t_max) * G_0 
+geo_seq = λ ** np.arange(t_max) * G_0
 G_seq_geo = np.concatenate(
             [geo_seq, λ ** t_max * np.ones(20)])
 
@@ -481,13 +481,13 @@ plot_ts(tax_model, B0, G_seq_geo)
 
 ### Feasible Tax Variations
 
-We promised to justify our claim that a constant tax rate $T_t = T_0$ for all $t$ is optimal.  
+We promised to justify our claim that a constant tax rate $T_t = T_0$ for all $t$ is optimal.
 
 Let's do that now.
 
-The approach we'll take is an elementary example of the "calculus of variations". 
+The approach we'll take is an elementary example of the "calculus of variations".
 
-Let's dive in and see what the key idea is.  
+Let's dive in and see what the key idea is.
 
 To explore what types of tax paths are cost-minimizing / welfare-improving, we shall create an **admissible tax path variation sequence** $\{v_t\}_{t=0}^S$
 that satisfies
@@ -508,7 +508,7 @@ $$
 v_t = \xi_1 \phi^t - \xi_0.
 $$
 
-We say two and not three-parameter class because $\xi_0$ will be a function of $(\phi, \xi_1; R)$ that guarantees that the variation sequence is feasible. 
+We say two and not three-parameter class because $\xi_0$ will be a function of $(\phi, \xi_1; R)$ that guarantees that the variation sequence is feasible.
 
 Let's compute that function.
 
@@ -521,7 +521,7 @@ $$
 which implies that
 
 $$
-\xi_1 \sum_{t=0}^S \phi_t R^{-t} - \xi_0 \sum_{t=0}^S R^{-t} = 0
+\xi_1 \sum_{t=0}^S \phi^t R^{-t} - \xi_0 \sum_{t=0}^S R^{-t} = 0
 $$
 
 which implies that
@@ -534,9 +534,9 @@ which implies that
 
 $$
 \xi_0 = \xi_0(\phi, \xi_1; R) = \xi_1 \left(\frac{1 - R^{-1}}{1 - R^{-(S+1)}}\right) \left(\frac{1 - (\phi R^{-1})^{S+1}}{1 - \phi R^{-1}}\right)
-$$ 
+$$
 
-This is our formula for $\xi_0$.  
+This is our formula for $\xi_0$.
 
 **Key Idea:** if $T^o$ is a budget-feasible tax path, then so is $T^o + v$,
 where $v$ is a budget-feasible variation.
@@ -552,9 +552,9 @@ def compute_variation(model, ξ1, ϕ, B0, G_seq, verbose=1):
 
     ξ0 = ξ1*((1 - 1/R) / (1 - (1/R)**(S+1))) * ((1 - (ϕ/R)**(S+1)) / (1 - ϕ/R))
     v_seq = np.array([(ξ1*ϕ**t - ξ0) for t in range(S+1)])
-    
+
     if verbose == 1:
-        print('check feasible:', np.isclose(β_seq @ v_seq, 0))     
+        print('check feasible:', np.isclose(β_seq @ v_seq, 0))
 
     T_opt, _, _ = compute_optimal(model, B0, G_seq)
     Tvar_seq = T_opt + v_seq
@@ -576,8 +576,8 @@ for i, param in enumerate(params):
     ξ1, ϕ = param
     print(f'variation {i}: ξ1={ξ1}, ϕ={ϕ}')
 
-    Tvar_seq = compute_variation(model=tax_model, 
-                                 ξ1=ξ1, ϕ=ϕ, B0=B0, 
+    Tvar_seq = compute_variation(model=tax_model,
+                                 ξ1=ξ1, ϕ=ϕ, B0=B0,
                                  G_seq=G_seq)
     print(f'welfare={welfare(tax_model, Tvar_seq)}')
     print(f'welfare < optimal: {welfare(tax_model, Tvar_seq) < wel_opt}')
@@ -585,13 +585,13 @@ for i, param in enumerate(params):
 
     if i % 2 == 0:
         ls = '-.'
-    else: 
-        ls = '-'  
-    ax.plot(range(S+1), Tvar_seq, ls=ls, 
-            color=colors[ξ1], 
+    else:
+        ls = '-'
+    ax.plot(range(S+1), Tvar_seq, ls=ls,
+            color=colors[ξ1],
             label=fr'$\xi_1 = {ξ1}, \phi = {ϕ}$')
 
-plt.plot(range(S+1), T_seq, 
+plt.plot(range(S+1), T_seq,
          color='orange', label=r'Optimal $\vec{T}$ ')
 
 plt.legend()
@@ -600,7 +600,7 @@ plt.ylabel(r'$T_t$')
 plt.show()
 ```
 
-We can even use the Python `np.gradient` command to compute derivatives of cost with respect to our two parameters.  
+We can even use the Python `np.gradient` command to compute derivatives of cost with respect to our two parameters.
 
 We are teaching the key idea beneath the **calculus of variations**.
 First, we define the cost with respect to $\xi_1$ and $\phi$
@@ -608,13 +608,13 @@ First, we define the cost with respect to $\xi_1$ and $\phi$
 ```{code-cell} ipython3
 def cost_rel(ξ1, ϕ):
     """
-    Compute cost of variation sequence 
+    Compute cost of variation sequence
     for given ϕ, ξ1 with a tax-smoothing model
     """
-    
-    Tvar_seq = compute_variation(tax_model, ξ1=ξ1, 
-                                 ϕ=ϕ, B0=B0, 
-                                 G_seq=G_seq, 
+
+    Tvar_seq = compute_variation(tax_model, ξ1=ξ1,
+                                 ϕ=ϕ, B0=B0,
+                                 G_seq=G_seq,
                                  verbose=0)
     return cost(tax_model, Tvar_seq)
 
@@ -652,8 +652,226 @@ plt.show()
 
 cost_grad = cost_vec(0.05, ϕ_arr)
 cost_grad = np.gradient(cost_grad)
-plt.plot(ξ1_arr, cost_grad)
+plt.plot(ϕ_arr, cost_grad)
 plt.ylabel('derivative of cost')
 plt.xlabel(r'$\phi$')
 plt.show()
+```
+
+## Exercises
+
+```{exercise}
+:label: tax_ex1
+
+For the default expenditure sequence and $B_0 = 0$, suppose a one-time spending
+spike of size $W_0 = 1$ occurs at period $t^* = 20$.
+
+a. Compute the optimal constant tax rate $T_0$ for the baseline expenditure
+    sequence (without the spike) and for the sequence with the spike, then print
+    the difference $\Delta T_0$.
+
+b. The present value of the spike is $W_0 R^{-t^*}$.  Show analytically that the
+    increase in the optimal flat tax equals the **annuity value** of that present
+    value:
+
+    $$
+    \Delta T_0 = \left(\frac{1 - R^{-1}}{1 - R^{-(S+1)}}\right) W_0 R^{-t^*}
+    $$
+
+    Verify numerically that the formula matches the computed $\Delta T_0$.
+```
+
+```{solution-start} tax_ex1
+:class: dropdown
+```
+
+```{code-cell} ipython3
+tax_model = create_tax_smoothing_model()
+S, R = tax_model.S, tax_model.R
+B0 = 0
+
+G_base = np.concatenate([np.ones(46), 4*np.ones(5), np.ones(15)])
+T_base, _, _ = compute_optimal(tax_model, B0, G_base)
+
+t_star = 20
+W0 = 1.0
+G_shock = G_base.copy()
+G_shock[t_star] += W0
+T_shock, _, _ = compute_optimal(tax_model, B0, G_shock)
+
+delta_T0_numerical = T_shock[0] - T_base[0]
+
+annuity_factor = (1 - 1/R) / (1 - (1/R)**(S+1))
+delta_T0_formula = annuity_factor * W0 * R**(-t_star)
+
+print(f'Numerical ΔT0:           {delta_T0_numerical:.10f}')
+print(f'Annuity-value formula:   {delta_T0_formula:.10f}')
+print(f'Match: {np.isclose(delta_T0_numerical, delta_T0_formula)}')
+```
+
+The spike raises $h_0$, the present value of expenditures, by exactly $W_0 R^{-t^*}$.
+
+Since the optimal flat tax is the annuity value of $(B_0 + h_0)$, the increase
+in $T_0$ is the annuity value of the extra present-value cost.
+
+```{solution-end}
+```
+
+```{exercise}
+:label: tax_ex2
+
+Using `compute_optimal`, compute the optimal flat tax $T_0$ for four geometrically
+growing expenditure paths $G_t = \lambda^t G_0$ (for the working years
+$t = 0, \ldots, 45$, then $G_t = 0$ thereafter), with $G_0 = 1$ and
+$\lambda \in \{0.95,\, 1.00,\, 1.05,\, 1.10\}$.
+
+a. Plot the four expenditure sequences on one set of axes and the corresponding
+    debt paths $B_t$ on a second set.
+
+b. Identify which $\lambda$ requires the highest flat tax and explain why in
+    terms of the present-value formula for $h_0$.
+```
+
+```{solution-start} tax_ex2
+:class: dropdown
+```
+
+```{code-cell} ipython3
+tax_model = create_tax_smoothing_model()
+S = tax_model.S
+B0 = 2
+t_max = 46
+λ_vals = [0.95, 1.00, 1.05, 1.10]
+
+fig, axes = plt.subplots(1, 2, figsize=(12, 4))
+
+for λ in λ_vals:
+    G_seq = np.concatenate(
+        [λ**np.arange(t_max), np.zeros(S + 1 - t_max)])
+    T_seq, B_seq, _ = compute_optimal(tax_model, B0, G_seq)
+    axes[0].plot(range(S+1), G_seq, label=f'λ = {λ}')
+    axes[1].plot(range(S+2), B_seq,
+                 label=f'λ = {λ},  T0 = {T_seq[0]:.3f}')
+
+for ax in axes:
+    ax.legend(fontsize=8)
+    ax.set_xlabel('$t$')
+axes[0].set_ylabel('$G_t$')
+axes[0].set_title('Expenditure sequences')
+axes[1].set_ylabel('$B_t$')
+axes[1].set_title('Debt paths')
+
+plt.tight_layout()
+plt.show()
+
+print(f"{'λ':>6} | {'T0':>10} | {'h0':>12}")
+print('-' * 34)
+for λ in λ_vals:
+    G_seq = np.concatenate(
+        [λ**np.arange(t_max), np.zeros(S + 1 - t_max)])
+    T_seq, _, h0 = compute_optimal(tax_model, B0, G_seq)
+    print(f'{λ:>6.2f} | {T_seq[0]:>10.4f} | {h0:>12.4f}')
+```
+
+Faster spending growth, or a higher $\lambda$, leaves initial spending unchanged but raises later spending enough to increase the present value $h_0$ despite discounting.
+
+A higher $h_0$ translates directly into a higher required flat tax.
+
+```{solution-end}
+```
+
+```{exercise}
+:label: tax_ex3
+
+Show numerically that the constant (optimal) tax path yields strictly lower cost
+{eq}`cost`, equivalently, strictly higher welfare {eq}`welfare_tax`, than any
+non-constant budget-feasible tax path.
+
+Use the default expenditure sequence and $B_0 = 2$ to evaluate welfare for the
+optimal flat path and for four variations generated by `compute_variation` with
+$(\xi_1, \phi) \in \{(0.2, 0.95),\, (0.2, 1.05),\, (-0.2, 0.90),\, (-0.2, 1.10)\}$,
+then print a table showing each path's welfare and its gap relative to the optimum.
+```
+
+```{solution-start} tax_ex3
+:class: dropdown
+```
+
+```{code-cell} ipython3
+tax_model = create_tax_smoothing_model()
+S = tax_model.S
+B0 = 2
+G_seq = np.concatenate([np.ones(46), 4*np.ones(5), np.ones(15)])
+
+T_seq, _, _ = compute_optimal(tax_model, B0, G_seq)
+w_opt = welfare(tax_model, T_seq)
+
+print(f'Optimal (flat) welfare: {w_opt:.6f}\n')
+
+params = [(0.2, 0.95), (0.2, 1.05), (-0.2, 0.90), (-0.2, 1.10)]
+print(f'{"ξ1":>6} | {"ϕ":>6} | {"welfare":>12} | {"gap":>14}')
+print('-' * 46)
+for ξ1, ϕ in params:
+    Tvar = compute_variation(tax_model, ξ1=ξ1, ϕ=ϕ,
+                             B0=B0, G_seq=G_seq, verbose=0)
+    w = welfare(tax_model, Tvar)
+    print(f'{ξ1:>6.2f} | {ϕ:>6.2f} | {w:>12.6f} | {w - w_opt:>+14.6f}')
+```
+
+Every variation yields strictly lower welfare, or a more negative gap, than the flat path.
+
+This confirms that the constant tax schedule is the global welfare maximiser
+under the quadratic criterion {eq}`welfare_tax` when $\beta R = 1$.
+
+```{solution-end}
+```
+
+```{exercise}
+:label: tax_ex4
+
+Show that the optimal flat tax $T_0$ is an affine (linear) function of initial
+government debt $B_0$.
+
+For the default expenditure sequence $G$, compute $T_0$ for
+$B_0 \in \{-4, -2, 0, 2, 4, 6\}$, plot $T_0$ against $B_0$, and verify that the
+slope equals the annuity factor $\left(\frac{1-R^{-1}}{1-R^{-(S+1)}}\right)$.
+```
+
+```{solution-start} tax_ex4
+:class: dropdown
+```
+
+```{code-cell} ipython3
+tax_model = create_tax_smoothing_model()
+S, R = tax_model.S, tax_model.R
+G_seq = np.concatenate([np.ones(46), 4*np.ones(5), np.ones(15)])
+
+B0_vals = [-4, -2, 0, 2, 4, 6]
+T0_vals = []
+
+for B0 in B0_vals:
+    T_seq, _, _ = compute_optimal(tax_model, B0, G_seq)
+    T0_vals.append(T_seq[0])
+
+fig, ax = plt.subplots()
+ax.plot(B0_vals, T0_vals, 'o-')
+ax.set_xlabel('$B_0$ (initial government debt)')
+ax.set_ylabel('Optimal flat tax $T_0$')
+ax.set_title('$T_0$ is an affine function of $B_0$')
+plt.show()
+
+slope = (T0_vals[-1] - T0_vals[0]) / (B0_vals[-1] - B0_vals[0])
+annuity = (1 - 1/R) / (1 - (1/R)**(S+1))
+print(f'Numerical slope of T0 w.r.t. B0: {slope:.8f}')
+print(f'Annuity factor:                   {annuity:.8f}')
+print(f'Match: {np.isclose(slope, annuity)}')
+```
+
+From equation {eq}`eq:taxsmoothing`, $T_0 = \text{annuity factor} \times (B_0 + h_0)$.
+
+The coefficient on $B_0$ is exactly the annuity factor, confirming the linear relationship.
+
+Higher initial debt forces the government to collect more tax in every period to satisfy its intertemporal budget constraint.
+
+```{solution-end}
 ```
