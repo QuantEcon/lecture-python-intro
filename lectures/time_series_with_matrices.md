@@ -370,14 +370,6 @@ $$
 
 You can read about multivariate normal distributions in this lecture [Multivariate Normal Distribution](https://python.quantecon.org/multivariate_normal.html).
 
-Let's write our  model as 
-
-$$ 
-y = \tilde A (b + u)
-$$
-
-where $\tilde A = A^{-1}$.
-
 Because  linear combinations of normal random variables are normal, we know that
 
 $$
@@ -387,13 +379,13 @@ $$
 where
 
 $$ 
-\mu_y = \tilde A b
+\mu_y = A^{-1} b
 $$
 
 and 
 
 $$
-\Sigma_y = \tilde A (\sigma_u^2 I_{T \times T} ) \tilde A^T
+\Sigma_y = A^{-1} (\sigma_u^2 I_{T \times T} ) (A^{-1})^T
 $$
 
 Let's write a Python  class that computes the mean vector $\mu_y$ and covariance matrix $\Sigma_y$.
@@ -566,12 +558,10 @@ Since $A^{-1}$ is lower triangular,  each  row represents  $ y_t$ for a particul
 - a time-dependent function $A^{-1} b$ of the initial conditions incorporated in $b$, and 
 - a weighted sum of  current and past values of the IID shocks $\{u_t\}$.
 
-Thus,  let $\tilde{A}=A^{-1}$. 
-
 Evidently,  for $t\geq0$,
 
 $$
-y_{t+1}=\sum_{i=1}^{t+1}\tilde{A}_{t+1,i}b_{i}+\sum_{i=1}^{t}\tilde{A}_{t+1,i}u_{i}+u_{t+1}
+y_{t+1}=\sum_{i=1}^{t+1}(A^{-1})_{t+1,i}b_{i}+\sum_{i=1}^{t}(A^{-1})_{t+1,i}u_{i}+u_{t+1}
 $$
 
 This is  a **moving average** representation with time-varying coefficients.
