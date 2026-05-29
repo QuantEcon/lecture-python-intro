@@ -284,7 +284,7 @@
 
                     <!-- Last modified / Changelog dropdown -->
                         <button class="qe-page__header-changed" id="changelog-toggle" aria-expanded="false">
-                            Last changed: May 24, 2026
+                            Last changed: May 28, 2026
                             <span class="changelog-icon">▼</span>
                         </button>
 
@@ -295,10 +295,19 @@
                             
                             <li class="changelog-entry">
                                 
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/29b5e235" class="changelog-hash">29b5e235</a>
+                                
+                                <span class="changelog-author">John Stachurski</span>
+                                <span class="changelog-time">1 day ago</span>
+                                <span class="changelog-message">Fix timing inconsistencies and code bugs (#753)</span>
+                            </li>
+                            
+                            <li class="changelog-entry">
+                                
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/ae928c86" class="changelog-hash">ae928c86</a>
                                 
                                 <span class="changelog-author">Humphrey Yang</span>
-                                <span class="changelog-time">14 minutes ago</span>
+                                <span class="changelog-time">5 days ago</span>
                                 <span class="changelog-message">Adding Tom's Edits to Exercises (#748)</span>
                             </li>
                             
@@ -372,15 +381,6 @@
                                 <span class="changelog-author">thomassargent30</span>
                                 <span class="changelog-time">2 years ago</span>
                                 <span class="changelog-message">Tom's July 7 edits of cagan_ree.md lecture:</span>
-                            </li>
-                            
-                            <li class="changelog-entry">
-                                
-                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/0132b76a" class="changelog-hash">0132b76a</a>
-                                
-                                <span class="changelog-author">thomassargent30</span>
-                                <span class="changelog-time">2 years ago</span>
-                                <span class="changelog-message">Tom's edits of two lectures in the branch</span>
                             </li>
                             
                         </ul>
@@ -616,6 +616,7 @@ version of equation <a class="reference internal" href="#equation-eq-fisctheory1
     <span class="n">A1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">δ</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">A2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 
+    <span class="c1"># Assume γ* = 1</span>
     <span class="n">b1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">δ</span><span class="p">)</span> <span class="o">*</span> <span class="n">μ_seq</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">T</span><span class="p">),</span> <span class="p">[</span><span class="n">δ</span> <span class="o">*</span> <span class="n">π_end</span><span class="p">]])</span>
     <span class="n">b2</span> <span class="o">=</span> <span class="n">μ_seq</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([[</span><span class="n">m0</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">T</span><span class="p">)])</span>
 
@@ -667,7 +668,7 @@ from <span class="math notranslate nohighlight">\(t=0\)</span> to <span class="m
 <span class="n">μ_star</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">T</span> <span class="o">=</span> <span class="mi">80</span>
 
-<span class="n">μ_seq_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">μ0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">T1</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">μ_star</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">T</span><span class="o">-</span><span class="n">T1</span><span class="p">))</span>
+<span class="n">μ_seq_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">μ0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">T1</span><span class="p">),</span> <span class="n">μ_star</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">T</span><span class="o">-</span><span class="n">T1</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
 
 <span class="n">cm</span> <span class="o">=</span> <span class="n">create_cagan_model</span><span class="p">(</span><span class="n">μ_seq</span><span class="o">=</span><span class="n">μ_seq_1</span><span class="p">)</span>
 
@@ -696,7 +697,7 @@ from <span class="math notranslate nohighlight">\(t=0\)</span> to <span class="m
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/7dc4568b1ee4af11491f678c5aabd8865810033076ee9953955fd58efe26164b.png"><img alt="_images/7dc4568b1ee4af11491f678c5aabd8865810033076ee9953955fd58efe26164b.png" src="_images/7dc4568b1ee4af11491f678c5aabd8865810033076ee9953955fd58efe26164b.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/c825421bd2ef8a2b0e6f243208a1c89e4600579b38cbcce938d3556668a7e0bc.png"><img alt="_images/c825421bd2ef8a2b0e6f243208a1c89e4600579b38cbcce938d3556668a7e0bc.png" src="_images/c825421bd2ef8a2b0e6f243208a1c89e4600579b38cbcce938d3556668a7e0bc.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -809,32 +810,34 @@ are identical to those for experiment 1, the foreseen sudden stabilization.</p>
 <span class="n">π_seq_2_path1</span><span class="p">,</span> <span class="n">m_seq_2_path1</span><span class="p">,</span> <span class="n">p_seq_2_path1</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">cm1</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
 
 <span class="c1"># continuation path</span>
-<span class="n">μ_seq_2_cont</span> <span class="o">=</span> <span class="n">μ_star</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">T</span><span class="o">-</span><span class="n">T1</span><span class="p">)</span>
+<span class="n">μ_seq_2_cont</span> <span class="o">=</span> <span class="n">μ_star</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">T</span><span class="o">-</span><span class="n">T1</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="n">cm2</span> <span class="o">=</span> <span class="n">create_cagan_model</span><span class="p">(</span><span class="n">m0</span><span class="o">=</span><span class="n">m_seq_2_path1</span><span class="p">[</span><span class="n">T1</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span>
+<span class="n">cm2</span> <span class="o">=</span> <span class="n">create_cagan_model</span><span class="p">(</span><span class="n">m0</span><span class="o">=</span><span class="n">m_seq_2_path1</span><span class="p">[</span><span class="n">T1</span><span class="p">],</span>
                          <span class="n">μ_seq</span><span class="o">=</span><span class="n">μ_seq_2_cont</span><span class="p">)</span>
-<span class="n">π_seq_2_cont</span><span class="p">,</span> <span class="n">m_seq_2_cont1</span><span class="p">,</span> <span class="n">p_seq_2_cont1</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">cm2</span><span class="p">,</span> <span class="n">T</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">T1</span><span class="p">)</span>
+<span class="n">π_seq_2_cont</span><span class="p">,</span> <span class="n">m_seq_2_cont1</span><span class="p">,</span> <span class="n">p_seq_2_cont1</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">cm2</span><span class="p">,</span> <span class="n">T</span><span class="o">-</span><span class="n">T1</span><span class="p">)</span>
 
 
 <span class="c1"># regime 1 - simply glue π_seq, μ_seq</span>
-<span class="n">μ_seq_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">μ_seq_2_path1</span><span class="p">[:</span><span class="n">T1</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span>
+<span class="n">μ_seq_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">μ_seq_2_path1</span><span class="p">[:</span><span class="n">T1</span><span class="p">],</span>
                           <span class="n">μ_seq_2_cont</span><span class="p">))</span>
-<span class="n">π_seq_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">π_seq_2_path1</span><span class="p">[:</span><span class="n">T1</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span>
+<span class="n">π_seq_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">π_seq_2_path1</span><span class="p">[:</span><span class="n">T1</span><span class="p">],</span>
                           <span class="n">π_seq_2_cont</span><span class="p">))</span>
-<span class="n">m_seq_2_regime1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">m_seq_2_path1</span><span class="p">[:</span><span class="n">T1</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span>
+<span class="n">m_seq_2_regime1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">m_seq_2_path1</span><span class="p">[:</span><span class="n">T1</span><span class="p">],</span>
                                   <span class="n">m_seq_2_cont1</span><span class="p">))</span>
-<span class="n">p_seq_2_regime1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">p_seq_2_path1</span><span class="p">[:</span><span class="n">T1</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span>
+<span class="n">p_seq_2_regime1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">p_seq_2_path1</span><span class="p">[:</span><span class="n">T1</span><span class="p">],</span>
                                   <span class="n">p_seq_2_cont1</span><span class="p">))</span>
 
+<span class="n">π_seq_2</span><span class="p">[</span><span class="n">T1</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">p_seq_2_regime1</span><span class="p">[</span><span class="n">T1</span><span class="p">]</span> <span class="o">-</span> <span class="n">p_seq_2_regime1</span><span class="p">[</span><span class="n">T1</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
 <span class="c1"># regime 2 - reset m_T1</span>
-<span class="n">m_T1</span> <span class="o">=</span> <span class="p">(</span><span class="n">m_seq_2_path1</span><span class="p">[</span><span class="n">T1</span><span class="p">]</span> <span class="o">+</span> <span class="n">μ0</span><span class="p">)</span> <span class="o">+</span> <span class="n">cm2</span><span class="o">.</span><span class="n">α</span><span class="o">*</span><span class="p">(</span><span class="n">μ0</span> <span class="o">-</span> <span class="n">μ_star</span><span class="p">)</span>
+<span class="n">m_T1</span> <span class="o">=</span> <span class="p">(</span><span class="n">m_seq_2_path1</span><span class="p">[</span><span class="n">T1</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">μ0</span><span class="p">)</span> <span class="o">+</span> <span class="n">cm2</span><span class="o">.</span><span class="n">α</span><span class="o">*</span><span class="p">(</span><span class="n">μ0</span> <span class="o">-</span> <span class="n">μ_star</span><span class="p">)</span>
 
 <span class="n">cm3</span> <span class="o">=</span> <span class="n">create_cagan_model</span><span class="p">(</span><span class="n">m0</span><span class="o">=</span><span class="n">m_T1</span><span class="p">,</span> <span class="n">μ_seq</span><span class="o">=</span><span class="n">μ_seq_2_cont</span><span class="p">)</span>
-<span class="n">π_seq_2_cont2</span><span class="p">,</span> <span class="n">m_seq_2_cont2</span><span class="p">,</span> <span class="n">p_seq_2_cont2</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">cm3</span><span class="p">,</span> <span class="n">T</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">T1</span><span class="p">)</span>
+<span class="n">π_seq_2_cont2</span><span class="p">,</span> <span class="n">m_seq_2_cont2</span><span class="p">,</span> <span class="n">p_seq_2_cont2</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">cm3</span><span class="p">,</span> <span class="n">T</span><span class="o">-</span><span class="n">T1</span><span class="p">)</span>
 
-<span class="n">m_seq_2_regime2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">m_seq_2_path1</span><span class="p">[:</span><span class="n">T1</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span>
+<span class="n">m_seq_2_regime2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">m_seq_2_path1</span><span class="p">[:</span><span class="n">T1</span><span class="p">],</span>
                                   <span class="n">m_seq_2_cont2</span><span class="p">))</span>
-<span class="n">p_seq_2_regime2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">p_seq_2_path1</span><span class="p">[:</span><span class="n">T1</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span>
+<span class="n">p_seq_2_regime2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">p_seq_2_path1</span><span class="p">[:</span><span class="n">T1</span><span class="p">],</span>
                                   <span class="n">p_seq_2_cont2</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -861,8 +864,8 @@ are identical to those for experiment 1, the foreseen sudden stabilization.</p>
     <span class="p">{</span><span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">m_seq_2_regime1</span><span class="p">,</span> <span class="s1">&#39;Smooth $m_</span><span class="si">{T_1}</span><span class="s1">$&#39;</span><span class="p">),</span>
               <span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">m_seq_2_regime2</span><span class="p">,</span> <span class="s1">&#39;Jumpy $m_</span><span class="si">{T_1}</span><span class="s1">$&#39;</span><span class="p">)],</span>
      <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$m$&#39;</span><span class="p">},</span>
-    <span class="p">{</span><span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">p_seq_2_regime1</span><span class="p">,</span> <span class="s1">&#39;Smooth $p_</span><span class="si">{T_1}</span><span class="s1">$&#39;</span><span class="p">),</span>
-              <span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">p_seq_2_regime2</span><span class="p">,</span> <span class="s1">&#39;Jumpy $p_</span><span class="si">{T_1}</span><span class="s1">$&#39;</span><span class="p">)],</span>
+    <span class="p">{</span><span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">p_seq_2_regime1</span><span class="p">,</span> <span class="s1">&#39;Jumpy $m_</span><span class="si">{T_1}</span><span class="s1">$&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="n">T_seq</span><span class="p">,</span> <span class="n">p_seq_2_regime2</span><span class="p">,</span> <span class="s1">&#39;Smooth $m_</span><span class="si">{T_1}</span><span class="s1">$&#39;</span><span class="p">)],</span>
      <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$p$&#39;</span><span class="p">}</span>
 <span class="p">]</span>
 
@@ -886,7 +889,7 @@ are identical to those for experiment 1, the foreseen sudden stabilization.</p>
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/1ab9593fc7159e56adb1dca1ea7ac2b2b37bb36422b1e34b8760a75a4c0b1270.png"><img alt="_images/1ab9593fc7159e56adb1dca1ea7ac2b2b37bb36422b1e34b8760a75a4c0b1270.png" src="_images/1ab9593fc7159e56adb1dca1ea7ac2b2b37bb36422b1e34b8760a75a4c0b1270.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/2b3fed12c23d8fb12337f6fdc8360eb5aca9d705cd7271056f07b223cde5fe5c.png"><img alt="_images/2b3fed12c23d8fb12337f6fdc8360eb5aca9d705cd7271056f07b223cde5fe5c.png" src="_images/2b3fed12c23d8fb12337f6fdc8360eb5aca9d705cd7271056f07b223cde5fe5c.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -934,7 +937,7 @@ unanticipated, as in experiment 2.</p>
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/490d598ca771aed7769689dcbf97c10cc46f7036daa4f43e124ed24d90302a7d.png"><img alt="_images/490d598ca771aed7769689dcbf97c10cc46f7036daa4f43e124ed24d90302a7d.png" src="_images/490d598ca771aed7769689dcbf97c10cc46f7036daa4f43e124ed24d90302a7d.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/3bc52c737b5aa88f5dff0525094266661950d1a313ae5ede1309b718743faff9.png"><img alt="_images/3bc52c737b5aa88f5dff0525094266661950d1a313ae5ede1309b718743faff9.png" src="_images/3bc52c737b5aa88f5dff0525094266661950d1a313ae5ede1309b718743faff9.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -1618,6 +1621,11 @@ are flat until the surprise at <span class="math notranslate nohighlight">\(T_1\
    46. Maximum Likelihood Estimation
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bayes_intro.html">
+   47. Introduction to Bayesian Methods
+  </a>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -1627,17 +1635,17 @@ are flat until the surprise at <span class="math notranslate nohighlight">\(T_1\
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   47. Troubleshooting
+   48. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   48. References
+   49. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   49. Execution Statistics
+   50. Execution Statistics
   </a>
  </li>
 </ul>

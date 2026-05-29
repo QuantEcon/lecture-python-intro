@@ -1,0 +1,1606 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>47. Introduction to Bayesian Methods &#8212; A First Course in Quantitative Economics with Python</title>
+    
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js" integrity="sha384-bq5PNg/ZcfW7KMvFSmhjqCQJ/VFnec+6sZkctn/4ZLeubkn7U58Le4zFFSn3dhUu" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js" integrity="sha384-qEqAs1VsN9WH2myXDbiP2wGGIttL9bMRZBKCl54ZnzpDlVqbYANP9vMaoT/wvQcf" crossorigin="anonymous"></script>
+    
+        <script>
+            MathJax = {
+            loader: {load: ['[tex]/boldsymbol', '[tex]/textmacros']},
+            tex: {
+                packages: {'[+]': ['boldsymbol', 'textmacros']},
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                processEscapes: true,
+                macros: {
+                    "argmax" : "arg\\,max",
+                    "argmin" : "arg\\,min",
+                    "col"    : "col",
+                    "Span"   :  "span",
+                    "epsilon": "\\varepsilon",
+                    "EE": "\\mathbb{E}",
+                    "PP": "\\mathbb{P}",
+                    "RR": "\\mathbb{R}",
+                    "NN": "\\mathbb{N}",
+                    "ZZ": "\\mathbb{Z}",
+                    "aA": "\\mathcal{A}",
+                    "bB": "\\mathcal{B}",
+                    "cC": "\\mathcal{C}",
+                    "dD": "\\mathcal{D}",
+                    "eE": "\\mathcal{E}",
+                    "fF": "\\mathcal{F}",
+                    "gG": "\\mathcal{G}",
+                    "hH": "\\mathcal{H}",
+                }
+            },
+            svg: {
+                fontCache: 'global',
+                scale: 0.92,
+                displayAlign: "center",
+            },
+            };
+        </script>
+    
+    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=ff5dcadef89fd2097ea5e28ddaad7eb5985f09c4" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=3a5ece24" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=9980b4379844dc0b911d69b62b295f34ede88fac"></script>
+    <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
+    <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QDS1YRJNGM"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QDS1YRJNGM');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QDS1YRJNGM');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"argmax": "arg\\,max", "argmin": "arg\\,min"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'bayes_intro';</script>
+    <link rel="canonical" href="https://intro.quantecon.org/bayes_intro.html" />
+    <link rel="icon" href="_static/lectures-favicon.ico"/>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="48. Troubleshooting" href="troubleshooting.html" />
+    <link rel="prev" title="46. Maximum Likelihood Estimation" href="mle.html" />
+
+<!-- Normal Meta Tags -->
+<meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
+<meta name="keywords" content="Python, QuantEcon, Quantitative Economics, Economics, Sloan, Alfred P. Sloan Foundation, Tom J. Sargent, John Stachurski" />
+<meta name="description" content=This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski. />
+
+<!-- Twitter tags -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@quantecon" />
+<meta name="twitter:title" content="Introduction to Bayesian Methods"/>
+<meta name="twitter:description" content="This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski.">
+<meta name="twitter:creator" content="@quantecon">
+<meta name="twitter:image" content="https://assets.quantecon.org/img/qe-twitter-logo.png">
+
+<!-- Opengraph tags -->
+<meta property="og:title" content="Introduction to Bayesian Methods" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://intro.quantecon.org/bayes_intro.html" />
+<meta property="og:image" content="https://assets.quantecon.org/img/qe-og-logo.png" />
+<meta property="og:description" content="This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski." />
+<meta property="og:site_name" content="A First Course in Quantitative Economics with Python" />
+<meta name="theme-color" content="#ffffff" />
+
+
+
+
+  </head>
+<body>
+
+<!-- Prevent flash of light theme when dark mode is saved -->
+<script>
+(function() {
+  try {
+    if (localStorage.setContrast === '1') {
+      document.body.classList.add('dark-theme');
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  } catch(e) {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+})();
+</script>
+
+<!-- Override QuantEcon theme colors -->
+
+<!-- Color scheme: applies scheme-specific body class -->
+
+    <span id="top"></span>
+
+    <div class="qe-wrapper">
+
+        <div class="qe-main">
+
+            <div class="qe-page" id=bayes_intro>
+
+                <div class="qe-page__toc">
+
+                    
+                    
+                    
+
+                    
+                    <div class="inner sticky" data-autoexpand="true">
+
+                        
+                        <div class="qe-page__toc-header">
+                            On this page
+                        </div>
+
+
+                        <nav id="bd-toc-nav" class="qe-page__toc-nav">
+                            <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">47.1. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conditional-probability">47.2. Conditional probability</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">47.2.1. Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-risky-borrowing">47.2.2. Example: risky borrowing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayes-law">47.2.3. Bayes’ law</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-microloan-default-problem">47.3. A microloan default problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-one-step-update">47.4. A one-step update</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-the-update-numerically">47.5. Computing the update numerically</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prior">47.5.1. Prior</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalizing-constant">47.5.2. Normalizing constant</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-the-posterior">47.5.3. Calculating the posterior</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterating-the-update">47.6. Iterating the update</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-observations">47.7. Further observations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-closed-form-the-beta-prior">47.7.1. A closed form: the beta prior</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-batch-update-via-the-binomial-likelihood">47.7.2. The batch update via the binomial likelihood</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sequential-and-batch-updates-agree">47.8. Sequential and batch updates agree</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-posterior-to-loan-pricing">47.9. From posterior to loan pricing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expected-loss">47.9.1. Expected loss</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-break-even-interest-rate">47.9.2. The break-even interest rate</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">47.10. Exercises</a></li>
+</ul>
+                            <p class="logo">
+                                
+                                    
+                                    <a href=https://quantecon.org><img src="_static/qe-logo.png" class="logo logo-img" alt="logo"></a>
+                                    
+                                    <a href=https://quantecon.org><img src="_static/quantecon-logo-transparent.png" class="dark-logo-img" alt="logo"></a>
+                                    
+                                    
+                                
+                            </p>
+
+                            <p class="powered">Powered by <a href="https://jupyterbook.org/v1/">Jupyter Book</a></p>
+
+                        </nav>
+
+                        <div class="qe-page__toc-footer">
+                            
+                            
+                            
+                            
+                            
+                        </div>
+
+                    </div>
+
+                    
+                    <a href="#top" class="back-to-top-btn" title="Back to top">↑ Top</a>
+                    
+
+                </div>
+
+                <div class="qe-page__header">
+
+                    <div class="qe-page__header-copy">
+
+                        <p class="qe-page__header-heading"><a href="intro.html">A First Course in Quantitative Economics with Python</a></p>
+
+                    </div>
+
+                    <!-- Authors section -->
+                        <p class="qe-page__header-authors" font-size="18">
+                            
+                                
+                                    <a href="http://www.tomsargent.com/" target="_blank"><span>Thomas J. Sargent</span></a>
+                                
+                            
+                                
+                                    and <a href="https://johnstachurski.net/" target="_blank"><span>John Stachurski</span></a>
+                                
+                            
+                        </p>
+
+                    <!-- Last modified / Changelog dropdown -->
+                        <button class="qe-page__header-changed" id="changelog-toggle" aria-expanded="false">
+                            Last changed: May 29, 2026
+                            <span class="changelog-icon">▼</span>
+                        </button>
+
+                    <!-- Changelog dropdown content -->
+                    <div class="qe-page__header-changelog" id="changelog-content" aria-hidden="true">
+                        <h4>Changelog (<a href="https://github.com/QuantEcon/lecture-python-intro/commits/main/lectures/bayes_intro.md">full history</a>)</h4>
+                        <ul class="changelog-list">
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/f0bd0296" class="changelog-hash">f0bd0296</a>
+                                
+                                <span class="changelog-author">John Stachurski</span>
+                                <span class="changelog-time">14 minutes ago</span>
+                                <span class="changelog-message">Add Introduction to Bayesian Methods lecture (#751) (#758)</span>
+                            </li>
+                            
+                        </ul>
+                    </div>
+
+                </div> <!-- .page__header -->
+
+
+
+                
+                <main class="qe-page__content" role="main">
+                    
+                    <div>
+                        
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-bayesian-methods">
+<h1><span class="section-number">47. </span>Introduction to Bayesian Methods<a class="headerlink" href="#introduction-to-bayesian-methods" title="Link to this heading">#</a></h1>
+<section id="overview">
+<h2><span class="section-number">47.1. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>In this lecture we study one of the most important ideas in statistics: how to update our beliefs about an unknown quantity as new data arrives.</p>
+<p>The technique we will use is called <strong>Bayesian updating</strong>.</p>
+<p>We start with a belief about some unknown number.</p>
+<p>As we observe data, we revise that belief in a way that is mathematically precise.</p>
+<p>We will develop these ideas through an example drawn from development
+finance: estimating the default rate on a new type of loan.</p>
+<p>Along the way we will meet conditional probability, Bayes’ law, the Bernoulli
+and binomial distributions, and the beta distribution.</p>
+<p>Let’s begin by importing the libraries we need.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">beta</span><span class="p">,</span> <span class="n">binom</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="conditional-probability">
+<h2><span class="section-number">47.2. </span>Conditional probability<a class="headerlink" href="#conditional-probability" title="Link to this heading">#</a></h2>
+<p>Before we can talk about updating beliefs, we need to recall the idea of <strong>conditional probability</strong>.</p>
+<section id="definition">
+<h3><span class="section-number">47.2.1. </span>Definition<a class="headerlink" href="#definition" title="Link to this heading">#</a></h3>
+<p>Suppose <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are two events with <span class="math notranslate nohighlight">\(P(B) &gt; 0\)</span>.</p>
+<p>The probability of <span class="math notranslate nohighlight">\(A\)</span> given that <span class="math notranslate nohighlight">\(B\)</span> has occurred is written <span class="math notranslate nohighlight">\(P(A \mid B)\)</span> and defined by</p>
+<div class="math notranslate nohighlight" id="equation-eq-cond-prob">
+<span class="eqno">(47.1)<a class="headerlink" href="#equation-eq-cond-prob" title="Link to this equation">#</a></span>\[
+    P(A \mid B) = \frac{P(A \cap B)}{P(B)}.
+\]</div>
+<p>Here <span class="math notranslate nohighlight">\(A \cap B\)</span> is the event that both <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> occur.</p>
+<p>The intuition is that learning <span class="math notranslate nohighlight">\(B\)</span> has occurred restricts us to the world in which <span class="math notranslate nohighlight">\(B\)</span> is true.</p>
+<p>Within that restricted world, we ask how likely <span class="math notranslate nohighlight">\(A\)</span> is.</p>
+</section>
+<section id="example-risky-borrowing">
+<h3><span class="section-number">47.2.2. </span>Example: risky borrowing<a class="headerlink" href="#example-risky-borrowing" title="Link to this heading">#</a></h3>
+<p>A bank classifies its borrowers as either <em>low risk</em> or <em>high risk</em>.</p>
+<p>Among all borrowers, 80% are low risk and 20% are high risk.</p>
+<p>The conditional default probabilities are:</p>
+<ul class="simple">
+<li><p>low-risk borrowers: 0.05</p></li>
+<li><p>high-risk borrowers: 0.40</p></li>
+</ul>
+<p>Suppose we pick a borrower at random and find that they defaulted.</p>
+<p>What is the probability that the borrower was high risk?</p>
+<p>Let <span class="math notranslate nohighlight">\(H = \)</span> high risk, <span class="math notranslate nohighlight">\(L = \)</span> low risk and <span class="math notranslate nohighlight">\(D = \)</span> default.</p>
+<p>We know that <span class="math notranslate nohighlight">\(P(H) = 0.2\)</span>, <span class="math notranslate nohighlight">\(P(L) = 0.8\)</span>, <span class="math notranslate nohighlight">\(P(D \mid H) = 0.40\)</span> and <span class="math notranslate nohighlight">\(P(D \mid L) = 0.05\)</span>.</p>
+<p>The probability that a borrower is both high risk and defaults is</p>
+<div class="math notranslate nohighlight">
+\[
+    P(H \cap D) = P(D \mid H)\, P(H) = 0.40 \times 0.2 = 0.08.
+\]</div>
+<p>The overall probability of default can be computed from the <a class="reference external" href="https://en.wikipedia.org/wiki/Law_of_total_probability">law of total probability</a>:</p>
+<div class="math notranslate nohighlight">
+\[
+    P(D) = P(D \mid H)\, P(H) + P(D \mid L)\, P(L) = 0.40 \times 0.2 + 0.05 \times 0.8 = 0.08 + 0.04 = 0.12.
+\]</div>
+<p>Applying <a class="reference internal" href="#equation-eq-cond-prob">(47.1)</a>, we get</p>
+<div class="math notranslate nohighlight">
+\[
+    P(H \mid D) = \frac{P(H \cap D)}{P(D)} = \frac{0.08}{0.12} \approx 0.667.
+\]</div>
+<p>So observing a default raises our assessment that the borrower is high risk from 20% to about 67%.</p>
+</section>
+<section id="bayes-law">
+<h3><span class="section-number">47.2.3. </span>Bayes’ law<a class="headerlink" href="#bayes-law" title="Link to this heading">#</a></h3>
+<p>The last computation was, in fact, a typical Bayesian calculation.</p>
+<p>Let’s clarify further by returning to a setting with two abstract events <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>.</p>
+<p>Notice that the event <span class="math notranslate nohighlight">\(A \cap B\)</span> (both <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> occur) is the same as <span class="math notranslate nohighlight">\(B \cap A\)</span>.</p>
+<p>Hence, applying definition <a class="reference internal" href="#equation-eq-cond-prob">(47.1)</a> two ways, we have</p>
+<div class="math notranslate nohighlight">
+\[
+    P(A \mid B)\, P(B) = P(A \cap B) = P(B \mid A)\, P(A).
+\]</div>
+<p>Dividing through by <span class="math notranslate nohighlight">\(P(B)\)</span> gives <strong>Bayes’ law</strong>:</p>
+<div class="math notranslate nohighlight" id="equation-eq-bayes-law">
+<span class="eqno">(47.2)<a class="headerlink" href="#equation-eq-bayes-law" title="Link to this equation">#</a></span>\[
+    P(A \mid B) = \frac{P(B \mid A)\, P(A)}{P(B)}.
+\]</div>
+<p>In this setting, we call</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(P(A)\)</span> the <strong>prior</strong> — our belief about <span class="math notranslate nohighlight">\(A\)</span> before seeing data,</p></li>
+<li><p><span class="math notranslate nohighlight">\(P(B \mid A)\)</span> the <strong>likelihood</strong> — how probable the data <span class="math notranslate nohighlight">\(B\)</span> is when <span class="math notranslate nohighlight">\(A\)</span> is true, and</p></li>
+<li><p><span class="math notranslate nohighlight">\(P(A \mid B)\)</span> the <strong>posterior</strong> — our updated belief about <span class="math notranslate nohighlight">\(A\)</span> after seeing <span class="math notranslate nohighlight">\(B\)</span>.</p></li>
+</ul>
+<p>The denominator <span class="math notranslate nohighlight">\(P(B)\)</span> is a normalizing constant that makes the posterior probabilities sum to one.</p>
+<div class="proof example admonition" id="bayes_ex_cond">
+<p class="admonition-title"><span class="caption-number">Example 47.1 </span></p>
+<section class="example-content" id="proof-content">
+<p>The borrower calculation we completed above was an application of Bayes’ law with <span class="math notranslate nohighlight">\(A = H\)</span> and <span class="math notranslate nohighlight">\(B = D\)</span>.</p>
+<p>Bayes’ law tells us how to convert <span class="math notranslate nohighlight">\(P(D \mid H)\)</span>, which was assumed to be known, into <span class="math notranslate nohighlight">\(P(H \mid D)\)</span>, which we want.</p>
+</section>
+</div></section>
+</section>
+<section id="a-microloan-default-problem">
+<h2><span class="section-number">47.3. </span>A microloan default problem<a class="headerlink" href="#a-microloan-default-problem" title="Link to this heading">#</a></h2>
+<p>Now we turn to our main example.</p>
+<p>A development bank is entering a new lending market — say, smallholder farmers in a region where no historical lending data exists.</p>
+<p>The bank makes a series of small loans (microloans).</p>
+<p>Each loan either <strong>defaults</strong> or is <strong>repaid</strong>.</p>
+<p>We encode the outcome of loan <span class="math notranslate nohighlight">\(i\)</span> as a random variable <span class="math notranslate nohighlight">\(Y_i\)</span>, where</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    Y_i =
+    \begin{cases}
+    1 &amp; \text{if loan } i \text{ defaults}, \\
+    0 &amp; \text{if loan } i \text{ is repaid}.
+    \end{cases}
+\end{split}\]</div>
+<p>Let <span class="math notranslate nohighlight">\(\theta\)</span> be the probability that any given loan defaults.</p>
+<p>We assume that, given <span class="math notranslate nohighlight">\(\theta\)</span>, the outcomes <span class="math notranslate nohighlight">\(Y_1, Y_2, \ldots\)</span> are independent draws with</p>
+<div class="math notranslate nohighlight">
+\[
+    P(Y_i = 1 \mid \theta) = \theta,
+    \qquad
+    P(Y_i = 0 \mid \theta) = 1 - \theta.
+\]</div>
+<p>A random variable of this form is called a <strong>Bernoulli</strong> random variable with parameter <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
+<p>The catch is that the bank does <strong>not</strong> know <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
+<p>Since the market is new, <span class="math notranslate nohighlight">\(\theta\)</span> is uncertain.</p>
+<p>At the same time, the bank has experience in similar markets, so it does not start from total ignorance.</p>
+<p>The Bayesian approach is to treat <span class="math notranslate nohighlight">\(\theta\)</span> as a random quantity and describe our beliefs about it with a probability density <span class="math notranslate nohighlight">\(\pi\)</span> on the interval <span class="math notranslate nohighlight">\([0, 1]\)</span>.</p>
+<p>This density is called the <strong>prior</strong>.</p>
+<p>One possible option for <span class="math notranslate nohighlight">\(\pi\)</span> is to use a <a class="reference external" href="https://en.wikipedia.org/wiki/Beta_distribution">beta distribution</a>, whose density on <span class="math notranslate nohighlight">\([0,1]\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[
+    \pi(\theta) = \frac{\theta^{a - 1} (1 - \theta)^{b - 1}}{B(a, b)},
+    \qquad
+    B(a, b) = \int_0^1 t^{a-1}(1-t)^{b-1}\, dt,
+\]</div>
+<p>for parameters <span class="math notranslate nohighlight">\(a &gt; 0\)</span> and <span class="math notranslate nohighlight">\(b &gt; 0\)</span>.</p>
+<p>The denominator <span class="math notranslate nohighlight">\(B(a, b)\)</span> is called the <strong>beta function</strong>, and it is simply the
+constant that makes the density integrate to one.</p>
+<p>For our purposes the important part is the shape, <span class="math notranslate nohighlight">\(\theta^{a-1}(1-\theta)^{b-1}\)</span>, which is all that depends on <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
+<p>One nice property of the beta distribution is that, by varying <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, we can represent a wide range of beliefs.</p>
+<p>The four examples below range from “no idea at all” to at least some opinion as to whether <span class="math notranslate nohighlight">\(\theta\)</span> is
+likely to take a low or high value.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">θ_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<span class="n">plot_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.999</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>   <span class="c1"># avoids the spikes at the endpoints</span>
+<span class="n">params</span> <span class="o">=</span> <span class="p">[(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">plot_grid</span><span class="p">,</span> <span class="n">beta</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">plot_grid</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Beta(</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\theta$&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/389d5fe0fa586560f59e29e312cd8c93a0cae0dfd20d3b8f2db18909895ce2fd.png"><img alt="_images/389d5fe0fa586560f59e29e312cd8c93a0cae0dfd20d3b8f2db18909895ce2fd.png" src="_images/389d5fe0fa586560f59e29e312cd8c93a0cae0dfd20d3b8f2db18909895ce2fd.png" style="width: 80%;" />
+</a>
+</div>
+</div>
+<p>The shapes are strikingly different.</p>
+<p><span class="math notranslate nohighlight">\(\text{Beta}(1, 1)\)</span> is flat — it expresses complete ignorance, treating every default rate as equally likely.</p>
+<p><span class="math notranslate nohighlight">\(\text{Beta}(0.5, 0.5)\)</span> piles weight near 0 and 1, a belief that the market is probably either very safe or very risky.</p>
+<p><span class="math notranslate nohighlight">\(\text{Beta}(2, 5)\)</span> leans toward low default rates, while <span class="math notranslate nohighlight">\(\text{Beta}(8, 3)\)</span> leans toward high ones.</p>
+</section>
+<section id="a-one-step-update">
+<h2><span class="section-number">47.4. </span>A one-step update<a class="headerlink" href="#a-one-step-update" title="Link to this heading">#</a></h2>
+<p>Now suppose the bank observes the outcome of a single loan.</p>
+<p>Call this outcome <span class="math notranslate nohighlight">\(y \in \{0, 1\}\)</span>.</p>
+<p>We want to update the prior <span class="math notranslate nohighlight">\(\pi(\theta)\)</span> into a <strong>posterior</strong> <span class="math notranslate nohighlight">\(\pi(\theta \mid y)\)</span>.</p>
+<p>The probability of <span class="math notranslate nohighlight">\(y\)</span> given <span class="math notranslate nohighlight">\(\theta\)</span> is</p>
+<div class="math notranslate nohighlight" id="equation-eq-bernoulli-lik">
+<span class="eqno">(47.3)<a class="headerlink" href="#equation-eq-bernoulli-lik" title="Link to this equation">#</a></span>\[
+    p(y \mid \theta) = \theta^{y} (1 - \theta)^{1 - y}.
+\]</div>
+<p>This formula (which is called the Bernoulli distribution) gives us the right numbers:</p>
+<ul class="simple">
+<li><p>The default outcome <span class="math notranslate nohighlight">\(y = 1\)</span> yields <span class="math notranslate nohighlight">\(\theta^1 (1-\theta)^0 = \theta\)</span>, the probability of a default.</p></li>
+<li><p>The repayment outcome <span class="math notranslate nohighlight">\(y = 0\)</span> yields <span class="math notranslate nohighlight">\(\theta^0 (1-\theta)^1 = 1 - \theta\)</span>, the probability of repayment.</p></li>
+</ul>
+<p>Bayes’ law for a continuous parameter takes the form</p>
+<div class="math notranslate nohighlight" id="equation-eq-bayes-density">
+<span class="eqno">(47.4)<a class="headerlink" href="#equation-eq-bayes-density" title="Link to this equation">#</a></span>\[
+    \pi(\theta \mid y) = \frac{p(y \mid \theta)\, \pi(\theta)}{\int_0^1 p(y \mid t)\, \pi(t)\, dt}.
+\]</div>
+<p>This is the exact analogue of <a class="reference internal" href="#equation-eq-bayes-law">(47.2)</a>.</p>
+<p>The numerator is likelihood times prior.</p>
+<p>The denominator is an integral that sums the numerator over all possible values of <span class="math notranslate nohighlight">\(\theta\)</span>, ensuring the posterior integrates to one.</p>
+<p>Substituting the Bernoulli likelihood <a class="reference internal" href="#equation-eq-bernoulli-lik">(47.3)</a> gives our complete one-step update rule:</p>
+<div class="math notranslate nohighlight" id="equation-eq-bayes-update">
+<span class="eqno">(47.5)<a class="headerlink" href="#equation-eq-bayes-update" title="Link to this equation">#</a></span>\[
+    \pi(\theta \mid y) = \frac{\theta^{y}(1-\theta)^{1-y}\, \pi(\theta)}{\int_0^1 t^{y}(1-t)^{1-y}\, \pi(t)\, dt}.
+\]</div>
+<p>This rule is valid for any <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
+<p>Hence we can think of it as taking any prior density <span class="math notranslate nohighlight">\(\pi(\cdot)\)</span> and any single
+observation <span class="math notranslate nohighlight">\(y\)</span> and converting it into the posterior density <span class="math notranslate nohighlight">\(\pi(\cdot \mid y)\)</span>.</p>
+</section>
+<section id="computing-the-update-numerically">
+<h2><span class="section-number">47.5. </span>Computing the update numerically<a class="headerlink" href="#computing-the-update-numerically" title="Link to this heading">#</a></h2>
+<p>How can we compute the posterior density?</p>
+<section id="prior">
+<h3><span class="section-number">47.5.1. </span>Prior<a class="headerlink" href="#prior" title="Link to this heading">#</a></h3>
+<p>First let’s set up the prior.</p>
+<p>For our development bank we will begin with the prior <span class="math notranslate nohighlight">\(\pi = \text{Beta}(2, 5)\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_0</span><span class="p">,</span> <span class="n">b_0</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">pi</span><span class="p">(</span><span class="n">θ</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">beta</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">θ</span><span class="p">,</span> <span class="n">a_0</span><span class="p">,</span> <span class="n">b_0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This prior puts most of its weight on default rates below 0.5, with a peak around 0.2, reflecting cautious optimism together with genuine uncertainty.</p>
+</section>
+<section id="normalizing-constant">
+<h3><span class="section-number">47.5.2. </span>Normalizing constant<a class="headerlink" href="#normalizing-constant" title="Link to this heading">#</a></h3>
+<p>Next we need to compute the integral in the denominator of <a class="reference internal" href="#equation-eq-bayes-density">(47.4)</a>.</p>
+<p>One general approach is to compute it numerically, using a technique
+such as the <a class="reference external" href="https://en.wikipedia.org/wiki/Trapezoidal_rule">trapezoidal rule</a>.</p>
+<p>We fix a grid of points across <span class="math notranslate nohighlight">\([0, 1]\)</span> and represent each density by its values at those grid points.</p>
+<p>Every integral then becomes a sum that <code class="docutils literal notranslate"><span class="pre">numpy</span></code> can evaluate for us.</p>
+<p>The idea of the trapezoidal rule is to join neighboring grid points by straight lines and sum the areas of the resulting trapezoids.</p>
+<p>The figure below illustrates this for the integrand <span class="math notranslate nohighlight">\(p(y \mid \theta)\, \pi(\theta)\)</span> with <span class="math notranslate nohighlight">\(y = 1\)</span>, using a coarse grid so the trapezoids are visible.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fine</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<span class="n">integrand</span> <span class="o">=</span> <span class="n">fine</span> <span class="o">*</span> <span class="n">beta</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">fine</span><span class="p">,</span> <span class="n">a_0</span><span class="p">,</span> <span class="n">b_0</span><span class="p">)</span>        <span class="c1"># θ^1 (1-θ)^0 × prior</span>
+
+<span class="n">coarse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>                       <span class="c1"># eight trapezoids</span>
+<span class="n">heights</span> <span class="o">=</span> <span class="n">coarse</span> <span class="o">*</span> <span class="n">beta</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">coarse</span><span class="p">,</span> <span class="n">a_0</span><span class="p">,</span> <span class="n">b_0</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fine</span><span class="p">,</span> <span class="n">integrand</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$p(y \mid \theta)\,\pi(\theta)$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">coarse</span><span class="p">,</span> <span class="n">heights</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+                <span class="n">label</span><span class="o">=</span><span class="s2">&quot;trapezoidal approximation&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">coarse</span><span class="p">,</span> <span class="n">heights</span><span class="p">,</span> <span class="s1">&#39;o-&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C1&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">coarse</span><span class="p">,</span> <span class="n">heights</span><span class="p">):</span>                   <span class="c1"># draw the trapezoid edges</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">h</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C1&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\theta$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;integrand&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/23f73e0065e96be1b58a404b484a48ab265f31cb7c464d7809314172b34f2448.png"><img alt="_images/23f73e0065e96be1b58a404b484a48ab265f31cb7c464d7809314172b34f2448.png" src="_images/23f73e0065e96be1b58a404b484a48ab265f31cb7c464d7809314172b34f2448.png" style="width: 80%;" />
+</a>
+</div>
+</div>
+<p>The finer the grid, the closer the shaded region gets to the true area under the curve.</p>
+<p>Let’s build the update in two steps.</p>
+<p>First, recall that the denominator in <a class="reference internal" href="#equation-eq-bayes-density">(47.4)</a> is the integrated likelihood times the prior:</p>
+<div class="math notranslate nohighlight">
+\[
+    \int_0^1 p(y \mid t)\, \pi(t)\, dt .
+\]</div>
+<p>The function below computes this constant on the grid, approximating the integral with <code class="docutils literal notranslate"><span class="pre">np.trapezoid</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">normalizing_constant</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
+    <span class="s2">&quot;Compute the denominator of Bayes&#39; law: likelihood times prior, integrated.&quot;</span>
+    <span class="n">t_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>  <span class="c1"># linear grid of 100 points</span>
+    <span class="n">likelihood_vals</span> <span class="o">=</span> <span class="n">t_grid</span><span class="o">**</span><span class="n">y</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">t_grid</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">prior_vals</span> <span class="o">=</span> <span class="n">pi</span><span class="p">(</span><span class="n">t_grid</span><span class="p">)</span>
+    <span class="n">integrand</span> <span class="o">=</span> <span class="n">likelihood_vals</span> <span class="o">*</span> <span class="n">prior_vals</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">trapezoid</span><span class="p">(</span><span class="n">integrand</span><span class="p">,</span> <span class="n">t_grid</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="calculating-the-posterior">
+<h3><span class="section-number">47.5.3. </span>Calculating the posterior<a class="headerlink" href="#calculating-the-posterior" title="Link to this heading">#</a></h3>
+<p>The second step divides the (unnormalized) product of likelihood and prior by this constant.</p>
+<p>The result is the posterior density, evaluated on the grid.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">θ_grid</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute posterior values pi(θ, y) on the set of grid points θ_grid</span>
+<span class="sd">    after observing outcome y.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">likelihood_vals</span> <span class="o">=</span> <span class="n">θ_grid</span><span class="o">**</span><span class="n">y</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">θ_grid</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">prior_vals</span> <span class="o">=</span> <span class="n">pi</span><span class="p">(</span><span class="n">θ_grid</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">likelihood_vals</span> <span class="o">*</span> <span class="n">prior_vals</span> <span class="o">/</span> <span class="n">normalizing_constant</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s start from our Beta(2, 5) prior and suppose that we observe a single default (<span class="math notranslate nohighlight">\(y = 1\)</span>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">θ_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<span class="n">prior_vals</span> <span class="o">=</span> <span class="n">pi</span><span class="p">(</span><span class="n">θ_grid</span><span class="p">)</span>
+<span class="n">posterior_vals</span> <span class="o">=</span> <span class="n">update</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">θ_grid</span><span class="o">=</span><span class="n">θ_grid</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">θ_grid</span><span class="p">,</span> <span class="n">prior_vals</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;prior&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">θ_grid</span><span class="p">,</span> <span class="n">posterior_vals</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;posterior after one default&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\theta$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;density&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/cb9f796d017c0286fe6774ad25a6c4f42e517fbea9ada4cadaf464ad81294972.png"><img alt="_images/cb9f796d017c0286fe6774ad25a6c4f42e517fbea9ada4cadaf464ad81294972.png" src="_images/cb9f796d017c0286fe6774ad25a6c4f42e517fbea9ada4cadaf464ad81294972.png" style="width: 80%;" />
+</a>
+</div>
+</div>
+<p>Observing a default shifts the posterior to the right, toward higher default probabilities.</p>
+<p>This makes sense: a default is evidence that <span class="math notranslate nohighlight">\(\theta\)</span> might be larger than we thought.</p>
+<p>If instead the loan had been repaid, the posterior would shift left.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">posterior_repaid</span> <span class="o">=</span> <span class="n">update</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">θ_grid</span><span class="o">=</span><span class="n">θ_grid</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">θ_grid</span><span class="p">,</span> <span class="n">prior_vals</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;prior&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">θ_grid</span><span class="p">,</span> <span class="n">posterior_repaid</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;posterior after one repayment&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\theta$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;density&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/7fa1fa7304878b175fbedcfbd8408ffe00e05b46a9782baaf5df7f5eb03b2712.png"><img alt="_images/7fa1fa7304878b175fbedcfbd8408ffe00e05b46a9782baaf5df7f5eb03b2712.png" src="_images/7fa1fa7304878b175fbedcfbd8408ffe00e05b46a9782baaf5df7f5eb03b2712.png" style="width: 80%;" />
+</a>
+</div>
+</div>
+</section>
+</section>
+<section id="iterating-the-update">
+<h2><span class="section-number">47.6. </span>Iterating the update<a class="headerlink" href="#iterating-the-update" title="Link to this heading">#</a></h2>
+<p>Here is a key observation: the posterior after one step is itself a perfectly good prior for the next step.</p>
+<p>So we can repeat the update as each new loan resolves.</p>
+<p>Starting from a prior <span class="math notranslate nohighlight">\(\pi_0\)</span>, observing <span class="math notranslate nohighlight">\(Y_1\)</span> gives a posterior <span class="math notranslate nohighlight">\(\pi_1\)</span>.</p>
+<p>Treating <span class="math notranslate nohighlight">\(\pi_1\)</span> as the new prior and observing <span class="math notranslate nohighlight">\(Y_2\)</span> gives <span class="math notranslate nohighlight">\(\pi_2\)</span>, and so on.</p>
+<p>This produces a sequence of densities <span class="math notranslate nohighlight">\(\pi_0, \pi_1, \pi_2, \ldots\)</span> that captures our evolving beliefs.</p>
+<p>Let’s simulate a stream of loan outcomes and watch the beliefs evolve.</p>
+<p>We will generate data from a “true” default rate <span class="math notranslate nohighlight">\(\theta^* = 0.15\)</span>, which the bank does not know.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">θ_true</span> <span class="o">=</span> <span class="mf">0.15</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="c1"># Generate n draws from the Bernoulli distribution with θ = θ_true</span>
+<span class="n">outcomes</span> <span class="o">=</span> <span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">θ_true</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we iterate the grid update over these outcomes, recording the posterior at a few selected stages.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">snapshots</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>
+
+<span class="c1"># Set up the prior Beta(a_0, b_0) as values on a grid</span>
+<span class="n">current_vals</span> <span class="o">=</span> <span class="n">pi</span><span class="p">(</span><span class="n">θ_grid</span><span class="p">)</span>
+
+<span class="c1"># Plot the prior</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">θ_grid</span><span class="p">,</span> <span class="n">current_vals</span><span class="p">,</span> <span class="s1">&#39;k-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;prior&quot;</span><span class="p">)</span>
+
+<span class="c1"># Update the density (on the grid) and plot</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">outcomes</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">likelihood_vals</span> <span class="o">=</span> <span class="n">θ_grid</span><span class="o">**</span><span class="n">y</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">θ_grid</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">current_vals</span> <span class="o">=</span> <span class="n">likelihood_vals</span> <span class="o">*</span> <span class="n">current_vals</span>
+    <span class="n">current_vals</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">trapezoid</span><span class="p">(</span><span class="n">current_vals</span><span class="p">,</span> <span class="n">θ_grid</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">snapshots</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">θ_grid</span><span class="p">,</span> <span class="n">current_vals</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;posterior after </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> loans&quot;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">θ_true</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;true $\theta^*$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\theta$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;density&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/489b1d252a6f379d447cac2f8b55b1510e52646f89e970d0591bd350c28a669a.png"><img alt="_images/489b1d252a6f379d447cac2f8b55b1510e52646f89e970d0591bd350c28a669a.png" src="_images/489b1d252a6f379d447cac2f8b55b1510e52646f89e970d0591bd350c28a669a.png" style="width: 80%;" />
+</a>
+</div>
+</div>
+<p>Two things stand out.</p>
+<p>First, the posterior <strong>concentrates</strong> around the true value <span class="math notranslate nohighlight">\(\theta^* = 0.15\)</span> as more loans resolve.</p>
+<p>Second, the posterior becomes <strong>tighter</strong> — our uncertainty about <span class="math notranslate nohighlight">\(\theta\)</span> steadily shrinks.</p>
+<p>Early on, the prior has a strong influence on our beliefs.</p>
+<p>As data accumulates, that influence fades and the data takes over.</p>
+</section>
+<section id="further-observations">
+<h2><span class="section-number">47.7. </span>Further observations<a class="headerlink" href="#further-observations" title="Link to this heading">#</a></h2>
+<p>Let’s make two additional observations regarding the model described above.</p>
+<p>The first shows that we can do the update steps above with pencil and paper in
+the special case of a beta prior.</p>
+<p>The second observation concerns batch updating.</p>
+<section id="a-closed-form-the-beta-prior">
+<h3><span class="section-number">47.7.1. </span>A closed form: the beta prior<a class="headerlink" href="#a-closed-form-the-beta-prior" title="Link to this heading">#</a></h3>
+<p>The numerical updating rule provided above always works, regardless of our
+choice of prior.</p>
+<p>But in the beta case we get a nice analytical approach as well.</p>
+<p>Recall that this prior is proportional to <span class="math notranslate nohighlight">\(\theta^{a-1}(1-\theta)^{b-1}\)</span>.</p>
+<p>When we multiply this expression by the Bernoulli likelihood <span class="math notranslate nohighlight">\(\theta^{y}(1-\theta)^{1-y}\)</span>, we get</p>
+<div class="math notranslate nohighlight">
+\[
+    \theta^{y}(1-\theta)^{1-y} \cdot \theta^{a-1}(1-\theta)^{b-1}
+    = \theta^{(a + y) - 1}(1-\theta)^{(b + 1 - y) - 1}.
+\]</div>
+<p>The right-hand side has the form of another beta density.</p>
+<p>So if the prior is <span class="math notranslate nohighlight">\(\text{Beta}(a, b)\)</span>, the posterior is again a beta distribution — with updated parameters.</p>
+<p>We say that the beta distribution is a <strong>conjugate prior</strong> for the Bernoulli likelihood.</p>
+<p>The update rule for the parameters is very simple:</p>
+<ul class="simple">
+<li><p>a default (<span class="math notranslate nohighlight">\(y = 1\)</span>) sends <span class="math notranslate nohighlight">\((a, b) \mapsto (a + 1,\, b)\)</span>,</p></li>
+<li><p>a repayment (<span class="math notranslate nohighlight">\(y = 0\)</span>) sends <span class="math notranslate nohighlight">\((a, b) \mapsto (a,\, b + 1)\)</span>.</p></li>
+</ul>
+<p>Let’s verify that this closed form agrees with our numerical computation.</p>
+<p>We overlay the analytical <span class="math notranslate nohighlight">\(\text{Beta}(a_0 + 1, b_0)\)</span> posterior on the grid posterior after one default.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">closed_form</span> <span class="o">=</span> <span class="n">beta</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">θ_grid</span><span class="p">,</span> <span class="n">a_0</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">b_0</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">θ_grid</span><span class="p">,</span> <span class="n">posterior_vals</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;numerical posterior&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">θ_grid</span><span class="p">,</span> <span class="n">closed_form</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Beta(</span><span class="si">{</span><span class="n">a_0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">b_0</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\theta$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;density&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/430e8156b9ce54a17511dca643fff697368e8017d044733e6e7cf0d0faa87014.png"><img alt="_images/430e8156b9ce54a17511dca643fff697368e8017d044733e6e7cf0d0faa87014.png" src="_images/430e8156b9ce54a17511dca643fff697368e8017d044733e6e7cf0d0faa87014.png" style="width: 80%;" />
+</a>
+</div>
+</div>
+<p>The two curves lie exactly on top of one another, confirming that our numerics and the closed form agree.</p>
+</section>
+<section id="the-batch-update-via-the-binomial-likelihood">
+<h3><span class="section-number">47.7.2. </span>The batch update via the binomial likelihood<a class="headerlink" href="#the-batch-update-via-the-binomial-likelihood" title="Link to this heading">#</a></h3>
+<p>There is a second, equally natural way to think about the problem of belief
+updating given loan outcome data.</p>
+<p>Instead of processing outcomes one at a time, suppose we wait and observe all <span class="math notranslate nohighlight">\(n\)</span> outcomes <span class="math notranslate nohighlight">\(Y_1, \ldots, Y_n\)</span> together.</p>
+<p>Then we update directly from the prior <span class="math notranslate nohighlight">\(\pi_0\)</span> to the posterior <span class="math notranslate nohighlight">\(\pi_n\)</span> in a single step.</p>
+<p>Let the total number of defaults be given by</p>
+<div class="math notranslate nohighlight">
+\[
+    k = \sum_{i=1}^n Y_i.
+\]</div>
+<p>The probability of observing exactly <span class="math notranslate nohighlight">\(k\)</span> defaults out of <span class="math notranslate nohighlight">\(n\)</span> loans is given by the <strong>binomial</strong> distribution:</p>
+<div class="math notranslate nohighlight" id="equation-eq-binom-lik">
+<span class="eqno">(47.6)<a class="headerlink" href="#equation-eq-binom-lik" title="Link to this equation">#</a></span>\[
+    p(k \mid \theta) = \binom{n}{k} \theta^{k} (1 - \theta)^{n - k}.
+\]</div>
+<p>Bayes’ law then gives the one-shot update</p>
+<div class="math notranslate nohighlight">
+\[
+    \pi_n(\theta) = \frac{p(k \mid \theta)\, \pi_0(\theta)}{\int_0^1 p(k \mid t)\, \pi_0(t)\, dt}.
+\]</div>
+<p>With a <span class="math notranslate nohighlight">\(\text{Beta}(a, b)\)</span> prior, conjugacy again gives a clean closed form.</p>
+<p>The binomial likelihood is proportional to <span class="math notranslate nohighlight">\(\theta^{k}(1-\theta)^{n-k}\)</span>, so the posterior is</p>
+<div class="math notranslate nohighlight">
+\[
+    \text{Beta}(a + k,\ b + n - k).
+\]</div>
+<p>In words: add the number of defaults to <span class="math notranslate nohighlight">\(a\)</span>, and add the number of repayments to <span class="math notranslate nohighlight">\(b\)</span>.</p>
+</section>
+</section>
+<section id="sequential-and-batch-updates-agree">
+<h2><span class="section-number">47.8. </span>Sequential and batch updates agree<a class="headerlink" href="#sequential-and-batch-updates-agree" title="Link to this heading">#</a></h2>
+<p>We now have two routes from prior to posterior.</p>
+<p>One processes the <span class="math notranslate nohighlight">\(n\)</span> outcomes one at a time; the other processes them all at once.</p>
+<p>Reassuringly, they give exactly the same answer.</p>
+<p>We can see why with a short algebraic argument.</p>
+<p>The likelihood of the full sequence <span class="math notranslate nohighlight">\(Y_1, \ldots, Y_n\)</span>, for given <span class="math notranslate nohighlight">\(\theta\)</span>, is the product of the individual Bernoulli likelihoods:</p>
+<div class="math notranslate nohighlight">
+\[
+    \prod_{i=1}^n \theta^{Y_i}(1-\theta)^{1 - Y_i}
+    = \theta^{k}(1-\theta)^{n-k}.
+\]</div>
+<p>This is identical to the binomial likelihood <a class="reference internal" href="#equation-eq-binom-lik">(47.6)</a>, except for the factor <span class="math notranslate nohighlight">\(\binom{n}{k}\)</span>.</p>
+<p>But <span class="math notranslate nohighlight">\(\binom{n}{k}\)</span> does not depend on <span class="math notranslate nohighlight">\(\theta\)</span>, so it cancels between the numerator and denominator when we normalize.</p>
+<p>Hence the two posteriors are equal.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It might appear that the sequential update never used the assumption that the outcomes are independent, while the batch update clearly did.</p>
+<p>In fact both rely on it.</p>
+<p>The honest update at step <span class="math notranslate nohighlight">\(i\)</span> conditions on everything seen so far:</p>
+<div class="math notranslate nohighlight">
+\[
+    \pi_i(\theta) \propto p(Y_i \mid \theta, Y_1, \ldots, Y_{i-1})\, \pi_{i-1}(\theta).
+\]</div>
+<p>When we replace <span class="math notranslate nohighlight">\(p(Y_i \mid \theta, Y_1, \ldots, Y_{i-1})\)</span> by the single-outcome likelihood <span class="math notranslate nohighlight">\(p(Y_i \mid \theta)\)</span>, we are assuming that, given <span class="math notranslate nohighlight">\(\theta\)</span>, the new outcome is independent of the past.</p>
+<p>This is exactly the conditional independence that lets the batch likelihood factor into a product.</p>
+<p>So the assumption is doing the same work in both routes — it is just hidden in the sequential one.</p>
+</div>
+</section>
+<section id="from-posterior-to-loan-pricing">
+<h2><span class="section-number">47.9. </span>From posterior to loan pricing<a class="headerlink" href="#from-posterior-to-loan-pricing" title="Link to this heading">#</a></h2>
+<p>Why does any of this matter for the bank?</p>
+<p>The whole point of estimating <span class="math notranslate nohighlight">\(\theta\)</span> is to make better lending decisions.</p>
+<p>Let’s discuss how this can be done.</p>
+<section id="expected-loss">
+<h3><span class="section-number">47.9.1. </span>Expected loss<a class="headerlink" href="#expected-loss" title="Link to this heading">#</a></h3>
+<p>Suppose each loan has size 1, and the bank loses the full amount when a loan defaults.</p>
+<p>Then the <strong>expected loss</strong> on a new loan is just the probability of default.</p>
+<p>Given the data, our best estimate of that probability is the <strong>posterior mean</strong>.</p>
+<p>Recall that the posterior is <span class="math notranslate nohighlight">\(\text{Beta}(a + k,\ b + n - k)\)</span>.</p>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Beta_distribution">mean of a beta distribution</a> <span class="math notranslate nohighlight">\(\text{Beta}(\alpha, \beta)\)</span> is <span class="math notranslate nohighlight">\(\alpha / (\alpha + \beta)\)</span>, so here</p>
+<div class="math notranslate nohighlight">
+\[
+    \mathbb{E}[\theta \mid \text{data}] = \frac{a + k}{a + b + n}.
+\]</div>
+<p>This is the number the bank should plug into its pricing: to break even, the interest rate must at least cover the expected loss.</p>
+<p>Let’s track how the expected loss, and our uncertainty about it, evolve as loans resolve.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cum_defaults</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">outcomes</span><span class="p">)</span>
+<span class="n">loans</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">a_n</span> <span class="o">=</span> <span class="n">a_0</span> <span class="o">+</span> <span class="n">cum_defaults</span>
+<span class="n">b_n</span> <span class="o">=</span> <span class="n">b_0</span> <span class="o">+</span> <span class="n">loans</span> <span class="o">-</span> <span class="n">cum_defaults</span>
+
+<span class="c1"># Use standard formulas to compute the mean and standard deviation</span>
+<span class="c1"># at every n (vectorized)</span>
+<span class="n">post_mean</span> <span class="o">=</span> <span class="n">a_n</span> <span class="o">/</span> <span class="p">(</span><span class="n">a_n</span> <span class="o">+</span> <span class="n">b_n</span><span class="p">)</span>
+<span class="n">post_std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">a_n</span> <span class="o">*</span> <span class="n">b_n</span> <span class="o">/</span> <span class="p">((</span><span class="n">a_n</span> <span class="o">+</span> <span class="n">b_n</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">a_n</span> <span class="o">+</span> <span class="n">b_n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)))</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">loans</span><span class="p">,</span> <span class="n">post_mean</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;posterior mean (expected loss)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">loans</span><span class="p">,</span> <span class="n">post_mean</span> <span class="o">-</span> <span class="n">post_std</span><span class="p">,</span> <span class="n">post_mean</span> <span class="o">+</span> <span class="n">post_std</span><span class="p">,</span>
+                <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;± one posterior std. dev.&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">θ_true</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;true $\theta^*$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;number of loans observed&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;estimate of $\theta$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/133cb4114b3ab75e8b5b0030ed2ef286257b3d4943c10c47c04748c7274504f5.png"><img alt="_images/133cb4114b3ab75e8b5b0030ed2ef286257b3d4943c10c47c04748c7274504f5.png" src="_images/133cb4114b3ab75e8b5b0030ed2ef286257b3d4943c10c47c04748c7274504f5.png" style="width: 80%;" />
+</a>
+</div>
+</div>
+<p>As the bank observes more loans, its estimate of the expected loss settles down near the true default rate.</p>
+<p>At the same time, the band of uncertainty narrows.</p>
+<p>This is the practical payoff of Bayesian updating: the bank can price cautiously when data is scarce, and sharpen its pricing as experience accumulates.</p>
+</section>
+<section id="the-break-even-interest-rate">
+<h3><span class="section-number">47.9.2. </span>The break-even interest rate<a class="headerlink" href="#the-break-even-interest-rate" title="Link to this heading">#</a></h3>
+<p>Let’s turn the expected loss into an actual interest rate.</p>
+<p>Consider a loan of size 1, carrying interest rate <span class="math notranslate nohighlight">\(r\)</span>.</p>
+<p>If the borrower repays, the bank receives <span class="math notranslate nohighlight">\(1 + r\)</span>.</p>
+<p>If the borrower defaults, the bank receives nothing.</p>
+<p>Suppose the bank is risk neutral, faces no funding costs, and operates in a competitive market that drives expected profits to zero.</p>
+<p>The zero-profit condition sets the expected repayment equal to the amount lent:</p>
+<div class="math notranslate nohighlight">
+\[
+    (1 - \theta)(1 + r) = 1 .
+\]</div>
+<p>Solving for <span class="math notranslate nohighlight">\(r\)</span> gives the break-even interest rate</p>
+<div class="math notranslate nohighlight">
+\[
+    r = \frac{\theta}{1 - \theta} .
+\]</div>
+<p>This rate has a clean interpretation: the expected interest income <span class="math notranslate nohighlight">\((1 - \theta) r\)</span> exactly equals the expected loss <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
+<p>Of course the bank does not know <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
+<p>Because the bank is risk neutral, only the mean of <span class="math notranslate nohighlight">\(\theta\)</span> enters the calculation, so it replaces <span class="math notranslate nohighlight">\(\theta\)</span> by its posterior mean <span class="math notranslate nohighlight">\(\hat\theta = \mathbb{E}[\theta \mid \text{data}]\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+    r = \frac{\hat\theta}{1 - \hat\theta} .
+\]</div>
+<p>Let’s see how this break-even rate evolves as the loan book grows.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">implied_rate</span> <span class="o">=</span> <span class="n">post_mean</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">post_mean</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">loans</span><span class="p">,</span> <span class="n">implied_rate</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;break-even rate&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">θ_true</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">θ_true</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span>
+           <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;rate at true $\theta^*$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;number of loans observed&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;interest rate $r$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/117643932953e326014850dd1eb5a2f9f09412bc1393472812e50e4d7a181cc3.png"><img alt="_images/117643932953e326014850dd1eb5a2f9f09412bc1393472812e50e4d7a181cc3.png" src="_images/117643932953e326014850dd1eb5a2f9f09412bc1393472812e50e4d7a181cc3.png" style="width: 80%;" />
+</a>
+</div>
+</div>
+<p>Early on, with little data, the rate reflects the prior and is somewhat unstable.</p>
+<p>As loans resolve, it settles toward <span class="math notranslate nohighlight">\(\theta^* / (1 - \theta^*) \approx 0.176\)</span>, the rate the bank would charge if it knew the true default probability.</p>
+</section>
+</section>
+<section id="exercises">
+<h2><span class="section-number">47.10. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<div class="exercise admonition" id="bayes_ex1">
+
+<p class="admonition-title"><span class="caption-number">Exercise 47.1 </span></p>
+<section id="exercise-content">
+<p>The prior matters a lot when data is scarce, but its influence should fade as data accumulates.</p>
+<p>Illustrate this by repeating the iteration of the previous sections from two very different priors:</p>
+<ul class="simple">
+<li><p>an <em>optimistic</em> prior <span class="math notranslate nohighlight">\(\text{Beta}(2, 8)\)</span>, which expects a low default rate, and</p></li>
+<li><p>a <em>skeptical</em> prior <span class="math notranslate nohighlight">\(\text{Beta}(8, 2)\)</span>, which expects a high default rate.</p></li>
+</ul>
+<p>Use the same simulated data (with <span class="math notranslate nohighlight">\(\theta^* = 0.15\)</span>) for both.</p>
+<p>Plot the two posterior means as a function of the number of loans observed, and confirm that they converge as <span class="math notranslate nohighlight">\(n\)</span> grows.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="bayes_intro-solution-2">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#bayes_ex1"> Exercise 47.1</a></p>
+<section id="solution-content">
+<p>We can use the conjugate update rule directly, since both priors are beta distributions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">priors</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;optimistic Beta(2, 8)&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
+          <span class="s2">&quot;skeptical Beta(8, 2)&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">)}</span>
+
+<span class="n">cum_defaults</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">outcomes</span><span class="p">)</span>
+<span class="n">loans</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="ow">in</span> <span class="n">priors</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">a_seq</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">cum_defaults</span>
+    <span class="n">b_seq</span> <span class="o">=</span> <span class="n">b</span> <span class="o">+</span> <span class="n">loans</span> <span class="o">-</span> <span class="n">cum_defaults</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">loans</span><span class="p">,</span> <span class="n">a_seq</span> <span class="o">/</span> <span class="p">(</span><span class="n">a_seq</span> <span class="o">+</span> <span class="n">b_seq</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">θ_true</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;true $\theta^*$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;number of loans observed&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;posterior mean&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/4ff1b5235b7ece9eb54d902775b4fe20b6b81a226f5d3a3544e05d8d6192c3c8.png"><img alt="_images/4ff1b5235b7ece9eb54d902775b4fe20b6b81a226f5d3a3544e05d8d6192c3c8.png" src="_images/4ff1b5235b7ece9eb54d902775b4fe20b6b81a226f5d3a3544e05d8d6192c3c8.png" style="width: 80%;" />
+</a>
+</div>
+</div>
+<p>The two estimates start far apart, reflecting the disagreement between the priors.</p>
+<p>As loans accumulate, both are pulled toward the true value <span class="math notranslate nohighlight">\(\theta^* = 0.15\)</span> and the gap between them shrinks.</p>
+<p>With enough data, the choice of prior barely matters — the data dominates.</p>
+</section>
+</div>
+<div class="exercise admonition" id="bayes_ex2">
+
+<p class="admonition-title"><span class="caption-number">Exercise 47.2 </span></p>
+<section id="exercise-content">
+<p>Suppose the bank starts with a <span class="math notranslate nohighlight">\(\text{Beta}(2, 5)\)</span> prior and then observes 200 loans, of which 26 default.</p>
+<ol class="arabic simple">
+<li><p>Compute the posterior mean default rate.</p></li>
+<li><p>Compute a 90% <strong>credible interval</strong> for <span class="math notranslate nohighlight">\(\theta\)</span> — an interval that contains <span class="math notranslate nohighlight">\(\theta\)</span> with posterior probability 0.90.</p></li>
+</ol>
+<p>For the credible interval, use the 5th and 95th percentiles of the posterior, available via <code class="docutils literal notranslate"><span class="pre">beta.ppf</span></code>.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="bayes_intro-solution-4">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#bayes_ex2"> Exercise 47.2</a></p>
+<section id="solution-content">
+<p>The posterior is <span class="math notranslate nohighlight">\(\text{Beta}(a_0 + k,\ b_0 + n - k)\)</span> with <span class="math notranslate nohighlight">\(a_0 = 2\)</span>, <span class="math notranslate nohighlight">\(b_0 = 5\)</span>, <span class="math notranslate nohighlight">\(n = 200\)</span> and <span class="math notranslate nohighlight">\(k = 26\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_post</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">26</span>
+<span class="n">b_post</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">+</span> <span class="p">(</span><span class="mi">200</span> <span class="o">-</span> <span class="mi">26</span><span class="p">)</span>
+
+<span class="n">post_mean</span> <span class="o">=</span> <span class="n">a_post</span> <span class="o">/</span> <span class="p">(</span><span class="n">a_post</span> <span class="o">+</span> <span class="n">b_post</span><span class="p">)</span>
+<span class="n">lower</span><span class="p">,</span> <span class="n">upper</span> <span class="o">=</span> <span class="n">beta</span><span class="o">.</span><span class="n">ppf</span><span class="p">([</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">],</span> <span class="n">a_post</span><span class="p">,</span> <span class="n">b_post</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Posterior: Beta(</span><span class="si">{</span><span class="n">a_post</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">b_post</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Posterior mean default rate: </span><span class="si">{</span><span class="n">post_mean</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;90% credible interval: (</span><span class="si">{</span><span class="n">lower</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">upper</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Posterior: Beta(28, 179)
+Posterior mean default rate: 0.1353
+90% credible interval: (0.0984, 0.1762)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The bank’s best estimate of the default rate is about 13.5%, and it is 90% sure that the true rate lies within the reported interval.</p>
+<p>These two numbers — a point estimate and a measure of uncertainty — are exactly what is needed to price the loans.</p>
+</section>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                    </div>
+                    
+                </main> <!-- .page__content -->
+                
+
+
+                <footer class="qe-page__footer">
+
+                    <p><a href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://licensebuttons.net/l/by-sa/4.0/80x15.png"></a></p>
+
+                    <p>Creative Commons License &ndash; This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International.</p>
+
+                    <p>A theme by <a href="https://quantecon.org">QuantEcon</a></p>
+
+                </footer> <!-- .page__footer -->
+
+            </div> <!-- .page -->
+
+            
+
+            
+            <div class="qe-sidebar bd-sidebar inactive" id="site-navigation">
+
+                <div class="qe-sidebar__header">
+
+
+                    Contents
+
+                </div>
+
+                <nav class="qe-sidebar__nav" id="qe-sidebar-nav" aria-label="Main navigation">
+                    <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="about.html">
+   1. About These Lectures
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Economic Data
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="long_run_growth.html">
+   2. Long-Run Growth
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="business_cycle.html">
+   3. Business Cycles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="inflation_history.html">
+   4. Price Level Histories
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="french_rev.html">
+   5. Inflation During French Revolution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="inequality.html">
+   6. Income and Wealth Inequality
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Foundations
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro_supply_demand.html">
+   7. Introduction to Supply and Demand
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linear_equations.html">
+   8. Linear Equations and Matrix Algebra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="complex_and_trig.html">
+   9. Complex Numbers and Trigonometry
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="geom_series.html">
+   10. Geometric Series for Elementary Economics
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Linear Dynamics: Finite Horizons
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="pv.html">
+   11. Present Values
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cons_smooth.html">
+   12. Consumption Smoothing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tax_smooth.html">
+   13. Tax Smoothing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="equalizing_difference.html">
+   14. Equalizing Difference Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cagan_ree.html">
+   15. A Monetarist Theory of Price Levels
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cagan_adaptive.html">
+   16. Monetarist Theory of Price Levels with Adaptive Expectations
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Linear Dynamics: Infinite Horizons
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="eigen_I.html">
+   17. Eigenvalues and Eigenvectors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="greek_square.html">
+   18. Computing Square Roots
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Probability and Distributions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="prob_dist.html">
+   19. Distributions and Probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lln_clt.html">
+   20. LLN and CLT
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="monte_carlo.html">
+   21. Monte Carlo and Option Pricing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="heavy_tails.html">
+   22. Heavy-Tailed Distributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="schelling.html">
+   23. Racial Segregation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Nonlinear Dynamics
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="scalar_dynam.html">
+   24. Dynamics in One Dimension
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="solow.html">
+   25. The Solow-Swan Growth Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cobweb.html">
+   26. The Cobweb Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="olg.html">
+   27. The Overlapping Generations Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="commod_price.html">
+   28. Commodity Prices
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Monetary-Fiscal Policy Interactions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="money_inflation.html">
+   29. Money Financed Government Deficits and Price Levels
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="unpleasant.html">
+   30. Some Unpleasant Monetarist Arithmetic
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="money_inflation_nonlinear.html">
+   31. Inflation Rate Laffer Curves
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="laffer_adaptive.html">
+   32. Laffer Curves  with Adaptive Expectations
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Stochastic Dynamics
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ar1_processes.html">
+   33. AR(1) Processes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markov_chains_I.html">
+   34. Markov Chains: Basic Concepts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markov_chains_II.html">
+   35. Markov Chains: Irreducibility and Ergodicity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="time_series_with_matrices.html">
+   36. Univariate Time Series with Matrix Algebra
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Optimization
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lp_intro.html">
+   37. Linear Programming
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="short_path.html">
+   38. Shortest Paths
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Modeling in Higher Dimensions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="eigen_II.html">
+   39. The Perron-Frobenius Theorem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="input_output.html">
+   40. Input-Output Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lake_model.html">
+   41. A Lake Model of Employment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="networks.html">
+   42. Networks
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Markets and Competitive Equilibrium
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="supply_demand_multiple_goods.html">
+   43. Supply and Demand with Many Goods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="supply_demand_heterogeneity.html">
+   44. Market Equilibrium with Heterogeneity
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Estimation
+ </span>
+</p>
+<ul class="current nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="simple_linear_regression.html">
+   45. Simple Linear Regression Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mle.html">
+   46. Maximum Likelihood Estimation
+  </a>
+ </li>
+ <li class="toctree-l1 current active active">
+  <a class="current reference internal" href="#">
+   47. Introduction to Bayesian Methods
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Other
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="troubleshooting.html">
+   48. Troubleshooting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="zreferences.html">
+   49. References
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="status.html">
+   50. Execution Statistics
+  </a>
+ </li>
+</ul>
+
+                </nav>
+
+                <div class="qe-sidebar__footer">
+
+                </div>
+
+            </div> <!-- .sidebar -->
+            
+        </div> <!-- .main -->
+
+        <div class="qe-toolbar">
+
+            <div class="qe-toolbar__inner">
+
+                <ul class="qe-toolbar__main">
+                    <li data-tippy-content="Table of Contents" class="btn__sidebar"><i data-feather="menu"></i></li>
+                    <li data-tippy-content="Home"><a href="intro.html"><i data-feather="home"></i></a></li>
+                    <li class="btn__qelogo"><a href="https://quantecon.org" title=""><span class="show-for-sr">QuantEcon</span></a></li>
+                </ul>
+
+                <ul class="qe-toolbar__links">
+                    <li class="btn__search">
+                        <form action="search.html" method="get">
+                            <input type="search" class="form-control" name="q" id="search-input" placeholder="Search..." aria-label="Search..." autocomplete="off" accesskey="k">
+                            <i data-feather="search" id="search-icon"></i>
+                        </form>
+                    </li>
+                    <li data-tippy-content="Fullscreen" class="btn__fullscreen"><i data-feather="maximize"></i></li>
+                    <li data-tippy-content="Increase font size" class="btn__plus"><i data-feather="plus-circle"></i></li>
+                    <li data-tippy-content="Decrease font size" class="btn__minus"><i data-feather="minus-circle"></i></li>
+                    <li data-tippy-content="Change contrast" class="btn__contrast"><i data-feather="sunset"></i></li>
+                    <li data-tippy-content="Download Notebook"><a href="/_notebooks/bayes_intro.ipynb" download><i data-feather="download-cloud"></i></a></li>
+                    <li class="settings-button" id="settingsButton"><div data-tippy-content="Launch Notebook"><i data-feather="play-circle"></i></div></li>
+                        <li class="download-pdf" id="downloadButton"><i data-feather="file"></i></li>
+                    <!--
+                    # Enable if looking for link to specific document hosted on GitHub
+                    <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/bayes_intro.md" download><i data-feather="github"></i></a></li>
+                    -->
+                    <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro" download><i data-feather="github"></i></a></li>
+                    
+                    
+                </ul>
+
+            </div>
+
+        </div> <!-- .toolbar -->
+        <div id="downloadPDFModal" style="display: none;">
+            <ul class="pdf-options" style="display: block;">
+                <li class="download-pdf-book" onClick="window.print()">
+                    <p>Lecture (PDF)</p>
+                </li>
+                <li class="download-pdf-file">
+                    <a href="/_pdf/quantecon-python-intro.pdf" download><p>Book (PDF)</p></a>
+                </li>
+            </ul>
+        </div>
+        <div id="settingsModal" style="display: none;">
+            <p class="modal-title"> Notebook Launcher </p>
+            <div class="modal-desc">
+            <p>
+                Choose public or private cloud service for "Launch" button.
+            </p>
+            </div>
+            <p class="modal-subtitle">Select a server</p>
+            <ul class="modal-servers">
+            <li class="active launcher-public">
+                <span class="label">Public</span>
+                <select id="launcher-public-input">
+                
+                    <option value="https://colab.research.google.com/github/QuantEcon/lecture-python-intro.notebooks/blob/main/bayes_intro.ipynb">Colab</option>
+                
+                </select>
+                <i class="fas fa-check-circle"></i>
+            </li>
+            <li class="launcher-private">
+                <span class="label">Private</span>
+                <input type="text" id="launcher-private-input" data-repourl="https://github.com/QuantEcon/lecture-python-intro.notebooks" data-urlpath="tree/lecture-python-intro.notebooks/bayes_intro.ipynb" data-branch=main>
+                <i class="fas fa-check-circle"></i>
+            </li>
+            </ul>
+            <p class="launch"><a href="https://colab.research.google.com/github/QuantEcon/lecture-python-intro.notebooks/blob/main/bayes_intro.ipynb" id="advancedLaunchButton" target="_blank">Launch Notebook</a></p>
+            <script>
+                // QuantEcon Notebook Launcher
+                const launcherTypeElements = document.querySelectorAll('#settingsModal .modal-servers li');
+                // Highlight the server type if previous selection exists
+                if (typeof localStorage.launcherType !== 'undefined') {
+                  for (var i = 0; i < launcherTypeElements.length; i++) {
+                    launcherTypeElements[i].classList.remove('active');
+                    if ( launcherTypeElements[i].classList.contains(localStorage.launcherType) ) {
+                      launcherTypeElements[i].classList.add('active');
+                    }
+                  }
+                }
+                // Highlight server type on click and set local storage value
+                for (var i = 0; i < launcherTypeElements.length; i++) {
+                  launcherTypeElements[i].addEventListener('click', function() {
+                    for (var j = 0; j < launcherTypeElements.length; j++) {
+                      launcherTypeElements[j].classList.remove('active');
+                    }
+                    this.classList.add('active');
+                    if ( this.classList.contains('launcher-private') ) {
+                      localStorage.launcherType = 'launcher-private';
+                    } else if ( this.classList.contains('launcher-public') ) {
+                      localStorage.launcherType = 'launcher-public';
+                    }
+                    setLaunchServer();
+                  })
+                }
+                const launcherPublic = document.getElementById('launcher-public-input');
+                const launcherPrivate = document.getElementById('launcher-private-input');
+                const pageName = "bayes_intro";
+                const repoURL = "https://github.com/QuantEcon/lecture-python-intro.notebooks";
+                const urlPath = "tree/lecture-python-intro.notebooks/bayes_intro.ipynb";
+                const branch = "main"
+                const launchNotebookLink = document.getElementById('advancedLaunchButton');
+
+                // Highlight public server option if previous selection exists
+                if (typeof localStorage.launcherPublic !== 'undefined') {
+                  launcherPublic.value = localStorage.launcherPublic;
+                }
+                // Update local storage upon public server selection
+                launcherPublic.addEventListener('change', (event) => {
+                  setLaunchServer();
+                });
+                // Populate private server input if previous entry exists
+                if (typeof localStorage.launcherPrivate !== 'undefined') {
+                  launcherPrivate.value = localStorage.launcherPrivate;
+                }
+                // Update local storage when a private server is entered
+                launcherPrivate.addEventListener('input', (event) => {
+                  setLaunchServer();
+                });
+
+                // Function to update the "Launch Notebook" link href
+                function setLaunchServer() {
+                  launchNotebookLink.removeAttribute("style")
+                  if ( localStorage.launcherType == 'launcher-private' ) {
+                    let repoPrefix = "/user-redirect/git-pull?repo=" + repoURL + "&branch=" + branch + "&urlpath=" + urlPath;
+                    launcherPrivateValue = launcherPrivate.value
+                    if (!launcherPrivateValue) {
+                        launchNotebookLink.removeAttribute("href")
+                        launchNotebookLink.style.background = "grey"
+                        return
+                    }
+                    localStorage.launcherPrivate = launcherPrivateValue;
+                    privateServer = localStorage.launcherPrivate.replace(/\/$/, "")
+                    if (!privateServer.includes("http")) {
+                        privateServer = "http://" + privateServer
+                    }
+                    launchNotebookLinkURL = privateServer + repoPrefix;
+                  } else if ( localStorage.launcherType == 'launcher-public' ) {
+                    launcherPublicValue = launcherPublic.options[launcherPublic.selectedIndex].value;
+                    localStorage.launcherPublic = launcherPublicValue;
+                    launchNotebookLinkURL = localStorage.launcherPublic;
+                  }
+                  if (launchNotebookLinkURL) launchNotebookLink.href = launchNotebookLinkURL;
+                }
+                // Check if user has previously selected a server
+                if ( (typeof localStorage.launcherPrivate !== 'undefined') || (typeof localStorage.launcherPublic !== 'undefined') ) {
+                  setLaunchServer();
+                }
+                </script>
+
+        </div>
+
+    </div> <!-- .wrapper-->
+  </body>
+</html>

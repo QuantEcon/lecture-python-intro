@@ -591,8 +591,7 @@ plot_comparison(unempl_rate, countries,
 plt.show()
 ```
 
-We see that France, with its strong labor unions, typically experiences
-relatively slow labor market recoveries after negative shocks.
+We see that France, with its strong labor unions, typically experiences slower labor market recoveries after negative shocks because union influence often leads to stringent employment protection laws, high firing costs, and rigid wage structures. While these measures protect existing workers, they reduce firms’ flexibility to adjust labor costs and hiring in response to changing economic conditions, causing lower labour market adaptability during recoveries.
 
 We also notice that Japan has a history of very low and stable unemployment rates.
 

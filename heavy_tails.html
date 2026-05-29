@@ -302,7 +302,7 @@
 
                     <!-- Last modified / Changelog dropdown -->
                         <button class="qe-page__header-changed" id="changelog-toggle" aria-expanded="false">
-                            Last changed: Mar 28, 2025
+                            Last changed: May 27, 2026
                             <span class="changelog-icon">▼</span>
                         </button>
 
@@ -310,6 +310,15 @@
                     <div class="qe-page__header-changelog" id="changelog-content" aria-hidden="true">
                         <h4>Changelog (<a href="https://github.com/QuantEcon/lecture-python-intro/commits/main/lectures/heavy_tails.md">full history</a>)</h4>
                         <ul class="changelog-list">
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/f47a5356" class="changelog-hash">f47a5356</a>
+                                
+                                <span class="changelog-author">Chihiro Watanabe</span>
+                                <span class="changelog-time">2 days ago</span>
+                                <span class="changelog-message">[heavy_tails.md] Update np.random → Generator API (#747)</span>
+                            </li>
                             
                             <li class="changelog-entry">
                                 
@@ -392,15 +401,6 @@
                                 <span class="changelog-message">square q-q plots</span>
                             </li>
                             
-                            <li class="changelog-entry">
-                                
-                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/d6f57500" class="changelog-hash">d6f57500</a>
-                                
-                                <span class="changelog-author">mmcky</span>
-                                <span class="changelog-time">2 years ago</span>
-                                <span class="changelog-message">add wiki links and idea on less formal discussion on heavy-tails</span>
-                            </li>
-                            
                         </ul>
                     </div>
 
@@ -428,20 +428,25 @@
 <p class="expanded admonition-title">Hide code cell output</p>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: yfinance in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (1.3.0)
-Requirement already satisfied: wbgapi in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (1.0.14)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting yfinance
+  Downloading yfinance-1.4.1-py2.py3-none-any.whl.metadata (6.2 kB)
+Collecting wbgapi
+  Downloading wbgapi-1.0.14-py3-none-any.whl.metadata (13 kB)
 Requirement already satisfied: pandas&gt;=1.3.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (2.3.3)
 Requirement already satisfied: numpy&gt;=1.16.5 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (2.3.5)
 Requirement already satisfied: requests&gt;=2.31 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (2.32.5)
-Requirement already satisfied: multitasking&gt;=0.0.7 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (0.0.13)
+Collecting multitasking&gt;=0.0.7 (from yfinance)
+  Downloading multitasking-0.0.13-py3-none-any.whl.metadata (16 kB)
 Requirement already satisfied: platformdirs&gt;=2.0.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (4.5.0)
 Requirement already satisfied: pytz&gt;=2022.5 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (2025.2)
-Requirement already satisfied: frozendict&gt;=2.3.4 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (2.4.7)
-Requirement already satisfied: peewee&gt;=3.16.2 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (4.0.5)
+Collecting peewee&gt;=3.16.2 (from yfinance)
+  Downloading peewee-4.0.6-py3-none-any.whl.metadata (8.6 kB)
 Requirement already satisfied: beautifulsoup4&gt;=4.11.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (4.13.5)
-Requirement already satisfied: curl_cffi&gt;=0.15 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (0.15.0)
+Collecting curl_cffi&gt;=0.15 (from yfinance)
+  Downloading curl_cffi-0.15.0-cp310-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (18 kB)
 Requirement already satisfied: protobuf&gt;=3.19.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (5.29.3)
-Requirement already satisfied: websockets&gt;=13.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (16.0)
+Collecting websockets&gt;=13.0 (from yfinance)
+  Downloading websockets-16.0-cp313-cp313-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (6.8 kB)
 Requirement already satisfied: PyYAML in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from wbgapi) (6.0.3)
 Requirement already satisfied: tabulate in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from wbgapi) (0.9.0)
 Requirement already satisfied: soupsieve&gt;1.2 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from beautifulsoup4&gt;=4.11.1-&gt;yfinance) (2.5)
@@ -459,6 +464,21 @@ Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /home/runner/minicond
 Requirement already satisfied: markdown-it-py&gt;=2.2.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from rich-&gt;curl_cffi&gt;=0.15-&gt;yfinance) (3.0.0)
 Requirement already satisfied: pygments&lt;3.0.0,&gt;=2.13.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from rich-&gt;curl_cffi&gt;=0.15-&gt;yfinance) (2.19.2)
 Requirement already satisfied: mdurl~=0.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from markdown-it-py&gt;=2.2.0-&gt;rich-&gt;curl_cffi&gt;=0.15-&gt;yfinance) (0.1.2)
+Downloading yfinance-1.4.1-py2.py3-none-any.whl (137 kB)
+Downloading wbgapi-1.0.14-py3-none-any.whl (36 kB)
+Downloading curl_cffi-0.15.0-cp310-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (11.1 MB)
+?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/11.1 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">11.1/11.1 MB</span> <span class=" -Color -Color-Red">91.4 MB/s</span>  <span class=" -Color -Color-Yellow">0:00:00</span>
+?25hDownloading multitasking-0.0.13-py3-none-any.whl (16 kB)
+Downloading peewee-4.0.6-py3-none-any.whl (146 kB)
+Downloading websockets-16.0-cp313-cp313-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (184 kB)
+Installing collected packages: peewee, multitasking, websockets, wbgapi, curl_cffi, yfinance
+?25l
+   ━━━━━━━━━━━━━╺━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">2/6</span> [websockets]
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━╸━━━━━━━━━━━━━ <span class=" -Color -Color-Green">4/6</span> [curl_cffi]
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">6/6</span> [yfinance]
+
+Successfully installed curl_cffi-0.15.0 multitasking-0.0.13 peewee-4.0.6 wbgapi-1.0.14 websockets-16.0 yfinance-1.4.1
 </pre></div>
 </div>
 </div>
@@ -526,7 +546,7 @@ as with the following code (which assumes <span class="math notranslate nohighli
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="hist-obs">
-<a class="reference internal image-reference" href="_images/33711a00e3c91d755a82675f379015e39b1eb2528552d50faa9f0a7aa19dd36f.png"><img alt="_images/33711a00e3c91d755a82675f379015e39b1eb2528552d50faa9f0a7aa19dd36f.png" src="_images/33711a00e3c91d755a82675f379015e39b1eb2528552d50faa9f0a7aa19dd36f.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/a9bb7bc8d3f1e4644556ab4d279849b419c70c2d59be33b7eefc9ebb8ba4aa54.png"><img alt="_images/a9bb7bc8d3f1e4644556ab4d279849b419c70c2d59be33b7eefc9ebb8ba4aa54.png" src="_images/a9bb7bc8d3f1e4644556ab4d279849b419c70c2d59be33b7eefc9ebb8ba4aa54.png" style="width: 80%;" />
 </a>
 <figcaption>
 <p><span class="caption-number">Fig. 22.1 </span><span class="caption-text">Histogram of observations</span><a class="headerlink" href="#hist-obs" title="Link to this image">#</a></p>
@@ -547,7 +567,7 @@ as with the following code (which assumes <span class="math notranslate nohighli
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(np.float64(-4.911182746159787), np.float64(4.798137202692221))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(np.float64(-4.746086756723464), np.float64(4.747447388867879))
 </pre></div>
 </div>
 </div>
@@ -569,7 +589,7 @@ as with the following code (which assumes <span class="math notranslate nohighli
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="hist-obs2">
-<a class="reference internal image-reference" href="_images/8e8034c876c01fc65ca2d70897c5c79fa6ea652cd0b001b8b1cc89323ddfbb36.png"><img alt="_images/8e8034c876c01fc65ca2d70897c5c79fa6ea652cd0b001b8b1cc89323ddfbb36.png" src="_images/8e8034c876c01fc65ca2d70897c5c79fa6ea652cd0b001b8b1cc89323ddfbb36.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/45a71b85877aa0540a77cff064aca5a3dc2f01fd783de6759462bc51056f8b12.png"><img alt="_images/45a71b85877aa0540a77cff064aca5a3dc2f01fd783de6759462bc51056f8b12.png" src="_images/45a71b85877aa0540a77cff064aca5a3dc2f01fd783de6759462bc51056f8b12.png" style="width: 80%;" />
 </a>
 <figcaption>
 <p><span class="caption-number">Fig. 22.2 </span><span class="caption-text">Histogram of observations</span><a class="headerlink" href="#hist-obs2" title="Link to this image">#</a></p>
@@ -708,7 +728,8 @@ the period from 1st January 2015 to 1st July 2022.</p>
 distribution:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">standard_t</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">standard_t</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;bitcoin returns&#39;</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -727,7 +748,7 @@ distribution:</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="hist-normal-btc">
-<a class="reference internal image-reference" href="_images/d2b1c75b652b35c0197f6114f0b8db4b9c0c4b4147b1757694c39b2361d8914e.png"><img alt="_images/d2b1c75b652b35c0197f6114f0b8db4b9c0c4b4147b1757694c39b2361d8914e.png" src="_images/d2b1c75b652b35c0197f6114f0b8db4b9c0c4b4147b1757694c39b2361d8914e.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/7483ca47a5fe0699f5375740c0bf08d3486c73dd53c2745c942f72e668f0eb6f.png"><img alt="_images/7483ca47a5fe0699f5375740c0bf08d3486c73dd53c2745c942f72e668f0eb6f.png" src="_images/7483ca47a5fe0699f5375740c0bf08d3486c73dd53c2745c942f72e668f0eb6f.png" style="width: 80%;" />
 </a>
 <figcaption>
 <p><span class="caption-number">Fig. 22.5 </span><span class="caption-text">Histogram (normal vs bitcoin returns)</span><a class="headerlink" href="#hist-normal-btc" title="Link to this image">#</a></p>
@@ -797,7 +818,7 @@ heavy-tailed.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">120</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
 
@@ -807,14 +828,14 @@ heavy-tailed.</p>
 <span class="n">s_vals</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">12</span>
 
 <span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="n">s_vals</span><span class="p">):</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">*</span> <span class="n">s</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">*</span> <span class="n">s</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)),</span> <span class="n">data</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">fr</span><span class="s2">&quot;draws from $N(0, \sigma^2)$ with $\sigma = </span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
 
 <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
 <span class="n">distribution</span> <span class="o">=</span> <span class="n">cauchy</span><span class="p">()</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">distribution</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">distribution</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">rng</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)),</span> <span class="n">data</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;draws from the Cauchy distribution&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
@@ -827,7 +848,7 @@ heavy-tailed.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="draws-normal-cauchy">
-<a class="reference internal image-reference" href="_images/72bc84f206ca71d1aa3d39871ada1a9ac2b59abee24728e3eb6579bf2130e852.png"><img alt="_images/72bc84f206ca71d1aa3d39871ada1a9ac2b59abee24728e3eb6579bf2130e852.png" src="_images/72bc84f206ca71d1aa3d39871ada1a9ac2b59abee24728e3eb6579bf2130e852.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/6d2797aadb8fe3b5250360f050c05e6d5fbe3fc1b6dde791531279a7e09e3678.png"><img alt="_images/6d2797aadb8fe3b5250360f050c05e6d5fbe3fc1b6dde791531279a7e09e3678.png" src="_images/6d2797aadb8fe3b5250360f050c05e6d5fbe3fc1b6dde791531279a7e09e3678.png" style="width: 80%;" />
 </a>
 <figcaption>
 <p><span class="caption-number">Fig. 22.6 </span><span class="caption-text">Draws from normal and Cauchy distributions</span><a class="headerlink" href="#draws-normal-cauchy" title="Link to this image">#</a></p>
@@ -853,12 +874,12 @@ with a few sudden large deviations from the mean.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">120</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
 
-<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)),</span> <span class="n">data</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
 
@@ -868,7 +889,7 @@ with a few sudden large deviations from the mean.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="draws-exponential">
-<a class="reference internal image-reference" href="_images/3b905b169a7e2fa78cf31924bb63b1adfb1a379916a22c61f2cede0ee7c7396b.png"><img alt="_images/3b905b169a7e2fa78cf31924bb63b1adfb1a379916a22c61f2cede0ee7c7396b.png" src="_images/3b905b169a7e2fa78cf31924bb63b1adfb1a379916a22c61f2cede0ee7c7396b.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/c80843dabb414910911d71b142d78f4792f46538bdc9f1baf209314517bd4b3f.png"><img alt="_images/c80843dabb414910911d71b142d78f4792f46538bdc9f1baf209314517bd4b3f.png" src="_images/c80843dabb414910911d71b142d78f4792f46538bdc9f1baf209314517bd4b3f.png" style="width: 80%;" />
 </a>
 <figcaption>
 <p><span class="caption-number">Fig. 22.7 </span><span class="caption-text">Draws of exponential distribution</span><a class="headerlink" href="#draws-exponential" title="Link to this image">#</a></p>
@@ -904,11 +925,11 @@ Y = \bar x \exp(X)
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">120</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">80</span><span class="p">))</span>
-<span class="n">exponential_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+<span class="n">exponential_data</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
 <span class="n">pareto_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">exponential_data</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)),</span> <span class="n">pareto_data</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">pareto_data</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
@@ -919,7 +940,7 @@ Y = \bar x \exp(X)
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="draws-pareto">
-<a class="reference internal image-reference" href="_images/a3ca52eb5c7fdfcc86997be20eb2154e8cd20ca6eaf97c820d653f370a76cdfb.png"><img alt="_images/a3ca52eb5c7fdfcc86997be20eb2154e8cd20ca6eaf97c820d653f370a76cdfb.png" src="_images/a3ca52eb5c7fdfcc86997be20eb2154e8cd20ca6eaf97c820d653f370a76cdfb.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/2a2ac9f2893644b99fdb2bcc9b6329ba99c1075d4629d31a09742d27d18b370a.png"><img alt="_images/2a2ac9f2893644b99fdb2bcc9b6329ba99c1075d4629d31a09742d27d18b370a.png" src="_images/2a2ac9f2893644b99fdb2bcc9b6329ba99c1075d4629d31a09742d27d18b370a.png" style="width: 80%;" />
 </a>
 <figcaption>
 <p><span class="caption-number">Fig. 22.8 </span><span class="caption-text">Draws from Pareto distribution</span><a class="headerlink" href="#draws-pareto" title="Link to this image">#</a></p>
@@ -1058,13 +1079,13 @@ visualisations — we return to this point below.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Parameters and grid</span>
 <span class="n">x_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
 <span class="n">sample_size</span> <span class="o">=</span> <span class="mi">1000</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">13</span><span class="p">)</span>
-<span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">sample_size</span><span class="p">)</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">13</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">(</span><span class="n">sample_size</span><span class="p">)</span>
 
 <span class="c1"># Draws</span>
-<span class="n">data_exp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">sample_size</span><span class="p">)</span>
+<span class="n">data_exp</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">sample_size</span><span class="p">)</span>
 <span class="n">data_logn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
-<span class="n">data_pareto</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">sample_size</span><span class="p">))</span>
+<span class="n">data_pareto</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">sample_size</span><span class="p">))</span>
 
 <span class="n">data_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">data_exp</span><span class="p">,</span> <span class="n">data_logn</span><span class="p">,</span> <span class="n">data_pareto</span><span class="p">]</span>
 
@@ -1091,7 +1112,7 @@ visualisations — we return to this point below.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="ccdf-empirics">
-<a class="reference internal image-reference" href="_images/614b786f8b8f4251df641893c12156facc49add31b9a6a0bdbf393e6ce861a81.png"><img alt="_images/614b786f8b8f4251df641893c12156facc49add31b9a6a0bdbf393e6ce861a81.png" src="_images/614b786f8b8f4251df641893c12156facc49add31b9a6a0bdbf393e6ce861a81.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/7147e1811f35250e28f0388858a63735cf81bfe3d50a6cbe1ec576c611ddd98b.png"><img alt="_images/7147e1811f35250e28f0388858a63735cf81bfe3d50a6cbe1ec576c611ddd98b.png" src="_images/7147e1811f35250e28f0388858a63735cf81bfe3d50a6cbe1ec576c611ddd98b.png" style="width: 80%;" />
 </a>
 <figcaption>
 <p><span class="caption-number">Fig. 22.11 </span><span class="caption-text">Empirical CCDFs</span><a class="headerlink" href="#ccdf-empirics" title="Link to this image">#</a></p>
@@ -1109,14 +1130,14 @@ approximately linear in a log-log plot.</p>
 <p>If the data is drawn from a normal distribution, the plot would look like:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_normal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">sample_size</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_normal</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">sample_size</span><span class="p">)</span>
 <span class="n">sm</span><span class="o">.</span><span class="n">qqplot</span><span class="p">(</span><span class="n">data_normal</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="s1">&#39;45&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/5f516f885c3f6b8b62669ef9e0f7748c509c69d43ce6d85cfa4b1fe89aae1ca0.png"><img alt="_images/5f516f885c3f6b8b62669ef9e0f7748c509c69d43ce6d85cfa4b1fe89aae1ca0.png" src="_images/5f516f885c3f6b8b62669ef9e0f7748c509c69d43ce6d85cfa4b1fe89aae1ca0.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/54f3daba16a58bb9e0f9d5799b5bcba3dc43e5f0890c07a72ac0548dc33cce50.png"><img alt="_images/54f3daba16a58bb9e0f9d5799b5bcba3dc43e5f0890c07a72ac0548dc33cce50.png" src="_images/54f3daba16a58bb9e0f9d5799b5bcba3dc43e5f0890c07a72ac0548dc33cce50.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -1136,7 +1157,7 @@ approximately linear in a log-log plot.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/71f003428fda3bd25d79afeeb6b60abe0d17287fdbe746ba3b237589362f8cd0.png"><img alt="_images/71f003428fda3bd25d79afeeb6b60abe0d17287fdbe746ba3b237589362f8cd0.png" src="_images/71f003428fda3bd25d79afeeb6b60abe0d17287fdbe746ba3b237589362f8cd0.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/d0ff8aeae78252e6a1833ca212ed971c43d73e2630f20377ee3c46517cf75625.png"><img alt="_images/d0ff8aeae78252e6a1833ca212ed971c43d73e2630f20377ee3c46517cf75625.png" src="_images/d0ff8aeae78252e6a1833ca212ed971c43d73e2630f20377ee3c46517cf75625.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -1469,13 +1490,13 @@ whether or not the LLN is still valid.</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">cauchy</span>
 
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1234</span><span class="p">)</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">9403</span><span class="p">)</span>
 <span class="n">N</span> <span class="o">=</span> <span class="mi">1_000</span>
 
 <span class="n">distribution</span> <span class="o">=</span> <span class="n">cauchy</span><span class="p">()</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">distribution</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">distribution</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">rng</span><span class="p">)</span>
 
 <span class="c1"># Compute sample mean at each n</span>
 <span class="n">sample_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
@@ -1494,7 +1515,7 @@ whether or not the LLN is still valid.</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="fail-lln">
-<a class="reference internal image-reference" href="_images/ce8c640e5d29b490a81ace3e2cfadaf8d971004af7c79ef6d134a22f7717177b.png"><img alt="_images/ce8c640e5d29b490a81ace3e2cfadaf8d971004af7c79ef6d134a22f7717177b.png" src="_images/ce8c640e5d29b490a81ace3e2cfadaf8d971004af7c79ef6d134a22f7717177b.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/baf5ccd1eb65173ce9f420c0ab1504af31c06cedd63d919e8a027a4772dad565.png"><img alt="_images/baf5ccd1eb65173ce9f420c0ab1504af31c06cedd63d919e8a027a4772dad565.png" src="_images/baf5ccd1eb65173ce9f420c0ab1504af31c06cedd63d919e8a027a4772dad565.png" style="width: 80%;" />
 </a>
 <figcaption>
 <p><span class="caption-number">Fig. 22.16 </span><span class="caption-text">LLN failure</span><a class="headerlink" href="#fail-lln" title="Link to this image">#</a></p>
@@ -1637,11 +1658,11 @@ r \int_0^{\bar x} x^{r-1} \mathbb P\{ X &gt; x \} dx
 
 <p class="admonition-title"><span class="caption-number">Exercise 22.3 </span></p>
 <section id="exercise-content">
-<p>Repeat exercise 1, but replace the three distributions (two normal, one
+<p>Repeat the simulation in <a class="reference internal" href="#draws-normal-cauchy"><span class="std std-numref">Fig. 22.6</span></a>, but replace the three distributions (two normal, one
 Cauchy) with three Pareto distributions using different choices of
 <span class="math notranslate nohighlight">\(\alpha\)</span>.</p>
 <p>For <span class="math notranslate nohighlight">\(\alpha\)</span>, try 1.15, 1.5 and 1.75.</p>
-<p>Use <code class="docutils literal notranslate"><span class="pre">np.random.seed(11)</span></code> to set the seed.</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">rng</span> <span class="pre">=</span> <span class="pre">np.random.default_rng(11)</span></code> to set the seed.</p>
 </section>
 </div>
 <div class="solution dropdown admonition" id="heavy_tails-solution-7">
@@ -1652,7 +1673,7 @@ Cauchy) with three Pareto distributions using different choices of
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">pareto</span>
 
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
 
 <span class="n">n</span> <span class="o">=</span> <span class="mi">120</span>
 <span class="n">alphas</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.15</span><span class="p">,</span> <span class="mf">1.50</span><span class="p">,</span> <span class="mf">1.75</span><span class="p">]</span>
@@ -1661,7 +1682,7 @@ Cauchy) with three Pareto distributions using different choices of
 
 <span class="k">for</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">alphas</span><span class="p">,</span> <span class="n">axes</span><span class="p">):</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">((</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">pareto</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">pareto</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">rng</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)),</span> <span class="n">data</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pareto draws with $</span><span class="se">\\</span><span class="s2">alpha = </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
@@ -1673,13 +1694,13 @@ Cauchy) with three Pareto distributions using different choices of
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/6cc8a7bf27f2c09a8e6034d226c7495f3fdea6818f2f4f0dfb4307ef05a1b295.png"><img alt="_images/6cc8a7bf27f2c09a8e6034d226c7495f3fdea6818f2f4f0dfb4307ef05a1b295.png" src="_images/6cc8a7bf27f2c09a8e6034d226c7495f3fdea6818f2f4f0dfb4307ef05a1b295.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/a6002b27f1d26853de616cd0bdf6a06daeab639606cbd58172930dc96460d9de.png"><img alt="_images/a6002b27f1d26853de616cd0bdf6a06daeab639606cbd58172930dc96460d9de.png" src="_images/a6002b27f1d26853de616cd0bdf6a06daeab639606cbd58172930dc96460d9de.png" style="width: 80%;" />
 </a>
 </div>
 </div>
 </section>
 </div>
-<div class="exercise admonition" id="ht_ex5">
+<div class="exercise admonition" id="ht_ex4">
 
 <p class="admonition-title"><span class="caption-number">Exercise 22.4 </span></p>
 <section id="exercise-content">
@@ -1717,7 +1738,7 @@ for each of the two distributions and compare the two samples by</p>
 <li><p>producing a <a class="reference external" href="https://en.wikipedia.org/wiki/Violin_plot">violin plot</a> visualizing the two samples side-by-side and</p></li>
 <li><p>printing the mean and standard deviation of both samples.</p></li>
 </ul>
-<p>For the seed use <code class="docutils literal notranslate"><span class="pre">np.random.seed(1234)</span></code>.</p>
+<p>For the seed use <code class="docutils literal notranslate"><span class="pre">rng</span> <span class="pre">=</span> <span class="pre">np.random.default_rng(1234)</span></code>.</p>
 <p>What differences do you observe?</p>
 <p>(Note: a better approach to this problem would be to model firm dynamics and
 try to track individual firms given the current distribution.  We will discuss
@@ -1726,7 +1747,7 @@ firm dynamics in later lectures.)</p>
 </div>
 <div class="solution dropdown admonition" id="heavy_tails-solution-9">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#ht_ex5"> Exercise 22.4</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#ht_ex4"> Exercise 22.4</a></p>
 <section id="solution-content">
 <p>To do the exercise, we need to choose the parameters <span class="math notranslate nohighlight">\(\mu\)</span>
 and <span class="math notranslate nohighlight">\(\sigma\)</span> of the lognormal distribution to match the mean and median
@@ -1764,9 +1785,9 @@ prints the mean and standard deviation of the two samples.</p>
 <span class="n">x_bar</span> <span class="o">=</span> <span class="mf">1.0</span>
 <span class="n">α</span> <span class="o">=</span> <span class="mf">1.05</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">pareto_rvs</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">pareto_rvs</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">rng</span><span class="p">):</span>
     <span class="s2">&quot;Uses a standard method to generate Pareto draws.&quot;</span>
-    <span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">x_bar</span> <span class="o">/</span> <span class="p">(</span><span class="n">u</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">α</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">y</span>
 </pre></div>
@@ -1787,13 +1808,13 @@ prints the mean and standard deviation of the two samples.</p>
 choice of distribution <code class="docutils literal notranslate"><span class="pre">dist</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">tax_rev</span><span class="p">(</span><span class="n">dist</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">tax_rev</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="n">rng</span><span class="p">):</span>
     <span class="n">tax_raised</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_years</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">dist</span> <span class="o">==</span> <span class="s1">&#39;pareto&#39;</span><span class="p">:</span>
-            <span class="n">π</span> <span class="o">=</span> <span class="n">pareto_rvs</span><span class="p">(</span><span class="n">num_firms</span><span class="p">)</span>
+            <span class="n">π</span> <span class="o">=</span> <span class="n">pareto_rvs</span><span class="p">(</span><span class="n">num_firms</span><span class="p">,</span> <span class="n">rng</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">π</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">μ</span> <span class="o">+</span> <span class="n">σ</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">num_firms</span><span class="p">))</span>
+            <span class="n">π</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">μ</span> <span class="o">+</span> <span class="n">σ</span> <span class="o">*</span> <span class="n">rng</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">(</span><span class="n">num_firms</span><span class="p">))</span>
         <span class="n">tax_raised</span> <span class="o">+=</span> <span class="n">β</span><span class="o">**</span><span class="n">t</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">π</span> <span class="o">*</span> <span class="n">tax_rate</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">tax_raised</span>
 </pre></div>
@@ -1804,14 +1825,14 @@ choice of distribution <code class="docutils literal notranslate"><span class="p
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_reps</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1234</span><span class="p">)</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">1234</span><span class="p">)</span>
 
 <span class="n">tax_rev_lognorm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">num_reps</span><span class="p">)</span>
 <span class="n">tax_rev_pareto</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">num_reps</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_reps</span><span class="p">):</span>
-    <span class="n">tax_rev_pareto</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">tax_rev</span><span class="p">(</span><span class="s1">&#39;pareto&#39;</span><span class="p">)</span>
-    <span class="n">tax_rev_lognorm</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">tax_rev</span><span class="p">(</span><span class="s1">&#39;lognorm&#39;</span><span class="p">)</span>
+    <span class="n">tax_rev_pareto</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">tax_rev</span><span class="p">(</span><span class="s1">&#39;pareto&#39;</span><span class="p">,</span> <span class="n">rng</span><span class="p">)</span>
+    <span class="n">tax_rev_lognorm</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">tax_rev</span><span class="p">(</span><span class="s1">&#39;lognorm&#39;</span><span class="p">,</span> <span class="n">rng</span><span class="p">)</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 
@@ -1824,7 +1845,7 @@ choice of distribution <code class="docutils literal notranslate"><span class="p
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/ffce1861f06d1442292f8b8dcf0d65067fda4742b9169891c34109755828279d.png"><img alt="_images/ffce1861f06d1442292f8b8dcf0d65067fda4742b9169891c34109755828279d.png" src="_images/ffce1861f06d1442292f8b8dcf0d65067fda4742b9169891c34109755828279d.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/5d945792952eef929e6b7159984009483c08371348b47f0a2e29f36b899a1721.png"><img alt="_images/5d945792952eef929e6b7159984009483c08371348b47f0a2e29f36b899a1721.png" src="_images/5d945792952eef929e6b7159984009483c08371348b47f0a2e29f36b899a1721.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -1836,7 +1857,7 @@ choice of distribution <code class="docutils literal notranslate"><span class="p
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(np.float64(1458729.0546623734), np.float64(406089.3613661567))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(np.float64(1556639.6054706215), np.float64(1086577.8219896627))
 </pre></div>
 </div>
 </div>
@@ -1848,7 +1869,7 @@ choice of distribution <code class="docutils literal notranslate"><span class="p
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(np.float64(2556174.8615230713), np.float64(25586.444565139664))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(np.float64(2555713.8231367623), np.float64(28362.016044927244))
 </pre></div>
 </div>
 </div>
@@ -2267,6 +2288,11 @@ X_n\)</span> from the Cauchy distribution has the same characteristic function a
    46. Maximum Likelihood Estimation
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bayes_intro.html">
+   47. Introduction to Bayesian Methods
+  </a>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -2276,17 +2302,17 @@ X_n\)</span> from the Cauchy distribution has the same characteristic function a
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   47. Troubleshooting
+   48. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   48. References
+   49. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   49. Execution Statistics
+   50. Execution Statistics
   </a>
  </li>
 </ul>

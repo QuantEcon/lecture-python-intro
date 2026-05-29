@@ -282,7 +282,7 @@
 
                     <!-- Last modified / Changelog dropdown -->
                         <button class="qe-page__header-changed" id="changelog-toggle" aria-expanded="false">
-                            Last changed: May 24, 2026
+                            Last changed: May 28, 2026
                             <span class="changelog-icon">▼</span>
                         </button>
 
@@ -293,10 +293,19 @@
                             
                             <li class="changelog-entry">
                                 
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/29b5e235" class="changelog-hash">29b5e235</a>
+                                
+                                <span class="changelog-author">John Stachurski</span>
+                                <span class="changelog-time">1 day ago</span>
+                                <span class="changelog-message">Fix timing inconsistencies and code bugs (#753)</span>
+                            </li>
+                            
+                            <li class="changelog-entry">
+                                
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/ae928c86" class="changelog-hash">ae928c86</a>
                                 
                                 <span class="changelog-author">Humphrey Yang</span>
-                                <span class="changelog-time">14 minutes ago</span>
+                                <span class="changelog-time">5 days ago</span>
                                 <span class="changelog-message">Adding Tom's Edits to Exercises (#748)</span>
                             </li>
                             
@@ -305,7 +314,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/21bd3b60" class="changelog-hash">21bd3b60</a>
                                 
                                 <span class="changelog-author">John Stachurski</span>
-                                <span class="changelog-time">4 months ago</span>
+                                <span class="changelog-time">5 months ago</span>
                                 <span class="changelog-message">Fix grammar and spelling errors across lecture files (#688)</span>
                             </li>
                             
@@ -550,7 +559,7 @@ B_{S+1} = 0.
     <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="o">-</span><span class="n">R</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">S</span><span class="p">),</span> <span class="n">k</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">S</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">b</span> <span class="o">=</span> <span class="n">G_seq</span> <span class="o">-</span> <span class="n">T_seq</span>
     <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">B0</span>
-    <span class="n">B_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">@</span> <span class="n">b</span>
+    <span class="n">B_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">@</span> <span class="p">(</span><span class="n">R</span> <span class="o">*</span> <span class="n">b</span><span class="p">)</span>
     <span class="n">B_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([[</span><span class="n">B0</span><span class="p">],</span> <span class="n">B_seq</span><span class="p">])</span>
 
     <span class="k">return</span> <span class="n">T_seq</span><span class="p">,</span> <span class="n">B_seq</span><span class="p">,</span> <span class="n">h0</span>
@@ -607,7 +616,7 @@ B_{S+1} = 0.
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/8849a8889cf2e026e279bd593584bb7e8e8437a2148da6cdd2ee7757f9fdc650.png"><img alt="_images/8849a8889cf2e026e279bd593584bb7e8e8437a2148da6cdd2ee7757f9fdc650.png" src="_images/8849a8889cf2e026e279bd593584bb7e8e8437a2148da6cdd2ee7757f9fdc650.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/59f8761a8272b35bfda0370023e1ce18021f34a797b334608045a4852fbeec28.png"><img alt="_images/59f8761a8272b35bfda0370023e1ce18021f34a797b334608045a4852fbeec28.png" src="_images/59f8761a8272b35bfda0370023e1ce18021f34a797b334608045a4852fbeec28.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -653,7 +662,7 @@ Welfare: 41.46532630469102
     <span class="n">T_seq</span><span class="p">,</span> <span class="n">B_seq</span><span class="p">,</span> <span class="n">h0</span> <span class="o">=</span> <span class="n">compute_optimal</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">B0</span><span class="p">,</span> <span class="n">G_seq</span><span class="p">)</span>
 
     <span class="c1"># Sequence length</span>
-    <span class="n">S</span> <span class="o">=</span> <span class="n">tax_model</span><span class="o">.</span><span class="n">S</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">S</span>
 
     <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
 
@@ -690,7 +699,7 @@ Welfare: 41.46532630469102
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/345431eece8eca631a6355f5c809470602cec9c833ffa048aadbb948adf65de6.png"><img alt="_images/345431eece8eca631a6355f5c809470602cec9c833ffa048aadbb948adf65de6.png" src="_images/345431eece8eca631a6355f5c809470602cec9c833ffa048aadbb948adf65de6.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/1b4d94cf7e45903cb7ecd9dcc931cb7efa53f7246947ba7cd1d63228d0c941c6.png"><img alt="_images/1b4d94cf7e45903cb7ecd9dcc931cb7efa53f7246947ba7cd1d63228d0c941c6.png" src="_images/1b4d94cf7e45903cb7ecd9dcc931cb7efa53f7246947ba7cd1d63228d0c941c6.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -710,7 +719,7 @@ Welfare: 41.46532630469102
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/845ad4024847acf58df4831a2281f10ea91926c0283a9c2afd65297e032d267f.png"><img alt="_images/845ad4024847acf58df4831a2281f10ea91926c0283a9c2afd65297e032d267f.png" src="_images/845ad4024847acf58df4831a2281f10ea91926c0283a9c2afd65297e032d267f.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/88b120ea0330da20e9b313a16790e976d86acfbd2052f8155abf2a201b075000.png"><img alt="_images/88b120ea0330da20e9b313a16790e976d86acfbd2052f8155abf2a201b075000.png" src="_images/88b120ea0330da20e9b313a16790e976d86acfbd2052f8155abf2a201b075000.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -725,7 +734,7 @@ Welfare: 41.46532630469102
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/fa6f6128bfe59b82832bcd273ca85e3efba4dcfde2aca9aae518c1e0a81c4169.png"><img alt="_images/fa6f6128bfe59b82832bcd273ca85e3efba4dcfde2aca9aae518c1e0a81c4169.png" src="_images/fa6f6128bfe59b82832bcd273ca85e3efba4dcfde2aca9aae518c1e0a81c4169.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/bdd436d15ff1dab58fff77a3ddc4e826b7ad06fba8f0c0ae0ee46321a33778d6.png"><img alt="_images/bdd436d15ff1dab58fff77a3ddc4e826b7ad06fba8f0c0ae0ee46321a33778d6.png" src="_images/bdd436d15ff1dab58fff77a3ddc4e826b7ad06fba8f0c0ae0ee46321a33778d6.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -744,7 +753,7 @@ Welfare: 41.46532630469102
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/1920d36b564603f724bc8ef051f63fdbbd81c94dd5ad4df3aab5f37c5a307101.png"><img alt="_images/1920d36b564603f724bc8ef051f63fdbbd81c94dd5ad4df3aab5f37c5a307101.png" src="_images/1920d36b564603f724bc8ef051f63fdbbd81c94dd5ad4df3aab5f37c5a307101.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/309769fc94d4994a4cc234c6996a5073492297025a874bfd014d98329767421f.png"><img alt="_images/309769fc94d4994a4cc234c6996a5073492297025a874bfd014d98329767421f.png" src="_images/309769fc94d4994a4cc234c6996a5073492297025a874bfd014d98329767421f.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -770,7 +779,7 @@ Welfare: 41.46532630469102
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/dc9d8be100c0d30c579a2d5d6a85227da593145a03b1894f3db929af1c369b71.png"><img alt="_images/dc9d8be100c0d30c579a2d5d6a85227da593145a03b1894f3db929af1c369b71.png" src="_images/dc9d8be100c0d30c579a2d5d6a85227da593145a03b1894f3db929af1c369b71.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/61da0b61f7c472e0faf2d76c4939addc769b7f8226feecac8c2f8ddfba69ba28.png"><img alt="_images/61da0b61f7c472e0faf2d76c4939addc769b7f8226feecac8c2f8ddfba69ba28.png" src="_images/61da0b61f7c472e0faf2d76c4939addc769b7f8226feecac8c2f8ddfba69ba28.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -787,7 +796,7 @@ Welfare: 41.46532630469102
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/4e40a7ae759815e5cb4191bb1a37955eb9fe0f0d27866d93ab793e8ababa30c5.png"><img alt="_images/4e40a7ae759815e5cb4191bb1a37955eb9fe0f0d27866d93ab793e8ababa30c5.png" src="_images/4e40a7ae759815e5cb4191bb1a37955eb9fe0f0d27866d93ab793e8ababa30c5.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/d46104e601f342887f2c40c66402ed44f2dccdfdf976dbaf3f7553a9877e873e.png"><img alt="_images/d46104e601f342887f2c40c66402ed44f2dccdfdf976dbaf3f7553a9877e873e.png" src="_images/d46104e601f342887f2c40c66402ed44f2dccdfdf976dbaf3f7553a9877e873e.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -804,7 +813,7 @@ Welfare: 41.46532630469102
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/61d0021be6da2ff5ac19d1fe893d0765cb9db6cd4fb9bd94d1dca80e264425de.png"><img alt="_images/61d0021be6da2ff5ac19d1fe893d0765cb9db6cd4fb9bd94d1dca80e264425de.png" src="_images/61d0021be6da2ff5ac19d1fe893d0765cb9db6cd4fb9bd94d1dca80e264425de.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/4f75bb9dc9d0a53fedd29db3370572ad7eba086f1409aba79b797aa9b53b3d58.png"><img alt="_images/4f75bb9dc9d0a53fedd29db3370572ad7eba086f1409aba79b797aa9b53b3d58.png" src="_images/4f75bb9dc9d0a53fedd29db3370572ad7eba086f1409aba79b797aa9b53b3d58.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -1146,7 +1155,7 @@ terms of the present-value formula for <span class="math notranslate nohighlight
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/cefa4b69a140b82c0202355e4784b58f8def719a916181833b41242317713724.png"><img alt="_images/cefa4b69a140b82c0202355e4784b58f8def719a916181833b41242317713724.png" src="_images/cefa4b69a140b82c0202355e4784b58f8def719a916181833b41242317713724.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/c2d3474edbb1a5922108b1e45cc1ca3d667975c38794fd86fa7a0162e9d4586e.png"><img alt="_images/c2d3474edbb1a5922108b1e45cc1ca3d667975c38794fd86fa7a0162e9d4586e.png" src="_images/c2d3474edbb1a5922108b1e45cc1ca3d667975c38794fd86fa7a0162e9d4586e.png" style="width: 80%;" />
 </a>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     λ |         T0 |           h0
 ----------------------------------
@@ -1652,6 +1661,11 @@ Match: True
    46. Maximum Likelihood Estimation
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bayes_intro.html">
+   47. Introduction to Bayesian Methods
+  </a>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -1661,17 +1675,17 @@ Match: True
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   47. Troubleshooting
+   48. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   48. References
+   49. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   49. Execution Statistics
+   50. Execution Statistics
   </a>
  </li>
 </ul>

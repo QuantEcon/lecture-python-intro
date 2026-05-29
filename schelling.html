@@ -273,7 +273,7 @@
 
                     <!-- Last modified / Changelog dropdown -->
                         <button class="qe-page__header-changed" id="changelog-toggle" aria-expanded="false">
-                            Last changed: May 24, 2026
+                            Last changed: May 28, 2026
                             <span class="changelog-icon">▼</span>
                         </button>
 
@@ -284,10 +284,28 @@
                             
                             <li class="changelog-entry">
                                 
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/1adefe4c" class="changelog-hash">1adefe4c</a>
+                                
+                                <span class="changelog-author">John Stachurski</span>
+                                <span class="changelog-time">1 day ago</span>
+                                <span class="changelog-message">[schelling] Address editorial items from #419 (#756)</span>
+                            </li>
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/7e45349f" class="changelog-hash">7e45349f</a>
+                                
+                                <span class="changelog-author">Chihiro Watanabe</span>
+                                <span class="changelog-time">1 day ago</span>
+                                <span class="changelog-message">Update rng usage in schelling.md (#745)</span>
+                            </li>
+                            
+                            <li class="changelog-entry">
+                                
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/ae928c86" class="changelog-hash">ae928c86</a>
                                 
                                 <span class="changelog-author">Humphrey Yang</span>
-                                <span class="changelog-time">14 minutes ago</span>
+                                <span class="changelog-time">5 days ago</span>
                                 <span class="changelog-message">Adding Tom's Edits to Exercises (#748)</span>
                             </li>
                             
@@ -352,24 +370,6 @@
                                 <span class="changelog-author">mmcky</span>
                                 <span class="changelog-time">3 years ago</span>
                                 <span class="changelog-message">ENH: Set a default image size across all lectures (#165)</span>
-                            </li>
-                            
-                            <li class="changelog-entry">
-                                
-                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/337beaa1" class="changelog-hash">337beaa1</a>
-                                
-                                <span class="changelog-author">Pietro Monticone</span>
-                                <span class="changelog-time">3 years ago</span>
-                                <span class="changelog-message">Fix a few typos</span>
-                            </li>
-                            
-                            <li class="changelog-entry">
-                                
-                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/7bf60c91" class="changelog-hash">7bf60c91</a>
-                                
-                                <span class="changelog-author">John Stachurski</span>
-                                <span class="changelog-time">3 years ago</span>
-                                <span class="changelog-message">Schelling update (#68)</span>
                             </li>
                             
                         </ul>
@@ -469,7 +469,7 @@ independent draw from a bivariate uniform distribution on the unit square <span 
 <p>Each agent stays if they are happy and moves if they are unhappy.</p>
 <p>The algorithm for moving is as follows</p>
 <div class="proof algorithm admonition" id="move_algo">
-<p class="admonition-title"><span class="caption-number">Algorithm 23.1 </span> (Jump Chain Algorithm)</p>
+<p class="admonition-title"><span class="caption-number">Algorithm 23.1 </span> (Move algorithm)</p>
 <section class="algorithm-content" id="proof-content">
 <ol class="arabic simple">
 <li><p>Draw a random location in <span class="math notranslate nohighlight">\(S\)</span></p></li>
@@ -576,26 +576,36 @@ green dots.</p>
     <span class="n">plot_args</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;markersize&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.8</span><span class="p">}</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;azure&#39;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_values_0</span><span class="p">,</span> <span class="n">y_values_0</span><span class="p">,</span>
-        <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markerfacecolor</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_args</span><span class="p">)</span>
+        <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markerfacecolor</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Type 0&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_args</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_values_1</span><span class="p">,</span> <span class="n">y_values_1</span><span class="p">,</span>
-        <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markerfacecolor</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_args</span><span class="p">)</span>
+        <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markerfacecolor</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Type 1&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_args</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Cycle </span><span class="si">{</span><span class="n">cycle_num</span><span class="o">-</span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>And here’s some pseudocode for the main loop, where we cycle through the
-agents until no one wishes to move.</p>
-<p>The pseudocode is</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>plot the distribution
-while agents are still moving
-    for agent in agents
-        give agent the opportunity to move
-plot the distribution
-</pre></div>
-</div>
-<p>The real code is below</p>
+<p>Here’s the main loop, where we cycle through the agents until no one wishes
+to move.</p>
+<div class="proof algorithm admonition" id="schelling_main_loop">
+<p class="admonition-title"><span class="caption-number">Algorithm 23.2 </span> (Main loop)</p>
+<section class="algorithm-content" id="proof-content">
+<ol class="arabic simple">
+<li><p>plot the distribution</p></li>
+<li><p>while agents are still moving</p>
+<ol class="arabic simple">
+<li><p>for agent in agents</p>
+<ol class="arabic simple">
+<li><p>give agent the opportunity to move</p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>plot the distribution</p></li>
+</ol>
+</section>
+</div><p>The real code is below</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">run_simulation</span><span class="p">(</span><span class="n">num_of_type_0</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span>
@@ -619,7 +629,6 @@ plot the distribution
 
     <span class="c1"># Loop until no agent wishes to move</span>
     <span class="k">while</span> <span class="n">count</span> <span class="o">&lt;</span> <span class="n">max_iter</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Entering loop &#39;</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span>
         <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="n">no_one_moved</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">for</span> <span class="n">agent</span> <span class="ow">in</span> <span class="n">agents</span><span class="p">:</span>
@@ -649,20 +658,13 @@ plot the distribution
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/fa0f9f2f2838639a22203dbeb25e00c570022b16a8e85d37042301560b0d187a.png"><img alt="_images/fa0f9f2f2838639a22203dbeb25e00c570022b16a8e85d37042301560b0d187a.png" src="_images/fa0f9f2f2838639a22203dbeb25e00c570022b16a8e85d37042301560b0d187a.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/78c387630ae67b5313eeab99b87864e272fd7d0b5f435217005bc93ff5d6e338.png"><img alt="_images/78c387630ae67b5313eeab99b87864e272fd7d0b5f435217005bc93ff5d6e338.png" src="_images/78c387630ae67b5313eeab99b87864e272fd7d0b5f435217005bc93ff5d6e338.png" style="width: 80%;" />
 </a>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Entering loop  1
-Entering loop  2
-Entering loop  3
-Entering loop  4
-Entering loop  5
-Entering loop  6
-Entering loop  7
-Converged after 8 iterations.
+<a class="reference internal image-reference" href="_images/c2502116f2c79aba9728dcec9a2b65a92238e4d827314d0822f7a0154fdc0b20.png"><img alt="_images/c2502116f2c79aba9728dcec9a2b65a92238e4d827314d0822f7a0154fdc0b20.png" src="_images/c2502116f2c79aba9728dcec9a2b65a92238e4d827314d0822f7a0154fdc0b20.png" style="width: 80%;" />
+</a>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Converged after 8 iterations.
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/a2adbee40a4934e9d77e74d878cb47bd9da86bef5c112aa8f362a7dbbb52344f.png"><img alt="_images/a2adbee40a4934e9d77e74d878cb47bd9da86bef5c112aa8f362a7dbbb52344f.png" src="_images/a2adbee40a4934e9d77e74d878cb47bd9da86bef5c112aa8f362a7dbbb52344f.png" style="width: 80%;" />
-</a>
 </div>
 </div>
 <p>As discussed above, agents are initially mixed randomly together.</p>
@@ -701,22 +703,22 @@ opportunity to move).</p></li>
 with small probability, is replaced by an agent of the other type.)</p>
 </section>
 </div>
-<div class="solution dropdown admonition" id="schelling-solution-2">
+<div class="solution dropdown admonition" id="schelling-solution-3">
 
 <p class="admonition-title">Solution to<a class="reference internal" href="#schelling_ex1"> Exercise 23.1</a></p>
 <section id="solution-content">
 <p>solution here</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">numpy.random</span><span class="w"> </span><span class="kn">import</span> <span class="n">uniform</span><span class="p">,</span> <span class="n">randint</span>
-
-<span class="n">n</span> <span class="o">=</span> <span class="mi">1000</span>                <span class="c1"># number of agents (agents = 0, ..., n-1)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">1000</span>                <span class="c1"># number of agents (agents = 0, ..., n-1)</span>
 <span class="n">k</span> <span class="o">=</span> <span class="mi">10</span>                  <span class="c1"># number of agents regarded as neighbors</span>
 <span class="n">require_same_type</span> <span class="o">=</span> <span class="mi">5</span>   <span class="c1"># want &gt;= require_same_type neighbors of the same type</span>
 
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
+
 <span class="k">def</span><span class="w"> </span><span class="nf">initialize_state</span><span class="p">():</span>
-    <span class="n">locations</span> <span class="o">=</span> <span class="n">uniform</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-    <span class="n">types</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>   <span class="c1"># label zero or one</span>
+    <span class="n">locations</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="n">types</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>   <span class="c1"># label zero or one</span>
     <span class="k">return</span> <span class="n">locations</span><span class="p">,</span> <span class="n">types</span>
 
 
@@ -753,7 +755,7 @@ with small probability, is replaced by an agent of the other type.)</p>
     <span class="n">moved</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="k">while</span> <span class="ow">not</span> <span class="n">is_happy</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">locations</span><span class="p">,</span> <span class="n">types</span><span class="p">):</span>
         <span class="n">moved</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="n">locations</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">uniform</span><span class="p">(),</span> <span class="n">uniform</span><span class="p">()</span>
+        <span class="n">locations</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">uniform</span><span class="p">(),</span> <span class="n">rng</span><span class="o">.</span><span class="n">uniform</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">moved</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">plot_distribution</span><span class="p">(</span><span class="n">locations</span><span class="p">,</span> <span class="n">types</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">savepdf</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -767,8 +769,10 @@ with small probability, is replaced by an agent of the other type.)</p>
                 <span class="s1">&#39;o&#39;</span><span class="p">,</span>
                 <span class="n">markersize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
                 <span class="n">markerfacecolor</span><span class="o">=</span><span class="n">color</span><span class="p">,</span>
-                <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+                <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+                <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Type </span><span class="si">{</span><span class="n">agent_type</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">sim_random_select</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">100_000</span><span class="p">,</span> <span class="n">flip_prob</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">test_freq</span><span class="o">=</span><span class="mi">10_000</span><span class="p">):</span>
@@ -785,12 +789,12 @@ with small probability, is replaced by an agent of the other type.)</p>
     <span class="k">while</span> <span class="n">current_iter</span> <span class="o">&lt;=</span> <span class="n">max_iter</span><span class="p">:</span>
 
         <span class="c1"># Choose a random agent and update them</span>
-        <span class="n">i</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
         <span class="n">moved</span> <span class="o">=</span> <span class="n">update_agent</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">locations</span><span class="p">,</span> <span class="n">types</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">flip_prob</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="c1"># flip agent i&#39;s type with probability epsilon</span>
-            <span class="n">U</span> <span class="o">=</span> <span class="n">uniform</span><span class="p">()</span>
+            <span class="n">U</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">uniform</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">U</span> <span class="o">&lt;</span> <span class="n">flip_prob</span><span class="p">:</span>
                 <span class="n">current_type</span> <span class="o">=</span> <span class="n">types</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
                 <span class="n">types</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">current_type</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="mi">1</span>
@@ -811,8 +815,6 @@ with small probability, is replaced by an agent of the other type.)</p>
 </div>
 </div>
 </div>
-</section>
-</div>
 <p>When we run this we again find that mixed neighborhoods break down and segregation emerges.</p>
 <p>Here’s a sample run.</p>
 <div class="cell docutils container">
@@ -822,22 +824,24 @@ with small probability, is replaced by an agent of the other type.)</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/c622d3f6ea833d3fe1ece9cd955f47f938082fe5d6f86ffeb3961f80d16abd20.png"><img alt="_images/c622d3f6ea833d3fe1ece9cd955f47f938082fe5d6f86ffeb3961f80d16abd20.png" src="_images/c622d3f6ea833d3fe1ece9cd955f47f938082fe5d6f86ffeb3961f80d16abd20.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/9010b51c59792355d0988223748fed9c70c3ef2bdb78a3254f821d210549e1b1.png"><img alt="_images/9010b51c59792355d0988223748fed9c70c3ef2bdb78a3254f821d210549e1b1.png" src="_images/9010b51c59792355d0988223748fed9c70c3ef2bdb78a3254f821d210549e1b1.png" style="width: 80%;" />
 </a>
-<a class="reference internal image-reference" href="_images/5694a927f6167cfd9218fd566f89438e91924c237fdae0ade96003e599d74782.png"><img alt="_images/5694a927f6167cfd9218fd566f89438e91924c237fdae0ade96003e599d74782.png" src="_images/5694a927f6167cfd9218fd566f89438e91924c237fdae0ade96003e599d74782.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/230b3671f1bbf1c1e1e22fde02a8b50c7953486ef8baebe71c6a870a1f1f0c6e.png"><img alt="_images/230b3671f1bbf1c1e1e22fde02a8b50c7953486ef8baebe71c6a870a1f1f0c6e.png" src="_images/230b3671f1bbf1c1e1e22fde02a8b50c7953486ef8baebe71c6a870a1f1f0c6e.png" style="width: 80%;" />
 </a>
-<a class="reference internal image-reference" href="_images/32c937a759988ffba980bee9f5cebe4778093dbe7e6dc1d6d12b5197f8750cba.png"><img alt="_images/32c937a759988ffba980bee9f5cebe4778093dbe7e6dc1d6d12b5197f8750cba.png" src="_images/32c937a759988ffba980bee9f5cebe4778093dbe7e6dc1d6d12b5197f8750cba.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/abe1308a79ca25878d152389f4b7054d463779f7aa0979df31ed7833cc08313b.png"><img alt="_images/abe1308a79ca25878d152389f4b7054d463779f7aa0979df31ed7833cc08313b.png" src="_images/abe1308a79ca25878d152389f4b7054d463779f7aa0979df31ed7833cc08313b.png" style="width: 80%;" />
 </a>
-<a class="reference internal image-reference" href="_images/c24e5f53b50a58632d9d61eb76a5ec0ccd03ea10ba28a368c47139ed8b8f5c2e.png"><img alt="_images/c24e5f53b50a58632d9d61eb76a5ec0ccd03ea10ba28a368c47139ed8b8f5c2e.png" src="_images/c24e5f53b50a58632d9d61eb76a5ec0ccd03ea10ba28a368c47139ed8b8f5c2e.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/bedef5e9c7d06eff5e6418b472724565278cde2c7ef9aaa433ab75c77c7c30f6.png"><img alt="_images/bedef5e9c7d06eff5e6418b472724565278cde2c7ef9aaa433ab75c77c7c30f6.png" src="_images/bedef5e9c7d06eff5e6418b472724565278cde2c7ef9aaa433ab75c77c7c30f6.png" style="width: 80%;" />
 </a>
-<a class="reference internal image-reference" href="_images/ecfb944a1c0d012c3db843e0c13103e983717582128ef5e4f012534e2888ac08.png"><img alt="_images/ecfb944a1c0d012c3db843e0c13103e983717582128ef5e4f012534e2888ac08.png" src="_images/ecfb944a1c0d012c3db843e0c13103e983717582128ef5e4f012534e2888ac08.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/6b33607792530105148e557b2ac9b662f8c8c00e529bc320d9881db9475b31e8.png"><img alt="_images/6b33607792530105148e557b2ac9b662f8c8c00e529bc320d9881db9475b31e8.png" src="_images/6b33607792530105148e557b2ac9b662f8c8c00e529bc320d9881db9475b31e8.png" style="width: 80%;" />
 </a>
-<a class="reference internal image-reference" href="_images/969d0fe4d5280687efb0af6dcab225e5657b65579bb7cd0ec80585531eb0df8a.png"><img alt="_images/969d0fe4d5280687efb0af6dcab225e5657b65579bb7cd0ec80585531eb0df8a.png" src="_images/969d0fe4d5280687efb0af6dcab225e5657b65579bb7cd0ec80585531eb0df8a.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/1410db5d1dfad8fa7a2387d9a4ba13a425fd1509ec921680cfe603252e0c5222.png"><img alt="_images/1410db5d1dfad8fa7a2387d9a4ba13a425fd1509ec921680cfe603252e0c5222.png" src="_images/1410db5d1dfad8fa7a2387d9a4ba13a425fd1509ec921680cfe603252e0c5222.png" style="width: 80%;" />
 </a>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Terminating at iteration 50001
 </pre></div>
 </div>
 </div>
+</div>
+</section>
 </div>
 </section>
 </section>
@@ -1213,6 +1217,11 @@ with small probability, is replaced by an agent of the other type.)</p>
    46. Maximum Likelihood Estimation
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bayes_intro.html">
+   47. Introduction to Bayesian Methods
+  </a>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -1222,17 +1231,17 @@ with small probability, is replaced by an agent of the other type.)</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   47. Troubleshooting
+   48. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   48. References
+   49. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   49. Execution Statistics
+   50. Execution Statistics
   </a>
  </li>
 </ul>

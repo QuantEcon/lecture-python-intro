@@ -213,7 +213,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environment">27.2. Environment</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supply-of-capital">27.3. Supply of capital</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consumers-problem">27.3.1. Consumer’s problem</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-log-preferences">27.3.2. Example: log preferences</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#special-case-log-preferences">27.3.2. Special case: log preferences</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#savings-and-investment">27.3.3. Savings and investment</a></li>
 </ul>
 </li>
@@ -294,7 +294,7 @@
 
                     <!-- Last modified / Changelog dropdown -->
                         <button class="qe-page__header-changed" id="changelog-toggle" aria-expanded="false">
-                            Last changed: Jan 21, 2025
+                            Last changed: May 28, 2026
                             <span class="changelog-icon">▼</span>
                         </button>
 
@@ -302,6 +302,15 @@
                     <div class="qe-page__header-changelog" id="changelog-content" aria-hidden="true">
                         <h4>Changelog (<a href="https://github.com/QuantEcon/lecture-python-intro/commits/main/lectures/olg.md">full history</a>)</h4>
                         <ul class="changelog-list">
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/0637b04d" class="changelog-hash">0637b04d</a>
+                                
+                                <span class="changelog-author">John Stachurski</span>
+                                <span class="changelog-time">1 day ago</span>
+                                <span class="changelog-message">[olg] Address editorial suggestions from #506 (#752)</span>
+                            </li>
                             
                             <li class="changelog-entry">
                                 
@@ -384,15 +393,6 @@
                                 <span class="changelog-message">misc</span>
                             </li>
                             
-                            <li class="changelog-entry">
-                                
-                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/649ef8c3" class="changelog-hash">649ef8c3</a>
-                                
-                                <span class="changelog-author">John Stachurski</span>
-                                <span class="changelog-time">3 years ago</span>
-                                <span class="changelog-message">misc</span>
-                            </li>
-                            
                         </ul>
                     </div>
 
@@ -454,7 +454,7 @@ problem of households and studies the implications for long-run growth.</p>
 </section>
 <section id="environment">
 <h2><span class="section-number">27.2. </span>Environment<a class="headerlink" href="#environment" title="Link to this heading">#</a></h2>
-<p>We assume that time is discrete, so that <span class="math notranslate nohighlight">\(t=0, 1, \ldots\)</span>.</p>
+<p>We assume that time is discrete, so that <span class="math notranslate nohighlight">\(t=0, 1, 2, \ldots\)</span>.</p>
 <p>An individual born at time <span class="math notranslate nohighlight">\(t\)</span> lives for two periods, <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(t + 1\)</span>.</p>
 <p>We call an agent</p>
 <ul class="simple">
@@ -464,13 +464,13 @@ problem of households and studies the implications for long-run growth.</p>
 <p>Young agents work, supplying labor and earning labor income.</p>
 <p>They also decide how much to save.</p>
 <p>Old agents do not work, so all income is financial.</p>
-<p>Their financial income is from interest on their savings from wage income,
-which is then combined with the labor of the new young generation at <span class="math notranslate nohighlight">\(t+1\)</span>.</p>
+<p>Their savings from prior wages become capital, which earns interest when
+combined with the labor of the new young generation at <span class="math notranslate nohighlight">\(t+1\)</span>.</p>
 <p>The wage and interest rates are determined in equilibrium by supply and
 demand.</p>
 <p>To make the algebra slightly easier, we are going to assume a constant
 population size.</p>
-<p>We normalize the constant population size in each period to 1.</p>
+<p>We normalize the population size to 1.</p>
 <p>We also suppose that each agent supplies one “unit” of labor hours, so total
 labor supply is 1.</p>
 </section>
@@ -505,7 +505,7 @@ labor supply is 1.</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(s_t\)</span> is savings by an individual born at time <span class="math notranslate nohighlight">\(t\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(w_t\)</span> is the wage rate at time <span class="math notranslate nohighlight">\(t\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(R_{t+1}\)</span> is the gross interest rate on savings invested at time <span class="math notranslate nohighlight">\(t\)</span>, paid at time <span class="math notranslate nohighlight">\(t+1\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(R_{t+1}\)</span> is the gross interest rate on savings invested at time <span class="math notranslate nohighlight">\(t\)</span>, paid at time <span class="math notranslate nohighlight">\(t+1\)</span> (i.e., <span class="math notranslate nohighlight">\(R_{t+1} = 1 + r_{t+1}\)</span>, where <span class="math notranslate nohighlight">\(r_{t+1}\)</span> is the net interest rate)</p></li>
 </ul>
 <p>Since <span class="math notranslate nohighlight">\(u\)</span> is strictly increasing, both of these constraints will hold as equalities at the maximum.</p>
 <p>Using this fact and substituting <span class="math notranslate nohighlight">\(s_t\)</span> from the first constraint into the second we get
@@ -528,12 +528,13 @@ solves <a class="reference internal" href="#equation-euler-2-olg">(27.4)</a>.</p
 <span class="eqno">(27.5)<a class="headerlink" href="#equation-saving-1-olg" title="Link to this equation">#</a></span>\[    s_t = s(w_t, R_{t+1})\]</div>
 <p>The precise form of the function <span class="math notranslate nohighlight">\(s\)</span> will depend on the choice of flow utility
 function <span class="math notranslate nohighlight">\(u\)</span>.</p>
+<p>Higher wages increase the resources available to save, while the interest rate affects the tradeoff between consuming today and saving for tomorrow.</p>
 <p>Together, <span class="math notranslate nohighlight">\(w_t\)</span> and <span class="math notranslate nohighlight">\(R_{t+1}\)</span> represent the <em>prices</em> in the economy (price of
 labor and rental rate of capital).</p>
 <p>Thus, <a class="reference internal" href="#equation-saving-1-olg">(27.5)</a> states the quantity of savings given prices.</p>
 </section>
-<section id="example-log-preferences">
-<h3><span class="section-number">27.3.2. </span>Example: log preferences<a class="headerlink" href="#example-log-preferences" title="Link to this heading">#</a></h3>
+<section id="special-case-log-preferences">
+<h3><span class="section-number">27.3.2. </span>Special case: log preferences<a class="headerlink" href="#special-case-log-preferences" title="Link to this heading">#</a></h3>
 <p>In the special case <span class="math notranslate nohighlight">\(u(c) = \log c\)</span>, the Euler equation simplifies to
 <span class="math notranslate nohighlight">\(s_t= \beta (w_t - s_t)\)</span>.</p>
 <p>Solving for saving, we get</p>
@@ -574,6 +575,7 @@ them to zero:</p>
 \[    (1-\alpha)(k_t / \ell_t)^{\alpha} = w_t
     \quad \text{and} \quad
     \alpha (k_t / \ell_t)^{\alpha - 1} = R_t\]</div>
+<p>These equate the wage <span class="math notranslate nohighlight">\(w_t\)</span> to the marginal product of labor and the interest rate <span class="math notranslate nohighlight">\(R_t\)</span> to the marginal product of capital.</p>
 </section>
 <section id="demand">
 <h3><span class="section-number">27.4.2. </span>Demand<a class="headerlink" href="#demand" title="Link to this heading">#</a></h3>
@@ -589,6 +591,8 @@ at time <span class="math notranslate nohighlight">\(t+1\)</span></p>
 <div class="math notranslate nohighlight" id="equation-aggregate-demand-capital-olg">
 <span class="eqno">(27.11)<a class="headerlink" href="#equation-aggregate-demand-capital-olg" title="Link to this equation">#</a></span>\[    k^d (R_{t+1}) 
     := \left (\frac{\alpha}{R_{t+1}} \right )^{1/(1-\alpha)}\]</div>
+<p>Here <span class="math notranslate nohighlight">\(k^d(R_{t+1})\)</span> is the amount of capital firms wish to employ when the gross interest rate is <span class="math notranslate nohighlight">\(R_{t+1}\)</span>.</p>
+<p>Since the marginal product of capital is decreasing, demand for capital is a decreasing function of its cost <span class="math notranslate nohighlight">\(R_{t+1}\)</span>.</p>
 <p>In Python code this is</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -607,8 +611,6 @@ at time <span class="math notranslate nohighlight">\(t+1\)</span></p>
 </div>
 </div>
 </div>
-<p>The next figure plots the supply of capital, as in <a class="reference internal" href="#equation-saving-log-2-olg">(27.6)</a>, as well as the demand for capital, as in <a class="reference internal" href="#equation-aggregate-demand-capital-olg">(27.11)</a>, as functions of the interest rate <span class="math notranslate nohighlight">\(R_{t+1}\)</span>.</p>
-<p>(For the special case of log utility, supply does not depend on the interest rate, so we have a constant function.)</p>
 </section>
 </section>
 <section id="equilibrium">
@@ -657,7 +659,7 @@ the equilibrium quantity <span class="math notranslate nohighlight">\(k_{t+1}\)<
 <p>That is,</p>
 <div class="math notranslate nohighlight" id="equation-equilibrium-quantity">
 <span class="eqno">(27.15)<a class="headerlink" href="#equation-equilibrium-quantity" title="Link to this equation">#</a></span>\[    k_{t+1} = s(w_t, R_{t+1}) = \frac{\beta }{1+\beta} w_t\]</div>
-<p>Let’s redo our plot above but now inserting the equilibrium quantity and price.</p>
+<p>The next figure plots capital supply and demand as functions of the interest rate <span class="math notranslate nohighlight">\(R_{t+1}\)</span>, together with the equilibrium quantity and price.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -697,7 +699,7 @@ the equilibrium quantity <span class="math notranslate nohighlight">\(k_{t+1}\)<
 <section id="evolution-of-capital">
 <h3><span class="section-number">27.6.1. </span>Evolution of capital<a class="headerlink" href="#evolution-of-capital" title="Link to this heading">#</a></h3>
 <p>The discussion above shows how equilibrium <span class="math notranslate nohighlight">\(k_{t+1}\)</span> is obtained given <span class="math notranslate nohighlight">\(w_t\)</span>.</p>
-<p>From <a class="reference internal" href="#equation-wage-one">(27.9)</a> we can translate this into <span class="math notranslate nohighlight">\(k_{t+1}\)</span> as a function of <span class="math notranslate nohighlight">\(k_t\)</span></p>
+<p>From <a class="reference internal" href="#equation-wage-one">(27.9)</a> we can translate this into <span class="math notranslate nohighlight">\(k_{t+1}\)</span> as a function of <span class="math notranslate nohighlight">\(k_t\)</span>.</p>
 <p>In particular, since <span class="math notranslate nohighlight">\(w_t = (1-\alpha)k_t^\alpha\)</span>, we have</p>
 <div class="math notranslate nohighlight" id="equation-law-of-motion-capital">
 <span class="eqno">(27.16)<a class="headerlink" href="#equation-law-of-motion-capital" title="Link to this equation">#</a></span>\[    k_{t+1} = \frac{\beta}{1+\beta} (1-\alpha)(k_t)^{\alpha}\]</div>
@@ -726,8 +728,6 @@ the equilibrium quantity <span class="math notranslate nohighlight">\(k_{t+1}\)<
 <span class="n">k_grid_next</span> <span class="o">=</span> <span class="n">k_update</span><span class="p">(</span><span class="n">k_grid</span><span class="p">,</span><span class="n">α</span><span class="p">,</span><span class="n">β</span><span class="p">)</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-
-<span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">k_grid_next</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">k_grid_next</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">k_grid</span><span class="p">,</span> <span class="n">k_grid_next</span><span class="p">,</span>  <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$g$&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">k_grid</span><span class="p">,</span> <span class="n">k_grid</span><span class="p">,</span> <span class="s1">&#39;k-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$45^{\circ}$&#39;</span><span class="p">)</span>
@@ -787,7 +787,7 @@ denote by <span class="math notranslate nohighlight">\(k^*\)</span>.</p>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">k_series</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;capital series&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">ts_length</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">ts_length</span><span class="p">,</span> <span class="n">k_star</span><span class="p">),</span> <span class="s1">&#39;k--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;$k^*$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">ts_length</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">ts_length</span><span class="p">,</span> <span class="n">k_star</span><span class="p">),</span> <span class="s1">&#39;k--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;$k^* = </span><span class="si">{</span><span class="n">k_star</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;capital&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$t$&quot;</span><span class="p">)</span>
@@ -797,7 +797,7 @@ denote by <span class="math notranslate nohighlight">\(k^*\)</span>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/8fb22aab33cc21b02d20c4b7a2816878be3dcce231d661ee8f90157e11e9ddae.png"><img alt="_images/8fb22aab33cc21b02d20c4b7a2816878be3dcce231d661ee8f90157e11e9ddae.png" src="_images/8fb22aab33cc21b02d20c4b7a2816878be3dcce231d661ee8f90157e11e9ddae.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/5f4d0f92eb4dbfac3776c7a84e6fe064972374d9c211b6ea9deeb57cc1d476c0.png"><img alt="_images/5f4d0f92eb4dbfac3776c7a84e6fe064972374d9c211b6ea9deeb57cc1d476c0.png" src="_images/5f4d0f92eb4dbfac3776c7a84e6fe064972374d9c211b6ea9deeb57cc1d476c0.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -828,11 +828,15 @@ denote by <span class="math notranslate nohighlight">\(k^*\)</span>.</p>
 </section>
 <section id="crra-preferences">
 <h2><span class="section-number">27.7. </span>CRRA preferences<a class="headerlink" href="#crra-preferences" title="Link to this heading">#</a></h2>
-<p>Previously, in our examples, we looked at the case of log utility.</p>
-<p>Log utility is a rather special case of CRRA utility with <span class="math notranslate nohighlight">\(\gamma \to 1\)</span>.</p>
-<p>In this section, we are going to assume that <span class="math notranslate nohighlight">\(u(c) = \frac{ c^{1-
-\gamma}-1}{1-\gamma}\)</span>, where <span class="math notranslate nohighlight">\(\gamma &gt;0, \gamma\neq 1\)</span>.</p>
-<p>This function is called the CRRA utility function.</p>
+<p>In this section we generalize from log utility to the CRRA (constant relative risk aversion) utility function</p>
+<div class="math notranslate nohighlight">
+\[
+u(c) = \frac{ c^{1-\gamma}-1}{1-\gamma}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\gamma &gt;0, \gamma\neq 1\)</span>.</p>
+<p>CRRA utility is popular in macroeconomics because the parameter <span class="math notranslate nohighlight">\(\gamma\)</span> controls the coefficient of relative risk aversion.</p>
+<p>It also controls the elasticity of intertemporal substitution, which governs how willing agents are to shift consumption over time in response to changes in the interest rate.</p>
+<p>The log utility case studied above is a special case, obtained when <span class="math notranslate nohighlight">\(\gamma \to 1\)</span>.</p>
 <p>In other respects, the model is the same.</p>
 <p>Below we define the utility function in Python and construct a <code class="docutils literal notranslate"><span class="pre">namedtuple</span></code> to store the parameters.</p>
 <div class="cell docutils container">
@@ -855,7 +859,7 @@ denote by <span class="math notranslate nohighlight">\(k^*\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">capital_demand</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">α</span><span class="o">/</span><span class="n">R</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">model</span><span class="o">.</span><span class="n">α</span><span class="p">))</span> 
+    <span class="k">return</span> <span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">α</span><span class="o">/</span><span class="n">R</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">model</span><span class="o">.</span><span class="n">α</span><span class="p">))</span> 
 </pre></div>
 </div>
 </div>
@@ -902,7 +906,7 @@ denote by <span class="math notranslate nohighlight">\(k^*\)</span>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/72ae1c796021747eb8be7d60e92298e85ef77c4227c2ce0dd02a35419d6008d5.png"><img alt="_images/72ae1c796021747eb8be7d60e92298e85ef77c4227c2ce0dd02a35419d6008d5.png" src="_images/72ae1c796021747eb8be7d60e92298e85ef77c4227c2ce0dd02a35419d6008d5.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/c31908945330d8a7d3acbb7cef9b5d9a3257e7b6af3926ebdb1455cb7f61aab8.png"><img alt="_images/c31908945330d8a7d3acbb7cef9b5d9a3257e7b6af3926ebdb1455cb7f61aab8.png" src="_images/c31908945330d8a7d3acbb7cef9b5d9a3257e7b6af3926ebdb1455cb7f61aab8.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -987,8 +991,6 @@ with our new aggregate supply function yields equilibrium capital.</p>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 
-<span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">k_grid_next</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">k_grid_next</span><span class="p">)</span>
-
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">k_grid</span><span class="p">,</span> <span class="n">k_grid_next</span><span class="p">,</span>  <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$g$&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">k_grid</span><span class="p">,</span> <span class="n">k_grid</span><span class="p">,</span> <span class="s1">&#39;k-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$45^{\circ}$&#39;</span><span class="p">)</span>
 
@@ -1031,7 +1033,7 @@ cannot be obtained analytically.</p>
 <p class="admonition-title">Solution to<a class="reference internal" href="#olg_ex2"> Exercise 27.2</a></p>
 <section id="solution-content">
 <p>We introduce a function <span class="math notranslate nohighlight">\(h\)</span> such that
-positive steady state is the root of <span class="math notranslate nohighlight">\(h\)</span>.</p>
+the positive steady state is the root of <span class="math notranslate nohighlight">\(h\)</span>.</p>
 <div class="math notranslate nohighlight" id="equation-crra-newton-2">
 <span class="eqno">(27.24)<a class="headerlink" href="#equation-crra-newton-2" title="Link to this equation">#</a></span>\[    h(k^*) = k^*  
     \left [ 
@@ -1080,7 +1082,7 @@ three distinct initial conditions, under the parameterization listed above.</p>
 
 <p class="admonition-title">Solution to<a class="reference internal" href="#olg_ex3"> Exercise 27.3</a></p>
 <section id="solution-content">
-<p>Let’s define the constants and three distinct intital conditions</p>
+<p>Let’s define the constants and three distinct initial conditions</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ts_length</span> <span class="o">=</span> <span class="mi">10</span>
@@ -1503,6 +1505,11 @@ three distinct initial conditions, under the parameterization listed above.</p>
    46. Maximum Likelihood Estimation
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bayes_intro.html">
+   47. Introduction to Bayesian Methods
+  </a>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -1512,17 +1519,17 @@ three distinct initial conditions, under the parameterization listed above.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   47. Troubleshooting
+   48. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   48. References
+   49. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   49. Execution Statistics
+   50. Execution Statistics
   </a>
  </li>
 </ul>

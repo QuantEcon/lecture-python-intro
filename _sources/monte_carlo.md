@@ -45,7 +45,8 @@ We will use the following imports.
 ```{code-cell} ipython3
 import numpy as np
 import matplotlib.pyplot as plt
-from numpy.random import randn
+
+rng = np.random.default_rng()
 ```
 
 
@@ -168,9 +169,9 @@ $$
 
 S = 0.0
 for i in range(n):
-    X_1 = np.exp(μ_1 + σ_1 * randn())
-    X_2 = np.exp(μ_2 + σ_2 * randn())
-    X_3 = np.exp(μ_3 + σ_3 * randn())
+    X_1 = np.exp(μ_1 + σ_1 * rng.standard_normal())
+    X_2 = np.exp(μ_2 + σ_2 * rng.standard_normal())
+    X_3 = np.exp(μ_3 + σ_3 * rng.standard_normal())
     S += (X_1 + X_2 + X_3)**p
 S / n
 ```
@@ -180,12 +181,12 @@ S / n
 We can also construct a function that contains these operations:
 
 ```{code-cell} ipython3
-def compute_mean(n=1_000_000):
+def compute_mean(n=1_000_000, rng=rng):
     S = 0.0
     for i in range(n):
-        X_1 = np.exp(μ_1 + σ_1 * randn())
-        X_2 = np.exp(μ_2 + σ_2 * randn())
-        X_3 = np.exp(μ_3 + σ_3 * randn())
+        X_1 = np.exp(μ_1 + σ_1 * rng.standard_normal())
+        X_2 = np.exp(μ_2 + σ_2 * rng.standard_normal())
+        X_3 = np.exp(μ_3 + σ_3 * rng.standard_normal())
         S += (X_1 + X_2 + X_3)**p
     return (S / n)
 ```
@@ -195,7 +196,7 @@ def compute_mean(n=1_000_000):
 Now let's call it.
 
 ```{code-cell} ipython3
-compute_mean()
+compute_mean(rng=rng)
 ```
 
 
@@ -209,10 +210,10 @@ But the code above runs quite slowly.
 To make it faster, let's implement a vectorized routine using NumPy.
 
 ```{code-cell} ipython3
-def compute_mean_vectorized(n=1_000_000):
-    X_1 = np.exp(μ_1 + σ_1 * randn(n))
-    X_2 = np.exp(μ_2 + σ_2 * randn(n))
-    X_3 = np.exp(μ_3 + σ_3 * randn(n))
+def compute_mean_vectorized(n=1_000_000, rng=rng):
+    X_1 = np.exp(μ_1 + σ_1 * rng.standard_normal(n))
+    X_2 = np.exp(μ_2 + σ_2 * rng.standard_normal(n))
+    X_3 = np.exp(μ_3 + σ_3 * rng.standard_normal(n))
     S = (X_1 + X_2 + X_3)**p
     return S.mean()
 ```
@@ -220,7 +221,7 @@ def compute_mean_vectorized(n=1_000_000):
 ```{code-cell} ipython3
 %%time
 
-compute_mean_vectorized()
+compute_mean_vectorized(rng=rng)
 ```
 
 
@@ -232,7 +233,7 @@ We can increase $n$ to get more accuracy and still have reasonable speed:
 ```{code-cell} ipython3
 %%time
 
-compute_mean_vectorized(n=10_000_000)
+compute_mean_vectorized(n=10_000_000, rng=rng)
 ```
 
 
@@ -342,7 +343,7 @@ Now let's price a European call option.
 
 The option is described by three things:
 
-2. $n$, the **expiry date**,
+1. $n$, the **expiry date**,
 2. $K$, the **strike price**, and
 3. $S_n$, the price of the **underlying** asset at date $n$.
 
@@ -399,7 +400,7 @@ M = 10_000_000
 Here is our code
 
 ```{code-cell} ipython3
-S = np.exp(μ + σ * np.random.randn(M))
+S = np.exp(μ + σ * rng.standard_normal(M))
 return_draws = np.maximum(S - K, 0)
 P = β**n * np.mean(return_draws)
 print(f"The Monte Carlo option price is approximately {P:3f}")
@@ -514,14 +515,20 @@ $$ s_{t+1} = s_t + \mu + \exp(h_t) \xi_{t+1} $$
 Here is a function to simulate a path using this equation:
 
 ```{code-cell} ipython3
-def simulate_asset_price_path(μ=default_μ, S0=default_S0, h0=default_h0, n=default_n, ρ=default_ρ, ν=default_ν):
+def simulate_asset_price_path(μ=default_μ,
+                               S0=default_S0,
+                               h0=default_h0,
+                               n=default_n,
+                               ρ=default_ρ,
+                               ν=default_ν,
+                               rng=rng):
     s = np.empty(n+1)
     s[0] = np.log(S0)
 
     h = h0
     for t in range(n):
-        s[t+1] = s[t] + μ + np.exp(h) * randn()
-        h = ρ * h + ν * randn()
+        s[t+1] = s[t] + μ + np.exp(h) * rng.standard_normal()
+        h = ρ * h + ν * rng.standard_normal()
 
     return np.exp(s)
 ```
@@ -537,7 +544,7 @@ titles = 'log paths', 'paths'
 transforms = np.log, lambda x: x
 for ax, transform, title in zip(axes, transforms, titles):
     for i in range(50):
-        path = simulate_asset_price_path()
+        path = simulate_asset_price_path(rng=rng)
         ax.plot(transform(path))
     ax.set_title(title)
 
@@ -554,7 +561,7 @@ distribution of $S_n$.
 
 So to compute the price $P$ of the option, we use Monte Carlo.
 
-We average over realizations $S_n^1, \ldots, S_n^M$ of $S_n$ and appealing to
+We average over realizations $S_n^1, \ldots, S_n^M$ of $S_n$ and appeal to
 the law of large numbers:
 
 $$
@@ -575,7 +582,8 @@ def compute_call_price(β=default_β,
                        n=default_n,
                        ρ=default_ρ,
                        ν=default_ν,
-                       M=10_000):
+                       M=10_000,
+                       rng=rng):
     current_sum = 0.0
     # For each sample path
     for m in range(M):
@@ -583,8 +591,8 @@ def compute_call_price(β=default_β,
         h = h0
         # Simulate forward in time
         for t in range(n):
-            s = s + μ + np.exp(h) * randn()
-            h = ρ * h + ν * randn()
+            s = s + μ + np.exp(h) * rng.standard_normal()
+            h = ρ * h + ν * rng.standard_normal()
         # And add the value max{S_n - K, 0} to current_sum
         current_sum += np.maximum(np.exp(s) - K, 0)
 
@@ -593,7 +601,7 @@ def compute_call_price(β=default_β,
 
 ```{code-cell} ipython3
 %%time
-compute_call_price()
+compute_call_price(rng=rng)
 ```
 
 
@@ -624,12 +632,12 @@ def compute_call_price_vector(β=default_β,
                        n=default_n,
                        ρ=default_ρ,
                        ν=default_ν,
-                       M=10_000):
-
+                       M=10_000,
+                       rng=rng):
     s = np.full(M, np.log(S0))
     h = np.full(M, h0)
     for t in range(n):
-        Z = np.random.randn(2, M)
+        Z = rng.standard_normal((2, M))
         s = s + μ + np.exp(h) * Z[0, :]
         h = ρ * h + ν * Z[1, :]
     expectation = np.mean(np.maximum(np.exp(s) - K, 0))
@@ -639,7 +647,7 @@ def compute_call_price_vector(β=default_β,
 
 ```{code-cell} ipython3
 %%time
-compute_call_price_vector()
+compute_call_price_vector(rng=rng)
 ```
 
 
@@ -650,7 +658,7 @@ Now let's try with larger $M$ to get a more accurate calculation.
 
 ```{code-cell} ipython3
 %%time
-compute_call_price(M=10_000_000)
+compute_call_price(M=10_000_000, rng=rng)
 ```
 
 
@@ -696,7 +704,8 @@ def compute_call_price_with_barrier(β=default_β,
                                     ρ=default_ρ,
                                     ν=default_ν,
                                     bp=default_bp,
-                                    M=50_000):
+                                    M=50_000,
+                                    rng=rng):
     current_sum = 0.0
     # For each sample path
     for m in range(M):
@@ -706,8 +715,8 @@ def compute_call_price_with_barrier(β=default_β,
         option_is_null = False
         # Simulate forward in time
         for t in range(n):
-            s = s + μ + np.exp(h) * randn()
-            h = ρ * h + ν * randn()
+            s = s + μ + np.exp(h) * rng.standard_normal()
+            h = ρ * h + ν * rng.standard_normal()
             if np.exp(s) > bp:
                 payoff = 0
                 option_is_null = True
@@ -722,7 +731,7 @@ def compute_call_price_with_barrier(β=default_β,
 ```
 
 ```{code-cell} ipython3
-%time compute_call_price_with_barrier()
+%time compute_call_price_with_barrier(rng=rng)
 ```
 
 
@@ -739,12 +748,13 @@ def compute_call_price_with_barrier_vector(β=default_β,
                                            ρ=default_ρ,
                                            ν=default_ν,
                                            bp=default_bp,
-                                           M=50_000):
+                                           M=50_000,
+                                           rng=rng):
     s = np.full(M, np.log(S0))
     h = np.full(M, h0)
     option_is_null = np.full(M, False)
     for t in range(n):
-        Z = np.random.randn(2, M)
+        Z = rng.standard_normal((2, M))
         s = s + μ + np.exp(h) * Z[0, :]
         h = ρ * h + ν * Z[1, :]
         # Mark all the options null where S_n > barrier price
@@ -757,7 +767,7 @@ def compute_call_price_with_barrier_vector(β=default_β,
 ```
 
 ```{code-cell} ipython3
-%time compute_call_price_with_barrier_vector()
+%time compute_call_price_with_barrier_vector(rng=rng)
 ```
 
 ```{solution-end}

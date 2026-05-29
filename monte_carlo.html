@@ -291,7 +291,7 @@
 
                     <!-- Last modified / Changelog dropdown -->
                         <button class="qe-page__header-changed" id="changelog-toggle" aria-expanded="false">
-                            Last changed: Jul 08, 2024
+                            Last changed: May 28, 2026
                             <span class="changelog-icon">▼</span>
                         </button>
 
@@ -299,6 +299,24 @@
                     <div class="qe-page__header-changelog" id="changelog-content" aria-hidden="true">
                         <h4>Changelog (<a href="https://github.com/QuantEcon/lecture-python-intro/commits/main/lectures/monte_carlo.md">full history</a>)</h4>
                         <ul class="changelog-list">
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/93e507ed" class="changelog-hash">93e507ed</a>
+                                
+                                <span class="changelog-author">Zoey Zheng</span>
+                                <span class="changelog-time">1 day ago</span>
+                                <span class="changelog-message">[monte_carlo] Fix numbering in European call option list (#744)</span>
+                            </li>
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/34a37bee" class="changelog-hash">34a37bee</a>
+                                
+                                <span class="changelog-author">Chihiro Watanabe</span>
+                                <span class="changelog-time">1 day ago</span>
+                                <span class="changelog-message">[monte_carlo.md] Update np.random → Generator API (#741)</span>
+                            </li>
                             
                             <li class="changelog-entry">
                                 
@@ -372,24 +390,6 @@
                                 <span class="changelog-message">misc</span>
                             </li>
                             
-                            <li class="changelog-entry">
-                                
-                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/c101e4bf" class="changelog-hash">c101e4bf</a>
-                                
-                                <span class="changelog-author">Shu</span>
-                                <span class="changelog-time">3 years ago</span>
-                                <span class="changelog-message">update exercise solution env</span>
-                            </li>
-                            
-                            <li class="changelog-entry">
-                                
-                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/f51b48b1" class="changelog-hash">f51b48b1</a>
-                                
-                                <span class="changelog-author">John Stachurski</span>
-                                <span class="changelog-time">3 years ago</span>
-                                <span class="changelog-message">misc</span>
-                            </li>
-                            
                         </ul>
                     </div>
 
@@ -430,7 +430,8 @@ with some applications in finance.</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">numpy.random</span><span class="w"> </span><span class="kn">import</span> <span class="n">randn</span>
+
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -533,20 +534,20 @@ us that the mean and variance are</p>
 
 <span class="n">S</span> <span class="o">=</span> <span class="mf">0.0</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="n">X_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">μ_1</span> <span class="o">+</span> <span class="n">σ_1</span> <span class="o">*</span> <span class="n">randn</span><span class="p">())</span>
-    <span class="n">X_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">μ_2</span> <span class="o">+</span> <span class="n">σ_2</span> <span class="o">*</span> <span class="n">randn</span><span class="p">())</span>
-    <span class="n">X_3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">μ_3</span> <span class="o">+</span> <span class="n">σ_3</span> <span class="o">*</span> <span class="n">randn</span><span class="p">())</span>
+    <span class="n">X_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">μ_1</span> <span class="o">+</span> <span class="n">σ_1</span> <span class="o">*</span> <span class="n">rng</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">())</span>
+    <span class="n">X_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">μ_2</span> <span class="o">+</span> <span class="n">σ_2</span> <span class="o">*</span> <span class="n">rng</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">())</span>
+    <span class="n">X_3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">μ_3</span> <span class="o">+</span> <span class="n">σ_3</span> <span class="o">*</span> <span class="n">rng</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">())</span>
     <span class="n">S</span> <span class="o">+=</span> <span class="p">(</span><span class="n">X_1</span> <span class="o">+</span> <span class="n">X_2</span> <span class="o">+</span> <span class="n">X_3</span><span class="p">)</span><span class="o">**</span><span class="n">p</span>
 <span class="n">S</span> <span class="o">/</span> <span class="n">n</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3.89 s, sys: 867 μs, total: 3.89 s
-Wall time: 3.89 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3.99 s, sys: 0 ns, total: 3.99 s
+Wall time: 3.99 s
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(2.2298403501377178)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(2.2297675380135153)
 </pre></div>
 </div>
 </div>
@@ -554,12 +555,12 @@ Wall time: 3.89 s
 <p>We can also construct a function that contains these operations:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">compute_mean</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1_000_000</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">compute_mean</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1_000_000</span><span class="p">,</span> <span class="n">rng</span><span class="o">=</span><span class="n">rng</span><span class="p">):</span>
     <span class="n">S</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-        <span class="n">X_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">μ_1</span> <span class="o">+</span> <span class="n">σ_1</span> <span class="o">*</span> <span class="n">randn</span><span class="p">())</span>
-        <span class="n">X_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">μ_2</span> <span class="o">+</span> <span class="n">σ_2</span> <span class="o">*</span> <span class="n">randn</span><span class="p">())</span>
-        <span class="n">X_3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">μ_3</span> <span class="o">+</span> <span class="n">σ_3</span> <span class="o">*</span> <span class="n">randn</span><span class="p">())</span>
+        <span class="n">X_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">μ_1</span> <span class="o">+</span> <span class="n">σ_1</span> <span class="o">*</span> <span class="n">rng</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">())</span>
+        <span class="n">X_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">μ_2</span> <span class="o">+</span> <span class="n">σ_2</span> <span class="o">*</span> <span class="n">rng</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">())</span>
+        <span class="n">X_3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">μ_3</span> <span class="o">+</span> <span class="n">σ_3</span> <span class="o">*</span> <span class="n">rng</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">())</span>
         <span class="n">S</span> <span class="o">+=</span> <span class="p">(</span><span class="n">X_1</span> <span class="o">+</span> <span class="n">X_2</span> <span class="o">+</span> <span class="n">X_3</span><span class="p">)</span><span class="o">**</span><span class="n">p</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">S</span> <span class="o">/</span> <span class="n">n</span><span class="p">)</span>
 </pre></div>
@@ -569,12 +570,12 @@ Wall time: 3.89 s
 <p>Now let’s call it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">compute_mean</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">compute_mean</span><span class="p">(</span><span class="n">rng</span><span class="o">=</span><span class="n">rng</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(2.229727023034853)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(2.229857485030402)
 </pre></div>
 </div>
 </div>
@@ -588,10 +589,10 @@ Wall time: 3.89 s
 <p>To make it faster, let’s implement a vectorized routine using NumPy.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">compute_mean_vectorized</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1_000_000</span><span class="p">):</span>
-    <span class="n">X_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">μ_1</span> <span class="o">+</span> <span class="n">σ_1</span> <span class="o">*</span> <span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
-    <span class="n">X_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">μ_2</span> <span class="o">+</span> <span class="n">σ_2</span> <span class="o">*</span> <span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
-    <span class="n">X_3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">μ_3</span> <span class="o">+</span> <span class="n">σ_3</span> <span class="o">*</span> <span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">compute_mean_vectorized</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1_000_000</span><span class="p">,</span> <span class="n">rng</span><span class="o">=</span><span class="n">rng</span><span class="p">):</span>
+    <span class="n">X_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">μ_1</span> <span class="o">+</span> <span class="n">σ_1</span> <span class="o">*</span> <span class="n">rng</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+    <span class="n">X_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">μ_2</span> <span class="o">+</span> <span class="n">σ_2</span> <span class="o">*</span> <span class="n">rng</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+    <span class="n">X_3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">μ_3</span> <span class="o">+</span> <span class="n">σ_3</span> <span class="o">*</span> <span class="n">rng</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
     <span class="n">S</span> <span class="o">=</span> <span class="p">(</span><span class="n">X_1</span> <span class="o">+</span> <span class="n">X_2</span> <span class="o">+</span> <span class="n">X_3</span><span class="p">)</span><span class="o">**</span><span class="n">p</span>
     <span class="k">return</span> <span class="n">S</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
@@ -602,16 +603,16 @@ Wall time: 3.89 s
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
 
-<span class="n">compute_mean_vectorized</span><span class="p">()</span>
+<span class="n">compute_mean_vectorized</span><span class="p">(</span><span class="n">rng</span><span class="o">=</span><span class="n">rng</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 78.5 ms, sys: 9.01 ms, total: 87.5 ms
-Wall time: 87.3 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 57.3 ms, sys: 4 ms, total: 61.3 ms
+Wall time: 61.2 ms
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(2.2297133789305787)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(2.229739006101883)
 </pre></div>
 </div>
 </div>
@@ -622,16 +623,16 @@ Wall time: 87.3 ms
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
 
-<span class="n">compute_mean_vectorized</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">10_000_000</span><span class="p">)</span>
+<span class="n">compute_mean_vectorized</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">10_000_000</span><span class="p">,</span> <span class="n">rng</span><span class="o">=</span><span class="n">rng</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 826 ms, sys: 23 ms, total: 849 ms
-Wall time: 849 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 567 ms, sys: 114 ms, total: 682 ms
+Wall time: 681 ms
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(2.2297356449704213)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(2.2296832566619416)
 </pre></div>
 </div>
 </div>
@@ -717,7 +718,7 @@ promise described above.</p>
 <h3><span class="section-number">21.3.4. </span>European call options<a class="headerlink" href="#european-call-options" title="Link to this heading">#</a></h3>
 <p>Now let’s price a European call option.</p>
 <p>The option is described by three things:</p>
-<ol class="arabic simple" start="2">
+<ol class="arabic simple">
 <li><p><span class="math notranslate nohighlight">\(n\)</span>, the <strong>expiry date</strong>,</p></li>
 <li><p><span class="math notranslate nohighlight">\(K\)</span>, the <strong>strike price</strong>, and</p></li>
 <li><p><span class="math notranslate nohighlight">\(S_n\)</span>, the price of the <strong>underlying</strong> asset at date <span class="math notranslate nohighlight">\(n\)</span>.</p></li>
@@ -765,7 +766,7 @@ can be calculated.</p>
 <p>Here is our code</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">μ</span> <span class="o">+</span> <span class="n">σ</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">M</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">μ</span> <span class="o">+</span> <span class="n">σ</span> <span class="o">*</span> <span class="n">rng</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">(</span><span class="n">M</span><span class="p">))</span>
 <span class="n">return_draws</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">S</span> <span class="o">-</span> <span class="n">K</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">P</span> <span class="o">=</span> <span class="n">β</span><span class="o">**</span><span class="n">n</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">return_draws</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The Monte Carlo option price is approximately </span><span class="si">{</span><span class="n">P</span><span class="si">:</span><span class="s2">3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -773,7 +774,7 @@ can be calculated.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The Monte Carlo option price is approximately 1.036928
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The Monte Carlo option price is approximately 1.037013
 </pre></div>
 </div>
 </div>
@@ -862,14 +863,20 @@ volatility (measured by <span class="math notranslate nohighlight">\(\sigma\)</s
 <p>Here is a function to simulate a path using this equation:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">simulate_asset_price_path</span><span class="p">(</span><span class="n">μ</span><span class="o">=</span><span class="n">default_μ</span><span class="p">,</span> <span class="n">S0</span><span class="o">=</span><span class="n">default_S0</span><span class="p">,</span> <span class="n">h0</span><span class="o">=</span><span class="n">default_h0</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">default_n</span><span class="p">,</span> <span class="n">ρ</span><span class="o">=</span><span class="n">default_ρ</span><span class="p">,</span> <span class="n">ν</span><span class="o">=</span><span class="n">default_ν</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">simulate_asset_price_path</span><span class="p">(</span><span class="n">μ</span><span class="o">=</span><span class="n">default_μ</span><span class="p">,</span>
+                               <span class="n">S0</span><span class="o">=</span><span class="n">default_S0</span><span class="p">,</span>
+                               <span class="n">h0</span><span class="o">=</span><span class="n">default_h0</span><span class="p">,</span>
+                               <span class="n">n</span><span class="o">=</span><span class="n">default_n</span><span class="p">,</span>
+                               <span class="n">ρ</span><span class="o">=</span><span class="n">default_ρ</span><span class="p">,</span>
+                               <span class="n">ν</span><span class="o">=</span><span class="n">default_ν</span><span class="p">,</span>
+                               <span class="n">rng</span><span class="o">=</span><span class="n">rng</span><span class="p">):</span>
     <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">S0</span><span class="p">)</span>
 
     <span class="n">h</span> <span class="o">=</span> <span class="n">h0</span>
     <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-        <span class="n">s</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">μ</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">h</span><span class="p">)</span> <span class="o">*</span> <span class="n">randn</span><span class="p">()</span>
-        <span class="n">h</span> <span class="o">=</span> <span class="n">ρ</span> <span class="o">*</span> <span class="n">h</span> <span class="o">+</span> <span class="n">ν</span> <span class="o">*</span> <span class="n">randn</span><span class="p">()</span>
+        <span class="n">s</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">μ</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">h</span><span class="p">)</span> <span class="o">*</span> <span class="n">rng</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">()</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">ρ</span> <span class="o">*</span> <span class="n">h</span> <span class="o">+</span> <span class="n">ν</span> <span class="o">*</span> <span class="n">rng</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">()</span>
 
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
 </pre></div>
@@ -885,7 +892,7 @@ volatility (measured by <span class="math notranslate nohighlight">\(\sigma\)</s
 <span class="n">transforms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span>
 <span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">transform</span><span class="p">,</span> <span class="n">title</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">transforms</span><span class="p">,</span> <span class="n">titles</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">):</span>
-        <span class="n">path</span> <span class="o">=</span> <span class="n">simulate_asset_price_path</span><span class="p">()</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">simulate_asset_price_path</span><span class="p">(</span><span class="n">rng</span><span class="o">=</span><span class="n">rng</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">transform</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
 
@@ -895,7 +902,7 @@ volatility (measured by <span class="math notranslate nohighlight">\(\sigma\)</s
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/eeafd95afae6afbe7eef359e1c6663d8ca8eb38cf4b90ae5e7e69ec7f822b24b.png"><img alt="_images/eeafd95afae6afbe7eef359e1c6663d8ca8eb38cf4b90ae5e7e69ec7f822b24b.png" src="_images/eeafd95afae6afbe7eef359e1c6663d8ca8eb38cf4b90ae5e7e69ec7f822b24b.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/fd9e2368079eb5cf20f5599ebcff97ee7a093db49616ea70de001067bff445e1.png"><img alt="_images/fd9e2368079eb5cf20f5599ebcff97ee7a093db49616ea70de001067bff445e1.png" src="_images/fd9e2368079eb5cf20f5599ebcff97ee7a093db49616ea70de001067bff445e1.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -905,7 +912,7 @@ volatility (measured by <span class="math notranslate nohighlight">\(\sigma\)</s
 <p>Now that our model is more complicated, we cannot easily determine the
 distribution of <span class="math notranslate nohighlight">\(S_n\)</span>.</p>
 <p>So to compute the price <span class="math notranslate nohighlight">\(P\)</span> of the option, we use Monte Carlo.</p>
-<p>We average over realizations <span class="math notranslate nohighlight">\(S_n^1, \ldots, S_n^M\)</span> of <span class="math notranslate nohighlight">\(S_n\)</span> and appealing to
+<p>We average over realizations <span class="math notranslate nohighlight">\(S_n^1, \ldots, S_n^M\)</span> of <span class="math notranslate nohighlight">\(S_n\)</span> and appeal to
 the law of large numbers:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -924,7 +931,8 @@ the law of large numbers:</p>
                        <span class="n">n</span><span class="o">=</span><span class="n">default_n</span><span class="p">,</span>
                        <span class="n">ρ</span><span class="o">=</span><span class="n">default_ρ</span><span class="p">,</span>
                        <span class="n">ν</span><span class="o">=</span><span class="n">default_ν</span><span class="p">,</span>
-                       <span class="n">M</span><span class="o">=</span><span class="mi">10_000</span><span class="p">):</span>
+                       <span class="n">M</span><span class="o">=</span><span class="mi">10_000</span><span class="p">,</span>
+                       <span class="n">rng</span><span class="o">=</span><span class="n">rng</span><span class="p">):</span>
     <span class="n">current_sum</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="c1"># For each sample path</span>
     <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
@@ -932,8 +940,8 @@ the law of large numbers:</p>
         <span class="n">h</span> <span class="o">=</span> <span class="n">h0</span>
         <span class="c1"># Simulate forward in time</span>
         <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-            <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">μ</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">h</span><span class="p">)</span> <span class="o">*</span> <span class="n">randn</span><span class="p">()</span>
-            <span class="n">h</span> <span class="o">=</span> <span class="n">ρ</span> <span class="o">*</span> <span class="n">h</span> <span class="o">+</span> <span class="n">ν</span> <span class="o">*</span> <span class="n">randn</span><span class="p">()</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">μ</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">h</span><span class="p">)</span> <span class="o">*</span> <span class="n">rng</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">()</span>
+            <span class="n">h</span> <span class="o">=</span> <span class="n">ρ</span> <span class="o">*</span> <span class="n">h</span> <span class="o">+</span> <span class="n">ν</span> <span class="o">*</span> <span class="n">rng</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">()</span>
         <span class="c1"># And add the value max{S_n - K, 0} to current_sum</span>
         <span class="n">current_sum</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">-</span> <span class="n">K</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 
@@ -945,16 +953,16 @@ the law of large numbers:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
-<span class="n">compute_call_price</span><span class="p">()</span>
+<span class="n">compute_call_price</span><span class="p">(</span><span class="n">rng</span><span class="o">=</span><span class="n">rng</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 186 ms, sys: 6 μs, total: 186 ms
-Wall time: 186 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 201 ms, sys: 975 μs, total: 202 ms
+Wall time: 202 ms
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(676.8935863517772)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(1158.6416821471494)
 </pre></div>
 </div>
 </div>
@@ -987,12 +995,12 @@ accurate.</p>
                        <span class="n">n</span><span class="o">=</span><span class="n">default_n</span><span class="p">,</span>
                        <span class="n">ρ</span><span class="o">=</span><span class="n">default_ρ</span><span class="p">,</span>
                        <span class="n">ν</span><span class="o">=</span><span class="n">default_ν</span><span class="p">,</span>
-                       <span class="n">M</span><span class="o">=</span><span class="mi">10_000</span><span class="p">):</span>
-
+                       <span class="n">M</span><span class="o">=</span><span class="mi">10_000</span><span class="p">,</span>
+                       <span class="n">rng</span><span class="o">=</span><span class="n">rng</span><span class="p">):</span>
     <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">S0</span><span class="p">))</span>
     <span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">h0</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-        <span class="n">Z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span>
+        <span class="n">Z</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="n">M</span><span class="p">))</span>
         <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">μ</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">h</span><span class="p">)</span> <span class="o">*</span> <span class="n">Z</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
         <span class="n">h</span> <span class="o">=</span> <span class="n">ρ</span> <span class="o">*</span> <span class="n">h</span> <span class="o">+</span> <span class="n">ν</span> <span class="o">*</span> <span class="n">Z</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
     <span class="n">expectation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">-</span> <span class="n">K</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
@@ -1005,16 +1013,16 @@ accurate.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
-<span class="n">compute_call_price_vector</span><span class="p">()</span>
+<span class="n">compute_call_price_vector</span><span class="p">(</span><span class="n">rng</span><span class="o">=</span><span class="n">rng</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 5.43 ms, sys: 8 μs, total: 5.44 ms
-Wall time: 5.2 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3.59 ms, sys: 15 μs, total: 3.6 ms
+Wall time: 3.41 ms
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(642.2226707996922)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(754.6457034687737)
 </pre></div>
 </div>
 </div>
@@ -1024,16 +1032,16 @@ Wall time: 5.2 ms
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
-<span class="n">compute_call_price</span><span class="p">(</span><span class="n">M</span><span class="o">=</span><span class="mi">10_000_000</span><span class="p">)</span>
+<span class="n">compute_call_price</span><span class="p">(</span><span class="n">M</span><span class="o">=</span><span class="mi">10_000_000</span><span class="p">,</span> <span class="n">rng</span><span class="o">=</span><span class="n">rng</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3min 10s, sys: 29.9 ms, total: 3min 10s
-Wall time: 3min 10s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3min 26s, sys: 27.8 ms, total: 3min 26s
+Wall time: 3min 26s
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(869.0476680592188)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(867.2001548274342)
 </pre></div>
 </div>
 </div>
@@ -1080,7 +1088,8 @@ Wall time: 3min 10s
                                     <span class="n">ρ</span><span class="o">=</span><span class="n">default_ρ</span><span class="p">,</span>
                                     <span class="n">ν</span><span class="o">=</span><span class="n">default_ν</span><span class="p">,</span>
                                     <span class="n">bp</span><span class="o">=</span><span class="n">default_bp</span><span class="p">,</span>
-                                    <span class="n">M</span><span class="o">=</span><span class="mi">50_000</span><span class="p">):</span>
+                                    <span class="n">M</span><span class="o">=</span><span class="mi">50_000</span><span class="p">,</span>
+                                    <span class="n">rng</span><span class="o">=</span><span class="n">rng</span><span class="p">):</span>
     <span class="n">current_sum</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="c1"># For each sample path</span>
     <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
@@ -1090,8 +1099,8 @@ Wall time: 3min 10s
         <span class="n">option_is_null</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="c1"># Simulate forward in time</span>
         <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-            <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">μ</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">h</span><span class="p">)</span> <span class="o">*</span> <span class="n">randn</span><span class="p">()</span>
-            <span class="n">h</span> <span class="o">=</span> <span class="n">ρ</span> <span class="o">*</span> <span class="n">h</span> <span class="o">+</span> <span class="n">ν</span> <span class="o">*</span> <span class="n">randn</span><span class="p">()</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">μ</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">h</span><span class="p">)</span> <span class="o">*</span> <span class="n">rng</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">()</span>
+            <span class="n">h</span> <span class="o">=</span> <span class="n">ρ</span> <span class="o">*</span> <span class="n">h</span> <span class="o">+</span> <span class="n">ν</span> <span class="o">*</span> <span class="n">rng</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">bp</span><span class="p">:</span>
                 <span class="n">payoff</span> <span class="o">=</span> <span class="mi">0</span>
                 <span class="n">option_is_null</span> <span class="o">=</span> <span class="kc">True</span>
@@ -1109,16 +1118,16 @@ Wall time: 3min 10s
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> compute_call_price_with_barrier()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> compute_call_price_with_barrier(rng=rng)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.12 s, sys: 0 ns, total: 1.12 s
-Wall time: 1.12 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.17 s, sys: 1e+03 ns, total: 1.17 s
+Wall time: 1.17 s
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.03912185910192249)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.03574279377236199)
 </pre></div>
 </div>
 </div>
@@ -1135,12 +1144,13 @@ Wall time: 1.12 s
                                            <span class="n">ρ</span><span class="o">=</span><span class="n">default_ρ</span><span class="p">,</span>
                                            <span class="n">ν</span><span class="o">=</span><span class="n">default_ν</span><span class="p">,</span>
                                            <span class="n">bp</span><span class="o">=</span><span class="n">default_bp</span><span class="p">,</span>
-                                           <span class="n">M</span><span class="o">=</span><span class="mi">50_000</span><span class="p">):</span>
+                                           <span class="n">M</span><span class="o">=</span><span class="mi">50_000</span><span class="p">,</span>
+                                           <span class="n">rng</span><span class="o">=</span><span class="n">rng</span><span class="p">):</span>
     <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">S0</span><span class="p">))</span>
     <span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">h0</span><span class="p">)</span>
     <span class="n">option_is_null</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-        <span class="n">Z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span>
+        <span class="n">Z</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="n">M</span><span class="p">))</span>
         <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">μ</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">h</span><span class="p">)</span> <span class="o">*</span> <span class="n">Z</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
         <span class="n">h</span> <span class="o">=</span> <span class="n">ρ</span> <span class="o">*</span> <span class="n">h</span> <span class="o">+</span> <span class="n">ν</span> <span class="o">*</span> <span class="n">Z</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
         <span class="c1"># Mark all the options null where S_n &gt; barrier price</span>
@@ -1156,16 +1166,16 @@ Wall time: 1.12 s
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> compute_call_price_with_barrier_vector()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> compute_call_price_with_barrier_vector(rng=rng)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 28.9 ms, sys: 0 ns, total: 28.9 ms
-Wall time: 28.7 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 20.5 ms, sys: 0 ns, total: 20.5 ms
+Wall time: 20.2 ms
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.04357257101614265)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.041499302052053946)
 </pre></div>
 </div>
 </div>
@@ -1546,6 +1556,11 @@ Wall time: 28.7 ms
    46. Maximum Likelihood Estimation
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bayes_intro.html">
+   47. Introduction to Bayesian Methods
+  </a>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -1555,17 +1570,17 @@ Wall time: 28.7 ms
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   47. Troubleshooting
+   48. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   48. References
+   49. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   49. Execution Statistics
+   50. Execution Statistics
   </a>
  </li>
 </ul>
