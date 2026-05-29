@@ -19,14 +19,15 @@ In this lecture we study one of the most important ideas in statistics: how to u
 
 The technique we will use is called **Bayesian updating**.
 
-We start with a belief about some unknown number, expressed as a probability distribution.
+We start with a belief about some unknown number.
 
 As we observe data, we revise that belief in a way that is mathematically precise.
 
-We will develop these ideas through a concrete example drawn from development
+We will develop these ideas through an example drawn from development
 finance: estimating the default rate on a new type of loan.
 
-Along the way we will meet conditional probability, Bayes' law, the Bernoulli and binomial distributions, and the beta distribution.
+Along the way we will meet conditional probability, Bayes' law, the Bernoulli
+and binomial distributions, and the beta distribution.
 
 Let's begin by importing the libraries we need.
 
@@ -96,11 +97,11 @@ $$
 So observing a default raises our assessment that the borrower is high risk from 20% to about 67%.
 
 
-## Bayes' law
+### Bayes' law
 
 The last computation was, in fact, a typical Bayesian calculation.
 
-To formalize ideas, let's consider two abstract events $A$ and $B$.
+Let's clarify further by returning to a setting with two abstract events $A$ and $B$.
 
 Notice that the event $A \cap B$ (both $A$ and $B$ occur) is the same as $B \cap A$.
 
@@ -116,19 +117,20 @@ $$
     P(A \mid B) = \frac{P(B \mid A)\, P(A)}{P(B)}.
 $$ (eq:bayes_law)
 
-Each piece of {eq}`eq:bayes_law` has a name.
+In this setting, we call
 
-We call $P(A)$ the **prior** — our belief about $A$ before seeing data.
-
-We call $P(B \mid A)$ the **likelihood** — how probable the data $B$ is when $A$ is true.
-
-We call $P(A \mid B)$ the **posterior** — our updated belief about $A$ after seeing $B$.
+* $P(A)$ the **prior** — our belief about $A$ before seeing data,
+* $P(B \mid A)$ the **likelihood** — how probable the data $B$ is when $A$ is true, and
+* $P(A \mid B)$ the **posterior** — our updated belief about $A$ after seeing $B$.
 
 The denominator $P(B)$ is a normalizing constant that makes the posterior probabilities sum to one.
 
-You can check that the borrower calculation above is exactly Bayes' law with $A = H$ and $B = D$.
+```{prf:example}
+:label: bayes_ex_cond
+The borrower calculation we completed above was an application of Bayes' law with $A = H$ and $B = D$.
 
-Bayes' law tells us how to "reverse" a conditional probability: it converts $P(D \mid H)$, which we know, into $P(H \mid D)$, which we want.
+Bayes' law tells us how to convert $P(D \mid H)$, which was assumed to be known, into $P(H \mid D)$, which we want.
+```
 
 ## A microloan default problem
 
@@ -214,13 +216,6 @@ $\text{Beta}(0.5, 0.5)$ piles weight near 0 and 1, a belief that the market is p
 
 $\text{Beta}(2, 5)$ leans toward low default rates, while $\text{Beta}(8, 3)$ leans toward high ones.
 
-For our development bank we will adopt the $\text{Beta}(2, 5)$ prior shown in the bottom left.
-
-```{code-cell} ipython3
-a_0, b_0 = 2, 5
-```
-
-This prior puts most of its weight on default rates below 0.5, with a peak around 0.2, reflecting cautious optimism together with genuine uncertainty.
 
 
 ## A one-step update
@@ -239,8 +234,8 @@ $$ (eq:bernoulli_lik)
 
 This formula (which is called the Bernoulli distribution) gives us the right numbers:
 
-* When $y = 1$ it gives $\theta^1 (1-\theta)^0 = \theta$, the probability of a default.
-* When $y = 0$ it gives $\theta^0 (1-\theta)^1 = 1 - \theta$, the probability of repayment.
+* The default outcome $y = 1$ yields $\theta^1 (1-\theta)^0 = \theta$, the probability of a default.
+* The repayment outcome $y = 0$ yields $\theta^0 (1-\theta)^1 = 1 - \theta$, the probability of repayment.
 
 Bayes' law for a continuous parameter takes the form
 
@@ -258,58 +253,116 @@ Substituting the Bernoulli likelihood {eq}`eq:bernoulli_lik` gives our complete 
 
 $$
     \pi(\theta \mid y) = \frac{\theta^{y}(1-\theta)^{1-y}\, \pi(\theta)}{\int_0^1 t^{y}(1-t)^{1-y}\, \pi(t)\, dt}.
-$$
+$$ (eq:bayes_update)
 
-This rule takes any prior $\pi$ and any single observation $y$ and returns the posterior.
+This rule is valid for any $\theta$.
+
+Hence we can think of it as taking any prior density $\pi(\cdot)$ and any single
+observation $y$ and converting it into the posterior density $\pi(\cdot \mid y)$.
 
 
 ## Computing the update numerically
 
-The integral in the denominator of {eq}`eq:bayes_density` is not trivial to compute.
+How can we compute the posterior density?
 
-A simple and general approach is to compute it numerically, using a technique
+### Prior
+
+First let's set up the prior.
+
+For our development bank we will begin with the prior $\pi = \text{Beta}(2, 5)$.
+
+```{code-cell} ipython3
+a_0, b_0 = 2, 5
+
+def pi(θ):
+    return beta.pdf(θ, a_0, b_0)
+```
+
+This prior puts most of its weight on default rates below 0.5, with a peak around 0.2, reflecting cautious optimism together with genuine uncertainty.
+
+
+### Normalizing constant
+
+Next we need to compute the integral in the denominator of {eq}`eq:bayes_density`.
+
+One general approach is to compute it numerically, using a technique
 such as the [trapezoidal rule](https://en.wikipedia.org/wiki/Trapezoidal_rule).
 
-We lay down a fine grid of points across $[0, 1]$ and represent each density by its values at those grid points.
+We fix a grid of points across $[0, 1]$ and represent each density by its values at those grid points.
 
 Every integral then becomes a sum that `numpy` can evaluate for us.
 
+The idea of the trapezoidal rule is to join neighboring grid points by straight lines and sum the areas of the resulting trapezoids.
+
+The figure below illustrates this for the integrand $p(y \mid \theta)\, \pi(\theta)$ with $y = 1$, using a coarse grid so the trapezoids are visible.
+
+```{code-cell} ipython3
+:tags: [hide-input]
+
+fine = np.linspace(0, 1, 500)
+integrand = fine * beta.pdf(fine, a_0, b_0)        # θ^1 (1-θ)^0 × prior
+
+coarse = np.linspace(0, 1, 9)                       # eight trapezoids
+heights = coarse * beta.pdf(coarse, a_0, b_0)
+
+fig, ax = plt.subplots()
+ax.plot(fine, integrand, lw=2, label=r"$p(y \mid \theta)\,\pi(\theta)$")
+ax.fill_between(coarse, heights, alpha=0.3,
+                label="trapezoidal approximation")
+ax.plot(coarse, heights, 'o-', color='C1', lw=1, ms=4)
+for x, h in zip(coarse, heights):                   # draw the trapezoid edges
+    ax.plot([x, x], [0, h], color='C1', lw=0.8, alpha=0.6)
+ax.set_xlabel(r"$\theta$")
+ax.set_ylabel("integrand")
+ax.legend()
+plt.show()
+```
+
+The finer the grid, the closer the shaded region gets to the true area under the curve.
+
 Let's build the update in two steps.
 
-First, recall that the denominator in {eq}`eq:bayes_density` is the integral
+First, recall that the denominator in {eq}`eq:bayes_density` is the integrated likelihood times the prior:
 
 $$
     \int_0^1 p(y \mid t)\, \pi(t)\, dt .
 $$
 
-This is just the likelihood times the prior, integrated over all values of $\theta$.
-
-The function below computes it on the grid, approximating the integral with `np.trapezoid`.
+The function below computes this constant on the grid, approximating the integral with `np.trapezoid`.
 
 ```{code-cell} ipython3
-def normalizing_constant(prior_vals, y, θ_grid):
+def normalizing_constant(y):
     "Compute the denominator of Bayes' law: likelihood times prior, integrated."
-    likelihood = θ_grid**y * (1 - θ_grid)**(1 - y)
-    return np.trapezoid(likelihood * prior_vals, θ_grid)
+    t_grid = np.linspace(0, 1, 100)  # linear grid of 100 points
+    likelihood_vals = t_grid**y * (1 - t_grid)**(1 - y)
+    prior_vals = pi(t_grid)
+    integrand = likelihood_vals * prior_vals
+    return np.trapezoid(integrand, t_grid)
 ```
+
+### Calculating the posterior
 
 The second step divides the (unnormalized) product of likelihood and prior by this constant.
 
 The result is the posterior density, evaluated on the grid.
 
 ```{code-cell} ipython3
-def update(prior_vals, y, θ_grid):
-    "Update prior density values to posterior values after observing y."
-    likelihood = θ_grid**y * (1 - θ_grid)**(1 - y)
-    C = normalizing_constant(prior_vals, y, θ_grid)
-    return likelihood * prior_vals / C
+def update(y, θ_grid):
+    """
+    Compute posterior values pi(θ, y) on the set of grid points θ_grid
+    after observing outcome y.
+    """
+    likelihood_vals = θ_grid**y * (1 - θ_grid)**(1 - y)
+    prior_vals = pi(θ_grid)
+    return likelihood_vals * prior_vals / normalizing_constant(y)
 ```
 
 Let's start from our Beta(2, 5) prior and suppose that we observe a single default ($y = 1$).
 
 ```{code-cell} ipython3
-prior_vals = beta.pdf(θ_grid, a_0, b_0)
-posterior_vals = update(prior_vals, y=1, θ_grid=θ_grid)
+θ_grid = np.linspace(0, 1, 500)
+prior_vals = pi(θ_grid)
+posterior_vals = update(y=1, θ_grid=θ_grid)
 
 fig, ax = plt.subplots()
 ax.plot(θ_grid, prior_vals, lw=2, label="prior")
@@ -327,7 +380,7 @@ This makes sense: a default is evidence that $\theta$ might be larger than we th
 If instead the loan had been repaid, the posterior would shift left.
 
 ```{code-cell} ipython3
-posterior_repaid = update(prior_vals, y=0, θ_grid=θ_grid)
+posterior_repaid = update(y=0, θ_grid=θ_grid)
 
 fig, ax = plt.subplots()
 ax.plot(θ_grid, prior_vals, lw=2, label="prior")
@@ -338,28 +391,102 @@ ax.legend()
 plt.show()
 ```
 
-## A closed form: the beta prior
 
-The numerical approach always works, but in this case there is something special going on.
+## Iterating the update
 
-It has to do with the fact that we chose a Beta prior.
+Here is a key observation: the posterior after one step is itself a perfectly good prior for the next step.
+
+So we can repeat the update as each new loan resolves.
+
+Starting from a prior $\pi_0$, observing $Y_1$ gives a posterior $\pi_1$.
+
+Treating $\pi_1$ as the new prior and observing $Y_2$ gives $\pi_2$, and so on.
+
+This produces a sequence of densities $\pi_0, \pi_1, \pi_2, \ldots$ that captures our evolving beliefs.
+
+Let's simulate a stream of loan outcomes and watch the beliefs evolve.
+
+We will generate data from a "true" default rate $\theta^* = 0.15$, which the bank does not know.
+
+```{code-cell} ipython3
+θ_true = 0.15
+n = 100
+rng = np.random.default_rng(seed=42)
+# Generate n draws from the Bernoulli distribution with θ = θ_true
+outcomes = (rng.random(n) < θ_true).astype(int)
+```
+
+Now we iterate the grid update over these outcomes, recording the posterior at a few selected stages.
+
+```{code-cell} ipython3
+snapshots = [1, 5, 20, 100]
+
+# Set up the prior Beta(a_0, b_0) as values on a grid
+current_vals = pi(θ_grid)
+
+# Plot the prior
+fig, ax = plt.subplots()
+ax.plot(θ_grid, current_vals, 'k-', lw=2, alpha=0.7, label="prior")
+
+# Update the density (on the grid) and plot
+for i in range(1, n + 1):
+    y = outcomes[i - 1]
+    likelihood_vals = θ_grid**y * (1 - θ_grid)**(1 - y)
+    current_vals = likelihood_vals * current_vals
+    current_vals /= np.trapezoid(current_vals, θ_grid)
+    if i in snapshots:
+        ax.plot(θ_grid, current_vals, lw=2, label=f"posterior after {i} loans")
+
+ax.axvline(θ_true, color='k', ls=':', label=r"true $\theta^*$")
+ax.set_xlabel(r"$\theta$")
+ax.set_ylabel("density")
+ax.legend()
+plt.show()
+```
+
+Two things stand out.
+
+First, the posterior **concentrates** around the true value $\theta^* = 0.15$ as more loans resolve.
+
+Second, the posterior becomes **tighter** — our uncertainty about $\theta$ steadily shrinks.
+
+Early on, the prior has a strong influence on our beliefs.
+
+As data accumulates, that influence fades and the data takes over.
+
+## Further observations
+
+Let's make two additional observations regarding the model described above.
+
+The first shows that we can do the update steps above with pencil and paper in
+the special case of a beta prior.
+
+The second observation concerns batch updating.
+
+
+### A closed form: the beta prior
+
+The numerical updating rule provided above always works, regardless of our
+choice of prior.
+
+But in the beta case we get a nice analytical approach as well.
 
 Recall that this prior is proportional to $\theta^{a-1}(1-\theta)^{b-1}$.
 
-Multiply it by the Bernoulli likelihood $\theta^{y}(1-\theta)^{1-y}$:
+When we multiply this expression by the Bernoulli likelihood $\theta^{y}(1-\theta)^{1-y}$, we get
 
 $$
     \theta^{y}(1-\theta)^{1-y} \cdot \theta^{a-1}(1-\theta)^{b-1}
     = \theta^{(a + y) - 1}(1-\theta)^{(b + 1 - y) - 1}.
 $$
 
-The right-hand side has exactly the form of another beta density.
+The right-hand side has the form of another beta density.
 
 So if the prior is $\text{Beta}(a, b)$, the posterior is again a beta distribution — with updated parameters.
 
 We say that the beta distribution is a **conjugate prior** for the Bernoulli likelihood.
 
-The update rule for the parameters is beautifully simple:
+The update rule for the parameters is very simple:
 
 - a default ($y = 1$) sends $(a, b) \mapsto (a + 1,\, b)$,
 - a repayment ($y = 0$) sends $(a, b) \mapsto (a,\, b + 1)$.
@@ -382,69 +509,17 @@ plt.show()
 
 The two curves lie exactly on top of one another, confirming that our numerics and the closed form agree.
 
-## Iterating the update
 
-Here is a key observation: the posterior after one step is itself a perfectly good prior for the next step.
+### The batch update via the binomial likelihood
 
-So we can repeat the update as each new loan resolves.
-
-Starting from a prior $\pi_0$, observing $Y_1$ gives a posterior $\pi_1$.
-
-Treating $\pi_1$ as the new prior and observing $Y_2$ gives $\pi_2$, and so on.
-
-This produces a sequence of densities $\pi_0, \pi_1, \pi_2, \ldots$ that captures our evolving beliefs.
-
-Let's simulate a stream of loan outcomes and watch the beliefs evolve.
-
-We will generate data from a "true" default rate $\theta^* = 0.15$, which the bank does not know.
-
-```{code-cell} ipython3
-θ_true = 0.15
-n = 100
-rng = np.random.default_rng(seed=42)
-outcomes = (rng.random(n) < θ_true).astype(int)
-```
-
-Now we iterate the grid update over these outcomes, recording the posterior at a few selected stages.
-
-```{code-cell} ipython3
-snapshots = [1, 5, 20, 100]
-current = beta.pdf(θ_grid, a_0, b_0)
-
-fig, ax = plt.subplots()
-ax.plot(θ_grid, current, 'k-', lw=2, alpha=0.7, label="prior")
-
-for i in range(1, n + 1):
-    current = update(current, outcomes[i - 1], θ_grid)
-    if i in snapshots:
-        ax.plot(θ_grid, current, lw=2, label=f"posterior after {i} loans")
-
-ax.axvline(θ_true, color='k', ls=':', label=r"true $\theta^*$")
-ax.set_xlabel(r"$\theta$")
-ax.set_ylabel("density")
-ax.legend()
-plt.show()
-```
-
-Two things stand out.
-
-First, the posterior **concentrates** around the true value $\theta^* = 0.15$ as more loans resolve.
-
-Second, the posterior becomes **tighter** — our uncertainty about $\theta$ steadily shrinks.
-
-Early on, the prior has a strong influence on our beliefs.
-
-As data accumulates, that influence fades and the data takes over.
-
-## The batch update via the binomial likelihood
-
-There is a second, equally natural way to think about the same problem.
+There is a second, equally natural way to think about the problem of belief
+updating given loan outcome data.
 
 Instead of processing outcomes one at a time, suppose we wait and observe all $n$ outcomes $Y_1, \ldots, Y_n$ together.
 
 Then we update directly from the prior $\pi_0$ to the posterior $\pi_n$ in a single step.
 
-For independent Bernoulli draws, the only feature of the data that matters is the **total number of defaults**,
+Let the total number of defaults be given by
 
 $$
     k = \sum_{i=1}^n Y_i.
@@ -472,6 +547,7 @@ $$
 
 In words: add the number of defaults to $a$, and add the number of repayments to $b$.
 
+
 ## Sequential and batch updates agree
 
 We now have two routes from prior to posterior.
@@ -493,35 +569,25 @@ This is identical to the binomial likelihood {eq}`eq:binom_lik`, except for the 
 
 But $\binom{n}{k}$ does not depend on $\theta$, so it cancels between the numerator and denominator when we normalize.
 
-Hence the two posteriors are exactly equal.
+Hence the two posteriors are equal.
 
-Let's confirm this numerically.
+```{note}
+It might appear that the sequential update never used the assumption that the outcomes are independent, while the batch update clearly did.
 
-We compare the sequential grid posterior from before against a single binomial update on the same data.
+In fact both rely on it.
 
-```{code-cell} ipython3
-k = outcomes.sum()           # total number of defaults
+The honest update at step $i$ conditions on everything seen so far:
 
-# Route 1: sequential update, one outcome at a time
-seq_post = beta.pdf(θ_grid, a_0, b_0)
-for y in outcomes:
-    seq_post = update(seq_post, y, θ_grid)
+$$
+    \pi_i(\theta) \propto p(Y_i \mid \theta, Y_1, \ldots, Y_{i-1})\, \pi_{i-1}(\theta).
+$$
 
-# Route 2: single batch update with the binomial likelihood
-binom_lik = binom.pmf(k, n, θ_grid)
-batch_post = binom_lik * beta.pdf(θ_grid, a_0, b_0)
-batch_post = batch_post / np.trapezoid(batch_post, θ_grid)
+When we replace $p(Y_i \mid \theta, Y_1, \ldots, Y_{i-1})$ by the single-outcome likelihood $p(Y_i \mid \theta)$, we are assuming that, given $\theta$, the new outcome is independent of the past.
 
-fig, ax = plt.subplots()
-ax.plot(θ_grid, seq_post, lw=4, alpha=0.5, label="sequential (one at a time)")
-ax.plot(θ_grid, batch_post, ls='--', lw=2, label="batch (binomial)")
-ax.set_xlabel(r"$\theta$")
-ax.set_ylabel("density")
-ax.legend()
-plt.show()
+This is exactly the conditional independence that lets the batch likelihood factor into a product.
+
+So the assumption is doing the same work in both routes — it is just hidden in the sequential one.
 ```
-
-The curves coincide.
 
 
 ## From posterior to loan pricing
@@ -529,6 +595,10 @@ The curves coincide.
 Why does any of this matter for the bank?
 
 The whole point of estimating $\theta$ is to make better lending decisions.
+
+Let's discuss how this can be done.
+
+### Expected loss
 
 Suppose each loan has size 1, and the bank loses the full amount when a loan defaults.
 
@@ -555,6 +625,8 @@ loans = np.arange(1, n + 1)
 a_n = a_0 + cum_defaults
 b_n = b_0 + loans - cum_defaults
 
+# Use standard formulas to compute the mean and standard deviation
+# at every n (vectorized)
 post_mean = a_n / (a_n + b_n)
 post_std = np.sqrt(a_n * b_n / ((a_n + b_n)**2 * (a_n + b_n + 1)))
 
@@ -575,7 +647,7 @@ At the same time, the band of uncertainty narrows.
 
 This is the practical payoff of Bayesian updating: the bank can price cautiously when data is scarce, and sharpen its pricing as experience accumulates.
 
-## The break-even interest rate
+### The break-even interest rate
 
 Let's turn the expected loss into an actual interest rate.
 
