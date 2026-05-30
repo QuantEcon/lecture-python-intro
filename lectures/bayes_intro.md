@@ -15,13 +15,48 @@ kernelspec:
 
 ## Overview
 
-In this lecture we study one of the most important ideas in statistics: how to update our beliefs about an unknown quantity as new data arrives.
+In this lecture we study one of the most important ideas in statistics: how to
+update our beliefs about an unknown quantity as new data arrives.
 
-The technique we will use is called **Bayesian updating**.
+The technique we will use is called **Bayesian updating**, named after [Thomas
+Bayes](https://en.wikipedia.org/wiki/Thomas_Bayes).
 
 We start with a belief about some unknown number.
 
 As we observe data, we revise that belief in a way that is mathematically precise.
+
+The figure below illustrates the idea: we combine a **prior belief** with
+observed **data** to arrive at an **updated belief**.
+
+```{code-cell} ipython3
+:tags: [hide-input]
+
+import matplotlib.pyplot as plt
+from matplotlib.patches import Ellipse, FancyArrowPatch
+
+def add_node(ax, xy, text, color):
+    ax.add_patch(Ellipse(xy, width=0.34, height=0.20,
+                         facecolor=color, edgecolor='black', lw=1.0, alpha=0.35))
+    ax.annotate(text, xy, ha='center', va='center', fontsize=12)
+
+def add_arrow(ax, start, end):
+    ax.add_patch(FancyArrowPatch(start, end, arrowstyle='-|>',
+                                 mutation_scale=18, lw=1.2, color='black'))
+
+fig, ax = plt.subplots(figsize=(7, 3.5))
+
+add_node(ax, (0.22, 0.75), "prior belief", 'C0')
+add_node(ax, (0.22, 0.25), "data",         'C1')
+add_node(ax, (0.78, 0.50), "updated belief", 'C2')
+
+add_arrow(ax, (0.39, 0.70), (0.61, 0.54))
+add_arrow(ax, (0.39, 0.30), (0.61, 0.46))
+
+ax.set_xlim(0, 1)
+ax.set_ylim(0, 1)
+ax.axis('off')
+plt.show()
+```
 
 We will develop these ideas through an example drawn from development
 finance: estimating the default rate on a new type of loan.
@@ -279,21 +314,29 @@ def pi(θ):
     return beta.pdf(θ, a_0, b_0)
 ```
 
-This prior puts most of its weight on default rates below 0.5, with a peak around 0.2, reflecting cautious optimism together with genuine uncertainty.
+This prior was shown above.
+
+It puts most of its weight on default rates below 0.5, with a peak around 0.2, reflecting cautious optimism (most borrowers don't default) together with significant uncertainty.
 
 
 ### Normalizing constant
 
-Next we need to compute the integral in the denominator of {eq}`eq:bayes_density`.
+Next we need to compute the constant in the denominator of {eq}`eq:bayes_density`,
+which is the integrated likelihood times the prior:
 
-One general approach is to compute it numerically, using a technique
+$$
+    c(y) := \int_0^1 p(y \mid t)\, \pi(t)\, dt .
+$$
+
+
+One general approach is to compute $c(y)$ numerically, using a technique
 such as the [trapezoidal rule](https://en.wikipedia.org/wiki/Trapezoidal_rule).
 
-We fix a grid of points across $[0, 1]$ and represent each density by its values at those grid points.
+The idea of the trapezoidal rule is to
 
-Every integral then becomes a sum that `numpy` can evaluate for us.
-
-The idea of the trapezoidal rule is to join neighboring grid points by straight lines and sum the areas of the resulting trapezoids.
+1. fix a grid of points across $[0, 1]$,
+2. join neighboring grid points by straight lines, and
+3. sum the areas of the resulting trapezoids.
 
 The figure below illustrates this for the integrand $p(y \mid \theta)\, \pi(\theta)$ with $y = 1$, using a coarse grid so the trapezoids are visible.
 
@@ -311,7 +354,7 @@ ax.plot(fine, integrand, lw=2, label=r"$p(y \mid \theta)\,\pi(\theta)$")
 ax.fill_between(coarse, heights, alpha=0.3,
                 label="trapezoidal approximation")
 ax.plot(coarse, heights, 'o-', color='C1', lw=1, ms=4)
-for x, h in zip(coarse, heights):                   # draw the trapezoid edges
+for x, h in zip(coarse, heights):
     ax.plot([x, x], [0, h], color='C1', lw=0.8, alpha=0.6)
 ax.set_xlabel(r"$\theta$")
 ax.set_ylabel("integrand")
@@ -321,15 +364,7 @@ plt.show()
 
 The finer the grid, the closer the shaded region gets to the true area under the curve.
 
-Let's build the update in two steps.
-
-First, recall that the denominator in {eq}`eq:bayes_density` is the integrated likelihood times the prior:
-
-$$
-    \int_0^1 p(y \mid t)\, \pi(t)\, dt .
-$$
-
-The function below computes this constant on the grid, approximating the integral with `np.trapezoid`.
+The function below uses this method to compute an approximation of $c(y)$.
 
 ```{code-cell} ipython3
 def normalizing_constant(y):

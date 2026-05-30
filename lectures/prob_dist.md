@@ -11,9 +11,9 @@ kernelspec:
   name: python3
 ---
 
-# Distributions and Probabilities
+# Common Distributions
 
-```{index} single: Distributions and Probabilities
+```{index} single: Common Distributions
 ```
 
 ## Outline
