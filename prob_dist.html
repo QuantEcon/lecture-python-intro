@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>19. Distributions and Probabilities &#8212; A First Course in Quantitative Economics with Python</title>
+    <title>19. Common Distributions &#8212; A First Course in Quantitative Economics with Python</title>
     
     <link rel="preconnect" href="https://unpkg.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -144,13 +144,13 @@
 <!-- Twitter tags -->
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:site" content="@quantecon" />
-<meta name="twitter:title" content="Distributions and Probabilities"/>
+<meta name="twitter:title" content="Common Distributions"/>
 <meta name="twitter:description" content="This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski.">
 <meta name="twitter:creator" content="@quantecon">
 <meta name="twitter:image" content="https://assets.quantecon.org/img/qe-twitter-logo.png">
 
 <!-- Opengraph tags -->
-<meta property="og:title" content="Distributions and Probabilities" />
+<meta property="og:title" content="Common Distributions" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://intro.quantecon.org/prob_dist.html" />
 <meta property="og:image" content="https://assets.quantecon.org/img/qe-og-logo.png" />
@@ -210,7 +210,7 @@
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outline">19.1. Outline</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-distributions">19.2. Common distributions</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">19.2. Common distributions</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-distributions">19.2.1. Discrete distributions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uniform-distribution">19.2.1.1. Uniform distribution</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bernoulli-distribution">19.2.1.2. Bernoulli distribution</a></li>
@@ -295,7 +295,7 @@
 
                     <!-- Last modified / Changelog dropdown -->
                         <button class="qe-page__header-changed" id="changelog-toggle" aria-expanded="false">
-                            Last changed: Jan 21, 2025
+                            Last changed: May 30, 2026
                             <span class="changelog-icon">▼</span>
                         </button>
 
@@ -303,6 +303,15 @@
                     <div class="qe-page__header-changelog" id="changelog-content" aria-hidden="true">
                         <h4>Changelog (<a href="https://github.com/QuantEcon/lecture-python-intro/commits/main/lectures/prob_dist.md">full history</a>)</h4>
                         <ul class="changelog-list">
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/5d81eaa7" class="changelog-hash">5d81eaa7</a>
+                                
+                                <span class="changelog-author">John Stachurski</span>
+                                <span class="changelog-time">10 minutes ago</span>
+                                <span class="changelog-message">Polish Bayesian lecture and rename prob_dist title (#760)</span>
+                            </li>
                             
                             <li class="changelog-entry">
                                 
@@ -385,15 +394,6 @@
                                 <span class="changelog-message">[prob_dist] update according to editorial suggestions (#408)</span>
                             </li>
                             
-                            <li class="changelog-entry">
-                                
-                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/c2c1c8e2" class="changelog-hash">c2c1c8e2</a>
-                                
-                                <span class="changelog-author">Longye Tian</span>
-                                <span class="changelog-time">2 years ago</span>
-                                <span class="changelog-message">Update prob_dist.md</span>
-                            </li>
-                            
                         </ul>
                     </div>
 
@@ -406,8 +406,8 @@
                     
                     <div>
                         
-  <section class="tex2jax_ignore mathjax_ignore" id="distributions-and-probabilities">
-<h1><span class="section-number">19. </span>Distributions and Probabilities<a class="headerlink" href="#distributions-and-probabilities" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="common-distributions">
+<h1><span class="section-number">19. </span>Common Distributions<a class="headerlink" href="#common-distributions" title="Link to this heading">#</a></h1>
 <section id="outline">
 <span id="index-0"></span><h2><span class="section-number">19.1. </span>Outline<a class="headerlink" href="#outline" title="Link to this heading">#</a></h2>
 <p>In this lecture we give a quick introduction to data and probability distributions using Python.</p>
@@ -468,8 +468,8 @@ Requirement already satisfied: mdurl~=0.1 in /home/runner/miniconda3/envs/quante
 </div>
 </div>
 </section>
-<section id="common-distributions">
-<h2><span class="section-number">19.2. </span>Common distributions<a class="headerlink" href="#common-distributions" title="Link to this heading">#</a></h2>
+<section id="id1">
+<h2><span class="section-number">19.2. </span>Common distributions<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <p>In this section we recall the definitions of some well-known distributions and explore how to manipulate them with SciPy.</p>
 <section id="discrete-distributions">
 <h3><span class="section-number">19.2.1. </span>Discrete distributions<a class="headerlink" href="#discrete-distributions" title="Link to this heading">#</a></h3>
@@ -1956,7 +1956,7 @@ to the variance.</p>
 <ul class="current nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1 current active active">
   <a class="current reference internal" href="#">
-   19. Distributions and Probabilities
+   19. Common Distributions
   </a>
  </li>
  <li class="toctree-l1">
