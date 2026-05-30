@@ -34,6 +34,7 @@ Let's begin by importing the libraries we need.
 ```{code-cell} ipython3
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.lines import Line2D
 from scipy.stats import beta, binom
 ```
 
@@ -391,7 +392,6 @@ ax.legend()
 plt.show()
 ```
 
-
 ## Iterating the update
 
 Here is a key observation: the posterior after one step is itself a perfectly good prior for the next step.
@@ -416,31 +416,36 @@ rng = np.random.default_rng(seed=42)
 outcomes = (rng.random(n) < θ_true).astype(int)
 ```
 
-Now we iterate the grid update over these outcomes, recording the posterior at a few selected stages.
+Now we iterate the grid update over these outcomes, recording the posterior at a sequence of stages and showing each in its own panel.
 
 ```{code-cell} ipython3
-snapshots = [1, 5, 20, 100]
+snapshots = [0, 1, 2, 3, 5, 8, 12, 16, 20]   # 0 = prior
 
-# Set up the prior Beta(a_0, b_0) as values on a grid
+# Iterate the grid update, saving the density at each snapshot
 current_vals = pi(θ_grid)
-
-# Plot the prior
-fig, ax = plt.subplots()
-ax.plot(θ_grid, current_vals, 'k-', lw=2, alpha=0.7, label="prior")
-
-# Update the density (on the grid) and plot
-for i in range(1, n + 1):
+saved = {0: current_vals.copy()}
+for i in range(1, max(snapshots) + 1):
     y = outcomes[i - 1]
     likelihood_vals = θ_grid**y * (1 - θ_grid)**(1 - y)
     current_vals = likelihood_vals * current_vals
     current_vals /= np.trapezoid(current_vals, θ_grid)
     if i in snapshots:
-        ax.plot(θ_grid, current_vals, lw=2, label=f"posterior after {i} loans")
+        saved[i] = current_vals.copy()
 
-ax.axvline(θ_true, color='k', ls=':', label=r"true $\theta^*$")
-ax.set_xlabel(r"$\theta$")
-ax.set_ylabel("density")
-ax.legend()
+# Use a common y-axis so the concentration over time is visible
+y_max = max(vals.max() for vals in saved.values())
+
+fig, axes = plt.subplots(3, 3, figsize=(6.2, 6.2), sharex=True, sharey=True)
+for ax, k in zip(axes.flatten(), snapshots):
+    ax.fill_between(θ_grid, saved[k], color='C0', alpha=0.3)
+    ax.plot(θ_grid, saved[k], color='k', lw=1)
+    ax.axvline(θ_true, color='k', ls=':', lw=1)
+    ax.set_title("prior" if k == 0 else f"{k} loans", fontsize=10)
+    ax.set_ylim(0, y_max * 1.05)
+    ax.set_box_aspect(1)             # force each panel to be square
+for ax in axes[-1, :]:
+    ax.set_xlabel(r"$\theta$")
+fig.tight_layout()
 plt.show()
 ```
 
@@ -625,25 +630,37 @@ loans = np.arange(1, n + 1)
 a_n = a_0 + cum_defaults
 b_n = b_0 + loans - cum_defaults
 
-# Use standard formulas to compute the mean and standard deviation
-# at every n (vectorized)
+# Posterior mean at every n (vectorized); reused later for pricing
 post_mean = a_n / (a_n + b_n)
-post_std = np.sqrt(a_n * b_n / ((a_n + b_n)**2 * (a_n + b_n + 1)))
+
+# Draw the full posterior at a selection of sample sizes as violins
+sample_points = [1, 5, 10, 20, 50, 100]
+draw_rng = np.random.default_rng(12345)
+samples = [beta.rvs(a_n[m - 1], b_n[m - 1], size=10_000, random_state=draw_rng)
+           for m in sample_points]
+means = [post_mean[m - 1] for m in sample_points]
 
 fig, ax = plt.subplots()
-ax.plot(loans, post_mean, lw=2, label="posterior mean (expected loss)")
-ax.fill_between(loans, post_mean - post_std, post_mean + post_std,
-                alpha=0.2, label="± one posterior std. dev.")
-ax.axhline(θ_true, color='k', ls=':', label=r"true $\theta^*$")
+positions = np.arange(len(sample_points))
+ax.violinplot(samples, positions=positions,
+              showmeans=False, showextrema=False)
+ax.hlines(means, positions - 0.25, positions + 0.25, color='k', lw=3, zorder=3)
+true_line = ax.axhline(θ_true, color='k', ls=':', lw=1)
+
+# Use a short horizontal bar (not the hlines handle) for the mean in the legend
+mean_proxy = Line2D([0], [0], color='k', lw=3)
+ax.legend([mean_proxy, true_line],
+          ["posterior mean (expected loss)", r"true $\theta^*$"])
+ax.set_xticks(positions)
+ax.set_xticklabels(sample_points)
 ax.set_xlabel("number of loans observed")
-ax.set_ylabel(r"estimate of $\theta$")
-ax.legend()
+ax.set_ylabel(r"$\theta$")
 plt.show()
 ```
 
 As the bank observes more loans, its estimate of the expected loss settles down near the true default rate.
 
-At the same time, the band of uncertainty narrows.
+At the same time, the violins narrow, showing that the posterior tightens around that estimate.
 
 This is the practical payoff of Bayesian updating: the bank can price cautiously when data is scarce, and sharpen its pricing as experience accumulates.
 
