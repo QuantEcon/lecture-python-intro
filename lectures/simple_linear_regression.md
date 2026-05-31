@@ -270,7 +270,7 @@ $$
 0 = \sum_{i=1}^{N}{y_i} - \sum_{i=1}^{N}{\alpha} - \beta \sum_{i=1}^{N}{x_i}
 $$
 
-The middle term is a straight forward sum from $i=1,...N$ by a constant $\alpha$
+The middle term is a straightforward sum from $i=1,...N$ by a constant $\alpha$
 
 $$
 0 = \sum_{i=1}^{N}{y_i} - N*\alpha - \beta \sum_{i=1}^{N}{x_i}
@@ -427,7 +427,7 @@ It is often a good idea to at first import a few lines of data from a csv to und
 
 You can observe that there are a bunch of columns we won't need to import such as `Continent`
 
-So let's built a list of the columns we want to import
+So let's build a list of the columns we want to import
 
 ```{code-cell} ipython3
 cols = ['Code', 'Year', 'Life expectancy at birth (historical)', 'GDP per capita']
@@ -442,7 +442,7 @@ df.columns = ["cntry", "year", "life_expectancy", "gdppc"]
 df
 ```
 
-We can see there are `NaN` values which represents missing data so let us go ahead and drop those
+We can see there are `NaN` values which represent missing data so let us go ahead and drop those
 
 ```{code-cell} ipython3
 df.dropna(inplace=True)
