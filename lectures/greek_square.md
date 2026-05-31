@@ -20,7 +20,7 @@ Chapter 24 of {cite}`russell2004history` about early Greek mathematics and astro
 fascinating passage:
 
  ```{epigraph} 
- The square root of 2, which was the first irrational to be discovered, was known to the early Pythagoreans, and ingenious methods of approximating to its value were discovered. The best was as follows: Form two columns of numbers, which we will call the $a$'s and the $b$'s; each starts with a $1$. The next $a$, at each stage, is formed by adding the last $a$ and the $b$ already obtained; the next $b$ is formed by adding twice the previous $a$ to the previous $b$. The first 6 pairs so obtained are $(1,1), (2,3), (5,7), (12,17), (29,41), (70,99)$. In each pair, $2 a^2 - b^2$ is $1$ or $-1$. Thus $b/a$ is nearly the square root of two, and at each fresh step it gets nearer. For instance, the reader may satisy himself that the square of $99/70$ is very nearly equal to $2$.
+ The square root of 2, which was the first irrational to be discovered, was known to the early Pythagoreans, and ingenious methods of approximating to its value were discovered. The best was as follows: Form two columns of numbers, which we will call the $a$'s and the $b$'s; each starts with a $1$. The next $a$, at each stage, is formed by adding the last $a$ and the $b$ already obtained; the next $b$ is formed by adding twice the previous $a$ to the previous $b$. The first 6 pairs so obtained are $(1,1), (2,3), (5,7), (12,17), (29,41), (70,99)$. In each pair, $2 a^2 - b^2$ is $1$ or $-1$. Thus $b/a$ is nearly the square root of two, and at each fresh step it gets nearer. For instance, the reader may satisfy himself that the square of $99/70$ is very nearly equal to $2$.
  ```
 
 This lecture drills down and studies this ancient method for computing square roots by using some of the matrix algebra that we've learned in earlier quantecon lectures. 
@@ -29,7 +29,7 @@ In particular, this lecture can be viewed as a sequel to {doc}`eigen_I`.
 
 It  provides an  example of how eigenvectors isolate  *invariant subspaces* that help construct and analyze solutions of linear difference equations. 
 
-When vector $x_t$ starts in an invariant subspace, iterating the different equation keeps $x_{t+j}$
+When vector $x_t$ starts in an invariant subspace, iterating the difference equation keeps $x_{t+j}$
 in that subspace for all $j \geq 1$.  
 
 Invariant subspace methods are used throughout applied economic dynamics, for example, in the lecture {doc}`money_inflation`.
@@ -112,8 +112,8 @@ $$ (eq:2diff3)
 
 where $\delta$ is a scalar to be determined.
 
-For initial condition that satisfy {eq}`eq:2diff3`
-equation {eq}`eq:2diff1` impllies that
+For initial conditions that satisfy {eq}`eq:2diff3`
+equation {eq}`eq:2diff1` implies that
 
 $$
 y_0 = \left(a_1 + \frac{a_2}{\delta}\right) y_{-1}.
@@ -176,7 +176,7 @@ If we choose $(y_{-1}, y_{-2})$ to set $(\eta_1, \eta_2) = (1, 0)$, then $y_t = 
 
 If we choose $(y_{-1}, y_{-2})$ to set $(\eta_1, \eta_2) = (0, 1)$, then $y_t = \delta_2^t$ for all $t \geq 0$.
 
-Soon we'll relate the preceding calculations to components an eigen decomposition of a transition matrix that represents difference equation {eq}`eq:2diff1` in a very convenient way.
+Soon we'll relate the preceding calculations to components of an eigen decomposition of a transition matrix that represents difference equation {eq}`eq:2diff1` in a very convenient way.
 
 We'll turn to that after we describe how Ancient Greeks figured out how to compute square roots of positive integers that are not perfect squares.
 
@@ -518,7 +518,7 @@ $$
 y_{t} = \lambda_i y_{t-1}, \quad i = 1, 2 
 $$ (eq:invariantsub101)
 
-that we encountered above in equation {eq}`eq:2diff8` above.
+that we encountered above in equation {eq}`eq:2diff8`.
 
 In equation {eq}`eq:invariantsub101`, the $i$th $\lambda_i$  equals the $V_{i, 1}/V_{i,2}$.
 
@@ -745,7 +745,7 @@ compute the matrix $A$.
 :class: dropdown
 ```
 
-Here is one soluition.
+Here is one solution.
 
 According to the quote, we can formulate 
 
