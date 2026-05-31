@@ -44,7 +44,7 @@ preference for neighbors of the same race.
 For example, these agents might be comfortable with a mixed race neighborhood
 but uncomfortable when they feel "surrounded" by people from a different race.
 
-Schelling illustrated the follow surprising result: in such a setting, mixed
+Schelling illustrated the following surprising result: in such a setting, mixed
 race neighborhoods are likely to be unstable, tending to collapse over time.
 
 In fact the model predicts strongly divided neighborhoods, with high levels of
