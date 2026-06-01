@@ -45,9 +45,8 @@ We will use the following imports.
 ```{code-cell} ipython3
 import numpy as np
 import matplotlib.pyplot as plt
-
-rng = np.random.default_rng()
 ```
+
 
 
 ## An introduction to Monte Carlo
@@ -152,7 +151,12 @@ p = 0.5
 σ_1, σ_2, σ_3 = 0.1, 0.05, 0.2
 ```
 
+Before we start, we'll set up a random number generator.
 
+
+```{code-cell} ipython3
+rng = np.random.default_rng()
+```
 
 #### A routine using loops in python
 
@@ -181,7 +185,10 @@ S / n
 We can also construct a function that contains these operations:
 
 ```{code-cell} ipython3
-def compute_mean(n=1_000_000, rng=rng):
+def compute_mean(
+        n=1_000_000,   # Sample size
+        rng=rng        # Default to the generator instantiated above
+    ):
     S = 0.0
     for i in range(n):
         X_1 = np.exp(μ_1 + σ_1 * rng.standard_normal())
@@ -196,7 +203,7 @@ def compute_mean(n=1_000_000, rng=rng):
 Now let's call it.
 
 ```{code-cell} ipython3
-compute_mean(rng=rng)
+compute_mean()
 ```
 
 
@@ -221,7 +228,7 @@ def compute_mean_vectorized(n=1_000_000, rng=rng):
 ```{code-cell} ipython3
 %%time
 
-compute_mean_vectorized(rng=rng)
+compute_mean_vectorized()
 ```
 
 
@@ -233,7 +240,7 @@ We can increase $n$ to get more accuracy and still have reasonable speed:
 ```{code-cell} ipython3
 %%time
 
-compute_mean_vectorized(n=10_000_000, rng=rng)
+compute_mean_vectorized(n=10_000_000)
 ```
 
 
@@ -544,7 +551,7 @@ titles = 'log paths', 'paths'
 transforms = np.log, lambda x: x
 for ax, transform, title in zip(axes, transforms, titles):
     for i in range(50):
-        path = simulate_asset_price_path(rng=rng)
+        path = simulate_asset_price_path()
         ax.plot(transform(path))
     ax.set_title(title)
 
@@ -601,7 +608,7 @@ def compute_call_price(β=default_β,
 
 ```{code-cell} ipython3
 %%time
-compute_call_price(rng=rng)
+compute_call_price()
 ```
 
 
@@ -647,7 +654,7 @@ def compute_call_price_vector(β=default_β,
 
 ```{code-cell} ipython3
 %%time
-compute_call_price_vector(rng=rng)
+compute_call_price_vector()
 ```
 
 
@@ -658,7 +665,7 @@ Now let's try with larger $M$ to get a more accurate calculation.
 
 ```{code-cell} ipython3
 %%time
-compute_call_price(M=10_000_000, rng=rng)
+compute_call_price(M=10_000_000)
 ```
 
 
@@ -731,7 +738,7 @@ def compute_call_price_with_barrier(β=default_β,
 ```
 
 ```{code-cell} ipython3
-%time compute_call_price_with_barrier(rng=rng)
+%time compute_call_price_with_barrier()
 ```
 
 
@@ -767,7 +774,7 @@ def compute_call_price_with_barrier_vector(β=default_β,
 ```
 
 ```{code-cell} ipython3
-%time compute_call_price_with_barrier_vector(rng=rng)
+%time compute_call_price_with_barrier_vector()
 ```
 
 ```{solution-end}
