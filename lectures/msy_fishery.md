@@ -11,40 +11,39 @@ kernelspec:
   name: python3
 ---
 
-# Maximum Sustainable Yield and Fishery Collapse
+# Fishery Management: Quotas and MSY
 
 ## Overview
 
-In this lecture we study one of the central ideas in the management of renewable
-resources: the **maximum sustainable yield** (MSY).
+In this lecture we study fishery management through quotas and **maximum sustainable yield** (MSY).
 
-The MSY is the largest catch a fishery can support year after year without
-running itself down.
+The MSY is defined as the largest catch a fishery can support year after year without running itself down.
 
-We begin with a relatively elementary discrete time treatment.
+After the Second World War, fisheries managers around the world adopted MSY and
+imposed quotas and restrictions based on MSY.
 
-We then discuss a continuous time formulation that conveys the same ideas via calculus.
+In some cases these management efforts were successful.
 
-Next, we turn to problems associated with MSY-based fishing policy.
+However, this hasn't always been the case.
 
-After the Second World War, fisheries managers around the world adopted MSY (and
-close relatives) as a target.
+For example, several major fisheries collapsed under MSY-based management,
+including the Peruvian anchovy in the 1970s and the Atlantic cod off
+Newfoundland in 1992.
 
-Several great fisheries then collapsed --- among them the Peruvian anchovy in the
-1970s and the Atlantic cod off Newfoundland in 1992.
+In this lecture our main task is to explain how MSY is computed.
 
-A major reason is that the simple MSY model ignores randomness and risk.
+We begin with a relatively elementary treatment in discrete time.
 
-One issue is that fish stocks are difficult to track, so policies may be based
-on incorrect measurements.
+Next we discuss a continuous time formulation that conveys the same ideas via calculus.
 
-Another is that ocean environments are complex and nonstationary: a policy that looks safe in a deterministic model
-can be dangerously fragile once we admit randomness.
+Finally, we turn to problems associated with MSY and quotas derived from MSY.
 
 To illustrate these ideas, we add random shocks to the model and see how collapse can easily occur.
 
 The MSY framework is due to {cite:t}`schaefer1954` and {cite:t}`gordon1954`; a
 classic textbook treatment is {cite:t}`clark1990`.
+
+This lecture was partly inspired by [a discussion of MSY](https://maths-from-the-past.org/2025/05/12/oversimplified-models-fishery-collapses-and-msy/) posted on [Maths from the past](https://maths-from-the-past.org).
 
 Let's start with some standard imports.
 
@@ -63,9 +62,6 @@ q = 0.01     # catchability coefficient
 
 ## The model
 
-Let $x_t$ be the **stock biomass** --- the total weight of fish, say in tonnes ---
-at the start of year $t$.
-
 We build the model in two steps: first how the stock grows on its own, then what
 fishing does to it.
 
@@ -78,7 +74,11 @@ $$
     G(x) = r\,x\left(1 - \frac{x}{K}\right)
 $$ (eq:logistic)
 
-Here $r > 0$ is called the **intrinsic growth rate** and $K > 0$ is called the **carrying capacity**.
+Here 
+
+* $x$ is the **stock biomass** --- the total weight of fish in tonnes,
+* $r > 0$ is called the **intrinsic growth rate**, and
+* $K > 0$ is called the **carrying capacity**.
 
 Let's encode the growth function in Python.
 
@@ -117,7 +117,7 @@ $$
     x_{t+1} = x_t + G(x_t).
 $$
 
-A clean way to see where the dynamics lead is a **45-degree diagram**: we plot
+One way to see where the dynamics lead is via a 45-degree diagram, which plots
 next year's stock $x_{t+1}$ against this year's stock $x_t$.
 
 Wherever the curve crosses the $45^\circ$ line we have $x_{t+1} = x_t$ --- a
@@ -177,8 +177,8 @@ plt.tight_layout()
 plt.show()
 ```
 
-Starting from any positive stock, the staircase climbs to the carrying capacity
-$x = K$.
+Starting from any positive stock and following the staircase, we see that $x_t$
+climbs to the steady state carrying capacity $x = K$.
 
 The unfished population fills up the environment and stays there.
 
@@ -194,10 +194,10 @@ Following {cite:t}`schaefer1954`, the catch is proportional to fishing **effort*
 $e$ (e.g. boat-days) and to the stock available to be caught:
 
 $$
-    h_t = q\,e\,x_t,
+    h_t = q\,e\,x_t
 $$ (eq:harvest)
 
-where $q > 0$ is the **catchability coefficient**.
+Here $q > 0$ is the **catchability coefficient**.
 
 Subtracting the catch, next year's stock becomes
 
@@ -240,8 +240,8 @@ plt.tight_layout()
 plt.show()
 ```
 
-On the 45-degree diagram, fishing pulls the update curve **down** by the harvest
-term, so it now crosses the $45^\circ$ line at a **lower** steady state.
+On the 45-degree diagram, fishing pulls the update curve down by the harvest
+term, so it now crosses the $45^\circ$ line at a lower steady state.
 
 Since this steady state is a function of $e$ now, we denote it by $x^*(e)$.
 
@@ -273,15 +273,15 @@ plt.tight_layout()
 plt.show()
 ```
 
-Not surprisingly, the steady state $x^*(e)$ is decreasing in fishing effort.
-
+Not surprisingly, the steady state $x^*(e)$ is decreasing in fishing effort
+(more fishing leads to less fish).
 
 
 ## Sustainable yield
 
 Suppose, as above, that the fleet applies a constant effort $e$ every year.
 
-Let's look for the associated steady state.
+Let's look for the associated steady state and associated catch.
 
 At any steady state, we must have $x_{t+1} = x_t$.
 
@@ -299,7 +299,7 @@ $$ (eq:xstar)
 
 Provided $e < r/q$, we see that each effort level $e$ pins down one steady-state stock $x^*(e)$.
 
-The catch this steady state delivers, year after year, is the **sustainable yield**, defined as
+The catch this steady state delivers is called the **sustainable yield**, and defined as
 
 $$
     y^*(e) := q\,e\,x^*(e).
@@ -388,37 +388,6 @@ As effort rises, the steady-state stock falls, while the catch rises and then
 falls --- exactly the trade-off that the maximum sustainable yield captures.
 
 
-
-## The maximum sustainable yield
-
-The **maximum sustainable yield** is defined by
-
-$$
-    \text{MSY} \;=\; \max_{0 \le e < r/q} \; y^*(e).
-$$
-
-This is the largest steady state catch attainable, assuming a constant effort
-rate $e$.
-
-We can compute it numerically by evaluating $y^*(e)$ on a fine grid of effort
-levels and picking the largest.
-
-```{code-cell} ipython3
-e_search = np.linspace(0, r / q, 100_001)
-i = np.argmax(sustainable_yield(e_search))
-
-e_msy = e_search[i]
-MSY = sustainable_yield(e_msy)
-x_msy = x_star(e_msy)
-
-print(f"effort at MSY     e_MSY = {e_msy:.2f}")
-print(f"stock at MSY      x*    = {x_msy:.1f} tonnes      (= K/2)")
-print(f"maximum yield     MSY   = {MSY:.1f} tonnes/year  (= rK/4)")
-```
-
-The search lands on the round numbers $x^* = K/2$ and $\text{MSY} = rK/4$; the
-optional calculus section below shows why.
-
 ### The yield-effort curve
 
 To visualize the MSY, we plot the sustainable catch $y^*(e)$ against effort $e$.
@@ -437,37 +406,62 @@ y_grid = sustainable_yield(e_grid)
 
 fig, ax = plt.subplots()
 ax.plot(e_grid, y_grid, lw=2, color='C0', label=r'$y^*(e)=qeK\,(1-qe/r)$')
-ax.plot([e_msy], [MSY], 'o', color='black', ms=9, zorder=5)
-ax.vlines(e_msy, 0, MSY, ls='--', color='black', lw=1)
-ax.hlines(MSY, 0, e_msy, ls='--', color='black', lw=1)
-ax.annotate(f'MSY = {MSY:.0f}', xy=(e_msy, MSY), xytext=(e_msy + 1, MSY - 18),
-            fontsize=11, color='black')
-ax.annotate(r'$e_{MSY}$', xy=(e_msy, 0), xytext=(e_msy + 1, 6),
-            fontsize=11, color='black')
-
 ax.set_xlabel('fishing effort  $e$')
 ax.set_ylabel('sustainable yield  $y^*(e)$')
 ax.set_xlim(0, r / q)
-ax.set_ylim(0, MSY * 1.25)
+ax.set_ylim(0, y_grid.max() * 1.25)
 ax.legend(loc='upper right', frameon=False)
 plt.tight_layout()
 plt.show()
 ```
 
-The sustainable yield rises with effort up to the peak at $e_{MSY}$ and then
-falls.
+The sustainable yield rises with effort and then falls.
 
-Pushing effort beyond $e_{MSY}$ is doubly costly: the catch is smaller *and* the
-stock left in the ocean is smaller.
+The maximum height of this curve is called the **maximum sustainable yield** (MSY).
 
-It is tempting to call any effort below $e_{MSY}$ "safe", but we resist that
-label: once randomness enters the picture, as it does in the next section, no
-constant policy is entirely safe.
+It is the largest steady state catch attainable, assuming a constant effort rate $e$.
 
 
-### Does the stock settle there?
+### Calculating the maximum sustainable yield
 
-Finally, let's run the yearly recursion {eq}`eq:update` forward from several
+The maximum sustainable yield can be defined more mathematically as
+
+$$
+    \text{MSY} \;=\; \max_{0 \le e < r/q} \; y^*(e).
+$$
+
+The effort level that solves this maximization problem is represented by $e_{MSY}$.
+
+We can compute it either by calculus or numerically, by evaluating $y^*(e)$ on a fine grid of effort
+levels and picking the largest.
+
+Below we look at the solution using calculus.
+
+For now we will use the numerical approach:
+
+```{code-cell} ipython3
+e_search = np.linspace(0, r / q, 100_001)
+i = np.argmax(sustainable_yield(e_search))
+
+e_msy = e_search[i]
+MSY = sustainable_yield(e_msy)
+x_msy = x_star(e_msy)
+
+print(f"effort at MSY     e_MSY = {e_msy:.2f}")
+print(f"stock at MSY      x*    = {x_msy:.1f} tonnes      (= K/2)")
+print(f"maximum yield     MSY   = {MSY:.1f} tonnes/year  (= rK/4)")
+```
+
+The search lands on the round numbers $x^* = K/2$ and $\text{MSY} = rK/4$; the
+optional calculus section below shows why.
+
+
+### Dynamics
+
+What happens to biomass when we set $e = e_{MSY}$ from some arbitrary initial
+$x_0$?
+
+Below we run the yearly recursion {eq}`eq:update` forward from several
 starting stocks, under the MSY effort.
 
 ```{code-cell} ipython3
@@ -500,9 +494,9 @@ plt.tight_layout()
 plt.show()
 ```
 
-Under the MSY effort, every path climbs or falls toward $x^* = K/2$ and stays.
+We see that, under the MSY effort, every path climbs or falls toward $x^* = K/2$ and stays.
 
-So the catch settles down to the MSY.
+As a result, the catch settles down to the MSY.
 
 ```{note}
 The smooth, steady convergence above relies on $r$ being modest.
@@ -563,6 +557,24 @@ more of the control, less of the flow.
 ```
 
 ## Randomness, risk and collapse
+
+As mentioned in the introduction to this lecture, MSY-based policies have not
+always been successful in sustaining fish populations.
+
+A major reason is that the simple MSY model ignores randomness and risk.
+
+This randomness and risk is associated with several features of fisheries.
+
+One feature is that fish stocks are difficult to track, so policies may be based
+on incorrect measurements.
+
+Another is that ocean environments are complex and nonstationary: a policy that looks safe in a deterministic model
+can be dangerously fragile once we admit randomness.
+
+In this section we investigate how one form of randomness --- stochastic growth
+--- can impact fishery dynamics under MSY-based management.
+
+### Adding randomness
 
 So far the ocean has been a perfectly predictable place.
 
