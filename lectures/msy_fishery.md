@@ -634,7 +634,8 @@ environmental noise.
 ---
 mystnb:
   figure:
-    caption: "Two MSY policies under noise: constant effort (top) and constant quota (bottom)"
+    caption: 'Two MSY policies under noise: constant effort (top) and constant quota
+      (bottom)'
     name: fig:msy-policies
 ---
 σ = 0.15
