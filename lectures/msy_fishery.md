@@ -24,13 +24,15 @@ imposed quotas and restrictions based on MSY.
 
 In some cases these management efforts were successful.
 
-However, this hasn't always been the case.
+In other cases outcomes were disappointing.
 
-For example, several major fisheries collapsed under MSY-based management,
+In fact, several major fisheries collapsed under MSY-based management,
 including the Peruvian anchovy in the 1970s and the Atlantic cod off
 Newfoundland in 1992.
 
-In this lecture our main task is to explain how MSY is computed.
+In this lecture we provide an introduction to MSY-based management of fisheries.
+
+Our main task is to explain how MSY is computed.
 
 We begin with a relatively elementary treatment in discrete time.
 
@@ -77,7 +79,8 @@ $$ (eq:logistic)
 
 Here 
 
-* $x$ is the **stock biomass** --- the total weight of fish in tonnes,
+* $x$ is the **current biomass** --- the total weight of fish in tonnes,
+* $G(x)$ is **annual growth** in biomass --- the difference between current and next year's biomass,
 * $r > 0$ is called the **intrinsic growth rate**, and
 * $K > 0$ is called the **carrying capacity**.
 
@@ -103,7 +106,7 @@ mystnb:
 x_grid = np.linspace(0, K, 400)
 
 fig, ax = plt.subplots()
-ax.plot(x_grid, G(x_grid), lw=2, color='C0')
+ax.plot(x_grid, G(x_grid), lw=2)
 ax.set_xlabel('stock biomass  $x$')
 ax.set_ylabel('annual growth  $G(x)$')
 ax.set_xlim(0, K)
@@ -121,30 +124,34 @@ $$
 One way to see where the dynamics lead is via a 45-degree diagram, which plots
 next year's stock $x_{t+1}$ against this year's stock $x_t$.
 
-Wherever the curve crosses the $45^\circ$ line we have $x_{t+1} = x_t$ --- a
-**steady state**, a stock that exactly reproduces itself.
+Wherever the curve crosses the $45^\circ$ line we have $x_{t+1} = x_t$.
 
-We can then trace the dynamics by "staircasing": from a starting stock go *up* to
+The corresponding value of $x$ obeys $x = x + G(x)$.
+
+Such an $x$ is called a **steady state**: a stock that exactly reproduces itself.
+
+We can trace the dynamics of the model by "staircasing": from a starting stock go *up* to
 the curve (that gives next year's stock), *across* to the $45^\circ$ line (that
 becomes this year's stock), and repeat.
 
-The next function draws such a diagram.
-
-It takes the one-year update rule as a function argument `update_fn`, since at
-this point we have not yet introduced fishing.
+We start with some plotting code.
 
 ```{code-cell} ipython3
-def plot_45(ax, update_fn, x0, x_max, steady_state, ss_label, map_label, n_years=30):
-    "Draw a 45-degree (cobweb) diagram for a one-year stock update rule."
+:tags: [hide-input]
+
+def plot_45(
+        ax, f, x0, x_max, steady_state, ss_label, map_label, n_years=30
+    ):
+    "Draw a 45-degree (cobweb) diagram for a function f."
     grid = np.linspace(0, x_max, 400)
-    ax.plot(grid, update_fn(grid), color='C0', lw=2, label=map_label)
+    ax.plot(grid, f(grid), lw=2, label=map_label)
     ax.plot(grid, grid, color='0.6', lw=1, ls='--',
             label=r'$45^\circ$ line')
     # cobweb staircase starting from x0
     x = x0
     cx, cy = [x], [0.0]
     for _ in range(n_years):
-        y = update_fn(x)
+        y = f(x)
         cx += [x, y]
         cy += [y, y]
         x = y
@@ -189,7 +196,7 @@ stock grows away from it.)
 
 ### Adding fishing
 
-Now let a fishing fleet remove a catch each year.
+Now let a fishing fleet remove some catch quantity $h_t$ each year.
 
 Following {cite:t}`schaefer1954`, the catch is proportional to fishing **effort**
 $e$ (e.g. boat-days) and to the stock available to be caught:
@@ -203,10 +210,7 @@ Here $q > 0$ is the **catchability coefficient**.
 Subtracting the catch, next year's stock becomes
 
 $$
-    x_{t+1}
-    \;=\; x_t
-    \;+\; \underbrace{r\,x_t\!\left(1-\frac{x_t}{K}\right)}_{\text{growth}}
-    \;-\; \underbrace{qe\,x_t}_{\text{catch}}.
+    x_{t+1} = x_t + G(x_t) - qe\,x_t.
 $$ (eq:update)
 
 
@@ -259,10 +263,10 @@ grid = np.linspace(0, 1100, 400)
 
 fig, ax = plt.subplots(figsize=(4.95, 4.95))
 ax.plot(grid, grid, color='0.6', lw=1, ls='--', label=r'$45^\circ$ line')
-for e, c in zip((10.0, 30.0), ('C0', 'C3')):
-    ax.plot(grid, update(grid, e), lw=2, color=c, label=f'$e={e:.0f}$')
+for e in (10.0, 30.0):
+    line, = ax.plot(grid, update(grid, e), lw=2, label=f'$e={e:.0f}$')
     xs = x_star(e)
-    ax.plot([xs], [xs], 'o', color=c, ms=8, zorder=5)
+    ax.plot([xs], [xs], 'o', color=line.get_color(), ms=8, zorder=5)
 
 ax.set_xlabel('stock this year  $x_t$')
 ax.set_ylabel('stock next year  $x_{t+1}$')
@@ -330,8 +334,8 @@ mystnb:
 x = np.linspace(0, K, 400)
 
 fig, ax = plt.subplots()
-ax.plot(x, G(x), lw=2, color='C0', label=r'growth  $G(x)$')
-ax.plot(x, q * e_demo * x, lw=2, color='C3', label=r'harvest  $q e x$')
+ax.plot(x, G(x), lw=2, label=r'growth  $G(x)$')
+ax.plot(x, q * e_demo * x, lw=2, label=r'harvest  $q e x$')
 
 xs = x_star(e_demo)
 ys = sustainable_yield(e_demo)
@@ -363,15 +367,14 @@ mystnb:
     name: fig:steady-states
 ---
 fig, ax = plt.subplots()
-ax.plot(x, G(x), lw=2, color='C0', label='growth  $G(x)$')
+ax.plot(x, G(x), lw=2, label='growth  $G(x)$')
 
 efforts = [12.5, 25.0, 37.5]
 labels  = [r'low $e$', r'moderate $e$', r'high $e$']
-colors  = ['C2', 'C3', 'C1']
 
-for e, lab, c in zip(efforts, labels, colors):
-    ax.plot(x, q * e * x, lw=2, color=c, label=lab)
-    ax.plot([x_star(e)], [q * e * x_star(e)], 'o', color=c, ms=7, zorder=5)
+for e, lab in zip(efforts, labels):
+    line, = ax.plot(x, q * e * x, lw=2, label=lab)
+    ax.plot([x_star(e)], [q * e * x_star(e)], 'o', color=line.get_color(), ms=7, zorder=5)
 
 ax.set_xlabel('stock $x$')
 ax.set_ylabel('catch')
@@ -406,7 +409,7 @@ e_grid = np.linspace(0, r / q, 400)
 y_grid = sustainable_yield(e_grid)
 
 fig, ax = plt.subplots()
-ax.plot(e_grid, y_grid, lw=2, color='C0', label=r'$y^*(e)=qeK\,(1-qe/r)$')
+ax.plot(e_grid, y_grid, lw=2, label=r'$y^*(e)=qeK\,(1-qe/r)$')
 ax.set_xlabel('fishing effort  $e$')
 ax.set_ylabel('sustainable yield  $y^*(e)$')
 ax.set_xlim(0, r / q)
@@ -564,10 +567,12 @@ Before turning to the risks, it is worth seeing the MSY framework succeed.
 A clean example is the lingcod (*Ophiodon elongatus*) fishery off the U.S.
 Pacific Coast.
 
-Lingcod is managed using MSY-based reference points: a target biomass and a
-target fishing pressure that together define the maximum sustainable yield.
+Lingcod is managed using MSY-based analysis.
 
-To follow the fishery we use two dimensionless ratios.
+This analysis leads to a target biomass and a target fishing pressure that
+together define the maximum sustainable yield.
+
+To follow the fishery we use two ratios.
 
 The first is $B / B_{MSY}$, the stock biomass relative to the biomass $B_{MSY}$
 that supports the MSY.
@@ -578,9 +583,6 @@ The second is $F / F_{MSY}$, fishing pressure relative to the pressure
 $F_{MSY}$ that achieves the MSY.
 
 (In our model this is the MSY effort $e_{MSY}$.)
-
-Each ratio is measured against its own MSY reference point, so the value $1$ is
-simultaneously the target and the limit.
 
 The data come from the RAM Legacy Stock Assessment Database {cite:t}`ricard2012`.
 
@@ -603,71 +605,60 @@ ymax = max(lingcod['B_over_Bmsy'].max(), lingcod['F_over_Fmsy'].max()) * 1.06
 # shade the years when fishing pressure exceeded the MSY level
 over = lingcod['F_over_Fmsy'] > 1
 ax.fill_between(lingcod['year'], 0, ymax, where=over,
-                color='C3', alpha=0.08)
+                color='0.5', alpha=0.12)
 
-ax.plot(lingcod['year'], lingcod['B_over_Bmsy'], color='C0', lw=2,
+ax.plot(lingcod['year'], lingcod['B_over_Bmsy'], lw=2,
         label=r'$B / B_{MSY}$  (biomass)')
-ax.plot(lingcod['year'], lingcod['F_over_Fmsy'], color='C3', lw=2,
+ax.plot(lingcod['year'], lingcod['F_over_Fmsy'], lw=2,
         label=r'$F / F_{MSY}$  (fishing pressure)')
 
 ax.axvline(1999, color='grey', lw=0.8, ls=':')
 ax.axvline(2005, color='grey', lw=0.8, ls=':')
-ax.text(2000, ymax * 0.97, 'overfished (1999)', ha='left', va='top',
-        fontsize=8.5, color='dimgrey')
-ax.text(2000, ymax * 0.88, 'rebuilt (2005)', ha='left', va='top',
-        fontsize=8.5, color='dimgrey')
 
 ax.set_xlabel('year')
 ax.set_ylabel('ratio to MSY reference point')
 ax.set_xlim(lingcod['year'].min(), lingcod['year'].max())
 ax.set_ylim(0, ymax)
-ax.legend(loc='upper center', frameon=False)
+ax.legend(loc='upper left', frameon=False)
 plt.tight_layout()
 plt.show()
 ```
 
-The story unfolds in three acts.
 
-Through the 1960s the stock is lightly exploited: $F$ sits well below $F_{MSY}$
-and biomass drifts down slowly from a high level.
+Through the 1960s the stock was lightly exploited: $F$ sat well below $F_{MSY}$
+and biomass drifted down slowly from a high level.
 
-From the early 1970s fishing pressure climbs above $F_{MSY}$ and stays there for
+From the early 1970s fishing pressure climbed above $F_{MSY}$ and stayed there for
 nearly three decades.
 
-Biomass falls steadily, reaching a trough of about $0.27\,B_{MSY}$ in 1993 ---
+Biomass fell steadily, reaching a trough of about $0.27\,B_{MSY}$ in 1993 ---
 close to collapse.
 
-In 1999 the stock was formally declared *overfished*, and a rebuilding plan cut
-catches sharply.
+In 1999 the stock was formally declared *overfished*, and a rebuilding plan
+based around MSY cut catches sharply.
 
 Fishing pressure dropped well below $F_{MSY}$, and biomass climbed back through
 $B_{MSY}$ by 2004.
 
-The stock was declared fully *rebuilt* in 2005, ahead of schedule, and then
+The stock was declared fully rebuilt in 2005, ahead of schedule, and then
 overshot its target.
 
-This is exactly the negative feedback built into the model.
+As suggested by the model, fishing above the MSY level has led to falling stock, while
+keeping it below has led to recovery.
 
-Push fishing above the MSY level and the stock falls; pull it below and the
-stock recovers toward $B_{MSY}$.
 
-Used as a steering target, the MSY reference point did its job.
+Of course, the real world is not as clean as the model and random factors
+also influenced outcomes.
 
-A few caveats keep the story honest --- and set up the next section.
+For example, a strong 1999 year-class also helped, so the
+cut in fishing was important but recruitment luck set the speed of recovery.
 
-First, attribution is never clean: a strong 1999 year-class also helped, so the
-cut in fishing was necessary but recruitment luck set the speed of recovery.
+In addition, the recovery was aided by coast-wide measures aimed at the whole
+groundfish community.
 
-Second, $B_{MSY}$ and $F_{MSY}$ are *estimated* quantities, revised at each
-assessment; the famous MSY failures are often failures of estimating the
-reference point rather than of the control rule itself.
+The next section expands our model somewhat, with the aim of introducing more
+realistic dynamics.
 
-Third, the recovery rode partly on coast-wide measures aimed at the whole
-groundfish community, a reminder that single-species MSY targets sit inside a
-multispecies system.
-
-The next section takes these caveats seriously, and asks what randomness does to
-MSY-based management.
 
 ## Randomness, risk and collapse
 
