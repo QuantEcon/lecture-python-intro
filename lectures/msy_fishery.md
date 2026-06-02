@@ -49,6 +49,7 @@ Let's start with some standard imports.
 
 ```{code-cell} ipython3
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
 ```
 
@@ -555,6 +556,118 @@ that control, and the optimum sits at an interior peak.
 Over-fishing is then the exact analogue of over-saving (dynamic inefficiency):
 more of the control, less of the flow.
 ```
+
+## A success story: Pacific Coast lingcod
+
+Before turning to the risks, it is worth seeing the MSY framework succeed.
+
+A clean example is the lingcod (*Ophiodon elongatus*) fishery off the U.S.
+Pacific Coast.
+
+Lingcod is managed using MSY-based reference points: a target biomass and a
+target fishing pressure that together define the maximum sustainable yield.
+
+To follow the fishery we use two dimensionless ratios.
+
+The first is $B / B_{MSY}$, the stock biomass relative to the biomass $B_{MSY}$
+that supports the MSY.
+
+(In our model this reference stock is $x^* = K/2$.)
+
+The second is $F / F_{MSY}$, fishing pressure relative to the pressure
+$F_{MSY}$ that achieves the MSY.
+
+(In our model this is the MSY effort $e_{MSY}$.)
+
+Each ratio is measured against its own MSY reference point, so the value $1$ is
+simultaneously the target and the limit.
+
+The data come from the RAM Legacy Stock Assessment Database {cite:t}`ricard2012`.
+
+```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Pacific Coast lingcod recovery
+    name: fig:lingcod
+---
+lingcod = pd.read_csv('datasets/lingcod_msy_recovery.csv')
+
+fig, ax = plt.subplots()
+
+ax.axhline(1.0, color='black', lw=1, ls='--')
+ax.text(1930, 1.05, r'MSY reference ($=1$)', fontsize=9, va='bottom')
+
+ymax = max(lingcod['B_over_Bmsy'].max(), lingcod['F_over_Fmsy'].max()) * 1.06
+
+# shade the years when fishing pressure exceeded the MSY level
+over = lingcod['F_over_Fmsy'] > 1
+ax.fill_between(lingcod['year'], 0, ymax, where=over,
+                color='C3', alpha=0.08)
+
+ax.plot(lingcod['year'], lingcod['B_over_Bmsy'], color='C0', lw=2,
+        label=r'$B / B_{MSY}$  (biomass)')
+ax.plot(lingcod['year'], lingcod['F_over_Fmsy'], color='C3', lw=2,
+        label=r'$F / F_{MSY}$  (fishing pressure)')
+
+ax.axvline(1999, color='grey', lw=0.8, ls=':')
+ax.axvline(2005, color='grey', lw=0.8, ls=':')
+ax.text(2000, ymax * 0.97, 'overfished (1999)', ha='left', va='top',
+        fontsize=8.5, color='dimgrey')
+ax.text(2000, ymax * 0.88, 'rebuilt (2005)', ha='left', va='top',
+        fontsize=8.5, color='dimgrey')
+
+ax.set_xlabel('year')
+ax.set_ylabel('ratio to MSY reference point')
+ax.set_xlim(lingcod['year'].min(), lingcod['year'].max())
+ax.set_ylim(0, ymax)
+ax.legend(loc='upper center', frameon=False)
+plt.tight_layout()
+plt.show()
+```
+
+The story unfolds in three acts.
+
+Through the 1960s the stock is lightly exploited: $F$ sits well below $F_{MSY}$
+and biomass drifts down slowly from a high level.
+
+From the early 1970s fishing pressure climbs above $F_{MSY}$ and stays there for
+nearly three decades.
+
+Biomass falls steadily, reaching a trough of about $0.27\,B_{MSY}$ in 1993 ---
+close to collapse.
+
+In 1999 the stock was formally declared *overfished*, and a rebuilding plan cut
+catches sharply.
+
+Fishing pressure dropped well below $F_{MSY}$, and biomass climbed back through
+$B_{MSY}$ by 2004.
+
+The stock was declared fully *rebuilt* in 2005, ahead of schedule, and then
+overshot its target.
+
+This is exactly the negative feedback built into the model.
+
+Push fishing above the MSY level and the stock falls; pull it below and the
+stock recovers toward $B_{MSY}$.
+
+Used as a steering target, the MSY reference point did its job.
+
+A few caveats keep the story honest --- and set up the next section.
+
+First, attribution is never clean: a strong 1999 year-class also helped, so the
+cut in fishing was necessary but recruitment luck set the speed of recovery.
+
+Second, $B_{MSY}$ and $F_{MSY}$ are *estimated* quantities, revised at each
+assessment; the famous MSY failures are often failures of estimating the
+reference point rather than of the control rule itself.
+
+Third, the recovery rode partly on coast-wide measures aimed at the whole
+groundfish community, a reminder that single-species MSY targets sit inside a
+multispecies system.
+
+The next section takes these caveats seriously, and asks what randomness does to
+MSY-based management.
 
 ## Randomness, risk and collapse
 
