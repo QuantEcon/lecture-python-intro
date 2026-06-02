@@ -791,12 +791,6 @@ How much does pulling the quota back below the MSY reduce the risk?
 We adapt `simulate_stochastic` to take an arbitrary fixed quota.
 
 ```{code-cell} ipython3
----
-mystnb:
-  figure:
-    caption: Collapse probability versus quota
-    name: fig:precautionary-quota
----
 def collapse_fraction_quota(quota, σ=0.15, years=100, n_paths=2000, seed=0):
     "Collapse probability under a fixed quota."
     rng = np.random.default_rng(seed)
@@ -860,12 +854,6 @@ Describe what happens as $r$ increases.
 ```
 
 ```{code-cell} ipython3
----
-mystnb:
-  figure:
-    caption: The yearly logistic map for several values of r
-    name: fig:logistic-map
----
 def logistic_path(r_val, u0=0.3, years=40):
     u = np.empty(years + 1)
     u[0] = u0
