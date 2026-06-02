@@ -43,8 +43,8 @@ can be dangerously fragile once we admit randomness.
 
 To illustrate these ideas, we add random shocks to the model and see how collapse can easily occur.
 
-The MSY framework is due to {cite}`schaefer1954` and {cite}`gordon1954`; a
-classic textbook treatment is {cite}`clark1990`.
+The MSY framework is due to {cite:t}`schaefer1954` and {cite:t}`gordon1954`; a
+classic textbook treatment is {cite:t}`clark1990`.
 
 Let's start with some standard imports.
 
@@ -71,14 +71,14 @@ fishing does to it.
 
 ### Growth without fishing
 
-In the model, the population adds new fish each year according the **logistic
+In the model, the population adds new fish each year according to the **logistic
 growth** function
 
 $$
     G(x) = r\,x\left(1 - \frac{x}{K}\right)
 $$ (eq:logistic)
 
-Here $r > 0$ is called **intrinsic growth rate**  and $K > 0$ is called the **carrying capacity**.
+Here $r > 0$ is called the **intrinsic growth rate** and $K > 0$ is called the **carrying capacity**.
 
 Let's encode the growth function in Python.
 
@@ -93,16 +93,20 @@ and small again when the stock is near $K$ (crowding, limited food), and is
 largest in between.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Logistic growth
+    name: fig:logistic-growth
+---
 x_grid = np.linspace(0, K, 400)
 
-fig, ax = plt.subplots(figsize=(8, 5))
-ax.plot(x_grid, G(x_grid), lw=2.5, color='C0')
-ax.set_xlabel('stock biomass  $x$  (tonnes)')
-ax.set_ylabel('annual growth  $G(x)$  (tonnes/year)')
-ax.set_title('Logistic growth')
+fig, ax = plt.subplots()
+ax.plot(x_grid, G(x_grid), lw=2, color='C0')
+ax.set_xlabel('stock biomass  $x$')
+ax.set_ylabel('annual growth  $G(x)$')
 ax.set_xlim(0, K)
 ax.set_ylim(0, G(K / 2) * 1.15)
-ax.spines[['top', 'right']].set_visible(False)
 plt.tight_layout()
 plt.show()
 ```
@@ -132,9 +136,9 @@ this point we have not yet introduced fishing.
 def plot_45(ax, update_fn, x0, x_max, steady_state, ss_label, map_label, n_years=30):
     "Draw a 45-degree (cobweb) diagram for a one-year stock update rule."
     grid = np.linspace(0, x_max, 400)
-    ax.plot(grid, update_fn(grid), color='C0', lw=2.5, label=map_label)
+    ax.plot(grid, update_fn(grid), color='C0', lw=2, label=map_label)
     ax.plot(grid, grid, color='0.6', lw=1, ls='--',
-            label=r'$45^\circ$ line  $x_{t+1}=x_t$')
+            label=r'$45^\circ$ line')
     # cobweb staircase starting from x0
     x = x0
     cx, cy = [x], [0.0]
@@ -144,27 +148,31 @@ def plot_45(ax, update_fn, x0, x_max, steady_state, ss_label, map_label, n_years
         cy += [y, y]
         x = y
     ax.plot(cx, cy, color='black', lw=1, alpha=0.9)
-    ax.plot([steady_state], [steady_state], 'o', color='black', ms=8, zorder=5)
+    ax.plot([steady_state], [steady_state], 'o', color='black', ms=6, zorder=5)
     ax.annotate(ss_label, xy=(steady_state, steady_state),
                 xytext=(0.55 * x_max, 0.28 * x_max), fontsize=11,
                 arrowprops=dict(arrowstyle='->', color='black', lw=1))
-    ax.set_xlabel('stock this year  $x_t$  (tonnes)')
-    ax.set_ylabel('stock next year  $x_{t+1}$  (tonnes)')
+    ax.set_xlabel('stock this year  $x_t$')
+    ax.set_ylabel('stock next year  $x_{t+1}$')
     ax.set_xlim(0, x_max)
     ax.set_ylim(0, x_max)
     ax.set_aspect('equal')
     ax.legend(loc='upper left', frameon=False, fontsize=9)
-    ax.spines[['top', 'right']].set_visible(False)
 ```
 
 Here is the unfished case.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Stock dynamics without fishing
+    name: fig:cobweb-unfished
+---
 fig, ax = plt.subplots(figsize=(4.95, 4.95))
 plot_45(ax, lambda x: x + G(x), x0=80, x_max=1100,
         steady_state=K, ss_label=r'$x=K$ (carrying capacity)',
         map_label=r'$x_{t+1}=x_t+G(x_t)$')
-ax.set_title('Stock dynamics without fishing')
 plt.tight_layout()
 plt.show()
 ```
@@ -182,7 +190,7 @@ stock grows away from it.)
 
 Now let a fishing fleet remove a catch each year.
 
-Following {cite}`schaefer1954`, the catch is proportional to fishing **effort**
+Following {cite:t}`schaefer1954`, the catch is proportional to fishing **effort**
 $e$ (e.g. boat-days) and to the stock available to be caught:
 
 $$
@@ -212,6 +220,12 @@ def update(x, e):
 Here's the 45 degree diagram, now with the fishing term included.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Stock dynamics at a fixed effort
+    name: fig:cobweb-fished
+---
 e_demo = 20.0    # an illustrative fixed effort level
 
 def x_star(e):
@@ -222,7 +236,6 @@ fig, ax = plt.subplots(figsize=(4.95, 4.95))
 plot_45(ax, lambda x: update(x, e_demo), x0=80, x_max=1100,
         steady_state=x_star(e_demo), ss_label=r'$x^*(e)$',
         map_label=r'$x_{t+1}=x_t+G(x_t)-qex_t$')
-ax.set_title(f'Stock dynamics at a fixed effort  $e={e_demo:.0f}$')
 plt.tight_layout()
 plt.show()
 ```
@@ -235,23 +248,27 @@ Since this steady state is a function of $e$ now, we denote it by $x^*(e)$.
 Here's the dynamics for two different levels of $e$, with the staircases omitted.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Stock dynamics at two effort levels
+    name: fig:cobweb-two-efforts
+---
 grid = np.linspace(0, 1100, 400)
 
 fig, ax = plt.subplots(figsize=(4.95, 4.95))
 ax.plot(grid, grid, color='0.6', lw=1, ls='--', label=r'$45^\circ$ line')
 for e, c in zip((10.0, 30.0), ('C0', 'C3')):
-    ax.plot(grid, update(grid, e), lw=2.5, color=c, label=f'$e={e:.0f}$')
+    ax.plot(grid, update(grid, e), lw=2, color=c, label=f'$e={e:.0f}$')
     xs = x_star(e)
     ax.plot([xs], [xs], 'o', color=c, ms=8, zorder=5)
 
-ax.set_xlabel('stock this year  $x_t$  (tonnes)')
-ax.set_ylabel('stock next year  $x_{t+1}$  (tonnes)')
-ax.set_title('Stock dynamics at two effort levels')
+ax.set_xlabel('stock this year  $x_t$')
+ax.set_ylabel('stock next year  $x_{t+1}$')
 ax.set_xlim(0, 1100)
 ax.set_ylim(0, 1100)
 ax.set_aspect('equal')
 ax.legend(loc='upper left', frameon=False, fontsize=9)
-ax.spines[['top', 'right']].set_visible(False)
 plt.tight_layout()
 plt.show()
 ```
@@ -260,7 +277,7 @@ Not surprisingly, the steady state $x^*(e)$ is decreasing in fishing effort.
 
 
 
-## When is a catch sustainable?
+## Sustainable yield
 
 Suppose, as above, that the fleet applies a constant effort $e$ every year.
 
@@ -303,10 +320,16 @@ steady-state stock $x^*(e)$.
 The height of the line there is the sustainable catch $y^*(e)$.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Sustainable stock and catch
+    name: fig:sustainable-point
+---
 x = np.linspace(0, K, 400)
 
-fig, ax = plt.subplots(figsize=(8, 5))
-ax.plot(x, G(x), lw=2.5, color='C0', label=r'growth  $G(x)$')
+fig, ax = plt.subplots()
+ax.plot(x, G(x), lw=2, color='C0', label=r'growth  $G(x)$')
 ax.plot(x, q * e_demo * x, lw=2, color='C3', label=r'harvest  $q e x$')
 
 xs = x_star(e_demo)
@@ -317,13 +340,11 @@ ax.hlines(ys, 0, xs, ls='--', color='black', lw=1)
 ax.annotate(r'$x^*(e)$', xy=(xs, 0), xytext=(xs + 12, 8), fontsize=12)
 ax.annotate(r'$y^*(e)$', xy=(0, ys), xytext=(10, ys + 5), fontsize=12)
 
-ax.set_xlabel('stock biomass  $x$  (tonnes)')
-ax.set_ylabel('rate  (tonnes/year)')
-ax.set_title(f'Sustainable stock and catch at effort  $e={e_demo:.0f}$')
+ax.set_xlabel('stock biomass  $x$')
+ax.set_ylabel('catch')
 ax.set_xlim(0, K)
 ax.set_ylim(0, G(K / 2) * 1.4)
-ax.legend(loc='upper right', frameon=False)
-ax.spines[['top', 'right']].set_visible(False)
+ax.legend(loc='upper left', frameon=False)
 plt.tight_layout()
 plt.show()
 ```
@@ -334,24 +355,28 @@ In the next figure we plot the growth curve $G(x)$ together with the harvest
 lines $q e x$ for several values of $e$.
 
 ```{code-cell} ipython3
-fig, ax = plt.subplots(figsize=(8, 5))
-ax.plot(x, G(x), lw=2.5, color='C0', label='growth  $G(x)$')
+---
+mystnb:
+  figure:
+    caption: Steady states at several effort levels
+    name: fig:steady-states
+---
+fig, ax = plt.subplots()
+ax.plot(x, G(x), lw=2, color='C0', label='growth  $G(x)$')
 
 efforts = [12.5, 25.0, 37.5]
 labels  = [r'low $e$', r'moderate $e$', r'high $e$']
 colors  = ['C2', 'C3', 'C1']
 
 for e, lab, c in zip(efforts, labels, colors):
-    ax.plot(x, q * e * x, lw=1.8, color=c, label=lab)
+    ax.plot(x, q * e * x, lw=2, color=c, label=lab)
     ax.plot([x_star(e)], [q * e * x_star(e)], 'o', color=c, ms=7, zorder=5)
 
-ax.set_xlabel('stock biomass  $x$  (tonnes)')
-ax.set_ylabel('rate  (tonnes/year)')
-ax.set_title('Steady states: growth $G(x)$ vs. harvest $qex$')
+ax.set_xlabel('stock $x$')
+ax.set_ylabel('catch')
 ax.set_xlim(0, K)
 ax.set_ylim(0, G(K / 2) * 1.4)
 ax.legend(loc='upper left', frameon=False, fontsize=10)
-ax.spines[['top', 'right']].set_visible(False)
 plt.tight_layout()
 plt.show()
 ```
@@ -401,26 +426,30 @@ To visualize the MSY, we plot the sustainable catch $y^*(e)$ against effort $e$.
 This gives the classic dome-shaped Schaefer curve that fisheries managers use.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Yield-effort curve
+    name: fig:yield-effort
+---
 e_grid = np.linspace(0, r / q, 400)
 y_grid = sustainable_yield(e_grid)
 
-fig, ax = plt.subplots(figsize=(8, 5))
-ax.plot(e_grid, y_grid, lw=2.5, color='C0', label=r'$y^*(e)=qeK\,(1-qe/r)$')
+fig, ax = plt.subplots()
+ax.plot(e_grid, y_grid, lw=2, color='C0', label=r'$y^*(e)=qeK\,(1-qe/r)$')
 ax.plot([e_msy], [MSY], 'o', color='black', ms=9, zorder=5)
 ax.vlines(e_msy, 0, MSY, ls='--', color='black', lw=1)
 ax.hlines(MSY, 0, e_msy, ls='--', color='black', lw=1)
 ax.annotate(f'MSY = {MSY:.0f}', xy=(e_msy, MSY), xytext=(e_msy + 1, MSY - 18),
             fontsize=11, color='black')
-ax.annotate(r'$e_{MSY}=r/2q$', xy=(e_msy, 0), xytext=(e_msy + 1, 6),
+ax.annotate(r'$e_{MSY}$', xy=(e_msy, 0), xytext=(e_msy + 1, 6),
             fontsize=11, color='black')
 
 ax.set_xlabel('fishing effort  $e$')
-ax.set_ylabel('sustainable yield  $y^*$  (tonnes/year)')
-ax.set_title('Yield-effort curve (Schaefer model)')
+ax.set_ylabel('sustainable yield  $y^*(e)$')
 ax.set_xlim(0, r / q)
 ax.set_ylim(0, MSY * 1.25)
 ax.legend(loc='upper right', frameon=False)
-ax.spines[['top', 'right']].set_visible(False)
 plt.tight_layout()
 plt.show()
 ```
@@ -442,6 +471,12 @@ Finally, let's run the yearly recursion {eq}`eq:update` forward from several
 starting stocks, under the MSY effort.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Stock paths under MSY effort
+    name: fig:msy-convergence
+---
 def simulate(x0, e, years=40):
     "Run the deterministic yearly stock recursion forward from x0."
     x = np.empty(years + 1)
@@ -450,19 +485,17 @@ def simulate(x0, e, years=40):
         x[t + 1] = update(x[t], e)
     return np.arange(years + 1), x
 
-fig, ax = plt.subplots(figsize=(8, 5))
+fig, ax = plt.subplots()
 for x0 in [100, 300, 700, 950]:
     t, xt = simulate(x0, e_msy)
-    ax.plot(t, xt, 'o-', ms=3, lw=1.2, label=f'$x_0={x0}$')
+    ax.plot(t, xt, 'o-', ms=3, lw=2, label=f'$x_0={x0}$')
 
-ax.axhline(x_msy, ls='--', color='black', lw=1.5)
+ax.axhline(x_msy, ls='--', color='black', lw=1)
 ax.annotate(r'$x^*=K/2$', xy=(0, x_msy), xytext=(1, x_msy + 25), color='black')
 ax.set_xlabel('year  $t$')
-ax.set_ylabel('stock biomass  $x_t$  (tonnes)')
-ax.set_title(r'Year-by-year stock path under MSY effort $e=e_{MSY}$')
+ax.set_ylabel('stock biomass  $x_t$')
 ax.set_xlim(0, 40)
 ax.legend(frameon=False)
-ax.spines[['top', 'right']].set_visible(False)
 plt.tight_layout()
 plt.show()
 ```
@@ -598,30 +631,32 @@ Here are a few sample paths under each policy, with a moderate amount of
 environmental noise.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: "Two MSY policies under noise: constant effort (top) and constant quota (bottom)"
+    name: fig:msy-policies
+---
 σ = 0.15
 years = 100
 rng = np.random.default_rng(seed=1)
 
-fig, axes = plt.subplots(1, 2, figsize=(11, 4.5), sharey=True)
+fig, axes = plt.subplots(2, 1, figsize=(6, 8), sharey=True)
 
-for ax, policy, title in zip(
+for ax, policy, label in zip(
         axes, ['effort', 'quota'],
         ['constant effort  $h_t = q e_{MSY} x_t$',
          'constant quota  $h_t = \\mathrm{MSY}$']):
     for k in range(8):
         path = simulate_stochastic(policy, σ, years, rng)
-        ax.plot(path, lw=1, alpha=0.8)
+        ax.plot(path, lw=2, alpha=0.8)
     ax.axhline(x_msy, ls='--', color='black', lw=1)
-    ax.set_title(title)
+    ax.text(0.5, 0.92, label, transform=ax.transAxes, ha='center', va='top')
     ax.set_xlabel('year  $t$')
+    ax.set_ylabel('stock biomass  $x_t$')
     ax.set_xlim(0, years)
     ax.set_ylim(0, K)
-    ax.spines[['top', 'right']].set_visible(False)
 
-axes[0].set_ylabel('stock biomass  $x_t$  (tonnes)')
-axes[0].annotate(r'$x^*=K/2$', xy=(years, x_msy), xytext=(-20, 8),
-                 textcoords='offset points', color='black')
-fig.suptitle(f'Two MSY policies under environmental noise  ($\\sigma={σ}$)')
 plt.tight_layout()
 plt.show()
 ```
@@ -641,7 +676,6 @@ The quota keeps demanding the full MSY even after a run of bad years has thinned
 the stock, and eventually the catch exceeds what the depleted population can
 replace.
 
-Once that happens there is no way back.
 
 ### Why the quota is a knife-edge
 
@@ -756,6 +790,12 @@ How much does pulling the quota back below the MSY reduce the risk?
 We adapt `simulate_stochastic` to take an arbitrary fixed quota.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Collapse probability versus quota
+    name: fig:precautionary-quota
+---
 def collapse_fraction_quota(quota, σ=0.15, years=100, n_paths=2000, seed=0):
     "Collapse probability under a fixed quota."
     rng = np.random.default_rng(seed)
@@ -778,8 +818,6 @@ fig, ax = plt.subplots()
 ax.plot(alphas, probs, 'o-', lw=2)
 ax.set_xlabel(r'quota as a fraction $\alpha$ of MSY')
 ax.set_ylabel('collapse probability within 100 years')
-ax.set_title('Precaution pays: lower quotas are far safer')
-ax.spines[['top', 'right']].set_visible(False)
 plt.tight_layout()
 plt.show()
 ```
@@ -821,6 +859,12 @@ Describe what happens as $r$ increases.
 ```
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: The yearly logistic map for several values of r
+    name: fig:logistic-map
+---
 def logistic_path(r_val, u0=0.3, years=40):
     u = np.empty(years + 1)
     u[0] = u0
@@ -828,15 +872,13 @@ def logistic_path(r_val, u0=0.3, years=40):
         u[t + 1] = u[t] + r_val * u[t] * (1 - u[t])
     return u
 
-fig, ax = plt.subplots(figsize=(8, 5))
+fig, ax = plt.subplots()
 for r_val in [1.5, 2.2, 2.7]:
-    ax.plot(logistic_path(r_val), 'o-', ms=3, lw=1, label=f'$r={r_val}$')
+    ax.plot(logistic_path(r_val), 'o-', ms=3, lw=2, label=f'$r={r_val}$')
 ax.axhline(1.0, ls='--', color='black', lw=1)
 ax.set_xlabel('year  $t$')
 ax.set_ylabel(r'scaled stock  $u_t = x_t / K$')
-ax.set_title('The yearly logistic map as $r$ grows')
 ax.legend(frameon=False)
-ax.spines[['top', 'right']].set_visible(False)
 plt.tight_layout()
 plt.show()
 ```
@@ -847,7 +889,7 @@ For $r = 2.2$ it overshoots and settles into a steady oscillation (a two-year
 cycle).
 
 For $r = 2.7$ the path never settles --- it bounces around erratically, the onset
-of the chaotic behavior analyzed by {cite}`may1976`.
+of the chaotic behavior analyzed by {cite:t}`may1976`.
 
 The biology is unchanged; it is the large discrete time step that manufactures
 these wild dynamics, which is why the smooth continuous-time version is the
