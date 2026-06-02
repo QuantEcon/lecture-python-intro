@@ -478,7 +478,7 @@ $$
 $$ (eq:pieq2)
 
 Evidently, if $p_{T+1}^* = 0$, a price vector $p$ of all entries zero
-solves this equation and the only the **fundamental** component of our pricing
+solves this equation and only the **fundamental** component of our pricing
 formula {eq}`eq:ptpveq` is present.
 
 But let's activate the **bubble**  component by setting

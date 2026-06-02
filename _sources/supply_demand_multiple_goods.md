@@ -297,7 +297,7 @@ For a Marshallian demand curve, hypothetical changes in a price vector have both
 
 For a Hicksian demand curve, hypothetical price vector changes have only **substitution** effects
 
-* changes in the price vector leave the $p^\top e + w$ unaltered because we freeze $\mu$ and solve for $w$
+* changes in the price vector leave $p^\top e + w$ unaltered because we freeze $\mu$ and solve for $w$
 
 Sometimes a Hicksian demand curve is called a **compensated** demand curve in order to emphasize that, to disarm the income (or wealth) effect associated with a price change, the consumer's wealth $w$ is adjusted.
 
@@ -771,7 +771,7 @@ Now let's construct an example of a production economy with one good.
 
 To do this we
 
-  * specify a single **person** and a **cost curve** in a way that let's us replicate the simple single-good supply demand example with which we started
+  * specify a single **person** and a **cost curve** in a way that lets us replicate the simple single-good supply demand example with which we started
 
   * compute equilibrium $p$ and $c$ and consumer and producer surpluses
 
@@ -844,7 +844,7 @@ This raises both the equilibrium price and quantity.
 
   * we'll do some experiments like those above
 
-  * we can do experiments with a **diagonal** $\Pi$ and also with a **non-diagonal** $\Pi$ matrices to study how cross-slopes affect responses of $p$ and $c$ to various shifts in $b$ (TODO)
+  * we can do experiments with a **diagonal** $\Pi$ and also with a **non-diagonal** $\Pi$ matrix to study how cross-slopes affect responses of $p$ and $c$ to various shifts in $b$ (TODO)
 
 ```{code-cell} ipython3
 Π = np.array([[1, 0],
@@ -964,7 +964,7 @@ $$
 
 which the monopolist equates to its marginal cost.
 
-The plot indicates that the monopolist's sets output  lower than either the competitive equilibrium quantity.
+The plot indicates that the monopolist sets output lower than the competitive equilibrium quantity.
 
 In a single good case, this equilibrium is associated with a higher price of the good.
 

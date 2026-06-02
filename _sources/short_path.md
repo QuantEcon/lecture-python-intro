@@ -142,7 +142,7 @@ implement it.
 
 ### The algorithm
 
-The standard algorithm for finding $J$ is to start an initial guess and then iterate.
+The standard algorithm for finding $J$ is to start with an initial guess and then iterate.
 
 This is a standard approach to solving nonlinear equations, often called
 the method of **successive approximations**.

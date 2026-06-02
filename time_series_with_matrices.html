@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>36. Univariate Time Series with Matrix Algebra &#8212; A First Course in Quantitative Economics with Python</title>
+    <title>37. Univariate Time Series with Matrix Algebra &#8212; A First Course in Quantitative Economics with Python</title>
     
     <link rel="preconnect" href="https://unpkg.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -133,8 +133,8 @@
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="37. Linear Programming" href="lp_intro.html" />
-    <link rel="prev" title="35. Markov Chains: Irreducibility and Ergodicity" href="markov_chains_II.html" />
+    <link rel="next" title="38. Linear Programming" href="lp_intro.html" />
+    <link rel="prev" title="36. Markov Chains: Irreducibility and Ergodicity" href="markov_chains_II.html" />
 
 <!-- Normal Meta Tags -->
 <meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
@@ -209,12 +209,12 @@
 
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">36.1. Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#samuelsons-model">36.2. Samuelson’s model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-a-random-term">36.3. Adding a random term</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-population-moments">36.4. Computing population moments</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#moving-average-representation">36.5. Moving average representation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-forward-looking-model">36.6. A forward looking model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">37.1. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#samuelsons-model">37.2. Samuelson’s model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-a-random-term">37.3. Adding a random term</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-population-moments">37.4. Computing population moments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#moving-average-representation">37.5. Moving average representation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-forward-looking-model">37.6. A forward looking model</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -284,7 +284,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/576cd177" class="changelog-hash">576cd177</a>
                                 
                                 <span class="changelog-author">John Stachurski</span>
-                                <span class="changelog-time">1 day ago</span>
+                                <span class="changelog-time">4 days ago</span>
                                 <span class="changelog-message">[time_series_with_matrices] Replace tilde A indirection with A^{-1} (#757)</span>
                             </li>
                             
@@ -293,7 +293,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/ae928c86" class="changelog-hash">ae928c86</a>
                                 
                                 <span class="changelog-author">Humphrey Yang</span>
-                                <span class="changelog-time">6 days ago</span>
+                                <span class="changelog-time">1 week ago</span>
                                 <span class="changelog-message">Adding Tom's Edits to Exercises (#748)</span>
                             </li>
                             
@@ -302,7 +302,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/9483816b" class="changelog-hash">9483816b</a>
                                 
                                 <span class="changelog-author">Chihiro Watanabe</span>
-                                <span class="changelog-time">6 days ago</span>
+                                <span class="changelog-time">1 week ago</span>
                                 <span class="changelog-message">[time_series_with_matrices.md] Update np.random → Generator API (#740)</span>
                             </li>
                             
@@ -382,9 +382,9 @@
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="univariate-time-series-with-matrix-algebra">
-<h1><span class="section-number">36. </span>Univariate Time Series with Matrix Algebra<a class="headerlink" href="#univariate-time-series-with-matrix-algebra" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">37. </span>Univariate Time Series with Matrix Algebra<a class="headerlink" href="#univariate-time-series-with-matrix-algebra" title="Link to this heading">#</a></h1>
 <section id="overview">
-<h2><span class="section-number">36.1. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">37.1. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
 <p>This lecture uses matrices to solve some linear difference equations.</p>
 <p>As a running example, we’ll study a <strong>second-order linear difference
 equation</strong> that was the key technical tool in Paul Samuelson’s 1939
@@ -415,16 +415,16 @@ a “forward-looking” linear difference equation.</p>
 </div>
 </section>
 <section id="samuelsons-model">
-<h2><span class="section-number">36.2. </span>Samuelson’s model<a class="headerlink" href="#samuelsons-model" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">37.2. </span>Samuelson’s model<a class="headerlink" href="#samuelsons-model" title="Link to this heading">#</a></h2>
 <p>Let <span class="math notranslate nohighlight">\(t = 0, \pm 1, \pm 2, \ldots\)</span> index time.</p>
 <p>For <span class="math notranslate nohighlight">\(t = 1, 2, 3, \ldots, T\)</span> suppose that</p>
 <div class="math notranslate nohighlight" id="equation-tswm-1">
-<span class="eqno">(36.1)<a class="headerlink" href="#equation-tswm-1" title="Link to this equation">#</a></span>\[y_{t} = \alpha_{0} + \alpha_{1} y_{t-1} + \alpha_{2} y_{t-2}\]</div>
+<span class="eqno">(37.1)<a class="headerlink" href="#equation-tswm-1" title="Link to this equation">#</a></span>\[y_{t} = \alpha_{0} + \alpha_{1} y_{t-1} + \alpha_{2} y_{t-2}\]</div>
 <p>where we assume that <span class="math notranslate nohighlight">\(y_0\)</span> and <span class="math notranslate nohighlight">\(y_{-1}\)</span> are given numbers
 that we take as <em>initial conditions</em>.</p>
 <p>In Samuelson’s model, <span class="math notranslate nohighlight">\(y_t\)</span> stood for <strong>national income</strong> or perhaps a different
 measure of aggregate activity called <strong>gross domestic product</strong> (GDP) at time <span class="math notranslate nohighlight">\(t\)</span>.</p>
-<p>Equation <a class="reference internal" href="#equation-tswm-1">(36.1)</a> is called a <em>second-order linear difference equation</em>. It is called second order because it depends on two lags.</p>
+<p>Equation <a class="reference internal" href="#equation-tswm-1">(37.1)</a> is called a <em>second-order linear difference equation</em>. It is called second order because it depends on two lags.</p>
 <p>But actually, it is a collection of <span class="math notranslate nohighlight">\(T\)</span> simultaneous linear
 equations in the <span class="math notranslate nohighlight">\(T\)</span> variables <span class="math notranslate nohighlight">\(y_1, y_2, \ldots, y_T\)</span>.</p>
 <div class="admonition note">
@@ -618,7 +618,7 @@ it directly.</p>
 </div>
 </div>
 <p>The <a class="reference internal" href="scalar_dynam.html#scalar-dynam-steady-state"><span class="std std-ref">*steady state*</span></a> value <span class="math notranslate nohighlight">\(y^*\)</span> of <span class="math notranslate nohighlight">\(y_t\)</span> is obtained by setting <span class="math notranslate nohighlight">\(y_t = y_{t-1} =
-y_{t-2} = y^*\)</span> in <a class="reference internal" href="#equation-tswm-1">(36.1)</a>, which yields</p>
+y_{t-2} = y^*\)</span> in <a class="reference internal" href="#equation-tswm-1">(37.1)</a>, which yields</p>
 <div class="math notranslate nohighlight">
 \[
 y^* = \frac{\alpha_{0}}{1 - \alpha_{1} - \alpha_{2}}
@@ -662,13 +662,13 @@ constant:</p>
 </div>
 </section>
 <section id="adding-a-random-term">
-<h2><span class="section-number">36.3. </span>Adding a random term<a class="headerlink" href="#adding-a-random-term" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">37.3. </span>Adding a random term<a class="headerlink" href="#adding-a-random-term" title="Link to this heading">#</a></h2>
 <p>To generate some excitement, we’ll follow in the spirit of the great economists
 <a class="reference external" href="https://en.wikipedia.org/wiki/Eugen_Slutsky">Eugen Slutsky</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Ragnar_Frisch">Ragnar Frisch</a> and replace our original second-order difference
 equation with the following <strong>second-order stochastic linear difference
 equation</strong>:</p>
 <div class="math notranslate nohighlight" id="equation-tswm-2">
-<span class="eqno">(36.2)<a class="headerlink" href="#equation-tswm-2" title="Link to this equation">#</a></span>\[y_{t} = \alpha_{0} + \alpha_{1} y_{t-1} + \alpha_{2} y_{t-2} + u_t\]</div>
+<span class="eqno">(37.2)<a class="headerlink" href="#equation-tswm-2" title="Link to this equation">#</a></span>\[y_{t} = \alpha_{0} + \alpha_{1} y_{t-1} + \alpha_{2} y_{t-2} + u_t\]</div>
 <p>where <span class="math notranslate nohighlight">\(u_{t} \sim N\left(0, \sigma_{u}^{2}\right)\)</span> and is <a class="reference internal" href="lln_clt.html#iid-theorem"><span class="std std-ref">IID</span></a>,
 meaning independent and identically distributed.</p>
 <p>We’ll stack these <span class="math notranslate nohighlight">\(T\)</span> equations into a system cast in terms of
@@ -686,12 +686,12 @@ u_{T}
 <p>Where <span class="math notranslate nohighlight">\(A, b, y\)</span> are defined as above, now assume that <span class="math notranslate nohighlight">\(y\)</span> is
 governed by the system</p>
 <div class="math notranslate nohighlight" id="equation-eq-eqar">
-<span class="eqno">(36.3)<a class="headerlink" href="#equation-eq-eqar" title="Link to this equation">#</a></span>\[
+<span class="eqno">(37.3)<a class="headerlink" href="#equation-eq-eqar" title="Link to this equation">#</a></span>\[
 A y = b + u
 \]</div>
 <p>The solution for <span class="math notranslate nohighlight">\(y\)</span> becomes</p>
 <div class="math notranslate nohighlight" id="equation-eq-eqma">
-<span class="eqno">(36.4)<a class="headerlink" href="#equation-eq-eqma" title="Link to this equation">#</a></span>\[
+<span class="eqno">(37.4)<a class="headerlink" href="#equation-eq-eqma" title="Link to this equation">#</a></span>\[
 y = A^{-1} \left(b + u\right)
 \]</div>
 <p>Let’s try it out in Python.</p>
@@ -717,7 +717,7 @@ y = A^{-1} \left(b + u\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/0fa3230c80c57dfc0ce10b7fc661a737a42d87b2e230e0ad85186b998a27acb7.png"><img alt="_images/0fa3230c80c57dfc0ce10b7fc661a737a42d87b2e230e0ad85186b998a27acb7.png" src="_images/0fa3230c80c57dfc0ce10b7fc661a737a42d87b2e230e0ad85186b998a27acb7.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/a872b5e1a45d2f51563129ed1d60f84bb915034ba1b9085c9a98a6baad6cfa4d.png"><img alt="_images/a872b5e1a45d2f51563129ed1d60f84bb915034ba1b9085c9a98a6baad6cfa4d.png" src="_images/a872b5e1a45d2f51563129ed1d60f84bb915034ba1b9085c9a98a6baad6cfa4d.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -742,7 +742,7 @@ number of advanced countries in recent decades.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/ce868bc240cc269d94ea4fc7afe8a9fe3f765e25cee3f7e972273054d8f3286b.png"><img alt="_images/ce868bc240cc269d94ea4fc7afe8a9fe3f765e25cee3f7e972273054d8f3286b.png" src="_images/ce868bc240cc269d94ea4fc7afe8a9fe3f765e25cee3f7e972273054d8f3286b.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/c12bbfd02c8826379cac6b0a2a399a0ff85953272d2c3073097de95433d2c783.png"><img alt="_images/c12bbfd02c8826379cac6b0a2a399a0ff85953272d2c3073097de95433d2c783.png" src="_images/c12bbfd02c8826379cac6b0a2a399a0ff85953272d2c3073097de95433d2c783.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -766,13 +766,13 @@ steady state.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/478c406a47784a9fc0362517e3f9d145c41aacca8cc32ac991996b0dfad2049b.png"><img alt="_images/478c406a47784a9fc0362517e3f9d145c41aacca8cc32ac991996b0dfad2049b.png" src="_images/478c406a47784a9fc0362517e3f9d145c41aacca8cc32ac991996b0dfad2049b.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/04113925257bab87c220403e6c91cfaf1c0bee10fabe651e2c31449b2a378536.png"><img alt="_images/04113925257bab87c220403e6c91cfaf1c0bee10fabe651e2c31449b2a378536.png" src="_images/04113925257bab87c220403e6c91cfaf1c0bee10fabe651e2c31449b2a378536.png" style="width: 80%;" />
 </a>
 </div>
 </div>
 </section>
 <section id="computing-population-moments">
-<h2><span class="section-number">36.4. </span>Computing population moments<a class="headerlink" href="#computing-population-moments" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">37.4. </span>Computing population moments<a class="headerlink" href="#computing-population-moments" title="Link to this heading">#</a></h2>
 <p>We can apply standard formulas for multivariate normal distributions to compute the mean vector and covariance matrix
 for our time series model</p>
 <div class="math notranslate nohighlight">
@@ -888,7 +888,7 @@ y \sim {\mathcal N}(\mu_y, \Sigma_y)
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/f27138b55270db5f2cdc40cc87725352c235966914e6713fffc154e22c4a758d.png"><img alt="_images/f27138b55270db5f2cdc40cc87725352c235966914e6713fffc154e22c4a758d.png" src="_images/f27138b55270db5f2cdc40cc87725352c235966914e6713fffc154e22c4a758d.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/33165f8c7bafae106ad64a17e8ae93981a25fa2ee17667d2633cb6642bdf3e84.png"><img alt="_images/33165f8c7bafae106ad64a17e8ae93981a25fa2ee17667d2633cb6642bdf3e84.png" src="_images/33165f8c7bafae106ad64a17e8ae93981a25fa2ee17667d2633cb6642bdf3e84.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -972,7 +972,7 @@ y \sim {\mathcal N}(\mu_y, \Sigma_y)
 <p>There is a lot to be learned about the process by staring at the off diagonal elements of <span class="math notranslate nohighlight">\(\Sigma_y\)</span> corresponding to different time periods <span class="math notranslate nohighlight">\(t\)</span>, but we resist the temptation to do so here.</p>
 </section>
 <section id="moving-average-representation">
-<h2><span class="section-number">36.5. </span>Moving average representation<a class="headerlink" href="#moving-average-representation" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">37.5. </span>Moving average representation<a class="headerlink" href="#moving-average-representation" title="Link to this heading">#</a></h2>
 <p>Let’s print out  <span class="math notranslate nohighlight">\(A^{-1}\)</span> and stare at  its structure</p>
 <ul class="simple">
 <li><p>is it triangular or almost triangular or <span class="math notranslate nohighlight">\(\ldots\)</span> ?</p></li>
@@ -986,11 +986,11 @@ y \sim {\mathcal N}(\mu_y, \Sigma_y)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1.    -0.     0.    -0.    -0.     0.    -0.   ]
- [ 1.53   1.     0.    -0.    -0.     0.    -0.   ]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1.     0.    -0.    -0.     0.    -0.    -0.   ]
+ [ 1.53   1.    -0.    -0.     0.    -0.    -0.   ]
  [ 1.441  1.53   1.     0.     0.     0.     0.   ]
  [ 0.828  1.441  1.53   1.     0.     0.     0.   ]
- [-0.031  0.828  1.441  1.53   1.     0.    -0.   ]
+ [-0.031  0.828  1.441  1.53   1.    -0.    -0.   ]
  [-0.792 -0.031  0.828  1.441  1.53   1.     0.   ]
  [-1.184 -0.792 -0.031  0.828  1.441  1.53   1.   ]]
 </pre></div>
@@ -1010,11 +1010,11 @@ y \sim {\mathcal N}(\mu_y, \Sigma_y)
 y_{t+1}=\sum_{i=1}^{t+1}(A^{-1})_{t+1,i}b_{i}+\sum_{i=1}^{t}(A^{-1})_{t+1,i}u_{i}+u_{t+1}
 \]</div>
 <p>This is  a <strong>moving average</strong> representation with time-varying coefficients.</p>
-<p>Just as system <a class="reference internal" href="#equation-eq-eqma">(36.4)</a> constitutes  a
-<strong>moving average</strong> representation for <span class="math notranslate nohighlight">\(y\)</span>, system  <a class="reference internal" href="#equation-eq-eqar">(36.3)</a> constitutes  an <strong>autoregressive</strong> representation for <span class="math notranslate nohighlight">\(y\)</span>.</p>
+<p>Just as system <a class="reference internal" href="#equation-eq-eqma">(37.4)</a> constitutes  a
+<strong>moving average</strong> representation for <span class="math notranslate nohighlight">\(y\)</span>, system  <a class="reference internal" href="#equation-eq-eqar">(37.3)</a> constitutes  an <strong>autoregressive</strong> representation for <span class="math notranslate nohighlight">\(y\)</span>.</p>
 </section>
 <section id="a-forward-looking-model">
-<h2><span class="section-number">36.6. </span>A forward looking model<a class="headerlink" href="#a-forward-looking-model" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">37.6. </span>A forward looking model<a class="headerlink" href="#a-forward-looking-model" title="Link to this heading">#</a></h2>
 <p>Samuelson’s model is <em>backward looking</em> in the sense that we give it <em>initial conditions</em> and let it
 run.</p>
 <p>Let’s now turn to model  that is <em>forward looking</em>.</p>
@@ -1380,18 +1380,23 @@ steady state.</p>
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="msy_fishery.html">
+   26. Fishery Management: Quotas and MSY
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="cobweb.html">
-   26. The Cobweb Model
+   27. The Cobweb Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="olg.html">
-   27. The Overlapping Generations Model
+   28. The Overlapping Generations Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="commod_price.html">
-   28. Commodity Prices
+   29. Commodity Prices
   </a>
  </li>
 </ul>
@@ -1403,22 +1408,22 @@ steady state.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="money_inflation.html">
-   29. Money Financed Government Deficits and Price Levels
+   30. Money Financed Government Deficits and Price Levels
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="unpleasant.html">
-   30. Some Unpleasant Monetarist Arithmetic
+   31. Some Unpleasant Monetarist Arithmetic
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="money_inflation_nonlinear.html">
-   31. Inflation Rate Laffer Curves
+   32. Inflation Rate Laffer Curves
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="laffer_adaptive.html">
-   32. Laffer Curves  with Adaptive Expectations
+   33. Laffer Curves  with Adaptive Expectations
   </a>
  </li>
 </ul>
@@ -1430,22 +1435,22 @@ steady state.</p>
 <ul class="current nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="ar1_processes.html">
-   33. AR(1) Processes
+   34. AR(1) Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   34. Markov Chains: Basic Concepts
+   35. Markov Chains: Basic Concepts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   35. Markov Chains: Irreducibility and Ergodicity
+   36. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1 current active active">
   <a class="current reference internal" href="#">
-   36. Univariate Time Series with Matrix Algebra
+   37. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -1457,12 +1462,12 @@ steady state.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   37. Linear Programming
+   38. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   38. Shortest Paths
+   39. Shortest Paths
   </a>
  </li>
 </ul>
@@ -1474,22 +1479,22 @@ steady state.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_II.html">
-   39. The Perron-Frobenius Theorem
+   40. The Perron-Frobenius Theorem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="input_output.html">
-   40. Input-Output Models
+   41. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lake_model.html">
-   41. A Lake Model of Employment
+   42. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="networks.html">
-   42. Networks
+   43. Networks
   </a>
  </li>
 </ul>
@@ -1501,12 +1506,12 @@ steady state.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_multiple_goods.html">
-   43. Supply and Demand with Many Goods
+   44. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_heterogeneity.html">
-   44. Market Equilibrium with Heterogeneity
+   45. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -1518,17 +1523,17 @@ steady state.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   45. Simple Linear Regression Model
+   46. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   46. Maximum Likelihood Estimation
+   47. Maximum Likelihood Estimation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="bayes_intro.html">
-   47. Introduction to Bayesian Methods
+   48. Introduction to Bayesian Methods
   </a>
  </li>
 </ul>
@@ -1540,17 +1545,17 @@ steady state.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   48. Troubleshooting
+   49. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   49. References
+   50. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   50. Execution Statistics
+   51. Execution Statistics
   </a>
  </li>
 </ul>

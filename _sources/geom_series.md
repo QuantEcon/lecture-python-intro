@@ -457,7 +457,7 @@ $$
 - if $r=.05$, then $R = 1.05$
 
 **Remark:** The gross nominal interest rate $R$ is an **exchange
-rate** or **relative price** of dollars at between times $t$ and
+rate** or **relative price** of dollars between times $t$ and
 $t+1$. The units of $R$ are dollars at time $t+1$ per
 dollar at time $t$.
 
@@ -469,7 +469,7 @@ rate.
 
 - If I sell $x$ dollars to you today, you pay me $R x$
   dollars tomorrow.
-- This means that you borrowed $x$ dollars for me at a gross
+- This means that you borrowed $x$ dollars from me at a gross
   interest rate $R$ and a net interest rate $r$.
 
 We assume that the net nominal interest rate $r$ is fixed over
@@ -862,7 +862,7 @@ of national income, and investment is fixed.
 ---
 mystnb:
   figure:
-    caption: "Path of aggregate output tver time"
+    caption: "Path of aggregate output over time"
     name: path_of_aggregate_output_over_time
 ---
 # Function that calculates a path of y

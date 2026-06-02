@@ -291,7 +291,7 @@
 
                     <!-- Last modified / Changelog dropdown -->
                         <button class="qe-page__header-changed" id="changelog-toggle" aria-expanded="false">
-                            Last changed: May 28, 2026
+                            Last changed: Jun 01, 2026
                             <span class="changelog-icon">▼</span>
                         </button>
 
@@ -302,10 +302,19 @@
                             
                             <li class="changelog-entry">
                                 
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/3c4a5e80" class="changelog-hash">3c4a5e80</a>
+                                
+                                <span class="changelog-author">John Stachurski</span>
+                                <span class="changelog-time">12 hours ago</span>
+                                <span class="changelog-message">misc (#754)</span>
+                            </li>
+                            
+                            <li class="changelog-entry">
+                                
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/93e507ed" class="changelog-hash">93e507ed</a>
                                 
                                 <span class="changelog-author">Zoey Zheng</span>
-                                <span class="changelog-time">2 days ago</span>
+                                <span class="changelog-time">5 days ago</span>
                                 <span class="changelog-message">[monte_carlo] Fix numbering in European call option list (#744)</span>
                             </li>
                             
@@ -314,7 +323,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/34a37bee" class="changelog-hash">34a37bee</a>
                                 
                                 <span class="changelog-author">Chihiro Watanabe</span>
-                                <span class="changelog-time">2 days ago</span>
+                                <span class="changelog-time">5 days ago</span>
                                 <span class="changelog-message">[monte_carlo.md] Update np.random → Generator API (#741)</span>
                             </li>
                             
@@ -381,15 +390,6 @@
                                 <span class="changelog-message">Add exercise 2</span>
                             </li>
                             
-                            <li class="changelog-entry">
-                                
-                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/aa9ccf36" class="changelog-hash">aa9ccf36</a>
-                                
-                                <span class="changelog-author">John Stachurski</span>
-                                <span class="changelog-time">3 years ago</span>
-                                <span class="changelog-message">misc</span>
-                            </li>
-                            
                         </ul>
                     </div>
 
@@ -430,8 +430,6 @@ with some applications in finance.</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-
-<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -520,6 +518,14 @@ us that the mean and variance are</p>
 </div>
 </div>
 </div>
+<p>Before we start, we’ll set up a random number generator.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
 <section id="a-routine-using-loops-in-python">
 <h4><span class="section-number">21.2.2.1. </span>A routine using loops in python<a class="headerlink" href="#a-routine-using-loops-in-python" title="Link to this heading">#</a></h4>
 <p>Here’s a routine using native Python loops to calculate the desired mean</p>
@@ -543,11 +549,11 @@ us that the mean and variance are</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 2.41 s, sys: 3.01 ms, total: 2.41 s
-Wall time: 2.37 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 4.13 s, sys: 1.18 ms, total: 4.14 s
+Wall time: 4.13 s
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(2.229781061758963)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(2.2297978743672338)
 </pre></div>
 </div>
 </div>
@@ -555,7 +561,10 @@ Wall time: 2.37 s
 <p>We can also construct a function that contains these operations:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">compute_mean</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1_000_000</span><span class="p">,</span> <span class="n">rng</span><span class="o">=</span><span class="n">rng</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">compute_mean</span><span class="p">(</span>
+        <span class="n">n</span><span class="o">=</span><span class="mi">1_000_000</span><span class="p">,</span>   <span class="c1"># Sample size</span>
+        <span class="n">rng</span><span class="o">=</span><span class="n">rng</span>        <span class="c1"># Default to the generator instantiated above</span>
+    <span class="p">):</span>
     <span class="n">S</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
         <span class="n">X_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">μ_1</span> <span class="o">+</span> <span class="n">σ_1</span> <span class="o">*</span> <span class="n">rng</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">())</span>
@@ -570,12 +579,12 @@ Wall time: 2.37 s
 <p>Now let’s call it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">compute_mean</span><span class="p">(</span><span class="n">rng</span><span class="o">=</span><span class="n">rng</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">compute_mean</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(2.229746752664837)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(2.2296989288107496)
 </pre></div>
 </div>
 </div>
@@ -603,16 +612,16 @@ Wall time: 2.37 s
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
 
-<span class="n">compute_mean_vectorized</span><span class="p">(</span><span class="n">rng</span><span class="o">=</span><span class="n">rng</span><span class="p">)</span>
+<span class="n">compute_mean_vectorized</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 28.1 ms, sys: 3.01 ms, total: 31.2 ms
-Wall time: 31.1 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 56.1 ms, sys: 6 ms, total: 62.1 ms
+Wall time: 61.8 ms
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(2.2297694664752554)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(2.2298570582634105)
 </pre></div>
 </div>
 </div>
@@ -623,16 +632,16 @@ Wall time: 31.1 ms
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
 
-<span class="n">compute_mean_vectorized</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">10_000_000</span><span class="p">,</span> <span class="n">rng</span><span class="o">=</span><span class="n">rng</span><span class="p">)</span>
+<span class="n">compute_mean_vectorized</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">10_000_000</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 274 ms, sys: 68.1 ms, total: 342 ms
-Wall time: 342 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 567 ms, sys: 63 ms, total: 630 ms
+Wall time: 630 ms
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(2.229755712187438)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(2.2297273376463242)
 </pre></div>
 </div>
 </div>
@@ -774,7 +783,7 @@ can be calculated.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The Monte Carlo option price is approximately 1.036900
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The Monte Carlo option price is approximately 1.037022
 </pre></div>
 </div>
 </div>
@@ -892,7 +901,7 @@ volatility (measured by <span class="math notranslate nohighlight">\(\sigma\)</s
 <span class="n">transforms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span>
 <span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">transform</span><span class="p">,</span> <span class="n">title</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">transforms</span><span class="p">,</span> <span class="n">titles</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">):</span>
-        <span class="n">path</span> <span class="o">=</span> <span class="n">simulate_asset_price_path</span><span class="p">(</span><span class="n">rng</span><span class="o">=</span><span class="n">rng</span><span class="p">)</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">simulate_asset_price_path</span><span class="p">()</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">transform</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
 
@@ -902,7 +911,7 @@ volatility (measured by <span class="math notranslate nohighlight">\(\sigma\)</s
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/999802dc69e003a345f785a36e2e1919cc11199bb879a511f21943142b1b6325.png"><img alt="_images/999802dc69e003a345f785a36e2e1919cc11199bb879a511f21943142b1b6325.png" src="_images/999802dc69e003a345f785a36e2e1919cc11199bb879a511f21943142b1b6325.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/61fe4ffc88a8b98add1a907fd75f39995747af35af0f154d1485866c4a95efe8.png"><img alt="_images/61fe4ffc88a8b98add1a907fd75f39995747af35af0f154d1485866c4a95efe8.png" src="_images/61fe4ffc88a8b98add1a907fd75f39995747af35af0f154d1485866c4a95efe8.png" style="width: 80%;" />
 </a>
 </div>
 </div>
@@ -953,16 +962,16 @@ the law of large numbers:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
-<span class="n">compute_call_price</span><span class="p">(</span><span class="n">rng</span><span class="o">=</span><span class="n">rng</span><span class="p">)</span>
+<span class="n">compute_call_price</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 123 ms, sys: 938 μs, total: 124 ms
-Wall time: 124 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 209 ms, sys: 971 μs, total: 210 ms
+Wall time: 209 ms
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(793.9611061608637)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(780.9863691521216)
 </pre></div>
 </div>
 </div>
@@ -1013,16 +1022,16 @@ accurate.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
-<span class="n">compute_call_price_vector</span><span class="p">(</span><span class="n">rng</span><span class="o">=</span><span class="n">rng</span><span class="p">)</span>
+<span class="n">compute_call_price_vector</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 2.05 ms, sys: 1 μs, total: 2.05 ms
-Wall time: 1.95 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3.64 ms, sys: 16 μs, total: 3.66 ms
+Wall time: 3.45 ms
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(1649.477490089852)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(471.2337512663601)
 </pre></div>
 </div>
 </div>
@@ -1032,16 +1041,16 @@ Wall time: 1.95 ms
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
-<span class="n">compute_call_price</span><span class="p">(</span><span class="n">M</span><span class="o">=</span><span class="mi">10_000_000</span><span class="p">,</span> <span class="n">rng</span><span class="o">=</span><span class="n">rng</span><span class="p">)</span>
+<span class="n">compute_call_price</span><span class="p">(</span><span class="n">M</span><span class="o">=</span><span class="mi">10_000_000</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1min 59s, sys: 14.8 ms, total: 1min 59s
-Wall time: 1min 59s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3min 29s, sys: 34 ms, total: 3min 29s
+Wall time: 3min 29s
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(861.0994239061362)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(854.2690563085074)
 </pre></div>
 </div>
 </div>
@@ -1118,16 +1127,16 @@ Wall time: 1min 59s
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> compute_call_price_with_barrier(rng=rng)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> compute_call_price_with_barrier()
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 699 ms, sys: 0 ns, total: 699 ms
-Wall time: 699 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.2 s, sys: 1e+03 ns, total: 1.2 s
+Wall time: 1.2 s
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.038859114552698075)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.03789895855016721)
 </pre></div>
 </div>
 </div>
@@ -1166,16 +1175,16 @@ Wall time: 699 ms
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> compute_call_price_with_barrier_vector(rng=rng)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> compute_call_price_with_barrier_vector()
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 8.97 ms, sys: 1 ms, total: 9.97 ms
-Wall time: 9.9 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 20.3 ms, sys: 0 ns, total: 20.3 ms
+Wall time: 20.1 ms
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.03734108452511742)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.038340575705916626)
 </pre></div>
 </div>
 </div>
@@ -1410,18 +1419,23 @@ Wall time: 9.9 ms
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="msy_fishery.html">
+   26. Fishery Management: Quotas and MSY
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="cobweb.html">
-   26. The Cobweb Model
+   27. The Cobweb Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="olg.html">
-   27. The Overlapping Generations Model
+   28. The Overlapping Generations Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="commod_price.html">
-   28. Commodity Prices
+   29. Commodity Prices
   </a>
  </li>
 </ul>
@@ -1433,22 +1447,22 @@ Wall time: 9.9 ms
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="money_inflation.html">
-   29. Money Financed Government Deficits and Price Levels
+   30. Money Financed Government Deficits and Price Levels
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="unpleasant.html">
-   30. Some Unpleasant Monetarist Arithmetic
+   31. Some Unpleasant Monetarist Arithmetic
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="money_inflation_nonlinear.html">
-   31. Inflation Rate Laffer Curves
+   32. Inflation Rate Laffer Curves
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="laffer_adaptive.html">
-   32. Laffer Curves  with Adaptive Expectations
+   33. Laffer Curves  with Adaptive Expectations
   </a>
  </li>
 </ul>
@@ -1460,22 +1474,22 @@ Wall time: 9.9 ms
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="ar1_processes.html">
-   33. AR(1) Processes
+   34. AR(1) Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   34. Markov Chains: Basic Concepts
+   35. Markov Chains: Basic Concepts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   35. Markov Chains: Irreducibility and Ergodicity
+   36. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time_series_with_matrices.html">
-   36. Univariate Time Series with Matrix Algebra
+   37. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -1487,12 +1501,12 @@ Wall time: 9.9 ms
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   37. Linear Programming
+   38. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   38. Shortest Paths
+   39. Shortest Paths
   </a>
  </li>
 </ul>
@@ -1504,22 +1518,22 @@ Wall time: 9.9 ms
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_II.html">
-   39. The Perron-Frobenius Theorem
+   40. The Perron-Frobenius Theorem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="input_output.html">
-   40. Input-Output Models
+   41. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lake_model.html">
-   41. A Lake Model of Employment
+   42. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="networks.html">
-   42. Networks
+   43. Networks
   </a>
  </li>
 </ul>
@@ -1531,12 +1545,12 @@ Wall time: 9.9 ms
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_multiple_goods.html">
-   43. Supply and Demand with Many Goods
+   44. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_heterogeneity.html">
-   44. Market Equilibrium with Heterogeneity
+   45. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -1548,17 +1562,17 @@ Wall time: 9.9 ms
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   45. Simple Linear Regression Model
+   46. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   46. Maximum Likelihood Estimation
+   47. Maximum Likelihood Estimation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="bayes_intro.html">
-   47. Introduction to Bayesian Methods
+   48. Introduction to Bayesian Methods
   </a>
  </li>
 </ul>
@@ -1570,17 +1584,17 @@ Wall time: 9.9 ms
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   48. Troubleshooting
+   49. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   49. References
+   50. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   50. Execution Statistics
+   51. Execution Statistics
   </a>
  </li>
 </ul>

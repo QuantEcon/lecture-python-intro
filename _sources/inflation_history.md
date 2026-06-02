@@ -58,7 +58,7 @@ Often the price levels ended a century near where they started.
 
 Things were different in the 20th century, as we shall see in this lecture.
 
-A widely believed explanation of this big difference is that countries' abandoning gold and silver standards in the early twentieth century.
+A widely believed explanation of this big difference is that countries abandoned gold and silver standards in the early twentieth century.
 
 ```{tip}
 This lecture sets the stage for some subsequent lectures about a theory that macro economists use to think about determinants of the price level, namely, {doc}`cagan_ree` and {doc}`cagan_adaptive`
@@ -148,7 +148,7 @@ Keynes and Fisher proposed what they claimed would be a more efficient way to ac
 *  would be at least as firmly anchored as achieved under a gold or silver standard, and
 *  would also exhibit less year-to-year short-term fluctuations.
 
-They said that central bank could achieve price level stability by
+They said that central banks could achieve price level stability by
 
 * issuing  **limited supplies** of paper currency
 * refusing to print money to finance government expenditures
@@ -194,7 +194,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-{numref}`lrpl_lg` shows that paper-money-printing central banks didn't do as well as the gold and standard silver standard in anchoring price levels.
+{numref}`lrpl_lg` shows that paper-money-printing central banks didn't do as well as the gold and silver standard in anchoring price levels.
 
 That would probably have surprised or disappointed Irving Fisher and John Maynard Keynes.
 

@@ -38,7 +38,7 @@ from scipy.linalg import inv
 
 ## A simple example
 
-Let's study a simple example of **pure exchange** economy without production.
+Let's study a simple example of a **pure exchange** economy without production.
 
 There are two consumers who differ in their endowment vectors $e_i$ and their bliss-point vectors $b_i$ for $i=1,2$.
 

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>47. Introduction to Bayesian Methods &#8212; A First Course in Quantitative Economics with Python</title>
+    <title>48. Introduction to Bayesian Methods &#8212; A First Course in Quantitative Economics with Python</title>
     
     <link rel="preconnect" href="https://unpkg.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -133,8 +133,8 @@
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="48. Troubleshooting" href="troubleshooting.html" />
-    <link rel="prev" title="46. Maximum Likelihood Estimation" href="mle.html" />
+    <link rel="next" title="49. Troubleshooting" href="troubleshooting.html" />
+    <link rel="prev" title="47. Maximum Likelihood Estimation" href="mle.html" />
 
 <!-- Normal Meta Tags -->
 <meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
@@ -209,34 +209,34 @@
 
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">47.1. Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conditional-probability">47.2. Conditional probability</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">47.2.1. Definition</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-risky-borrowing">47.2.2. Example: risky borrowing</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayes-law">47.2.3. Bayes’ law</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">48.1. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conditional-probability">48.2. Conditional probability</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">48.2.1. Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-risky-borrowing">48.2.2. Example: risky borrowing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayes-law">48.2.3. Bayes’ law</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-microloan-default-problem">47.3. A microloan default problem</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-one-step-update">47.4. A one-step update</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-the-update-numerically">47.5. Computing the update numerically</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prior">47.5.1. Prior</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalizing-constant">47.5.2. Normalizing constant</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-the-posterior">47.5.3. Calculating the posterior</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-microloan-default-problem">48.3. A microloan default problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-one-step-update">48.4. A one-step update</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-the-update-numerically">48.5. Computing the update numerically</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prior">48.5.1. Prior</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalizing-constant">48.5.2. Normalizing constant</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-the-posterior">48.5.3. Calculating the posterior</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterating-the-update">47.6. Iterating the update</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-observations">47.7. Further observations</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-closed-form-the-beta-prior">47.7.1. A closed form: the beta prior</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-batch-update-via-the-binomial-likelihood">47.7.2. The batch update via the binomial likelihood</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterating-the-update">48.6. Iterating the update</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-observations">48.7. Further observations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-closed-form-the-beta-prior">48.7.1. A closed form: the beta prior</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-batch-update-via-the-binomial-likelihood">48.7.2. The batch update via the binomial likelihood</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sequential-and-batch-updates-agree">47.8. Sequential and batch updates agree</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-posterior-to-loan-pricing">47.9. From posterior to loan pricing</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expected-loss">47.9.1. Expected loss</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-break-even-interest-rate">47.9.2. The break-even interest rate</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sequential-and-batch-updates-agree">48.8. Sequential and batch updates agree</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-posterior-to-loan-pricing">48.9. From posterior to loan pricing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expected-loss">48.9.1. Expected loss</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-break-even-interest-rate">48.9.2. The break-even interest rate</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">47.10. Exercises</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">48.10. Exercises</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -306,7 +306,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/5d81eaa7" class="changelog-hash">5d81eaa7</a>
                                 
                                 <span class="changelog-author">John Stachurski</span>
-                                <span class="changelog-time">10 minutes ago</span>
+                                <span class="changelog-time">2 days ago</span>
                                 <span class="changelog-message">Polish Bayesian lecture and rename prob_dist title (#760)</span>
                             </li>
                             
@@ -315,7 +315,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/937e37a2" class="changelog-hash">937e37a2</a>
                                 
                                 <span class="changelog-author">John Stachurski</span>
-                                <span class="changelog-time">14 hours ago</span>
+                                <span class="changelog-time">3 days ago</span>
                                 <span class="changelog-message">Improve Bayesian lecture figures (#759)</span>
                             </li>
                             
@@ -324,7 +324,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/f0bd0296" class="changelog-hash">f0bd0296</a>
                                 
                                 <span class="changelog-author">John Stachurski</span>
-                                <span class="changelog-time">23 hours ago</span>
+                                <span class="changelog-time">3 days ago</span>
                                 <span class="changelog-message">Add Introduction to Bayesian Methods lecture (#751) (#758)</span>
                             </li>
                             
@@ -341,9 +341,9 @@
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-bayesian-methods">
-<h1><span class="section-number">47. </span>Introduction to Bayesian Methods<a class="headerlink" href="#introduction-to-bayesian-methods" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">48. </span>Introduction to Bayesian Methods<a class="headerlink" href="#introduction-to-bayesian-methods" title="Link to this heading">#</a></h1>
 <section id="overview">
-<h2><span class="section-number">47.1. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">48.1. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
 <p>In this lecture we study one of the most important ideas in statistics: how to
 update our beliefs about an unknown quantity as new data arrives.</p>
 <p>The technique we will use is called <strong>Bayesian updating</strong>, named after <a class="reference external" href="https://en.wikipedia.org/wiki/Thomas_Bayes">Thomas
@@ -410,14 +410,14 @@ and binomial distributions, and the beta distribution.</p>
 </div>
 </section>
 <section id="conditional-probability">
-<h2><span class="section-number">47.2. </span>Conditional probability<a class="headerlink" href="#conditional-probability" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">48.2. </span>Conditional probability<a class="headerlink" href="#conditional-probability" title="Link to this heading">#</a></h2>
 <p>Before we can talk about updating beliefs, we need to recall the idea of <strong>conditional probability</strong>.</p>
 <section id="definition">
-<h3><span class="section-number">47.2.1. </span>Definition<a class="headerlink" href="#definition" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">48.2.1. </span>Definition<a class="headerlink" href="#definition" title="Link to this heading">#</a></h3>
 <p>Suppose <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are two events with <span class="math notranslate nohighlight">\(P(B) &gt; 0\)</span>.</p>
 <p>The probability of <span class="math notranslate nohighlight">\(A\)</span> given that <span class="math notranslate nohighlight">\(B\)</span> has occurred is written <span class="math notranslate nohighlight">\(P(A \mid B)\)</span> and defined by</p>
 <div class="math notranslate nohighlight" id="equation-eq-cond-prob">
-<span class="eqno">(47.1)<a class="headerlink" href="#equation-eq-cond-prob" title="Link to this equation">#</a></span>\[
+<span class="eqno">(48.1)<a class="headerlink" href="#equation-eq-cond-prob" title="Link to this equation">#</a></span>\[
     P(A \mid B) = \frac{P(A \cap B)}{P(B)}.
 \]</div>
 <p>Here <span class="math notranslate nohighlight">\(A \cap B\)</span> is the event that both <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> occur.</p>
@@ -425,7 +425,7 @@ and binomial distributions, and the beta distribution.</p>
 <p>Within that restricted world, we ask how likely <span class="math notranslate nohighlight">\(A\)</span> is.</p>
 </section>
 <section id="example-risky-borrowing">
-<h3><span class="section-number">47.2.2. </span>Example: risky borrowing<a class="headerlink" href="#example-risky-borrowing" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">48.2.2. </span>Example: risky borrowing<a class="headerlink" href="#example-risky-borrowing" title="Link to this heading">#</a></h3>
 <p>A bank classifies its borrowers as either <em>low risk</em> or <em>high risk</em>.</p>
 <p>Among all borrowers, 80% are low risk and 20% are high risk.</p>
 <p>The conditional default probabilities are:</p>
@@ -447,7 +447,7 @@ and binomial distributions, and the beta distribution.</p>
 \[
     P(D) = P(D \mid H)\, P(H) + P(D \mid L)\, P(L) = 0.40 \times 0.2 + 0.05 \times 0.8 = 0.08 + 0.04 = 0.12.
 \]</div>
-<p>Applying <a class="reference internal" href="#equation-eq-cond-prob">(47.1)</a>, we get</p>
+<p>Applying <a class="reference internal" href="#equation-eq-cond-prob">(48.1)</a>, we get</p>
 <div class="math notranslate nohighlight">
 \[
     P(H \mid D) = \frac{P(H \cap D)}{P(D)} = \frac{0.08}{0.12} \approx 0.667.
@@ -455,18 +455,18 @@ and binomial distributions, and the beta distribution.</p>
 <p>So observing a default raises our assessment that the borrower is high risk from 20% to about 67%.</p>
 </section>
 <section id="bayes-law">
-<h3><span class="section-number">47.2.3. </span>Bayes’ law<a class="headerlink" href="#bayes-law" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">48.2.3. </span>Bayes’ law<a class="headerlink" href="#bayes-law" title="Link to this heading">#</a></h3>
 <p>The last computation was, in fact, a typical Bayesian calculation.</p>
 <p>Let’s clarify further by returning to a setting with two abstract events <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>.</p>
 <p>Notice that the event <span class="math notranslate nohighlight">\(A \cap B\)</span> (both <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> occur) is the same as <span class="math notranslate nohighlight">\(B \cap A\)</span>.</p>
-<p>Hence, applying definition <a class="reference internal" href="#equation-eq-cond-prob">(47.1)</a> two ways, we have</p>
+<p>Hence, applying definition <a class="reference internal" href="#equation-eq-cond-prob">(48.1)</a> two ways, we have</p>
 <div class="math notranslate nohighlight">
 \[
     P(A \mid B)\, P(B) = P(A \cap B) = P(B \mid A)\, P(A).
 \]</div>
 <p>Dividing through by <span class="math notranslate nohighlight">\(P(B)\)</span> gives <strong>Bayes’ law</strong>:</p>
 <div class="math notranslate nohighlight" id="equation-eq-bayes-law">
-<span class="eqno">(47.2)<a class="headerlink" href="#equation-eq-bayes-law" title="Link to this equation">#</a></span>\[
+<span class="eqno">(48.2)<a class="headerlink" href="#equation-eq-bayes-law" title="Link to this equation">#</a></span>\[
     P(A \mid B) = \frac{P(B \mid A)\, P(A)}{P(B)}.
 \]</div>
 <p>In this setting, we call</p>
@@ -477,7 +477,7 @@ and binomial distributions, and the beta distribution.</p>
 </ul>
 <p>The denominator <span class="math notranslate nohighlight">\(P(B)\)</span> is a normalizing constant that makes the posterior probabilities sum to one.</p>
 <div class="proof example admonition" id="bayes_ex_cond">
-<p class="admonition-title"><span class="caption-number">Example 47.1 </span></p>
+<p class="admonition-title"><span class="caption-number">Example 48.1 </span></p>
 <section class="example-content" id="proof-content">
 <p>The borrower calculation we completed above was an application of Bayes’ law with <span class="math notranslate nohighlight">\(A = H\)</span> and <span class="math notranslate nohighlight">\(B = D\)</span>.</p>
 <p>Bayes’ law tells us how to convert <span class="math notranslate nohighlight">\(P(D \mid H)\)</span>, which was assumed to be known, into <span class="math notranslate nohighlight">\(P(H \mid D)\)</span>, which we want.</p>
@@ -485,7 +485,7 @@ and binomial distributions, and the beta distribution.</p>
 </div></section>
 </section>
 <section id="a-microloan-default-problem">
-<h2><span class="section-number">47.3. </span>A microloan default problem<a class="headerlink" href="#a-microloan-default-problem" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">48.3. </span>A microloan default problem<a class="headerlink" href="#a-microloan-default-problem" title="Link to this heading">#</a></h2>
 <p>Now we turn to our main example.</p>
 <p>A development bank is entering a new lending market — say, smallholder farmers in a region where no historical lending data exists.</p>
 <p>The bank makes a series of small loans (microloans).</p>
@@ -554,13 +554,13 @@ likely to take a low or high value.</p>
 <p><span class="math notranslate nohighlight">\(\text{Beta}(2, 5)\)</span> leans toward low default rates, while <span class="math notranslate nohighlight">\(\text{Beta}(8, 3)\)</span> leans toward high ones.</p>
 </section>
 <section id="a-one-step-update">
-<h2><span class="section-number">47.4. </span>A one-step update<a class="headerlink" href="#a-one-step-update" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">48.4. </span>A one-step update<a class="headerlink" href="#a-one-step-update" title="Link to this heading">#</a></h2>
 <p>Now suppose the bank observes the outcome of a single loan.</p>
 <p>Call this outcome <span class="math notranslate nohighlight">\(y \in \{0, 1\}\)</span>.</p>
 <p>We want to update the prior <span class="math notranslate nohighlight">\(\pi(\theta)\)</span> into a <strong>posterior</strong> <span class="math notranslate nohighlight">\(\pi(\theta \mid y)\)</span>.</p>
 <p>The probability of <span class="math notranslate nohighlight">\(y\)</span> given <span class="math notranslate nohighlight">\(\theta\)</span> is</p>
 <div class="math notranslate nohighlight" id="equation-eq-bernoulli-lik">
-<span class="eqno">(47.3)<a class="headerlink" href="#equation-eq-bernoulli-lik" title="Link to this equation">#</a></span>\[
+<span class="eqno">(48.3)<a class="headerlink" href="#equation-eq-bernoulli-lik" title="Link to this equation">#</a></span>\[
     p(y \mid \theta) = \theta^{y} (1 - \theta)^{1 - y}.
 \]</div>
 <p>This formula (which is called the Bernoulli distribution) gives us the right numbers:</p>
@@ -570,15 +570,15 @@ likely to take a low or high value.</p>
 </ul>
 <p>Bayes’ law for a continuous parameter takes the form</p>
 <div class="math notranslate nohighlight" id="equation-eq-bayes-density">
-<span class="eqno">(47.4)<a class="headerlink" href="#equation-eq-bayes-density" title="Link to this equation">#</a></span>\[
+<span class="eqno">(48.4)<a class="headerlink" href="#equation-eq-bayes-density" title="Link to this equation">#</a></span>\[
     \pi(\theta \mid y) = \frac{p(y \mid \theta)\, \pi(\theta)}{\int_0^1 p(y \mid t)\, \pi(t)\, dt}.
 \]</div>
-<p>This is the exact analogue of <a class="reference internal" href="#equation-eq-bayes-law">(47.2)</a>.</p>
+<p>This is the exact analogue of <a class="reference internal" href="#equation-eq-bayes-law">(48.2)</a>.</p>
 <p>The numerator is likelihood times prior.</p>
 <p>The denominator is an integral that sums the numerator over all possible values of <span class="math notranslate nohighlight">\(\theta\)</span>, ensuring the posterior integrates to one.</p>
-<p>Substituting the Bernoulli likelihood <a class="reference internal" href="#equation-eq-bernoulli-lik">(47.3)</a> gives our complete one-step update rule:</p>
+<p>Substituting the Bernoulli likelihood <a class="reference internal" href="#equation-eq-bernoulli-lik">(48.3)</a> gives our complete one-step update rule:</p>
 <div class="math notranslate nohighlight" id="equation-eq-bayes-update">
-<span class="eqno">(47.5)<a class="headerlink" href="#equation-eq-bayes-update" title="Link to this equation">#</a></span>\[
+<span class="eqno">(48.5)<a class="headerlink" href="#equation-eq-bayes-update" title="Link to this equation">#</a></span>\[
     \pi(\theta \mid y) = \frac{\theta^{y}(1-\theta)^{1-y}\, \pi(\theta)}{\int_0^1 t^{y}(1-t)^{1-y}\, \pi(t)\, dt}.
 \]</div>
 <p>This rule is valid for any <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
@@ -586,10 +586,10 @@ likely to take a low or high value.</p>
 observation <span class="math notranslate nohighlight">\(y\)</span> and converting it into the posterior density <span class="math notranslate nohighlight">\(\pi(\cdot \mid y)\)</span>.</p>
 </section>
 <section id="computing-the-update-numerically">
-<h2><span class="section-number">47.5. </span>Computing the update numerically<a class="headerlink" href="#computing-the-update-numerically" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">48.5. </span>Computing the update numerically<a class="headerlink" href="#computing-the-update-numerically" title="Link to this heading">#</a></h2>
 <p>How can we compute the posterior density?</p>
 <section id="prior">
-<h3><span class="section-number">47.5.1. </span>Prior<a class="headerlink" href="#prior" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">48.5.1. </span>Prior<a class="headerlink" href="#prior" title="Link to this heading">#</a></h3>
 <p>First let’s set up the prior.</p>
 <p>For our development bank we will begin with the prior <span class="math notranslate nohighlight">\(\pi = \text{Beta}(2, 5)\)</span>.</p>
 <div class="cell docutils container">
@@ -606,8 +606,8 @@ observation <span class="math notranslate nohighlight">\(y\)</span> and converti
 <p>It puts most of its weight on default rates below 0.5, with a peak around 0.2, reflecting cautious optimism (most borrowers don’t default) together with significant uncertainty.</p>
 </section>
 <section id="normalizing-constant">
-<h3><span class="section-number">47.5.2. </span>Normalizing constant<a class="headerlink" href="#normalizing-constant" title="Link to this heading">#</a></h3>
-<p>Next we need to compute the constant in the denominator of <a class="reference internal" href="#equation-eq-bayes-density">(47.4)</a>,
+<h3><span class="section-number">48.5.2. </span>Normalizing constant<a class="headerlink" href="#normalizing-constant" title="Link to this heading">#</a></h3>
+<p>Next we need to compute the constant in the denominator of <a class="reference internal" href="#equation-eq-bayes-density">(48.4)</a>,
 which is the integrated likelihood times the prior:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -672,7 +672,7 @@ such as the <a class="reference external" href="https://en.wikipedia.org/wiki/Tr
 </div>
 </section>
 <section id="calculating-the-posterior">
-<h3><span class="section-number">47.5.3. </span>Calculating the posterior<a class="headerlink" href="#calculating-the-posterior" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">48.5.3. </span>Calculating the posterior<a class="headerlink" href="#calculating-the-posterior" title="Link to this heading">#</a></h3>
 <p>The second step divides the (unnormalized) product of likelihood and prior by this constant.</p>
 <p>The result is the posterior density, evaluated on the grid.</p>
 <div class="cell docutils container">
@@ -736,7 +736,7 @@ such as the <a class="reference external" href="https://en.wikipedia.org/wiki/Tr
 </section>
 </section>
 <section id="iterating-the-update">
-<h2><span class="section-number">47.6. </span>Iterating the update<a class="headerlink" href="#iterating-the-update" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">48.6. </span>Iterating the update<a class="headerlink" href="#iterating-the-update" title="Link to this heading">#</a></h2>
 <p>Here is a key observation: the posterior after one step is itself a perfectly good prior for the next step.</p>
 <p>So we can repeat the update as each new loan resolves.</p>
 <p>Starting from a prior <span class="math notranslate nohighlight">\(\pi_0\)</span>, observing <span class="math notranslate nohighlight">\(Y_1\)</span> gives a posterior <span class="math notranslate nohighlight">\(\pi_1\)</span>.</p>
@@ -801,13 +801,13 @@ such as the <a class="reference external" href="https://en.wikipedia.org/wiki/Tr
 <p>As data accumulates, that influence fades and the data takes over.</p>
 </section>
 <section id="further-observations">
-<h2><span class="section-number">47.7. </span>Further observations<a class="headerlink" href="#further-observations" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">48.7. </span>Further observations<a class="headerlink" href="#further-observations" title="Link to this heading">#</a></h2>
 <p>Let’s make two additional observations regarding the model described above.</p>
 <p>The first shows that we can do the update steps above with pencil and paper in
 the special case of a beta prior.</p>
 <p>The second observation concerns batch updating.</p>
 <section id="a-closed-form-the-beta-prior">
-<h3><span class="section-number">47.7.1. </span>A closed form: the beta prior<a class="headerlink" href="#a-closed-form-the-beta-prior" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">48.7.1. </span>A closed form: the beta prior<a class="headerlink" href="#a-closed-form-the-beta-prior" title="Link to this heading">#</a></h3>
 <p>The numerical updating rule provided above always works, regardless of our
 choice of prior.</p>
 <p>But in the beta case we get a nice analytical approach as well.</p>
@@ -850,7 +850,7 @@ choice of prior.</p>
 <p>The two curves lie exactly on top of one another, confirming that our numerics and the closed form agree.</p>
 </section>
 <section id="the-batch-update-via-the-binomial-likelihood">
-<h3><span class="section-number">47.7.2. </span>The batch update via the binomial likelihood<a class="headerlink" href="#the-batch-update-via-the-binomial-likelihood" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">48.7.2. </span>The batch update via the binomial likelihood<a class="headerlink" href="#the-batch-update-via-the-binomial-likelihood" title="Link to this heading">#</a></h3>
 <p>There is a second, equally natural way to think about the problem of belief
 updating given loan outcome data.</p>
 <p>Instead of processing outcomes one at a time, suppose we wait and observe all <span class="math notranslate nohighlight">\(n\)</span> outcomes <span class="math notranslate nohighlight">\(Y_1, \ldots, Y_n\)</span> together.</p>
@@ -862,7 +862,7 @@ updating given loan outcome data.</p>
 \]</div>
 <p>The probability of observing exactly <span class="math notranslate nohighlight">\(k\)</span> defaults out of <span class="math notranslate nohighlight">\(n\)</span> loans is given by the <strong>binomial</strong> distribution:</p>
 <div class="math notranslate nohighlight" id="equation-eq-binom-lik">
-<span class="eqno">(47.6)<a class="headerlink" href="#equation-eq-binom-lik" title="Link to this equation">#</a></span>\[
+<span class="eqno">(48.6)<a class="headerlink" href="#equation-eq-binom-lik" title="Link to this equation">#</a></span>\[
     p(k \mid \theta) = \binom{n}{k} \theta^{k} (1 - \theta)^{n - k}.
 \]</div>
 <p>Bayes’ law then gives the one-shot update</p>
@@ -880,7 +880,7 @@ updating given loan outcome data.</p>
 </section>
 </section>
 <section id="sequential-and-batch-updates-agree">
-<h2><span class="section-number">47.8. </span>Sequential and batch updates agree<a class="headerlink" href="#sequential-and-batch-updates-agree" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">48.8. </span>Sequential and batch updates agree<a class="headerlink" href="#sequential-and-batch-updates-agree" title="Link to this heading">#</a></h2>
 <p>We now have two routes from prior to posterior.</p>
 <p>One processes the <span class="math notranslate nohighlight">\(n\)</span> outcomes one at a time; the other processes them all at once.</p>
 <p>Reassuringly, they give exactly the same answer.</p>
@@ -891,7 +891,7 @@ updating given loan outcome data.</p>
     \prod_{i=1}^n \theta^{Y_i}(1-\theta)^{1 - Y_i}
     = \theta^{k}(1-\theta)^{n-k}.
 \]</div>
-<p>This is identical to the binomial likelihood <a class="reference internal" href="#equation-eq-binom-lik">(47.6)</a>, except for the factor <span class="math notranslate nohighlight">\(\binom{n}{k}\)</span>.</p>
+<p>This is identical to the binomial likelihood <a class="reference internal" href="#equation-eq-binom-lik">(48.6)</a>, except for the factor <span class="math notranslate nohighlight">\(\binom{n}{k}\)</span>.</p>
 <p>But <span class="math notranslate nohighlight">\(\binom{n}{k}\)</span> does not depend on <span class="math notranslate nohighlight">\(\theta\)</span>, so it cancels between the numerator and denominator when we normalize.</p>
 <p>Hence the two posteriors are equal.</p>
 <div class="admonition note">
@@ -909,12 +909,12 @@ updating given loan outcome data.</p>
 </div>
 </section>
 <section id="from-posterior-to-loan-pricing">
-<h2><span class="section-number">47.9. </span>From posterior to loan pricing<a class="headerlink" href="#from-posterior-to-loan-pricing" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">48.9. </span>From posterior to loan pricing<a class="headerlink" href="#from-posterior-to-loan-pricing" title="Link to this heading">#</a></h2>
 <p>Why does any of this matter for the bank?</p>
 <p>The whole point of estimating <span class="math notranslate nohighlight">\(\theta\)</span> is to make better lending decisions.</p>
 <p>Let’s discuss how this can be done.</p>
 <section id="expected-loss">
-<h3><span class="section-number">47.9.1. </span>Expected loss<a class="headerlink" href="#expected-loss" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">48.9.1. </span>Expected loss<a class="headerlink" href="#expected-loss" title="Link to this heading">#</a></h3>
 <p>Suppose each loan has size 1, and the bank loses the full amount when a loan defaults.</p>
 <p>Then the <strong>expected loss</strong> on a new loan is just the probability of default.</p>
 <p>Given the data, our best estimate of that probability is the <strong>posterior mean</strong>.</p>
@@ -973,7 +973,7 @@ updating given loan outcome data.</p>
 <p>This is the practical payoff of Bayesian updating: the bank can price cautiously when data is scarce, and sharpen its pricing as experience accumulates.</p>
 </section>
 <section id="the-break-even-interest-rate">
-<h3><span class="section-number">47.9.2. </span>The break-even interest rate<a class="headerlink" href="#the-break-even-interest-rate" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">48.9.2. </span>The break-even interest rate<a class="headerlink" href="#the-break-even-interest-rate" title="Link to this heading">#</a></h3>
 <p>Let’s turn the expected loss into an actual interest rate.</p>
 <p>Consider a loan of size 1, carrying interest rate <span class="math notranslate nohighlight">\(r\)</span>.</p>
 <p>If the borrower repays, the bank receives <span class="math notranslate nohighlight">\(1 + r\)</span>.</p>
@@ -1022,10 +1022,10 @@ updating given loan outcome data.</p>
 </section>
 </section>
 <section id="exercises">
-<h2><span class="section-number">47.10. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">48.10. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
 <div class="exercise admonition" id="bayes_ex1">
 
-<p class="admonition-title"><span class="caption-number">Exercise 47.1 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 48.1 </span></p>
 <section id="exercise-content">
 <p>The prior matters a lot when data is scarce, but its influence should fade as data accumulates.</p>
 <p>Illustrate this by repeating the iteration of the previous sections from two very different priors:</p>
@@ -1039,7 +1039,7 @@ updating given loan outcome data.</p>
 </div>
 <div class="solution dropdown admonition" id="bayes_intro-solution-2">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#bayes_ex1"> Exercise 47.1</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#bayes_ex1"> Exercise 48.1</a></p>
 <section id="solution-content">
 <p>We can use the conjugate update rule directly, since both priors are beta distributions.</p>
 <div class="cell docutils container">
@@ -1076,7 +1076,7 @@ updating given loan outcome data.</p>
 </div>
 <div class="exercise admonition" id="bayes_ex2">
 
-<p class="admonition-title"><span class="caption-number">Exercise 47.2 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 48.2 </span></p>
 <section id="exercise-content">
 <p>Suppose the bank starts with a <span class="math notranslate nohighlight">\(\text{Beta}(2, 5)\)</span> prior and then observes 200 loans, of which 26 default.</p>
 <ol class="arabic simple">
@@ -1088,7 +1088,7 @@ updating given loan outcome data.</p>
 </div>
 <div class="solution dropdown admonition" id="bayes_intro-solution-4">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#bayes_ex2"> Exercise 47.2</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#bayes_ex2"> Exercise 48.2</a></p>
 <section id="solution-content">
 <p>The posterior is <span class="math notranslate nohighlight">\(\text{Beta}(a_0 + k,\ b_0 + n - k)\)</span> with <span class="math notranslate nohighlight">\(a_0 = 2\)</span>, <span class="math notranslate nohighlight">\(b_0 = 5\)</span>, <span class="math notranslate nohighlight">\(n = 200\)</span> and <span class="math notranslate nohighlight">\(k = 26\)</span>.</p>
 <div class="cell docutils container">
@@ -1345,18 +1345,23 @@ Posterior mean default rate: 0.1353
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="msy_fishery.html">
+   26. Fishery Management: Quotas and MSY
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="cobweb.html">
-   26. The Cobweb Model
+   27. The Cobweb Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="olg.html">
-   27. The Overlapping Generations Model
+   28. The Overlapping Generations Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="commod_price.html">
-   28. Commodity Prices
+   29. Commodity Prices
   </a>
  </li>
 </ul>
@@ -1368,22 +1373,22 @@ Posterior mean default rate: 0.1353
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="money_inflation.html">
-   29. Money Financed Government Deficits and Price Levels
+   30. Money Financed Government Deficits and Price Levels
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="unpleasant.html">
-   30. Some Unpleasant Monetarist Arithmetic
+   31. Some Unpleasant Monetarist Arithmetic
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="money_inflation_nonlinear.html">
-   31. Inflation Rate Laffer Curves
+   32. Inflation Rate Laffer Curves
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="laffer_adaptive.html">
-   32. Laffer Curves  with Adaptive Expectations
+   33. Laffer Curves  with Adaptive Expectations
   </a>
  </li>
 </ul>
@@ -1395,22 +1400,22 @@ Posterior mean default rate: 0.1353
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="ar1_processes.html">
-   33. AR(1) Processes
+   34. AR(1) Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   34. Markov Chains: Basic Concepts
+   35. Markov Chains: Basic Concepts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   35. Markov Chains: Irreducibility and Ergodicity
+   36. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time_series_with_matrices.html">
-   36. Univariate Time Series with Matrix Algebra
+   37. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -1422,12 +1427,12 @@ Posterior mean default rate: 0.1353
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   37. Linear Programming
+   38. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   38. Shortest Paths
+   39. Shortest Paths
   </a>
  </li>
 </ul>
@@ -1439,22 +1444,22 @@ Posterior mean default rate: 0.1353
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_II.html">
-   39. The Perron-Frobenius Theorem
+   40. The Perron-Frobenius Theorem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="input_output.html">
-   40. Input-Output Models
+   41. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lake_model.html">
-   41. A Lake Model of Employment
+   42. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="networks.html">
-   42. Networks
+   43. Networks
   </a>
  </li>
 </ul>
@@ -1466,12 +1471,12 @@ Posterior mean default rate: 0.1353
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_multiple_goods.html">
-   43. Supply and Demand with Many Goods
+   44. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_heterogeneity.html">
-   44. Market Equilibrium with Heterogeneity
+   45. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -1483,17 +1488,17 @@ Posterior mean default rate: 0.1353
 <ul class="current nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   45. Simple Linear Regression Model
+   46. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   46. Maximum Likelihood Estimation
+   47. Maximum Likelihood Estimation
   </a>
  </li>
  <li class="toctree-l1 current active active">
   <a class="current reference internal" href="#">
-   47. Introduction to Bayesian Methods
+   48. Introduction to Bayesian Methods
   </a>
  </li>
 </ul>
@@ -1505,17 +1510,17 @@ Posterior mean default rate: 0.1353
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   48. Troubleshooting
+   49. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   49. References
+   50. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   50. Execution Statistics
+   51. Execution Statistics
   </a>
  </li>
 </ul>

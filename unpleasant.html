@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>30. Some Unpleasant Monetarist Arithmetic &#8212; A First Course in Quantitative Economics with Python</title>
+    <title>31. Some Unpleasant Monetarist Arithmetic &#8212; A First Course in Quantitative Economics with Python</title>
     
     <link rel="preconnect" href="https://unpkg.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -133,8 +133,8 @@
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="31. Inflation Rate Laffer Curves" href="money_inflation_nonlinear.html" />
-    <link rel="prev" title="29. Money Financed Government Deficits and Price Levels" href="money_inflation.html" />
+    <link rel="next" title="32. Inflation Rate Laffer Curves" href="money_inflation_nonlinear.html" />
+    <link rel="prev" title="30. Money Financed Government Deficits and Price Levels" href="money_inflation.html" />
 
 <!-- Normal Meta Tags -->
 <meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
@@ -209,18 +209,18 @@
 
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">30.1. Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">30.2. Setup</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monetary-fiscal-policy">30.3. Monetary-Fiscal Policy</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-market-operations">30.3.1. Open market operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">31.1. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">31.2. Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monetary-fiscal-policy">31.3. Monetary-Fiscal Policy</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-market-operations">31.3.1. Open market operations</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-open-market-operation-at-t-0">30.4. An open market operation at <span class="math notranslate nohighlight">\(t=0\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithm-basic-idea">30.5. Algorithm (basic idea)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#before-time-t">30.6. Before time <span class="math notranslate nohighlight">\(T\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithm-pseudo-code">30.7. Algorithm (pseudo code)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-calculations">30.8. Example Calculations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">30.9. Exercises</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-open-market-operation-at-t-0">31.4. An open market operation at <span class="math notranslate nohighlight">\(t=0\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithm-basic-idea">31.5. Algorithm (basic idea)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#before-time-t">31.6. Before time <span class="math notranslate nohighlight">\(T\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithm-pseudo-code">31.7. Algorithm (pseudo code)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-calculations">31.8. Example Calculations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">31.9. Exercises</a></li>
 </ul>
                             <p class="logo">
                                 
@@ -290,7 +290,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/ae928c86" class="changelog-hash">ae928c86</a>
                                 
                                 <span class="changelog-author">Humphrey Yang</span>
-                                <span class="changelog-time">6 days ago</span>
+                                <span class="changelog-time">1 week ago</span>
                                 <span class="changelog-message">Adding Tom's Edits to Exercises (#748)</span>
                             </li>
                             
@@ -388,9 +388,9 @@
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="some-unpleasant-monetarist-arithmetic">
-<h1><span class="section-number">30. </span>Some Unpleasant Monetarist Arithmetic<a class="headerlink" href="#some-unpleasant-monetarist-arithmetic" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">31. </span>Some Unpleasant Monetarist Arithmetic<a class="headerlink" href="#some-unpleasant-monetarist-arithmetic" title="Link to this heading">#</a></h1>
 <section id="overview">
-<h2><span class="section-number">30.1. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">31.1. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
 <p>This lecture builds on concepts and issues introduced in <a class="reference internal" href="money_inflation.html"><span class="doc">Money Financed Government Deficits and Price Levels</span></a>.</p>
 <p>That lecture describes stationary equilibria that reveal a <a class="reference external" href="https://en.wikipedia.org/wiki/Laffer_curve"><em>Laffer curve</em></a> in the inflation tax rate and the associated  stationary rate of return
 on currency.</p>
@@ -407,7 +407,7 @@ by printing money at times <span class="math notranslate nohighlight">\(t \geq T
 <p>In addition to learning about “unpleasant monetarist arithmetic”, in this lecture we’ll learn how to implement a <a class="reference external" href="https://en.wikipedia.org/wiki/Fixed_point_(mathematics)"><em>fixed point</em></a> algorithm for computing an initial price level.</p>
 </section>
 <section id="setup">
-<h2><span class="section-number">30.2. </span>Setup<a class="headerlink" href="#setup" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">31.2. </span>Setup<a class="headerlink" href="#setup" title="Link to this heading">#</a></h2>
 <p>Let’s start with quick reminders of the model’s components set out in <a class="reference internal" href="money_inflation.html"><span class="doc">Money Financed Government Deficits and Price Levels</span></a>.</p>
 <p>Please consult that lecture for more details and Python code that we’ll also use in this lecture.</p>
 <p>For <span class="math notranslate nohighlight">\(t \geq 1\)</span>, <strong>real balances</strong> evolve according to</p>
@@ -417,7 +417,7 @@ by printing money at times <span class="math notranslate nohighlight">\(t \geq T
 \]</div>
 <p>or</p>
 <div class="math notranslate nohighlight" id="equation-eq-up-bmotion">
-<span class="eqno">(30.1)<a class="headerlink" href="#equation-eq-up-bmotion" title="Link to this equation">#</a></span>\[
+<span class="eqno">(31.1)<a class="headerlink" href="#equation-eq-up-bmotion" title="Link to this equation">#</a></span>\[
 b_t - b_{t-1} R_{t-1} = g
 \]</div>
 <p>where</p>
@@ -427,13 +427,13 @@ b_t - b_{t-1} R_{t-1} = g
 </ul>
 <p>The demand for real balances is</p>
 <div class="math notranslate nohighlight" id="equation-eq-up-bdemand">
-<span class="eqno">(30.2)<a class="headerlink" href="#equation-eq-up-bdemand" title="Link to this equation">#</a></span>\[
+<span class="eqno">(31.2)<a class="headerlink" href="#equation-eq-up-bdemand" title="Link to this equation">#</a></span>\[
 b_t = \gamma_1 - \gamma_2 R_t^{-1} .
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\gamma_1 &gt; \gamma_2 &gt; 0\)</span>.</p>
 </section>
 <section id="monetary-fiscal-policy">
-<h2><span class="section-number">30.3. </span>Monetary-Fiscal Policy<a class="headerlink" href="#monetary-fiscal-policy" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">31.3. </span>Monetary-Fiscal Policy<a class="headerlink" href="#monetary-fiscal-policy" title="Link to this heading">#</a></h2>
 <p>To the basic model of <a class="reference internal" href="money_inflation.html"><span class="doc">Money Financed Government Deficits and Price Levels</span></a>, we add inflation-indexed one-period government bonds as an additional way for the government to finance government expenditures.</p>
 <p>Let <span class="math notranslate nohighlight">\(\widetilde R &gt; 1\)</span> be a time-invariant gross real rate of return on government one-period inflation-indexed bonds.</p>
 <p>With this additional source of funds, the government’s budget constraint at time <span class="math notranslate nohighlight">\(t \geq 0\)</span> is now</p>
@@ -446,7 +446,7 @@ and <span class="math notranslate nohighlight">\(\widetilde R \check B_{-1}\)</s
 <p>Notice that <span class="math notranslate nohighlight">\(\check m_0\)</span> is a <em>nominal</em> quantity, being measured in dollars, while
 <span class="math notranslate nohighlight">\(\widetilde R \check B_{-1}\)</span> is a <em>real</em> quantity, being measured in time <span class="math notranslate nohighlight">\(0\)</span> goods.</p>
 <section id="open-market-operations">
-<h3><span class="section-number">30.3.1. </span>Open market operations<a class="headerlink" href="#open-market-operations" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">31.3.1. </span>Open market operations<a class="headerlink" href="#open-market-operations" title="Link to this heading">#</a></h3>
 <p>At time <span class="math notranslate nohighlight">\(0\)</span>, government can rearrange its portfolio of debts subject to the following constraint (on open-market operations):</p>
 <div class="math notranslate nohighlight">
 \[
@@ -454,7 +454,7 @@ and <span class="math notranslate nohighlight">\(\widetilde R \check B_{-1}\)</s
 \]</div>
 <p>or</p>
 <div class="math notranslate nohighlight" id="equation-eq-openmarketconstraint">
-<span class="eqno">(30.3)<a class="headerlink" href="#equation-eq-openmarketconstraint" title="Link to this equation">#</a></span>\[
+<span class="eqno">(31.3)<a class="headerlink" href="#equation-eq-openmarketconstraint" title="Link to this equation">#</a></span>\[
 B_{-1} - \check B_{-1} = \frac{1}{p_0 \widetilde R} \left( \check m_0 - m_0 \right)
 \]</div>
 <p>This equation says that the government (e.g., the central bank) can <em>decrease</em> <span class="math notranslate nohighlight">\(m_0\)</span> relative to
@@ -463,12 +463,12 @@ B_{-1} - \check B_{-1} = \frac{1}{p_0 \widetilde R} \left( \check m_0 - m_0 \rig
 </section>
 </section>
 <section id="an-open-market-operation-at-t-0">
-<h2><span class="section-number">30.4. </span>An open market operation at <span class="math notranslate nohighlight">\(t=0\)</span><a class="headerlink" href="#an-open-market-operation-at-t-0" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">31.4. </span>An open market operation at <span class="math notranslate nohighlight">\(t=0\)</span><a class="headerlink" href="#an-open-market-operation-at-t-0" title="Link to this heading">#</a></h2>
 <p>Following Sargent and Wallace <span class="bibtex-citation" id="id2">[<a class="reference internal" href="zreferences.html#id293" title="Thomas J Sargent and Neil Wallace. Some unpleasant monetarist arithmetic. Federal reserve bank of minneapolis quarterly review, 5(3):1–17, 1981.">Sargent and Wallace, 1981</a>]</span>, we analyze consequences of a central bank policy that
 uses an open market operation to lower the price level in the face of a persistent fiscal
 deficit that takes the form of a positive <span class="math notranslate nohighlight">\(g\)</span>.</p>
 <p>Just before time <span class="math notranslate nohighlight">\(0\)</span>, the government chooses <span class="math notranslate nohighlight">\((m_0, B_{-1})\)</span>  subject to constraint
-<a class="reference internal" href="#equation-eq-openmarketconstraint">(30.3)</a>.</p>
+<a class="reference internal" href="#equation-eq-openmarketconstraint">(31.3)</a>.</p>
 <p>For <span class="math notranslate nohighlight">\(t =0, 1, \ldots, T-1\)</span>,</p>
 <div class="math notranslate nohighlight">
 \[
@@ -487,7 +487,7 @@ m_{t+1} &amp; = m_t + p_t \overline g
 \]</div>
 <p>where</p>
 <div class="math notranslate nohighlight" id="equation-eq-overlineg">
-<span class="eqno">(30.4)<a class="headerlink" href="#equation-eq-overlineg" title="Link to this equation">#</a></span>\[
+<span class="eqno">(31.4)<a class="headerlink" href="#equation-eq-overlineg" title="Link to this equation">#</a></span>\[
 \overline g = \left[(\tilde R -1) B_{T-1} +  g \right]
 \]</div>
 <p>We want to compute an equilibrium <span class="math notranslate nohighlight">\(\{p_t,m_t,b_t, R_t\}_{t=0}\)</span> sequence under this scheme for
@@ -498,26 +498,26 @@ running monetary and fiscal policies.</p>
 (or its delegate, say, a central bank) either buys  government bonds from the public for newly issued money, or sells  bonds to the public and withdraws the money it receives from public circulation.</p>
 </section>
 <section id="algorithm-basic-idea">
-<h2><span class="section-number">30.5. </span>Algorithm (basic idea)<a class="headerlink" href="#algorithm-basic-idea" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">31.5. </span>Algorithm (basic idea)<a class="headerlink" href="#algorithm-basic-idea" title="Link to this heading">#</a></h2>
 <p>We work backwards from <span class="math notranslate nohighlight">\(t=T\)</span> and first compute <span class="math notranslate nohighlight">\(p_T, R_u\)</span> associated with the low-inflation, low-inflation-tax-rate stationary equilibrium in <a class="reference internal" href="money_inflation_nonlinear.html"><span class="doc">Inflation Rate Laffer Curves</span></a>.</p>
 <p>To start our description of our algorithm, it is useful to recall that a stationary rate of return
 on currency <span class="math notranslate nohighlight">\(\bar R\)</span> solves the quadratic equation</p>
 <div class="math notranslate nohighlight" id="equation-eq-up-steadyquadratic">
-<span class="eqno">(30.5)<a class="headerlink" href="#equation-eq-up-steadyquadratic" title="Link to this equation">#</a></span>\[
+<span class="eqno">(31.5)<a class="headerlink" href="#equation-eq-up-steadyquadratic" title="Link to this equation">#</a></span>\[
 -\gamma_2 + (\gamma_1 + \gamma_2 - \overline g) \bar R - \gamma_1 \bar R^2 = 0
 \]</div>
-<p>Quadratic equation <a class="reference internal" href="#equation-eq-up-steadyquadratic">(30.5)</a> has two roots, <span class="math notranslate nohighlight">\(R_l &lt; R_u &lt; 1\)</span>.</p>
+<p>Quadratic equation <a class="reference internal" href="#equation-eq-up-steadyquadratic">(31.5)</a> has two roots, <span class="math notranslate nohighlight">\(R_l &lt; R_u &lt; 1\)</span>.</p>
 <p>For reasons described at the end of <a class="reference internal" href="money_inflation.html"><span class="doc">Money Financed Government Deficits and Price Levels</span></a>, we select the larger root <span class="math notranslate nohighlight">\(R_u\)</span>.</p>
 <p>Next, we compute</p>
 <div class="math notranslate nohighlight" id="equation-eq-laffertstationary">
-<span class="eqno">(30.6)<a class="headerlink" href="#equation-eq-laffertstationary" title="Link to this equation">#</a></span>\[
+<span class="eqno">(31.6)<a class="headerlink" href="#equation-eq-laffertstationary" title="Link to this equation">#</a></span>\[
 \begin{aligned}
 R_T &amp; = R_u \cr
 b_T &amp; = \gamma_1 - \gamma_2 R_u^{-1} \cr
 p_T &amp; = \frac{m_0}{\gamma_1 - \overline g - \gamma_2 R_u^{-1}}
 \end{aligned}
 \]</div>
-<p>We can compute continuation sequences <span class="math notranslate nohighlight">\(\{R_t, b_t\}_{t=T+1}^\infty\)</span> of rates of return and real balances that are associated with an equilibrium by solving equation <a class="reference internal" href="#equation-eq-up-bmotion">(30.1)</a> and <a class="reference internal" href="#equation-eq-up-bdemand">(30.2)</a> sequentially  for <span class="math notranslate nohighlight">\(t \geq 1\)</span>:</p>
+<p>We can compute continuation sequences <span class="math notranslate nohighlight">\(\{R_t, b_t\}_{t=T+1}^\infty\)</span> of rates of return and real balances that are associated with an equilibrium by solving equation <a class="reference internal" href="#equation-eq-up-bmotion">(31.1)</a> and <a class="reference internal" href="#equation-eq-up-bdemand">(31.2)</a> sequentially  for <span class="math notranslate nohighlight">\(t \geq 1\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
 \begin{aligned}
@@ -529,7 +529,7 @@ p_t &amp; = R_t p_{t-1} \cr
 \]</div>
 </section>
 <section id="before-time-t">
-<h2><span class="section-number">30.6. </span>Before time <span class="math notranslate nohighlight">\(T\)</span><a class="headerlink" href="#before-time-t" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">31.6. </span>Before time <span class="math notranslate nohighlight">\(T\)</span><a class="headerlink" href="#before-time-t" title="Link to this heading">#</a></h2>
 <p>Define</p>
 <div class="math notranslate nohighlight">
 \[
@@ -546,7 +546,7 @@ p_0 &amp;  = \gamma_1^{-1} \left[ \sum_{j=0}^\infty \lambda^j m_{j} \right] \cr
 \]</div>
 <p>Thus,</p>
 <div class="math notranslate nohighlight" id="equation-eq-allts">
-<span class="eqno">(30.7)<a class="headerlink" href="#equation-eq-allts" title="Link to this equation">#</a></span>\[
+<span class="eqno">(31.7)<a class="headerlink" href="#equation-eq-allts" title="Link to this equation">#</a></span>\[
 \begin{aligned}
 p_0 &amp; = \gamma_1^{-1} m_0  \left\{ \frac{1 - \lambda^T}{1-\lambda} +  \frac{\lambda^T}{R_u-\lambda}   \right\} \cr
 p_1 &amp; = \gamma_1^{-1} m_0  \left\{ \frac{1 - \lambda^{T-1}}{1-\lambda} +  \frac{\lambda^{T-1}}{R_u-\lambda}   \right\} \cr
@@ -562,24 +562,24 @@ p_t = \gamma_1^{-1} m_0 + \lambda p_{t+1}, \quad t = T-1, T-2, \ldots, 0
 \]</div>
 <p>starting from</p>
 <div class="math notranslate nohighlight" id="equation-eq-ptformula">
-<span class="eqno">(30.8)<a class="headerlink" href="#equation-eq-ptformula" title="Link to this equation">#</a></span>\[
+<span class="eqno">(31.8)<a class="headerlink" href="#equation-eq-ptformula" title="Link to this equation">#</a></span>\[
 p_T =   \frac{m_0}{\gamma_1 - \overline g - \gamma_2 R_u^{-1}}  = \gamma_1^{-1} m_0  \left\{\frac{1}{R_u-\lambda} \right\}
 \]</div>
 <div class="proof remark admonition" id="equivalence">
-<p class="admonition-title"><span class="caption-number">Remark 30.1 </span></p>
+<p class="admonition-title"><span class="caption-number">Remark 31.1 </span></p>
 <section class="remark-content" id="proof-content">
-<p>We can verify the equivalence of the two formulas on the right sides of <a class="reference internal" href="#equation-eq-ptformula">(30.8)</a> by recalling that
-<span class="math notranslate nohighlight">\(R_u\)</span> is a root of the quadratic equation <a class="reference internal" href="#equation-eq-up-steadyquadratic">(30.5)</a> that determines steady state rates of return on currency.</p>
+<p>We can verify the equivalence of the two formulas on the right sides of <a class="reference internal" href="#equation-eq-ptformula">(31.8)</a> by recalling that
+<span class="math notranslate nohighlight">\(R_u\)</span> is a root of the quadratic equation <a class="reference internal" href="#equation-eq-up-steadyquadratic">(31.5)</a> that determines steady state rates of return on currency.</p>
 </section>
 </div></section>
 <section id="algorithm-pseudo-code">
-<h2><span class="section-number">30.7. </span>Algorithm (pseudo code)<a class="headerlink" href="#algorithm-pseudo-code" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">31.7. </span>Algorithm (pseudo code)<a class="headerlink" href="#algorithm-pseudo-code" title="Link to this heading">#</a></h2>
 <p>Now let’s describe a computational algorithm in more detail in the form of a description
 that constitutes pseudo code because it approaches a set of instructions we could provide to a
 Python coder.</p>
 <p>To compute an equilibrium, we deploy the following algorithm.</p>
 <div class="proof algorithm admonition" id="algorithm-1">
-<p class="admonition-title"><span class="caption-number">Algorithm 30.1 </span></p>
+<p class="admonition-title"><span class="caption-number">Algorithm 31.1 </span></p>
 <section class="algorithm-content" id="proof-content">
 <p>Given <em>parameters</em> include <span class="math notranslate nohighlight">\(g, \check m_0, \check B_{-1}, \widetilde R &gt;1, T \)</span>.</p>
 <p>We define a mapping from <span class="math notranslate nohighlight">\(p_0\)</span> to <span class="math notranslate nohighlight">\(\widehat p_0\)</span> as follows.</p>
@@ -605,8 +605,8 @@ B_{T-1} = \widetilde R^T B_{-1} + \left( \frac{1 - \widetilde R^T}{1-\widetilde 
 \overline g = g + \left[ \tilde R - 1\right] B_{T-1}
 \]</div>
 <ul class="simple">
-<li><p>Compute <span class="math notranslate nohighlight">\(R_u, p_T\)</span> from formulas <a class="reference internal" href="#equation-eq-up-steadyquadratic">(30.5)</a>  and <a class="reference internal" href="#equation-eq-laffertstationary">(30.6)</a> above</p></li>
-<li><p>Compute a new estimate of <span class="math notranslate nohighlight">\(p_0\)</span>, call it <span class="math notranslate nohighlight">\(\widehat p_0\)</span>, from equation <a class="reference internal" href="#equation-eq-allts">(30.7)</a> above</p></li>
+<li><p>Compute <span class="math notranslate nohighlight">\(R_u, p_T\)</span> from formulas <a class="reference internal" href="#equation-eq-up-steadyquadratic">(31.5)</a>  and <a class="reference internal" href="#equation-eq-laffertstationary">(31.6)</a> above</p></li>
+<li><p>Compute a new estimate of <span class="math notranslate nohighlight">\(p_0\)</span>, call it <span class="math notranslate nohighlight">\(\widehat p_0\)</span>, from equation <a class="reference internal" href="#equation-eq-allts">(31.7)</a> above</p></li>
 <li><p>Note that the preceding steps define a mapping</p></li>
 </ul>
 <div class="math notranslate nohighlight">
@@ -625,7 +625,7 @@ p_{0,j+1} = (1-\theta)  {\mathcal S}(p_{0,j})  + \theta  p_{0,j},
 </section>
 </div></section>
 <section id="example-calculations">
-<h2><span class="section-number">30.8. </span>Example Calculations<a class="headerlink" href="#example-calculations" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">31.8. </span>Example Calculations<a class="headerlink" href="#example-calculations" title="Link to this heading">#</a></h2>
 <p>We’ll set parameters of the model so that the steady state after time <span class="math notranslate nohighlight">\(T\)</span> is initially the same
 as in <a class="reference internal" href="money_inflation_nonlinear.html"><span class="doc">Inflation Rate Laffer Curves</span></a></p>
 <p>In particular, we set <span class="math notranslate nohighlight">\(\gamma_1=100, \gamma_2 =50, g=3.0\)</span>.</p>
@@ -835,12 +835,12 @@ the adjective <em>monetarist</em> in their title.</p>
 <a class="reference internal image-reference" href="_images/27b75996f3e98a100ed1ba456676962cae757a889e500b41d372627021c59fad.png"><img alt="_images/27b75996f3e98a100ed1ba456676962cae757a889e500b41d372627021c59fad.png" src="_images/27b75996f3e98a100ed1ba456676962cae757a889e500b41d372627021c59fad.png" style="width: 80%;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 30.1 </span><span class="caption-text">Unpleasant Arithmetic</span><a class="headerlink" href="#fig-unpl1" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 31.1 </span><span class="caption-text">Unpleasant Arithmetic</span><a class="headerlink" href="#fig-unpl1" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
 </div>
-<p><a class="reference internal" href="#fig-unpl1"><span class="std std-numref">Fig. 30.1</span></a> summarizes outcomes of two experiments that convey messages of Sargent and Wallace <span class="bibtex-citation" id="id4">[<a class="reference internal" href="zreferences.html#id293" title="Thomas J Sargent and Neil Wallace. Some unpleasant monetarist arithmetic. Federal reserve bank of minneapolis quarterly review, 5(3):1–17, 1981.">Sargent and Wallace, 1981</a>]</span>.</p>
+<p><a class="reference internal" href="#fig-unpl1"><span class="std std-numref">Fig. 31.1</span></a> summarizes outcomes of two experiments that convey messages of Sargent and Wallace <span class="bibtex-citation" id="id4">[<a class="reference internal" href="zreferences.html#id293" title="Thomas J Sargent and Neil Wallace. Some unpleasant monetarist arithmetic. Federal reserve bank of minneapolis quarterly review, 5(3):1–17, 1981.">Sargent and Wallace, 1981</a>]</span>.</p>
 <ul class="simple">
 <li><p>An open market operation that reduces the supply of money at time <span class="math notranslate nohighlight">\(t=0\)</span> reduces  the price level at time <span class="math notranslate nohighlight">\(t=0\)</span></p></li>
 <li><p>The lower is the post-open-market-operation money supply at time <span class="math notranslate nohighlight">\(0\)</span>, lower is the price level at time <span class="math notranslate nohighlight">\(0\)</span>.</p></li>
@@ -849,10 +849,10 @@ the adjective <em>monetarist</em> in their title.</p>
 </ul>
 </section>
 <section id="exercises">
-<h2><span class="section-number">30.9. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">31.9. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
 <div class="exercise admonition" id="un_ex1">
 
-<p class="admonition-title"><span class="caption-number">Exercise 30.1 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 31.1 </span></p>
 <section id="exercise-content">
 <p><strong>How the length of the tight-money period <span class="math notranslate nohighlight">\(T\)</span> amplifies unpleasant arithmetic.</strong></p>
 <p>The lecture shows that a central bank open-market operation that reduces <span class="math notranslate nohighlight">\(m_0\)</span>
@@ -874,7 +874,7 @@ why <span class="math notranslate nohighlight">\(R_u\)</span> falls and <span cl
 </div>
 <div class="solution dropdown admonition" id="unpleasant-solution-3">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#un_ex1"> Exercise 30.1</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#un_ex1"> Exercise 31.1</a></p>
 <section id="solution-content">
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -945,7 +945,7 @@ money today makes the long-run inflation rate higher, not lower.</p>
 </div>
 <div class="exercise admonition" id="un_ex2">
 
-<p class="admonition-title"><span class="caption-number">Exercise 30.2 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 31.2 </span></p>
 <section id="exercise-content">
 <p><strong>The fiscal limit: how large can <span class="math notranslate nohighlight">\(T\)</span> be?</strong></p>
 <p>The post-<span class="math notranslate nohighlight">\(T\)</span> deficit <span class="math notranslate nohighlight">\(\bar g\)</span> must be financeable by the inflation tax, which
@@ -956,7 +956,7 @@ means it cannot exceed the maximum seigniorage revenue
 still exists after time <span class="math notranslate nohighlight">\(T\)</span> (i.e., <span class="math notranslate nohighlight">\(\bar g \leq g_{\rm max}\)</span>).</p>
 <p>a. Compute <span class="math notranslate nohighlight">\(g_{\rm max} = (\gamma_1 + \gamma_2) - \gamma_2/\bar R_{\rm max}
     - \gamma_1 \bar R_{\rm max}\)</span> where <span class="math notranslate nohighlight">\(\bar R_{\rm max} = \sqrt{\gamma_2/\gamma_1}\)</span>.</p>
-<p>b. For <span class="math notranslate nohighlight">\(T = 1, 2, \ldots, 150\)</span>, compute <span class="math notranslate nohighlight">\(\bar g(T)\)</span> as in <a class="reference internal" href="#un_ex1"><span class="std std-numref">Exercise 30.1</span></a>.</p>
+<p>b. For <span class="math notranslate nohighlight">\(T = 1, 2, \ldots, 150\)</span>, compute <span class="math notranslate nohighlight">\(\bar g(T)\)</span> as in <a class="reference internal" href="#un_ex1"><span class="std std-numref">Exercise 31.1</span></a>.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Plot $\bar g(T)$ and $g_{\rm max}$ on the same axes and shade the infeasible region.
 </pre></div>
 </div>
@@ -965,7 +965,7 @@ still exists after time <span class="math notranslate nohighlight">\(T\)</span> 
 </div>
 <div class="solution dropdown admonition" id="unpleasant-solution-5">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#un_ex2"> Exercise 30.2</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#un_ex2"> Exercise 31.2</a></p>
 <section id="solution-content">
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1309,18 +1309,23 @@ policy can be pursued before the underlying fiscal arithmetic becomes incoherent
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="msy_fishery.html">
+   26. Fishery Management: Quotas and MSY
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="cobweb.html">
-   26. The Cobweb Model
+   27. The Cobweb Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="olg.html">
-   27. The Overlapping Generations Model
+   28. The Overlapping Generations Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="commod_price.html">
-   28. Commodity Prices
+   29. Commodity Prices
   </a>
  </li>
 </ul>
@@ -1332,22 +1337,22 @@ policy can be pursued before the underlying fiscal arithmetic becomes incoherent
 <ul class="current nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="money_inflation.html">
-   29. Money Financed Government Deficits and Price Levels
+   30. Money Financed Government Deficits and Price Levels
   </a>
  </li>
  <li class="toctree-l1 current active active">
   <a class="current reference internal" href="#">
-   30. Some Unpleasant Monetarist Arithmetic
+   31. Some Unpleasant Monetarist Arithmetic
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="money_inflation_nonlinear.html">
-   31. Inflation Rate Laffer Curves
+   32. Inflation Rate Laffer Curves
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="laffer_adaptive.html">
-   32. Laffer Curves  with Adaptive Expectations
+   33. Laffer Curves  with Adaptive Expectations
   </a>
  </li>
 </ul>
@@ -1359,22 +1364,22 @@ policy can be pursued before the underlying fiscal arithmetic becomes incoherent
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="ar1_processes.html">
-   33. AR(1) Processes
+   34. AR(1) Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   34. Markov Chains: Basic Concepts
+   35. Markov Chains: Basic Concepts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   35. Markov Chains: Irreducibility and Ergodicity
+   36. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time_series_with_matrices.html">
-   36. Univariate Time Series with Matrix Algebra
+   37. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -1386,12 +1391,12 @@ policy can be pursued before the underlying fiscal arithmetic becomes incoherent
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   37. Linear Programming
+   38. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   38. Shortest Paths
+   39. Shortest Paths
   </a>
  </li>
 </ul>
@@ -1403,22 +1408,22 @@ policy can be pursued before the underlying fiscal arithmetic becomes incoherent
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_II.html">
-   39. The Perron-Frobenius Theorem
+   40. The Perron-Frobenius Theorem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="input_output.html">
-   40. Input-Output Models
+   41. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lake_model.html">
-   41. A Lake Model of Employment
+   42. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="networks.html">
-   42. Networks
+   43. Networks
   </a>
  </li>
 </ul>
@@ -1430,12 +1435,12 @@ policy can be pursued before the underlying fiscal arithmetic becomes incoherent
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_multiple_goods.html">
-   43. Supply and Demand with Many Goods
+   44. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_heterogeneity.html">
-   44. Market Equilibrium with Heterogeneity
+   45. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -1447,17 +1452,17 @@ policy can be pursued before the underlying fiscal arithmetic becomes incoherent
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   45. Simple Linear Regression Model
+   46. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   46. Maximum Likelihood Estimation
+   47. Maximum Likelihood Estimation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="bayes_intro.html">
-   47. Introduction to Bayesian Methods
+   48. Introduction to Bayesian Methods
   </a>
  </li>
 </ul>
@@ -1469,17 +1474,17 @@ policy can be pursued before the underlying fiscal arithmetic becomes incoherent
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   48. Troubleshooting
+   49. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   49. References
+   50. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   50. Execution Statistics
+   51. Execution Statistics
   </a>
  </li>
 </ul>

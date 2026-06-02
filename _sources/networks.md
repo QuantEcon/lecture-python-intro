@@ -1104,7 +1104,7 @@ $$ (eicena)
 
 We see $e_j$ will be high if many nodes with high authority rankings link to $j$.
 
-The following figurenshows the authority-based eigenvector centrality ranking for the international
+The following figure shows the authority-based eigenvector centrality ranking for the international
 credit network shown in {numref}`financial_network`.
 
 ```{code-cell} ipython3

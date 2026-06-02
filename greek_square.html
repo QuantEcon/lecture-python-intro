@@ -273,7 +273,7 @@
 
                     <!-- Last modified / Changelog dropdown -->
                         <button class="qe-page__header-changed" id="changelog-toggle" aria-expanded="false">
-                            Last changed: Mar 20, 2025
+                            Last changed: May 31, 2026
                             <span class="changelog-icon">▼</span>
                         </button>
 
@@ -281,6 +281,15 @@
                     <div class="qe-page__header-changelog" id="changelog-content" aria-hidden="true">
                         <h4>Changelog (<a href="https://github.com/QuantEcon/lecture-python-intro/commits/main/lectures/greek_square.md">full history</a>)</h4>
                         <ul class="changelog-list">
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/72ae33d8" class="changelog-hash">72ae33d8</a>
+                                
+                                <span class="changelog-author">John Stachurski</span>
+                                <span class="changelog-time">1 day ago</span>
+                                <span class="changelog-message">Spelling and grammar fixes for unchecked lectures (#532) (#761)</span>
+                            </li>
                             
                             <li class="changelog-entry">
                                 
@@ -364,12 +373,12 @@
 <p>Chapter 24 of <span class="bibtex-citation" id="id1">[<a class="reference internal" href="zreferences.html#id3" title="Bertrand Russell. History of western philosophy. Routledge, 2004.">Russell, 2004</a>]</span> about early Greek mathematics and astronomy contains this
 fascinating passage:</p>
 <blockquote class="epigraph">
-<div><p>The square root of 2, which was the first irrational to be discovered, was known to the early Pythagoreans, and ingenious methods of approximating to its value were discovered. The best was as follows: Form two columns of numbers, which we will call the <span class="math notranslate nohighlight">\(a\)</span>’s and the <span class="math notranslate nohighlight">\(b\)</span>’s; each starts with a <span class="math notranslate nohighlight">\(1\)</span>. The next <span class="math notranslate nohighlight">\(a\)</span>, at each stage, is formed by adding the last <span class="math notranslate nohighlight">\(a\)</span> and the <span class="math notranslate nohighlight">\(b\)</span> already obtained; the next <span class="math notranslate nohighlight">\(b\)</span> is formed by adding twice the previous <span class="math notranslate nohighlight">\(a\)</span> to the previous <span class="math notranslate nohighlight">\(b\)</span>. The first 6 pairs so obtained are <span class="math notranslate nohighlight">\((1,1), (2,3), (5,7), (12,17), (29,41), (70,99)\)</span>. In each pair, <span class="math notranslate nohighlight">\(2 a^2 - b^2\)</span> is <span class="math notranslate nohighlight">\(1\)</span> or <span class="math notranslate nohighlight">\(-1\)</span>. Thus <span class="math notranslate nohighlight">\(b/a\)</span> is nearly the square root of two, and at each fresh step it gets nearer. For instance, the reader may satisy himself that the square of <span class="math notranslate nohighlight">\(99/70\)</span> is very nearly equal to <span class="math notranslate nohighlight">\(2\)</span>.</p>
+<div><p>The square root of 2, which was the first irrational to be discovered, was known to the early Pythagoreans, and ingenious methods of approximating to its value were discovered. The best was as follows: Form two columns of numbers, which we will call the <span class="math notranslate nohighlight">\(a\)</span>’s and the <span class="math notranslate nohighlight">\(b\)</span>’s; each starts with a <span class="math notranslate nohighlight">\(1\)</span>. The next <span class="math notranslate nohighlight">\(a\)</span>, at each stage, is formed by adding the last <span class="math notranslate nohighlight">\(a\)</span> and the <span class="math notranslate nohighlight">\(b\)</span> already obtained; the next <span class="math notranslate nohighlight">\(b\)</span> is formed by adding twice the previous <span class="math notranslate nohighlight">\(a\)</span> to the previous <span class="math notranslate nohighlight">\(b\)</span>. The first 6 pairs so obtained are <span class="math notranslate nohighlight">\((1,1), (2,3), (5,7), (12,17), (29,41), (70,99)\)</span>. In each pair, <span class="math notranslate nohighlight">\(2 a^2 - b^2\)</span> is <span class="math notranslate nohighlight">\(1\)</span> or <span class="math notranslate nohighlight">\(-1\)</span>. Thus <span class="math notranslate nohighlight">\(b/a\)</span> is nearly the square root of two, and at each fresh step it gets nearer. For instance, the reader may satisfy himself that the square of <span class="math notranslate nohighlight">\(99/70\)</span> is very nearly equal to <span class="math notranslate nohighlight">\(2\)</span>.</p>
 </div></blockquote>
 <p>This lecture drills down and studies this ancient method for computing square roots by using some of the matrix algebra that we’ve learned in earlier quantecon lectures.</p>
 <p>In particular, this lecture can be viewed as a sequel to <a class="reference internal" href="eigen_I.html"><span class="doc">Eigenvalues and Eigenvectors</span></a>.</p>
 <p>It  provides an  example of how eigenvectors isolate  <em>invariant subspaces</em> that help construct and analyze solutions of linear difference equations.</p>
-<p>When vector <span class="math notranslate nohighlight">\(x_t\)</span> starts in an invariant subspace, iterating the different equation keeps <span class="math notranslate nohighlight">\(x_{t+j}\)</span>
+<p>When vector <span class="math notranslate nohighlight">\(x_t\)</span> starts in an invariant subspace, iterating the difference equation keeps <span class="math notranslate nohighlight">\(x_{t+j}\)</span>
 in that subspace for all <span class="math notranslate nohighlight">\(j \geq 1\)</span>.</p>
 <p>Invariant subspace methods are used throughout applied economic dynamics, for example, in the lecture <a class="reference internal" href="money_inflation.html"><span class="doc">Money Financed Government Deficits and Price Levels</span></a>.</p>
 <p>Our approach here  is to illustrate the method with an ancient example, one that ancient Greek mathematicians used to compute square roots of positive integers.</p>
@@ -429,8 +438,8 @@ that satisfy</p>
 y_{-1} = \delta y_{-2}
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\delta\)</span> is a scalar to be determined.</p>
-<p>For initial condition that satisfy <a class="reference internal" href="#equation-eq-2diff3">(18.3)</a>
-equation <a class="reference internal" href="#equation-eq-2diff1">(18.1)</a> impllies that</p>
+<p>For initial conditions that satisfy <a class="reference internal" href="#equation-eq-2diff3">(18.3)</a>
+equation <a class="reference internal" href="#equation-eq-2diff1">(18.1)</a> implies that</p>
 <div class="math notranslate nohighlight" id="equation-eq-2diff4">
 <span class="eqno">(18.4)<a class="headerlink" href="#equation-eq-2diff4" title="Link to this equation">#</a></span>\[
 y_0 = \left(a_1 + \frac{a_2}{\delta}\right) y_{-1}.
@@ -480,7 +489,7 @@ y_t = \eta_1 \delta_1^t + \eta_2 \delta_2^t
 use system <a class="reference internal" href="#equation-eq-2diff10">(18.10)</a> to find the associated <span class="math notranslate nohighlight">\((\eta_1, \eta_2)\)</span>.</p>
 <p>If we choose <span class="math notranslate nohighlight">\((y_{-1}, y_{-2})\)</span> to set <span class="math notranslate nohighlight">\((\eta_1, \eta_2) = (1, 0)\)</span>, then <span class="math notranslate nohighlight">\(y_t = \delta_1^t\)</span> for all <span class="math notranslate nohighlight">\(t \geq 0\)</span>.</p>
 <p>If we choose <span class="math notranslate nohighlight">\((y_{-1}, y_{-2})\)</span> to set <span class="math notranslate nohighlight">\((\eta_1, \eta_2) = (0, 1)\)</span>, then <span class="math notranslate nohighlight">\(y_t = \delta_2^t\)</span> for all <span class="math notranslate nohighlight">\(t \geq 0\)</span>.</p>
-<p>Soon we’ll relate the preceding calculations to components an eigen decomposition of a transition matrix that represents difference equation <a class="reference internal" href="#equation-eq-2diff1">(18.1)</a> in a very convenient way.</p>
+<p>Soon we’ll relate the preceding calculations to components of an eigen decomposition of a transition matrix that represents difference equation <a class="reference internal" href="#equation-eq-2diff1">(18.1)</a> in a very convenient way.</p>
 <p>We’ll turn to that after we describe how Ancient Greeks figured out how to compute square roots of positive integers that are not perfect squares.</p>
 </section>
 <section id="algorithm-of-the-ancient-greeks">
@@ -817,7 +826,7 @@ in the two  eigenvectors.</p>
 <span class="eqno">(18.18)<a class="headerlink" href="#equation-eq-invariantsub101" title="Link to this equation">#</a></span>\[
 y_{t} = \lambda_i y_{t-1}, \quad i = 1, 2 
 \]</div>
-<p>that we encountered above in equation <a class="reference internal" href="#equation-eq-2diff8">(18.8)</a> above.</p>
+<p>that we encountered above in equation <a class="reference internal" href="#equation-eq-2diff8">(18.8)</a>.</p>
 <p>In equation <a class="reference internal" href="#equation-eq-invariantsub101">(18.18)</a>, the <span class="math notranslate nohighlight">\(i\)</span>th <span class="math notranslate nohighlight">\(\lambda_i\)</span>  equals the <span class="math notranslate nohighlight">\(V_{i, 1}/V_{i,2}\)</span>.</p>
 <p>The following graph verifies this for our example.</p>
 <div class="cell tag_hide-input docutils container">
@@ -1053,7 +1062,7 @@ compute the matrix <span class="math notranslate nohighlight">\(A\)</span>.</p><
 
 <p class="admonition-title">Solution to<a class="reference internal" href="#greek_square_ex_a"> Exercise 18.1</a></p>
 <section id="solution-content">
-<p>Here is one soluition.</p>
+<p>Here is one solution.</p>
 <p>According to the quote, we can formulate</p>
 <div class="math notranslate nohighlight" id="equation-eq-gs-ex1system">
 <span class="eqno">(18.21)<a class="headerlink" href="#equation-eq-gs-ex1system" title="Link to this equation">#</a></span>\[\begin{split}
@@ -1349,18 +1358,23 @@ Eigenvectors:
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="msy_fishery.html">
+   26. Fishery Management: Quotas and MSY
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="cobweb.html">
-   26. The Cobweb Model
+   27. The Cobweb Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="olg.html">
-   27. The Overlapping Generations Model
+   28. The Overlapping Generations Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="commod_price.html">
-   28. Commodity Prices
+   29. Commodity Prices
   </a>
  </li>
 </ul>
@@ -1372,22 +1386,22 @@ Eigenvectors:
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="money_inflation.html">
-   29. Money Financed Government Deficits and Price Levels
+   30. Money Financed Government Deficits and Price Levels
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="unpleasant.html">
-   30. Some Unpleasant Monetarist Arithmetic
+   31. Some Unpleasant Monetarist Arithmetic
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="money_inflation_nonlinear.html">
-   31. Inflation Rate Laffer Curves
+   32. Inflation Rate Laffer Curves
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="laffer_adaptive.html">
-   32. Laffer Curves  with Adaptive Expectations
+   33. Laffer Curves  with Adaptive Expectations
   </a>
  </li>
 </ul>
@@ -1399,22 +1413,22 @@ Eigenvectors:
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="ar1_processes.html">
-   33. AR(1) Processes
+   34. AR(1) Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   34. Markov Chains: Basic Concepts
+   35. Markov Chains: Basic Concepts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   35. Markov Chains: Irreducibility and Ergodicity
+   36. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time_series_with_matrices.html">
-   36. Univariate Time Series with Matrix Algebra
+   37. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -1426,12 +1440,12 @@ Eigenvectors:
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   37. Linear Programming
+   38. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   38. Shortest Paths
+   39. Shortest Paths
   </a>
  </li>
 </ul>
@@ -1443,22 +1457,22 @@ Eigenvectors:
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_II.html">
-   39. The Perron-Frobenius Theorem
+   40. The Perron-Frobenius Theorem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="input_output.html">
-   40. Input-Output Models
+   41. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lake_model.html">
-   41. A Lake Model of Employment
+   42. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="networks.html">
-   42. Networks
+   43. Networks
   </a>
  </li>
 </ul>
@@ -1470,12 +1484,12 @@ Eigenvectors:
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_multiple_goods.html">
-   43. Supply and Demand with Many Goods
+   44. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_heterogeneity.html">
-   44. Market Equilibrium with Heterogeneity
+   45. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -1487,17 +1501,17 @@ Eigenvectors:
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   45. Simple Linear Regression Model
+   46. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   46. Maximum Likelihood Estimation
+   47. Maximum Likelihood Estimation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="bayes_intro.html">
-   47. Introduction to Bayesian Methods
+   48. Introduction to Bayesian Methods
   </a>
  </li>
 </ul>
@@ -1509,17 +1523,17 @@ Eigenvectors:
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   48. Troubleshooting
+   49. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   49. References
+   50. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   50. Execution Statistics
+   51. Execution Statistics
   </a>
  </li>
 </ul>

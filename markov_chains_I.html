@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>34. Markov Chains: Basic Concepts &#8212; A First Course in Quantitative Economics with Python</title>
+    <title>35. Markov Chains: Basic Concepts &#8212; A First Course in Quantitative Economics with Python</title>
     
     <link rel="preconnect" href="https://unpkg.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -133,8 +133,8 @@
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="35. Markov Chains: Irreducibility and Ergodicity" href="markov_chains_II.html" />
-    <link rel="prev" title="33. AR(1) Processes" href="ar1_processes.html" />
+    <link rel="next" title="36. Markov Chains: Irreducibility and Ergodicity" href="markov_chains_II.html" />
+    <link rel="prev" title="34. AR(1) Processes" href="ar1_processes.html" />
 
 <!-- Normal Meta Tags -->
 <meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
@@ -209,41 +209,41 @@
 
                         <nav id="bd-toc-nav" class="qe-page__toc-nav">
                             <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">34.1. Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions-and-examples">34.2. Definitions and examples</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stochastic-matrices">34.2.1. Stochastic matrices</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#markov-chains">34.2.2. Markov chains</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-economic-states">34.2.2.1. Example 1: Economic states</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-unemployment">34.2.2.2. Example 2: Unemployment</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-political-transition-dynamics">34.2.2.3. Example 3: Political transition dynamics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">35.1. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions-and-examples">35.2. Definitions and examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stochastic-matrices">35.2.1. Stochastic matrices</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#markov-chains">35.2.2. Markov chains</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-economic-states">35.2.2.1. Example 1: Economic states</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-unemployment">35.2.2.2. Example 2: Unemployment</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-political-transition-dynamics">35.2.2.3. Example 3: Political transition dynamics</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-markov-chains">34.2.3. Defining Markov chains</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-markov-chains">35.2.3. Defining Markov chains</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation">34.3. Simulation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-our-own-simulation-code">34.3.1. Writing our own simulation code</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-quantecons-routines">34.3.2. Using QuantEcon’s routines</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-state-values-and-initial-conditions">34.3.2.1. Adding state values and initial conditions</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distributions-over-time">34.4. Distributions over time</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-step-transition-probabilities">34.4.1. Multiple step transition probabilities</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stationary-distributions">34.5. Stationary distributions</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-stationary-distributions">34.5.1. Calculating stationary distributions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#asymptotic-stationarity">34.5.2. Asymptotic stationarity</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-hamiltons-chain">34.5.2.1. Example: Hamilton’s chain</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-failure-of-convergence">34.5.2.2. Example: failure of convergence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation">35.3. Simulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-our-own-simulation-code">35.3.1. Writing our own simulation code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-quantecons-routines">35.3.2. Using QuantEcon’s routines</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-state-values-and-initial-conditions">35.3.2.1. Adding state values and initial conditions</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-expectations">34.6. Computing expectations</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expectations-of-geometric-sums">34.6.1. Expectations of geometric sums</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distributions-over-time">35.4. Distributions over time</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-step-transition-probabilities">35.4.1. Multiple step transition probabilities</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stationary-distributions">35.5. Stationary distributions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-stationary-distributions">35.5.1. Calculating stationary distributions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#asymptotic-stationarity">35.5.2. Asymptotic stationarity</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-hamiltons-chain">35.5.2.1. Example: Hamilton’s chain</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-failure-of-convergence">35.5.2.2. Example: failure of convergence</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-expectations">35.6. Computing expectations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expectations-of-geometric-sums">35.6.1. Expectations of geometric sums</a></li>
 </ul>
 </li>
 </ul>
@@ -301,7 +301,7 @@
 
                     <!-- Last modified / Changelog dropdown -->
                         <button class="qe-page__header-changed" id="changelog-toggle" aria-expanded="false">
-                            Last changed: May 28, 2026
+                            Last changed: May 31, 2026
                             <span class="changelog-icon">▼</span>
                         </button>
 
@@ -312,10 +312,19 @@
                             
                             <li class="changelog-entry">
                                 
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/72ae33d8" class="changelog-hash">72ae33d8</a>
+                                
+                                <span class="changelog-author">John Stachurski</span>
+                                <span class="changelog-time">1 day ago</span>
+                                <span class="changelog-message">Spelling and grammar fixes for unchecked lectures (#532) (#761)</span>
+                            </li>
+                            
+                            <li class="changelog-entry">
+                                
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/06c00cb8" class="changelog-hash">06c00cb8</a>
                                 
                                 <span class="changelog-author">Jiarui Zhang</span>
-                                <span class="changelog-time">2 days ago</span>
+                                <span class="changelog-time">5 days ago</span>
                                 <span class="changelog-message">Update made to Markov Chains: Basic Concepts lecture (#479)</span>
                             </li>
                             
@@ -324,7 +333,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/ae928c86" class="changelog-hash">ae928c86</a>
                                 
                                 <span class="changelog-author">Humphrey Yang</span>
-                                <span class="changelog-time">6 days ago</span>
+                                <span class="changelog-time">1 week ago</span>
                                 <span class="changelog-message">Adding Tom's Edits to Exercises (#748)</span>
                             </li>
                             
@@ -391,15 +400,6 @@
                                 <span class="changelog-message">update_markov_chains_I.md</span>
                             </li>
                             
-                            <li class="changelog-entry">
-                                
-                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/97756116" class="changelog-hash">97756116</a>
-                                
-                                <span class="changelog-author">thomassargent30</span>
-                                <span class="changelog-time">2 years ago</span>
-                                <span class="changelog-message">Tom's March 10 edit of markov chain lecture 1 in intro series</span>
-                            </li>
-                            
                         </ul>
                     </div>
 
@@ -413,7 +413,7 @@
                     <div>
                         
   <section class="tex2jax_ignore mathjax_ignore" id="markov-chains-basic-concepts">
-<h1><span class="section-number">34. </span>Markov Chains: Basic Concepts<a class="headerlink" href="#markov-chains-basic-concepts" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">35. </span>Markov Chains: Basic Concepts<a class="headerlink" href="#markov-chains-basic-concepts" title="Link to this heading">#</a></h1>
 <p id="index-0">In addition to what’s in Anaconda, this lecture will need the following libraries:</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
@@ -445,7 +445,7 @@ Requirement already satisfied: mpmath&lt;1.4,&gt;=1.1.0 in /home/runner/minicond
 </details>
 </div>
 <section id="overview">
-<h2><span class="section-number">34.1. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">35.1. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
 <p>Markov chains provide  a way to model situations in which  the past casts shadows on the future.</p>
 <p>By this we mean that observing measurements about a present situation can help us forecast future situations.</p>
 <p>This can be possible when there are statistical dependencies among measurements of something taken at different points of time.</p>
@@ -482,10 +482,10 @@ probability and dynamics.</p>
 </div>
 </section>
 <section id="definitions-and-examples">
-<h2><span class="section-number">34.2. </span>Definitions and examples<a class="headerlink" href="#definitions-and-examples" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">35.2. </span>Definitions and examples<a class="headerlink" href="#definitions-and-examples" title="Link to this heading">#</a></h2>
 <p>In this section we provide some definitions and  elementary examples.</p>
 <section id="stochastic-matrices">
-<span id="finite-dp-stoch-mat"></span><h3><span class="section-number">34.2.1. </span>Stochastic matrices<a class="headerlink" href="#stochastic-matrices" title="Link to this heading">#</a></h3>
+<span id="finite-dp-stoch-mat"></span><h3><span class="section-number">35.2.1. </span>Stochastic matrices<a class="headerlink" href="#stochastic-matrices" title="Link to this heading">#</a></h3>
 <p>Recall that a <strong>probability mass function</strong> over <span class="math notranslate nohighlight">\(n\)</span> possible outcomes is a
 nonnegative <span class="math notranslate nohighlight">\(n\)</span>-vector <span class="math notranslate nohighlight">\(p\)</span> that sums to one.</p>
 <p>For example, <span class="math notranslate nohighlight">\(p = (0.2, 0.2, 0.6)\)</span> is a probability mass function over <span class="math notranslate nohighlight">\(3\)</span> outcomes.</p>
@@ -500,11 +500,11 @@ such that each row of <span class="math notranslate nohighlight">\(P\)</span> is
 <p>You are asked to check this in <a class="reference internal" href="#mc1_ex_3"><span class="std std-ref">an exercise</span></a> below.</p>
 </section>
 <section id="markov-chains">
-<h3><span class="section-number">34.2.2. </span>Markov chains<a class="headerlink" href="#markov-chains" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">35.2.2. </span>Markov chains<a class="headerlink" href="#markov-chains" title="Link to this heading">#</a></h3>
 <p>Now we can introduce Markov chains.</p>
 <p>Before defining a Markov chain rigorously, we’ll  give some examples.</p>
 <section id="example-1-economic-states">
-<span id="mc-eg2"></span><h4><span class="section-number">34.2.2.1. </span>Example 1: Economic states<a class="headerlink" href="#example-1-economic-states" title="Link to this heading">#</a></h4>
+<span id="mc-eg2"></span><h4><span class="section-number">35.2.2.1. </span>Example 1: Economic states<a class="headerlink" href="#example-1-economic-states" title="Link to this heading">#</a></h4>
 <p>From  US unemployment data, Hamilton <span class="bibtex-citation" id="id1">[<a class="reference internal" href="zreferences.html#id187" title="James D Hamilton. What's real about the business cycle? Federal Reserve Bank of St. Louis Review, pages 435–452, 2005.">Hamilton, 2005</a>]</span> estimated the following dynamics.</p>
 <img alt="_images/Hamilton.png" class="align-center" id="mc-hamilton" src="_images/Hamilton.png" />
 <p>Here there are three <strong>states</strong></p>
@@ -558,7 +558,7 @@ P =
 probability of transitioning from state <span class="math notranslate nohighlight">\(i\)</span> to state <span class="math notranslate nohighlight">\(j\)</span> in one month.</p>
 </section>
 <section id="example-2-unemployment">
-<span id="mc-eg1"></span><h4><span class="section-number">34.2.2.2. </span>Example 2: Unemployment<a class="headerlink" href="#example-2-unemployment" title="Link to this heading">#</a></h4>
+<span id="mc-eg1"></span><h4><span class="section-number">35.2.2.2. </span>Example 2: Unemployment<a class="headerlink" href="#example-2-unemployment" title="Link to this heading">#</a></h4>
 <p>Consider a worker who, at any given time <span class="math notranslate nohighlight">\(t\)</span>, is either unemployed (state 0)
 or employed (state 1).</p>
 <p>Suppose that, over a one-month period,</p>
@@ -568,7 +568,7 @@ or employed (state 1).</p>
 </ol>
 <p>Given the above information, we can write out the transition probabilities in matrix form as</p>
 <div class="math notranslate nohighlight" id="equation-p-unempemp">
-<span class="eqno">(34.1)<a class="headerlink" href="#equation-p-unempemp" title="Link to this equation">#</a></span>\[\begin{split}P =
+<span class="eqno">(35.1)<a class="headerlink" href="#equation-p-unempemp" title="Link to this equation">#</a></span>\[\begin{split}P =
 \begin{bmatrix}
     1 - \alpha &amp; \alpha \\
     \beta &amp; 1 - \beta
@@ -597,7 +597,7 @@ or employed (state 1).</p>
 <p>We’ll cover some of these applications below.</p>
 </section>
 <section id="example-3-political-transition-dynamics">
-<span id="mc-eg3"></span><h4><span class="section-number">34.2.2.3. </span>Example 3: Political transition dynamics<a class="headerlink" href="#example-3-political-transition-dynamics" title="Link to this heading">#</a></h4>
+<span id="mc-eg3"></span><h4><span class="section-number">35.2.2.3. </span>Example 3: Political transition dynamics<a class="headerlink" href="#example-3-political-transition-dynamics" title="Link to this heading">#</a></h4>
 <p>Imam and Temple <span class="bibtex-citation" id="id2">[<a class="reference internal" href="zreferences.html#id289" title="Patrick Imam and Jonathan RW Temple. Political institutions and output collapses. IMF Working Paper, 2023.">Imam and Temple, 2023</a>]</span> categorize political institutions into
 three types: democracy <span class="math notranslate nohighlight">\(\text{(D)}\)</span>, autocracy <span class="math notranslate nohighlight">\(\text{(A)}\)</span>, and an intermediate
 state called anocracy <span class="math notranslate nohighlight">\(\text{(N)}\)</span>.</p>
@@ -691,7 +691,7 @@ transitioning from growth to growth in autocracies).</p>
 </section>
 </section>
 <section id="defining-markov-chains">
-<h3><span class="section-number">34.2.3. </span>Defining Markov chains<a class="headerlink" href="#defining-markov-chains" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">35.2.3. </span>Defining Markov chains<a class="headerlink" href="#defining-markov-chains" title="Link to this heading">#</a></h3>
 <p>So far we’ve given examples of Markov chains but we haven’t defined them.</p>
 <p>Let’s do that now.</p>
 <p>To begin, let <span class="math notranslate nohighlight">\(S\)</span> be a finite set <span class="math notranslate nohighlight">\(\{x_1, \ldots, x_n\}\)</span> with <span class="math notranslate nohighlight">\(n\)</span> elements.</p>
@@ -701,12 +701,12 @@ transitioning from growth to growth in autocracies).</p>
 that have the <strong>Markov property</strong>.</p>
 <p>This means that, for any time <span class="math notranslate nohighlight">\(t\)</span> and any state <span class="math notranslate nohighlight">\(y \in S\)</span>,</p>
 <div class="math notranslate nohighlight" id="equation-fin-markov-mp">
-<span class="eqno">(34.2)<a class="headerlink" href="#equation-fin-markov-mp" title="Link to this equation">#</a></span>\[\mathbb P \{ X_{t+1} = y  \,|\, X_t \}
+<span class="eqno">(35.2)<a class="headerlink" href="#equation-fin-markov-mp" title="Link to this equation">#</a></span>\[\mathbb P \{ X_{t+1} = y  \,|\, X_t \}
 = \mathbb P \{ X_{t+1}  = y \,|\, X_t, X_{t-1}, \ldots \}\]</div>
 <p>This means that once we know the current state <span class="math notranslate nohighlight">\(X_t\)</span>,  adding knowledge of earlier states <span class="math notranslate nohighlight">\(X_{t-1}, X_{t-2}\)</span> provides no additional information about probabilities of <em>future</em> states.</p>
 <p>Thus, the dynamics of a Markov chain are fully determined by the set of <strong>conditional probabilities</strong></p>
 <div class="math notranslate nohighlight" id="equation-mpp">
-<span class="eqno">(34.3)<a class="headerlink" href="#equation-mpp" title="Link to this equation">#</a></span>\[P(x, y) := \mathbb P \{ X_{t+1} = y \,|\, X_t = x \}
+<span class="eqno">(35.3)<a class="headerlink" href="#equation-mpp" title="Link to this equation">#</a></span>\[P(x, y) := \mathbb P \{ X_{t+1} = y \,|\, X_t = x \}
 \qquad (x, y \in S)\]</div>
 <p>By construction,</p>
 <ul class="simple">
@@ -725,18 +725,18 @@ chain <span class="math notranslate nohighlight">\(\{X_t\}\)</span> as follows:<
 <li><p>draw <span class="math notranslate nohighlight">\(X_0\)</span> from a distribution <span class="math notranslate nohighlight">\(\psi_0\)</span> on <span class="math notranslate nohighlight">\(S\)</span></p></li>
 <li><p>for each <span class="math notranslate nohighlight">\(t = 0, 1, \ldots\)</span>, draw <span class="math notranslate nohighlight">\(X_{t+1}\)</span> from <span class="math notranslate nohighlight">\(P(X_t,\cdot)\)</span></p></li>
 </ul>
-<p>By construction, the resulting process satisfies <a class="reference internal" href="#equation-mpp">(34.3)</a>.</p>
+<p>By construction, the resulting process satisfies <a class="reference internal" href="#equation-mpp">(35.3)</a>.</p>
 </section>
 </section>
 <section id="simulation">
-<h2><span class="section-number">34.3. </span>Simulation<a class="headerlink" href="#simulation" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">35.3. </span>Simulation<a class="headerlink" href="#simulation" title="Link to this heading">#</a></h2>
 <p id="index-1">A good way to study Markov chains is to simulate them.</p>
 <p>Let’s start by doing this ourselves and then look at libraries that can help
 us.</p>
 <p>In these exercises, we’ll take the state space to be <span class="math notranslate nohighlight">\(S = 0,\ldots, n-1\)</span>.</p>
 <p>(We start at <span class="math notranslate nohighlight">\(0\)</span> because Python arrays are indexed from <span class="math notranslate nohighlight">\(0\)</span>.)</p>
 <section id="writing-our-own-simulation-code">
-<h3><span class="section-number">34.3.1. </span>Writing our own simulation code<a class="headerlink" href="#writing-our-own-simulation-code" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">35.3.1. </span>Writing our own simulation code<a class="headerlink" href="#writing-our-own-simulation-code" title="Link to this heading">#</a></h3>
 <p>To simulate a Markov chain, we need</p>
 <ol class="arabic simple">
 <li><p>a stochastic matrix <span class="math notranslate nohighlight">\(P\)</span> and</p></li>
@@ -762,7 +762,7 @@ to a cumulative distribution</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 0, 1, 1])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 0, 1, 0])
 </pre></div>
 </div>
 </div>
@@ -817,7 +817,7 @@ to a cumulative distribution</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 0, 0, 1, 1, 1, 1, 1, 0, 1])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 1, 1, 1, 1, 1, 1, 1, 1])
 </pre></div>
 </div>
 </div>
@@ -836,7 +836,7 @@ sample that takes value 0 will be about 0.25.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.249916)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.250345)
 </pre></div>
 </div>
 </div>
@@ -845,7 +845,7 @@ sample that takes value 0 will be about 0.25.</p>
 always close to 0.25 (for the <code class="docutils literal notranslate"><span class="pre">P</span></code> matrix above).</p>
 </section>
 <section id="using-quantecons-routines">
-<h3><span class="section-number">34.3.2. </span>Using QuantEcon’s routines<a class="headerlink" href="#using-quantecons-routines" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">35.3.2. </span>Using QuantEcon’s routines<a class="headerlink" href="#using-quantecons-routines" title="Link to this heading">#</a></h3>
 <p><a class="reference external" href="http://quantecon.org/quantecon-py">QuantEcon.py</a> has routines for handling Markov chains, including simulation.</p>
 <p>Here’s an illustration using the same <span class="math notranslate nohighlight">\(P\)</span> as the preceding example</p>
 <div class="cell docutils container">
@@ -857,7 +857,7 @@ always close to 0.25 (for the <code class="docutils literal notranslate"><span c
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.249795)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.250359)
 </pre></div>
 </div>
 </div>
@@ -870,11 +870,11 @@ always close to 0.25 (for the <code class="docutils literal notranslate"><span c
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 2.18 s, sys: 1.83 ms, total: 2.18 s
-Wall time: 2.18 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 2.21 s, sys: 2.65 ms, total: 2.21 s
+Wall time: 2.21 s
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 1, ..., 0, 0, 1], shape=(1000000,))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 0, 1, ..., 0, 1, 1], shape=(1000000,))
 </pre></div>
 </div>
 </div>
@@ -886,17 +886,17 @@ Wall time: 2.18 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 14.2 ms, sys: 1.01 ms, total: 15.3 ms
-Wall time: 15 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 13.2 ms, sys: 2.91 ms, total: 16.1 ms
+Wall time: 15.8 ms
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 1, ..., 0, 0, 0], shape=(1000000,))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 1, 1, ..., 0, 0, 1], shape=(1000000,))
 </pre></div>
 </div>
 </div>
 </div>
 <section id="adding-state-values-and-initial-conditions">
-<h4><span class="section-number">34.3.2.1. </span>Adding state values and initial conditions<a class="headerlink" href="#adding-state-values-and-initial-conditions" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">35.3.2.1. </span>Adding state values and initial conditions<a class="headerlink" href="#adding-state-values-and-initial-conditions" title="Link to this heading">#</a></h4>
 <p>If we wish to, we can provide a specification of state values to <code class="docutils literal notranslate"><span class="pre">MarkovChain</span></code>.</p>
 <p>These state values can be integers, floats, or even strings.</p>
 <p>The following code illustrates</p>
@@ -908,7 +908,7 @@ Wall time: 15 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;employed&#39;, &#39;employed&#39;, &#39;employed&#39;, &#39;employed&#39;], dtype=&#39;&lt;U10&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;employed&#39;, &#39;employed&#39;, &#39;employed&#39;, &#39;unemployed&#39;], dtype=&#39;&lt;U10&#39;)
 </pre></div>
 </div>
 </div>
@@ -920,7 +920,7 @@ Wall time: 15 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;unemployed&#39;, &#39;employed&#39;, &#39;employed&#39;, &#39;unemployed&#39;], dtype=&#39;&lt;U10&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;unemployed&#39;, &#39;unemployed&#39;, &#39;employed&#39;, &#39;unemployed&#39;], dtype=&#39;&lt;U10&#39;)
 </pre></div>
 </div>
 </div>
@@ -932,12 +932,12 @@ Wall time: 15 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;employed&#39;, &#39;employed&#39;, &#39;employed&#39;, &#39;unemployed&#39;], dtype=&#39;&lt;U10&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;employed&#39;, &#39;employed&#39;, &#39;employed&#39;, &#39;employed&#39;], dtype=&#39;&lt;U10&#39;)
 </pre></div>
 </div>
 </div>
 </div>
-<p>If we want to see indices rather than state values as outputs as  we can use</p>
+<p>If we want to see indices rather than state values as outputs, we can use</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span><span class="o">.</span><span class="n">simulate_indices</span><span class="p">(</span><span class="n">ts_length</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
@@ -945,7 +945,7 @@ Wall time: 15 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 0, 1])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 0, 0, 1])
 </pre></div>
 </div>
 </div>
@@ -954,7 +954,7 @@ Wall time: 15 ms
 </section>
 </section>
 <section id="distributions-over-time">
-<span id="mc-md"></span><h2><span class="section-number">34.4. </span>Distributions over time<a class="headerlink" href="#distributions-over-time" title="Link to this heading">#</a></h2>
+<span id="mc-md"></span><h2><span class="section-number">35.4. </span>Distributions over time<a class="headerlink" href="#distributions-over-time" title="Link to this heading">#</a></h2>
 <p>We learned that</p>
 <ol class="arabic simple">
 <li><p><span class="math notranslate nohighlight">\(\{X_t\}\)</span> is a Markov chain with stochastic matrix <span class="math notranslate nohighlight">\(P\)</span></p></li>
@@ -982,37 +982,37 @@ all ways this can happen and sum their probabilities.</p>
 <p>There are <span class="math notranslate nohighlight">\(n\)</span> such equations, one for each <span class="math notranslate nohighlight">\(y \in S\)</span>.</p>
 <p>If we think of <span class="math notranslate nohighlight">\(\psi_{t+1}\)</span> and <span class="math notranslate nohighlight">\(\psi_t\)</span> as row vectors, these <span class="math notranslate nohighlight">\(n\)</span> equations are summarized by the matrix expression</p>
 <div class="math notranslate nohighlight" id="equation-fin-mc-fr">
-<span class="eqno">(34.4)<a class="headerlink" href="#equation-fin-mc-fr" title="Link to this equation">#</a></span>\[\psi_{t+1} = \psi_t P\]</div>
+<span class="eqno">(35.4)<a class="headerlink" href="#equation-fin-mc-fr" title="Link to this equation">#</a></span>\[\psi_{t+1} = \psi_t P\]</div>
 <p>Thus, we postmultiply by <span class="math notranslate nohighlight">\(P\)</span> to move a distribution forward one unit of time.</p>
 <p>By postmultiplying <span class="math notranslate nohighlight">\(m\)</span> times, we move a distribution forward <span class="math notranslate nohighlight">\(m\)</span> steps into the future.</p>
-<p>Hence, iterating on <a class="reference internal" href="#equation-fin-mc-fr">(34.4)</a>, the expression <span class="math notranslate nohighlight">\(\psi_{t+m} = \psi_t P^m\)</span> is also valid — here <span class="math notranslate nohighlight">\(P^m\)</span> is the <span class="math notranslate nohighlight">\(m\)</span>-th power of <span class="math notranslate nohighlight">\(P\)</span>.</p>
+<p>Hence, iterating on <a class="reference internal" href="#equation-fin-mc-fr">(35.4)</a>, the expression <span class="math notranslate nohighlight">\(\psi_{t+m} = \psi_t P^m\)</span> is also valid — here <span class="math notranslate nohighlight">\(P^m\)</span> is the <span class="math notranslate nohighlight">\(m\)</span>-th power of <span class="math notranslate nohighlight">\(P\)</span>.</p>
 <p>As a special case, we see that if <span class="math notranslate nohighlight">\(\psi_0\)</span> is the initial distribution from
 which <span class="math notranslate nohighlight">\(X_0\)</span> is drawn, then <span class="math notranslate nohighlight">\(\psi_0 P^m\)</span> is the distribution of
 <span class="math notranslate nohighlight">\(X_m\)</span>.</p>
 <p>This is very important, so let’s repeat it</p>
 <div class="math notranslate nohighlight" id="equation-mdfmc">
-<span class="eqno">(34.5)<a class="headerlink" href="#equation-mdfmc" title="Link to this equation">#</a></span>\[X_0 \sim \psi_0 \quad \implies \quad X_m \sim \psi_0 P^m\]</div>
+<span class="eqno">(35.5)<a class="headerlink" href="#equation-mdfmc" title="Link to this equation">#</a></span>\[X_0 \sim \psi_0 \quad \implies \quad X_m \sim \psi_0 P^m\]</div>
 <p>The general rule is that postmultiplying a distribution by <span class="math notranslate nohighlight">\(P^m\)</span> shifts it forward <span class="math notranslate nohighlight">\(m\)</span> units of time.</p>
 <p>Hence the following is also valid.</p>
 <div class="math notranslate nohighlight" id="equation-mdfmc2">
-<span class="eqno">(34.6)<a class="headerlink" href="#equation-mdfmc2" title="Link to this equation">#</a></span>\[X_t \sim \psi_t \quad \implies \quad X_{t+m} \sim \psi_t P^m\]</div>
+<span class="eqno">(35.6)<a class="headerlink" href="#equation-mdfmc2" title="Link to this equation">#</a></span>\[X_t \sim \psi_t \quad \implies \quad X_{t+m} \sim \psi_t P^m\]</div>
 <section id="multiple-step-transition-probabilities">
-<span id="finite-mc-mstp"></span><h3><span class="section-number">34.4.1. </span>Multiple step transition probabilities<a class="headerlink" href="#multiple-step-transition-probabilities" title="Link to this heading">#</a></h3>
+<span id="finite-mc-mstp"></span><h3><span class="section-number">35.4.1. </span>Multiple step transition probabilities<a class="headerlink" href="#multiple-step-transition-probabilities" title="Link to this heading">#</a></h3>
 <p>We know that the probability of transitioning from <span class="math notranslate nohighlight">\(x\)</span> to <span class="math notranslate nohighlight">\(y\)</span> in
 one step is <span class="math notranslate nohighlight">\(P(x,y)\)</span>.</p>
 <p>It turns out that the probability of transitioning from <span class="math notranslate nohighlight">\(x\)</span> to <span class="math notranslate nohighlight">\(y\)</span> in
 <span class="math notranslate nohighlight">\(m\)</span> steps is <span class="math notranslate nohighlight">\(P^m(x,y)\)</span>, the <span class="math notranslate nohighlight">\((x,y)\)</span>-th element of the
 <span class="math notranslate nohighlight">\(m\)</span>-th power of <span class="math notranslate nohighlight">\(P\)</span>.</p>
-<p>To see why, consider again <a class="reference internal" href="#equation-mdfmc2">(34.6)</a>, but now with a <span class="math notranslate nohighlight">\(\psi_t\)</span> that puts all probability on state <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<p>To see why, consider again <a class="reference internal" href="#equation-mdfmc2">(35.6)</a>, but now with a <span class="math notranslate nohighlight">\(\psi_t\)</span> that puts all probability on state <span class="math notranslate nohighlight">\(x\)</span>.</p>
 <p>Then <span class="math notranslate nohighlight">\(\psi_t\)</span> is a vector with <span class="math notranslate nohighlight">\(1\)</span> in position <span class="math notranslate nohighlight">\(x\)</span> and zero elsewhere.</p>
-<p>Inserting this into <a class="reference internal" href="#equation-mdfmc2">(34.6)</a>, we see that, conditional on <span class="math notranslate nohighlight">\(X_t = x\)</span>, the distribution of <span class="math notranslate nohighlight">\(X_{t+m}\)</span> is the <span class="math notranslate nohighlight">\(x\)</span>-th row of <span class="math notranslate nohighlight">\(P^m\)</span>.</p>
+<p>Inserting this into <a class="reference internal" href="#equation-mdfmc2">(35.6)</a>, we see that, conditional on <span class="math notranslate nohighlight">\(X_t = x\)</span>, the distribution of <span class="math notranslate nohighlight">\(X_{t+m}\)</span> is the <span class="math notranslate nohighlight">\(x\)</span>-th row of <span class="math notranslate nohighlight">\(P^m\)</span>.</p>
 <p>In particular</p>
 <div class="math notranslate nohighlight">
 \[
 \mathbb P \{X_{t+m} = y \,|\, X_t = x \} = P^m(x, y) = (x, y) \text{-th element of } P^m
 \]</div>
 <div class="proof example admonition" id="prob-recession">
-<span id="index-2"></span><p class="admonition-title"><span class="caption-number">Example 34.1 </span> (Probability of Recession)</p>
+<span id="index-2"></span><p class="admonition-title"><span class="caption-number">Example 35.1 </span> (Probability of Recession)</p>
 <section class="example-content" id="proof-content">
 <p>Recall the stochastic matrix <span class="math notranslate nohighlight">\(P\)</span> for recession and growth considered in <a class="reference internal" href="#mc-eg2"><span class="std std-ref">Example 1: Economic states</span></a>.</p>
 <p>Suppose that the current state is unknown — perhaps statistics are available only at the <em>end</em> of the current month.</p>
@@ -1024,7 +1024,7 @@ one step is <span class="math notranslate nohighlight">\(P(x,y)\)</span>.</p>
 \]</div>
 </section>
 </div><div class="proof example admonition" id="cross-sectional-distributions">
-<span id="index-3"></span><p class="admonition-title"><span class="caption-number">Example 34.2 </span> (Cross-Sectional Distributions)</p>
+<span id="index-3"></span><p class="admonition-title"><span class="caption-number">Example 35.2 </span> (Cross-Sectional Distributions)</p>
 <section class="example-content" id="proof-content">
 <p>The distributions we have been studying can be viewed either</p>
 <ol class="arabic simple">
@@ -1039,7 +1039,7 @@ one step is <span class="math notranslate nohighlight">\(P(x,y)\)</span>.</p>
 <li><p>For example, <span class="math notranslate nohighlight">\(\psi_t(0)\)</span> is the unemployment rate at time <span class="math notranslate nohighlight">\(t\)</span>.</p></li>
 </ul>
 <p>What will the cross-sectional distribution be in 10 periods hence?</p>
-<p>The answer is <span class="math notranslate nohighlight">\(\psi_t P^{10}\)</span>, where <span class="math notranslate nohighlight">\(P\)</span> is the stochastic matrix in <a class="reference internal" href="#equation-p-unempemp">(34.1)</a>.</p>
+<p>The answer is <span class="math notranslate nohighlight">\(\psi_t P^{10}\)</span>, where <span class="math notranslate nohighlight">\(P\)</span> is the stochastic matrix in <a class="reference internal" href="#equation-p-unempemp">(35.1)</a>.</p>
 <p>This is because each worker’s state evolves according to <span class="math notranslate nohighlight">\(P\)</span>, so <span class="math notranslate nohighlight">\(\psi_t P^{10}\)</span> is a <a class="reference external" href="https://en.wikipedia.org/wiki/Marginal_distribution">marginal distribution</a> for a single randomly selected worker.</p>
 <p>But when the sample is large, outcomes and probabilities are roughly equal (by an application of the law of large numbers).</p>
 <p>So for a very large (tending to infinite) population, <span class="math notranslate nohighlight">\(\psi_t P^{10}\)</span> also represents fractions of workers in each state.</p>
@@ -1052,8 +1052,8 @@ one step is <span class="math notranslate nohighlight">\(P(x,y)\)</span>.</p>
 </div></section>
 </section>
 <section id="stationary-distributions">
-<span id="stationary"></span><h2><span class="section-number">34.5. </span>Stationary distributions<a class="headerlink" href="#stationary-distributions" title="Link to this heading">#</a></h2>
-<p>As seen in <a class="reference internal" href="#equation-fin-mc-fr">(34.4)</a>, we can shift a distribution forward one
+<span id="stationary"></span><h2><span class="section-number">35.5. </span>Stationary distributions<a class="headerlink" href="#stationary-distributions" title="Link to this heading">#</a></h2>
+<p>As seen in <a class="reference internal" href="#equation-fin-mc-fr">(35.4)</a>, we can shift a distribution forward one
 unit of time via postmultiplication by <span class="math notranslate nohighlight">\(P\)</span>.</p>
 <p>Some distributions are invariant under this updating process — for example,</p>
 <div class="cell docutils container">
@@ -1079,7 +1079,7 @@ unit of time via postmultiplication by <span class="math notranslate nohighlight
 <p>This tells us an important fact: If the distribution of <span class="math notranslate nohighlight">\(\psi_0\)</span> is a stationary distribution, then <span class="math notranslate nohighlight">\(\psi_t\)</span> will have this same distribution for all <span class="math notranslate nohighlight">\(t \ge 0\)</span>.</p>
 <p>The following theorem is proved in Chapter 4 of <span class="bibtex-citation" id="id4">[<a class="reference internal" href="zreferences.html#id24" title="Thomas J Sargent and John Stachurski. Economic networks: theory and computation. arXiv preprint arXiv:2203.11972, 2023.">Sargent and Stachurski, 2023</a>]</span> and numerous other sources.</p>
 <div class="proof theorem admonition" id="unique_stat">
-<p class="admonition-title"><span class="caption-number">Theorem 34.1 </span></p>
+<p class="admonition-title"><span class="caption-number">Theorem 35.1 </span></p>
 <section class="theorem-content" id="proof-content">
 <p>Every stochastic matrix <span class="math notranslate nohighlight">\(P\)</span> has at least one stationary distribution.</p>
 </section>
@@ -1092,14 +1092,14 @@ stochastic matrix <span class="math notranslate nohighlight">\(P\)</span>.</p>
 doesn’t get stuck in some part of the state space.</p>
 <p>This gives some intuition for the following theorem.</p>
 <div class="proof theorem admonition" id="mc_po_conv_thm">
-<p class="admonition-title"><span class="caption-number">Theorem 34.2 </span></p>
+<p class="admonition-title"><span class="caption-number">Theorem 35.2 </span></p>
 <section class="theorem-content" id="proof-content">
 <p>If <span class="math notranslate nohighlight">\(P\)</span> is everywhere positive, then <span class="math notranslate nohighlight">\(P\)</span> has exactly one stationary
 distribution.</p>
 </section>
 </div><p>We will come back to this when we introduce irreducibility in the <a class="reference internal" href="markov_chains_II.html"><span class="doc">next lecture</span></a> on Markov chains.</p>
 <div class="proof example admonition" id="steady-state-unemployment">
-<p class="admonition-title"><span class="caption-number">Example 34.3 </span> (Steady-State Unemployment Probability)</p>
+<p class="admonition-title"><span class="caption-number">Example 35.3 </span> (Steady-State Unemployment Probability)</p>
 <section class="example-content" id="proof-content">
 <p>Recall our model of the employment/unemployment dynamics of a particular worker discussed in <a class="reference internal" href="#mc-eg1"><span class="std std-ref">Example 2: Unemployment</span></a>.</p>
 <p>If <span class="math notranslate nohighlight">\(\alpha \in (0,1)\)</span> and <span class="math notranslate nohighlight">\(\beta \in (0,1)\)</span>, then the transition matrix is everywhere positive.</p>
@@ -1114,7 +1114,7 @@ p = \frac{\beta}{\alpha + \beta}
 <p>Not surprisingly it tends to zero as <span class="math notranslate nohighlight">\(\beta \to 0\)</span>, and to one as <span class="math notranslate nohighlight">\(\alpha \to 0\)</span>.</p>
 </section>
 </div><section id="calculating-stationary-distributions">
-<h3><span class="section-number">34.5.1. </span>Calculating stationary distributions<a class="headerlink" href="#calculating-stationary-distributions" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">35.5.1. </span>Calculating stationary distributions<a class="headerlink" href="#calculating-stationary-distributions" title="Link to this heading">#</a></h3>
 <p>A stable algorithm for computing stationary distributions is implemented in <a class="reference external" href="http://quantecon.org/quantecon-py">QuantEcon.py</a>.</p>
 <p>Here’s an example</p>
 <div class="cell docutils container">
@@ -1135,12 +1135,12 @@ p = \frac{\beta}{\alpha + \beta}
 </div>
 </section>
 <section id="asymptotic-stationarity">
-<h3><span class="section-number">34.5.2. </span>Asymptotic stationarity<a class="headerlink" href="#asymptotic-stationarity" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">35.5.2. </span>Asymptotic stationarity<a class="headerlink" href="#asymptotic-stationarity" title="Link to this heading">#</a></h3>
 <p>Consider an everywhere positive stochastic matrix with unique stationary distribution <span class="math notranslate nohighlight">\(\psi^*\)</span>.</p>
 <p>Sometimes the distribution <span class="math notranslate nohighlight">\(\psi_t = \psi_0 P^t\)</span> of <span class="math notranslate nohighlight">\(X_t\)</span> converges to <span class="math notranslate nohighlight">\(\psi^*\)</span> regardless of <span class="math notranslate nohighlight">\(\psi_0\)</span>.</p>
 <p>For example, we have the following result</p>
 <div class="proof theorem admonition" id="mc_gs_thm">
-<span id="strict-stationary"></span><p class="admonition-title"><span class="caption-number">Theorem 34.3 </span></p>
+<span id="strict-stationary"></span><p class="admonition-title"><span class="caption-number">Theorem 35.3 </span></p>
 <section class="theorem-content" id="proof-content">
 <p>If there exists an integer <span class="math notranslate nohighlight">\(m\)</span> such that all entries of <span class="math notranslate nohighlight">\(P^m\)</span> are
 strictly positive, then</p>
@@ -1154,7 +1154,7 @@ strictly positive, then</p>
 </div><p>This situation is often referred to as <strong>asymptotic stationarity</strong> or <strong>global stability</strong>.</p>
 <p>A proof of the theorem can be found in Chapter 4 of <span class="bibtex-citation" id="id5">[<a class="reference internal" href="zreferences.html#id24" title="Thomas J Sargent and John Stachurski. Economic networks: theory and computation. arXiv preprint arXiv:2203.11972, 2023.">Sargent and Stachurski, 2023</a>]</span>, as well as many other sources.</p>
 <section id="example-hamiltons-chain">
-<span id="hamilton"></span><h4><span class="section-number">34.5.2.1. </span>Example: Hamilton’s chain<a class="headerlink" href="#example-hamiltons-chain" title="Link to this heading">#</a></h4>
+<span id="hamilton"></span><h4><span class="section-number">35.5.2.1. </span>Example: Hamilton’s chain<a class="headerlink" href="#example-hamiltons-chain" title="Link to this heading">#</a></h4>
 <p>Hamilton’s chain satisfies the conditions of the theorem because <span class="math notranslate nohighlight">\(P^2\)</span> is everywhere positive:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1430,42 +1430,42 @@ input[type=range].anim-slider {
 </style>
 
 <div class="animation">
-  <img id="_anim_imgefb11824557344e9b107c879bdb3bf0e">
+  <img id="_anim_img9f9e2568522e43d2ad374ba7b3ac4454">
   <div class="anim-controls">
-    <input id="_anim_sliderefb11824557344e9b107c879bdb3bf0e" type="range" class="anim-slider"
+    <input id="_anim_slider9f9e2568522e43d2ad374ba7b3ac4454" type="range" class="anim-slider"
            name="points" min="0" max="1" step="1" value="0"
-           oninput="animefb11824557344e9b107c879bdb3bf0e.set_frame(parseInt(this.value));">
+           oninput="anim9f9e2568522e43d2ad374ba7b3ac4454.set_frame(parseInt(this.value));">
     <div class="anim-buttons">
-      <button title="Decrease speed" aria-label="Decrease speed" onclick="animefb11824557344e9b107c879bdb3bf0e.slower()">
+      <button title="Decrease speed" aria-label="Decrease speed" onclick="anim9f9e2568522e43d2ad374ba7b3ac4454.slower()">
           <i class="fa fa-minus"></i></button>
-      <button title="First frame" aria-label="First frame" onclick="animefb11824557344e9b107c879bdb3bf0e.first_frame()">
+      <button title="First frame" aria-label="First frame" onclick="anim9f9e2568522e43d2ad374ba7b3ac4454.first_frame()">
         <i class="fa fa-fast-backward"></i></button>
-      <button title="Previous frame" aria-label="Previous frame" onclick="animefb11824557344e9b107c879bdb3bf0e.previous_frame()">
+      <button title="Previous frame" aria-label="Previous frame" onclick="anim9f9e2568522e43d2ad374ba7b3ac4454.previous_frame()">
           <i class="fa fa-step-backward"></i></button>
-      <button title="Play backwards" aria-label="Play backwards" onclick="animefb11824557344e9b107c879bdb3bf0e.reverse_animation()">
+      <button title="Play backwards" aria-label="Play backwards" onclick="anim9f9e2568522e43d2ad374ba7b3ac4454.reverse_animation()">
           <i class="fa fa-play fa-flip-horizontal"></i></button>
-      <button title="Pause" aria-label="Pause" onclick="animefb11824557344e9b107c879bdb3bf0e.pause_animation()">
+      <button title="Pause" aria-label="Pause" onclick="anim9f9e2568522e43d2ad374ba7b3ac4454.pause_animation()">
           <i class="fa fa-pause"></i></button>
-      <button title="Play" aria-label="Play" onclick="animefb11824557344e9b107c879bdb3bf0e.play_animation()">
+      <button title="Play" aria-label="Play" onclick="anim9f9e2568522e43d2ad374ba7b3ac4454.play_animation()">
           <i class="fa fa-play"></i></button>
-      <button title="Next frame" aria-label="Next frame" onclick="animefb11824557344e9b107c879bdb3bf0e.next_frame()">
+      <button title="Next frame" aria-label="Next frame" onclick="anim9f9e2568522e43d2ad374ba7b3ac4454.next_frame()">
           <i class="fa fa-step-forward"></i></button>
-      <button title="Last frame" aria-label="Last frame" onclick="animefb11824557344e9b107c879bdb3bf0e.last_frame()">
+      <button title="Last frame" aria-label="Last frame" onclick="anim9f9e2568522e43d2ad374ba7b3ac4454.last_frame()">
           <i class="fa fa-fast-forward"></i></button>
-      <button title="Increase speed" aria-label="Increase speed" onclick="animefb11824557344e9b107c879bdb3bf0e.faster()">
+      <button title="Increase speed" aria-label="Increase speed" onclick="anim9f9e2568522e43d2ad374ba7b3ac4454.faster()">
           <i class="fa fa-plus"></i></button>
     </div>
-    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_selectefb11824557344e9b107c879bdb3bf0e"
+    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select9f9e2568522e43d2ad374ba7b3ac4454"
           class="anim-state">
-      <input type="radio" name="state" value="once" id="_anim_radio1_efb11824557344e9b107c879bdb3bf0e"
+      <input type="radio" name="state" value="once" id="_anim_radio1_9f9e2568522e43d2ad374ba7b3ac4454"
              checked>
-      <label for="_anim_radio1_efb11824557344e9b107c879bdb3bf0e">Once</label>
-      <input type="radio" name="state" value="loop" id="_anim_radio2_efb11824557344e9b107c879bdb3bf0e"
+      <label for="_anim_radio1_9f9e2568522e43d2ad374ba7b3ac4454">Once</label>
+      <input type="radio" name="state" value="loop" id="_anim_radio2_9f9e2568522e43d2ad374ba7b3ac4454"
              >
-      <label for="_anim_radio2_efb11824557344e9b107c879bdb3bf0e">Loop</label>
-      <input type="radio" name="state" value="reflect" id="_anim_radio3_efb11824557344e9b107c879bdb3bf0e"
+      <label for="_anim_radio2_9f9e2568522e43d2ad374ba7b3ac4454">Loop</label>
+      <input type="radio" name="state" value="reflect" id="_anim_radio3_9f9e2568522e43d2ad374ba7b3ac4454"
              >
-      <label for="_anim_radio3_efb11824557344e9b107c879bdb3bf0e">Reflect</label>
+      <label for="_anim_radio3_9f9e2568522e43d2ad374ba7b3ac4454">Reflect</label>
     </form>
   </div>
 </div>
@@ -1475,9 +1475,9 @@ input[type=range].anim-slider {
   /* Instantiate the Animation class. */
   /* The IDs given should match those used in the template above. */
   (function() {
-    var img_id = "_anim_imgefb11824557344e9b107c879bdb3bf0e";
-    var slider_id = "_anim_sliderefb11824557344e9b107c879bdb3bf0e";
-    var loop_select_id = "_anim_loop_selectefb11824557344e9b107c879bdb3bf0e";
+    var img_id = "_anim_img9f9e2568522e43d2ad374ba7b3ac4454";
+    var slider_id = "_anim_slider9f9e2568522e43d2ad374ba7b3ac4454";
+    var loop_select_id = "_anim_loop_select9f9e2568522e43d2ad374ba7b3ac4454";
     var frames = new Array(20);
     
   frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAHgCAYAAAA10dzkAAAAOnRFWHRTb2Z0d2FyZQBNYXRwbG90\
@@ -25693,7 +25693,7 @@ qiSPjo4AAAAASUVORK5CYII=\
     /* set a timeout to make sure all the above elements are created before
        the object is initialized. */
     setTimeout(function() {
-        animefb11824557344e9b107c879bdb3bf0e = new Animation(frames, img_id, slider_id, 200.0,
+        anim9f9e2568522e43d2ad374ba7b3ac4454 = new Animation(frames, img_id, slider_id, 200.0,
                                  loop_select_id);
     }, 0);
   })()
@@ -25710,7 +25710,7 @@ qiSPjo4AAAAASUVORK5CYII=\
 <p>You might like to try experimenting with different initial conditions.</p>
 </section>
 <section id="example-failure-of-convergence">
-<h4><span class="section-number">34.5.2.2. </span>Example: failure of convergence<a class="headerlink" href="#example-failure-of-convergence" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">35.5.2.2. </span>Example: failure of convergence<a class="headerlink" href="#example-failure-of-convergence" title="Link to this heading">#</a></h4>
 <p>Consider the periodic chain with stochastic matrix</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -25976,42 +25976,42 @@ input[type=range].anim-slider {
 </style>
 
 <div class="animation">
-  <img id="_anim_img787f14e0248846519188a26c158fd377">
+  <img id="_anim_img7a76e766384b4b839dd7edfe4bf72d3c">
   <div class="anim-controls">
-    <input id="_anim_slider787f14e0248846519188a26c158fd377" type="range" class="anim-slider"
+    <input id="_anim_slider7a76e766384b4b839dd7edfe4bf72d3c" type="range" class="anim-slider"
            name="points" min="0" max="1" step="1" value="0"
-           oninput="anim787f14e0248846519188a26c158fd377.set_frame(parseInt(this.value));">
+           oninput="anim7a76e766384b4b839dd7edfe4bf72d3c.set_frame(parseInt(this.value));">
     <div class="anim-buttons">
-      <button title="Decrease speed" aria-label="Decrease speed" onclick="anim787f14e0248846519188a26c158fd377.slower()">
+      <button title="Decrease speed" aria-label="Decrease speed" onclick="anim7a76e766384b4b839dd7edfe4bf72d3c.slower()">
           <i class="fa fa-minus"></i></button>
-      <button title="First frame" aria-label="First frame" onclick="anim787f14e0248846519188a26c158fd377.first_frame()">
+      <button title="First frame" aria-label="First frame" onclick="anim7a76e766384b4b839dd7edfe4bf72d3c.first_frame()">
         <i class="fa fa-fast-backward"></i></button>
-      <button title="Previous frame" aria-label="Previous frame" onclick="anim787f14e0248846519188a26c158fd377.previous_frame()">
+      <button title="Previous frame" aria-label="Previous frame" onclick="anim7a76e766384b4b839dd7edfe4bf72d3c.previous_frame()">
           <i class="fa fa-step-backward"></i></button>
-      <button title="Play backwards" aria-label="Play backwards" onclick="anim787f14e0248846519188a26c158fd377.reverse_animation()">
+      <button title="Play backwards" aria-label="Play backwards" onclick="anim7a76e766384b4b839dd7edfe4bf72d3c.reverse_animation()">
           <i class="fa fa-play fa-flip-horizontal"></i></button>
-      <button title="Pause" aria-label="Pause" onclick="anim787f14e0248846519188a26c158fd377.pause_animation()">
+      <button title="Pause" aria-label="Pause" onclick="anim7a76e766384b4b839dd7edfe4bf72d3c.pause_animation()">
           <i class="fa fa-pause"></i></button>
-      <button title="Play" aria-label="Play" onclick="anim787f14e0248846519188a26c158fd377.play_animation()">
+      <button title="Play" aria-label="Play" onclick="anim7a76e766384b4b839dd7edfe4bf72d3c.play_animation()">
           <i class="fa fa-play"></i></button>
-      <button title="Next frame" aria-label="Next frame" onclick="anim787f14e0248846519188a26c158fd377.next_frame()">
+      <button title="Next frame" aria-label="Next frame" onclick="anim7a76e766384b4b839dd7edfe4bf72d3c.next_frame()">
           <i class="fa fa-step-forward"></i></button>
-      <button title="Last frame" aria-label="Last frame" onclick="anim787f14e0248846519188a26c158fd377.last_frame()">
+      <button title="Last frame" aria-label="Last frame" onclick="anim7a76e766384b4b839dd7edfe4bf72d3c.last_frame()">
           <i class="fa fa-fast-forward"></i></button>
-      <button title="Increase speed" aria-label="Increase speed" onclick="anim787f14e0248846519188a26c158fd377.faster()">
+      <button title="Increase speed" aria-label="Increase speed" onclick="anim7a76e766384b4b839dd7edfe4bf72d3c.faster()">
           <i class="fa fa-plus"></i></button>
     </div>
-    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select787f14e0248846519188a26c158fd377"
+    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select7a76e766384b4b839dd7edfe4bf72d3c"
           class="anim-state">
-      <input type="radio" name="state" value="once" id="_anim_radio1_787f14e0248846519188a26c158fd377"
+      <input type="radio" name="state" value="once" id="_anim_radio1_7a76e766384b4b839dd7edfe4bf72d3c"
              checked>
-      <label for="_anim_radio1_787f14e0248846519188a26c158fd377">Once</label>
-      <input type="radio" name="state" value="loop" id="_anim_radio2_787f14e0248846519188a26c158fd377"
+      <label for="_anim_radio1_7a76e766384b4b839dd7edfe4bf72d3c">Once</label>
+      <input type="radio" name="state" value="loop" id="_anim_radio2_7a76e766384b4b839dd7edfe4bf72d3c"
              >
-      <label for="_anim_radio2_787f14e0248846519188a26c158fd377">Loop</label>
-      <input type="radio" name="state" value="reflect" id="_anim_radio3_787f14e0248846519188a26c158fd377"
+      <label for="_anim_radio2_7a76e766384b4b839dd7edfe4bf72d3c">Loop</label>
+      <input type="radio" name="state" value="reflect" id="_anim_radio3_7a76e766384b4b839dd7edfe4bf72d3c"
              >
-      <label for="_anim_radio3_787f14e0248846519188a26c158fd377">Reflect</label>
+      <label for="_anim_radio3_7a76e766384b4b839dd7edfe4bf72d3c">Reflect</label>
     </form>
   </div>
 </div>
@@ -26021,9 +26021,9 @@ input[type=range].anim-slider {
   /* Instantiate the Animation class. */
   /* The IDs given should match those used in the template above. */
   (function() {
-    var img_id = "_anim_img787f14e0248846519188a26c158fd377";
-    var slider_id = "_anim_slider787f14e0248846519188a26c158fd377";
-    var loop_select_id = "_anim_loop_select787f14e0248846519188a26c158fd377";
+    var img_id = "_anim_img7a76e766384b4b839dd7edfe4bf72d3c";
+    var slider_id = "_anim_slider7a76e766384b4b839dd7edfe4bf72d3c";
+    var loop_select_id = "_anim_loop_select7a76e766384b4b839dd7edfe4bf72d3c";
     var frames = new Array(20);
     
   frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAHgCAYAAAA10dzkAAAAOnRFWHRTb2Z0d2FyZQBNYXRwbG90\
@@ -50710,7 +50710,7 @@ Neb/AwLpaLkRvYV5AAAAAElFTkSuQmCC\
     /* set a timeout to make sure all the above elements are created before
        the object is initialized. */
     setTimeout(function() {
-        anim787f14e0248846519188a26c158fd377 = new Animation(frames, img_id, slider_id, 200.0,
+        anim7a76e766384b4b839dd7edfe4bf72d3c = new Animation(frames, img_id, slider_id, 200.0,
                                  loop_select_id);
     }, 0);
   })()
@@ -50726,13 +50726,13 @@ Neb/AwLpaLkRvYV5AAAAAElFTkSuQmCC\
 </section>
 </section>
 <section id="computing-expectations">
-<span id="finite-mc-expec"></span><h2><span class="section-number">34.6. </span>Computing expectations<a class="headerlink" href="#computing-expectations" title="Link to this heading">#</a></h2>
+<span id="finite-mc-expec"></span><h2><span class="section-number">35.6. </span>Computing expectations<a class="headerlink" href="#computing-expectations" title="Link to this heading">#</a></h2>
 <p id="index-4">We sometimes want to  compute mathematical  expectations of functions of <span class="math notranslate nohighlight">\(X_t\)</span> of the form</p>
 <div class="math notranslate nohighlight" id="equation-mc-une">
-<span class="eqno">(34.7)<a class="headerlink" href="#equation-mc-une" title="Link to this equation">#</a></span>\[\mathbb E [ h(X_t) ]\]</div>
+<span class="eqno">(35.7)<a class="headerlink" href="#equation-mc-une" title="Link to this equation">#</a></span>\[\mathbb E [ h(X_t) ]\]</div>
 <p>and conditional expectations such as</p>
 <div class="math notranslate nohighlight" id="equation-mc-cce">
-<span class="eqno">(34.8)<a class="headerlink" href="#equation-mc-cce" title="Link to this equation">#</a></span>\[\mathbb E [ h(X_{t + k})  \mid X_t = x]\]</div>
+<span class="eqno">(35.8)<a class="headerlink" href="#equation-mc-cce" title="Link to this equation">#</a></span>\[\mathbb E [ h(X_{t + k})  \mid X_t = x]\]</div>
 <p>where</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\{X_t\}\)</span> is a Markov chain generated by <span class="math notranslate nohighlight">\(n \times n\)</span> stochastic matrix <span class="math notranslate nohighlight">\(P\)</span>.</p></li>
@@ -50748,7 +50748,7 @@ h =
     h(x_n)
 \end{bmatrix}.
 \end{split}\]</div>
-<p>Computing the unconditional expectation <a class="reference internal" href="#equation-mc-une">(34.7)</a> is easy.</p>
+<p>Computing the unconditional expectation <a class="reference internal" href="#equation-mc-une">(35.7)</a> is easy.</p>
 <p>We just sum over the marginal  distribution  of <span class="math notranslate nohighlight">\(X_t\)</span> to get</p>
 <div class="math notranslate nohighlight">
 \[
@@ -50763,14 +50763,14 @@ write this as</p>
 \mathbb E [ h(X_t) ]
 =  \psi P^t h
 \]</div>
-<p>For the conditional expectation <a class="reference internal" href="#equation-mc-cce">(34.8)</a>, we need to sum over
+<p>For the conditional expectation <a class="reference internal" href="#equation-mc-cce">(35.8)</a>, we need to sum over
 the conditional distribution of <span class="math notranslate nohighlight">\(X_{t + k}\)</span> given <span class="math notranslate nohighlight">\(X_t = x\)</span>.</p>
 <p>We already know that this is <span class="math notranslate nohighlight">\(P^k(x, \cdot)\)</span>, so</p>
 <div class="math notranslate nohighlight" id="equation-mc-cce2">
-<span class="eqno">(34.9)<a class="headerlink" href="#equation-mc-cce2" title="Link to this equation">#</a></span>\[\mathbb E [ h(X_{t + k})  \mid X_t = x]
+<span class="eqno">(35.9)<a class="headerlink" href="#equation-mc-cce2" title="Link to this equation">#</a></span>\[\mathbb E [ h(X_{t + k})  \mid X_t = x]
 = (P^k h)(x)\]</div>
 <section id="expectations-of-geometric-sums">
-<h3><span class="section-number">34.6.1. </span>Expectations of geometric sums<a class="headerlink" href="#expectations-of-geometric-sums" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">35.6.1. </span>Expectations of geometric sums<a class="headerlink" href="#expectations-of-geometric-sums" title="Link to this heading">#</a></h3>
 <p>Sometimes we want to compute the mathematical expectation of a geometric sum, such as
 <span class="math notranslate nohighlight">\(\sum_t \beta^t h(X_t)\)</span>.</p>
 <p>In view of the preceding discussion, this is</p>
@@ -50791,7 +50791,7 @@ the conditional distribution of <span class="math notranslate nohighlight">\(X_{
 <p>The vector <span class="math notranslate nohighlight">\(P^k h\)</span> stores the conditional expectation <span class="math notranslate nohighlight">\(\mathbb E [ h(X_{t + k})  \mid X_t = x]\)</span> over all <span class="math notranslate nohighlight">\(x\)</span>.</p>
 <div class="exercise admonition" id="mc1_ex_1">
 
-<p class="admonition-title"><span class="caption-number">Exercise 34.1 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 35.1 </span></p>
 <section id="exercise-content">
 <p>Imam and Temple <span class="bibtex-citation" id="id6">[<a class="reference internal" href="zreferences.html#id289" title="Patrick Imam and Jonathan RW Temple. Political institutions and output collapses. IMF Working Paper, 2023.">Imam and Temple, 2023</a>]</span> used a three-state transition matrix to describe the transition of three states of a regime: growth, stagnation, and collapse</p>
 <div class="math notranslate nohighlight">
@@ -50815,7 +50815,7 @@ P :=
 </div>
 <div class="solution dropdown admonition" id="markov_chains_I-solution-7">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#mc1_ex_1"> Exercise 34.1</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#mc1_ex_1"> Exercise 35.1</a></p>
 <section id="solution-content">
 <p>Solution 1:</p>
 <img alt="_images/Temple.png" class="align-center" id="mc-temple" src="_images/Temple.png" />
@@ -50872,7 +50872,7 @@ P :=
 </div>
 <div class="exercise admonition" id="mc1_ex_2">
 
-<p class="admonition-title"><span class="caption-number">Exercise 34.2 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 35.2 </span></p>
 <section id="exercise-content">
 <p>We discussed the six-state transition matrix estimated by Imam &amp; Temple <span class="bibtex-citation" id="id7">[<a class="reference internal" href="zreferences.html#id289" title="Patrick Imam and Jonathan RW Temple. Political institutions and output collapses. IMF Working Paper, 2023.">Imam and Temple, 2023</a>]</span> <a class="reference internal" href="#mc-eg3"><span class="std std-ref">before</span></a>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">nodes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;DG&#39;</span><span class="p">,</span> <span class="s1">&#39;DC&#39;</span><span class="p">,</span> <span class="s1">&#39;NG&#39;</span><span class="p">,</span> <span class="s1">&#39;NC&#39;</span><span class="p">,</span> <span class="s1">&#39;AG&#39;</span><span class="p">,</span> <span class="s1">&#39;AC&#39;</span><span class="p">]</span>
@@ -50894,7 +50894,7 @@ P :=
 </div>
 <div class="solution dropdown admonition" id="markov_chains_I-solution-9">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#mc1_ex_2"> Exercise 34.2</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#mc1_ex_2"> Exercise 35.2</a></p>
 <section id="solution-content">
 <p>Solution 1:</p>
 <p>Although <span class="math notranslate nohighlight">\(P\)</span> is not everywhere positive, <span class="math notranslate nohighlight">\(P^m\)</span> when <span class="math notranslate nohighlight">\(m=3\)</span> is everywhere positive.</p>
@@ -50963,7 +50963,7 @@ P :=
 </div>
 <div class="exercise admonition" id="mc1_ex_3">
 
-<p class="admonition-title"><span class="caption-number">Exercise 34.3 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 35.3 </span></p>
 <section id="exercise-content">
 <p>Prove the following: If <span class="math notranslate nohighlight">\(P\)</span> is a stochastic matrix, then so is the <span class="math notranslate nohighlight">\(k\)</span>-th
 power <span class="math notranslate nohighlight">\(P^k\)</span> for all <span class="math notranslate nohighlight">\(k \in \mathbb N\)</span>.</p>
@@ -50971,7 +50971,7 @@ power <span class="math notranslate nohighlight">\(P^k\)</span> for all <span cl
 </div>
 <div class="solution dropdown admonition" id="markov_chains_I-solution-11">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#mc1_ex_3"> Exercise 34.3</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#mc1_ex_3"> Exercise 35.3</a></p>
 <section id="solution-content">
 <p>Suppose that <span class="math notranslate nohighlight">\(P\)</span> is stochastic and, moreover, that <span class="math notranslate nohighlight">\(P^k\)</span> is
 stochastic for some integer <span class="math notranslate nohighlight">\(k\)</span>.</p>
@@ -51215,18 +51215,23 @@ have <span class="math notranslate nohighlight">\(P^k \mathbf 1 = \mathbf 1\)</s
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="msy_fishery.html">
+   26. Fishery Management: Quotas and MSY
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="cobweb.html">
-   26. The Cobweb Model
+   27. The Cobweb Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="olg.html">
-   27. The Overlapping Generations Model
+   28. The Overlapping Generations Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="commod_price.html">
-   28. Commodity Prices
+   29. Commodity Prices
   </a>
  </li>
 </ul>
@@ -51238,22 +51243,22 @@ have <span class="math notranslate nohighlight">\(P^k \mathbf 1 = \mathbf 1\)</s
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="money_inflation.html">
-   29. Money Financed Government Deficits and Price Levels
+   30. Money Financed Government Deficits and Price Levels
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="unpleasant.html">
-   30. Some Unpleasant Monetarist Arithmetic
+   31. Some Unpleasant Monetarist Arithmetic
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="money_inflation_nonlinear.html">
-   31. Inflation Rate Laffer Curves
+   32. Inflation Rate Laffer Curves
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="laffer_adaptive.html">
-   32. Laffer Curves  with Adaptive Expectations
+   33. Laffer Curves  with Adaptive Expectations
   </a>
  </li>
 </ul>
@@ -51265,22 +51270,22 @@ have <span class="math notranslate nohighlight">\(P^k \mathbf 1 = \mathbf 1\)</s
 <ul class="current nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="ar1_processes.html">
-   33. AR(1) Processes
+   34. AR(1) Processes
   </a>
  </li>
  <li class="toctree-l1 current active active">
   <a class="current reference internal" href="#">
-   34. Markov Chains: Basic Concepts
+   35. Markov Chains: Basic Concepts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   35. Markov Chains: Irreducibility and Ergodicity
+   36. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time_series_with_matrices.html">
-   36. Univariate Time Series with Matrix Algebra
+   37. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -51292,12 +51297,12 @@ have <span class="math notranslate nohighlight">\(P^k \mathbf 1 = \mathbf 1\)</s
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   37. Linear Programming
+   38. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   38. Shortest Paths
+   39. Shortest Paths
   </a>
  </li>
 </ul>
@@ -51309,22 +51314,22 @@ have <span class="math notranslate nohighlight">\(P^k \mathbf 1 = \mathbf 1\)</s
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_II.html">
-   39. The Perron-Frobenius Theorem
+   40. The Perron-Frobenius Theorem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="input_output.html">
-   40. Input-Output Models
+   41. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lake_model.html">
-   41. A Lake Model of Employment
+   42. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="networks.html">
-   42. Networks
+   43. Networks
   </a>
  </li>
 </ul>
@@ -51336,12 +51341,12 @@ have <span class="math notranslate nohighlight">\(P^k \mathbf 1 = \mathbf 1\)</s
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_multiple_goods.html">
-   43. Supply and Demand with Many Goods
+   44. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_heterogeneity.html">
-   44. Market Equilibrium with Heterogeneity
+   45. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -51353,17 +51358,17 @@ have <span class="math notranslate nohighlight">\(P^k \mathbf 1 = \mathbf 1\)</s
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   45. Simple Linear Regression Model
+   46. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   46. Maximum Likelihood Estimation
+   47. Maximum Likelihood Estimation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="bayes_intro.html">
-   47. Introduction to Bayesian Methods
+   48. Introduction to Bayesian Methods
   </a>
  </li>
 </ul>
@@ -51375,17 +51380,17 @@ have <span class="math notranslate nohighlight">\(P^k \mathbf 1 = \mathbf 1\)</s
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   48. Troubleshooting
+   49. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   49. References
+   50. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   50. Execution Statistics
+   51. Execution Statistics
   </a>
  </li>
 </ul>

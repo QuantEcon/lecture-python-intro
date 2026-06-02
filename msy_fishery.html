@@ -1,0 +1,1878 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>26. Fishery Management: Quotas and MSY &#8212; A First Course in Quantitative Economics with Python</title>
+    
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js" integrity="sha384-bq5PNg/ZcfW7KMvFSmhjqCQJ/VFnec+6sZkctn/4ZLeubkn7U58Le4zFFSn3dhUu" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js" integrity="sha384-qEqAs1VsN9WH2myXDbiP2wGGIttL9bMRZBKCl54ZnzpDlVqbYANP9vMaoT/wvQcf" crossorigin="anonymous"></script>
+    
+        <script>
+            MathJax = {
+            loader: {load: ['[tex]/boldsymbol', '[tex]/textmacros']},
+            tex: {
+                packages: {'[+]': ['boldsymbol', 'textmacros']},
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                processEscapes: true,
+                macros: {
+                    "argmax" : "arg\\,max",
+                    "argmin" : "arg\\,min",
+                    "col"    : "col",
+                    "Span"   :  "span",
+                    "epsilon": "\\varepsilon",
+                    "EE": "\\mathbb{E}",
+                    "PP": "\\mathbb{P}",
+                    "RR": "\\mathbb{R}",
+                    "NN": "\\mathbb{N}",
+                    "ZZ": "\\mathbb{Z}",
+                    "aA": "\\mathcal{A}",
+                    "bB": "\\mathcal{B}",
+                    "cC": "\\mathcal{C}",
+                    "dD": "\\mathcal{D}",
+                    "eE": "\\mathcal{E}",
+                    "fF": "\\mathcal{F}",
+                    "gG": "\\mathcal{G}",
+                    "hH": "\\mathcal{H}",
+                }
+            },
+            svg: {
+                fontCache: 'global',
+                scale: 0.92,
+                displayAlign: "center",
+            },
+            };
+        </script>
+    
+    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=ff5dcadef89fd2097ea5e28ddaad7eb5985f09c4" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=3a5ece24" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=9980b4379844dc0b911d69b62b295f34ede88fac"></script>
+    <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
+    <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QDS1YRJNGM"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QDS1YRJNGM');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QDS1YRJNGM');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"argmax": "arg\\,max", "argmin": "arg\\,min"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'msy_fishery';</script>
+    <link rel="canonical" href="https://intro.quantecon.org/msy_fishery.html" />
+    <link rel="icon" href="_static/lectures-favicon.ico"/>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="27. The Cobweb Model" href="cobweb.html" />
+    <link rel="prev" title="25. The Solow-Swan Growth Model" href="solow.html" />
+
+<!-- Normal Meta Tags -->
+<meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
+<meta name="keywords" content="Python, QuantEcon, Quantitative Economics, Economics, Sloan, Alfred P. Sloan Foundation, Tom J. Sargent, John Stachurski" />
+<meta name="description" content=This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski. />
+
+<!-- Twitter tags -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@quantecon" />
+<meta name="twitter:title" content="Fishery Management: Quotas and MSY"/>
+<meta name="twitter:description" content="This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski.">
+<meta name="twitter:creator" content="@quantecon">
+<meta name="twitter:image" content="https://assets.quantecon.org/img/qe-twitter-logo.png">
+
+<!-- Opengraph tags -->
+<meta property="og:title" content="Fishery Management: Quotas and MSY" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://intro.quantecon.org/msy_fishery.html" />
+<meta property="og:image" content="https://assets.quantecon.org/img/qe-og-logo.png" />
+<meta property="og:description" content="This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski." />
+<meta property="og:site_name" content="A First Course in Quantitative Economics with Python" />
+<meta name="theme-color" content="#ffffff" />
+
+
+
+
+  </head>
+<body>
+
+<!-- Prevent flash of light theme when dark mode is saved -->
+<script>
+(function() {
+  try {
+    if (localStorage.setContrast === '1') {
+      document.body.classList.add('dark-theme');
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  } catch(e) {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+})();
+</script>
+
+<!-- Override QuantEcon theme colors -->
+
+<!-- Color scheme: applies scheme-specific body class -->
+
+    <span id="top"></span>
+
+    <div class="qe-wrapper">
+
+        <div class="qe-main">
+
+            <div class="qe-page" id=msy_fishery>
+
+                <div class="qe-page__toc">
+
+                    
+                    
+                    
+
+                    
+                    <div class="inner sticky" data-autoexpand="true">
+
+                        
+                        <div class="qe-page__toc-header">
+                            On this page
+                        </div>
+
+
+                        <nav id="bd-toc-nav" class="qe-page__toc-nav">
+                            <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">26.1. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-model">26.2. The model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#growth-without-fishing">26.2.1. Growth without fishing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-fishing">26.2.2. Adding fishing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sustainable-yield">26.3. Sustainable yield</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-yield-effort-curve">26.3.1. The yield-effort curve</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-the-maximum-sustainable-yield">26.3.2. Calculating the maximum sustainable yield</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamics">26.3.3. Dynamics</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-same-result-with-calculus">26.4. The same result with calculus</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-success-story-pacific-coast-lingcod">26.5. A success story: Pacific Coast lingcod</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#randomness-risk-and-collapse">26.6. Randomness, risk and collapse</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-randomness">26.6.1. Adding randomness</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-the-quota-is-a-knife-edge">26.6.2. Why the quota is a knife-edge</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-often-does-the-fishery-collapse">26.6.3. How often does the fishery collapse?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#historical-collapses">26.7. Historical collapses</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">26.8. Exercises</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">26.9. Summary</a></li>
+</ul>
+                            <p class="logo">
+                                
+                                    
+                                    <a href=https://quantecon.org><img src="_static/qe-logo.png" class="logo logo-img" alt="logo"></a>
+                                    
+                                    <a href=https://quantecon.org><img src="_static/quantecon-logo-transparent.png" class="dark-logo-img" alt="logo"></a>
+                                    
+                                    
+                                
+                            </p>
+
+                            <p class="powered">Powered by <a href="https://jupyterbook.org/v1/">Jupyter Book</a></p>
+
+                        </nav>
+
+                        <div class="qe-page__toc-footer">
+                            
+                            
+                            
+                            
+                            
+                        </div>
+
+                    </div>
+
+                    
+                    <a href="#top" class="back-to-top-btn" title="Back to top">↑ Top</a>
+                    
+
+                </div>
+
+                <div class="qe-page__header">
+
+                    <div class="qe-page__header-copy">
+
+                        <p class="qe-page__header-heading"><a href="intro.html">A First Course in Quantitative Economics with Python</a></p>
+
+                    </div>
+
+                    <!-- Authors section -->
+                        <p class="qe-page__header-authors" font-size="18">
+                            
+                                
+                                    <a href="http://www.tomsargent.com/" target="_blank"><span>Thomas J. Sargent</span></a>
+                                
+                            
+                                
+                                    and <a href="https://johnstachurski.net/" target="_blank"><span>John Stachurski</span></a>
+                                
+                            
+                        </p>
+
+                    <!-- Last modified / Changelog dropdown -->
+                        <button class="qe-page__header-changed" id="changelog-toggle" aria-expanded="false">
+                            Last changed: Jun 02, 2026
+                            <span class="changelog-icon">▼</span>
+                        </button>
+
+                    <!-- Changelog dropdown content -->
+                    <div class="qe-page__header-changelog" id="changelog-content" aria-hidden="true">
+                        <h4>Changelog (<a href="https://github.com/QuantEcon/lecture-python-intro/commits/main/lectures/msy_fishery.md">full history</a>)</h4>
+                        <ul class="changelog-list">
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/6c511da2" class="changelog-hash">6c511da2</a>
+                                
+                                <span class="changelog-author">John Stachurski</span>
+                                <span class="changelog-time">12 minutes ago</span>
+                                <span class="changelog-message">Add Maximum Sustainable Yield and Fishery Collapse lecture (#763)</span>
+                            </li>
+                            
+                        </ul>
+                    </div>
+
+                </div> <!-- .page__header -->
+
+
+
+                
+                <main class="qe-page__content" role="main">
+                    
+                    <div>
+                        
+  <section class="tex2jax_ignore mathjax_ignore" id="fishery-management-quotas-and-msy">
+<h1><span class="section-number">26. </span>Fishery Management: Quotas and MSY<a class="headerlink" href="#fishery-management-quotas-and-msy" title="Link to this heading">#</a></h1>
+<section id="overview">
+<h2><span class="section-number">26.1. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>In this lecture we study fishery management through quotas and <strong>maximum sustainable yield</strong> (MSY).</p>
+<p>The MSY is defined as the largest catch a fishery can support year after year without running itself down.</p>
+<p>After the Second World War, fisheries managers around the world adopted MSY and
+imposed quotas and restrictions based on MSY.</p>
+<p>In some cases these management efforts were successful.</p>
+<p>In other cases outcomes were disappointing.</p>
+<p>In fact, several major fisheries collapsed under MSY-based management,
+including the Peruvian anchovy in the 1970s and the Atlantic cod off
+Newfoundland in 1992.</p>
+<p>In this lecture we provide an introduction to MSY-based management of fisheries.</p>
+<p>Our main task is to explain how MSY is computed.</p>
+<p>We begin with a relatively elementary treatment in discrete time.</p>
+<p>Next we discuss a continuous time formulation that conveys the same ideas via calculus.</p>
+<p>Finally, we turn to problems associated with MSY and quotas derived from MSY.</p>
+<p>To illustrate these ideas, we add random shocks to the model and see how collapse can easily occur.</p>
+<p>The MSY framework is due to <span class="bibtex-citation" id="id1">Schaefer [<a class="reference internal" href="zreferences.html#id298" title="Milner B. Schaefer. Some aspects of the dynamics of populations important to the management of the commercial marine fisheries. Bulletin of the Inter-American Tropical Tuna Commission, 1(2):23–56, 1954.">1954</a>]</span> and <span class="bibtex-citation" id="id2">Gordon [<a class="reference internal" href="zreferences.html#id299" title="H. Scott Gordon. The economic theory of a common-property resource: the fishery. Journal of Political Economy, 62(2):124–142, 1954.">1954</a>]</span>; a
+classic textbook treatment is <span class="bibtex-citation" id="id3">Clark [<a class="reference internal" href="zreferences.html#id301" title="Colin W. Clark. Mathematical Bioeconomics: The Optimal Management of Renewable Resources. Wiley, 2nd edition, 1990.">1990</a>]</span>.</p>
+<p>This lecture was partly inspired by <a class="reference external" href="https://maths-from-the-past.org/2025/05/12/oversimplified-models-fishery-collapses-and-msy/">a discussion of MSY</a> posted on <a class="reference external" href="https://maths-from-the-past.org">Maths from the past</a>.</p>
+<p>Let’s start with some standard imports.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will use the following parameterization throughout.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="mf">0.5</span>      <span class="c1"># intrinsic growth rate (per year)</span>
+<span class="n">K</span> <span class="o">=</span> <span class="mf">1000.0</span>   <span class="c1"># carrying capacity (tonnes)</span>
+<span class="n">q</span> <span class="o">=</span> <span class="mf">0.01</span>     <span class="c1"># catchability coefficient</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-model">
+<h2><span class="section-number">26.2. </span>The model<a class="headerlink" href="#the-model" title="Link to this heading">#</a></h2>
+<p>We build the model in two steps: first how the stock grows on its own, then what
+fishing does to it.</p>
+<section id="growth-without-fishing">
+<h3><span class="section-number">26.2.1. </span>Growth without fishing<a class="headerlink" href="#growth-without-fishing" title="Link to this heading">#</a></h3>
+<p>In the model, the population adds new fish each year according to the <strong>logistic
+growth</strong> function</p>
+<div class="math notranslate nohighlight" id="equation-eq-logistic">
+<span class="eqno">(26.1)<a class="headerlink" href="#equation-eq-logistic" title="Link to this equation">#</a></span>\[
+    G(x) = r\,x\left(1 - \frac{x}{K}\right)
+\]</div>
+<p>Here</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x\)</span> is the <strong>current biomass</strong> — the total weight of fish in tonnes,</p></li>
+<li><p><span class="math notranslate nohighlight">\(G(x)\)</span> is <strong>annual growth</strong> in biomass — the difference between current and next year’s biomass,</p></li>
+<li><p><span class="math notranslate nohighlight">\(r &gt; 0\)</span> is called the <strong>intrinsic growth rate</strong>, and</p></li>
+<li><p><span class="math notranslate nohighlight">\(K &gt; 0\)</span> is called the <strong>carrying capacity</strong>.</p></li>
+</ul>
+<p>Let’s encode the growth function in Python.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">G</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="s2">&quot;Logistic growth over one year.&quot;</span>
+    <span class="k">return</span> <span class="n">r</span> <span class="o">*</span> <span class="n">x</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">x</span> <span class="o">/</span> <span class="n">K</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As the next figure shows, growth is small when the stock is small (few spawners)
+and small again when the stock is near <span class="math notranslate nohighlight">\(K\)</span> (crowding, limited food), and is
+largest in between.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_grid</span><span class="p">,</span> <span class="n">G</span><span class="p">(</span><span class="n">x_grid</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;stock biomass  $x$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;annual growth  $G(x)$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">G</span><span class="p">(</span><span class="n">K</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1.15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<figure class="align-default" id="fig-logistic-growth">
+<a class="reference internal image-reference" href="_images/6913af0b23fd8ff2d577ba90652ebab4b5b3393b67d414c13be3ebb46155700a.png"><img alt="_images/6913af0b23fd8ff2d577ba90652ebab4b5b3393b67d414c13be3ebb46155700a.png" src="_images/6913af0b23fd8ff2d577ba90652ebab4b5b3393b67d414c13be3ebb46155700a.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 26.1 </span><span class="caption-text">Logistic growth</span><a class="headerlink" href="#fig-logistic-growth" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</div>
+</div>
+<p>With no fishing, next year’s stock is just this year’s stock plus current growth:</p>
+<div class="math notranslate nohighlight">
+\[
+    x_{t+1} = x_t + G(x_t).
+\]</div>
+<p>One way to see where the dynamics lead is via a 45-degree diagram, which plots
+next year’s stock <span class="math notranslate nohighlight">\(x_{t+1}\)</span> against this year’s stock <span class="math notranslate nohighlight">\(x_t\)</span>.</p>
+<p>Wherever the curve crosses the <span class="math notranslate nohighlight">\(45^\circ\)</span> line we have <span class="math notranslate nohighlight">\(x_{t+1} = x_t\)</span>.</p>
+<p>The corresponding value of <span class="math notranslate nohighlight">\(x\)</span> obeys <span class="math notranslate nohighlight">\(x = x + G(x)\)</span>.</p>
+<p>Such an <span class="math notranslate nohighlight">\(x\)</span> is called a <strong>steady state</strong>: a stock that exactly reproduces itself.</p>
+<p>We can trace the dynamics of the model by “staircasing”: from a starting stock go <em>up</em> to
+the curve (that gives next year’s stock), <em>across</em> to the <span class="math notranslate nohighlight">\(45^\circ\)</span> line (that
+becomes this year’s stock), and repeat.</p>
+<p>We start with some plotting code.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_45</span><span class="p">(</span>
+        <span class="n">ax</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="n">steady_state</span><span class="p">,</span> <span class="n">ss_label</span><span class="p">,</span> <span class="n">map_label</span><span class="p">,</span> <span class="n">n_years</span><span class="o">=</span><span class="mi">30</span>
+    <span class="p">):</span>
+    <span class="s2">&quot;Draw a 45-degree (cobweb) diagram for a function f.&quot;</span>
+    <span class="n">grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">grid</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">map_label</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">grid</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;0.6&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$45^\circ$ line&#39;</span><span class="p">)</span>
+    <span class="c1"># cobweb staircase starting from x0</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x0</span>
+    <span class="n">cx</span><span class="p">,</span> <span class="n">cy</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_years</span><span class="p">):</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">cx</span> <span class="o">+=</span> <span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span>
+        <span class="n">cy</span> <span class="o">+=</span> <span class="p">[</span><span class="n">y</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">y</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">steady_state</span><span class="p">],</span> <span class="p">[</span><span class="n">steady_state</span><span class="p">],</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">ss_label</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">steady_state</span><span class="p">,</span> <span class="n">steady_state</span><span class="p">),</span>
+                <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mf">0.55</span> <span class="o">*</span> <span class="n">x_max</span><span class="p">,</span> <span class="mf">0.28</span> <span class="o">*</span> <span class="n">x_max</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span>
+                <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;-&gt;&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;stock this year  $x_t$&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;stock next year  $x_{t+1}$&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">x_max</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">x_max</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>Here is the unfished case.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">4.95</span><span class="p">,</span> <span class="mf">4.95</span><span class="p">))</span>
+<span class="n">plot_45</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="n">G</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">x0</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">x_max</span><span class="o">=</span><span class="mi">1100</span><span class="p">,</span>
+        <span class="n">steady_state</span><span class="o">=</span><span class="n">K</span><span class="p">,</span> <span class="n">ss_label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$x=K$ (carrying capacity)&#39;</span><span class="p">,</span>
+        <span class="n">map_label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$x_{t+1}=x_t+G(x_t)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<figure class="align-default" id="fig-cobweb-unfished">
+<a class="reference internal image-reference" href="_images/85173996b7399f499363a11ec70200fbd0413987736e24734a62adeff5f3590a.png"><img alt="_images/85173996b7399f499363a11ec70200fbd0413987736e24734a62adeff5f3590a.png" src="_images/85173996b7399f499363a11ec70200fbd0413987736e24734a62adeff5f3590a.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 26.2 </span><span class="caption-text">Stock dynamics without fishing</span><a class="headerlink" href="#fig-cobweb-unfished" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</div>
+</div>
+<p>Starting from any positive stock and following the staircase, we see that <span class="math notranslate nohighlight">\(x_t\)</span>
+climbs to the steady state carrying capacity <span class="math notranslate nohighlight">\(x = K\)</span>.</p>
+<p>The unfished population fills up the environment and stays there.</p>
+<p>(The empty ocean <span class="math notranslate nohighlight">\(x = 0\)</span> is also a steady state, but an unstable one — any small
+stock grows away from it.)</p>
+</section>
+<section id="adding-fishing">
+<h3><span class="section-number">26.2.2. </span>Adding fishing<a class="headerlink" href="#adding-fishing" title="Link to this heading">#</a></h3>
+<p>Now let a fishing fleet remove some catch quantity <span class="math notranslate nohighlight">\(h_t\)</span> each year.</p>
+<p>Following <span class="bibtex-citation" id="id4">Schaefer [<a class="reference internal" href="zreferences.html#id298" title="Milner B. Schaefer. Some aspects of the dynamics of populations important to the management of the commercial marine fisheries. Bulletin of the Inter-American Tropical Tuna Commission, 1(2):23–56, 1954.">1954</a>]</span>, the catch is proportional to fishing <strong>effort</strong>
+<span class="math notranslate nohighlight">\(e\)</span> (e.g. boat-days) and to the stock available to be caught:</p>
+<div class="math notranslate nohighlight" id="equation-eq-harvest">
+<span class="eqno">(26.2)<a class="headerlink" href="#equation-eq-harvest" title="Link to this equation">#</a></span>\[
+    h_t = q\,e\,x_t
+\]</div>
+<p>Here <span class="math notranslate nohighlight">\(q &gt; 0\)</span> is the <strong>catchability coefficient</strong>.</p>
+<p>Subtracting the catch, next year’s stock becomes</p>
+<div class="math notranslate nohighlight" id="equation-eq-update">
+<span class="eqno">(26.3)<a class="headerlink" href="#equation-eq-update" title="Link to this equation">#</a></span>\[
+    x_{t+1} = x_t + G(x_t) - qe\,x_t.
+\]</div>
+<p>Here’s Python code to implement this update rule</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
+    <span class="s2">&quot;Next year&#39;s stock given current stock x and fishing effort e.&quot;</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">G</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">q</span> <span class="o">*</span> <span class="n">e</span> <span class="o">*</span> <span class="n">x</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here’s the 45 degree diagram, now with the fishing term included.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">e_demo</span> <span class="o">=</span> <span class="mf">20.0</span>    <span class="c1"># an illustrative fixed effort level</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">x_star</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+    <span class="s2">&quot;Sustainable (steady-state) stock at effort e.&quot;</span>
+    <span class="k">return</span> <span class="n">K</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">q</span> <span class="o">*</span> <span class="n">e</span> <span class="o">/</span> <span class="n">r</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">4.95</span><span class="p">,</span> <span class="mf">4.95</span><span class="p">))</span>
+<span class="n">plot_45</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">update</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">e_demo</span><span class="p">),</span> <span class="n">x0</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">x_max</span><span class="o">=</span><span class="mi">1100</span><span class="p">,</span>
+        <span class="n">steady_state</span><span class="o">=</span><span class="n">x_star</span><span class="p">(</span><span class="n">e_demo</span><span class="p">),</span> <span class="n">ss_label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$x^*(e)$&#39;</span><span class="p">,</span>
+        <span class="n">map_label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$x_{t+1}=x_t+G(x_t)-qex_t$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<figure class="align-default" id="fig-cobweb-fished">
+<a class="reference internal image-reference" href="_images/709553b1cb07d6260524b3a5652cd8913456e51cd4262c202872f152a5309d33.png"><img alt="_images/709553b1cb07d6260524b3a5652cd8913456e51cd4262c202872f152a5309d33.png" src="_images/709553b1cb07d6260524b3a5652cd8913456e51cd4262c202872f152a5309d33.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 26.3 </span><span class="caption-text">Stock dynamics at a fixed effort</span><a class="headerlink" href="#fig-cobweb-fished" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</div>
+</div>
+<p>On the 45-degree diagram, fishing pulls the update curve down by the harvest
+term, so it now crosses the <span class="math notranslate nohighlight">\(45^\circ\)</span> line at a lower steady state.</p>
+<p>Since this steady state is a function of <span class="math notranslate nohighlight">\(e\)</span> now, we denote it by <span class="math notranslate nohighlight">\(x^*(e)\)</span>.</p>
+<p>Here’s the dynamics for two different levels of <span class="math notranslate nohighlight">\(e\)</span>, with the staircases omitted.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1100</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">4.95</span><span class="p">,</span> <span class="mf">4.95</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">grid</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;0.6&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$45^\circ$ line&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">30.0</span><span class="p">):</span>
+    <span class="n">line</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">update</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">e</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$e=</span><span class="si">{</span><span class="n">e</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
+    <span class="n">xs</span> <span class="o">=</span> <span class="n">x_star</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">xs</span><span class="p">],</span> <span class="p">[</span><span class="n">xs</span><span class="p">],</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">line</span><span class="o">.</span><span class="n">get_color</span><span class="p">(),</span> <span class="n">ms</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;stock this year  $x_t$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;stock next year  $x_{t+1}$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1100</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1100</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<figure class="align-default" id="fig-cobweb-two-efforts">
+<a class="reference internal image-reference" href="_images/081729f0ff5d1fe5465197d5d092e27b40cf856236f2402cf88ee477fdfb3ab4.png"><img alt="_images/081729f0ff5d1fe5465197d5d092e27b40cf856236f2402cf88ee477fdfb3ab4.png" src="_images/081729f0ff5d1fe5465197d5d092e27b40cf856236f2402cf88ee477fdfb3ab4.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 26.4 </span><span class="caption-text">Stock dynamics at two effort levels</span><a class="headerlink" href="#fig-cobweb-two-efforts" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</div>
+</div>
+<p>Not surprisingly, the steady state <span class="math notranslate nohighlight">\(x^*(e)\)</span> is decreasing in fishing effort
+(more fishing leads to less fish).</p>
+</section>
+</section>
+<section id="sustainable-yield">
+<h2><span class="section-number">26.3. </span>Sustainable yield<a class="headerlink" href="#sustainable-yield" title="Link to this heading">#</a></h2>
+<p>Suppose, as above, that the fleet applies a constant effort <span class="math notranslate nohighlight">\(e\)</span> every year.</p>
+<p>Let’s look for the associated steady state and associated catch.</p>
+<p>At any steady state, we must have <span class="math notranslate nohighlight">\(x_{t+1} = x_t\)</span>.</p>
+<p>Looking at <a class="reference internal" href="#equation-eq-update">(26.3)</a>, this happens exactly when growth replaces the catch,
+<span class="math notranslate nohighlight">\(G(x) = qex\)</span>.</p>
+<p>Writing it out and ignoring the empty-ocean case <span class="math notranslate nohighlight">\(x = 0\)</span>, we get</p>
+<div class="math notranslate nohighlight" id="equation-eq-xstar">
+<span class="eqno">(26.4)<a class="headerlink" href="#equation-eq-xstar" title="Link to this equation">#</a></span>\[
+    r\left(1 - \frac{x}{K}\right) = qe
+    \quad\Longrightarrow\quad
+    x^*(e) = K\left(1 - \frac{qe}{r}\right).
+\]</div>
+<p>Provided <span class="math notranslate nohighlight">\(e &lt; r/q\)</span>, we see that each effort level <span class="math notranslate nohighlight">\(e\)</span> pins down one steady-state stock <span class="math notranslate nohighlight">\(x^*(e)\)</span>.</p>
+<p>The catch this steady state delivers is called the <strong>sustainable yield</strong>, and defined as</p>
+<div class="math notranslate nohighlight" id="equation-eq-yield">
+<span class="eqno">(26.5)<a class="headerlink" href="#equation-eq-yield" title="Link to this equation">#</a></span>\[
+    y^*(e) := q\,e\,x^*(e).
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">sustainable_yield</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+    <span class="s2">&quot;Sustainable catch delivered each year at effort e.&quot;</span>
+    <span class="k">return</span> <span class="n">q</span> <span class="o">*</span> <span class="n">e</span> <span class="o">*</span> <span class="n">x_star</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To visualize the sustainable yield, we plot the growth curve <span class="math notranslate nohighlight">\(G(x)\)</span> together
+with the harvest line <span class="math notranslate nohighlight">\(q e x\)</span> for a single effort level <span class="math notranslate nohighlight">\(e\)</span>.</p>
+<p>The two cross where growth exactly replaces the catch: that crossing sits at the
+steady-state stock <span class="math notranslate nohighlight">\(x^*(e)\)</span>.</p>
+<p>The height of the line there is the sustainable catch <span class="math notranslate nohighlight">\(y^*(e)\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">G</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;growth  $G(x)$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">q</span> <span class="o">*</span> <span class="n">e_demo</span> <span class="o">*</span> <span class="n">x</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;harvest  $q e x$&#39;</span><span class="p">)</span>
+
+<span class="n">xs</span> <span class="o">=</span> <span class="n">x_star</span><span class="p">(</span><span class="n">e_demo</span><span class="p">)</span>
+<span class="n">ys</span> <span class="o">=</span> <span class="n">sustainable_yield</span><span class="p">(</span><span class="n">e_demo</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">xs</span><span class="p">],</span> <span class="p">[</span><span class="n">ys</span><span class="p">],</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">ys</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">xs</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x^*(e)$&#39;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="n">xs</span> <span class="o">+</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$y^*(e)$&#39;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">ys</span><span class="p">),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">ys</span> <span class="o">+</span> <span class="mi">5</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;stock biomass  $x$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;catch&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">G</span><span class="p">(</span><span class="n">K</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1.4</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<figure class="align-default" id="fig-sustainable-point">
+<a class="reference internal image-reference" href="_images/9111d23cbf228340986a42b9aa68d4613e6f6726ab78194dd9f47b4eff9f86e8.png"><img alt="_images/9111d23cbf228340986a42b9aa68d4613e6f6726ab78194dd9f47b4eff9f86e8.png" src="_images/9111d23cbf228340986a42b9aa68d4613e6f6726ab78194dd9f47b4eff9f86e8.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 26.5 </span><span class="caption-text">Sustainable stock and catch</span><a class="headerlink" href="#fig-sustainable-point" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</div>
+</div>
+<p>Different effort levels give different sustainable catches <span class="math notranslate nohighlight">\(y^*(e)\)</span>.</p>
+<p>In the next figure we plot the growth curve <span class="math notranslate nohighlight">\(G(x)\)</span> together with the harvest
+lines <span class="math notranslate nohighlight">\(q e x\)</span> for several values of <span class="math notranslate nohighlight">\(e\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">G</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;growth  $G(x)$&#39;</span><span class="p">)</span>
+
+<span class="n">efforts</span> <span class="o">=</span> <span class="p">[</span><span class="mf">12.5</span><span class="p">,</span> <span class="mf">25.0</span><span class="p">,</span> <span class="mf">37.5</span><span class="p">]</span>
+<span class="n">labels</span>  <span class="o">=</span> <span class="p">[</span><span class="sa">r</span><span class="s1">&#39;low $e$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;moderate $e$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;high $e$&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">e</span><span class="p">,</span> <span class="n">lab</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">efforts</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
+    <span class="n">line</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">q</span> <span class="o">*</span> <span class="n">e</span> <span class="o">*</span> <span class="n">x</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">lab</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">x_star</span><span class="p">(</span><span class="n">e</span><span class="p">)],</span> <span class="p">[</span><span class="n">q</span> <span class="o">*</span> <span class="n">e</span> <span class="o">*</span> <span class="n">x_star</span><span class="p">(</span><span class="n">e</span><span class="p">)],</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">line</span><span class="o">.</span><span class="n">get_color</span><span class="p">(),</span> <span class="n">ms</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;stock $x$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;catch&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">G</span><span class="p">(</span><span class="n">K</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1.4</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<figure class="align-default" id="fig-steady-states">
+<a class="reference internal image-reference" href="_images/01c9e8213a2ecd77e7ac89663dc744f3bb493a12ae6efce744c635a7bd61fac0.png"><img alt="_images/01c9e8213a2ecd77e7ac89663dc744f3bb493a12ae6efce744c635a7bd61fac0.png" src="_images/01c9e8213a2ecd77e7ac89663dc744f3bb493a12ae6efce744c635a7bd61fac0.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 26.6 </span><span class="caption-text">Steady states at several effort levels</span><a class="headerlink" href="#fig-steady-states" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</div>
+</div>
+<p>Each dot marks a steady state, and its height is the sustainable catch at that
+effort.</p>
+<p>As effort rises, the steady-state stock falls, while the catch rises and then
+falls — exactly the trade-off that the maximum sustainable yield captures.</p>
+<section id="the-yield-effort-curve">
+<h3><span class="section-number">26.3.1. </span>The yield-effort curve<a class="headerlink" href="#the-yield-effort-curve" title="Link to this heading">#</a></h3>
+<p>To visualize the MSY, we plot the sustainable catch <span class="math notranslate nohighlight">\(y^*(e)\)</span> against effort <span class="math notranslate nohighlight">\(e\)</span>.</p>
+<p>This gives the classic dome-shaped Schaefer curve that fisheries managers use.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">e_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">r</span> <span class="o">/</span> <span class="n">q</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
+<span class="n">y_grid</span> <span class="o">=</span> <span class="n">sustainable_yield</span><span class="p">(</span><span class="n">e_grid</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">e_grid</span><span class="p">,</span> <span class="n">y_grid</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$y^*(e)=qeK\,(1-qe/r)$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;fishing effort  $e$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;sustainable yield  $y^*(e)$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">r</span> <span class="o">/</span> <span class="n">q</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">y_grid</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">*</span> <span class="mf">1.25</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<figure class="align-default" id="fig-yield-effort">
+<a class="reference internal image-reference" href="_images/2a52411d577aee8f3dc7b563dd76095c6ec8873afd0b40a9a74b73e5c3bf049c.png"><img alt="_images/2a52411d577aee8f3dc7b563dd76095c6ec8873afd0b40a9a74b73e5c3bf049c.png" src="_images/2a52411d577aee8f3dc7b563dd76095c6ec8873afd0b40a9a74b73e5c3bf049c.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 26.7 </span><span class="caption-text">Yield-effort curve</span><a class="headerlink" href="#fig-yield-effort" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</div>
+</div>
+<p>The sustainable yield rises with effort and then falls.</p>
+<p>The maximum height of this curve is called the <strong>maximum sustainable yield</strong> (MSY).</p>
+<p>It is the largest steady state catch attainable, assuming a constant effort rate <span class="math notranslate nohighlight">\(e\)</span>.</p>
+</section>
+<section id="calculating-the-maximum-sustainable-yield">
+<h3><span class="section-number">26.3.2. </span>Calculating the maximum sustainable yield<a class="headerlink" href="#calculating-the-maximum-sustainable-yield" title="Link to this heading">#</a></h3>
+<p>The maximum sustainable yield can be defined more mathematically as</p>
+<div class="math notranslate nohighlight">
+\[
+    \text{MSY} \;=\; \max_{0 \le e &lt; r/q} \; y^*(e).
+\]</div>
+<p>The effort level that solves this maximization problem is represented by <span class="math notranslate nohighlight">\(e_{MSY}\)</span>.</p>
+<p>We can compute it either by calculus or numerically, by evaluating <span class="math notranslate nohighlight">\(y^*(e)\)</span> on a fine grid of effort
+levels and picking the largest.</p>
+<p>Below we look at the solution using calculus.</p>
+<p>For now we will use the numerical approach:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">e_search</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">r</span> <span class="o">/</span> <span class="n">q</span><span class="p">,</span> <span class="mi">100_001</span><span class="p">)</span>
+<span class="n">i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">sustainable_yield</span><span class="p">(</span><span class="n">e_search</span><span class="p">))</span>
+
+<span class="n">e_msy</span> <span class="o">=</span> <span class="n">e_search</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="n">MSY</span> <span class="o">=</span> <span class="n">sustainable_yield</span><span class="p">(</span><span class="n">e_msy</span><span class="p">)</span>
+<span class="n">x_msy</span> <span class="o">=</span> <span class="n">x_star</span><span class="p">(</span><span class="n">e_msy</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;effort at MSY     e_MSY = </span><span class="si">{</span><span class="n">e_msy</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;stock at MSY      x*    = </span><span class="si">{</span><span class="n">x_msy</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> tonnes      (= K/2)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;maximum yield     MSY   = </span><span class="si">{</span><span class="n">MSY</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> tonnes/year  (= rK/4)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>effort at MSY     e_MSY = 25.00
+stock at MSY      x*    = 500.0 tonnes      (= K/2)
+maximum yield     MSY   = 125.0 tonnes/year  (= rK/4)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The search lands on the round numbers <span class="math notranslate nohighlight">\(x^* = K/2\)</span> and <span class="math notranslate nohighlight">\(\text{MSY} = rK/4\)</span>; the
+optional calculus section below shows why.</p>
+</section>
+<section id="dynamics">
+<h3><span class="section-number">26.3.3. </span>Dynamics<a class="headerlink" href="#dynamics" title="Link to this heading">#</a></h3>
+<p>What happens to biomass when we set <span class="math notranslate nohighlight">\(e = e_{MSY}\)</span> from some arbitrary initial
+<span class="math notranslate nohighlight">\(x_0\)</span>?</p>
+<p>Below we run the yearly recursion <a class="reference internal" href="#equation-eq-update">(26.3)</a> forward from several
+starting stocks, under the MSY effort.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">simulate</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">years</span><span class="o">=</span><span class="mi">40</span><span class="p">):</span>
+    <span class="s2">&quot;Run the deterministic yearly stock recursion forward from x0.&quot;</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">years</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x0</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">years</span><span class="p">):</span>
+        <span class="n">x</span><span class="p">[</span><span class="n">t</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">update</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="p">],</span> <span class="n">e</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">years</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">x</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">x0</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">700</span><span class="p">,</span> <span class="mi">950</span><span class="p">]:</span>
+    <span class="n">t</span><span class="p">,</span> <span class="n">xt</span> <span class="o">=</span> <span class="n">simulate</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">e_msy</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">xt</span><span class="p">,</span> <span class="s1">&#39;o-&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$x_0=</span><span class="si">{</span><span class="n">x0</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">x_msy</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x^*=K/2$&#39;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">x_msy</span><span class="p">),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">x_msy</span> <span class="o">+</span> <span class="mi">25</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;year  $t$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;stock biomass  $x_t$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<figure class="align-default" id="fig-msy-convergence">
+<a class="reference internal image-reference" href="_images/8a47c34b3c7f83a8c233214db8a2fa537b981a6391856fcf442fb42dbcbea32d.png"><img alt="_images/8a47c34b3c7f83a8c233214db8a2fa537b981a6391856fcf442fb42dbcbea32d.png" src="_images/8a47c34b3c7f83a8c233214db8a2fa537b981a6391856fcf442fb42dbcbea32d.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 26.8 </span><span class="caption-text">Stock paths under MSY effort</span><a class="headerlink" href="#fig-msy-convergence" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</div>
+</div>
+<p>We see that, under the MSY effort, every path climbs or falls toward <span class="math notranslate nohighlight">\(x^* = K/2\)</span> and stays.</p>
+<p>As a result, the catch settles down to the MSY.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The smooth, steady convergence above relies on <span class="math notranslate nohighlight">\(r\)</span> being modest.</p>
+<p>For large <span class="math notranslate nohighlight">\(r\)</span> the yearly model can overshoot and oscillate — even behave
+chaotically <span class="bibtex-citation" id="id5">[<a class="reference internal" href="zreferences.html#id300" title="Robert M. May. Simple mathematical models with very complicated dynamics. Nature, 261(5560):459–467, 1976.">May, 1976</a>]</span> — but that is an artifact of the one-year time step,
+not the biology.</p>
+<p>The continuous-time version in the next section converges smoothly for <em>any</em>
+<span class="math notranslate nohighlight">\(r &gt; 0\)</span>, which is one reason it is the textbook standard.</p>
+</div>
+</section>
+</section>
+<section id="the-same-result-with-calculus">
+<h2><span class="section-number">26.4. </span>The same result with calculus<a class="headerlink" href="#the-same-result-with-calculus" title="Link to this heading">#</a></h2>
+<p>The following section is optional.</p>
+<p>Our discussion above used only algebra and figures.</p>
+<p>For readers who are familiar with calculus, we now provide a continuous time version of the model.</p>
+<p>The continuous time version is frequently used and has some advantages (and some disadvantages).</p>
+<p>If we shrink the time step to zero, the recursion <a class="reference internal" href="#equation-eq-update">(26.3)</a> becomes the
+differential equation</p>
+<div class="math notranslate nohighlight">
+\[
+    \dot{x} = G(x) - qex.
+\]</div>
+<p>The sustainability condition is unchanged — a steady state still needs
+<span class="math notranslate nohighlight">\(G(x) = qex\)</span> — so <span class="math notranslate nohighlight">\(x^*(e) = K(1 - qe/r)\)</span> and <span class="math notranslate nohighlight">\(y^*(e) = qeK(1 - qe/r)\)</span> exactly as
+before.</p>
+<p>Now <span class="math notranslate nohighlight">\(y^*\)</span> is a smooth, concave parabola in <span class="math notranslate nohighlight">\(e\)</span>, and its peak is where the slope
+vanishes:</p>
+<div class="math notranslate nohighlight">
+\[
+    \frac{d y^*}{d e} = qK\left(1 - \frac{2qe}{r}\right) = 0
+    \quad\Longrightarrow\quad
+    e_{MSY} = \frac{r}{2q},
+\]</div>
+<p>which gives <span class="math notranslate nohighlight">\(x^* = K/2\)</span> and <span class="math notranslate nohighlight">\(\text{MSY} = rK/4\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Readers who have seen the Solow-Swan growth model may recognize the structure.</p>
+<p>A single control — here fishing effort, there the savings rate — picks one
+point on a one-parameter family of steady states.</p>
+<p>The sustainable flow — here the yield, there consumption — is hump-shaped in
+that control, and the optimum sits at an interior peak.</p>
+<p>Over-fishing is then the exact analogue of over-saving (dynamic inefficiency):
+more of the control, less of the flow.</p>
+</div>
+</section>
+<section id="a-success-story-pacific-coast-lingcod">
+<h2><span class="section-number">26.5. </span>A success story: Pacific Coast lingcod<a class="headerlink" href="#a-success-story-pacific-coast-lingcod" title="Link to this heading">#</a></h2>
+<p>Before turning to the risks, it is worth seeing the MSY framework succeed.</p>
+<p>A clean example is the lingcod (<em>Ophiodon elongatus</em>) fishery off the U.S.
+Pacific Coast.</p>
+<p>Lingcod is managed using MSY-based analysis.</p>
+<p>This analysis leads to a target biomass and a target fishing pressure that
+together define the maximum sustainable yield.</p>
+<p>To follow the fishery we use two ratios.</p>
+<p>The first is <span class="math notranslate nohighlight">\(B / B_{MSY}\)</span>, the stock biomass relative to the biomass <span class="math notranslate nohighlight">\(B_{MSY}\)</span>
+that supports the MSY.</p>
+<p>(In our model this reference stock is <span class="math notranslate nohighlight">\(x^* = K/2\)</span>.)</p>
+<p>The second is <span class="math notranslate nohighlight">\(F / F_{MSY}\)</span>, fishing pressure relative to the pressure
+<span class="math notranslate nohighlight">\(F_{MSY}\)</span> that achieves the MSY.</p>
+<p>(In our model this is the MSY effort <span class="math notranslate nohighlight">\(e_{MSY}\)</span>.)</p>
+<p>The data come from the RAM Legacy Stock Assessment Database <span class="bibtex-citation" id="id6">Ricard <em>et al.</em> [<a class="reference internal" href="zreferences.html#id302" title="Daniel Ricard, Coilin Minto, Olaf P. Jensen, and Julia K. Baum. Evaluating the knowledge base and status of commercially exploited marine species with the RAM legacy stock assessment database. Fish and Fisheries, 13(4):380–398, 2012.">2012</a>]</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lingcod</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;datasets/lingcod_msy_recovery.csv&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">1930</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;MSY reference ($=1$)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">)</span>
+
+<span class="n">ymax</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">lingcod</span><span class="p">[</span><span class="s1">&#39;B_over_Bmsy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">lingcod</span><span class="p">[</span><span class="s1">&#39;F_over_Fmsy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span> <span class="o">*</span> <span class="mf">1.06</span>
+
+<span class="c1"># shade the years when fishing pressure exceeded the MSY level</span>
+<span class="n">over</span> <span class="o">=</span> <span class="n">lingcod</span><span class="p">[</span><span class="s1">&#39;F_over_Fmsy&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">lingcod</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">over</span><span class="p">,</span>
+                <span class="n">color</span><span class="o">=</span><span class="s1">&#39;0.5&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.12</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lingcod</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">],</span> <span class="n">lingcod</span><span class="p">[</span><span class="s1">&#39;B_over_Bmsy&#39;</span><span class="p">],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$B / B_</span><span class="si">{MSY}</span><span class="s1">$  (biomass)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lingcod</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">],</span> <span class="n">lingcod</span><span class="p">[</span><span class="s1">&#39;F_over_Fmsy&#39;</span><span class="p">],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$F / F_</span><span class="si">{MSY}</span><span class="s1">$  (fishing pressure)&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">1999</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">2005</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;ratio to MSY reference point&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">lingcod</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">lingcod</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<figure class="align-default" id="fig-lingcod">
+<a class="reference internal image-reference" href="_images/1bed8766fb86b5df30b9eb29c1ab5e9236579a252ec78b54aae7a82e1f8ff71e.png"><img alt="_images/1bed8766fb86b5df30b9eb29c1ab5e9236579a252ec78b54aae7a82e1f8ff71e.png" src="_images/1bed8766fb86b5df30b9eb29c1ab5e9236579a252ec78b54aae7a82e1f8ff71e.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 26.9 </span><span class="caption-text">Pacific Coast lingcod recovery</span><a class="headerlink" href="#fig-lingcod" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</div>
+</div>
+<p>Through the 1960s the stock was lightly exploited: <span class="math notranslate nohighlight">\(F\)</span> sat well below <span class="math notranslate nohighlight">\(F_{MSY}\)</span>
+and biomass drifted down slowly from a high level.</p>
+<p>From the early 1970s fishing pressure climbed above <span class="math notranslate nohighlight">\(F_{MSY}\)</span> and stayed there for
+nearly three decades.</p>
+<p>Biomass fell steadily, reaching a trough of about <span class="math notranslate nohighlight">\(0.27\,B_{MSY}\)</span> in 1993 —
+close to collapse.</p>
+<p>In 1999 the stock was formally declared <em>overfished</em>, and a rebuilding plan
+based around MSY cut catches sharply.</p>
+<p>Fishing pressure dropped well below <span class="math notranslate nohighlight">\(F_{MSY}\)</span>, and biomass climbed back through
+<span class="math notranslate nohighlight">\(B_{MSY}\)</span> by 2004.</p>
+<p>The stock was declared fully rebuilt in 2005, ahead of schedule, and then
+overshot its target.</p>
+<p>As suggested by the model, fishing above the MSY level has led to falling stock, while
+keeping it below has led to recovery.</p>
+<p>Of course, the real world is not as clean as the model and random factors
+also influenced outcomes.</p>
+<p>For example, a strong 1999 year-class also helped, so the
+cut in fishing was important but recruitment luck set the speed of recovery.</p>
+<p>In addition, the recovery was aided by coast-wide measures aimed at the whole
+groundfish community.</p>
+<p>The next section expands our model somewhat, with the aim of introducing more
+realistic dynamics.</p>
+</section>
+<section id="randomness-risk-and-collapse">
+<h2><span class="section-number">26.6. </span>Randomness, risk and collapse<a class="headerlink" href="#randomness-risk-and-collapse" title="Link to this heading">#</a></h2>
+<p>As mentioned in the introduction to this lecture, MSY-based policies have not
+always been successful in sustaining fish populations.</p>
+<p>A major reason is that the simple MSY model ignores randomness and risk.</p>
+<p>This randomness and risk is associated with several features of fisheries.</p>
+<p>One feature is that fish stocks are difficult to track, so policies may be based
+on incorrect measurements.</p>
+<p>Another is that ocean environments are complex and nonstationary: a policy that looks safe in a deterministic model
+can be dangerously fragile once we admit randomness.</p>
+<p>In this section we investigate how one form of randomness — stochastic growth
+— can impact fishery dynamics under MSY-based management.</p>
+<section id="adding-randomness">
+<h3><span class="section-number">26.6.1. </span>Adding randomness<a class="headerlink" href="#adding-randomness" title="Link to this heading">#</a></h3>
+<p>So far the ocean has been a perfectly predictable place.</p>
+<p>Each year the stock grows by exactly <span class="math notranslate nohighlight">\(G(x_t)\)</span>.</p>
+<p>Real fish populations are not like this.</p>
+<p>Recruitment depends on water temperature, currents, food supply, predators and
+disease — all of which vary from year to year, sometimes wildly.</p>
+<p>Let’s add this randomness to the model.</p>
+<p>A simple way is to multiply each year’s growth by a random <strong>environmental shock</strong>
+<span class="math notranslate nohighlight">\(\xi_t\)</span> with mean one:</p>
+<div class="math notranslate nohighlight" id="equation-eq-stochastic">
+<span class="eqno">(26.6)<a class="headerlink" href="#equation-eq-stochastic" title="Link to this equation">#</a></span>\[
+    x_{t+1} = x_t + \xi_t \, G(x_t) - h_t,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(h_t\)</span> is the catch taken in year <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<p>We take <span class="math notranslate nohighlight">\(\xi_t\)</span> to be lognormal with mean one, controlled by a volatility
+parameter <span class="math notranslate nohighlight">\(\sigma\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">shocks</span><span class="p">(</span><span class="n">σ</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">rng</span><span class="p">):</span>
+    <span class="s2">&quot;Return n lognormal shocks with mean one and volatility σ.&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">σ</span> <span class="o">*</span> <span class="n">rng</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">-</span> <span class="n">σ</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we face a management choice that did not matter in the deterministic world but
+matters enormously here.</p>
+<p>How should we set the catch <span class="math notranslate nohighlight">\(h_t\)</span>?</p>
+<p>We compare two policies, both designed to take the MSY <em>on average</em>:</p>
+<ul class="simple">
+<li><p><strong>constant effort</strong>: set <span class="math notranslate nohighlight">\(h_t = q\, e_{MSY}\, x_t\)</span>, so the catch scales with the
+current stock, and</p></li>
+<li><p><strong>constant quota</strong>: set <span class="math notranslate nohighlight">\(h_t = \text{MSY}\)</span> every year, regardless of the stock.</p></li>
+</ul>
+<p>The constant quota is the more literal reading of “take the maximum sustainable
+yield each year”.</p>
+<p>It is also closer to how catch limits have often been set in practice.</p>
+<p>Let’s simulate both, starting every fishery from the MSY stock <span class="math notranslate nohighlight">\(x^* = K/2\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">simulate_stochastic</span><span class="p">(</span><span class="n">policy</span><span class="p">,</span> <span class="n">σ</span><span class="p">,</span> <span class="n">years</span><span class="p">,</span> <span class="n">rng</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="n">x_msy</span><span class="p">):</span>
+    <span class="s2">&quot;Simulate the stochastic fishery under a given harvest policy.&quot;</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">years</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x0</span>
+    <span class="n">ξ</span> <span class="o">=</span> <span class="n">shocks</span><span class="p">(</span><span class="n">σ</span><span class="p">,</span> <span class="n">years</span><span class="p">,</span> <span class="n">rng</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">years</span><span class="p">):</span>
+        <span class="n">growth</span> <span class="o">=</span> <span class="n">ξ</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">policy</span> <span class="o">==</span> <span class="s1">&#39;effort&#39;</span><span class="p">:</span>
+            <span class="n">harvest</span> <span class="o">=</span> <span class="n">q</span> <span class="o">*</span> <span class="n">e_msy</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>                       <span class="c1"># constant quota</span>
+            <span class="n">harvest</span> <span class="o">=</span> <span class="n">MSY</span>
+        <span class="n">x</span><span class="p">[</span><span class="n">t</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">growth</span> <span class="o">-</span> <span class="n">harvest</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here are a few sample paths under each policy, with a moderate amount of
+environmental noise.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">σ</span> <span class="o">=</span> <span class="mf">0.15</span>
+<span class="n">years</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">policy</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+        <span class="n">axes</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;effort&#39;</span><span class="p">,</span> <span class="s1">&#39;quota&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;constant effort  $h_t = q e_</span><span class="si">{MSY}</span><span class="s1"> x_t$&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;constant quota  $h_t = </span><span class="se">\\</span><span class="s1">mathrm</span><span class="si">{MSY}</span><span class="s1">$&#39;</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">simulate_stochastic</span><span class="p">(</span><span class="n">policy</span><span class="p">,</span> <span class="n">σ</span><span class="p">,</span> <span class="n">years</span><span class="p">,</span> <span class="n">rng</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">x_msy</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.92</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;year  $t$&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;stock biomass  $x_t$&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">years</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<figure class="align-default" id="fig-msy-policies">
+<a class="reference internal image-reference" href="_images/37b023f400b52470afaf2e78f55995d3be7fbc3561237cbed97209ad22a2710b.png"><img alt="_images/37b023f400b52470afaf2e78f55995d3be7fbc3561237cbed97209ad22a2710b.png" src="_images/37b023f400b52470afaf2e78f55995d3be7fbc3561237cbed97209ad22a2710b.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 26.10 </span><span class="caption-text">Two MSY policies under noise: constant effort (top) and constant quota (bottom)</span><a class="headerlink" href="#fig-msy-policies" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</div>
+</div>
+<p>The difference is stark.</p>
+<p>Under <strong>constant effort</strong>, the paths jiggle around <span class="math notranslate nohighlight">\(x^* = K/2\)</span> but always recover:
+a bad year cuts the catch (because the catch is proportional to the stock), giving
+the population room to bounce back.</p>
+<p>The policy is <strong>self-correcting</strong>.</p>
+<p>Under <strong>constant quota</strong>, several paths slide down and hit zero — the fishery
+<strong>collapses</strong>.</p>
+<p>The quota keeps demanding the full MSY even after a run of bad years has thinned
+the stock, and eventually the catch exceeds what the depleted population can
+replace.</p>
+</section>
+<section id="why-the-quota-is-a-knife-edge">
+<h3><span class="section-number">26.6.2. </span>Why the quota is a knife-edge<a class="headerlink" href="#why-the-quota-is-a-knife-edge" title="Link to this heading">#</a></h3>
+<p>The collapse is not bad luck — it is built into the constant-quota policy.</p>
+<p>Set the catch to the constant <span class="math notranslate nohighlight">\(h = \text{MSY} = rK/4\)</span> in the deterministic model
+and look for steady states, <span class="math notranslate nohighlight">\(G(x) = rK/4\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+    r\,x\left(1 - \frac{x}{K}\right) = \frac{rK}{4}
+    \quad\Longrightarrow\quad
+    \left(x - \frac{K}{2}\right)^2 = 0.
+\]</div>
+<p>The two steady states have merged into a single <strong>tangent</strong> point at <span class="math notranslate nohighlight">\(x = K/2\)</span>.</p>
+<p>This point is <em>semi-stable</em>: stable from above but unstable from below.</p>
+<p>If the stock ever drifts below <span class="math notranslate nohighlight">\(K/2\)</span>, then <span class="math notranslate nohighlight">\(G(x) &lt; rK/4\)</span>, so the constant quota
+takes more than the stock can grow, and the stock falls further — a one-way
+ratchet down to zero.</p>
+<p>Fishing exactly at the MSY with a fixed quota leaves <strong>no margin for error</strong>.</p>
+<p>The deterministic model hides this fragility because nothing ever pushes the stock
+off its perch.</p>
+<p>Add even a little randomness and the knife-edge reveals itself.</p>
+</section>
+<section id="how-often-does-the-fishery-collapse">
+<h3><span class="section-number">26.6.3. </span>How often does the fishery collapse?<a class="headerlink" href="#how-often-does-the-fishery-collapse" title="Link to this heading">#</a></h3>
+<p>Let’s quantify the risk by simulating many fisheries under each policy and
+counting how often the stock collapses within 100 years.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">collapse_fraction</span><span class="p">(</span><span class="n">policy</span><span class="p">,</span> <span class="n">σ</span><span class="p">,</span> <span class="n">years</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">n_paths</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="s2">&quot;Fraction of simulated fisheries that collapse within the horizon.&quot;</span>
+    <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+    <span class="n">collapses</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_paths</span><span class="p">):</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">simulate_stochastic</span><span class="p">(</span><span class="n">policy</span><span class="p">,</span> <span class="n">σ</span><span class="p">,</span> <span class="n">years</span><span class="p">,</span> <span class="n">rng</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">path</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mf">1.0</span><span class="p">:</span>
+            <span class="n">collapses</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">collapses</span> <span class="o">/</span> <span class="n">n_paths</span>
+
+<span class="k">for</span> <span class="n">policy</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;effort&#39;</span><span class="p">,</span> <span class="s1">&#39;quota&#39;</span><span class="p">]:</span>
+    <span class="n">frac</span> <span class="o">=</span> <span class="n">collapse_fraction</span><span class="p">(</span><span class="n">policy</span><span class="p">,</span> <span class="n">σ</span><span class="o">=</span><span class="mf">0.15</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">policy</span><span class="si">:</span><span class="s2">&gt;8s</span><span class="si">}</span><span class="s2"> policy:  collapse within 100 years = </span><span class="si">{</span><span class="n">frac</span><span class="si">:</span><span class="s2">.1%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  effort policy:  collapse within 100 years = 0.0%
+   quota policy:  collapse within 100 years = 68.5%
+</pre></div>
+</div>
+</div>
+</div>
+<p>With this level of noise the constant-effort fishery essentially never collapses,
+while the constant-quota fishery collapses much of the time.</p>
+<p>The two policies deliver the same average catch in calm conditions, yet one is
+robust and the other is fragile.</p>
+<p>This is the heart of the matter: <strong>the MSY is a deterministic, steady-state
+concept, and steering straight at it ignores the risk that randomness creates.</strong></p>
+</section>
+</section>
+<section id="historical-collapses">
+<h2><span class="section-number">26.7. </span>Historical collapses<a class="headerlink" href="#historical-collapses" title="Link to this heading">#</a></h2>
+<p>These are not just theoretical worries.</p>
+<p>The <strong>Peruvian anchovy</strong> fishery was the largest in the world in the early 1970s.</p>
+<p>Management was guided by sustainable-yield calculations, but those calculations
+left out the <strong>El Niño</strong> warming events that periodically disrupt the cold,
+nutrient-rich currents the anchovy depend on.</p>
+<p>When a strong El Niño struck in 1972–73, the stock — already fished hard —
+collapsed, taking tens of thousands of jobs with it.</p>
+<p>The <strong>Atlantic cod</strong> off Newfoundland tells a similar story.</p>
+<p>Catch limits set with too little margin, combined with overoptimistic stock
+estimates, allowed fishing to continue as the population fell.</p>
+<p>In 1992 the stock had dropped by more than 90% and Canada closed the fishery
+entirely; it has still not fully recovered.</p>
+<p>In both cases the deterministic logic of “take the maximum sustainable yield”
+proved dangerously fragile once the real, noisy ocean was taken into account.</p>
+<p>The lesson modern fisheries science has drawn is to manage <strong>precautionarily</strong> —
+to aim below the MSY, leaving a buffer against the bad years that the simple model
+pretends do not exist.</p>
+</section>
+<section id="exercises">
+<h2><span class="section-number">26.8. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<div class="exercise admonition" id="msy_ex1">
+
+<p class="admonition-title"><span class="caption-number">Exercise 26.1 </span></p>
+<section id="exercise-content">
+<p>The constant-quota policy above demanded the <em>full</em> MSY every year, and we saw
+that this is a knife-edge.</p>
+<p>A natural fix is to be <strong>precautionary</strong>: take a fixed quota that is only a
+fraction <span class="math notranslate nohighlight">\(\alpha \in (0, 1]\)</span> of the MSY.</p>
+<p>For each <span class="math notranslate nohighlight">\(\alpha\)</span> in a grid from <span class="math notranslate nohighlight">\(0.5\)</span> to <span class="math notranslate nohighlight">\(1.0\)</span>, estimate the probability that the
+fishery collapses within 100 years under the constant quota <span class="math notranslate nohighlight">\(h = \alpha \cdot
+\text{MSY}\)</span>, using <span class="math notranslate nohighlight">\(\sigma = 0.15\)</span>.</p>
+<p>Plot the collapse probability against <span class="math notranslate nohighlight">\(\alpha\)</span>.</p>
+<p>How much does pulling the quota back below the MSY reduce the risk?</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="msy_fishery-solution-1">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#msy_ex1"> Exercise 26.1</a></p>
+<section id="solution-content">
+<p>We adapt <code class="docutils literal notranslate"><span class="pre">simulate_stochastic</span></code> to take an arbitrary fixed quota.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">collapse_fraction_quota</span><span class="p">(</span><span class="n">quota</span><span class="p">,</span> <span class="n">σ</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">years</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">n_paths</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="s2">&quot;Collapse probability under a fixed quota.&quot;</span>
+    <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+    <span class="n">collapses</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_paths</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x_msy</span>
+        <span class="n">ξ</span> <span class="o">=</span> <span class="n">shocks</span><span class="p">(</span><span class="n">σ</span><span class="p">,</span> <span class="n">years</span><span class="p">,</span> <span class="n">rng</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">years</span><span class="p">):</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="n">ξ</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">quota</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="mf">0.0</span><span class="p">:</span>
+                <span class="k">break</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mf">1.0</span><span class="p">:</span>
+            <span class="n">collapses</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">collapses</span> <span class="o">/</span> <span class="n">n_paths</span>
+
+<span class="n">alphas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+<span class="n">probs</span> <span class="o">=</span> <span class="p">[</span><span class="n">collapse_fraction_quota</span><span class="p">(</span><span class="n">α</span> <span class="o">*</span> <span class="n">MSY</span><span class="p">)</span> <span class="k">for</span> <span class="n">α</span> <span class="ow">in</span> <span class="n">alphas</span><span class="p">]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">alphas</span><span class="p">,</span> <span class="n">probs</span><span class="p">,</span> <span class="s1">&#39;o-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;quota as a fraction $\alpha$ of MSY&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;collapse probability within 100 years&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/83b4c7118ae6835cf2af097052f074a4b4a170705e07a31d89932ca14c86ca4f.png"><img alt="_images/83b4c7118ae6835cf2af097052f074a4b4a170705e07a31d89932ca14c86ca4f.png" src="_images/83b4c7118ae6835cf2af097052f074a4b4a170705e07a31d89932ca14c86ca4f.png" style="width: 80%;" />
+</a>
+</div>
+</div>
+<p>The collapse probability falls steeply as the quota is pulled back below the MSY.</p>
+<p>A modest precautionary margin — taking, say, 80% of the MSY — buys a large
+reduction in the risk of collapse, at the cost of only a small reduction in the
+average catch.</p>
+<p>This is exactly the trade-off that precautionary fisheries management is built
+around.</p>
+</section>
+</div>
+<div class="exercise admonition" id="msy_ex2">
+
+<p class="admonition-title"><span class="caption-number">Exercise 26.2 </span></p>
+<section id="exercise-content">
+<p>The note after the convergence plot warned that for large <span class="math notranslate nohighlight">\(r\)</span> the <em>yearly</em>
+recursion can misbehave, even though the underlying biology is benign.</p>
+<p>Investigate this for the unfished model <span class="math notranslate nohighlight">\(x_{t+1} = x_t + r x_t(1 - x_t/K)\)</span>.</p>
+<p>Rescale by writing <span class="math notranslate nohighlight">\(u_t = x_t / K\)</span>, so that</p>
+<div class="math notranslate nohighlight">
+\[
+    u_{t+1} = u_t + r\,u_t(1 - u_t).
+\]</div>
+<p>Simulate this map from <span class="math notranslate nohighlight">\(u_0 = 0.3\)</span> for <span class="math notranslate nohighlight">\(r = 1.5\)</span>, <span class="math notranslate nohighlight">\(r = 2.2\)</span> and <span class="math notranslate nohighlight">\(r = 2.7\)</span>, and plot
+the three paths.</p>
+<p>Describe what happens as <span class="math notranslate nohighlight">\(r\)</span> increases.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="msy_fishery-solution-3">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#msy_ex2"> Exercise 26.2</a></p>
+<section id="solution-content">
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">logistic_path</span><span class="p">(</span><span class="n">r_val</span><span class="p">,</span> <span class="n">u0</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">years</span><span class="o">=</span><span class="mi">40</span><span class="p">):</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">years</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">u0</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">years</span><span class="p">):</span>
+        <span class="n">u</span><span class="p">[</span><span class="n">t</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">r_val</span> <span class="o">*</span> <span class="n">u</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">u</span><span class="p">[</span><span class="n">t</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">u</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">r_val</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">,</span> <span class="mf">2.7</span><span class="p">]:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">logistic_path</span><span class="p">(</span><span class="n">r_val</span><span class="p">),</span> <span class="s1">&#39;o-&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$r=</span><span class="si">{</span><span class="n">r_val</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;year  $t$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;scaled stock  $u_t = x_t / K$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/269b25539611904753d9694a8a8fd29f8776559693d6834391fffbef0604b56c.png"><img alt="_images/269b25539611904753d9694a8a8fd29f8776559693d6834391fffbef0604b56c.png" src="_images/269b25539611904753d9694a8a8fd29f8776559693d6834391fffbef0604b56c.png" style="width: 80%;" />
+</a>
+</div>
+</div>
+<p>For <span class="math notranslate nohighlight">\(r = 1.5\)</span> the path converges smoothly to the carrying capacity <span class="math notranslate nohighlight">\(u = 1\)</span>.</p>
+<p>For <span class="math notranslate nohighlight">\(r = 2.2\)</span> it overshoots and settles into a steady oscillation (a two-year
+cycle).</p>
+<p>For <span class="math notranslate nohighlight">\(r = 2.7\)</span> the path never settles — it bounces around erratically, the onset
+of the chaotic behavior analyzed by <span class="bibtex-citation" id="id7">May [<a class="reference internal" href="zreferences.html#id300" title="Robert M. May. Simple mathematical models with very complicated dynamics. Nature, 261(5560):459–467, 1976.">1976</a>]</span>.</p>
+<p>The biology is unchanged; it is the large discrete time step that manufactures
+these wild dynamics, which is why the smooth continuous-time version is the
+textbook standard.</p>
+</section>
+</div>
+</section>
+<section id="summary">
+<h2><span class="section-number">26.9. </span>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<p>The key formulas of the deterministic Schaefer model are collected below.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Quantity</p></th>
+<th class="head"><p>Formula</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Stock at MSY</p></td>
+<td><p><span class="math notranslate nohighlight">\(x_{MSY} = K/2\)</span></p></td>
+<td><p>500 t</p></td>
+</tr>
+<tr class="row-odd"><td><p>Maximum sustainable yield</p></td>
+<td><p><span class="math notranslate nohighlight">\(\text{MSY} = rK/4\)</span></p></td>
+<td><p>125 t/yr</p></td>
+</tr>
+<tr class="row-even"><td><p>Effort at MSY</p></td>
+<td><p><span class="math notranslate nohighlight">\(e_{MSY} = r/2q\)</span></p></td>
+<td><p>25</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The MSY is a deterministic, single-species, steady-state concept.</p>
+<p>It ignores economic costs and prices, age and size structure, environmental
+randomness, and interactions with other species.</p>
+<p>As we saw, the omission of randomness is not a minor technicality.</p>
+<p>A constant quota at the MSY sits on a knife-edge, and in a noisy ocean it leads
+the fishery to collapse.</p>
+<p>Real fisheries management therefore treats the MSY as a reference point — often
+a cautionary upper bound — rather than a precise target.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                    </div>
+                    
+                </main> <!-- .page__content -->
+                
+
+
+                <footer class="qe-page__footer">
+
+                    <p><a href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://licensebuttons.net/l/by-sa/4.0/80x15.png"></a></p>
+
+                    <p>Creative Commons License &ndash; This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International.</p>
+
+                    <p>A theme by <a href="https://quantecon.org">QuantEcon</a></p>
+
+                </footer> <!-- .page__footer -->
+
+            </div> <!-- .page -->
+
+            
+
+            
+            <div class="qe-sidebar bd-sidebar inactive" id="site-navigation">
+
+                <div class="qe-sidebar__header">
+
+
+                    Contents
+
+                </div>
+
+                <nav class="qe-sidebar__nav" id="qe-sidebar-nav" aria-label="Main navigation">
+                    <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="about.html">
+   1. About These Lectures
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Economic Data
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="long_run_growth.html">
+   2. Long-Run Growth
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="business_cycle.html">
+   3. Business Cycles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="inflation_history.html">
+   4. Price Level Histories
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="french_rev.html">
+   5. Inflation During French Revolution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="inequality.html">
+   6. Income and Wealth Inequality
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Foundations
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro_supply_demand.html">
+   7. Introduction to Supply and Demand
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linear_equations.html">
+   8. Linear Equations and Matrix Algebra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="complex_and_trig.html">
+   9. Complex Numbers and Trigonometry
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="geom_series.html">
+   10. Geometric Series for Elementary Economics
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Linear Dynamics: Finite Horizons
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="pv.html">
+   11. Present Values
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cons_smooth.html">
+   12. Consumption Smoothing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tax_smooth.html">
+   13. Tax Smoothing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="equalizing_difference.html">
+   14. Equalizing Difference Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cagan_ree.html">
+   15. A Monetarist Theory of Price Levels
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cagan_adaptive.html">
+   16. Monetarist Theory of Price Levels with Adaptive Expectations
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Linear Dynamics: Infinite Horizons
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="eigen_I.html">
+   17. Eigenvalues and Eigenvectors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="greek_square.html">
+   18. Computing Square Roots
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Probability and Distributions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="prob_dist.html">
+   19. Common Distributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lln_clt.html">
+   20. LLN and CLT
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="monte_carlo.html">
+   21. Monte Carlo and Option Pricing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="heavy_tails.html">
+   22. Heavy-Tailed Distributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="schelling.html">
+   23. Racial Segregation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Nonlinear Dynamics
+ </span>
+</p>
+<ul class="current nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="scalar_dynam.html">
+   24. Dynamics in One Dimension
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="solow.html">
+   25. The Solow-Swan Growth Model
+  </a>
+ </li>
+ <li class="toctree-l1 current active active">
+  <a class="current reference internal" href="#">
+   26. Fishery Management: Quotas and MSY
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cobweb.html">
+   27. The Cobweb Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="olg.html">
+   28. The Overlapping Generations Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="commod_price.html">
+   29. Commodity Prices
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Monetary-Fiscal Policy Interactions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="money_inflation.html">
+   30. Money Financed Government Deficits and Price Levels
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="unpleasant.html">
+   31. Some Unpleasant Monetarist Arithmetic
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="money_inflation_nonlinear.html">
+   32. Inflation Rate Laffer Curves
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="laffer_adaptive.html">
+   33. Laffer Curves  with Adaptive Expectations
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Stochastic Dynamics
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ar1_processes.html">
+   34. AR(1) Processes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markov_chains_I.html">
+   35. Markov Chains: Basic Concepts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markov_chains_II.html">
+   36. Markov Chains: Irreducibility and Ergodicity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="time_series_with_matrices.html">
+   37. Univariate Time Series with Matrix Algebra
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Optimization
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lp_intro.html">
+   38. Linear Programming
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="short_path.html">
+   39. Shortest Paths
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Modeling in Higher Dimensions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="eigen_II.html">
+   40. The Perron-Frobenius Theorem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="input_output.html">
+   41. Input-Output Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lake_model.html">
+   42. A Lake Model of Employment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="networks.html">
+   43. Networks
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Markets and Competitive Equilibrium
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="supply_demand_multiple_goods.html">
+   44. Supply and Demand with Many Goods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="supply_demand_heterogeneity.html">
+   45. Market Equilibrium with Heterogeneity
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Estimation
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="simple_linear_regression.html">
+   46. Simple Linear Regression Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mle.html">
+   47. Maximum Likelihood Estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bayes_intro.html">
+   48. Introduction to Bayesian Methods
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Other
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="troubleshooting.html">
+   49. Troubleshooting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="zreferences.html">
+   50. References
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="status.html">
+   51. Execution Statistics
+  </a>
+ </li>
+</ul>
+
+                </nav>
+
+                <div class="qe-sidebar__footer">
+
+                </div>
+
+            </div> <!-- .sidebar -->
+            
+        </div> <!-- .main -->
+
+        <div class="qe-toolbar">
+
+            <div class="qe-toolbar__inner">
+
+                <ul class="qe-toolbar__main">
+                    <li data-tippy-content="Table of Contents" class="btn__sidebar"><i data-feather="menu"></i></li>
+                    <li data-tippy-content="Home"><a href="intro.html"><i data-feather="home"></i></a></li>
+                    <li class="btn__qelogo"><a href="https://quantecon.org" title=""><span class="show-for-sr">QuantEcon</span></a></li>
+                </ul>
+
+                <ul class="qe-toolbar__links">
+                    <li class="btn__search">
+                        <form action="search.html" method="get">
+                            <input type="search" class="form-control" name="q" id="search-input" placeholder="Search..." aria-label="Search..." autocomplete="off" accesskey="k">
+                            <i data-feather="search" id="search-icon"></i>
+                        </form>
+                    </li>
+                    <li data-tippy-content="Fullscreen" class="btn__fullscreen"><i data-feather="maximize"></i></li>
+                    <li data-tippy-content="Increase font size" class="btn__plus"><i data-feather="plus-circle"></i></li>
+                    <li data-tippy-content="Decrease font size" class="btn__minus"><i data-feather="minus-circle"></i></li>
+                    <li data-tippy-content="Change contrast" class="btn__contrast"><i data-feather="sunset"></i></li>
+                    <li data-tippy-content="Download Notebook"><a href="/_notebooks/msy_fishery.ipynb" download><i data-feather="download-cloud"></i></a></li>
+                    <li class="settings-button" id="settingsButton"><div data-tippy-content="Launch Notebook"><i data-feather="play-circle"></i></div></li>
+                        <li class="download-pdf" id="downloadButton"><i data-feather="file"></i></li>
+                    <!--
+                    # Enable if looking for link to specific document hosted on GitHub
+                    <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/msy_fishery.md" download><i data-feather="github"></i></a></li>
+                    -->
+                    <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro" download><i data-feather="github"></i></a></li>
+                    
+                    
+                </ul>
+
+            </div>
+
+        </div> <!-- .toolbar -->
+        <div id="downloadPDFModal" style="display: none;">
+            <ul class="pdf-options" style="display: block;">
+                <li class="download-pdf-book" onClick="window.print()">
+                    <p>Lecture (PDF)</p>
+                </li>
+                <li class="download-pdf-file">
+                    <a href="/_pdf/quantecon-python-intro.pdf" download><p>Book (PDF)</p></a>
+                </li>
+            </ul>
+        </div>
+        <div id="settingsModal" style="display: none;">
+            <p class="modal-title"> Notebook Launcher </p>
+            <div class="modal-desc">
+            <p>
+                Choose public or private cloud service for "Launch" button.
+            </p>
+            </div>
+            <p class="modal-subtitle">Select a server</p>
+            <ul class="modal-servers">
+            <li class="active launcher-public">
+                <span class="label">Public</span>
+                <select id="launcher-public-input">
+                
+                    <option value="https://colab.research.google.com/github/QuantEcon/lecture-python-intro.notebooks/blob/main/msy_fishery.ipynb">Colab</option>
+                
+                </select>
+                <i class="fas fa-check-circle"></i>
+            </li>
+            <li class="launcher-private">
+                <span class="label">Private</span>
+                <input type="text" id="launcher-private-input" data-repourl="https://github.com/QuantEcon/lecture-python-intro.notebooks" data-urlpath="tree/lecture-python-intro.notebooks/msy_fishery.ipynb" data-branch=main>
+                <i class="fas fa-check-circle"></i>
+            </li>
+            </ul>
+            <p class="launch"><a href="https://colab.research.google.com/github/QuantEcon/lecture-python-intro.notebooks/blob/main/msy_fishery.ipynb" id="advancedLaunchButton" target="_blank">Launch Notebook</a></p>
+            <script>
+                // QuantEcon Notebook Launcher
+                const launcherTypeElements = document.querySelectorAll('#settingsModal .modal-servers li');
+                // Highlight the server type if previous selection exists
+                if (typeof localStorage.launcherType !== 'undefined') {
+                  for (var i = 0; i < launcherTypeElements.length; i++) {
+                    launcherTypeElements[i].classList.remove('active');
+                    if ( launcherTypeElements[i].classList.contains(localStorage.launcherType) ) {
+                      launcherTypeElements[i].classList.add('active');
+                    }
+                  }
+                }
+                // Highlight server type on click and set local storage value
+                for (var i = 0; i < launcherTypeElements.length; i++) {
+                  launcherTypeElements[i].addEventListener('click', function() {
+                    for (var j = 0; j < launcherTypeElements.length; j++) {
+                      launcherTypeElements[j].classList.remove('active');
+                    }
+                    this.classList.add('active');
+                    if ( this.classList.contains('launcher-private') ) {
+                      localStorage.launcherType = 'launcher-private';
+                    } else if ( this.classList.contains('launcher-public') ) {
+                      localStorage.launcherType = 'launcher-public';
+                    }
+                    setLaunchServer();
+                  })
+                }
+                const launcherPublic = document.getElementById('launcher-public-input');
+                const launcherPrivate = document.getElementById('launcher-private-input');
+                const pageName = "msy_fishery";
+                const repoURL = "https://github.com/QuantEcon/lecture-python-intro.notebooks";
+                const urlPath = "tree/lecture-python-intro.notebooks/msy_fishery.ipynb";
+                const branch = "main"
+                const launchNotebookLink = document.getElementById('advancedLaunchButton');
+
+                // Highlight public server option if previous selection exists
+                if (typeof localStorage.launcherPublic !== 'undefined') {
+                  launcherPublic.value = localStorage.launcherPublic;
+                }
+                // Update local storage upon public server selection
+                launcherPublic.addEventListener('change', (event) => {
+                  setLaunchServer();
+                });
+                // Populate private server input if previous entry exists
+                if (typeof localStorage.launcherPrivate !== 'undefined') {
+                  launcherPrivate.value = localStorage.launcherPrivate;
+                }
+                // Update local storage when a private server is entered
+                launcherPrivate.addEventListener('input', (event) => {
+                  setLaunchServer();
+                });
+
+                // Function to update the "Launch Notebook" link href
+                function setLaunchServer() {
+                  launchNotebookLink.removeAttribute("style")
+                  if ( localStorage.launcherType == 'launcher-private' ) {
+                    let repoPrefix = "/user-redirect/git-pull?repo=" + repoURL + "&branch=" + branch + "&urlpath=" + urlPath;
+                    launcherPrivateValue = launcherPrivate.value
+                    if (!launcherPrivateValue) {
+                        launchNotebookLink.removeAttribute("href")
+                        launchNotebookLink.style.background = "grey"
+                        return
+                    }
+                    localStorage.launcherPrivate = launcherPrivateValue;
+                    privateServer = localStorage.launcherPrivate.replace(/\/$/, "")
+                    if (!privateServer.includes("http")) {
+                        privateServer = "http://" + privateServer
+                    }
+                    launchNotebookLinkURL = privateServer + repoPrefix;
+                  } else if ( localStorage.launcherType == 'launcher-public' ) {
+                    launcherPublicValue = launcherPublic.options[launcherPublic.selectedIndex].value;
+                    localStorage.launcherPublic = launcherPublicValue;
+                    launchNotebookLinkURL = localStorage.launcherPublic;
+                  }
+                  if (launchNotebookLinkURL) launchNotebookLink.href = launchNotebookLinkURL;
+                }
+                // Check if user has previously selected a server
+                if ( (typeof localStorage.launcherPrivate !== 'undefined') || (typeof localStorage.launcherPublic !== 'undefined') ) {
+                  setLaunchServer();
+                }
+                </script>
+
+        </div>
+
+    </div> <!-- .wrapper-->
+  </body>
+</html>

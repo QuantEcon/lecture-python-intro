@@ -25,7 +25,7 @@ kernelspec:
 
 In economics many variables depend on their past values
 
-For example, it seems reasonable to believe that inflation last year with affects inflation this year.
+For example, it seems reasonable to believe that inflation last year affects inflation this year.
 
 (Perhaps high inflation last year will lead people to demand higher wages to
 compensate, which will feed into higher prices this year.)
@@ -37,7 +37,7 @@ $$ \pi_t = f(\pi_{t-1}) $$
 
 where $f$ is some function describing the relationship between the variables.
 
-This equation is an example of one-dimensional discrete time dynamic system.
+This equation is an example of a one-dimensional discrete time dynamic system.
 
 In this lecture we cover the foundations of one-dimensional discrete time
 dynamics.
@@ -98,7 +98,7 @@ In the example above, $f^n(x) = x^{1/(2^n)}$.
 ### Dynamic systems
 
 A **(discrete time) dynamic system** is a set $S$ and a function $g$ that sends
-set $S$ back into to itself.
+set $S$ back into itself.
 
 
 Examples of dynamic systems include
@@ -190,7 +190,7 @@ Continuing in this way, and using our knowledge of {doc}`geometric series
 We have an exact expression for $x_t$ for all non-negative integer $t$ and hence a full
 understanding of the dynamics.
 
-Notice in particular that $|a| < 1$, then, by {eq}`sdslinmod`, we have
+Notice in particular that if $|a| < 1$, then, by {eq}`sdslinmod`, we have
 
 ```{math}
 :label: sdslinmodc
@@ -225,7 +225,7 @@ k_{t+1} = s A k_t^{\alpha} + (1 - \delta) k_t
 
 Here $k=K/L$ is the per capita capital stock, $s$ is the saving rate, $A$ is the total factor productivity, $\alpha$ is the capital share, and $\delta$ is the depreciation rate. 
 
-All these parameter are positive and $0 < \alpha, \delta < 1$.
+All these parameters are positive and $0 < \alpha, \delta < 1$.
 
 If you try to iterate like we did in {eq}`sdslinmodpath`, you will find that
 the algebra gets messy quickly.

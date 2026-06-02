@@ -316,7 +316,7 @@
                                 <a href="https://github.com/QuantEcon/lecture-python-intro/commit/f47a5356" class="changelog-hash">f47a5356</a>
                                 
                                 <span class="changelog-author">Chihiro Watanabe</span>
-                                <span class="changelog-time">2 days ago</span>
+                                <span class="changelog-time">5 days ago</span>
                                 <span class="changelog-message">[heavy_tails.md] Update np.random → Generator API (#747)</span>
                             </li>
                             
@@ -428,25 +428,19 @@
 <p class="expanded admonition-title">Hide code cell output</p>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting yfinance
-  Downloading yfinance-1.4.1-py2.py3-none-any.whl.metadata (6.2 kB)
-Collecting wbgapi
-  Downloading wbgapi-1.0.14-py3-none-any.whl.metadata (13 kB)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: yfinance in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (1.4.1)
+Requirement already satisfied: wbgapi in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (1.0.14)
 Requirement already satisfied: pandas&gt;=1.3.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (2.3.3)
 Requirement already satisfied: numpy&gt;=1.16.5 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (2.3.5)
 Requirement already satisfied: requests&gt;=2.31 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (2.32.5)
-Collecting multitasking&gt;=0.0.7 (from yfinance)
-  Downloading multitasking-0.0.13-py3-none-any.whl.metadata (16 kB)
+Requirement already satisfied: multitasking&gt;=0.0.7 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (0.0.13)
 Requirement already satisfied: platformdirs&gt;=2.0.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (4.5.0)
 Requirement already satisfied: pytz&gt;=2022.5 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (2025.2)
-Collecting peewee&gt;=3.16.2 (from yfinance)
-  Downloading peewee-4.0.6-py3-none-any.whl.metadata (8.6 kB)
+Requirement already satisfied: peewee&gt;=3.16.2 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (4.0.6)
 Requirement already satisfied: beautifulsoup4&gt;=4.11.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (4.13.5)
-Collecting curl_cffi&gt;=0.15 (from yfinance)
-  Downloading curl_cffi-0.15.0-cp310-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (18 kB)
+Requirement already satisfied: curl_cffi&gt;=0.15 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (0.15.0)
 Requirement already satisfied: protobuf&gt;=3.19.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (5.29.3)
-Collecting websockets&gt;=13.0 (from yfinance)
-  Downloading websockets-16.0-cp313-cp313-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (6.8 kB)
+Requirement already satisfied: websockets&gt;=13.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from yfinance) (16.0)
 Requirement already satisfied: PyYAML in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from wbgapi) (6.0.3)
 Requirement already satisfied: tabulate in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from wbgapi) (0.9.0)
 Requirement already satisfied: soupsieve&gt;1.2 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from beautifulsoup4&gt;=4.11.1-&gt;yfinance) (2.5)
@@ -464,22 +458,6 @@ Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /home/runner/minicond
 Requirement already satisfied: markdown-it-py&gt;=2.2.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from rich-&gt;curl_cffi&gt;=0.15-&gt;yfinance) (3.0.0)
 Requirement already satisfied: pygments&lt;3.0.0,&gt;=2.13.0 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from rich-&gt;curl_cffi&gt;=0.15-&gt;yfinance) (2.19.2)
 Requirement already satisfied: mdurl~=0.1 in /home/runner/miniconda3/envs/quantecon/lib/python3.13/site-packages (from markdown-it-py&gt;=2.2.0-&gt;rich-&gt;curl_cffi&gt;=0.15-&gt;yfinance) (0.1.2)
-Downloading yfinance-1.4.1-py2.py3-none-any.whl (137 kB)
-Downloading wbgapi-1.0.14-py3-none-any.whl (36 kB)
-Downloading curl_cffi-0.15.0-cp310-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (11.1 MB)
-?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/11.1 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">11.1/11.1 MB</span> <span class=" -Color -Color-Red">69.2 MB/s</span>  <span class=" -Color -Color-Yellow">0:00:00</span>
-?25h
-Downloading multitasking-0.0.13-py3-none-any.whl (16 kB)
-Downloading peewee-4.0.6-py3-none-any.whl (146 kB)
-Downloading websockets-16.0-cp313-cp313-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (184 kB)
-Installing collected packages: peewee, multitasking, websockets, wbgapi, curl_cffi, yfinance
-?25l
-   ━━━━━━━━━━━━━━━━━━━━╺━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">3/6</span> [wbgapi]
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━╸━━━━━━━━━━━━━ <span class=" -Color -Color-Green">4/6</span> [curl_cffi]
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">6/6</span> [yfinance]
-
-Successfully installed curl_cffi-0.15.0 multitasking-0.0.13 peewee-4.0.6 wbgapi-1.0.14 websockets-16.0 yfinance-1.4.1
 </pre></div>
 </div>
 </div>
@@ -547,7 +525,7 @@ as with the following code (which assumes <span class="math notranslate nohighli
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="hist-obs">
-<a class="reference internal image-reference" href="_images/d99bd970de7e0e76c934ba378b1a234fb74775e30b745db1e327c94d2e266482.png"><img alt="_images/d99bd970de7e0e76c934ba378b1a234fb74775e30b745db1e327c94d2e266482.png" src="_images/d99bd970de7e0e76c934ba378b1a234fb74775e30b745db1e327c94d2e266482.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/b1bd4fa47db27514870e70dd7d669655f8209e4a20d367fff7707506505e5f9c.png"><img alt="_images/b1bd4fa47db27514870e70dd7d669655f8209e4a20d367fff7707506505e5f9c.png" src="_images/b1bd4fa47db27514870e70dd7d669655f8209e4a20d367fff7707506505e5f9c.png" style="width: 80%;" />
 </a>
 <figcaption>
 <p><span class="caption-number">Fig. 22.1 </span><span class="caption-text">Histogram of observations</span><a class="headerlink" href="#hist-obs" title="Link to this image">#</a></p>
@@ -568,7 +546,7 @@ as with the following code (which assumes <span class="math notranslate nohighli
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(np.float64(-5.394369223561329), np.float64(4.792168909502362))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(np.float64(-4.611414059217014), np.float64(4.643909201858511))
 </pre></div>
 </div>
 </div>
@@ -590,7 +568,7 @@ as with the following code (which assumes <span class="math notranslate nohighli
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="hist-obs2">
-<a class="reference internal image-reference" href="_images/1dc95a4d4df3356535535ca0f8b7c909d47754f73037d543108be6865483e32a.png"><img alt="_images/1dc95a4d4df3356535535ca0f8b7c909d47754f73037d543108be6865483e32a.png" src="_images/1dc95a4d4df3356535535ca0f8b7c909d47754f73037d543108be6865483e32a.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/9a677a8855a029acf969e6ec1a2c282410cf9dfd0f242f9eb8e065a7a38b6b18.png"><img alt="_images/9a677a8855a029acf969e6ec1a2c282410cf9dfd0f242f9eb8e065a7a38b6b18.png" src="_images/9a677a8855a029acf969e6ec1a2c282410cf9dfd0f242f9eb8e065a7a38b6b18.png" style="width: 80%;" />
 </a>
 <figcaption>
 <p><span class="caption-number">Fig. 22.2 </span><span class="caption-text">Histogram of observations</span><a class="headerlink" href="#hist-obs2" title="Link to this image">#</a></p>
@@ -749,7 +727,7 @@ distribution:</p>
 </div>
 <div class="cell_output docutils container">
 <figure class="align-default" id="hist-normal-btc">
-<a class="reference internal image-reference" href="_images/987bc6d0693e93cc03d3177a93366b1b3441737b1376a4f89999a28f250f8b5f.png"><img alt="_images/987bc6d0693e93cc03d3177a93366b1b3441737b1376a4f89999a28f250f8b5f.png" src="_images/987bc6d0693e93cc03d3177a93366b1b3441737b1376a4f89999a28f250f8b5f.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="_images/b822f8cf97bb72e8710b9ed7895aed915768edc2697a3fd2cddb173b43370b1f.png"><img alt="_images/b822f8cf97bb72e8710b9ed7895aed915768edc2697a3fd2cddb173b43370b1f.png" src="_images/b822f8cf97bb72e8710b9ed7895aed915768edc2697a3fd2cddb173b43370b1f.png" style="width: 80%;" />
 </a>
 <figcaption>
 <p><span class="caption-number">Fig. 22.5 </span><span class="caption-text">Histogram (normal vs bitcoin returns)</span><a class="headerlink" href="#hist-normal-btc" title="Link to this image">#</a></p>
@@ -1870,7 +1848,7 @@ choice of distribution <code class="docutils literal notranslate"><span class="p
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(np.float64(2555713.8231367623), np.float64(28362.016044927237))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(np.float64(2555713.8231367623), np.float64(28362.016044927244))
 </pre></div>
 </div>
 </div>
@@ -2143,18 +2121,23 @@ X_n\)</span> from the Cauchy distribution has the same characteristic function a
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="msy_fishery.html">
+   26. Fishery Management: Quotas and MSY
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="cobweb.html">
-   26. The Cobweb Model
+   27. The Cobweb Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="olg.html">
-   27. The Overlapping Generations Model
+   28. The Overlapping Generations Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="commod_price.html">
-   28. Commodity Prices
+   29. Commodity Prices
   </a>
  </li>
 </ul>
@@ -2166,22 +2149,22 @@ X_n\)</span> from the Cauchy distribution has the same characteristic function a
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="money_inflation.html">
-   29. Money Financed Government Deficits and Price Levels
+   30. Money Financed Government Deficits and Price Levels
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="unpleasant.html">
-   30. Some Unpleasant Monetarist Arithmetic
+   31. Some Unpleasant Monetarist Arithmetic
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="money_inflation_nonlinear.html">
-   31. Inflation Rate Laffer Curves
+   32. Inflation Rate Laffer Curves
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="laffer_adaptive.html">
-   32. Laffer Curves  with Adaptive Expectations
+   33. Laffer Curves  with Adaptive Expectations
   </a>
  </li>
 </ul>
@@ -2193,22 +2176,22 @@ X_n\)</span> from the Cauchy distribution has the same characteristic function a
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="ar1_processes.html">
-   33. AR(1) Processes
+   34. AR(1) Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   34. Markov Chains: Basic Concepts
+   35. Markov Chains: Basic Concepts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   35. Markov Chains: Irreducibility and Ergodicity
+   36. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time_series_with_matrices.html">
-   36. Univariate Time Series with Matrix Algebra
+   37. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -2220,12 +2203,12 @@ X_n\)</span> from the Cauchy distribution has the same characteristic function a
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   37. Linear Programming
+   38. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   38. Shortest Paths
+   39. Shortest Paths
   </a>
  </li>
 </ul>
@@ -2237,22 +2220,22 @@ X_n\)</span> from the Cauchy distribution has the same characteristic function a
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_II.html">
-   39. The Perron-Frobenius Theorem
+   40. The Perron-Frobenius Theorem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="input_output.html">
-   40. Input-Output Models
+   41. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lake_model.html">
-   41. A Lake Model of Employment
+   42. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="networks.html">
-   42. Networks
+   43. Networks
   </a>
  </li>
 </ul>
@@ -2264,12 +2247,12 @@ X_n\)</span> from the Cauchy distribution has the same characteristic function a
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_multiple_goods.html">
-   43. Supply and Demand with Many Goods
+   44. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_heterogeneity.html">
-   44. Market Equilibrium with Heterogeneity
+   45. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -2281,17 +2264,17 @@ X_n\)</span> from the Cauchy distribution has the same characteristic function a
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   45. Simple Linear Regression Model
+   46. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   46. Maximum Likelihood Estimation
+   47. Maximum Likelihood Estimation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="bayes_intro.html">
-   47. Introduction to Bayesian Methods
+   48. Introduction to Bayesian Methods
   </a>
  </li>
 </ul>
@@ -2303,17 +2286,17 @@ X_n\)</span> from the Cauchy distribution has the same characteristic function a
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   48. Troubleshooting
+   49. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   49. References
+   50. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   50. Execution Statistics
+   51. Execution Statistics
   </a>
  </li>
 </ul>

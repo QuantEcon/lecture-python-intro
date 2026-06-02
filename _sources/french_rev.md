@@ -27,9 +27,9 @@ Some of those theories about monetary and fiscal policies still interest us toda
 
 * a **tax-smoothing** model like Robert Barro's {cite}`Barro1979`
 
-   * this normative (i.e., prescriptive model) advises a government to finance temporary war-time surges in expenditures mostly by issuing government debt, raising taxes by just enough to service the additional debt issued during the wary; then,   after the war,  to roll over whatever debt the government had accumulated during the war;  and  to increase taxes after the war permanently by just enough to finance interest payments on that post-war government  debt
+   * this normative (i.e., prescriptive model) advises a government to finance temporary war-time surges in expenditures mostly by issuing government debt, raising taxes by just enough to service the additional debt issued during the war; then,   after the war,  to roll over whatever debt the government had accumulated during the war;  and  to increase taxes after the war permanently by just enough to finance interest payments on that post-war government  debt
 
-*  **unpleasant monetarist arithmetic** like that described in this quanteon lecture  {doc}`unpleasant`
+*  **unpleasant monetarist arithmetic** like that described in this quantecon lecture  {doc}`unpleasant`
 
     * mathematics involving compound interest  governed French government debt dynamics in the decades preceding 1789; according to leading historians, that arithmetic set the stage for the French Revolution
 
@@ -50,7 +50,7 @@ Some of those theories about monetary and fiscal policies still interest us toda
 
 * a **legal restrictions**  or **financial repression** theory of the demand for real balances
 
-    * The Twelve Members comprising the Committee of Public Safety who adminstered the Terror from June 1793 to July 1794 used this theory to shape their monetary policy
+    * The Twelve Members comprising the Committee of Public Safety who administered the Terror from June 1793 to July 1794 used this theory to shape their monetary policy
 
 We use matplotlib to replicate several of the graphs with which  {cite}`sargent_velde1995` portrayed outcomes of these experiments
 
@@ -205,11 +205,11 @@ Figure {numref}`fr_fig2` indicates that
       * thus, after a war, the government does *not* raise taxes by enough to pay off its debt
       * instead, it just rolls over whatever debt it inherits, raising taxes by just enough to service the interest payments on that debt
 
-Eighteenth-century British fiscal policy portrayed Figure {numref}`fr_fig2` thus looks very much like a text-book example of a *tax-smoothing* model like Robert Barro's {cite}`Barro1979`.
+Eighteenth-century British fiscal policy portrayed in Figure {numref}`fr_fig2` thus looks very much like a text-book example of a *tax-smoothing* model like Robert Barro's {cite}`Barro1979`.
 
 A striking feature of the graph is what we'll label a *law of gravity* between tax collections and government expenditures.
 
-   * levels of government expenditures at taxes attract each other
+   * levels of government expenditures and taxes attract each other
    * while they can temporarily differ -- as they do during wars -- they come back together when peace returns
 
 
@@ -258,7 +258,7 @@ Figure  {numref}`fr_fig1` shows that interest payments on government debt (i.e.,
 
 {numref}`fr_fig2` showed us that in peace times Britain managed to balance its budget despite those large interest costs.
 
-But as  we'll see in our next graph, on the eve of the French Revolution in 1788, the  fiscal  *law of gravity* that worked so well in Britain did not  working very well in  France.
+But as  we'll see in our next graph, on the eve of the French Revolution in 1788, the  fiscal  *law of gravity* that worked so well in Britain did not  work very well in  France.
 
 ```{code-cell} ipython3
 # Read the data from the Excel file
@@ -310,7 +310,7 @@ This was partly a consequence of the unfolding of the debt dynamics that underli
 
 {cite}`sargent_velde1995` describe how the Ancient Regime that until 1788 had  governed France  had stable institutional features that made it difficult for the government to balance its budget.
 
-Powerful contending interests had prevented from the government from closing the gap between its
+Powerful contending interests had prevented the government from closing the gap between its
 total expenditures and its tax revenues by either
 
  * raising taxes, or
@@ -325,7 +325,7 @@ Precedents and prevailing French arrangements had empowered three constituencies
 
 When the French government had confronted a similar situation around 1720 after King  Louis XIV's
 Wars had left it with a debt crisis, it had sacrificed the interests of
-government creditors, i.e., by defaulting enough of its debt to bring  reduce interest payments down enough to balance the budget.
+government creditors, i.e., by defaulting on enough of its debt to bring interest payments down enough to balance the budget.
 
 Somehow, in 1789, creditors of the French government were more powerful than they had been in 1720.
 
@@ -333,7 +333,7 @@ Therefore, King Louis XVI convened the Estates General together to ask them to r
 allowing him to balance the budget while also honoring his promises to creditors of the French government.
 
 The King called the Estates General together in an effort to promote the reforms that would
-would bring sustained budget balance.
+bring sustained budget balance.
 
 {cite}`sargent_velde1995` describe how the French Revolutionaries set out to accomplish that.
 
@@ -356,14 +356,14 @@ about the same amount as the entire French government debt.
 
 This coincidence fostered a three step plan for servicing the French government debt
 
- * nationalize the church lands -- i.e., sequester or confiscate it without paying for it
+ * nationalize the church lands -- i.e., sequester or confiscate them without paying for them
  * sell the church lands
  * use the proceeds from those sales to service or even retire French government debt
 
 The monetary theory underlying this plan had been set out by Adam Smith in his analysis of what he called *real bills*  in his  1776 book
 **The Wealth of Nations**   {cite}`smith2010wealth`, which many of the revolutionaries had read.
 
-Adam Smith defined a *real bill* as a paper money note that is backed by a claims on a real asset like productive capital or inventories.
+Adam Smith defined a *real bill* as a paper money note that is backed by a claim on a real asset like productive capital or inventories.
 
 The National Assembly put together an ingenious institutional  arrangement to implement this plan.
 
@@ -412,7 +412,7 @@ They wanted to honor government debts -- interests of French government creditor
 But they set out to remake  the French tax code and the administrative machinery for collecting taxes.
 
   * they abolished many taxes
-  * they abolished the Ancient Regimes scheme for *tax farming*
+  * they abolished the Ancient Regime's scheme for *tax farming*
       * tax farming meant that the government had privatized tax collection by hiring private citizens -- so-called  tax farmers to collect taxes, while retaining a fraction of them as payment for their services
       * the great chemist Lavoisier was also a tax farmer, one of the reasons that the Committee for Public Safety sent him to the guillotine in 1794
 
@@ -424,7 +424,7 @@ The next figure shows this
 ---
 mystnb:
   figure:
-    caption: Index of real per capital revenues, France
+    caption: Index of real per capita revenues, France
     name: fr_fig5
 ---
 # Read data from Excel file
@@ -454,7 +454,7 @@ until after 1815, when Napoleon Bonaparte was exiled to St Helena and King Louis
   * from 1789 to 1799, the French Revolutionaries turned to another source to raise resources to pay for government purchases of goods and services and to service French government debt.
 
 And as the next figure shows, government expenditures exceeded tax revenues by substantial
-amounts during the period form 1789 to 1799.
+amounts during the period from 1789 to 1799.
 
 ```{code-cell} ipython3
 ---
@@ -604,7 +604,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-We have partioned  {numref}`fr_fig9` that shows the log of the price level and   {numref}`fr_fig8`
+We have partitioned  {numref}`fr_fig9` that shows the log of the price level and   {numref}`fr_fig8`
 below  that plots real balances $\frac{M_t}{p_t}$ into three periods that correspond to  different monetary  experiments or *regimes*.
 
 The first period ends in the late summer of 1793, and is characterized
@@ -901,7 +901,7 @@ The following two graphs are for the classical hyperinflation period.
 
 One regresses inflation on real balances, the other regresses real balances on inflation.
 
-Both show a prounced inverse relationship that is the hallmark of the hyperinflations studied by
+Both show a pronounced inverse relationship that is the hallmark of the hyperinflations studied by
 Cagan {cite}`Cagan`.
 
 ```{code-cell} ipython3
@@ -977,7 +977,7 @@ period of the hyperinflation.
 {cite}`sargent_velde1995` tell how in 1797 the Revolutionary government abruptly ended the inflation by
 
   * repudiating 2/3 of the national debt, and thereby
-  * eliminating the net-of-interest government defict
+  * eliminating the net-of-interest government deficit
   * no longer printing money, but instead
   * using gold and silver coins as money
 

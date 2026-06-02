@@ -515,7 +515,7 @@ mc.simulate(ts_length=4, init='unemployed')  # Start at unemployed initial state
 mc.simulate(ts_length=4)  # Start at randomly chosen initial state
 ```
 
-If we want to see indices rather than state values as outputs as  we can use
+If we want to see indices rather than state values as outputs, we can use
 
 ```{code-cell} ipython3
 mc.simulate_indices(ts_length=4)

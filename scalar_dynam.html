@@ -284,7 +284,7 @@
 
                     <!-- Last modified / Changelog dropdown -->
                         <button class="qe-page__header-changed" id="changelog-toggle" aria-expanded="false">
-                            Last changed: Jul 23, 2024
+                            Last changed: May 31, 2026
                             <span class="changelog-icon">▼</span>
                         </button>
 
@@ -292,6 +292,15 @@
                     <div class="qe-page__header-changelog" id="changelog-content" aria-hidden="true">
                         <h4>Changelog (<a href="https://github.com/QuantEcon/lecture-python-intro/commits/main/lectures/scalar_dynam.md">full history</a>)</h4>
                         <ul class="changelog-list">
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/72ae33d8" class="changelog-hash">72ae33d8</a>
+                                
+                                <span class="changelog-author">John Stachurski</span>
+                                <span class="changelog-time">1 day ago</span>
+                                <span class="changelog-message">Spelling and grammar fixes for unchecked lectures (#532) (#761)</span>
+                            </li>
                             
                             <li class="changelog-entry">
                                 
@@ -374,15 +383,6 @@
                                 <span class="changelog-message">MAINT: remove content blocks for consistency (#339)</span>
                             </li>
                             
-                            <li class="changelog-entry">
-                                
-                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/a54daacb" class="changelog-hash">a54daacb</a>
-                                
-                                <span class="changelog-author">hengchengzhang</span>
-                                <span class="changelog-time">2 years ago</span>
-                                <span class="changelog-message">Fix userwarning</span>
-                            </li>
-                            
                         </ul>
                     </div>
 
@@ -404,7 +404,7 @@
 <section id="overview">
 <h2><span class="section-number">24.1. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
 <p>In economics many variables depend on their past values</p>
-<p>For example, it seems reasonable to believe that inflation last year with affects inflation this year.</p>
+<p>For example, it seems reasonable to believe that inflation last year affects inflation this year.</p>
 <p>(Perhaps high inflation last year will lead people to demand higher wages to
 compensate, which will feed into higher prices this year.)</p>
 <p>Letting <span class="math notranslate nohighlight">\(\pi_t\)</span> be inflation this year and <span class="math notranslate nohighlight">\(\pi_{t-1}\)</span> be inflation last year, we
@@ -412,7 +412,7 @@ can write this relationship in a general form as</p>
 <div class="math notranslate nohighlight">
 \[ \pi_t = f(\pi_{t-1}) \]</div>
 <p>where <span class="math notranslate nohighlight">\(f\)</span> is some function describing the relationship between the variables.</p>
-<p>This equation is an example of one-dimensional discrete time dynamic system.</p>
+<p>This equation is an example of a one-dimensional discrete time dynamic system.</p>
 <p>In this lecture we cover the foundations of one-dimensional discrete time
 dynamics.</p>
 <p>(While most quantitative models have two or more state variables, the
@@ -464,7 +464,7 @@ itself.</p>
 <section id="dynamic-systems">
 <h3><span class="section-number">24.2.2. </span>Dynamic systems<a class="headerlink" href="#dynamic-systems" title="Link to this heading">#</a></h3>
 <p>A <strong>(discrete time) dynamic system</strong> is a set <span class="math notranslate nohighlight">\(S\)</span> and a function <span class="math notranslate nohighlight">\(g\)</span> that sends
-set <span class="math notranslate nohighlight">\(S\)</span> back into to itself.</p>
+set <span class="math notranslate nohighlight">\(S\)</span> back into itself.</p>
 <p>Examples of dynamic systems include</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(S = (0, 1)\)</span> and <span class="math notranslate nohighlight">\(g(x) = \sqrt{x}\)</span></p></li>
@@ -525,7 +525,7 @@ a^2 x_0 + a b + b, \quad \text{etc.}\]</div>
 <span class="eqno">(24.4)<a class="headerlink" href="#equation-sdslinmod" title="Link to this equation">#</a></span>\[    x_t = a^t x_0 + b \frac{1 - a^t}{1 - a}\]</div>
 <p>We have an exact expression for <span class="math notranslate nohighlight">\(x_t\)</span> for all non-negative integer <span class="math notranslate nohighlight">\(t\)</span> and hence a full
 understanding of the dynamics.</p>
-<p>Notice in particular that <span class="math notranslate nohighlight">\(|a| &lt; 1\)</span>, then, by <a class="reference internal" href="#equation-sdslinmod">(24.4)</a>, we have</p>
+<p>Notice in particular that if <span class="math notranslate nohighlight">\(|a| &lt; 1\)</span>, then, by <a class="reference internal" href="#equation-sdslinmod">(24.4)</a>, we have</p>
 <div class="math notranslate nohighlight" id="equation-sdslinmodc">
 <span class="eqno">(24.5)<a class="headerlink" href="#equation-sdslinmodc" title="Link to this equation">#</a></span>\[x_t \to  \frac{b}{1 - a} \text{ as } t \to \infty\]</div>
 <p>regardless of <span class="math notranslate nohighlight">\(x_0\)</span>.</p>
@@ -542,7 +542,7 @@ below.</p>
 <div class="math notranslate nohighlight" id="equation-solow-lom2">
 <span class="eqno">(24.6)<a class="headerlink" href="#equation-solow-lom2" title="Link to this equation">#</a></span>\[k_{t+1} = s A k_t^{\alpha} + (1 - \delta) k_t\]</div>
 <p>Here <span class="math notranslate nohighlight">\(k=K/L\)</span> is the per capita capital stock, <span class="math notranslate nohighlight">\(s\)</span> is the saving rate, <span class="math notranslate nohighlight">\(A\)</span> is the total factor productivity, <span class="math notranslate nohighlight">\(\alpha\)</span> is the capital share, and <span class="math notranslate nohighlight">\(\delta\)</span> is the depreciation rate.</p>
-<p>All these parameter are positive and <span class="math notranslate nohighlight">\(0 &lt; \alpha, \delta &lt; 1\)</span>.</p>
+<p>All these parameters are positive and <span class="math notranslate nohighlight">\(0 &lt; \alpha, \delta &lt; 1\)</span>.</p>
 <p>If you try to iterate like we did in <a class="reference internal" href="#equation-sdslinmodpath">(24.3)</a>, you will find that
 the algebra gets messy quickly.</p>
 <p>Analyzing the dynamics of this model requires a different method (see below).</p>
@@ -1223,18 +1223,23 @@ and back again.</p>
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="msy_fishery.html">
+   26. Fishery Management: Quotas and MSY
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="cobweb.html">
-   26. The Cobweb Model
+   27. The Cobweb Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="olg.html">
-   27. The Overlapping Generations Model
+   28. The Overlapping Generations Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="commod_price.html">
-   28. Commodity Prices
+   29. Commodity Prices
   </a>
  </li>
 </ul>
@@ -1246,22 +1251,22 @@ and back again.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="money_inflation.html">
-   29. Money Financed Government Deficits and Price Levels
+   30. Money Financed Government Deficits and Price Levels
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="unpleasant.html">
-   30. Some Unpleasant Monetarist Arithmetic
+   31. Some Unpleasant Monetarist Arithmetic
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="money_inflation_nonlinear.html">
-   31. Inflation Rate Laffer Curves
+   32. Inflation Rate Laffer Curves
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="laffer_adaptive.html">
-   32. Laffer Curves  with Adaptive Expectations
+   33. Laffer Curves  with Adaptive Expectations
   </a>
  </li>
 </ul>
@@ -1273,22 +1278,22 @@ and back again.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="ar1_processes.html">
-   33. AR(1) Processes
+   34. AR(1) Processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_I.html">
-   34. Markov Chains: Basic Concepts
+   35. Markov Chains: Basic Concepts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="markov_chains_II.html">
-   35. Markov Chains: Irreducibility and Ergodicity
+   36. Markov Chains: Irreducibility and Ergodicity
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="time_series_with_matrices.html">
-   36. Univariate Time Series with Matrix Algebra
+   37. Univariate Time Series with Matrix Algebra
   </a>
  </li>
 </ul>
@@ -1300,12 +1305,12 @@ and back again.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="lp_intro.html">
-   37. Linear Programming
+   38. Linear Programming
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="short_path.html">
-   38. Shortest Paths
+   39. Shortest Paths
   </a>
  </li>
 </ul>
@@ -1317,22 +1322,22 @@ and back again.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="eigen_II.html">
-   39. The Perron-Frobenius Theorem
+   40. The Perron-Frobenius Theorem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="input_output.html">
-   40. Input-Output Models
+   41. Input-Output Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lake_model.html">
-   41. A Lake Model of Employment
+   42. A Lake Model of Employment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="networks.html">
-   42. Networks
+   43. Networks
   </a>
  </li>
 </ul>
@@ -1344,12 +1349,12 @@ and back again.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_multiple_goods.html">
-   43. Supply and Demand with Many Goods
+   44. Supply and Demand with Many Goods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="supply_demand_heterogeneity.html">
-   44. Market Equilibrium with Heterogeneity
+   45. Market Equilibrium with Heterogeneity
   </a>
  </li>
 </ul>
@@ -1361,17 +1366,17 @@ and back again.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="simple_linear_regression.html">
-   45. Simple Linear Regression Model
+   46. Simple Linear Regression Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mle.html">
-   46. Maximum Likelihood Estimation
+   47. Maximum Likelihood Estimation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="bayes_intro.html">
-   47. Introduction to Bayesian Methods
+   48. Introduction to Bayesian Methods
   </a>
  </li>
 </ul>
@@ -1383,17 +1388,17 @@ and back again.</p>
 <ul class="nav bd-sidenav nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="troubleshooting.html">
-   48. Troubleshooting
+   49. Troubleshooting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="zreferences.html">
-   49. References
+   50. References
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="status.html">
-   50. Execution Statistics
+   51. Execution Statistics
   </a>
  </li>
 </ul>
