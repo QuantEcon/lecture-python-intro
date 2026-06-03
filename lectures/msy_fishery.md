@@ -233,13 +233,13 @@ mystnb:
 ---
 e_demo = 20.0    # an illustrative fixed effort level
 
-def x_star(e):
+def x_bar(e):
     "Sustainable (steady-state) stock at effort e."
     return K * (1 - q * e / r)
 
 fig, ax = plt.subplots(figsize=(4.95, 4.95))
 plot_45(ax, lambda x: update(x, e_demo), x0=80, x_max=1100,
-        steady_state=x_star(e_demo), ss_label=r'$x^*(e)$',
+        steady_state=x_bar(e_demo), ss_label=r'$\bar{x}(e)$',
         map_label=r'$x_{t+1}=x_t+G(x_t)-qex_t$')
 plt.tight_layout()
 plt.show()
@@ -248,7 +248,7 @@ plt.show()
 On the 45-degree diagram, fishing pulls the update curve down by the harvest
 term, so it now crosses the $45^\circ$ line at a lower steady state.
 
-Since this steady state is a function of $e$ now, we denote it by $x^*(e)$.
+Since this steady state is a function of $e$ now, we denote it by $\bar{x}(e)$.
 
 Here's the dynamics for two different levels of $e$, with the staircases omitted.
 
@@ -265,7 +265,7 @@ fig, ax = plt.subplots(figsize=(4.95, 4.95))
 ax.plot(grid, grid, color='0.6', lw=1, ls='--', label=r'$45^\circ$ line')
 for e in (10.0, 30.0):
     line, = ax.plot(grid, update(grid, e), lw=2, label=f'$e={e:.0f}$')
-    xs = x_star(e)
+    xs = x_bar(e)
     ax.plot([xs], [xs], 'o', color=line.get_color(), ms=8, zorder=5)
 
 ax.set_xlabel('stock this year  $x_t$')
@@ -278,7 +278,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-Not surprisingly, the steady state $x^*(e)$ is decreasing in fishing effort
+Not surprisingly, the steady state $\bar{x}(e)$ is decreasing in fishing effort
 (more fishing leads to less fish).
 
 
@@ -298,31 +298,31 @@ Writing it out and ignoring the empty-ocean case $x = 0$, we get
 $$
     r\left(1 - \frac{x}{K}\right) = qe
     \quad\Longrightarrow\quad
-    x^*(e) = K\left(1 - \frac{qe}{r}\right).
+    \bar{x}(e) = K\left(1 - \frac{qe}{r}\right).
 $$ (eq:xstar)
 
 
-Provided $e < r/q$, we see that each effort level $e$ pins down one steady-state stock $x^*(e)$.
+Provided $e < r/q$, we see that each effort level $e$ pins down one steady-state stock $\bar{x}(e)$.
 
 The catch this steady state delivers is called the **sustainable yield**, and defined as
 
 $$
-    y^*(e) := q\,e\,x^*(e).
+    \bar{y}(e) := q\,e\,\bar{x}(e).
 $$ (eq:yield)
 
 ```{code-cell} ipython3
 def sustainable_yield(e):
     "Sustainable catch delivered each year at effort e."
-    return q * e * x_star(e)
+    return q * e * x_bar(e)
 ```
 
 To visualize the sustainable yield, we plot the growth curve $G(x)$ together
 with the harvest line $q e x$ for a single effort level $e$.
 
 The two cross where growth exactly replaces the catch: that crossing sits at the
-steady-state stock $x^*(e)$.
+steady-state stock $\bar{x}(e)$.
 
-The height of the line there is the sustainable catch $y^*(e)$.
+The height of the line there is the sustainable catch $\bar{y}(e)$.
 
 ```{code-cell} ipython3
 ---
@@ -337,13 +337,13 @@ fig, ax = plt.subplots()
 ax.plot(x, G(x), lw=2, label=r'growth  $G(x)$')
 ax.plot(x, q * e_demo * x, lw=2, label=r'harvest  $q e x$')
 
-xs = x_star(e_demo)
+xs = x_bar(e_demo)
 ys = sustainable_yield(e_demo)
 ax.plot([xs], [ys], 'o', color='black', ms=8, zorder=5)
 ax.vlines(xs, 0, ys, ls='--', color='black', lw=1)
 ax.hlines(ys, 0, xs, ls='--', color='black', lw=1)
-ax.annotate(r'$x^*(e)$', xy=(xs, 0), xytext=(xs + 12, 8), fontsize=12)
-ax.annotate(r'$y^*(e)$', xy=(0, ys), xytext=(10, ys + 5), fontsize=12)
+ax.annotate(r'$\bar{x}(e)$', xy=(xs, 0), xytext=(xs + 12, 8), fontsize=12)
+ax.annotate(r'$\bar{y}(e)$', xy=(0, ys), xytext=(10, ys + 5), fontsize=12)
 
 ax.set_xlabel('stock biomass  $x$')
 ax.set_ylabel('catch')
@@ -354,7 +354,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-Different effort levels give different sustainable catches $y^*(e)$.
+Different effort levels give different sustainable catches $\bar{y}(e)$.
 
 In the next figure we plot the growth curve $G(x)$ together with the harvest
 lines $q e x$ for several values of $e$.
@@ -374,7 +374,7 @@ labels  = [r'low $e$', r'moderate $e$', r'high $e$']
 
 for e, lab in zip(efforts, labels):
     line, = ax.plot(x, q * e * x, lw=2, label=lab)
-    ax.plot([x_star(e)], [q * e * x_star(e)], 'o', color=line.get_color(), ms=7, zorder=5)
+    ax.plot([x_bar(e)], [q * e * x_bar(e)], 'o', color=line.get_color(), ms=7, zorder=5)
 
 ax.set_xlabel('stock $x$')
 ax.set_ylabel('catch')
@@ -394,7 +394,7 @@ falls --- exactly the trade-off that the maximum sustainable yield captures.
 
 ### The yield-effort curve
 
-To visualize the MSY, we plot the sustainable catch $y^*(e)$ against effort $e$.
+To visualize the MSY, we plot the sustainable catch $\bar{y}(e)$ against effort $e$.
 
 This gives the classic dome-shaped Schaefer curve that fisheries managers use.
 
@@ -409,9 +409,9 @@ e_grid = np.linspace(0, r / q, 400)
 y_grid = sustainable_yield(e_grid)
 
 fig, ax = plt.subplots()
-ax.plot(e_grid, y_grid, lw=2, label=r'$y^*(e)=qeK\,(1-qe/r)$')
+ax.plot(e_grid, y_grid, lw=2, label=r'$\bar{y}(e)=qeK\,(1-qe/r)$')
 ax.set_xlabel('fishing effort  $e$')
-ax.set_ylabel('sustainable yield  $y^*(e)$')
+ax.set_ylabel('sustainable yield  $\bar{y}(e)$')
 ax.set_xlim(0, r / q)
 ax.set_ylim(0, y_grid.max() * 1.25)
 ax.legend(loc='upper right', frameon=False)
@@ -431,12 +431,12 @@ It is the largest steady state catch attainable, assuming a constant effort rate
 The maximum sustainable yield can be defined more mathematically as
 
 $$
-    \text{MSY} \;=\; \max_{0 \le e < r/q} \; y^*(e).
+    \text{MSY} \;=\; \max_{0 \le e < r/q} \; \bar{y}(e).
 $$
 
-The effort level that solves this maximization problem is represented by $e_{MSY}$.
+The effort level that solves this maximization problem is represented by $e^*$.
 
-We can compute it either by calculus or numerically, by evaluating $y^*(e)$ on a fine grid of effort
+We can compute it either by calculus or numerically, by evaluating $\bar{y}(e)$ on a fine grid of effort
 levels and picking the largest.
 
 Below we look at the solution using calculus.
@@ -447,22 +447,22 @@ For now we will use the numerical approach:
 e_search = np.linspace(0, r / q, 100_001)
 i = np.argmax(sustainable_yield(e_search))
 
-e_msy = e_search[i]
-MSY = sustainable_yield(e_msy)
-x_msy = x_star(e_msy)
+e_star = e_search[i]
+MSY = sustainable_yield(e_star)
+x_bar_star = x_bar(e_star)
 
-print(f"effort at MSY     e_MSY = {e_msy:.2f}")
-print(f"stock at MSY      x*    = {x_msy:.1f} tonnes      (= K/2)")
+print(f"effort at MSY     e*    = {e_star:.2f}")
+print(f"stock at MSY      x̄     = {x_bar_star:.1f} tonnes      (= K/2)")
 print(f"maximum yield     MSY   = {MSY:.1f} tonnes/year  (= rK/4)")
 ```
 
-The search lands on the round numbers $x^* = K/2$ and $\text{MSY} = rK/4$; the
+The search lands on the round numbers $\bar{x}(e^*) = K/2$ and $\text{MSY} = rK/4$; the
 optional calculus section below shows why.
 
 
 ### Dynamics
 
-What happens to biomass when we set $e = e_{MSY}$ from some arbitrary initial
+What happens to biomass when we set $e = e^*$ from some arbitrary initial
 $x_0$?
 
 Below we run the yearly recursion {eq}`eq:update` forward from several
@@ -485,11 +485,11 @@ def simulate(x0, e, years=40):
 
 fig, ax = plt.subplots()
 for x0 in [100, 300, 700, 950]:
-    t, xt = simulate(x0, e_msy)
+    t, xt = simulate(x0, e_star)
     ax.plot(t, xt, 'o-', ms=3, lw=2, label=f'$x_0={x0}$')
 
-ax.axhline(x_msy, ls='--', color='black', lw=1)
-ax.annotate(r'$x^*=K/2$', xy=(0, x_msy), xytext=(1, x_msy + 25), color='black')
+ax.axhline(x_bar_star, ls='--', color='black', lw=1)
+ax.annotate(r'$\bar{x}(e^*)=K/2$', xy=(0, x_bar_star), xytext=(1, x_bar_star + 25), color='black')
 ax.set_xlabel('year  $t$')
 ax.set_ylabel('stock biomass  $x_t$')
 ax.set_xlim(0, 40)
@@ -498,7 +498,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-We see that, under the MSY effort, every path climbs or falls toward $x^* = K/2$ and stays.
+We see that, under the MSY effort, every path climbs or falls toward $\bar{x}(e^*) = K/2$ and stays.
 
 As a result, the catch settles down to the MSY.
 
@@ -532,19 +532,19 @@ $$
 $$
 
 The sustainability condition is unchanged --- a steady state still needs
-$G(x) = qex$ --- so $x^*(e) = K(1 - qe/r)$ and $y^*(e) = qeK(1 - qe/r)$ exactly as
+$G(x) = qex$ --- so $\bar{x}(e) = K(1 - qe/r)$ and $\bar{y}(e) = qeK(1 - qe/r)$ exactly as
 before.
 
-Now $y^*$ is a smooth, concave parabola in $e$, and its peak is where the slope
+Now $\bar{y}$ is a smooth, concave parabola in $e$, and its peak is where the slope
 vanishes:
 
 $$
-    \frac{d y^*}{d e} = qK\left(1 - \frac{2qe}{r}\right) = 0
+    \frac{d \bar{y}}{d e} = qK\left(1 - \frac{2qe}{r}\right) = 0
     \quad\Longrightarrow\quad
-    e_{MSY} = \frac{r}{2q},
+    e^* = \frac{r}{2q},
 $$
 
-which gives $x^* = K/2$ and $\text{MSY} = rK/4$.
+which gives $\bar{x}(e^*) = K/2$ and $\text{MSY} = rK/4$.
 
 
 ```{note}
@@ -577,12 +577,12 @@ To follow the fishery we use two ratios.
 The first is $B / B_{MSY}$, the stock biomass relative to the biomass $B_{MSY}$
 that supports the MSY.
 
-(In our model this reference stock is $x^* = K/2$.)
+(In our model this reference stock is $\bar{x}(e^*) = K/2$.)
 
 The second is $F / F_{MSY}$, fishing pressure relative to the pressure
 $F_{MSY}$ that achieves the MSY.
 
-(In our model this is the MSY effort $e_{MSY}$.)
+(In our model this is the MSY effort $e^*$.)
 
 The data come from the RAM Legacy Stock Assessment Database {cite:t}`ricard2012`.
 
@@ -716,7 +716,7 @@ How should we set the catch $h_t$?
 
 We compare two policies, both designed to take the MSY *on average*:
 
-* **constant effort**: set $h_t = q\, e_{MSY}\, x_t$, so the catch scales with the
+* **constant effort**: set $h_t = q\, e^*\, x_t$, so the catch scales with the
   current stock, and
 * **constant quota**: set $h_t = \text{MSY}$ every year, regardless of the stock.
 
@@ -725,10 +725,10 @@ yield each year".
 
 It is also closer to how catch limits have often been set in practice.
 
-Let's simulate both, starting every fishery from the MSY stock $x^* = K/2$.
+Let's simulate both, starting every fishery from the MSY stock $\bar{x}(e^*) = K/2$.
 
 ```{code-cell} ipython3
-def simulate_stochastic(policy, σ, years, rng, x0=x_msy):
+def simulate_stochastic(policy, σ, years, rng, x0=x_bar_star):
     "Simulate the stochastic fishery under a given harvest policy."
     x = np.empty(years + 1)
     x[0] = x0
@@ -736,7 +736,7 @@ def simulate_stochastic(policy, σ, years, rng, x0=x_msy):
     for t in range(years):
         growth = ξ[t] * G(x[t])
         if policy == 'effort':
-            harvest = q * e_msy * x[t]
+            harvest = q * e_star * x[t]
         else:                       # constant quota
             harvest = MSY
         x[t + 1] = max(0.0, x[t] + growth - harvest)
@@ -762,12 +762,12 @@ fig, axes = plt.subplots(2, 1, figsize=(6, 8), sharey=True)
 
 for ax, policy, label in zip(
         axes, ['effort', 'quota'],
-        ['constant effort  $h_t = q e_{MSY} x_t$',
+        ['constant effort  $h_t = q e^* x_t$',
          'constant quota  $h_t = \\mathrm{MSY}$']):
     for k in range(8):
         path = simulate_stochastic(policy, σ, years, rng)
         ax.plot(path, lw=2, alpha=0.8)
-    ax.axhline(x_msy, ls='--', color='black', lw=1)
+    ax.axhline(x_bar_star, ls='--', color='black', lw=1)
     ax.text(0.5, 0.92, label, transform=ax.transAxes, ha='center', va='top')
     ax.set_xlabel('year  $t$')
     ax.set_ylabel('stock biomass  $x_t$')
@@ -780,7 +780,7 @@ plt.show()
 
 The difference is stark.
 
-Under **constant effort**, the paths jiggle around $x^* = K/2$ but always recover:
+Under **constant effort**, the paths jiggle around $\bar{x}(e^*) = K/2$ but always recover:
 a bad year cuts the catch (because the catch is proportional to the stock), giving
 the population room to bounce back.
 
@@ -912,7 +912,7 @@ def collapse_fraction_quota(quota, σ=0.15, years=100, n_paths=2000, seed=0):
     rng = np.random.default_rng(seed)
     collapses = 0
     for _ in range(n_paths):
-        x = x_msy
+        x = x_bar_star
         ξ = shocks(σ, years, rng)
         for t in range(years):
             x = max(0.0, x + ξ[t] * G(x) - quota)
@@ -1009,9 +1009,9 @@ The key formulas of the deterministic Schaefer model are collected below.
 
 | Quantity | Formula | Value |
 |---|---|---|
-| Stock at MSY | $x_{MSY} = K/2$ | 500 t |
+| Stock at MSY | $\bar{x}(e^*) = K/2$ | 500 t |
 | Maximum sustainable yield | $\text{MSY} = rK/4$ | 125 t/yr |
-| Effort at MSY | $e_{MSY} = r/2q$ | 25 |
+| Effort at MSY | $e^* = r/2q$ | 25 |
 
 The MSY is a deterministic, single-species, steady-state concept.
 
