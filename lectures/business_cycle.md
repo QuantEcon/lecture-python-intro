@@ -53,6 +53,15 @@ cycler = plt.cycler(linestyle=['-', '-.', '--', ':'],
 plt.rc('axes', prop_cycle=cycler)
 ```
 
+We pull all time series through to the most recent available data.
+
+```{code-cell} ipython3
+# The cutoff date for the data we fetch below.
+# To freeze the data for a reproducible build, replace this with a
+# fixed date such as datetime.datetime(2024, 12, 31).
+end_date = datetime.datetime.now()
+```
+
 
 ## Data acquisition
 
@@ -329,15 +338,14 @@ We study unemployment using rate data from FRED spanning from [1929-1942](https:
 :tags: [hide-input]
 
 start_date = datetime.datetime(1929, 1, 1)
-end_date = datetime.datetime(1942, 6, 1)
+hist_end_date = datetime.datetime(1942, 6, 1)
 
 unrate_history = web.DataReader('M0892AUSM156SNBR',
-                    'fred', start_date,end_date)
+                    'fred', start_date, hist_end_date)
 unrate_history.rename(columns={'M0892AUSM156SNBR': 'UNRATE'},
                 inplace=True)
 
 start_date = datetime.datetime(1948, 1, 1)
-end_date = datetime.datetime.now()
 
 unrate = web.DataReader('UNRATE', 'fred',
                     start_date, end_date)
@@ -366,7 +374,6 @@ unrate_census.set_index('DATE', inplace=True)
 
 # Obtain the NBER-defined recession periods
 start_date = datetime.datetime(1929, 1, 1)
-end_date = datetime.datetime.now()
 
 nber = web.DataReader('USREC', 'fred', start_date, end_date)
 
@@ -405,10 +412,10 @@ The plot shows that
 * cycles are, in general, asymmetric: sharp rises in unemployment are followed
   by slow recoveries.
 
-It also shows us how unique labor market conditions were in the US during the
-post-pandemic recovery.
+It also shows how unusual the US labor market was in the recovery from the 2020
+pandemic shock.
 
-The labor market recovered at an unprecedented rate after the shock in 2020-2021.
+Unemployment spiked sharply in 2020 and then fell back at an unprecedented rate.
 
 
 (synchronization)=
@@ -642,7 +649,6 @@ tags: [hide-input]
 ---
 
 start_date = datetime.datetime(1978, 1, 1)
-end_date = datetime.datetime.now()
 
 # Limit the plot to a specific range
 start_date_graph = datetime.datetime(1977, 1, 1)
@@ -724,7 +730,6 @@ tags: [hide-input]
 ---
 
 start_date = datetime.datetime(1919, 1, 1)
-end_date = datetime.datetime.now()
 
 nber = web.DataReader('USREC', 'fred',
                     start_date, end_date)
