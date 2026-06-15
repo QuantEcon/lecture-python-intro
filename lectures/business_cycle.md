@@ -184,13 +184,6 @@ def plot_series(data, country, ylabel,
         ax.axhline(y=baseline,
                    color='black',
                    linestyle='--')
-
-    # Pin the most recent year as an x-axis tick
-    final_year = data.columns.max()
-    ax.set_xlim(right=final_year)
-    xticks = [t for t in ax.get_xticks() if t <= final_year - 3]
-    ax.set_xticks(xticks + [final_year])
-
     ax.set_ylabel(ylabel)
     ax.legend()
     return ax
@@ -493,13 +486,6 @@ def plot_comparison(data, countries,
             'GFC\n(2008)', **t_params)
     ax.text(2020, ylim + ylim*txt_pos,
             'Covid-19\n(2020)', **t_params)
-
-    # Pin the most recent year as an x-axis tick
-    final_year = data.columns.max()
-    ax.set_xlim(right=final_year)
-    xticks = [t for t in ax.get_xticks() if t <= final_year - 3]
-    ax.set_xticks(xticks + [final_year])
-
     if baseline != None:
         ax.hlines(y=baseline, xmin=ax.get_xlim()[0],
                   xmax=ax.get_xlim()[1], color='black',
