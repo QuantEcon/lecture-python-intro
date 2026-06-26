@@ -16,7 +16,7 @@ kernelspec:
 ```{code-cell} ipython3
 :tags: [hide-output]
 
-!pip install quantecon-book-networks pandas-datareader
+!pip install quantecon-book-networks==1.6 pandas-datareader
 ```
 
 ## Outline
