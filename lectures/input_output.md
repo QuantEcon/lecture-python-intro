@@ -20,7 +20,7 @@ This lecture requires the following imports and installs before we proceed.
 ```{code-cell} ipython3
 :tags: [hide-output]
 
-!pip install quantecon_book_networks
+!pip install quantecon_book_networks==1.6
 !pip install quantecon
 !pip install pandas-datareader
 ```
