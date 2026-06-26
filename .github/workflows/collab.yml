@@ -7,7 +7,7 @@ jobs:
     container:
       image: us-docker.pkg.dev/colab-images/public/runtime:latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           ref: ${{ github.event.pull_request.head.sha }}
       - name: Check for dockerenv file
@@ -43,7 +43,7 @@ jobs:
           name: execution-reports
           path: _build/html/reports
       - name: Preview Deploy to Netlify
-        uses: nwtgck/actions-netlify@v3.0
+        uses: nwtgck/actions-netlify@v4.0
         with:
           publish-dir: '_build/html/'
           production-branch: main
