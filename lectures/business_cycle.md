@@ -53,6 +53,15 @@ cycler = plt.cycler(linestyle=['-', '-.', '--', ':'],
 plt.rc('axes', prop_cycle=cycler)
 ```
 
+We pull all time series through to the most recent available data.
+
+```{code-cell} ipython3
+# The cutoff date for the data we fetch below.
+# To freeze the data for a reproducible build, replace this with a
+# fixed date such as datetime.datetime(2024, 12, 31).
+end_date = datetime.datetime.now()
+```
+
 
 ## Data acquisition
 
@@ -316,27 +325,26 @@ economy recessions in the 1970s and 1990s.
 
 Another important measure of business cycles is the unemployment rate.
 
-We study unemployment using rate data from FRED spanning from [1929-1942](https://fred.stlouisfed.org/series/M0892AUSM156SNBR) to [1948-2022](https://fred.stlouisfed.org/series/UNRATE), combined unemployment rate data over 1942-1948 estimated by the [Census Bureau](https://www.census.gov/library/publications/1975/compendia/hist_stats_colonial-1970.html).
+We study unemployment using rate data from FRED spanning from [1929-1942](https://fred.stlouisfed.org/series/M0892AUSM156SNBR) to [1948 onwards](https://fred.stlouisfed.org/series/UNRATE), combined unemployment rate data over 1942-1948 estimated by the [Census Bureau](https://www.census.gov/library/publications/1975/compendia/hist_stats_colonial-1970.html).
 
 ```{code-cell} ipython3
 :tags: [hide-input]
 
 start_date = datetime.datetime(1929, 1, 1)
-end_date = datetime.datetime(1942, 6, 1)
+hist_end_date = datetime.datetime(1942, 6, 1)
 
 unrate_history = web.DataReader('M0892AUSM156SNBR',
-                    'fred', start_date,end_date)
+                    'fred', start_date, hist_end_date)
 unrate_history.rename(columns={'M0892AUSM156SNBR': 'UNRATE'},
                 inplace=True)
 
 start_date = datetime.datetime(1948, 1, 1)
-end_date = datetime.datetime(2022, 12, 31)
 
 unrate = web.DataReader('UNRATE', 'fred',
                     start_date, end_date)
 ```
 
-Let's plot the unemployment rate in the US from 1929 to 2022 with recessions
+Let's plot the unemployment rate in the US from 1929 to the present with recessions
 defined by the NBER.
 
 ```{code-cell} ipython3
@@ -359,7 +367,6 @@ unrate_census.set_index('DATE', inplace=True)
 
 # Obtain the NBER-defined recession periods
 start_date = datetime.datetime(1929, 1, 1)
-end_date = datetime.datetime(2022, 12, 31)
 
 nber = web.DataReader('USREC', 'fred', start_date, end_date)
 
@@ -398,10 +405,10 @@ The plot shows that
 * cycles are, in general, asymmetric: sharp rises in unemployment are followed
   by slow recoveries.
 
-It also shows us how unique labor market conditions were in the US during the
-post-pandemic recovery.
+It also shows how unusual the US labor market was in the recovery from the 2020
+pandemic shock.
 
-The labor market recovered at an unprecedented rate after the shock in 2020-2021.
+Unemployment spiked sharply in 2020 and then fell back at an unprecedented rate.
 
 
 (synchronization)=
@@ -616,7 +623,7 @@ of Michigan.
 Here we plot the University of Michigan Consumer Sentiment Index and
 year-on-year
 [core consumer price index](https://fred.stlouisfed.org/series/CPILFESL)
-(CPI) change from 1978-2022 in the US.
+(CPI) change from 1978 to the present in the US.
 
 ```{code-cell} ipython3
 ---
@@ -628,11 +635,10 @@ tags: [hide-input]
 ---
 
 start_date = datetime.datetime(1978, 1, 1)
-end_date = datetime.datetime(2022, 12, 31)
 
 # Limit the plot to a specific range
 start_date_graph = datetime.datetime(1977, 1, 1)
-end_date_graph = datetime.datetime(2023, 12, 31)
+end_date_graph = end_date + datetime.timedelta(days=365)
 
 nber = web.DataReader('USREC', 'fred', start_date, end_date)
 consumer_confidence = web.DataReader('UMCSENT', 'fred',
@@ -698,7 +704,7 @@ However, it is not a leading indicator, as the peak of contraction in production
 is delayed relative to consumer confidence and inflation.
 
 We plot the real industrial output change from the previous year
-from 1919 to 2022 in the US to show this trend.
+from 1919 to the present in the US to show this trend.
 
 ```{code-cell} ipython3
 ---
@@ -710,7 +716,6 @@ tags: [hide-input]
 ---
 
 start_date = datetime.datetime(1919, 1, 1)
-end_date = datetime.datetime(2022, 12, 31)
 
 nber = web.DataReader('USREC', 'fred',
                     start_date, end_date)
@@ -746,7 +751,7 @@ activity and gloomy expectations for the future.
 One example is domestic credit to the private sector by banks in the UK.
 
 The following graph shows the domestic credit to the private sector as a
-percentage of GDP by banks from 1970 to 2022 in the UK.
+percentage of GDP by banks from 1970 to the present in the UK.
 
 ```{code-cell} ipython3
 ---
