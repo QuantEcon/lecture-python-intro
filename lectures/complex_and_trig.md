@@ -45,6 +45,8 @@ So let's dive in.
 
 A complex number has a **real part** $x$ and a purely **imaginary part** $y$.
 
+Here, $i$ denotes the imaginary unit, satisfying $i^2 = -1$.
+
 The Euclidean, polar, and trigonometric forms of a complex number $z$ are:
 
 $$
