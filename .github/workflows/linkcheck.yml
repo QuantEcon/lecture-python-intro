@@ -6,26 +6,36 @@ on:
   workflow_dispatch:
 jobs:
   link-checking:
-    name: Link Checking
+    name: QuantEcon AI link checking
     runs-on: "ubuntu-latest"
     permissions:
-      issues: write # required for peter-evans/create-issue-from-file
+      contents: read  # read latest release assets via gh api
+      issues: write   # required for QuantEcon link-checker
     steps:
-      # Checkout the live site (html)
-      - name: Checkout
-        uses: actions/checkout@v7
+      # Download the latest release HTML archive (permanent, not subject to artifact expiry)
+      - name: Get latest release asset URL
+        id: release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          ASSET_URL=$(gh api repos/${{ github.repository }}/releases/latest \
+            --jq '[.assets[] | select(.name | endswith(".tar.gz")) | .browser_download_url] | first // ""')
+          if [ -z "$ASSET_URL" ]; then
+            echo "::error::No .tar.gz asset found on the latest release"
+            exit 1
+          fi
+          echo "asset-url=$ASSET_URL" >> "$GITHUB_OUTPUT"
+      - name: Download and extract release HTML
+        run: |
+          set -euo pipefail
+          mkdir -p _site
+          curl -fsSL "${{ steps.release.outputs.asset-url }}" | tar -xz -C _site
+      - name: AI-Powered Link Checker
+        uses: QuantEcon/action-link-checker@main
         with:
-          ref: gh-pages
-      - name: Link Checker
-        id: lychee
-        uses: lycheeverse/lychee-action@v2
-        with:
-          fail: false
-          args: --accept 200..=299,403,503 --base-url https://intro.quantecon.org *.html
-      - name: Create Issue From File
-        if: steps.lychee.outputs.exit_code != 0
-        uses: peter-evans/create-issue-from-file@v6
-        with:
-          title: Link Checker Report
-          content-filepath: ./lychee/out.md
-          labels: report, automated issue, linkchecker
+          html-path: '_site'
+          fail-on-broken: 'false'
+          silent-codes: '403,503'
+          ai-suggestions: 'true'
+          create-issue: 'true'
