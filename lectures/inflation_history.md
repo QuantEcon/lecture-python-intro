@@ -83,7 +83,7 @@ Let us bring the data into pandas from a spreadsheet that is [hosted on github](
 
 ```{code-cell} ipython3
 # Import data and clean up the index
-data_url = "https://github.com/QuantEcon/lecture-python-intro/raw/main/lectures/datasets/longprices.xls"
+data_url = "https://raw.githubusercontent.com/QuantEcon/lecture-python-intro/main/lectures/datasets/longprices.xls"
 df_fig5 = pd.read_excel(data_url,
                         sheet_name='all',
                         header=2,
@@ -225,7 +225,7 @@ We have added logarithms of the exchange rates vis-&agrave;-vis the US dollar to
 from chapter 3 of {cite}`sargent2013rational`.
 
 Data underlying our graphs appear in tables in an appendix to chapter 3 of {cite}`sargent2013rational`.
-We have transcribed all of these data into a spreadsheet {download}`chapter_3.xlsx <https://github.com/QuantEcon/lecture-python-intro/raw/main/lectures/datasets/chapter_3.xlsx>` that we read into pandas.
+We have transcribed all of these data into a spreadsheet {download}`chapter_3.xlsx <https://raw.githubusercontent.com/QuantEcon/lecture-python-intro/main/lectures/datasets/chapter_3.xlsx>` that we read into pandas.
 
 In the code cell below we clean the data and build a `pandas.dataframe`.
 
@@ -355,7 +355,7 @@ We prepare the data for each country
 
 ```{code-cell} ipython3
 # Import data
-data_url = "https://github.com/QuantEcon/lecture-python-intro/raw/main/lectures/datasets/chapter_3.xlsx"
+data_url = "https://raw.githubusercontent.com/QuantEcon/lecture-python-intro/main/lectures/datasets/chapter_3.xlsx"
 xls = pd.ExcelFile(data_url)
 
 # Select relevant sheets

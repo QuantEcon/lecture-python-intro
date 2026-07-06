@@ -604,7 +604,7 @@ $$
 
 There are many tutorials to help you further visualize this operation, such as 
 
-* [this one](http://www.mathsisfun.com/algebra/matrix-multiplying.html), or
+* [this one](https://www.mathsisfun.com/algebra/matrix-multiplying.html), or
 * the discussion on the [Wikipedia page](https://en.wikipedia.org/wiki/Matrix_multiplication).
 
 

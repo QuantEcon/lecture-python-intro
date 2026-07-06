@@ -978,7 +978,7 @@ $$
 b_{k+1}=\frac{A b_k}{\left\|A b_k\right\|}
 $$
 
-A thorough discussion of the method can be found [here](https://pythonnumericalmethods.berkeley.edu/notebooks/chapter15.02-The-Power-Method.html).
+A thorough discussion of the method can be found [here](https://pythonnumericalmethods.studentorg.berkeley.edu/notebooks/chapter15.02-The-Power-Method.html).
 
 In this exercise, first implement the power iteration method and use it to find the greatest absolute eigenvalue and its corresponding eigenvector.
 
