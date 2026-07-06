@@ -1,12 +1,27 @@
-name: Build & Publish to GH-PAGES
+name: Build & Publish to GH Pages
 on:
   push:
     tags:
       - 'publish*'
+
+permissions:
+  contents: write   # upload release assets; Netlify commit comment
+  actions: read     # dawidd6 download-artifact reads cache.yml's build-cache
+  statuses: write   # Netlify commit status
+  pages: write      # deploy to GitHub Pages
+  id-token: write   # OIDC token for actions/deploy-pages
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   publish:
     if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -110,12 +125,17 @@ jobs:
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-      - name: Deploy website to gh-pages
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Add CNAME for custom domain
+        run: echo "intro.quantecon.org" > _build/html/CNAME
+      - name: Setup Pages
+        uses: actions/configure-pages@v6
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: _build/html/
-          cname: intro.quantecon.org
+          path: _build/html/
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
       - name: Upload "_build" folder (cache)
         uses: actions/upload-artifact@v7
         with:
