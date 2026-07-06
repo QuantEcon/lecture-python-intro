@@ -86,7 +86,7 @@ Our objective in this section is to produce a convenient `DataFrame` instance th
 Here we read the Maddison data into a pandas `DataFrame`:
 
 ```{code-cell} ipython3
-data_url = "https://github.com/QuantEcon/lecture-python-intro/raw/main/lectures/datasets/mpd2020.xlsx"
+data_url = "https://raw.githubusercontent.com/QuantEcon/lecture-python-intro/main/lectures/datasets/mpd2020.xlsx"
 data = pd.read_excel(data_url,
                      sheet_name='Full data')
 data.head()
@@ -178,7 +178,7 @@ gdp_pc[country].plot(
 ```
 
 :::{note}
-[International dollars](https://en.wikipedia.org/wiki/international_dollar) are a hypothetical unit of currency that has the same purchasing power parity that the U.S. Dollar has in the United States at a given point in time.
+[International dollars](https://en.wikipedia.org/wiki/International_dollar) are a hypothetical unit of currency that has the same purchasing power parity that the U.S. Dollar has in the United States at a given point in time.
 
 They are also known as Geary-Khamis dollars (GK Dollars).
 :::

@@ -97,7 +97,7 @@ It's clear from the graph that this stochastic matrix is irreducible: we can  ev
 reach any state from any other state.
 ````
 
-We can also test this using [QuantEcon.py](http://quantecon.org/quantecon-py)'s MarkovChain class
+We can also test this using [QuantEcon.py](https://quantecon.org/quantecon-py/)'s MarkovChain class
 
 ```{code-cell} ipython3
 P = [[0.9, 0.1, 0.0],

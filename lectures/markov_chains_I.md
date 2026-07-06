@@ -399,7 +399,7 @@ The Markov chain is then constructed as follows:
 To implement this simulation procedure, we need a method for generating draws
 from a discrete distribution.
 
-For this task, we'll use `random.draw` from [QuantEcon.py](http://quantecon.org/quantecon-py).
+For this task, we'll use `random.draw` from [QuantEcon.py](https://quantecon.org/quantecon-py/).
 
 To use `random.draw`, we first need to convert the probability mass function
 to a cumulative distribution
@@ -474,7 +474,7 @@ always close to 0.25 (for the `P` matrix above).
 
 ### Using QuantEcon's routines
 
-[QuantEcon.py](http://quantecon.org/quantecon-py) has routines for handling Markov chains, including simulation.
+[QuantEcon.py](https://quantecon.org/quantecon-py/) has routines for handling Markov chains, including simulation.
 
 Here's an illustration using the same $P$ as the preceding example
 
@@ -765,7 +765,7 @@ Not surprisingly it tends to zero as $\beta \to 0$, and to one as $\alpha \to 0$
 
 ### Calculating stationary distributions
 
-A stable algorithm for computing stationary distributions is implemented in [QuantEcon.py](http://quantecon.org/quantecon-py).
+A stable algorithm for computing stationary distributions is implemented in [QuantEcon.py](https://quantecon.org/quantecon-py/).
 
 Here's an example
 
