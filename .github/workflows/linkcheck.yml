@@ -9,6 +9,7 @@ jobs:
     name: QuantEcon AI link checking
     runs-on: "ubuntu-latest"
     permissions:
+      contents: read  # read latest release assets via gh api
       issues: write   # required for QuantEcon link-checker
     steps:
       # Download the latest release HTML archive (permanent, not subject to artifact expiry)
@@ -17,13 +18,19 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          set -euo pipefail
           ASSET_URL=$(gh api repos/${{ github.repository }}/releases/latest \
-            --jq '.assets[] | select(.name | endswith(".tar.gz")) | .browser_download_url')
-          echo "asset-url=$ASSET_URL" >> $GITHUB_OUTPUT
+            --jq '[.assets[] | select(.name | endswith(".tar.gz")) | .browser_download_url] | first // ""')
+          if [ -z "$ASSET_URL" ]; then
+            echo "::error::No .tar.gz asset found on the latest release"
+            exit 1
+          fi
+          echo "asset-url=$ASSET_URL" >> "$GITHUB_OUTPUT"
       - name: Download and extract release HTML
         run: |
+          set -euo pipefail
           mkdir -p _site
-          curl -sL "${{ steps.release.outputs.asset-url }}" | tar -xz -C _site
+          curl -fsSL "${{ steps.release.outputs.asset-url }}" | tar -xz -C _site
       - name: AI-Powered Link Checker
         uses: QuantEcon/action-link-checker@main
         with:
