@@ -30,7 +30,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p _site
-          curl -fsSL "${{ steps.release.outputs.asset-url }}" | tar -xz -C _site
+          curl -fsSL "${{ steps.release.outputs.asset-url }}" | tar -xzf - -C _site
       - name: AI-Powered Link Checker
         uses: QuantEcon/action-link-checker@main
         with:
