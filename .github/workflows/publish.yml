@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs['page-url'] }}
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -89,32 +89,6 @@ jobs:
         run: |
           rm -r _build/.doctrees
           jb build lectures --path-output ./
-      # Create HTML archive for release assets
-      - name: Create HTML archive
-        shell: bash -l {0}
-        run: |
-          tar -czf lecture-python-intro-html-${{ github.ref_name }}.tar.gz -C _build/html .
-          sha256sum lecture-python-intro-html-${{ github.ref_name }}.tar.gz > html-checksum.txt
-
-          # Create metadata manifest
-          cat > html-manifest.json << EOF
-          {
-            "tag": "${{ github.ref_name }}",
-            "commit": "${{ github.sha }}",
-            "timestamp": "$(date -Iseconds)",
-            "size_mb": $(du -sm _build/html | cut -f1),
-            "file_count": $(find _build/html -type f | wc -l)
-          }
-          EOF
-      - name: Upload archives to release
-        uses: softprops/action-gh-release@v3
-        with:
-          files: |
-            lecture-python-intro-html-${{ github.ref_name }}.tar.gz
-            html-checksum.txt
-            html-manifest.json
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v4.0
         with:
@@ -125,17 +99,16 @@ jobs:
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-      - name: Add CNAME for custom domain
-        run: echo "intro.quantecon.org" > _build/html/CNAME
-      - name: Setup Pages
-        uses: actions/configure-pages@v6
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v5
-        with:
-          path: _build/html/
+      # Deploy to GitHub Pages + publish release assets (html archive, checksum, manifest)
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v5
+        uses: quantecon/actions/publish-gh-pages@v0.8.0
+        with:
+          build-dir: _build/html
+          cname: intro.quantecon.org
+          create-release-assets: 'true'
+          asset-name: 'lecture-python-intro-html'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload "_build" folder (cache)
         uses: actions/upload-artifact@v7
         with:
