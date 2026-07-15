@@ -11,12 +11,14 @@ kernelspec:
   name: python3
 ---
 
-# Common Distributions
+# Probability Distributions
 
 ```{index} single: Common Distributions
 ```
 
 ## Outline
+
+In data science applications, we are often interested in data on a specific variable.
 
 In this lecture we give a quick introduction to data and probability distributions using Python.
 
@@ -35,6 +37,72 @@ import scipy.stats
 import seaborn as sns
 ```
 
+To motivate what follows, let's start with a real example: the heights of adult men and women in the United States.
+
+The data come from the US [National Health and Nutrition Examination Survey](https://www.cdc.gov/nchs/nhanes/index.htm) (NHANES).
+
+The next figure shows histograms of the two datasets, with heights measured in centimeters.
+
+```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Heights of US adults (NHANES)
+    name: fig:us-heights
+tags: [hide-input]
+---
+# Data file is stored in this repo for now; switch to the QuantEcon/datasets
+# URL once that repo exists (see QuantEcon/meta#336).
+url = '_static/lecture_specific/prob_dist/us_adult_heights.csv'
+heights = pd.read_csv(url)
+male = heights[heights['sex'] == 'male']['height_cm']
+female = heights[heights['sex'] == 'female']['height_cm']
+
+fig, ax = plt.subplots()
+ax.hist(male, bins=40, density=True, alpha=0.6, label='male')
+ax.hist(female, bins=40, density=True, alpha=0.6, label='female')
+ax.set_xlabel('height (cm)')
+ax.set_ylabel('density')
+ax.legend()
+plt.show()
+```
+
+Each histogram has the familiar "bell" shape.
+
+This suggests that we can approximate the data using a **normal distribution** --- a continuous distribution with a bell-shaped density that we study in detail below.
+
+To do so, we fit a normal distribution to each dataset, choosing its mean and standard deviation to match the sample mean and standard deviation of the heights.
+
+```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Normal fit to US adult heights
+    name: fig:us-heights-fit
+tags: [hide-input]
+---
+fig, ax = plt.subplots()
+x_grid = np.linspace(130, 205, 200)
+for sample, color, label in ((male, 'C0', 'male'), (female, 'C1', 'female')):
+    ax.hist(sample, bins=40, density=True, alpha=0.4, color=color)
+    u = scipy.stats.norm(sample.mean(), sample.std())
+    ax.plot(x_grid, u.pdf(x_grid), color=color, lw=2, label=label)
+ax.set_xlabel('height (cm)')
+ax.set_ylabel('density')
+ax.legend()
+plt.show()
+```
+
+The fit is remarkably good.
+
+Notice what this achieves: each dataset of around 5,000 individual measurements is now summarized by a smooth density with just **two parameters** --- the mean $\mu$, which sets the center, and the standard deviation $\sigma$, which sets the spread.
+
+Such compact summaries are extremely useful.
+
+They are one reason we study **common distributions**: named families of distributions, each governed by a small number of parameters, that have proven useful for describing data.
+
+We turn to these now.
+
 ## Common distributions
 
 In this section we recall the definitions of some well-known distributions and explore how to manipulate them with SciPy.
@@ -48,6 +116,39 @@ A discrete distribution is defined by a set of numbers $S = \{x_1, \ldots, x_n\}
 $$ 
 \sum_{i=1}^n p(x_i) = 1 
 $$
+
+For example, the next figure shows the fraction of people at each age in Japan in 2024 (Japanese nationals), from 0 to 100 and over.
+
+The data come from the [Statistics Bureau of Japan](https://www.stat.go.jp/english/data/jinsui/index.html).
+
+```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Population share by age, Japan 2024
+    name: fig:japan-age
+tags: [hide-input]
+---
+# Data file is stored in this repo for now; switch to the QuantEcon/datasets
+# URL once that repo exists (see QuantEcon/meta#336).
+url = '_static/lecture_specific/prob_dist/japan_population_by_age.xlsx'
+# Column 14 holds the Japanese-national population (in thousands) by single year
+# of age; rows run from age 0 to "100 and over".
+data = pd.read_excel(url, sheet_name='第１表', header=None, skiprows=10,
+                     usecols=[14], names=['population'], nrows=101)
+population = data['population'].to_numpy()
+age = np.arange(101)     # 0, 1, ..., 100, where 100 means "100 and over"
+
+p = population / population.sum()
+
+fig, ax = plt.subplots()
+ax.bar(age, p)
+ax.set_xlabel('age')
+ax.set_ylabel('fraction of population')
+plt.show()
+```
+
+Here each $x_i$ is an age and $p(x_i)$ is the fraction of the population at that age, and the fractions sum to one.
 
 We say that a random variable $X$ **has distribution** $p$ if $X$ takes value $x_i$ with probability $p(x_i)$.
 
