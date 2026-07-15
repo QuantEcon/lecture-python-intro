@@ -83,9 +83,9 @@ tags: [hide-input]
 ---
 fig, ax = plt.subplots()
 x_grid = np.linspace(130, 205, 200)
-for data, color, label in ((male, 'C0', 'male'), (female, 'C1', 'female')):
-    ax.hist(data, bins=40, density=True, alpha=0.4, color=color)
-    u = scipy.stats.norm(data.mean(), data.std())
+for sample, color, label in ((male, 'C0', 'male'), (female, 'C1', 'female')):
+    ax.hist(sample, bins=40, density=True, alpha=0.4, color=color)
+    u = scipy.stats.norm(sample.mean(), sample.std())
     ax.plot(x_grid, u.pdf(x_grid), color=color, lw=2, label=label)
 ax.set_xlabel('height (cm)')
 ax.set_ylabel('density')
@@ -118,6 +118,8 @@ $$
 $$
 
 For example, the next figure shows the fraction of people at each age in Japan in 2024 (Japanese nationals), from 0 to 100 and over.
+
+The data come from the [Statistics Bureau of Japan](https://www.stat.go.jp/english/data/jinsui/index.html).
 
 ```{code-cell} ipython3
 ---
