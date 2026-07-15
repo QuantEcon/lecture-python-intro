@@ -593,7 +593,8 @@ mystnb:
     caption: Pacific Coast lingcod recovery
     name: fig:lingcod
 ---
-lingcod = pd.read_csv('datasets/lingcod_msy_recovery.csv')
+data_url = "https://github.com/QuantEcon/data-lectures/raw/main/lectures/lingcod_msy_recovery.csv"
+lingcod = pd.read_csv(data_url)
 
 fig, ax = plt.subplots()
 
