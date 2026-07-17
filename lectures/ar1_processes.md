@@ -409,13 +409,12 @@ from numba import njit
 from scipy.special import factorial2
 
 @njit
-def sample_moments_ar1(k, m=100_000, mu_0=0.0, sigma_0=1.0, seed=1234):
-    np.random.seed(seed)
+def sample_moments_ar1(k, rng, m=100_000, mu_0=0.0, sigma_0=1.0):
     sample_sum = 0.0
-    x = mu_0 + sigma_0 * np.random.randn()
+    x = mu_0 + sigma_0 * rng.standard_normal()
     for t in range(m):
         sample_sum += (x - mu_star)**k
-        x = a * x + b + c * np.random.randn()
+        x = a * x + b + c * rng.standard_normal()
     return sample_sum / m
 
 def true_moments_ar1(k):
@@ -429,7 +428,8 @@ sample_moments = np.empty(len(k_vals), dtype=float)
 true_moments = np.empty(len(k_vals), dtype=float)
 
 for k_idx, k in enumerate(k_vals):
-    sample_moments[k_idx] = sample_moments_ar1(k)
+    rng = np.random.default_rng(1234)
+    sample_moments[k_idx] = sample_moments_ar1(k, rng)
     true_moments[k_idx] = true_moments_ar1(k)
 
 fig, ax = plt.subplots()
@@ -622,8 +622,9 @@ s_next = np.sqrt(a**2 * s**2 + c**2)
 
 ```{code-cell} ipython3
 n = 2000
+rng = np.random.default_rng()
 x_draws = ψ.rvs(n)
-x_draws_next = a * x_draws + b + c * np.random.randn(n)
+x_draws_next = a * x_draws + b + c * rng.standard_normal(n)
 kde = KDE(x_draws_next)
 
 x_grid = np.linspace(μ - 1, μ + 1, 100)
