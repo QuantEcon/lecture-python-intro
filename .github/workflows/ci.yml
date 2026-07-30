@@ -50,7 +50,18 @@ jobs:
       - name: Build PDF from LaTeX
         shell: bash -l {0}
         run: |
-          jb build lectures --builder pdflatex --path-output ./ -n --keep-going
+          # This is the FIRST `jb build` in the workflow, and `execute_notebooks: "cache"`
+          # means only the first build actually executes notebooks — the later
+          # tojupyter and HTML builds read the cache. So this is the step where a
+          # CellExecutionError surfaces, and therefore the step that has to gate.
+          #
+          # `set -eo pipefail` is required as well as `-W`: `shell: bash -l {0}` is a
+          # custom shell spec, so GitHub does not inject `-eo pipefail` (it only does
+          # that for the bare `shell: bash` shorthand). Without it a failing `jb build`
+          # would be masked by the trailing mkdir/cp, whose exit code becomes the
+          # step's — and `--keep-going` guarantees the PDF exists for `cp` to succeed on.
+          set -eo pipefail
+          jb build lectures --builder pdflatex --path-output ./ -n -W --keep-going
           mkdir -p _build/html/_pdf
           cp -u _build/latex/*.pdf _build/html/_pdf
       - name: Upload Execution Reports (LaTeX)
@@ -62,13 +73,7 @@ jobs:
       - name: Build Download Notebooks (sphinx-tojupyter)
         shell: bash -l {0}
         run: |
-          # `shell: bash -l {0}` is a custom shell spec, so GitHub does not inject
-          # `-eo pipefail` (it only does that for the bare `shell: bash` shorthand).
-          # Without this, a failing `jb build` would be masked by the trailing
-          # mkdir/cp, whose exit code becomes the step's — and `--keep-going`
-          # guarantees the .ipynb files exist for `cp` to succeed on.
-          set -eo pipefail
-          jb build lectures -n -W --keep-going --path-output ./ --builder=custom --custom-builder=jupyter
+          jb build lectures --path-output ./ --builder=custom --custom-builder=jupyter
           mkdir -p _build/html/_notebooks
           cp -u _build/jupyter/*.ipynb _build/html/_notebooks
       # Build HTML (Website)
