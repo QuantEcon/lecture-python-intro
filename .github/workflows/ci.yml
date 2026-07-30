@@ -62,7 +62,13 @@ jobs:
       - name: Build Download Notebooks (sphinx-tojupyter)
         shell: bash -l {0}
         run: |
-          jb build lectures --path-output ./ --builder=custom --custom-builder=jupyter
+          # `shell: bash -l {0}` is a custom shell spec, so GitHub does not inject
+          # `-eo pipefail` (it only does that for the bare `shell: bash` shorthand).
+          # Without this, a failing `jb build` would be masked by the trailing
+          # mkdir/cp, whose exit code becomes the step's — and `--keep-going`
+          # guarantees the .ipynb files exist for `cp` to succeed on.
+          set -eo pipefail
+          jb build lectures -n -W --keep-going --path-output ./ --builder=custom --custom-builder=jupyter
           mkdir -p _build/html/_notebooks
           cp -u _build/jupyter/*.ipynb _build/html/_notebooks
       # Build HTML (Website)
