@@ -31,6 +31,8 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 import scipy.stats
+
+np.set_printoptions(legacy='1.25')   # print scalars as plain numbers
 ```
 
 To motivate what follows, let's start with a real example: the heights of adult men and women in the United States.
@@ -96,13 +98,9 @@ Such compact summaries are extremely useful.
 
 They are one reason we study **common distributions**: named families of distributions, each governed by a small number of parameters, that have proven useful for describing data.
 
-We turn to these now.
+We turn to these now, recalling the definitions of some well-known distributions and exploring how to manipulate them with SciPy.
 
-## Common distributions
-
-In this section we recall the definitions of some well-known distributions and explore how to manipulate them with SciPy.
-
-### Discrete distributions
+## Discrete distributions
 
 Let's start with discrete distributions.
 
@@ -163,10 +161,22 @@ Expectation is also called the *first moment* of the distribution.
 
 We also refer to this number as the mean of the distribution (represented by) $p$.
 
+More generally, if $f$ is a function on $S$, then $f(X)$ is a random variable that takes the value $f(x_i)$ whenever $X$ takes the value $x_i$.
+
+Its expectation is obtained by weighting each of these values by its probability:
+
+$$
+\mathbb{E}[f(X)] = \sum_{i=1}^n f(x_i) p(x_i)
+$$
+
+Every quantity we define below is an expectation of this form, for a suitable choice of $f$.
+
 The **variance** of $X$ is defined as 
 
 $$ 
-\mathbb{V}[X] = \sum_{i=1}^n (x_i - \mathbb{E}[X])^2 p(x_i)
+\mathbb{V}[X] 
+    = \mathbb{E}[(X - \mathbb{E}[X])^2]
+    = \sum_{i=1}^n (x_i - \mathbb{E}[X])^2 p(x_i)
 $$
 
 Variance is also called the *second central moment* of the distribution.
@@ -209,24 +219,32 @@ Skewness measures asymmetry.
 
 Any distribution that is symmetric about its mean has zero skewness, while a distribution with a long right tail has positive skewness.
 
-The fourth standardized moment measures how much probability mass sits far out in the tails.
+The fourth standardized moment is called the **kurtosis**:
 
-For *every* normal distribution this quantity equals 3, regardless of $\mu$ and $\sigma$.
+$$
+K = \mathbb{E} \left[ \left( \frac{X - \mu}{\sigma} \right)^4 \right]
+$$
+
+Kurtosis measures how much probability mass sits far out in the tails.
+
+For *every* normal distribution, $K = 3$, regardless of $\mu$ and $\sigma$.
 
 Since the normal distribution is such a useful benchmark, it is common to subtract 3 and work with the **excess kurtosis**
 
 $$
-K = \mathbb{E} \left[ \left( \frac{X - \mu}{\sigma} \right)^4 \right] - 3
+K - 3
 $$
 
-so that $K = 0$ for the normal distribution.
+which is zero for the normal distribution.
 
 Positive excess kurtosis means more mass in the tails than the normal distribution --- extreme values are more likely.
 
 ```{note}
-Some authors call the fourth standardized moment itself the "kurtosis", so that the normal distribution has kurtosis 3.
+Take care when reading software documentation, since these two names are not always used correctly.
 
-We follow SciPy, whose `scipy.stats.kurtosis` returns the excess version by default.
+For example, `scipy.stats.kurtosis` returns the excess kurtosis by default, rather than the kurtosis.
+
+(Set `fisher=False` to obtain the kurtosis.)
 ```
 
 We will use skewness and excess kurtosis in {doc}`observed_distributions` to help judge whether a given data set looks normally distributed.
@@ -243,7 +261,7 @@ Here $\mathbb 1\{ \textrm{statement} \} = 1$ if "statement" is true and zero oth
 Hence the second term takes all $x_i \leq x$ and sums their probabilities.
 
 
-#### Uniform distribution
+### Uniform distribution
 
 One simple example is the **uniform distribution**, where $p(x_i) = 1/n$ for all $i$.
 
@@ -311,7 +329,7 @@ Check that your answers agree with `u.mean()` and `u.var()`.
 ```
 
 
-#### Bernoulli distribution
+### Bernoulli distribution
 
 Another useful distribution is the Bernoulli distribution on $S = \{0,1\}$, which has PMF:
 
@@ -349,7 +367,7 @@ We can evaluate the PMF as follows
 u.pmf(0), u.pmf(1)
 ```
 
-#### Binomial distribution
+### Binomial distribution
 
 Another useful (and more interesting) distribution is the **binomial distribution** on $S=\{0, \ldots, n\}$, which has PMF:
 
@@ -444,7 +462,7 @@ We can see that the output graph is the same as the one above.
 ```{solution-end}
 ```
 
-#### Geometric distribution
+### Geometric distribution
 
 The geometric distribution has infinite support $S = \{0, 1, 2, \ldots\}$ and its PMF is given by 
 
@@ -484,7 +502,7 @@ ax.set_ylabel('PMF')
 plt.show()
 ```
 
-#### Poisson distribution
+### Poisson distribution
 
 The Poisson distribution on $S = \{0, 1, \ldots\}$ with parameter $\lambda > 0$ has PMF
 
@@ -521,7 +539,7 @@ ax.set_ylabel('PMF')
 plt.show()
 ```
 
-### Continuous distributions
+## Continuous distributions
 
 
 A continuous distribution is represented by a **probability density function**, which is a function $p$ over $\mathbb R$ (the set of all real numbers) such that $p(x) \geq 0$ for all $x$ and
@@ -538,7 +556,7 @@ $$
 
 for all $a \leq b$.
 
-The definition of the mean and variance of a random variable $X$ with distribution $p$ are the same as the discrete case, after replacing the sum with an integral.
+Expectations are defined as in the discrete case, after replacing the sum with an integral.
 
 For example, the mean of $X$ is
 
@@ -546,14 +564,20 @@ $$
 \mathbb{E}[X] = \int_{-\infty}^\infty x p(x) dx
 $$
 
+while, for a function $f$,
+
+$$
+\mathbb{E}[f(X)] = \int_{-\infty}^\infty f(x) p(x) dx
+$$
+
+The variance, standard deviation, moments, skewness and kurtosis are then defined by exactly the same expressions as before.
+
 The **cumulative distribution function** (CDF) of $X$ is defined by
 
 $$
 F(x) = \mathbb P\{X \leq x\}
         = \int_{-\infty}^x p(x) dx
 $$
-
-Skewness and excess kurtosis are defined exactly as in the discrete case.
 
 For the continuous distributions we study below, $F$ is strictly increasing, so it has an inverse $F^{-1}$, which is called the **quantile function**.
 
@@ -570,7 +594,7 @@ These alternatives are useful because, unlike the mean and the standard deviatio
 (We will see in {doc}`heavy_tails` that this robustness matters a great deal for some data sets.)
 
 
-#### Normal distribution
+### Normal distribution
 
 Perhaps the most famous distribution is the **normal distribution**, which has density
 
@@ -647,7 +671,7 @@ plt.legend()
 plt.show()
 ```
 
-#### Lognormal distribution
+### Lognormal distribution
 
 The **lognormal distribution** is a distribution on $\left(0, \infty\right)$ with density
 
@@ -723,7 +747,7 @@ plt.legend()
 plt.show()
 ```
 
-#### Exponential distribution
+### Exponential distribution
 
 The **exponential distribution** is a distribution supported on $\left(0, \infty\right)$ with density
 
@@ -779,7 +803,7 @@ plt.legend()
 plt.show()
 ```
 
-#### Beta distribution
+### Beta distribution
 
 The **beta distribution** is a distribution on $(0, 1)$ with density
 
@@ -840,7 +864,7 @@ plt.legend()
 plt.show()
 ```
 
-#### Gamma distribution
+### Gamma distribution
 
 The **gamma distribution** is a distribution on $\left(0, \infty\right)$ with density
 

@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.16.6
+    jupytext_version: 1.17.2
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -41,6 +41,8 @@ import numpy as np
 import yfinance as yf
 import scipy.stats
 import seaborn as sns
+
+np.set_printoptions(legacy='1.25')   # print scalars as plain numbers
 ```
 
 Sometimes we refer to observed data or measurements as "distributions".
@@ -105,16 +107,18 @@ by the observed data, weighting each observation equally.
 
 The same idea extends to higher moments.
 
-The **sample skewness** and **sample excess kurtosis** are
+The **sample skewness** and **sample kurtosis** are
 
 $$
 \hat S = \frac{1}{n} \sum_{i=1}^n \left( \frac{x_i - \bar x}{s} \right)^3
 \qquad \text{and} \qquad
-\hat K = \frac{1}{n} \sum_{i=1}^n \left( \frac{x_i - \bar x}{s} \right)^4 - 3
+\hat K = \frac{1}{n} \sum_{i=1}^n \left( \frac{x_i - \bar x}{s} \right)^4
 $$
 
-Recall from {doc}`prob_dist` that a normal distribution has both skewness and
-excess kurtosis equal to zero.
+and the sample excess kurtosis is $\hat K - 3$.
+
+Recall from {doc}`prob_dist` that a normal distribution has skewness zero and
+excess kurtosis zero.
 
 This gives us a first, purely numerical, way to ask whether a data set looks
 normal.
@@ -232,9 +236,12 @@ adjust the estimates in different ways.
 
 The Pandas methods `x.skew()` and `x.kurt()` apply such adjustments, so they do
 not agree exactly with the formulas above, while `scipy.stats.skew` and
-`scipy.stats.kurtosis` use the plain $1/n$ versions by default.
+`scipy.stats.kurtosis` use the plain $1/n$ versions.
 
 The differences are small when $n$ is large.
+
+Recall also that `scipy.stats.kurtosis` returns $\hat K - 3$ rather than
+$\hat K$, which is why we read its output as the excess kurtosis.
 ```
 
 
