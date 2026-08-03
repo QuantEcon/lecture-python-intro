@@ -429,12 +429,12 @@ ax.set_ylabel('density')
 plt.show()
 ```
 
-### Empirical distribution functions
+### Empirical cumulative distribution functions
 
 A histogram estimates the density of the data.
 
-The **empirical distribution function** (EDF), also called the empirical CDF,
-does the same job for the CDF.
+The **empirical cumulative distribution function** (ECDF) does the same job
+for the CDF.
 
 For a sample $\{x_1, \ldots, x_n\}$ it is defined as
 
@@ -445,13 +445,13 @@ $$
 In words, $F_n(x)$ is just the fraction of observations that are less than or
 equal to $x$.
 
-The EDF is a step function that jumps up by $1/n$ at each observation.
+The ECDF is a step function that jumps up by $1/n$ at each observation.
 
 Here is a function that plots it, obtained by sorting the data and stepping up
 as we move from left to right.
 
 ```{code-cell} ipython3
-def plot_edf(sample, ax, **kwargs):
+def plot_ecdf(sample, ax, **kwargs):
     x_sorted = np.sort(sample)
     n = len(x_sorted)
     ax.step(x_sorted, np.arange(1, n+1) / n, where='post', **kwargs)
@@ -461,13 +461,13 @@ Let's apply it to the house price data.
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
-plot_edf(price, ax)
+plot_ecdf(price, ax)
 ax.set_xlabel('sale price (US$)')
-ax.set_ylabel('EDF')
+ax.set_ylabel('ECDF')
 plt.show()
 ```
 
-Unlike a histogram, the EDF requires no choice of bin width --- it uses the data
+Unlike a histogram, the ECDF requires no choice of bin width --- it uses the data
 exactly as they are.
 
 This makes it a good tool for comparing a data set with a probability
@@ -481,7 +481,7 @@ u = scipy.stats.norm(log_price.mean(), log_price.std())
 x_grid = np.linspace(log_price.min(), log_price.max(), 200)
 
 fig, ax = plt.subplots()
-plot_edf(log_price, ax, label='EDF of log prices')
+plot_ecdf(log_price, ax, label='ECDF of log prices')
 ax.plot(x_grid, u.cdf(x_grid), 'k--', alpha=0.7, label='normal CDF')
 ax.set_xlabel('log of sale price')
 ax.set_ylabel('probability')
@@ -489,7 +489,7 @@ ax.legend()
 plt.show()
 ```
 
-The two curves are close, although the fit is not perfect in the tails.
+The two curves are close, although the fit is not perfect.
 
 (Seaborn provides `sns.ecdfplot`, which produces the same figure with less code.)
 
@@ -527,6 +527,23 @@ plt.show()
 When we use a larger bandwidth, the KDE is smoother.
 
 A suitable bandwidth is not too smooth (underfitting) or too wiggly (overfitting).
+
+Since a KDE is a smoothed histogram, it is often helpful to show the two
+together.
+
+Here is the log sale price data, with the histogram faded into the background.
+
+```{code-cell} ipython3
+fig, ax = plt.subplots()
+ax.hist(log_price, bins=50, density=True, alpha=0.25, color='C0')
+sns.kdeplot(log_price, ax=ax, color='C0', lw=2)
+ax.set_xlabel('log of sale price')
+ax.set_ylabel('density')
+plt.show()
+```
+
+The KDE traces out the shape of the histogram while smoothing away the
+bin-to-bin variation.
 
 
 ### Box-and-whisker plots
@@ -650,6 +667,30 @@ ax.set_xticks([1, 2])
 ax.set_xticklabels(['Amazon', 'Costco'])
 plt.show()
 ```
+
+As a second comparison, let's return to the age at death data and separate men
+from women.
+
+```{code-cell} ipython3
+male_deaths = np.repeat(deaths['age'], deaths['deaths_male'])
+female_deaths = np.repeat(deaths['age'], deaths['deaths_female'])
+
+fig, ax = plt.subplots()
+ax.violinplot([male_deaths, female_deaths], showmedians=True)
+ax.set_ylabel('age at death')
+ax.set_xlabel('sex')
+
+ax.set_xticks([1, 2])
+ax.set_xticklabels(['male', 'female'])
+plt.show()
+```
+
+The violin plot shows the whole shape of each distribution, rather than the
+five numbers that a box plot reduces it to.
+
+Here that matters: both distributions are strongly left-skewed, with a thin
+tail of deaths at young ages, and the female distribution is both shifted
+upwards and more concentrated at the top.
 
 ## Connection to probability distributions
 
