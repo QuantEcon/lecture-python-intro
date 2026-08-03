@@ -328,6 +328,12 @@ We will cover
 We can histogram the income distribution we just constructed as follows
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Histogram of the income data
+    name: fig:income-hist
+---
 fig, ax = plt.subplots()
 ax.hist(x, bins=5, density=True, histtype='bar')
 ax.set_xlabel('income')
@@ -338,6 +344,12 @@ plt.show()
 Here is a histogram of the Ames house prices.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Histogram of house prices
+    name: fig:price-hist
+---
 fig, ax = plt.subplots()
 ax.hist(price, bins=50, density=True)
 ax.set_xlabel('sale price (US$)')
@@ -350,6 +362,12 @@ The long right tail that the skewness told us about is clearly visible.
 Let's compare this with the histogram of the log prices.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Histogram of log house prices
+    name: fig:log-price-hist
+---
 fig, ax = plt.subplots()
 ax.hist(log_price, bins=50, density=True)
 ax.set_xlabel('log of sale price')
@@ -362,6 +380,12 @@ The second histogram is far more symmetric, as the sample skewness led us to exp
 Here is the age at death data, which we found to have negative skewness.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Histogram of age at death
+    name: fig:age-hist
+---
 fig, ax = plt.subplots()
 ax.hist(age_at_death, bins=101, density=True)
 ax.set_xlabel('age at death')
@@ -375,6 +399,12 @@ Let's also compare men and women, using the sex-specific counts in the data
 set.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Age at death by sex
+    name: fig:age-hist-sex
+---
 fig, ax = plt.subplots()
 for sex in ('male', 'female'):
     ax.hist(deaths['age'], weights=deaths[f'deaths_{sex}'], 
@@ -422,6 +452,12 @@ x_amazon.iloc[0]
 Let's turn the return observations into an array and histogram it.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Histogram of Amazon monthly returns
+    name: fig:amazon-hist
+---
 fig, ax = plt.subplots()
 ax.hist(x_amazon, bins=20)
 ax.set_xlabel('monthly return (percent change)')
@@ -460,6 +496,12 @@ def plot_ecdf(sample, ax, **kwargs):
 Let's apply it to the house price data.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: ECDF of house prices
+    name: fig:price-ecdf
+---
 fig, ax = plt.subplots()
 plot_ecdf(price, ax)
 ax.set_xlabel('sale price (US$)')
@@ -477,6 +519,12 @@ Let's compare the log prices with the CDF of the normal distribution that has
 the same mean and standard deviation.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Log prices against a normal CDF
+    name: fig:log-price-ecdf
+---
 u = scipy.stats.norm(log_price.mean(), log_price.std())
 x_grid = np.linspace(log_price.min(), log_price.max(), 200)
 
@@ -504,6 +552,12 @@ histogram.
 Let's have a look at a KDE formed from the Amazon return data.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: KDE of Amazon monthly returns
+    name: fig:amazon-kde
+---
 fig, ax = plt.subplots()
 sns.kdeplot(x_amazon, ax=ax)
 ax.set_xlabel('monthly return (percent change)')
@@ -514,6 +568,12 @@ plt.show()
 The smoothness of the KDE is dependent on how we choose the bandwidth.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: KDE at three different bandwidths
+    name: fig:amazon-kde-bw
+---
 fig, ax = plt.subplots()
 sns.kdeplot(x_amazon, ax=ax, bw_adjust=0.1, alpha=0.5, label="bw=0.1")
 sns.kdeplot(x_amazon, ax=ax, bw_adjust=0.5, alpha=0.5, label="bw=0.5")
@@ -534,6 +594,12 @@ together.
 Here is the log sale price data, with the histogram faded into the background.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: KDE and histogram of log prices
+    name: fig:log-price-kde
+---
 fig, ax = plt.subplots()
 ax.hist(log_price, bins=50, density=True, alpha=0.25, color='C0')
 sns.kdeplot(log_price, ax=ax, color='C0', lw=2)
@@ -565,6 +631,12 @@ For example, let's compare house prices across houses with different numbers of
 bedrooms.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: House prices by number of bedrooms
+    name: fig:price-box-bedrooms
+---
 bedroom_counts = (1, 2, 3, 4, 5)
 groups = [price[houses['bedrooms'] == b] for b in bedroom_counts]
 
@@ -638,6 +710,12 @@ Floor area is clearly the better predictor.
 Another way to display an observed distribution is via a violin plot.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Violin plot of Amazon returns
+    name: fig:amazon-violin
+---
 fig, ax = plt.subplots()
 ax.violinplot(x_amazon)
 ax.set_ylabel('monthly return (percent change)')
@@ -658,6 +736,12 @@ x_costco = prices.pct_change()[1:] * 100
 ```
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Amazon and Costco monthly returns
+    name: fig:retailer-violin
+---
 fig, ax = plt.subplots()
 ax.violinplot([x_amazon['AMZN'], x_costco['COST']])
 ax.set_ylabel('monthly return (percent change)')
@@ -672,6 +756,12 @@ As a second comparison, let's return to the age at death data and separate men
 from women.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Age at death, male and female
+    name: fig:age-violin
+---
 male_deaths = np.repeat(deaths['age'], deaths['deaths_male'])
 female_deaths = np.repeat(deaths['age'], deaths['deaths_female'])
 
@@ -716,6 +806,12 @@ u = scipy.stats.norm(μ, σ)
 ```
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Amazon returns and a fitted normal
+    name: fig:amazon-normal-fit
+---
 x_grid = np.linspace(-50, 65, 200)
 fig, ax = plt.subplots()
 ax.plot(x_grid, u.pdf(x_grid))
@@ -737,6 +833,12 @@ Let's see this in action
 - then we histogram them and compare with the density.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Draws from the normal distribution
+    name: fig:normal-draws
+---
 μ, σ = 0, 1
 u = scipy.stats.norm(μ, σ)
 N = 2000  # Number of observations
@@ -769,6 +871,12 @@ We draw samples of increasing size from a fixed distribution and compare each
 ECDF with the CDF that generated it.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: ECDFs converge to the true CDF
+    name: fig:ecdf-convergence
+---
 u = scipy.stats.lognorm(s=0.5)
 x_grid = np.linspace(0, 5, 200)
 
@@ -820,6 +928,12 @@ Judged one at a time, these are perfectly good observations.
 But they are useless as a sample, as the next figure shows.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Repeated draws of a single value
+    name: fig:ecdf-degenerate
+---
 x = u.rvs(random_state=1234)         # a single draw
 
 fig, ax = plt.subplots()
