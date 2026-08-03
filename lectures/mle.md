@@ -153,6 +153,10 @@ Maximum likelihood estimation has two steps:
 2. Estimate the parameter values (e.g., estimate $\mu$ and $\sigma$ for the
    normal distribution)
 
+These are the same two steps discussed in {doc}`fitting_distributions`, which
+chooses parameters by the method of moments instead, and which also shows how
+to judge the resulting fit.
+
 One possible assumption for the wealth is that each
 $w_i$ is [log-normally distributed](https://en.wikipedia.org/wiki/Log-normal_distribution),
 with parameters $\mu \in (-\infty,\infty)$ and $\sigma \in (0,\infty)$.

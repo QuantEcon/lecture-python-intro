@@ -22,9 +22,14 @@ In data science applications, we are often interested in data on a specific vari
 
 In this lecture we give a quick introduction to probability distributions using Python.
 
-A companion lecture, {doc}`observed_distributions`, treats observed data --- sets
-of numbers that we measure or collect --- and its connection to the probability
+This lecture is the first of three.
+
+The second, {doc}`observed_distributions`, treats observed data --- sets of
+numbers that we measure or collect --- and its connection to the probability
 distributions studied here.
+
+The third, {doc}`fitting_distributions`, asks which probability distribution
+best describes a given data set.
 
 ```{code-cell} ipython3
 import matplotlib.pyplot as plt

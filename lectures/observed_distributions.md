@@ -28,6 +28,9 @@ collect.
 We discuss how to summarize and visualize such data, and how observed data
 connects back to probability distributions.
 
+A third lecture, {doc}`fitting_distributions`, then takes up the question of
+which probability distribution best describes a given data set.
+
 ```{code-cell} ipython3
 :tags: [hide-output]
 
@@ -795,6 +798,9 @@ For example, we might look at the returns from Amazon above and imagine that the
 Here we match a normal distribution to the Amazon monthly returns by setting the
 sample mean to the mean of the normal distribution and the sample variance equal
 to the variance.
+
+(This recipe is called the method of moments, and {doc}`fitting_distributions`
+develops it in full.)
 
 Then we plot the density and the histogram.
 
