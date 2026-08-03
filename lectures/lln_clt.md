@@ -295,7 +295,7 @@ as expected.
 
 Let's vary `n` to see how the distribution of the sample mean changes.
 
-We will use a [violin plot](https://intro.quantecon.org/prob_dist.html#violin-plots) to show the different distributions.
+We will use a {ref}`violin plot <violin_plots>` to show the different distributions.
 
 Each distribution in the violin plot represents the distribution of $X_n$ for some $n$, calculated by simulation.
 

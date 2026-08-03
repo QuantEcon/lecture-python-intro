@@ -20,21 +20,17 @@ kernelspec:
 
 In data science applications, we are often interested in data on a specific variable.
 
-In this lecture we give a quick introduction to data and probability distributions using Python.
+In this lecture we give a quick introduction to probability distributions using Python.
 
-```{code-cell} ipython3
-:tags: [hide-output]
-
-!pip install --upgrade yfinance  
-```
+A companion lecture, {doc}`observed_distributions`, treats observed data --- sets
+of numbers that we measure or collect --- and its connection to the probability
+distributions studied here.
 
 ```{code-cell} ipython3
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
-import yfinance as yf
 import scipy.stats
-import seaborn as sns
 ```
 
 To motivate what follows, let's start with a real example: the heights of adult men and women in the United States.
@@ -51,9 +47,8 @@ mystnb:
     name: fig:us-heights
 tags: [hide-input]
 ---
-# Data file is stored in this repo for now; switch to the QuantEcon/datasets
-# URL once that repo exists (see QuantEcon/meta#336).
-url = '_static/lecture_specific/prob_dist/us_adult_heights.csv'
+url = ('https://github.com/QuantEcon/data-lectures/raw/main/'
+       'lectures/us_adult_heights.csv')
 heights = pd.read_csv(url)
 male = heights[heights['sex'] == 'male']['height_cm']
 female = heights[heights['sex'] == 'female']['height_cm']
@@ -175,6 +170,66 @@ $$
 $$
 
 Variance is also called the *second central moment* of the distribution.
+
+The **standard deviation** of $X$ is the square root of the variance:
+
+$$
+\sigma = \sqrt{\mathbb{V}[X]}
+$$
+
+We often prefer the standard deviation to the variance because it is measured in the same units as $X$ itself.
+
+For example, if $X$ is a height in centimeters, then $\sigma$ is in centimeters, while the variance is in centimeters squared.
+
+This means that $\sigma$ can be read directly off the horizontal axis of a histogram of the data, as a measure of spread.
+
+Means and variances are special cases of moments.
+
+Writing $\mu = \mathbb{E}[X]$, the $k$-th **moment** of $X$ is $\mathbb{E}[X^k]$, while the $k$-th **central moment** is $\mathbb{E}[(X - \mu)^k]$.
+
+Thus the mean is the first moment and the variance is the second central moment.
+
+It is often convenient to work with **standardized moments**
+
+$$
+\mathbb{E} \left[ \left( \frac{X - \mu}{\sigma} \right)^k \right]
+$$
+
+which are unchanged when we shift $X$ or rescale it.
+
+(If $X$ is measured in centimeters, we obtain the same standardized moments after converting to inches.)
+
+The third standardized moment is called the **skewness**:
+
+$$
+S = \mathbb{E} \left[ \left( \frac{X - \mu}{\sigma} \right)^3 \right]
+$$
+
+Skewness measures asymmetry.
+
+Any distribution that is symmetric about its mean has zero skewness, while a distribution with a long right tail has positive skewness.
+
+The fourth standardized moment measures how much probability mass sits far out in the tails.
+
+For *every* normal distribution this quantity equals 3, regardless of $\mu$ and $\sigma$.
+
+Since the normal distribution is such a useful benchmark, it is common to subtract 3 and work with the **excess kurtosis**
+
+$$
+K = \mathbb{E} \left[ \left( \frac{X - \mu}{\sigma} \right)^4 \right] - 3
+$$
+
+so that $K = 0$ for the normal distribution.
+
+Positive excess kurtosis means more mass in the tails than the normal distribution --- extreme values are more likely.
+
+```{note}
+Some authors call the fourth standardized moment itself the "kurtosis", so that the normal distribution has kurtosis 3.
+
+We follow SciPy, whose `scipy.stats.kurtosis` returns the excess version by default.
+```
+
+We will use skewness and excess kurtosis in {doc}`observed_distributions` to help judge whether a given data set looks normally distributed.
 
 The **cumulative distribution function** (CDF) of $X$ is defined by
 
@@ -498,6 +553,22 @@ F(x) = \mathbb P\{X \leq x\}
         = \int_{-\infty}^x p(x) dx
 $$
 
+Skewness and excess kurtosis are defined exactly as in the discrete case.
+
+For the continuous distributions we study below, $F$ is strictly increasing, so it has an inverse $F^{-1}$, which is called the **quantile function**.
+
+Given $\tau \in (0,1)$, the value $q_\tau = F^{-1}(\tau)$ is called the $\tau$-th **quantile** of the distribution.
+
+It is the point such that $X$ falls below it with probability $\tau$.
+
+The 0.5 quantile is called the **median**, which is an alternative measure of the center of a distribution.
+
+The 0.25 and 0.75 quantiles are called the first and third **quartiles**, and the distance between them is the **interquartile range**, an alternative measure of spread.
+
+These alternatives are useful because, unlike the mean and the standard deviation, they are barely affected by a small number of extreme values.
+
+(We will see in {doc}`heavy_tails` that this robustness matters a great deal for some data sets.)
+
 
 #### Normal distribution
 
@@ -522,6 +593,24 @@ u = scipy.stats.norm(μ, σ)
 ```{code-cell} ipython3
 u.mean(), u.var()
 ```
+
+The `stats` method returns the skewness and excess kurtosis when we ask for moments `'sk'`:
+
+```{code-cell} ipython3
+u.stats(moments='sk')
+```
+
+Both are zero, as promised.
+
+(The skewness is zero because the density is symmetric about $\mu$.)
+
+Here are the median and the two quartiles, obtained via the `ppf` method (SciPy's name for the quantile function):
+
+```{code-cell} ipython3
+u.ppf(0.5), u.ppf(0.25), u.ppf(0.75)
+```
+
+The median equals the mean because the density is symmetric.
 
 Here's a plot of the density --- the famous "bell-shaped curve":
 
@@ -585,6 +674,20 @@ u = scipy.stats.lognorm(s=σ, scale=np.exp(μ))
 
 ```{code-cell} ipython3
 u.mean(), u.var()
+```
+
+The lognormal distribution provides a sharp contrast with the normal distribution in terms of higher moments:
+
+```{code-cell} ipython3
+u.stats(moments='sk')
+```
+
+The skewness is large and positive, reflecting the long right tail, and the excess kurtosis is enormous.
+
+The gap between the mean and the median is correspondingly large:
+
+```{code-cell} ipython3
+u.mean(), u.ppf(0.5)
 ```
 
 ```{code-cell} ipython3
@@ -796,260 +899,3 @@ ax.set_ylabel('CDF')
 plt.legend()
 plt.show()
 ```
-
-## Observed distributions
-
-
-Sometimes we refer to observed data or measurements as "distributions".
-
-For example, let's say we observe the income of 10 people over a year:
-
-```{code-cell} ipython3
-data = [['Hiroshi', 1200], 
-        ['Ako', 1210], 
-        ['Emi', 1400],
-        ['Daiki', 990],
-        ['Chiyo', 1530],
-        ['Taka', 1210],
-        ['Katsuhiko', 1240],
-        ['Daisuke', 1124],
-        ['Yoshi', 1330],
-        ['Rie', 1340]]
-
-df = pd.DataFrame(data, columns=['name', 'income'])
-df
-```
-
-In this situation, we might refer to the set of their incomes as the "income distribution."
-
-The terminology is confusing because this set is not a probability distribution
---- it's just a collection of numbers.
-
-However, as we will see, there are connections between observed distributions (i.e., sets of
-numbers like the income distribution above) and probability distributions.
-
-Below we explore some observed distributions.
-
-
-### Summary statistics
-
-Suppose we have an observed distribution with values $\{x_1, \ldots, x_n\}$
-
-The **sample mean** of this distribution is defined as
-
-$$
-\bar x = \frac{1}{n} \sum_{i=1}^n x_i
-$$
-
-The **sample variance** is defined as 
-
-$$
-\frac{1}{n} \sum_{i=1}^n (x_i - \bar x)^2
-$$
-
-For the income distribution given above, we can calculate these numbers via
-
-```{code-cell} ipython3
-x = df['income']
-x.mean(), x.var()
-```
-
-```{exercise}
-:label: prob_ex4
-
-If you try to check that the formulas given above for the sample mean and sample
-variance produce the same numbers, you will see that the variance isn't quite
-right.  This is because SciPy uses $1/(n-1)$ instead of $1/n$ as the term at the
-front of the variance. (Some books define the sample variance this way.)
-Confirm.
-```
-
-
-### Visualization
-
-Let's look at different ways that we can visualize one or more observed distributions.
-
-We will cover
-
-- histograms
-- kernel density estimates and
-- violin plots
-
-
-#### Histograms
-
-We can histogram the income distribution we just constructed as follows
-
-```{code-cell} ipython3
-fig, ax = plt.subplots()
-ax.hist(x, bins=5, density=True, histtype='bar')
-ax.set_xlabel('income')
-ax.set_ylabel('density')
-plt.show()
-```
-
-Let's look at a distribution from real data.
-
-In particular, we will look at the monthly return on Amazon shares between 2000/1/1 and 2024/1/1.
-
-The monthly return is calculated as the percent change in the share price over each month.
-
-So we will have one observation for each month.
-
-```{code-cell} ipython3
-:tags: [hide-output]
-
-df = yf.download('AMZN', '2000-1-1', '2024-1-1', interval='1mo')
-prices = df['Close']
-x_amazon = prices.pct_change()[1:] * 100
-x_amazon.head()
-```
-
-The first observation is the monthly return (percent change) over January 2000, which was
-
-```{code-cell} ipython3
-x_amazon.iloc[0]
-```
-
-Let's turn the return observations into an array and histogram it.
-
-```{code-cell} ipython3
-fig, ax = plt.subplots()
-ax.hist(x_amazon, bins=20)
-ax.set_xlabel('monthly return (percent change)')
-ax.set_ylabel('density')
-plt.show()
-```
-
-#### Kernel density estimates
-
-Kernel density estimates (KDE) provide a simple way to estimate and visualize the density of a distribution.
-
-If you are not familiar with KDEs, you can think of them as a smoothed
-histogram.
-
-Let's have a look at a KDE formed from the Amazon return data.
-
-```{code-cell} ipython3
-fig, ax = plt.subplots()
-sns.kdeplot(x_amazon, ax=ax)
-ax.set_xlabel('monthly return (percent change)')
-ax.set_ylabel('KDE')
-plt.show()
-```
-
-The smoothness of the KDE is dependent on how we choose the bandwidth.
-
-```{code-cell} ipython3
-fig, ax = plt.subplots()
-sns.kdeplot(x_amazon, ax=ax, bw_adjust=0.1, alpha=0.5, label="bw=0.1")
-sns.kdeplot(x_amazon, ax=ax, bw_adjust=0.5, alpha=0.5, label="bw=0.5")
-sns.kdeplot(x_amazon, ax=ax, bw_adjust=1, alpha=0.5, label="bw=1")
-ax.set_xlabel('monthly return (percent change)')
-ax.set_ylabel('KDE')
-plt.legend()
-plt.show()
-```
-
-When we use a larger bandwidth, the KDE is smoother.
-
-A suitable bandwidth is not too smooth (underfitting) or too wiggly (overfitting).
-
-
-#### Violin plots
-
-
-Another way to display an observed distribution is via a violin plot.
-
-```{code-cell} ipython3
-fig, ax = plt.subplots()
-ax.violinplot(x_amazon)
-ax.set_ylabel('monthly return (percent change)')
-ax.set_xlabel('KDE')
-plt.show()
-```
-
-Violin plots are particularly useful when we want to compare different distributions.
-
-For example, let's compare the monthly returns on Amazon shares with the monthly return on Costco shares.
-
-```{code-cell} ipython3
-:tags: [hide-output]
-
-df = yf.download('COST', '2000-1-1', '2024-1-1', interval='1mo')
-prices = df['Close']
-x_costco = prices.pct_change()[1:] * 100
-```
-
-```{code-cell} ipython3
-fig, ax = plt.subplots()
-ax.violinplot([x_amazon['AMZN'], x_costco['COST']])
-ax.set_ylabel('monthly return (percent change)')
-ax.set_xlabel('retailers')
-
-ax.set_xticks([1, 2])
-ax.set_xticklabels(['Amazon', 'Costco'])
-plt.show()
-```
-
-### Connection to probability distributions
-
-Let's discuss the connection between observed distributions and probability distributions.
-
-Sometimes it's helpful to imagine that an observed distribution is generated by a particular probability distribution.
-
-For example, we might look at the returns from Amazon above and imagine that they were generated by a normal distribution.
-
-(Even though this is not true, it *might* be a helpful way to think about the data.)
-
-Here we match a normal distribution to the Amazon monthly returns by setting the
-sample mean to the mean of the normal distribution and the sample variance equal
-to the variance.
-
-Then we plot the density and the histogram.
-
-```{code-cell} ipython3
-μ = x_amazon.mean()
-σ_squared = x_amazon.var()
-σ = np.sqrt(σ_squared)
-u = scipy.stats.norm(μ, σ)
-```
-
-```{code-cell} ipython3
-x_grid = np.linspace(-50, 65, 200)
-fig, ax = plt.subplots()
-ax.plot(x_grid, u.pdf(x_grid))
-ax.hist(x_amazon, density=True, bins=40)
-ax.set_xlabel('monthly return (percent change)')
-ax.set_ylabel('density')
-plt.show()
-```
-
-The match between the histogram and the density is not bad but also not very good.
-
-One reason is that the normal distribution is not really a good fit for this observed data --- we will discuss this point again when we talk about {ref}`heavy tailed distributions<heavy_tail>`.
-
-Of course, if the data really *is* generated by the normal distribution, then the fit will be better.
-
-Let's see this in action
-
-- first we generate random draws from the normal distribution
-- then we histogram them and compare with the density.
-
-```{code-cell} ipython3
-μ, σ = 0, 1
-u = scipy.stats.norm(μ, σ)
-N = 2000  # Number of observations
-x_draws = u.rvs(N)
-x_grid = np.linspace(-4, 4, 200)
-fig, ax = plt.subplots()
-ax.plot(x_grid, u.pdf(x_grid))
-ax.hist(x_draws, density=True, bins=40)
-ax.set_xlabel('x')
-ax.set_ylabel('density')
-plt.show()
-```
-
-Note that if you keep increasing $N$, which is the number of observations, the fit will get better and better.
-
-This convergence is a version of the "law of large numbers", which we will discuss {ref}`later<lln_mr>`.
