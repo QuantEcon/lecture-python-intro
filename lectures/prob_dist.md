@@ -127,15 +127,11 @@ mystnb:
     name: fig:japan-age
 tags: [hide-input]
 ---
-# Data file is stored in this repo for now; switch to the QuantEcon/datasets
-# URL once that repo exists (see QuantEcon/meta#336).
-url = '_static/lecture_specific/prob_dist/japan_population_by_age.xlsx'
-# Column 14 holds the Japanese-national population (in thousands) by single year
-# of age; rows run from age 0 to "100 and over".
-data = pd.read_excel(url, sheet_name='第１表', header=None, skiprows=10,
-                     usecols=[14], names=['population'], nrows=101)
-population = data['population'].to_numpy()
-age = np.arange(101)     # 0, 1, ..., 100, where 100 means "100 and over"
+url = ('https://github.com/QuantEcon/data-lectures/raw/main/'
+       'lectures/japan_population_by_age.csv')
+data = pd.read_csv(url)
+age = data['age']                          # 0, 1, ..., 100 and over
+population = data['japanese_population']   # in thousands
 
 p = population / population.sum()
 
