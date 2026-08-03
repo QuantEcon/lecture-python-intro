@@ -30,13 +30,25 @@ in applied work:
 
 The question has two parts.
 
-First, we must choose a **family** --- normal, lognormal, gamma, Poisson, and
-so on.
+First, we must choose a **parametric class** --- a set of distributions indexed
+by a small number of parameters.
 
-Second, having chosen a family, we must choose the **parameters** that make it
-match our data as closely as possible.
+For example, the normal distributions form a parametric class, indexed by the
+mean $\mu$ and the standard deviation $\sigma$.
 
-We take the second part first, since it turns out to be easier.
+The Poisson distributions form another, indexed by the single parameter
+$\lambda$.
+
+Second, having chosen a class, we must choose the **parameters** within it that
+make the fit as close as possible.
+
+This lecture is mainly about the first part.
+
+For the second we use just one technique, called the method of moments, leaving
+a fuller treatment to {doc}`mle`.
+
+Even so, we start with the parameters, since we have to be able to fit a class
+before we can judge it.
 
 ```{code-cell} ipython3
 :tags: [hide-output]
@@ -50,7 +62,6 @@ import pandas as pd
 import numpy as np
 import yfinance as yf
 import scipy.stats
-import statsmodels.api as sm
 
 np.set_printoptions(legacy='1.25')   # print scalars as plain numbers
 ```
@@ -67,12 +78,12 @@ price = houses['price']
 
 ## The method of moments
 
-Suppose we have settled on a family of distributions and now want to choose its
+Suppose we have settled on a parametric class and now want to choose its
 parameters.
 
 One simple and general strategy is the **method of moments**.
 
-If the family has $k$ parameters, we
+If the class has $k$ parameters, we
 
 1. compute the first $k$ sample moments of the data,
 2. write down the corresponding population moments as functions of the
@@ -89,7 +100,7 @@ The normal distribution has two parameters, so we used two moments: we set
 $\mu$ equal to the sample mean and $\sigma$ equal to the sample standard
 deviation.
 
-Let's apply the same idea to the house price data, using two families that live
+Let's apply the same idea to the house price data, using two classes that live
 on $(0, \infty)$ and hence respect the fact that prices are positive.
 
 The **lognormal** distribution has parameters $\mu$ and $\sigma$, with
@@ -155,6 +166,12 @@ u.var(), price.var()
 Now let's plot the three fitted densities against a histogram of the data.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Three fitted densities for house prices
+    name: fig:price-densities
+---
 fits = {'normal': fit_normal(price),
         'lognormal': fit_lognormal(price),
         'gamma': fit_gamma(price)}
@@ -190,8 +207,27 @@ $$
 x_{(1)} \leq x_{(2)} \leq \cdots \leq x_{(n)}
 $$
 
-and note that $x_{(i)}$ is a natural estimate of the quantile of order
-$(i - 0.5)/n$.
+Which quantile does $x_{(i)}$ estimate?
+
+Recall from {doc}`observed_distributions` that the ECDF steps up by $1/n$ at
+each observation.
+
+At $x_{(i)}$ it steps up from $(i-1)/n$ to $i/n$.
+
+In other words, a fraction $(i-1)/n$ of the observations lie strictly below
+$x_{(i)}$, while a fraction $i/n$ lie at or below it.
+
+So the data do not single out one order for $x_{(i)}$ to estimate --- they
+supply a small interval of them.
+
+The usual compromise is to split the difference and treat $x_{(i)}$ as an
+estimate of the quantile of order $(i - 0.5)/n$.
+
+This choice also avoids a problem at the top of the sample.
+
+Had we used $i/n$, the largest observation would be matched with the quantile
+of order $n/n = 1$, which is $+\infty$ for the normal, the lognormal and the
+other unbounded distributions we work with.
 
 If the fitted distribution is a good description of the data, then $x_{(i)}$
 should be close to the corresponding quantile of that distribution, which is
@@ -199,6 +235,13 @@ should be close to the corresponding quantile of that distribution, which is
 $$
 F^{-1} \left( \frac{i - 0.5}{n} \right)
 $$
+
+```{note}
+Other conventions are in use, such as $i/(n+1)$ and $(i - 0.375)/(n + 0.25)$.
+
+They are called *plotting positions*, and the choice between them affects only
+the two ends of the figure, by an amount that shrinks as $n$ grows.
+```
 
 So we plot the fitted quantiles on the horizontal axis and the sample values on
 the vertical axis.
@@ -213,7 +256,7 @@ def qq_plot(sample, u, ax, **kwargs):
     p = (np.arange(1, n+1) - 0.5) / n
     ax.plot(u.ppf(p), x_sorted, '.', ms=3, alpha=0.6, **kwargs)
     lo, hi = u.ppf(p[0]), u.ppf(p[-1])
-    ax.plot([lo, hi], [lo, hi], 'k--', lw=1)
+    ax.plot([lo, hi], [lo, hi], 'k--', lw=2)
     ax.set_xlabel('fitted quantiles')
     ax.set_ylabel('sample quantiles')
 ```
@@ -224,6 +267,12 @@ In {doc}`observed_distributions` we found that the heights of US adult women
 have sample skewness and excess kurtosis close to zero.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Female heights against a fitted normal
+    name: fig:qq-heights
+---
 url = ('https://github.com/QuantEcon/data-lectures/raw/main/'
        'lectures/us_adult_heights.csv')
 heights = pd.read_csv(url)
@@ -231,7 +280,6 @@ female = heights[heights['sex'] == 'female']['height_cm']
 
 fig, ax = plt.subplots()
 qq_plot(female, fit_normal(female), ax)
-ax.set_title('female heights against a fitted normal')
 plt.show()
 ```
 
@@ -242,9 +290,14 @@ noisy.
 Now let's try the house prices against a fitted normal.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: House prices against a fitted normal
+    name: fig:qq-prices
+---
 fig, ax = plt.subplots()
 qq_plot(price, fit_normal(price), ax)
-ax.set_title('house prices against a fitted normal')
 plt.show()
 ```
 
@@ -265,30 +318,30 @@ Let's check the second case by taking logs, which we know makes the house price
 data roughly symmetric.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Log house prices against a normal
+    name: fig:qq-log-prices
+---
 log_price = np.log(price)
 
 fig, ax = plt.subplots()
 qq_plot(log_price, fit_normal(log_price), ax)
-ax.set_title('log house prices against a fitted normal')
 plt.show()
 ```
 
 The curvature is gone, confirming what the sample skewness told us in
 {doc}`observed_distributions`.
 
+```{note}
 The `statsmodels` package provides `sm.qqplot`, which produces such figures in
-one line.
+one line, comparing the data with a normal distribution by default.
 
-By default it compares the data with a normal distribution, which is by far the
-most common use.
-
-```{code-cell} ipython3
-sm.qqplot(log_price, line='45', fit=True)
-plt.show()
+We have built our own instead, partly because the construction is worth
+understanding and partly because our version compares the data with any
+distribution we choose, as we do below.
 ```
-
-The axes differ from ours because `statsmodels` standardizes the data, but the
-message is the same.
 
 
 ## The Kolmogorov-Smirnov statistic
@@ -325,6 +378,12 @@ Let's see what it measures, by drawing the ECDF and the fitted CDF for the log
 prices together with the gap that attains the maximum.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Largest gap between ECDF and CDF
+    name: fig:ks-gap
+---
 u = fit_normal(log_price)
 x_sorted = np.sort(log_price)
 n = len(x_sorted)
@@ -335,9 +394,9 @@ gaps = np.maximum(np.arange(1, n+1) / n - F, F - np.arange(0, n) / n)
 i = gaps.argmax()
 
 fig, ax = plt.subplots()
-ax.step(x_sorted, np.arange(1, n+1) / n, where='post', label='ECDF')
+ax.step(x_sorted, np.arange(1, n+1) / n, where='post', lw=2, label='ECDF')
 x_grid = np.linspace(x_sorted[0], x_sorted[-1], 200)
-ax.plot(x_grid, u.cdf(x_grid), 'k--', alpha=0.7, label='fitted normal CDF')
+ax.plot(x_grid, u.cdf(x_grid), 'k--', lw=2, alpha=0.7, label='fitted normal CDF')
 ax.vlines(x_sorted[i], F[i], (i+1) / n, color='C3', lw=3, label='largest gap')
 ax.set_xlabel('log of sale price')
 ax.set_ylabel('probability')
@@ -367,14 +426,15 @@ specified in advance, whereas we chose its parameters using the same data.
 ```
 
 
-## Choosing between families
+(choosing_class)=
+## Choosing a parametric class
 
-We now have a way to choose between candidate families.
+We now have a way to choose between candidate classes.
 
-For each family, we fit the parameters by the method of moments and then
+For each class, we fit the parameters by the method of moments and then
 compute $D$.
 
-The family with the smallest $D$ is the one whose CDF stays closest to the data.
+The class with the smallest $D$ is the one whose CDF stays closest to the data.
 
 Let's apply this to the house prices.
 
@@ -393,6 +453,12 @@ Here are the three fitted CDFs against the ECDF of the data, which shows the
 same ranking.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Fitted CDFs against the ECDF
+    name: fig:price-cdfs
+---
 fig, ax = plt.subplots()
 ax.step(np.sort(price), np.arange(1, len(price)+1) / len(price),
         where='post', color='k', lw=2, label='ECDF')
@@ -407,13 +473,13 @@ plt.show()
 
 Three warnings are in order.
 
-First, the comparison is only fair when the families have the same number of
+First, the comparison is only fair when the classes have the same number of
 parameters, as they do here.
 
-A family with more parameters can bend itself closer to any data set, and $D$
+A class with more parameters can bend itself closer to any data set, and $D$
 does not charge it for the privilege.
 
-In particular, if one family is a special case of another, the larger family
+In particular, if one class is a special case of another, the larger class
 can never do worse.
 
 Second, $D$ is most sensitive in the middle of the distribution, where the CDF
@@ -424,7 +490,7 @@ finance, then a small $D$ can be misleading.
 
 Third, the winner is only the best of the candidates we happened to try.
 
-Nothing here tells us that the winning family is a good description of the data
+Nothing here tells us that the winning class is a good description of the data
 --- only that it is better than the alternatives.
 
 We take up that point below.
@@ -480,6 +546,12 @@ Let's fit the distribution and compare the fitted probabilities with the
 observed frequencies.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Goals per match and fitted Poisson
+    name: fig:goals-poisson
+---
 u = scipy.stats.poisson(goals.mean())
 
 counts = goals.value_counts().sort_index()
@@ -505,14 +577,22 @@ course of a match, and largely independently of each other.
 Those are exactly the conditions under which the Poisson distribution arises.
 
 
-## When nothing fits
+## When the normal fails
 
-The methods above always return an answer.
+When we {ref}`compared classes <choosing_class>` above, we took a list of
+candidate classes, fitted each one to the data, and kept the one with the
+smallest KS distance.
 
-It is important to remember that the answer can be bad.
+Such a procedure always produces a winner.
 
-Let's return to the monthly returns on Amazon shares, which we studied in
-{doc}`observed_distributions`.
+But it is important to remember that the winner can still be a poor description
+of the data, since it is only the best of the candidates we happened to try.
+
+The remedy is to look at the fit as well as ranking it, and, when it fails, to
+let the way it fails suggest a better candidate.
+
+Let's see how this works, returning to the monthly returns on Amazon shares that
+we studied in {doc}`observed_distributions`.
 
 ```{code-cell} ipython3
 :tags: [hide-output]
@@ -522,15 +602,20 @@ prices = data['Close']['AMZN']
 returns = prices.pct_change().dropna() * 100
 ```
 
-Returns take both signs, so of our continuous families only the normal is
+Returns take both signs, so of our continuous classes only the normal is
 available.
 
 Let's look at the Q-Q plot.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Amazon returns against a fitted normal
+    name: fig:qq-returns
+---
 fig, ax = plt.subplots()
 qq_plot(returns, fit_normal(returns), ax)
-ax.set_title('Amazon monthly returns against a fitted normal')
 plt.show()
 ```
 
@@ -571,8 +656,94 @@ returns cares about, since they contain the large losses.
 The lesson is that a single summary number is never a substitute for looking at
 the data.
 
-Distributions with heavier tails than the normal are the subject of
-{doc}`heavy_tails`.
+### A heavier-tailed candidate
+
+The Q-Q plot did more than tell us that the normal distribution fails.
+
+It told us *how* it fails: the data have heavier tails than the fitted normal.
+
+That points to a remedy, which is to try a class with heavier tails.
+
+One such class is the **Student's t distributions**, which are symmetric and
+bell-shaped like the normal but carry an additional parameter $\nu > 0$, called
+the *degrees of freedom*, governing the weight in the tails.
+
+Small values of $\nu$ produce heavy tails, and as $\nu \to \infty$ the
+distribution converges to the normal.
+
+Shifting and scaling gives us a three-parameter class, so the method of moments
+calls for three moments.
+
+The first two are the mean and the variance, as before.
+
+The third moment is of no use here, because every member of the class is
+symmetric and hence has zero skewness, whatever $\nu$ may be.
+
+So we use the fourth instead, exploiting the fact that a member of this class
+has excess kurtosis $6/(\nu - 4)$ when $\nu > 4$.
+
+Matching it to the sample excess kurtosis $\hat K$ gives
+
+$$
+\hat \nu = 4 + \frac{6}{\hat K}
+$$
+
+and the variance $\nu \sigma^2 / (\nu - 2)$ then pins down the scale.
+
+```{code-cell} ipython3
+def fit_t(sample):
+    m, s = sample.mean(), sample.std()
+    ν = 4 + 6 / scipy.stats.kurtosis(sample)
+    return scipy.stats.t(df=ν, loc=m, scale=s * np.sqrt((ν - 2) / ν))
+
+u = fit_t(returns)
+u.kwds['df']
+```
+
+Let's see whether it does better.
+
+```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Amazon returns against a fitted t
+    name: fig:qq-returns-t
+---
+fig, ax = plt.subplots()
+qq_plot(returns, u, ax)
+plt.show()
+```
+
+The systematic S-shape is gone.
+
+Apart from a handful of the most extreme observations, where the fitted
+quantiles now overshoot slightly, the points sit close to the line.
+
+The KS distance falls by about 40% as well.
+
+```{code-cell} ipython3
+ks_statistic(returns, u)
+```
+
+So it is not true that nothing fits these data --- we simply had not yet tried a
+class that allows for heavy tails.
+
+```{note}
+We should not put too much weight on the fitted value of $\nu$.
+
+Our estimate of it came from the sample kurtosis, which is a fourth moment, and
+higher moments are estimated poorly precisely when the tails are heavy.
+
+Fitting this distribution by maximum likelihood instead, as we do in
+{doc}`mle`, gives $\nu \approx 3.6$ rather than $5.8$, and a smaller KS distance
+again.
+
+The method of moments is simple and general, but it is not always the best use
+of the data.
+```
+
+Distributions with heavy tails, and the ways in which they change how we think
+about risk, are the subject of {doc}`heavy_tails`.
 
 
 ## Exercises
@@ -619,7 +790,6 @@ u = scipy.stats.expon(scale=gaps.mean())
 
 fig, ax = plt.subplots()
 qq_plot(gaps, u, ax)
-ax.set_title('time between earthquakes against a fitted exponential')
 plt.show()
 ```
 
@@ -688,7 +858,6 @@ age_at_death = np.repeat(deaths['age'], deaths['deaths_total'])
 
 fig, ax = plt.subplots()
 qq_plot(age_at_death, fit_normal(age_at_death), ax)
-ax.set_title('age at death against a fitted normal')
 plt.show()
 ```
 
