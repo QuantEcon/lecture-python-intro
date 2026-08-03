@@ -752,4 +752,106 @@ plt.show()
 
 Note that if you keep increasing $N$, which is the number of observations, the fit will get better and better.
 
-This convergence is a version of the "law of large numbers", which we will discuss {ref}`later<lln_mr>`.
+We investigate this convergence in the next section.
+
+
+## Larger samples
+
+Throughout this lecture we have used observed data to say something about an
+underlying distribution.
+
+This only works if a larger sample tells us more.
+
+Let's check that it does, using the ECDF, since it estimates the CDF without
+requiring us to choose a bin width or a bandwidth.
+
+We draw samples of increasing size from a fixed distribution and compare each
+ECDF with the CDF that generated it.
+
+```{code-cell} ipython3
+u = scipy.stats.lognorm(s=0.5)
+x_grid = np.linspace(0, 5, 200)
+
+fig, ax = plt.subplots()
+for n in (10, 100, 1000):
+    plot_ecdf(u.rvs(n, random_state=1234), ax, alpha=0.7, label=f'$n = {n}$')
+ax.plot(x_grid, u.cdf(x_grid), 'k--', lw=2, label='true CDF')
+ax.set_xlabel('x')
+ax.set_ylabel('probability')
+ax.legend()
+plt.show()
+```
+
+The ECDF is ragged when $n = 10$ and almost indistinguishable from the true CDF
+by the time $n = 1000$.
+
+The sample moments behave the same way.
+
+```{code-cell} ipython3
+for n in (10, 100, 1000, 1_000_000):
+    x_draws = u.rvs(n, random_state=1234)
+    print(f'n = {n:>9,}:  sample mean = {x_draws.mean():.4f}')
+print(f'{"":16}population mean = {u.mean():.4f}')
+```
+
+This convergence is a version of the *law of large numbers*, which we discuss
+in {doc}`lln_clt`.
+
+
+### The role of independence
+
+The convergence above is not automatic.
+
+It depends on a property of the sample that is easy to overlook, because
+`rvs` supplies it silently: the draws it returns are **independent**.
+
+To see why this matters, suppose we take a single draw $X$ from our
+distribution and then set
+
+$$
+X_i = X
+\qquad \text{for } i = 1, \ldots, n
+$$
+
+Every $X_i$ now has exactly the right distribution.
+
+Judged one at a time, these are perfectly good observations.
+
+But they are useless as a sample, as the next figure shows.
+
+```{code-cell} ipython3
+x = u.rvs(random_state=1234)         # a single draw
+
+fig, ax = plt.subplots()
+for n in (10, 100, 1000):
+    x_draws = np.full(n, x)          # repeated n times
+    plot_ecdf(x_draws, ax, alpha=0.7, label=f'$n = {n}$')
+ax.plot(x_grid, u.cdf(x_grid), 'k--', lw=2, label='true CDF')
+ax.set_xlabel('x')
+ax.set_ylabel('probability')
+ax.legend()
+plt.show()
+```
+
+The three ECDFs lie exactly on top of one another: each is a single step at
+$X$, and increasing $n$ changes nothing.
+
+The sample never approaches the distribution it came from, no matter how large
+we make it.
+
+The reason is that the observations after the first one carry no information we
+did not already have.
+
+```{note}
+Independence is a clean sufficient condition rather than a necessary one.
+
+Many dependent samples work perfectly well --- the monthly returns we
+histogrammed above are certainly not independent, since volatile months tend to
+follow volatile months.
+
+What matters is that new observations keep bringing new information, which the
+example above destroys entirely.
+
+The general question of what a sample can tell us about its distribution is
+taken up in {doc}`lln_clt`.
+```
