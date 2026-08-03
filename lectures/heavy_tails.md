@@ -650,11 +650,15 @@ We will use this idea [below](https://intro.quantecon.org/heavy_tails.html#heavy
 
 +++
 
-#### Q-Q Plots
+#### Q-Q plots
 
-We can also use a [qq plot](https://en.wikipedia.org/wiki/Q%E2%80%93Q_plot) to do a visual comparison between two probability distributions. 
+Another visual comparison is provided by the {ref}`Q-Q plot <qq_plots>`, which we introduced in {doc}`fitting_distributions`.
 
-The [statsmodels](https://www.statsmodels.org/stable/index.html) package provides a convenient [qqplot](https://www.statsmodels.org/stable/generated/statsmodels.graphics.gofplots.qqplot.html) function that, by default, compares sample data to the quintiles of the normal distribution.
+There we compared a data set with a distribution fitted to it, and read the departures from the 45 degree line as a diagnosis of how the fit failed.
+
+Here we do the same with the normal distribution as the reference, since our interest is in how far these distributions depart from it.
+
+The [statsmodels](https://www.statsmodels.org/stable/index.html) package provides a convenient [qqplot](https://www.statsmodels.org/stable/generated/statsmodels.graphics.gofplots.qqplot.html) function that, by default, compares sample data with the quantiles of the normal distribution.
 
 If the data is drawn from a normal distribution, the plot would look like:
 

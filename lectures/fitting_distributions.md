@@ -196,6 +196,7 @@ The other two look plausible.
 To choose between them we need something sharper than a glance at a figure.
 
 
+(qq_plots)=
 ## Q-Q plots
 
 A **Q-Q plot** (short for quantile-quantile plot) compares two distributions by
