@@ -79,7 +79,7 @@ In the present context, the  phrase "hard currency" means that the countries wer
 Under a gold or silver standard, some money also consisted of "warehouse certificates" that represented paper claims on gold or silver coins. Bank notes issued by the government or private banks can be viewed as examples of such "warehouse certificates".
 ```
 
-Let us bring the data into pandas from a spreadsheet that is [hosted on github](https://github.com/QuantEcon/data-lectures/blob/main/CATALOG.md).
+Let us bring the data into pandas from a spreadsheet that is [hosted on GitHub](https://github.com/QuantEcon/data-lectures/blob/main/CATALOG.md).
 
 ```{code-cell} ipython3
 # Import data and clean up the index
