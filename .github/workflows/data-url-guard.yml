@@ -16,6 +16,11 @@ on:
 jobs:
   data-url-guard:
     runs-on: ubuntu-latest
+    # This job greps a checkout and writes nothing. The repo default is
+    # `write`, so without this it would receive a token that can also approve
+    # pull request reviews.
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v7
       - name: No data-lectures read on the LFS media host
