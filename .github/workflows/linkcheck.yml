@@ -32,10 +32,19 @@ jobs:
           mkdir -p _site
           curl -fsSL "${{ steps.release.outputs.asset-url }}" | tar -xzf - -C _site
       - name: AI-Powered Link Checker
-        uses: QuantEcon/action-link-checker@main
+        uses: QuantEcon/action-link-checker@v1
         with:
           html-path: '_site'
           fail-on-broken: 'false'
           silent-codes: '403,503'
           ai-suggestions: 'true'
           create-issue: 'true'
+          # Known false positives. The first three mirror the linkcheck_ignore
+          # list in lectures/_config.yml, which Sphinx reads and this checker
+          # cannot see; keep the two in step. FRED throttles datacenter IP
+          # ranges, so it times out from a runner while serving readers fine.
+          ignore-patterns: |
+            https://doi\.org/https://doi\.org/10\.2307/1235116
+            https://math\.stackexchange\.com/
+            https://stackoverflow\.com/
+            https://fred\.stlouisfed\.org
