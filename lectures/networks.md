@@ -18,7 +18,6 @@ kernelspec:
 
 !pip install quantecon
 !pip install quantecon-book-networks==1.6
-!pip install pandas-datareader
 ```
 
 ## Outline
