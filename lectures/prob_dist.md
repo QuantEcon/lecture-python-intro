@@ -22,9 +22,14 @@ In data science applications, we are often interested in data on a specific vari
 
 In this lecture we give a quick introduction to probability distributions using Python.
 
-A companion lecture, {doc}`observed_distributions`, treats observed data --- sets
-of numbers that we measure or collect --- and its connection to the probability
+This lecture is the first of three.
+
+The second, {doc}`observed_distributions`, treats observed data --- sets of
+numbers that we measure or collect --- and its connection to the probability
 distributions studied here.
+
+The third, {doc}`fitting_distributions`, asks which probability distribution
+best describes a given data set.
 
 ```{code-cell} ipython3
 import matplotlib.pyplot as plt
@@ -122,15 +127,11 @@ mystnb:
     name: fig:japan-age
 tags: [hide-input]
 ---
-# Data file is stored in this repo for now; switch to the QuantEcon/datasets
-# URL once that repo exists (see QuantEcon/meta#336).
-url = '_static/lecture_specific/prob_dist/japan_population_by_age.xlsx'
-# Column 14 holds the Japanese-national population (in thousands) by single year
-# of age; rows run from age 0 to "100 and over".
-data = pd.read_excel(url, sheet_name='第１表', header=None, skiprows=10,
-                     usecols=[14], names=['population'], nrows=101)
-population = data['population'].to_numpy()
-age = np.arange(101)     # 0, 1, ..., 100, where 100 means "100 and over"
+url = ('https://github.com/QuantEcon/data-lectures/raw/main/'
+       'lectures/japan_population_by_age.csv')
+data = pd.read_csv(url)
+age = data['age']                          # 0, 1, ..., 100 and over
+population = data['japanese_population']   # in thousands
 
 p = population / population.sum()
 
@@ -294,6 +295,12 @@ u.pmf(2)
 Here's a plot of the probability mass function:
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: PMF of the uniform distribution
+    name: fig:uniform-pmf
+---
 fig, ax = plt.subplots()
 S = np.arange(1, n+1)
 ax.plot(S, u.pmf(S), linestyle='', marker='o', alpha=0.8, ms=4)
@@ -307,6 +314,12 @@ plt.show()
 Here's a plot of the CDF:
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: CDF of the uniform distribution
+    name: fig:uniform-cdf
+---
 fig, ax = plt.subplots()
 S = np.arange(1, n+1)
 ax.step(S, u.cdf(S))
@@ -410,6 +423,12 @@ u.pmf(1)
 ```
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: PMF of the binomial distribution
+    name: fig:binomial-pmf
+---
 fig, ax = plt.subplots()
 S = np.arange(1, n+1)
 ax.plot(S, u.pmf(S), linestyle='', marker='o', alpha=0.8, ms=4)
@@ -423,6 +442,12 @@ plt.show()
 Here's the CDF:
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: CDF of the binomial distribution
+    name: fig:binomial-cdf
+---
 fig, ax = plt.subplots()
 S = np.arange(1, n+1)
 ax.step(S, u.cdf(S))
@@ -491,6 +516,12 @@ u.mean(), u.var()
 Here's part of the PMF:
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: PMF of the geometric distribution
+    name: fig:geometric-pmf
+---
 fig, ax = plt.subplots()
 n = 20
 S = np.arange(n)
@@ -529,6 +560,12 @@ u.pmf(1)
 ```
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: PMF of the Poisson distribution
+    name: fig:poisson-pmf
+---
 fig, ax = plt.subplots()
 S = np.arange(1, n+1)
 ax.plot(S, u.pmf(S), linestyle='', marker='o', alpha=0.8, ms=4)
@@ -639,6 +676,12 @@ The median equals the mean because the density is symmetric.
 Here's a plot of the density --- the famous "bell-shaped curve":
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Densities of the normal distribution
+    name: fig:normal-pdf
+---
 μ_vals = [-1, 0, 1]
 σ_vals = [0.4, 1, 1.6]
 fig, ax = plt.subplots()
@@ -658,6 +701,12 @@ plt.show()
 Here's a plot of the CDF:
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: CDFs of the normal distribution
+    name: fig:normal-cdf
+---
 fig, ax = plt.subplots()
 for μ, σ in zip(μ_vals, σ_vals):
     u = scipy.stats.norm(μ, σ)
@@ -715,6 +764,12 @@ u.mean(), u.ppf(0.5)
 ```
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Densities of the lognormal distribution
+    name: fig:lognormal-pdf
+---
 μ_vals = [-1, 0, 1]
 σ_vals = [0.25, 0.5, 1]
 x_grid = np.linspace(0, 3, 200)
@@ -732,15 +787,19 @@ plt.show()
 ```
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: CDFs of the lognormal distribution
+    name: fig:lognormal-cdf
+---
 fig, ax = plt.subplots()
-μ = 1
-for σ in σ_vals:
-    u = scipy.stats.norm(μ, σ)
+for μ, σ in zip(μ_vals, σ_vals):
+    u = scipy.stats.lognorm(σ, scale=np.exp(μ))
     ax.plot(x_grid, u.cdf(x_grid),
     alpha=0.5, lw=2,
     label=rf'$\mu={μ}, \sigma={σ}$')
     ax.set_ylim(0, 1)
-    ax.set_xlim(0, 3)
 ax.set_xlabel('x')
 ax.set_ylabel('CDF')
 plt.legend()
@@ -774,6 +833,12 @@ u.mean(), u.var()
 ```
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Densities of the exponential distribution
+    name: fig:exponential-pdf
+---
 fig, ax = plt.subplots()
 λ_vals = [0.5, 1, 2]
 x_grid = np.linspace(0, 6, 200)
@@ -790,6 +855,12 @@ plt.show()
 ```
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: CDFs of the exponential distribution
+    name: fig:exponential-cdf
+---
 fig, ax = plt.subplots()
 for λ in λ_vals:
     u = scipy.stats.expon(scale=1/λ)
@@ -834,6 +905,12 @@ u.mean(), u.var()
 ```
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Densities of the beta distribution
+    name: fig:beta-pdf
+---
 α_vals = [0.5, 1, 5, 25, 3]
 β_vals = [3, 1, 10, 20, 0.5]
 x_grid = np.linspace(0, 1, 200)
@@ -851,6 +928,12 @@ plt.show()
 ```
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: CDFs of the beta distribution
+    name: fig:beta-cdf
+---
 fig, ax = plt.subplots()
 for α, β in zip(α_vals, β_vals):
     u = scipy.stats.beta(α, β)
@@ -894,6 +977,12 @@ u.mean(), u.var()
 ```
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Densities of the gamma distribution
+    name: fig:gamma-pdf
+---
 α_vals = [1, 3, 5, 10]
 β_vals = [3, 5, 3, 3]
 x_grid = np.linspace(0, 7, 200)
@@ -911,6 +1000,12 @@ plt.show()
 ```
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: CDFs of the gamma distribution
+    name: fig:gamma-cdf
+---
 fig, ax = plt.subplots()
 for α, β in zip(α_vals, β_vals):
     u = scipy.stats.gamma(α, scale=1/β)

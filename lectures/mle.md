@@ -90,7 +90,7 @@ The following code imports this data  and reads it into an array called `sample`
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-url = 'https://github.com/QuantEcon/high_dim_data/raw/main/SCF_plus/SCF_plus_mini_no_weights.csv'
+url = 'https://raw.githubusercontent.com/QuantEcon/data-lectures/main/lectures/SCF_plus_mini_no_weights.csv'
 df = pd.read_csv(url)
 df = df.dropna()
 df = df[df['year'] == 2016]
@@ -152,6 +152,10 @@ Maximum likelihood estimation has two steps:
    standard deviation $\sigma$).
 2. Estimate the parameter values (e.g., estimate $\mu$ and $\sigma$ for the
    normal distribution)
+
+These are the same two steps discussed in {doc}`fitting_distributions`, which
+chooses parameters by the method of moments instead, and which also shows how
+to judge the resulting fit.
 
 One possible assumption for the wealth is that each
 $w_i$ is [log-normally distributed](https://en.wikipedia.org/wiki/Log-normal_distribution),
