@@ -90,7 +90,7 @@ The following code imports this data  and reads it into an array called `sample`
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-url = 'https://github.com/QuantEcon/high_dim_data/raw/main/SCF_plus/SCF_plus_mini_no_weights.csv'
+url = 'https://raw.githubusercontent.com/QuantEcon/data-lectures/main/lectures/SCF_plus_mini_no_weights.csv'
 df = pd.read_csv(url)
 df = df.dropna()
 df = df[df['year'] == 2016]

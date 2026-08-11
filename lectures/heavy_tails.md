@@ -824,7 +824,7 @@ mystnb:
     name: firm-size-dist
 tags: [hide-input]
 ---
-df_fs = pd.read_csv('https://media.githubusercontent.com/media/QuantEcon/high_dim_data/main/cross_section/forbes-global2000.csv')
+df_fs = pd.read_csv('https://raw.githubusercontent.com/QuantEcon/data-lectures/main/lectures/forbes-global2000.csv')
 df_fs = df_fs[['Country', 'Sales', 'Profits', 'Assets', 'Market Value']]
 fig, ax = plt.subplots(figsize=(6.4, 3.5))
 
@@ -851,8 +851,8 @@ mystnb:
 tags: [hide-input]
 ---
 # import population data of cities in 2023 United States and 2023 Brazil from world population review
-df_cs_us = pd.read_csv('https://media.githubusercontent.com/media/QuantEcon/high_dim_data/main/cross_section/cities_us.csv')
-df_cs_br = pd.read_csv('https://media.githubusercontent.com/media/QuantEcon/high_dim_data/main/cross_section/cities_brazil.csv')
+df_cs_us = pd.read_csv('https://raw.githubusercontent.com/QuantEcon/data-lectures/main/lectures/cities_us.csv')
+df_cs_br = pd.read_csv('https://raw.githubusercontent.com/QuantEcon/data-lectures/main/lectures/cities_brazil.csv')
 
 fig, axes = plt.subplots(1, 2, figsize=(8.8, 3.6))
 
@@ -876,7 +876,7 @@ mystnb:
     name: wealth-dist
 tags: [hide-input]
 ---
-df_w = pd.read_csv('https://media.githubusercontent.com/media/QuantEcon/high_dim_data/main/cross_section/forbes-billionaires.csv')
+df_w = pd.read_csv('https://raw.githubusercontent.com/QuantEcon/data-lectures/main/lectures/forbes-billionaires.csv')
 df_w = df_w[['country', 'realTimeWorth', 'realTimeRank']].dropna()
 df_w = df_w.astype({'realTimeRank': int})
 df_w = df_w.sort_values('realTimeRank', ascending=True).copy()
