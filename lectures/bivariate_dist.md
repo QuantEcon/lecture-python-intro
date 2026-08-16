@@ -19,21 +19,22 @@ kernelspec:
 
 ## Outline
 
-The lectures {doc}`prob_dist`, {doc}`observed_distributions` and {doc}`fitting_distributions` all study a single variable at a time --- a set of heights, a set of house prices.
+The lectures {doc}`prob_dist`, {doc}`observed_distributions` and {doc}`fitting_distributions` all study a single variable at a time (e.g., a distribution of house prices).
 
-In practice we are usually interested in more than one variable, and, more importantly, in how they move together.
+Often we are interested in more than one variable.
 
-Do taller people also tend to weigh more?
+In this situation, we typically wish to know how these variables relate to each other.
 
-Do larger houses also tend to sell for more?
+For example, do larger houses tend to sell for more?
 
 In this lecture we give a quick introduction to **bivariate distributions**: probability distributions over pairs of random variables.
 
-We cover joints and marginals, independence, covariance and correlation, some of the ways that joint distributions arise, and the **bivariate normal distribution**.
+We cover joint distributions and marginals, independence, covariance and correlation, some of
+the ways that joint distributions arise, and the bivariate normal distribution.
 
-As before, we then turn to observed data, and fit a bivariate normal by the method of moments.
+We end with a preview of {doc}`simple_linear_regression`.
 
-We end with a preview of {doc}`simple_linear_regression`, showing that the regression line is already hiding inside the bivariate normal distribution.
+We use the following imports:
 
 ```{code-cell} ipython3
 import matplotlib.pyplot as plt
@@ -72,11 +73,15 @@ Each point is one house.
 
 In {doc}`observed_distributions` we compared prices across four floor-area groups using box plots, and found that floor area is a good predictor of price.
 
-The scatter plot above shows the same fact directly, without first cutting the data into groups: as area increases, price tends to increase with it, although not perfectly --- for any given area there is still a range of prices.
+The scatter plot above shows the same fact more directly (without first dividing the data into groups).
 
-This is exactly the kind of pattern that a bivariate distribution is built to describe.
+This is the kind of pattern that a bivariate distribution can describe.
 
 ## Joint distributions
+
+Let's begin with some theory and definitions.
+
+We start with the discrete case (sums) and then cover the density case (integrals).
 
 ### Discrete case
 
@@ -96,40 +101,36 @@ $$
 
 Let's build an example from the house price data.
 
-Let $X = 1$ if a house's floor area is above the sample median and $X=0$ otherwise, and define $Y$ the same way for price.
+Let $X = 1$ if a house's floor area is above the sample mean and $X=0$ otherwise, and define $Y$ the same way for price.
 
 ```{code-cell} ipython3
-X = (area > area.median()).astype(int)
-Y = (price > price.median()).astype(int)
+X = (area > area.mean()).astype(int)
+Y = (price > price.mean()).astype(int)
 joint = pd.crosstab(X, Y, normalize=True)
-joint.index.name = 'x (area above median)'
-joint.columns.name = 'y (price above median)'
+joint.index.name = 'x (area above mean)'
+joint.columns.name = 'y (price above mean)'
 joint
 ```
 
-This table *is* the joint PMF: each cell is the fraction of houses with that particular combination of $X$ and $Y$.
+Here each cell is the fraction of houses with that particular combination of $X$ and $Y$.
 
-For example, the top-left cell tells us that around 39\% of houses have both below-median area and below-median price.
+The four numbers in this table can be viewed as a joint PMF for $X$ and $Y$: they are nonnegative and sum to one.
 
-### Continuous case
+Let's visualize it as a heatmap, which makes the relative sizes of the four cells easier to compare than the raw numbers.
 
-Most of the variables we care about, such as price and area themselves, are continuous rather than discrete.
+```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Heatmap of the joint distribution
+    name: fig:bivariate-joint-heatmap
+---
+fig, ax = plt.subplots()
+sns.heatmap(joint, annot=True, fmt='.2f', cmap='viridis', cbar=False, vmin=0, vmax=0.5, ax=ax)
+plt.show()
+```
 
-The continuous analog of the joint PMF is the **joint probability density function** $p(x,y)$, a nonnegative function on $\mathbb R^2$ with
-
-$$
-\iint_{\mathbb R^2} p(x,y) \, dx \, dy = 1
-$$
-
-We say that $(X,Y)$ has joint density $p$ if, for every region $A \subset \mathbb R^2$,
-
-$$
-\mathbb P\{(X,Y) \in A\} = \iint_A p(x,y) \, dx \, dy
-$$
-
-We will meet a specific and very useful example, the bivariate normal density, below.
-
-## Marginal distributions
+The (below, below) cell is clearly the largest: around 48% of houses have both below-mean floor area and below-mean price.
 
 Given a joint distribution, we can always recover the distribution of $X$ on its own, by summing (or integrating) out $Y$.
 
@@ -146,20 +147,177 @@ We call $p_X$ and $p_Y$ the **marginal distributions** of $X$ and $Y$.
 In our table above, the marginals are the row and column sums:
 
 ```{code-cell} ipython3
-joint.sum(axis=1), joint.sum(axis=0)
+p_X, p_Y = joint.sum(axis=1), joint.sum(axis=0)
+p_X, p_Y
 ```
 
-Both marginals are close to 0.5, which makes sense: $X$ and $Y$ were each constructed to be 1 for exactly half of the sample.
+Neither marginal is close to 0.5: only around 45% of houses have above-mean floor area, and only around 38% sell for above-mean prices.
+
+This is the right skew we met in {doc}`observed_distributions` showing up again: a long right tail of large, expensive houses pulls the mean above the middle of the distribution, so *below* the mean covers more than half the sample.
 
 Notice, though, that the marginals alone do not tell us the whole story.
 
-Knowing that $\mathbb P\{X=1\} \approx 0.5$ and $\mathbb P\{Y=1\} \approx 0.5$ says nothing about whether large houses also tend to be the expensive ones --- for that we need the joint distribution, not just the two marginals separately.
+Knowing the fraction of houses with above-mean area and the fraction with above-mean price, separately, says nothing about whether the *same* houses tend to have both --- for that we need the joint distribution, not just the two marginals.
 
-In the continuous case the same idea applies, with sums replaced by integrals:
+Let's plot the two marginals side by side.
+
+```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: The two marginal distributions
+    name: fig:bivariate-discrete-marginals
+---
+fig, axes = plt.subplots(1, 2, figsize=(9, 4))
+axes[0].bar(['below mean', 'above mean'], p_X)
+axes[0].set_title('marginal of x (area)')
+axes[0].set_ylabel('probability')
+axes[1].bar(['below mean', 'above mean'], p_Y)
+axes[1].set_title('marginal of y (price)')
+axes[1].set_ylabel('probability')
+plt.show()
+```
+
+### Continuous case
+
+Some variables are continuous rather than discrete (e.g., area, price).
+
+The continuous analog of the joint PMF is the **joint probability density function** $p(x,y)$, a nonnegative function on $\mathbb R^2$ with
+
+$$
+\int_{\mathbb R} \int_{\mathbb R} p(x,y) \, dx \, dy = 1
+$$
+
+We say that $(X,Y)$ has joint density $p$ if, for every region $A \subset \mathbb R^2$,
+
+$$
+\mathbb P\{(X,Y) \in A\} = \iint_A p(x,y) \, dx \, dy
+$$
+
+This means that $\mathbb P\{(X,Y) \in A\}$ is equal to the volume of the
+three-dimensional space between $p(x,y)$ and $0$ over the two-dimensional region
+$A$.
+
+Let's meet a specific and very useful example right away: the bivariate normal density.
+
+Just as the normal distribution is the workhorse univariate distribution, the **bivariate normal distribution** is the workhorse joint distribution.
+
+It has five parameters: the two means $\mu_X, \mu_Y$, the two standard deviations $\sigma_X, \sigma_Y$, and the correlation $\rho \in (-1,1)$.
+
+Its density is
+
+$$
+p(x,y) = \frac{1}{2\pi \sigma_X \sigma_Y \sqrt{1-\rho^2}}
+\exp\left(
+-\frac{1}{2(1-\rho^2)}
+\left[
+\frac{(x-\mu_X)^2}{\sigma_X^2}
+- \frac{2\rho (x-\mu_X)(y-\mu_Y)}{\sigma_X \sigma_Y}
++ \frac{(y-\mu_Y)^2}{\sigma_Y^2}
+\right]
+\right)
+$$
+
+It can be shown that, for this distribution, $\rho$ is exactly the correlation between $X$ and $Y$.
+
+SciPy provides this distribution as `scipy.stats.multivariate_normal`, which takes a mean and a covariance matrix (built here from $\sigma_X, \sigma_Y, \rho$).
+
+```{code-cell} ipython3
+def bivariate_normal(μ_x, μ_y, σ_x, σ_y, ρ):
+    cov = [[σ_x**2, ρ * σ_x * σ_y],
+           [ρ * σ_x * σ_y, σ_y**2]]
+    return scipy.stats.multivariate_normal([μ_x, μ_y], cov)
+```
+
+Before looking at it from above, let's see the density as it really is: a surface over the $(x,y)$ plane.
+
+```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: The bivariate normal density surface
+    name: fig:bivariate-normal-surface
+---
+x_grid = np.linspace(-3, 3, 100)
+y_grid = np.linspace(-3, 3, 100)
+X_mesh, Y_mesh = np.meshgrid(x_grid, y_grid)
+pos = np.dstack((X_mesh, Y_mesh))
+
+u = bivariate_normal(0, 0, 1, 1, 0.6)
+
+fig = plt.figure()
+ax = fig.add_subplot(projection='3d')
+ax.plot_surface(X_mesh, Y_mesh, u.pdf(pos), cmap='viridis', linewidth=0)
+ax.set_xlabel('x')
+ax.set_ylabel('y')
+ax.set_zlabel('density')
+plt.show()
+```
+
+This is the same kind of bell-shaped hill as the univariate normal density, just built over a plane instead of a line, and tilted by the correlation $\rho$.
+
+In practice it is much more convenient to look straight down at this hill and draw its contour lines, the way a topographic map shows the shape of a hill without drawing it in 3D.
+
+Let's do that for a few values of $\rho$.
+
+```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Bivariate normal contours by correlation
+    name: fig:bivariate-normal-contours
+---
+fig, axes = plt.subplots(1, 3, figsize=(12, 4), sharex=True, sharey=True)
+for ax, ρ in zip(axes, (-0.8, 0.0, 0.8)):
+    u = bivariate_normal(0, 0, 1, 1, ρ)
+    ax.contour(X_mesh, Y_mesh, u.pdf(pos), levels=6, cmap='viridis')
+    ax.set_title(rf'$\rho={ρ}$')
+    ax.set_xlabel('x')
+    ax.set_aspect('equal')
+axes[0].set_ylabel('y')
+plt.show()
+```
+
+When $\rho = 0$ the contours are circles.
+
+When $\rho \neq 0$ they become tilted ellipses, oriented along the line $y=x$ when $\rho > 0$ and $y=-x$ when $\rho < 0$.
+
+Let's now find the marginal distributions of $X$ and $Y$, the same way we did in the discrete case: by integrating the joint density over the other variable.
 
 $$
 p_X(x) = \int_{-\infty}^\infty p(x,y) \, dy
 $$
+
+and symmetrically for $p_Y$.
+
+It can be shown that, for the bivariate normal, the marginal of $X$ is $N(\mu_X, \sigma_X^2)$ and the marginal of $Y$ is $N(\mu_Y, \sigma_Y^2)$ --- in other words, each variable is, on its own, just an ordinary univariate normal.
+
+Notice that neither marginal depends on $\rho$ at all: the correlation describes how $X$ and $Y$ move *together*, and that information is exactly what is lost when we look at either variable in isolation --- the same lesson the discrete example taught us above.
+
+```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Marginal densities of the bivariate normal
+    name: fig:bivariate-normal-marginals
+---
+μ_x, σ_x = 0, 1
+μ_y, σ_y = 2, 0.6
+
+x_grid = np.linspace(μ_x - 4*σ_x, μ_x + 4*σ_x, 200)
+y_grid = np.linspace(μ_y - 4*σ_y, μ_y + 4*σ_y, 200)
+
+fig, axes = plt.subplots(1, 2, figsize=(9, 4))
+axes[0].plot(x_grid, scipy.stats.norm(μ_x, σ_x).pdf(x_grid))
+axes[0].set_title('marginal of x')
+axes[0].set_xlabel('x')
+axes[0].set_ylabel('density')
+axes[1].plot(y_grid, scipy.stats.norm(μ_y, σ_y).pdf(y_grid))
+axes[1].set_title('marginal of y')
+axes[1].set_xlabel('y')
+axes[1].set_ylabel('density')
+plt.show()
+```
 
 ## Independence
 
@@ -174,13 +332,12 @@ Independence means that learning the value of $X$ tells us nothing about $Y$, an
 Let's check whether our discrete example is close to independent, by comparing the joint table with the table we would get if $X$ and $Y$ *were* independent, i.e. the product of the marginals.
 
 ```{code-cell} ipython3
-p_X, p_Y = joint.sum(axis=1), joint.sum(axis=0)
 independent_table = pd.DataFrame(np.outer(p_X, p_Y),
                                   index=joint.index, columns=joint.columns)
 independent_table
 ```
 
-Under independence, every cell would be close to $0.5 \times 0.5 = 0.25$.
+Under independence, every cell would just be the product of the corresponding marginals --- for example, the (below, below) cell would be $0.55 \times 0.62 \approx 0.34$.
 
 Let's put the two tables side by side as heatmaps, which makes the difference much easier to see than comparing raw numbers.
 
@@ -201,9 +358,9 @@ axes[1].set_title('if independent')
 plt.show()
 ```
 
-The independent heatmap is flat, with every cell close to 0.25.
+The independent heatmap is not flat, but it is smooth: it simply reflects the marginals, with the (below, below) cell largest because both marginals favor "below".
 
-The actual heatmap is not: it is heavy on the diagonal, with around 39% of houses in the (below, below) and (above, above) cells, and only around 11% off the diagonal.
+The actual heatmap looks quite different: around 48% of houses land in the (below, below) cell alone --- well above the 34% independence would predict --- and the off-diagonal cells are correspondingly emptier than independence implies.
 
 So $X$ and $Y$ are far from independent --- exactly as we would expect, since larger houses tend to be more expensive.
 
@@ -243,13 +400,17 @@ where $\sigma_X$ and $\sigma_Y$ are the standard deviations of $X$ and $Y$.
 
 Correlation is unit-free and always lies in $[-1, 1]$, with the extreme values attained only when $Y$ is an exact linear function of $X$.
 
-Let's compute it for our discrete house example.
+Let's compute it for our discrete house example, using `np.corrcoef`.
+
+Given two arrays, `np.corrcoef` returns their full $2 \times 2$ correlation matrix: ones down the diagonal (each variable is perfectly correlated with itself) and $\mathrm{Corr}(X,Y)$ in both off-diagonal entries.
+
+We only need that one number, so we index with `[0, 1]` to pull out the correlation between $X$ and $Y$.
 
 ```{code-cell} ipython3
 np.corrcoef(X, Y)[0, 1]
 ```
 
-A correlation of around 0.56 between the above/below-median indicators confirms what the table already showed us: floor area and price move together.
+A correlation of around 0.57 between the above/below-mean indicators confirms what the table already showed us: floor area and price move together.
 
 ## How joint distributions arise
 
@@ -340,91 +501,17 @@ As the noise grows, the cloud of points fattens and the correlation falls, even 
 
 This is a useful mental model to have in mind whenever you see two correlated variables: often there is some shared component driving both, plus independent noise on top.
 
-## The bivariate normal distribution
+## Back to the normal distribution
 
-Just as the normal distribution is the workhorse univariate distribution, the **bivariate normal distribution** is the workhorse joint distribution.
+We have now covered independence, covariance and correlation in general.
 
-It has five parameters: the two means $\mu_X, \mu_Y$, the two standard deviations $\sigma_X, \sigma_Y$, and the correlation $\rho \in (-1,1)$.
+Let's return to the bivariate normal density and connect it to what we have just learned.
 
-Its density is
+Recall the contour plots above: when $\rho = 0$ the contours were circles, and when $\rho \neq 0$ they were tilted ellipses.
 
-$$
-p(x,y) = \frac{1}{2\pi \sigma_X \sigma_Y \sqrt{1-\rho^2}}
-\exp\left(
--\frac{1}{2(1-\rho^2)}
-\left[
-\frac{(x-\mu_X)^2}{\sigma_X^2}
-- \frac{2\rho (x-\mu_X)(y-\mu_Y)}{\sigma_X \sigma_Y}
-+ \frac{(y-\mu_Y)^2}{\sigma_Y^2}
-\right]
-\right)
-$$
+A circular contour is exactly what independence looks like here: the density factors into the product of the two marginal densities we found above, $p(x,y) = p_X(x) \, p_Y(y)$.
 
-It can be shown that, for this distribution, the marginal of $X$ is $N(\mu_X, \sigma_X^2)$, the marginal of $Y$ is $N(\mu_Y, \sigma_Y^2)$, and $\rho$ is exactly the correlation between $X$ and $Y$.
-
-SciPy provides this distribution as `scipy.stats.multivariate_normal`, which takes a mean and a covariance matrix (built here from $\sigma_X, \sigma_Y, \rho$).
-
-```{code-cell} ipython3
-def bivariate_normal(μ_x, μ_y, σ_x, σ_y, ρ):
-    cov = [[σ_x**2, ρ * σ_x * σ_y],
-           [ρ * σ_x * σ_y, σ_y**2]]
-    return scipy.stats.multivariate_normal([μ_x, μ_y], cov)
-```
-
-Before looking at it from above, let's see the density as it really is: a surface over the $(x,y)$ plane.
-
-```{code-cell} ipython3
----
-mystnb:
-  figure:
-    caption: The bivariate normal density surface
-    name: fig:bivariate-normal-surface
----
-x_grid = np.linspace(-3, 3, 100)
-y_grid = np.linspace(-3, 3, 100)
-X_mesh, Y_mesh = np.meshgrid(x_grid, y_grid)
-pos = np.dstack((X_mesh, Y_mesh))
-
-u = bivariate_normal(0, 0, 1, 1, 0.6)
-
-fig = plt.figure()
-ax = fig.add_subplot(projection='3d')
-ax.plot_surface(X_mesh, Y_mesh, u.pdf(pos), cmap='viridis', linewidth=0)
-ax.set_xlabel('x')
-ax.set_ylabel('y')
-ax.set_zlabel('density')
-plt.show()
-```
-
-This is the same kind of bell-shaped hill as the univariate normal density, just built over a plane instead of a line, and tilted by the correlation $\rho$.
-
-In practice it is much more convenient to look straight down at this hill and draw its contour lines, the way a topographic map shows the shape of a hill without drawing it in 3D.
-
-Let's do that for a few values of $\rho$.
-
-```{code-cell} ipython3
----
-mystnb:
-  figure:
-    caption: Bivariate normal contours by correlation
-    name: fig:bivariate-normal-contours
----
-fig, axes = plt.subplots(1, 3, figsize=(12, 4), sharex=True, sharey=True)
-for ax, ρ in zip(axes, (-0.8, 0.0, 0.8)):
-    u = bivariate_normal(0, 0, 1, 1, ρ)
-    ax.contour(X_mesh, Y_mesh, u.pdf(pos), levels=6, cmap='viridis')
-    ax.set_title(rf'$\rho={ρ}$')
-    ax.set_xlabel('x')
-    ax.set_aspect('equal')
-axes[0].set_ylabel('y')
-plt.show()
-```
-
-When $\rho = 0$ the contours are circles: the density factors into the product of two independent normal densities, so $X$ and $Y$ are independent.
-
-When $\rho \neq 0$ the contours become tilted ellipses, oriented along the line $y=x$ when $\rho > 0$ and $y=-x$ when $\rho < 0$.
-
-For the bivariate normal --- and *only* for the bivariate normal --- zero correlation is equivalent to independence.
+So for the bivariate normal --- and *only* for the bivariate normal --- zero correlation is equivalent to independence.
 
 ```{note}
 Two further properties that are special to the bivariate normal, and useful to know:
@@ -470,7 +557,7 @@ Here is a simple counterexample.
 Let $X$ be standard normal, and construct $Y$ by
 
 $$
-Y = \begin{cases} X & \text{if } |X| < c \\ -X & \text{if } |X| \geq c \end{cases}
+Y = \begin{cases} X & \text{if } |X| < 1 \\ -X & \text{if } |X| \geq 1 \end{cases}
 $$
 
 ```{code-cell} ipython3
@@ -481,18 +568,17 @@ mystnb:
     name: fig:bivariate-not-normal
 ---
 N = 2000
-c = 1.0
 x = rng.standard_normal(N)
-y = np.where(np.abs(x) < c, x, -x)
+y = np.where(np.abs(x) < 1, x, -x)
 
-fig, ax = plt.subplots()
-ax.scatter(x, y, alpha=0.4, s=8)
-ax.set_xlabel('x')
-ax.set_ylabel('y')
+g = sns.jointplot(x=x, y=y, height=5, alpha=0.4, s=8)
+g.set_axis_labels('x', 'y')
 plt.show()
 ```
 
-Since the standard normal density is symmetric about zero, flipping the sign of $X$ whenever $|X| \geq c$ does not change its distribution, so $Y$ is also standard normal.
+The two histograms on the margins already look like the familiar bell shape of a normal density.
+
+Since the standard normal density is symmetric about zero, flipping the sign of $X$ whenever $|X| \geq 1$ does not change its distribution, so $Y$ is also standard normal.
 
 ```{code-cell} ipython3
 scipy.stats.skew(y), scipy.stats.kurtosis(y)
@@ -500,7 +586,7 @@ scipy.stats.skew(y), scipy.stats.kurtosis(y)
 
 Both are close to zero, as they should be for a normal marginal.
 
-Yet the joint distribution of $(X,Y)$ looks nothing like the elliptical contours above --- it is concentrated on two crossing lines.
+Yet the joint distribution of $(X,Y)$ looks nothing like the elliptical clouds we saw above --- it is concentrated on two crossing lines, plainly visible in the center panel above.
 
 We noted above that, for a genuinely bivariate normal pair, *every* linear combination $aX+bY$ is normal.
 
@@ -522,7 +608,7 @@ ax.set_ylabel('density')
 plt.show()
 ```
 
-Roughly a third of the mass sits in a single spike at zero --- exactly the houses with $|X| \geq c$, for which $Y=-X$ and so $X+Y=0$ --- with the rest spread out on either side.
+Roughly a third of the mass sits in a single spike at zero --- exactly the draws with $|X| \geq 1$, for which $Y=-X$ and so $X+Y=0$ --- with the rest spread out on either side.
 
 This is about as far from a normal density as a distribution can look, even though the skewness and kurtosis of $X+Y$ are both close to zero and would tell a much less dramatic story.
 
