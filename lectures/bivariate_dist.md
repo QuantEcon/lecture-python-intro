@@ -127,6 +127,7 @@ mystnb:
 ---
 fig, ax = plt.subplots()
 sns.heatmap(joint, annot=True, fmt='.2f', cmap='viridis', cbar=False, vmin=0, vmax=0.5, ax=ax)
+ax.invert_yaxis()  # so x increases upward, matching a standard scatter plot
 plt.show()
 ```
 
@@ -352,9 +353,11 @@ fig, axes = plt.subplots(1, 2, figsize=(9, 4))
 sns.heatmap(joint, annot=True, fmt='.2f', cmap='viridis', cbar=False,
             vmin=0, vmax=0.45, ax=axes[0])
 axes[0].set_title('actual joint')
+axes[0].invert_yaxis()
 sns.heatmap(independent_table, annot=True, fmt='.2f', cmap='viridis', cbar=False,
             vmin=0, vmax=0.45, ax=axes[1])
 axes[1].set_title('if independent')
+axes[1].invert_yaxis()
 plt.show()
 ```
 
