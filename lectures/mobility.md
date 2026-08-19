@@ -378,11 +378,32 @@ This measure has a further attraction: for a two-state chain, $|\lambda_2|$ is e
 
 The final measure asks a question about waiting times: how long does it take a household to reach a given quantile?
 
-Let $T$ be the matrix whose $(i,j)$-th element is the expected number of periods until a household starting in quantile $i$ first arrives in quantile $j$.
+Let $T_{ij}$ be the expected number of periods until a household starting in quantile $i$ first arrives in quantile $j$.
 
-For $i \neq j$ we can compute $T_{ij}$ by conditioning on the first step, exactly as we computed expected unemployment durations in {doc}`markov_chains_I`.
+To compute it we use **first-step analysis**: we condition on where the chain goes next, and then use the fact that the problem starting from there looks just like the original one.
 
-Either the chain jumps straight to $j$, or it moves to some $k \neq j$ and we start again, so
+Fix the target $j$ and take any starting quantile $i \neq j$.
+
+The household takes one step, which uses up one period no matter where it lands.
+
+That step takes it to quantile $k$ with probability $m_{ik}$, and there are two possibilities.
+
+If $k = j$ the household has arrived, and no further time is needed.
+
+If $k \neq j$ the household must still travel from $k$ to $j$, and the expected time for that remaining journey is $T_{kj}$.
+
+The second case is where the Markov property earns its keep: how long the trip from $k$ takes depends only on $k$, and not on the fact that we reached $k$ by way of $i$.
+
+Averaging over the possible first steps gives
+
+$$
+    T_{ij}
+    = \underbrace{1}_{\text{the first step}}
+      + \underbrace{m_{ij} \times 0}_{\text{arrived at } j}
+      + \underbrace{\sum_{k \neq j} m_{ik} T_{kj}}_{\text{not yet arrived}}
+$$
+
+The middle term is zero, so we are left with
 
 ```{math}
 :label: mfp_recursion
@@ -390,9 +411,31 @@ Either the chain jumps straight to $j$, or it moves to some $k \neq j$ and we st
 T_{ij} = 1 + \sum_{k \neq j} m_{ik} T_{kj}
 ```
 
-Holding $j$ fixed, this is a linear system in the $N-1$ unknowns $\{T_{ij}\}_{i \neq j}$ that we can solve directly.
+Notice that the sum omits $k = j$ not because that case cannot happen, but because it contributes nothing once the household has arrived.
 
-On the diagonal we use the mean *return* time, which for an irreducible chain is $T_{jj} = 1/\psi^*(j)$.
+Here is the simplest possible check.
+
+Consider the two-state chain of {doc}`markov_chains_I`, where an unemployed worker finds a job with probability $\alpha$ each month, and let $i$ be the unemployed state and $j$ the employed one.
+
+The only term in the sum is $k = i$, with $m_{ii} = 1 - \alpha$, so {eq}`mfp_recursion` reads $T_{ij} = 1 + (1 - \alpha) T_{ij}$, which gives $T_{ij} = 1/\alpha$.
+
+This is exactly right, since the waiting time is geometric with success probability $\alpha$.
+
+Now hold $j$ fixed and read {eq}`mfp_recursion` as a system of $N-1$ equations in the $N-1$ unknowns $\{T_{ij}\}_{i \neq j}$.
+
+Writing $t$ for the vector of these unknowns and $M_{-j}$ for $M$ with its $j$-th row and $j$-th column deleted, the system is
+
+$$
+    t = \mathbb 1 + M_{-j} \, t
+    \qquad \text{or} \qquad
+    (I - M_{-j}) \, t = \mathbb 1
+$$
+
+which is a linear solve, and is what the code below does for each $j$ in turn.
+
+On the diagonal we use the mean *return* time to $j$.
+
+By the ergodicity result in {doc}`markov_chains_II`, an irreducible chain spends a fraction $\psi^*(j)$ of its time in quantile $j$, so visits to $j$ occur on average once every $1/\psi^*(j)$ periods, giving $T_{jj} = 1/\psi^*(j)$.
 
 ```{code-cell} ipython3
 def mean_first_passage(M):
