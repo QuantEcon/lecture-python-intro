@@ -56,7 +56,7 @@ In this lecture we study how to *measure* mobility when the data take the form o
 This is a natural application of the Markov chain theory developed in {doc}`markov_chains_I` and {doc}`markov_chains_II`, and it gives us a second use for the {doc}`Perron-Frobenius theorem <eigen_II>`.
 
 ```{note}
-This lecture draws heavily on Sections 2 and 3 of the paper "Mobility" by Daniel Carroll, Nicholas Hoffman and Eric R. Young {cite}`carroll2026mobility`.
+This lecture draws heavily on the first few sections of the paper "Mobility" by Daniel Carroll, Nicholas Hoffman and Eric R. Young {cite}`carroll2026mobility`.
 
 That paper collects the standard mobility measures in one place, applies them to US wealth data, and then asks whether workhorse macroeconomic models can reproduce what it finds.
 
