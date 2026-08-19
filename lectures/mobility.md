@@ -31,32 +31,35 @@ In {doc}`inequality` we measured how unequally income and wealth are distributed
 
 Such measures are snapshots.
 
-They tell us how far apart the rich and the poor are, but nothing about whether the same families stay rich and poor.
+While they do provide information on how far apart the rich and the poor are,
+they tell us nothing about whether the same families stay rich and poor.
 
-Two economies can have identical Lorenz curves and identical Gini coefficients while offering their citizens completely different life prospects.
+This is important because two economies can have identical Lorenz curves and
+identical Gini coefficients while offering their citizens completely different
+life prospects.
 
-In one, position is fixed at birth and never changes.
+For example, suppose we are comparing economies with identical wealth distributions.
 
-In the other, families rise and fall constantly, and today's poor household has a good chance of being tomorrow's rich one.
+Suppose further that they fall into one of two cases.
+
+1. Position is fixed at birth and never changes.
+2. Families rise and fall constantly, and today's poor household has a good chance of being tomorrow's rich one.
 
 The difference between these two economies is **mobility**: the rate at which households change position within the distribution.
 
 Mobility matters for policy.
 
-Attitudes to redistribution, the case for taxing wealth rather than capital income, and our sense of how much opportunity an economy offers all depend on it.
+Attitudes to redistribution, taxation, and our sense of how much opportunity an economy offers all depend on it.
 
-In this lecture we study how to measure mobility when the data take the form of a transition matrix over wealth quantiles.
+In this lecture we study how to *measure* mobility when the data take the form of a transition matrix over wealth quantiles.
 
 This is a natural application of the Markov chain theory developed in {doc}`markov_chains_I` and {doc}`markov_chains_II`, and it gives us a second use for the {doc}`Perron-Frobenius theorem <eigen_II>`.
 
 ```{note}
-This lecture draws heavily on Sections 2 and 3 of the working paper "Mobility" by Daniel Carroll, Nicholas Hoffman and Eric R. Young {cite}`carroll2026mobility`.
+This lecture draws heavily on Sections 2 and 3 of the paper "Mobility" by Daniel Carroll, Nicholas Hoffman and Eric R. Young {cite}`carroll2026mobility`.
 
 That paper collects the standard mobility measures in one place, applies them to US wealth data, and then asks whether workhorse macroeconomic models can reproduce what it finds.
 
-We use their measures and their estimated transition matrices, with thanks.
-
-The broader literature on measuring mobility is surveyed in {cite}`fields1999measurement`.
 ```
 
 Let's start with some imports.
@@ -78,7 +81,7 @@ Suppose we observe the wealth of a large number of households at two dates, $s$ 
 
 We sort households by wealth at each date and divide them into $N$ equally sized groups, or **quantiles**.
 
-With $N = 5$ these are quintiles, each containing 20% of households.
+(When looking at data we often consider the case $N = 5$, in which case these quantiles are **quintiles**, each containing 20% of households.)
 
 Now we ask, for each household, which quantile it started in and which quantile it ended in.
 
@@ -86,8 +89,8 @@ Averaging over households gives us a matrix $M$ with typical element
 
 $$
     m_{ij}
-    = \mathbb P \{ \text{household is in quantile } j \text{ at } s+t
-                   \mid \text{it was in quantile } i \text{ at } s \}
+    = \mathbb P \{ \text{household $h$ is in quantile } j \text{ at } s+t
+                   \mid \text{$h$ was in quantile } i \text{ at } s \}
 $$
 
 Each row of $M$ is a probability mass function, so $M$ is a stochastic matrix in the sense of {doc}`markov_chains_I`.
@@ -102,11 +105,11 @@ An economy in which everyone's wealth doubles has no mobility at all by this def
 
 Second, the time unit of the chain is the horizon $t$, which might be five years or twenty.
 
-Everything below depends on that choice, and we return to it when we look at data.
+Much depends on that choice, and we return to it when we look at data.
 
 ### An example
 
-Here is a mobility matrix estimated from US data over the five years from 1984 to 1989, which we discuss properly in {ref}`a later section <mobility_data>`.
+Here is a mobility matrix estimated from US data over the five years from 1984 to 1989, which we discuss more fully in {ref}`a later section <mobility_data>`.
 
 ```{code-cell} ipython3
 M_ex = [[0.70, 0.23, 0.05, 0.02, 0.00],
@@ -128,7 +131,7 @@ def normalize_rows(M):
 M_ex = normalize_rows(M_ex)
 ```
 
-Row 1 says that a household in the poorest quintile in 1984 had a 70% chance of still being there in 1989, a 23% chance of moving up one quintile, and essentially no chance of reaching the top.
+Row 1 says that a household in the poorest quintile in 1984 had a 70% chance of still being there in 1989, a 23% chance of moving up one quintile, and no chance of reaching the top.
 
 The mass concentrates near the diagonal, and the two extreme quintiles are the stickiest.
 
@@ -144,15 +147,17 @@ tags: [hide-input]
 ---
 mc = qe.MarkovChain(M_ex)
 periods = 10
+years = np.arange(periods) * 5      # each period of M_ex spans five years
 styles = ('-', '--', '-.', ':')
 
 fig, ax = plt.subplots()
 for i, ls in enumerate(styles):
     X = mc.simulate(periods, init=i, random_state=10 + i)
-    ax.step(range(periods), X + 1, where='post', lw=2, ls=ls,
+    ax.step(years, X + 1, where='post', lw=2, ls=ls,
             label=f'household {i + 1}')
-ax.set_xlabel('period (five years)')
+ax.set_xlabel('years')
 ax.set_ylabel('wealth quintile')
+ax.set_xticks(years)
 ax.set_yticks(range(1, 6))
 ax.set_ylim(0.5, 6.6)
 ax.legend(frameon=False, ncol=2, loc='upper center')
@@ -184,6 +189,29 @@ Here the ending quantile is independent of the starting quantile, so knowing whe
 
 This property is called **origin independence**, and it is the natural upper reference point for mobility: the distribution is reshuffled completely at every step.
 
+You might object that $M^*$ is not the only matrix with this property.
+
+Indeed, the ending quantile is independent of the starting quantile whenever every row of $M$ is the same, so that $M = \mathbb 1 \psi^\top$ for some probability mass function $\psi$.
+
+Why then single out the uniform case and call it perfect mobility?
+
+The reason is that our quantiles are constructed to hold equal numbers of households at *both* dates.
+
+The fraction of households ending in quantile $j$ is $\sum_i (1/N) m_{ij}$, and this must equal $1/N$, so
+
+$$
+    \sum_{i=1}^N m_{ij} = 1
+    \qquad \text{for every } j
+$$
+
+In other words, a mobility matrix over equally sized quantiles has columns summing to one as well as rows --- it is **doubly stochastic**.
+
+Now suppose such a matrix also has identical rows, so $M = \mathbb 1 \psi^\top$.
+
+Its $j$-th column sums to $N \psi(j)$, and setting this to one gives $\psi(j) = 1/N$.
+
+So $M^*$ is not one origin-independent matrix among many --- within this setting it is the only one.
+
 ```{code-cell} ipython3
 N = 5
 M_immobile = np.identity(N)
@@ -200,6 +228,10 @@ Values above 1 are possible and meaningful.
 They arise when a chain reverses ranks *systematically* --- for example a matrix that sends the poorest quintile to the richest with probability one moves households around more than pure chance does.
 
 So 1 marks origin independence, not a maximum.
+
+Such systematic reversal is unusual in ordinary market economies, where wealth is persistent and estimated mobility matrices put most of their mass on or near the diagonal.
+
+All of the empirical matrices we study below score well below 1.
 ```
 
 ## Four measures of mobility
@@ -291,7 +323,7 @@ So to put Bartholomew's measure on the same footing as the others we rescale,
 ```{math}
 :label: bartholomew_norm
 
-\tilde \mu_B(M) = \frac{3}{N+1} \, \mu_B(M)
+\mu_{NB}(M) = \frac{3}{N+1} \, \mu_B(M)
 ```
 
 which is the expected number of quantiles crossed, relative to the number crossed under origin independence.
@@ -304,7 +336,7 @@ def bartholomew_normalized(M):
 bartholomew_normalized(M_immobile), bartholomew_normalized(M_perfect)
 ```
 
-We report $\mu_B$ when we want the interpretation "quantiles crossed per period" and $\tilde \mu_B$ when comparing across measures.
+We report $\mu_B$ when we want the interpretation "quantiles crossed per period" and $\mu_{NB}$ when comparing across measures.
 
 (mobility_eigenvalue)=
 ### The second eigenvalue
@@ -440,7 +472,7 @@ def mobility_measures(M):
     "Return the four mobility measures for stochastic matrix M."
     return pd.Series({'μ_S':   shorrocks(M),
                       'μ_B':   bartholomew(M),
-                      '~μ_B':  bartholomew_normalized(M),
+                      'μ_NB':  bartholomew_normalized(M),
                       'μ_2E':  second_eigenvalue(M),
                       'μ_MFP': mfp_measure(M)})
 
@@ -561,6 +593,23 @@ np.array(psid['1984-2003']).sum(axis=1)
 psid = {k: normalize_rows(M) for k, M in psid.items()}
 ```
 
+We argued above that a mobility matrix over equally sized quantiles should be doubly stochastic.
+
+Let's see how well the estimated matrices satisfy this.
+
+```{code-cell} ipython3
+for label, M in psid.items():
+    print(f'{label}:  {M.sum(axis=0).round(3)}')
+```
+
+The columns sum to roughly but not exactly one.
+
+Two things push them off.
+
+The published figures are rounded to two decimal places, and the panel is not perfectly balanced --- families leave the sample between the starting and ending years, so the households sorted into quintiles at the two dates are not quite the same set.
+
+We will see the same deviation resurface in {ref}`the final exercise <mob_ex6>`, where the stationary distribution of these matrices turns out to be close to uniform without being exactly uniform.
+
 Here is what the three matrices look like.
 
 ```{code-cell} ipython3
@@ -606,7 +655,7 @@ mystnb:
     name: fig:mobility-horizon
 tags: [hide-input]
 ---
-cols = ['μ_S', '~μ_B', 'μ_2E', 'μ_MFP']
+cols = ['μ_S', 'μ_NB', 'μ_2E', 'μ_MFP']
 fig, ax = plt.subplots()
 horizon_table[cols].plot.bar(ax=ax, rot=0, width=0.75)
 ax.set_ylabel('mobility')
@@ -674,11 +723,10 @@ decline_table.round(3)
 
 All four measures fall as we move the twenty-year window forward, suggesting that US wealth mobility has declined since the mid-1980s.
 
-The decline is modest --- $\mu_S$ falls from 0.74 to 0.70 --- and we should be cautious about it.
+The decline is modest --- $\mu_S$ falls from 0.74 to 0.70.
 
-{cite}`carroll2026mobility` bootstrap the PSID sample to place confidence intervals around these numbers, and conclude that the decline is statistically significant at the medium horizon but *not* at the long horizon shown here.
+{cite}`carroll2026mobility` bootstrap the PSID sample to place confidence intervals around these numbers, and conclude that the decline is statistically significant at the medium horizon but not at the long horizon shown here.
 
-A drop of this size is well within the sampling error of a panel of a few thousand families.
 
 ### Is the quintile chain Markov?
 
@@ -708,15 +756,13 @@ At twenty years the gap is large: $\mu_S$ is 0.87 under the Markov prediction ag
 
 Households are therefore more persistent over long horizons than their five-year behavior implies, which means that current quintile alone is not a sufficient statistic for a household's future position.
 
-Something else, unobserved and persistent, is at work.
+Also, unobserved features are at work.
 
-{cite}`carroll2026mobility` find direct evidence for this: a family that makes one large jump through the wealth distribution is significantly more likely to make another, and families holding stocks or private businesses move much more than others.
-
-In the language of the older sociological literature, the population contains both movers and stayers.
+For example, {cite}`carroll2026mobility` find that a family that makes one large jump through the wealth distribution is significantly more likely to make another, and families holding stocks or private businesses move much more than others.
 
 This matters for modelling.
 
-It means that a calibration matching mobility at one horizon will generally miss it at another, and that the state of a realistic model must include something beyond position in the wealth distribution.
+It means that the state of a realistic model must include something beyond position in the wealth distribution.
 
 ## Exercises
 
@@ -784,7 +830,7 @@ $$
 
 with $\alpha, \beta \in (0,1)$ and $\alpha + \beta \leq 1$.
 
-1. Show that $\mu_S(M) = \tilde\mu_B(M) = \mu_{2E}(M) = \alpha + \beta$.
+1. Show that $\mu_S(M) = \mu_{NB}(M) = \mu_{2E}(M) = \alpha + \beta$.
 
 2. Let $\{X_t\}$ be a stationary chain with this transition matrix, viewed as taking values in $\{0, 1\}$.
 
@@ -836,7 +882,7 @@ M2 = np.array([[1 - α, α],
                [β, 1 - β]])
 
 print(f'μ_S  = {shorrocks(M2):.4f}')
-print(f'~μ_B = {bartholomew_normalized(M2):.4f}')
+print(f'μ_NB = {bartholomew_normalized(M2):.4f}')
 print(f'μ_2E = {second_eigenvalue(M2):.4f}')
 print(f'α+β  = {α + β:.4f}')
 ```
@@ -956,7 +1002,7 @@ Mobility matrices cannot be completely ordered, and the toy examples above showe
 
 Search for others.
 
-Generate a large number of random $5 \times 5$ stochastic matrices, compute $\tilde\mu_B$ and $\mu_{MFP}$ for each, and find a pair that the two measures rank in opposite directions.
+Generate a large number of random $5 \times 5$ stochastic matrices, compute $\mu_{NB}$ and $\mu_{MFP}$ for each, and find a pair that the two measures rank in opposite directions.
 
 Report the pair and explain the disagreement.
 ```
@@ -1117,7 +1163,9 @@ The two agree to machine precision.
 
 It is worth noticing that the stationary distribution is not exactly uniform, even though quintiles contain equal numbers of households by construction.
 
-In a stationary environment it would be, so the deviation reflects sampling error together with the fact that the wealth distribution itself changed between 1984 and 1989.
+The uniform distribution is stationary for $M$ precisely when $M$ is doubly stochastic, since $\psi^* M = \psi^*$ with $\psi^* = \mathbb 1^\top / N$ says exactly that every column of $M$ sums to one.
+
+So this deviation is the same one we saw in the column sums earlier, and it has the same two sources: the published rounding, and attrition from the panel between 1984 and 1989.
 
 ```{solution-end}
 ```
