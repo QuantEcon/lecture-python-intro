@@ -44,7 +44,7 @@ Important extensions to the key ideas were obtained by
 * [Harold Hotelling](https://en.wikipedia.org/wiki/Harold_Hotelling)
 * [Paul Samuelson](https://en.wikipedia.org/wiki/Paul_Samuelson)
 * [Kenneth Arrow](https://en.wikipedia.org/wiki/Kenneth_Arrow) 
-* [Gerard Debreu](https://en.wikipedia.org/wiki/G%C3%A9rard_Debreu)
+* [Gérard Debreu](https://en.wikipedia.org/wiki/G%C3%A9rard_Debreu)
 
 
 We shall describe two classic welfare theorems:
@@ -52,6 +52,12 @@ We shall describe two classic welfare theorems:
 * **first welfare theorem:** for a given distribution of wealth among consumers, a competitive  equilibrium  allocation of goods solves a  social planning problem.
 
 * **second welfare theorem:** An allocation of goods to consumers that solves a social planning problem can be supported by a competitive equilibrium with an appropriate initial distribution of  wealth.
+
+This lecture studies a single representative consumer, so the distribution of wealth plays no role in it.
+
+We verify a version of the **first** welfare theorem only.
+
+{doc}`supply_demand_heterogeneity` takes up the distribution of wealth and both welfare theorems.
 
 As usual, we start by importing some Python modules.
 
@@ -63,6 +69,8 @@ from scipy.linalg import inv
 ```
 
 ## Formulas from linear algebra
+
+{doc}`linear_equations` describes tools for solving the linear systems that appear in this lecture and in {doc}`supply_demand_heterogeneity`.
 
 We shall apply formulas from linear algebra that
 
@@ -84,13 +92,21 @@ $$
 \frac{\partial x^\top A x}{\partial x} = (A + A^\top)x
 $$
 
+```{note}
+The first and third formulas differentiate a scalar with respect to a vector and return $n \times 1$ vectors.
+
+The second differentiates a vector with respect to a vector and returns an $n \times n$ matrix.
+
+We use the first and third formulas below.
+```
+
 ## From utility function to demand curve
 
 Our study of consumers will use the following primitives
 
-* $\Pi$ be an $m \times n$ matrix,
-* $b$ be an $m \times 1$ vector of bliss points,
-* $e$ be an $n \times 1$ vector of endowments, and
+* $\Pi$, an $m \times n$ matrix,
+* $b$, an $m \times 1$ vector of bliss points,
+* $e$, an $n \times 1$ vector of endowments
 
 +++
 
@@ -107,11 +123,21 @@ We assume that $\Pi$ has linearly independent columns, which implies that $\Pi^\
 
 * it follows that $\Pi^\top \Pi$ has an inverse.
 
-We shall see below that $(\Pi^\top \Pi)^{-1}$ is a matrix of slopes of (compensated) demand curves for $c$ with respect to a vector of prices:
+In all of our examples we shall set $m = n$ and take $\Pi$ to be invertible, so that $(\Pi^\top \Pi)^{-1} \Pi^\top = \Pi^{-1}$.
+
+The matrix $-\mu (\Pi^\top \Pi)^{-1}$ gives the slopes of demand curves for $c$ with respect to $p$, holding fixed the marginal utility of wealth $\mu$ that we define below:
 
 $$
-    \frac{\partial c } {\partial p} = (\Pi^\top \Pi)^{-1}
+    \frac{\partial c } {\partial p} = - \mu (\Pi^\top \Pi)^{-1}
 $$
+
+$(\Pi^\top \Pi)^{-1}$ is positive definite, so its diagonal elements are positive and the diagonal elements of $-\mu (\Pi^\top \Pi)^{-1}$ are negative.
+
+Each good's own-price demand curve slopes downward.
+
+The off-diagonal cross-price effects take either sign.
+
+A demand curve that holds $\mu$ fixed is a **Frisch** demand curve, named after [Ragnar Frisch](https://en.wikipedia.org/wiki/Ragnar_Frisch).
 
 A consumer faces $p$ as a price taker and chooses $c$ to maximize the utility function
 
@@ -131,9 +157,9 @@ $$
     \Pi c \ll b
 $$ (eq:bversusc)
 
-This means that the consumer has much less of each good than he wants.
+This means that the consumer has much less of each good than they want.
 
-The deviation in {eq}`eq:bversusc` will ultimately assure us that competitive equilibrium prices are positive.
+The deviation in {eq}`eq:bversusc` will ultimately assure us that competitive equilibrium prices are positive, provided that $\Pi$ has non-negative entries, as it does in all of our examples.
 
 +++
 
@@ -169,18 +195,70 @@ $$ (eq:old3)
 Substituting {eq}`eq:old3` into budget constraint {eq}`eq:old2` and solving for $\mu$ gives
 
 $$
-    \mu(p,e) = \frac{p^\top ( \Pi^\top \Pi )^{-1} \Pi^\top b - p^\top e}{p^\top (\Pi^\top \Pi )^{-1} p}.
+    \mu(p,e) = \frac{p^\top ( \Pi^\top \Pi )^{-1} \Pi^\top b - p^\top e}{p^\top (\Pi^\top \Pi )^{-1} p}
 $$ (eq:old4)
 
 Equation {eq}`eq:old4` tells how marginal utility of wealth depends on the endowment vector $e$ and the price vector $p$.
 
 ```{note}
-Equation {eq}`eq:old4` is a consequence of imposing that $p^\top (c - e) = 0$.  
-
-We could instead take $\mu$ as a parameter and use {eq}`eq:old3` and the budget constraint {eq}`eq:old2p` to solve for wealth. 
-
-Which way we proceed determines whether we are constructing a **Marshallian** or **Hicksian** demand curve.
+Equation {eq}`eq:old4` is a consequence of imposing $p^\top (c - e) = 0$.
 ```
+
+## Marshallian, Hicksian, and Frisch demand curves
+
+Sometimes we'll use budget constraint {eq}`eq:old2` in situations in which a consumer's endowment vector $e$ is their **only** source of income.
+
+Other times we'll instead assume that the consumer has another source of income (positive or negative) and write their budget constraint as
+
+$$
+p ^\top (c -e ) = w
+$$ (eq:old2p)
+
+where $w$ is measured in "dollars" (or some other **numeraire**) and component $p_i$ of the price vector is measured in dollars per unit of good $i$.
+
+Whether the consumer's budget constraint is {eq}`eq:old2` or {eq}`eq:old2p` and whether we take $w$ as a free parameter or instead as an endogenous variable will affect the consumer's marginal utility of wealth.
+
+Consequently, how we set $\mu$ determines which of the following three demand curves we are constructing:
+
+* a **Marshallian** demand curve, as when we use {eq}`eq:old2` and solve for $\mu$ using equation {eq}`eq:old4` above
+
+* a **Frisch** demand curve, as when we treat $\mu$ as a fixed parameter and solve {eq}`eq:old2p` for $w$
+
+* a **Hicksian** demand curve, as when we hold the consumer's *utility* fixed and let $w$ be whatever is required to attain it
+
+These three demand curves contemplate different mental experiments.
+
+For a Marshallian demand curve, hypothetical changes in a price vector have both **substitution** and **income** effects
+
+* income effects are consequences of changes in $p^\top e$ associated with the change in the price vector
+
+For a Frisch demand curve, the marginal utility of wealth $\mu$ is frozen while $w$ adjusts to finance the resulting consumption bundle
+
+* differentiating {eq}`eq:old3` while holding $\mu$ fixed gives the slopes $\frac{\partial c}{\partial p} = - \mu (\Pi^\top \Pi)^{-1}$ that we met above
+
+For a Hicksian demand curve, $w$ instead adjusts to keep **utility** constant, which is why a Hicksian demand curve is often called a **compensated** demand curve
+
+* the compensation is designed to disarm the income (or wealth) effect associated with a price change
+
+```{note}
+Frisch and Hicksian demand curves are distinct objects.
+
+A Hicksian demand curve minimizes expenditure $p^\top c$ subject to attaining a given utility level, so scaling all prices by a common positive factor leaves it unchanged.
+
+Its matrix of slopes $S$ satisfies $S p = 0$.
+
+The Frisch slopes $-\mu (\Pi^\top \Pi)^{-1}$ do not.
+
+Freezing the marginal utility of wealth differs from freezing utility.
+```
+
+In the endowment economy below, the budget constraint {eq}`eq:old2` holds and $\mu$ normalizes the price level.
+
+In the production economy below, no budget constraint restrains the consumer, so $\mu$ is a free parameter of a Frisch inverse demand curve.
+
+The planning problem there uses that free parameter as the weight that a planner attaches to the consumer.
+
++++
 
 ## Endowment economy
 
@@ -198,7 +276,7 @@ $$
 p = \mu^{-1} (\Pi^\top b - \Pi^\top \Pi e)
 $$
 
-In the present case where we have imposed budget constraint in the form {eq}`eq:old2`, we are free to normalize the price vector by setting the marginal utility of wealth $\mu =1$ (or any other value for that matter).
+In the present case, where we have imposed the budget constraint in the form {eq}`eq:old2`, we are free to normalize the price vector by setting the marginal utility of wealth $\mu =1$ (or any other value for that matter).
 
 This amounts to choosing a common unit (or numeraire) in which prices of all goods are expressed.
 
@@ -213,6 +291,34 @@ Verify that setting $\mu=1$ in {eq}`eq:old3` implies that formula {eq}`eq:old4` 
 
 ```
 
+```{solution-start} sdm_ex1
+:class: dropdown
+```
+
+Setting $\mu = 1$ in {eq}`eq:old3` and imposing the equilibrium condition $c = e$ gives the price vector
+
+$$
+p = \Pi^\top b - \Pi^\top \Pi e
+$$
+
+Multiplying this by $(\Pi^\top \Pi)^{-1}$ and rearranging yields the useful identity
+
+$$
+(\Pi^\top \Pi)^{-1} \Pi^\top b - e = (\Pi^\top \Pi)^{-1} p
+$$
+
+Now substitute this into the numerator of {eq}`eq:old4`:
+
+$$
+p^\top \left[ (\Pi^\top \Pi)^{-1} \Pi^\top b - e \right]
+    = p^\top (\Pi^\top \Pi)^{-1} p
+$$
+
+The numerator of {eq}`eq:old4` therefore equals its denominator, so $\mu(p,e) = 1$, as required.
+
+```{solution-end}
+```
+
 ```{exercise}
 :label: sdm_ex2
 
@@ -221,7 +327,40 @@ Verify that setting  $\mu=2$ in {eq}`eq:old3` also implies that formula
 
 ```
 
+```{solution-start} sdm_ex2
+:class: dropdown
+```
+
+Setting $\mu = 2$ in {eq}`eq:old3` and again imposing $c = e$ gives
+
+$$
+p = \frac{1}{2}\left(\Pi^\top b - \Pi^\top \Pi e\right)
+$$
+
+so that the identity used in the previous exercise becomes
+
+$$
+(\Pi^\top \Pi)^{-1} \Pi^\top b - e = 2 (\Pi^\top \Pi)^{-1} p
+$$
+
+The numerator of {eq}`eq:old4` is now $2 p^\top (\Pi^\top \Pi)^{-1} p$, which is twice the denominator, so $\mu(p,e) = 2$.
+
+The same argument works for any $\mu > 0$.
+
+Doubling $\mu$ halves the equilibrium price vector and leaves relative prices and the allocation $c = e$ unchanged.
+
+$\mu$ normalizes the price level.
+
+```{solution-end}
+```
+
 Here is a class that computes competitive equilibria for our economy.
+
+```{note}
+Our code forms matrix inverses explicitly with `inv`, so that each line of code mirrors a line of algebra.
+
+For larger problems, solve the linear system directly with `numpy.linalg.solve`, as in {doc}`linear_equations`.
+```
 
 ```{code-cell} ipython3
 class ExchangeEconomy:
@@ -238,7 +377,7 @@ class ExchangeEconomy:
             Π (np.array): shared matrix of substitution
             b (list):  the consumer's bliss point
             e (list):  the consumer's endowment
-            thres (float): a threshold to check p >> Π e condition
+            thres (float): a threshold to check the b >> Π e condition
         """
 
         # check non-satiation
@@ -269,41 +408,6 @@ class ExchangeEconomy:
 
         return p, c
 ```
-
-## Digression: Marshallian and Hicksian demand curves
-
-Sometimes we'll use budget constraint {eq}`eq:old2` in situations in which a consumer's endowment vector $e$ is his **only** source of income.
-
-Other times we'll instead assume that the consumer has another source of income (positive or negative) and write his budget constraint as
-
-$$
-p ^\top (c -e ) = w
-$$ (eq:old2p)
-
-where $w$ is measured in "dollars" (or some other **numeraire**) and component $p_i$ of the price vector is measured in dollars per unit of good $i$.
-
-Whether the consumer's budget constraint is {eq}`eq:old2` or {eq}`eq:old2p` and whether we take $w$ as a free parameter or instead as an endogenous variable will affect the consumer's marginal utility of wealth.
-
-Consequently, how we set $\mu$ determines whether we are constructing
-
-* a **Marshallian** demand curve, as when we use {eq}`eq:old2` and solve for $\mu$ using equation {eq}`eq:old4` above, or
-* a **Hicksian** demand curve, as when we treat $\mu$ as a fixed parameter and solve for $w$ from {eq}`eq:old2p`.
-
-Marshallian and Hicksian demand curves contemplate different mental experiments:
-
-For a Marshallian demand curve, hypothetical changes in a price vector have both **substitution** and **income** effects
-
-* income effects are consequences of changes in $p^\top e$ associated with the change in the price vector
-
-For a Hicksian demand curve, hypothetical price vector changes have only **substitution** effects
-
-* changes in the price vector leave $p^\top e + w$ unaltered because we freeze $\mu$ and solve for $w$
-
-Sometimes a Hicksian demand curve is called a **compensated** demand curve in order to emphasize that, to disarm the income (or wealth) effect associated with a price change, the consumer's wealth $w$ is adjusted.
-
-We'll discuss these distinct demand curves more below.
-
-+++
 
 ## Dynamics and risk as special cases
 
@@ -362,6 +466,14 @@ $$
 
 is the **gross interest rate** and $r$ is the **net interest rate**.
 
+{doc}`pv` computes present values by discounting future payoffs with a discount factor $\delta \in (0,1)$.
+
+Here $p_2 / p_1 = R^{-1}$ is that discount factor, determined inside the model as the relative price of goods at two dates.
+
+{doc}`cons_smooth` studies a consumer who smooths consumption completely when $\beta R = 1$, a condition that Milton Friedman and Robert Hall assumed.
+
+An exercise below derives $R = \beta^{-1}$ from equilibrium when the endowment is the same at both dates.
+
 Here is an example.
 
 ```{code-cell} ipython3
@@ -381,13 +493,91 @@ print('Competitive equilibrium price vector:', p)
 print('Competitive equilibrium allocation:', c)
 ```
 
+```{exercise}
+:label: sdm_ex5
+
+Consider the dynamic interpretation above, with $\Pi = \begin{bmatrix} 1 & 0 \\ 0 & \sqrt{\beta}\end{bmatrix}$,
+$b = \begin{bmatrix} \bar b \\ \sqrt{\beta}\,\bar b \end{bmatrix}$ and $e = \begin{bmatrix} e_1 \\ e_2\end{bmatrix}$.
+
+a. Show analytically that the gross interest rate is
+
+$$
+R = \frac{p_1}{p_2} = \frac{1}{\beta} \cdot \frac{\bar b - e_1}{\bar b - e_2}
+$$
+
+and hence that $R = \beta^{-1}$ whenever the endowment is flat, that is, whenever $e_1 = e_2$.
+
+b. Let $e_2 = (1+g) e_1$ with $e_1 = 1$, $\bar b = 5$ and $\beta = 0.95$.
+
+Compute $R$ numerically for $g \in [-0.2, 0.2]$ and plot it against $g$, marking $\beta^{-1}$ with a dashed line.
+
+c. Explain, in terms of the consumer's desire to smooth consumption, why $R$ rises with $g$.
+
+```
+
+```{solution-start} sdm_ex5
+:class: dropdown
+```
+
+For part a, the equilibrium price vector is $p = \Pi^\top b - \Pi^\top \Pi e$.
+
+With this $\Pi$ and $b$,
+
+$$
+\Pi^\top b = \begin{bmatrix} \bar b \cr \beta \bar b \end{bmatrix}, \qquad
+\Pi^\top \Pi e = \begin{bmatrix} e_1 \cr \beta e_2 \end{bmatrix}, \qquad \text{so} \qquad
+p = \begin{bmatrix} \bar b - e_1 \cr \beta (\bar b - e_2) \end{bmatrix}
+$$
+
+Taking the ratio of the two components gives the formula, and setting $e_1 = e_2$ gives $R = \beta^{-1}$.
+
+```{code-cell} ipython3
+beta, b_bar, e1 = 0.95, 5, 1
+
+def R_of_g(g):
+    Π = np.array([[1, 0],
+                  [0, np.sqrt(beta)]])
+    b = np.array([b_bar, np.sqrt(beta) * b_bar])
+    e = np.array([e1, (1 + g) * e1])
+    p, c = ExchangeEconomy(Π, b, e).competitive_equilibrium()
+    return p[0] / p[1]
+
+gs = np.linspace(-0.2, 0.2, 41)
+Rs = np.array([R_of_g(g) for g in gs])
+R_formula = np.array([(b_bar - e1) / (beta * (b_bar - (1 + g) * e1)) for g in gs])
+
+print(f'max |numerical - formula| = {np.max(np.abs(Rs - R_formula)):.2e}')
+
+fig, ax = plt.subplots()
+ax.plot(gs, Rs, label='$R = p_1 / p_2$')
+ax.axhline(1 / beta, linestyle='--', color='red', label=r'$\beta^{-1}$')
+ax.set_xlabel('endowment growth rate $g$')
+ax.set_ylabel('gross interest rate $R$')
+ax.legend()
+plt.show()
+
+for g in [0, 0.1, 0.2]:
+    print(f'g = {g:>4}:  R = {R_of_g(g):.6f}')
+```
+
+The numerical and analytical answers agree, and $R = \beta^{-1} = 1.052632$ when $g = 0$.
+
+For part c, $g > 0$ tilts the endowment toward period $2$, and the consumer wants a flat consumption path.
+
+At $R = \beta^{-1}$ the consumer would borrow against period $2$ income.
+
+A single consumer has nobody to borrow from, so $R$ rises until the consumer willingly consumes the endowment.
+
+```{solution-end}
+```
+
 ### Risk and state-contingent claims
 
 We study risk in the context of a **static** environment, meaning that there is only one period.
 
 By **risk** we mean that an outcome is not known in advance, but that it is governed by a known probability distribution.
 
-As an example, our consumer confronts **risk** means in particular that
+That our consumer confronts **risk** means in particular that
 
   * there are two states of nature, $1$ and $2$.
 
@@ -423,7 +613,7 @@ $$
 b = \begin{bmatrix} \sqrt{\lambda}b_1 \cr \sqrt{1-\lambda}b_2 \end{bmatrix}
 $$
 
-A consumer's endowment vector is
+A consumer's consumption vector is
 
 $$
 c = \begin{bmatrix} c_1 \cr c_2 \end{bmatrix}
@@ -439,13 +629,9 @@ where $p_i$ is the price of one unit of consumption in state $i \in \{1, 2\}$.
 
 The state-contingent goods being traded are often called **Arrow securities**.
 
-Before the random state of the world $i$ is realized, the consumer sells his/her state-contingent endowment bundle and purchases a state-contingent consumption bundle.
+Before the random state of the world $i$ is realized, the consumer sells their state-contingent endowment bundle and purchases a state-contingent consumption bundle.
 
 Trading such state-contingent goods is one way economists often model **insurance**.
-
-+++
-
-We use the tricks described above to interpret  $c_1, c_2$ as "Arrow securities" that are state-contingent claims to consumption goods.
 
 +++
 
@@ -479,7 +665,7 @@ Please numerically study how each of the following cases affects the equilibrium
 * they like the first good more, or
 * the probability that state $1$ occurs is higher.
 
-Hints. For each case choose some parameter $e, b, \text{ or } \lambda$ different from the instance.
+Hint: for each case, choose a value of $e$, $b$, or $\lambda$ that differs from the one used in the instance above.
 
 ```
 
@@ -489,47 +675,104 @@ Hints. For each case choose some parameter $e, b, \text{ or } \lambda$ different
 :class: dropdown
 ```
 
-First consider when the consumer is poorer.
+A single-consumer endowment economy has no production and no trading partner, so the allocation equals the endowment.
 
-Here we just decrease the endowment.
+Only prices respond to the experiments below.
 
-```{code-cell} ipython3
-risk.e = np.array([0.5, 0.5])
-
-p, c = risk.competitive_equilibrium()
-
-print('Competitive equilibrium price vector:', p)
-print('Competitive equilibrium allocation:', c)
-```
-
-If the consumer likes the first (or second) good more, then we can set a larger bliss value for good 1.
+We build a fresh economy for each experiment.
 
 ```{code-cell} ipython3
-risk.b = np.array([np.sqrt(prob) * 6, np.sqrt(1 - prob) * 5])
-p, c = risk.competitive_equilibrium()
+def risk_economy(prob=0.2, b_scale=(5, 5), e=(1, 1)):
+    """
+    Build the risk economy, allowing each element of the baseline to be changed
+    """
+    Π = np.array([[np.sqrt(prob), 0],
+                  [0, np.sqrt(1 - prob)]])
+    b = np.array([np.sqrt(prob) * b_scale[0],
+                  np.sqrt(1 - prob) * b_scale[1]])
+    return ExchangeEconomy(Π, b, np.array(e))
 
-print('Competitive equilibrium price vector:', p)
-print('Competitive equilibrium allocation:', c)
+
+def show(economy, label):
+    p, c = economy.competitive_equilibrium()
+    print(f'{label}')
+    print(f'  price vector: {p}')
+    print(f'  allocation  : {c}\n')
+
+
+show(risk_economy(), 'baseline')
+show(risk_economy(e=(0.5, 0.5)), 'the consumer is poorer')
+show(risk_economy(b_scale=(6, 5)), 'the consumer likes the first good more')
+show(risk_economy(prob=0.8), 'state 1 is more likely')
 ```
 
-Increase the probability that state $1$ occurs.
+When the consumer is poorer, goods are scarcer relative to the bliss point, so **both** state-contingent prices rise.
+
+When the consumer likes the first good more, the price of a claim on state $1$ rises while the price of a claim on state $2$ is unchanged.
+
+When state $1$ becomes more likely, a claim that pays in state $1$ becomes more valuable and a claim that pays in state $2$ becomes less valuable.
+
+```{solution-end}
+```
+
+```{exercise}
+:label: sdm_ex6
+
+In the risk interpretation, $p_i$ is the price of one unit of consumption contingent on state $i$.
+
+a. Show that, with $\Pi = \operatorname{diag}(\sqrt{\lambda}, \sqrt{1-\lambda})$ and
+    $b = (\sqrt{\lambda}\,\bar b, \ \sqrt{1-\lambda}\,\bar b)^\top$,
+
+$$
+\frac{p_1}{p_2} = \frac{\lambda}{1-\lambda} \cdot \frac{\bar b - e_1}{\bar b - e_2}
+$$
+
+b. Conclude that when the endowment is the same in both states, state prices are proportional to probabilities, so that claims trade at **actuarially fair odds**.
+
+c. Verify both claims numerically for $\lambda \in \{0.2, 0.5, 0.8\}$, first with $e = (1,1)$ and then with $e = (0.5, 1.5)$.
+
+Explain the sign of the departure from fair odds in the second case.
+
+```
+
+```{solution-start} sdm_ex6
+:class: dropdown
+```
+
+For part a, again $p = \Pi^\top b - \Pi^\top \Pi e$, and here
+
+$$
+p = \begin{bmatrix} \lambda (\bar b - e_1) \cr (1-\lambda)(\bar b - e_2) \end{bmatrix}
+$$
+
+from which the ratio follows immediately.
+
+Part b is then immediate too: if $e_1 = e_2$, the second factor equals $1$, so $p_1/p_2 = \lambda/(1-\lambda)$.
 
 ```{code-cell} ipython3
-prob = 0.8
+b_bar = 5
 
-Π = np.array([[np.sqrt(prob), 0],
-              [0, np.sqrt(1 - prob)]])
+def price_ratio(λ, e):
+    Π = np.array([[np.sqrt(λ), 0],
+                  [0, np.sqrt(1 - λ)]])
+    b = np.array([np.sqrt(λ) * b_bar, np.sqrt(1 - λ) * b_bar])
+    p, c = ExchangeEconomy(Π, b, np.array(e)).competitive_equilibrium()
+    return p[0] / p[1]
 
-b = np.array([np.sqrt(prob) * 5, np.sqrt(1 - prob) * 5])
-
-e = np.array([1, 1])
-
-risk = ExchangeEconomy(Π, b, e)
-p, c = risk.competitive_equilibrium()
-
-print('Competitive equilibrium price vector:', p)
-print('Competitive equilibrium allocation:', c)
+print(f"{'λ':>5} | {'e':>12} | {'p1/p2':>9} | {'odds λ/(1-λ)':>13}")
+print('-' * 48)
+for λ in [0.2, 0.5, 0.8]:
+    for e in [[1, 1], [0.5, 1.5]]:
+        print(f'{λ:>5} | {str(e):>12} | {price_ratio(λ, e):>9.4f} | {λ / (1 - λ):>13.4f}')
 ```
+
+With $e = (1,1)$ the price ratio equals the odds ratio exactly.
+
+With $e = (0.5, 1.5)$ the good is scarcer in state $1$, and $p_1/p_2$ exceeds $\lambda/(1-\lambda)$ for every $\lambda$.
+
+State prices reflect probabilities and scarcity.
+
+Asset prices are expectations taken with respect to a probability distribution twisted toward states in which consumption is low.
 
 ```{solution-end}
 ```
@@ -575,7 +818,7 @@ $$
 H =  \frac{1}{2} (J + J^\top)
 $$
 
-The firm maximizes total profits by setting **marginal revenue to marginal costs**.
+The firm maximizes total profits by setting **marginal revenue equal to marginal costs**.
 
 An $n \times 1$ vector of marginal revenues for the price-taking firm is $\frac{\partial p^\top q}
 {\partial q} = p $.
@@ -595,9 +838,11 @@ $$
 ### Competitive equilibrium
 
 
-To compute a competitive equilibrium for a production economy where demand curve is pinned down by the marginal utility of wealth $\mu$, we first compute an allocation by solving a planning problem.
+We equate the inverse supply curve to the inverse demand curve and solve for the equilibrium quantity vector.
 
-Then we compute the equilibrium price vector using the inverse demand or supply curve.
+We then compute the equilibrium price vector from either curve.
+
+That quantity vector also solves a planning problem, as we show below.
 
 #### $\mu=1$ warmup
 
@@ -615,7 +860,7 @@ $$
 c = (\Pi^\top \Pi + H )^{-1} ( \Pi^\top b - h)
 $$ (eq:old5)
 
-This equation is the counterpart of equilibrium quantity {eq}`eq:old1` for the scalar $n=1$ model with which we began.
+This equation is the counterpart, for the scalar $n=1$ model of {doc}`intro_supply_demand`, of the equilibrium quantity derived there.
 
 #### General $\mu\neq 1$ case
 
@@ -637,13 +882,78 @@ $$ (eq:old5p)
 
 +++
 
+### Multi-good welfare maximization problem
+
+Our welfare maximization problem -- also sometimes called a social planning problem  -- is to choose $c$ to maximize
+
+$$
+    - \frac{1}{2} \mu^{-1}(\Pi c -b) ^\top (\Pi c -b )
+$$
+
+minus the area under the inverse supply curve, namely,
+
+$$
+    h^\top c +  \frac{1}{2} c^\top J c  
+$$
+
+So the welfare criterion is
+
+$$
+    - \frac{1}{2} \mu^{-1}(\Pi c -b)^\top (\Pi c -b ) -h^\top c 
+        -  \frac{1}{2} c^\top J c
+$$
+
+In this formulation, $\mu$ is a parameter that describes how the planner weighs interests of outside suppliers and our representative consumer.
+
+The first-order condition with respect to $c$ is
+
+$$
+- \mu^{-1} \Pi^\top \Pi c + \mu^{-1}\Pi^\top b - h -  H c = 0
+$$
+
+which implies {eq}`eq:old5p`.
+
+Thus, as for the single-good case, with multiple goods a competitive equilibrium quantity vector solves a planning problem.
+
+(This is another version of the first welfare theorem.)
+
+#### Welfare as consumer surplus plus producer surplus
+
+{doc}`intro_supply_demand` measured social welfare by consumer surplus plus producer surplus.
+
+Our welfare criterion equals that measure up to a constant.
+
+Consumer surplus is the area under the inverse demand curve minus expenditure.
+
+Producer surplus is revenue minus the area under the inverse supply curve.
+
+Adding them cancels revenue against expenditure:
+
+$$
+CS + PS = \mu^{-1} b^\top \Pi c - \frac{1}{2}\mu^{-1} c^\top \Pi^\top \Pi c
+        - h^\top c - \frac{1}{2} c^\top J c
+$$
+
+Expanding the quadratic form in the welfare criterion gives
+
+$$
+- \frac{1}{2} \mu^{-1}(\Pi c -b)^\top (\Pi c -b ) - h^\top c - \frac{1}{2} c^\top J c
+  = CS + PS - \frac{1}{2}\mu^{-1} b^\top b
+$$
+
+The constant $\frac{1}{2}\mu^{-1} b^\top b$ does not depend on $c$.
+
+Maximizing the welfare criterion and maximizing total surplus are therefore the same problem, and the competitive equilibrium quantity vector {eq}`eq:old5p` maximizes consumer surplus plus producer surplus.
+
+An exercise below computes both for a single good.
+
 ### Implementation
 
 A Production Economy will consist of
 
 * a single **person** that we'll interpret as a representative consumer
 * a single set of **production costs**
-* a multiplier $\mu$ that weights "consumers" versus "producers" in a planner's welfare function, as described above in the main text
+* a multiplier $\mu$ that weights "consumers" versus "producers" in the planner's welfare function described above
 * an $n \times 1$ vector $p$ of competitive equilibrium prices
 * an $n \times 1$ vector $c$ of competitive equilibrium quantities
 * **consumer surplus**
@@ -726,7 +1036,7 @@ def plot_competitive_equilibrium(PE):
     a single good production economy
 
     Args:
-        PE (class): A initialized production economy class
+        PE (class): An initialized production economy class
     """
     # get singleton value
     J, h, Π, b, μ = PE.J.item(), PE.h.item(), PE.Π.item(), PE.b.item(), PE.μ
@@ -771,7 +1081,7 @@ Now let's construct an example of a production economy with one good.
 
 To do this we
 
-  * specify a single **person** and a **cost curve** in a way that lets us replicate the simple single-good supply demand example with which we started
+  * specify a single **person** and a **cost curve** in a way that lets us replicate the simple single-good supply and demand example of {doc}`intro_supply_demand`
 
   * compute equilibrium $p$ and $c$ and consumer and producer surpluses
 
@@ -823,6 +1133,18 @@ print('Consumer surplus:', c_surplus.item())
 print('Producer surplus:', p_surplus.item())
 ```
 
+Raising $\mu$ from $1$ to $2$ halves the consumer's willingness to pay for each unit, $\mu^{-1}(\Pi b - \Pi^2 c)$.
+
+The equilibrium quantity falls from $4.75$ to $3$ and the price falls from $5.25$ to $3.5$.
+
+Both surpluses fall.
+
+The two experiments hold $h$ and $J$ fixed, so both surpluses are measured in the same units.
+
+The two experiments weight the consumer differently, so their surpluses do not rank welfare across them.
+
+Within each experiment, consumer surplus plus producer surplus is maximized at the competitive quantity.
+
 Now we change the bliss point so that the consumer derives more utility from consumption.
 
 ```{code-cell} ipython3
@@ -842,9 +1164,9 @@ This raises both the equilibrium price and quantity.
 
 #### Example: single agent two-good economy with production
 
-  * we'll do some experiments like those above
+Now we do experiments like those above, but with two goods.
 
-  * we can do experiments with a **diagonal** $\Pi$ and also with a **non-diagonal** $\Pi$ matrix to study how cross-slopes affect responses of $p$ and $c$ to various shifts in $b$ (TODO)
+We begin with a **diagonal** $\Pi$, so that the two goods are independent in preferences, together with a cost matrix $J$ whose off-diagonal element is positive, so that producing more of one good raises the marginal cost of the other.
 
 ```{code-cell} ipython3
 Π = np.array([[1, 0],
@@ -865,6 +1187,8 @@ print('Competitive equilibrium price:', p)
 print('Competitive equilibrium allocation:', c)
 ```
 
+Now let's raise the bliss point for the first good from $10$ to $12$.
+
 ```{code-cell} ipython3
 PE.b = np.array([12, 10])
 
@@ -874,9 +1198,15 @@ print('Competitive equilibrium price:', p)
 print('Competitive equilibrium allocation:', c)
 ```
 
+The quantity of good $1$ rises while the quantity of good $2$ **falls**, even though preferences for good $2$ have not changed.
+
+That cross-effect comes entirely from the cost side: producing more of good $1$ raises the marginal cost of good $2$.
+
+Next we make $\Pi$ **non-diagonal**, so that the two goods interact in preferences as well as in costs.
+
 ```{code-cell} ipython3
-PE.Π = np.array([[1, 0.5],
-                 [0.5, 1]])
+PE.Π = np.array([[1, 0.3],
+                 [0.3, 1]])
 
 PE.b = np.array([10, 10])
 
@@ -894,7 +1224,29 @@ print('Competitive equilibrium price:', p)
 print('Competitive equilibrium allocation:', c)
 ```
 
-### Digression: a supplier who is a monopolist
+The same shift in $b_1$ now moves both quantities by more: good $1$ rises by $1.11$ rather than $1.07$, and good $2$ falls by $0.30$ rather than $0.27$.
+
+A non-diagonal $\Pi$ puts a positive off-diagonal element in $\Pi^\top \Pi$.
+
+The cross-partial derivative of utility becomes $\partial^2 u / \partial c_1 \partial c_2 = -0.6$, so the two goods substitute for each other in preferences.
+
+Preference substitution reinforces cost substitution and pushes $c_2$ down.
+
+A non-diagonal $\Pi$ also raises both components of $\Pi^\top b$ when $b_1$ rises, which pushes $c_2$ up.
+
+The first effect dominates.
+
+```{note}
+The two effects can be separated in $\Delta c = (\Pi^\top \Pi + H)^{-1} \Pi^\top \Delta b$.
+
+Holding $\Pi^\top \Pi$ at $I$ and letting only $\Pi^\top b$ change gives $\Delta c = (0.99, 0.05)$.
+
+Holding $\Pi^\top \Delta b$ at $(2,0)$ and letting only $\Pi^\top \Pi$ change gives $\Delta c = (1.32, -0.70)$.
+
+The two together give $\Delta c = (1.11, -0.30)$.
+```
+
+### A monopolist supplier
 
 A competitive firm is a **price-taker** who regards the price and therefore its marginal revenue as being beyond its control.
 
@@ -903,7 +1255,7 @@ setting quantity.
 
 A monopolist takes a **demand curve** and not the **price** as beyond its control.
 
-Thus, instead of being a price-taker, a monopolist sets prices to maximize profits subject to the inverse demand curve
+Thus, instead of being a price-taker, a monopolist chooses a quantity to maximize profits subject to the inverse demand curve
 {eq}`eq:old5pa`.
 
 So the monopolist's total profits as a function of its output $q$ is
@@ -920,14 +1272,6 @@ $$
 q = (H + 2 \mu^{-1} \Pi^\top \Pi)^{-1} (\mu^{-1} \Pi^\top b - h)
 $$ (eq:qmonop)
 
-We'll soon see that a monopolist sets a **lower output** $q$ than does either a
-
- * planner who chooses $q$ to maximize social welfare
-
- * a competitive equilibrium
-
-
-
 ```{exercise}
 :label: sdm_ex4
 
@@ -935,24 +1279,52 @@ Please  verify the monopolist's supply curve {eq}`eq:qmonop`.
 
 ```
 
-+++
+```{solution-start} sdm_ex4
+:class: dropdown
+```
 
-### A monopolist
+Write the monopolist's profits {eq}`eq:monopprof` as
 
-Let's consider a monopolist supplier.
+$$
+\mu^{-1} b^\top \Pi q - \mu^{-1} q^\top \Pi^\top \Pi q - h^\top q - \frac{1}{2} q^\top J q
+$$
 
-We have included a method in our `ProductionEconomy` class to compute an equilibrium price and allocation when the supplier is a monopolist.
+Now apply the formulas for differentiating an inner product and a quadratic form, recalling that $H = \frac{1}{2}(J + J^\top)$:
 
-Since the supplier now has the price-setting power
+$$
+\frac{\partial}{\partial q}\left(\mu^{-1} b^\top \Pi q\right) = \mu^{-1}\Pi^\top b, \qquad
+\frac{\partial}{\partial q}\left(\mu^{-1} q^\top \Pi^\top \Pi q\right) = 2 \mu^{-1}\Pi^\top \Pi q
+$$
 
-- we first compute the optimal quantity that solves the monopolist's profit maximization problem.
-- Then we back out an equilibrium price from the consumer's inverse demand curve.
+$$
+\frac{\partial}{\partial q}\left(h^\top q\right) = h, \qquad
+\frac{\partial}{\partial q}\left(\frac{1}{2} q^\top J q\right) = H q
+$$
 
-Next, we use a graph for the single good case to illustrate the difference between a competitive equilibrium and an equilibrium with a monopolist supplier.
+The first-order condition is therefore
+
+$$
+\mu^{-1}\Pi^\top b - 2 \mu^{-1}\Pi^\top \Pi q - h - H q = 0
+$$
+
+Collecting terms in $q$ gives
+
+$$
+\left(H + 2\mu^{-1}\Pi^\top\Pi\right) q = \mu^{-1}\Pi^\top b - h
+$$
+
+which is {eq}`eq:qmonop`.
+
+The Hessian of profits with respect to $q$ is $-(H + 2\mu^{-1}\Pi^\top \Pi)$.
+
+Because $H$ and $\Pi^\top \Pi$ are both positive definite, this Hessian is negative definite, so the first-order condition does indeed describe a maximum.
+
+```{solution-end}
+```
+
+Let's now compare a monopolist with a competitive supplier.
 
 Recall that in a competitive equilibrium, a price-taking supplier equates marginal revenue $p$ to marginal cost $h + Hq$.
-
-This yields a competitive producer's inverse supply curve.
 
 A monopolist's marginal revenue is not constant but instead is a non-trivial function of the quantity it sets.
 
@@ -964,9 +1336,12 @@ $$
 
 which the monopolist equates to its marginal cost.
 
-The plot indicates that the monopolist sets output lower than the competitive equilibrium quantity.
+Below we define a class `Monopoly` that inherits from `ProductionEconomy` and adds a method that computes an equilibrium price and allocation when the supplier is a monopolist.
 
-In a single good case, this equilibrium is associated with a higher price of the good.
+Since the supplier now has price-setting power
+
+- we first compute the optimal quantity that solves the monopolist's profit maximization problem
+- then we back out an equilibrium price from the consumer's inverse demand curve
 
 ```{code-cell} ipython3
 class Monopoly(ProductionEconomy):
@@ -1013,7 +1388,7 @@ def plot_monopoly(M):
     equilibrium in a monopolist supplier economy with a single good
 
     Args:
-        M (class): A class inherits class ProductionEconomy with monopoly
+        M (class): An instance of a class that inherits from ProductionEconomy
     """
     # get singleton value
     J, h, Π, b, μ = M.J.item(), M.h.item(), M.Π.item(), M.b.item(), M.μ
@@ -1023,8 +1398,6 @@ def plot_monopoly(M):
     c, p = M.competitive_equilibrium()
     q, pm = M.equilibrium_with_monopoly()
     c, p, q, pm = c.item(), p.item(), q.item(), pm.item()
-
-    # compute
 
     # inverse supply/demand curve
     marg_cost = lambda x: h + H * x
@@ -1062,6 +1435,112 @@ def plot_monopoly(M):
     plt.show()
 ```
 
+#### A single-good example
+
+```{code-cell} ipython3
+Π = np.array([[1]])  # the matrix now is a singleton
+b = np.array([10])
+h = np.array([0.5])
+J = np.array([[1]])
+μ = 1
+
+M = Monopoly(Π, b, h, J, μ)
+c, p = M.competitive_equilibrium()
+q, pm = M.equilibrium_with_monopoly()
+
+print('Competitive equilibrium price:', p.item())
+print('Competitive equilibrium allocation:', c.item())
+
+print('Equilibrium with monopolist supplier price:', pm.item())
+print('Equilibrium with monopolist supplier allocation:', q.item())
+
+# plot
+plot_monopoly(M)
+```
+
+The monopolist sets output below the competitive equilibrium quantity, and in this single-good economy that lower quantity is associated with a higher price.
+
+```{exercise}
+:label: sdm_ex7
+
+For the single-good economy just studied, with $\Pi = [1]$, $b = [10]$, $h = [0.5]$, $J = [[1]]$ and $\mu = 1$, define **total surplus** at quantity $x$ as the area under the inverse demand curve minus the area under the marginal cost curve:
+
+$$
+TS(x) = \mu^{-1}\left(\Pi b x - \frac{1}{2}\Pi^2 x^2\right) - \left(h x + \frac{1}{2} J x^2\right)
+$$
+
+a. Compute $TS$ at the competitive quantity and at the monopoly quantity, and report the **deadweight loss** caused by monopoly.
+
+b. Maximize $TS$ over a fine grid of values of $x$ and check that the maximizer is the *competitive* quantity rather than the monopoly quantity.
+
+Which welfare theorem does this illustrate?
+
+```
+
+```{solution-start} sdm_ex7
+:class: dropdown
+```
+
+```{code-cell} ipython3
+Π = np.array([[1]])
+b = np.array([10])
+h = np.array([0.5])
+J = np.array([[1]])
+μ = 1
+
+M = Monopoly(Π, b, h, J, μ)
+c, p = M.competitive_equilibrium()
+q, pm = M.equilibrium_with_monopoly()
+c, p, q, pm = c.item(), p.item(), q.item(), pm.item()
+
+Π_, b_, h_, J_ = Π.item(), b.item(), h.item(), J.item()
+
+def total_surplus(x):
+    return (Π_ * b_ * x - .5 * Π_**2 * x**2) / μ - (h_ * x + .5 * J_ * x**2)
+
+print(f'competitive: q = {c:.4f}, p = {p:.4f}, total surplus = {total_surplus(c):.4f}')
+print(f'monopoly   : q = {q:.4f}, p = {pm:.4f}, total surplus = {total_surplus(q):.4f}')
+print(f'deadweight loss = {total_surplus(c) - total_surplus(q):.4f}')
+
+xs = np.linspace(0, 2 * c, 100001)
+print(f'\nquantity that maximizes total surplus: {xs[np.argmax(total_surplus(xs))]:.4f}')
+```
+
+Let's draw the deadweight loss as the area between the demand curve and the marginal cost curve, over the output that the monopolist declines to produce.
+
+```{code-cell} ipython3
+:tags: [hide-input]
+
+xs = np.linspace(0, 2 * c, 200)
+demand_inv = lambda x: (Π_ * b_ - Π_**2 * x) / μ
+marg_cost = lambda x: h_ + J_ * x
+
+fig, ax = plt.subplots()
+ax.plot(xs, demand_inv(xs), label='Demand', color='#600001')
+ax.plot(xs, marg_cost(xs), label='Marginal cost', color='#020060')
+
+mask = (xs >= q) & (xs <= c)
+ax.fill_between(xs[mask], marg_cost(xs[mask]), demand_inv(xs[mask]),
+                color='#BBBBBB', label='Deadweight loss')
+
+ax.scatter(c, p, zorder=10, label='Competitive equilibrium', color='#600001')
+ax.scatter(q, pm, zorder=10, label='Equilibrium with monopoly', color='#E55B13')
+
+ax.set_xlabel('Quantity')
+ax.set_ylabel('Price')
+ax.legend(loc='upper right')
+plt.show()
+```
+
+The competitive quantity $4.75$ maximizes total surplus, while the monopolist restricts output to $3.1667$ and so destroys $2.5069$ of surplus, the shaded triangle between the demand curve and the marginal cost curve.
+
+That the competitive quantity solves the planner's problem is the **first welfare theorem**, here in its single-good form.
+
+The monopolist violates the hypothesis of that theorem because it is not a price taker.
+
+```{solution-end}
+```
+
 #### A multiple good example
 
 Let's compare competitive equilibrium and monopoly outcomes in a multiple goods economy.
@@ -1089,66 +1568,28 @@ print('Equilibrium with monopolist supplier price:', pm)
 print('Equilibrium with monopolist supplier allocation:', q)
 ```
 
-#### A single-good example
+Here the monopolist restricts output of both goods.
 
-```{code-cell} ipython3
-Π = np.array([[1]])  # the matrix now is a singleton
-b = np.array([10])
-h = np.array([0.5])
-J = np.array([[1]])
-μ = 1
+```{note}
+With a single good, a monopolist produces less than a competitive industry does.
 
-M = Monopoly(Π, b, h, J, μ)
-c, p = M.competitive_equilibrium()
-q, pm = M.equilibrium_with_monopoly()
+With several goods, off-diagonal elements of $\Pi$ or $J$ can lead a monopolist to produce more of one good than a competitive industry would.
 
-print('Competitive equilibrium price:', p.item())
-print('Competitive equilibrium allocation:', c.item())
+The welfare comparison survives.
 
-print('Equilibrium with monopolist supplier price:', pm.item())
-print('Equilibrium with monopolist supplier allocation:', q.item())
-
-# plot
-plot_monopoly(M)
+The monopoly quantity vector does not maximize the planner's criterion, so total surplus falls under monopoly.
 ```
 
-## Multi-good welfare maximization problem
+## Concluding remarks
 
-Our welfare maximization problem -- also sometimes called a social planning problem  -- is to choose $c$ to maximize
+This lecture studied competitive equilibria in an economy with many goods, first in pure exchange and then with production.
 
-$$
-    - \frac{1}{2} \mu^{-1}(\Pi c -b) ^\top (\Pi c -b )
-$$
+The same mathematical structure describes **dynamics** and **risk**, once we index goods by dates or by states of the world.
 
-minus the area under the inverse supply curve, namely,
+A competitive equilibrium quantity vector solves a planning problem, a version of the first welfare theorem.
 
-$$
-    h c +  \frac{1}{2} c^\top J c  
-$$
+A monopolist violates the hypothesis of that theorem and destroys surplus.
 
-So the welfare criterion is
+Our economy contained a single representative consumer, so no question about the distribution of wealth arose.
 
-$$
-    - \frac{1}{2} \mu^{-1}(\Pi c -b)^\top (\Pi c -b ) -h c 
-        -  \frac{1}{2} c^\top J c
-$$
-
-In this formulation, $\mu$ is a parameter that describes how the planner weighs interests of outside suppliers and our representative consumer.
-
-The first-order condition with respect to $c$ is
-
-$$
-- \mu^{-1} \Pi^\top \Pi c + \mu^{-1}\Pi^\top b - h -  H c = 0
-$$
-
-which implies {eq}`eq:old5p`.
-
-Thus, as for the single-good case, with multiple goods a competitive equilibrium quantity vector solves a planning problem.
-
-(This is another version of the first welfare theorem.)
-
-We can deduce a competitive equilibrium price vector from either
-
-  * the inverse demand curve, or
-
-  * the inverse supply curve
+{doc}`supply_demand_heterogeneity` lets consumers differ in their preferences and endowments and studies how a competitive equilibrium distributes goods among them.

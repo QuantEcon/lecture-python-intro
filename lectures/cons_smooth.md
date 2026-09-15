@@ -130,6 +130,12 @@ By **smoother** we mean as close as possible to being constant over time.
 
 The preference for smooth consumption paths that is built into the model gives it the  name "consumption-smoothing model".
 
+This lecture takes the gross interest rate $R$ as given from outside the model.
+
+{doc}`supply_demand_multiple_goods` studies a general equilibrium model in which $R$ is the relative price of goods at two dates.
+
+There $R = \beta^{-1}$ when a consumer's endowment is the same at both dates, so the condition that Friedman and Hall assumed emerges as an equilibrium outcome.
+
 We'll postpone verifying our claim that a constant consumption path is optimal when $\beta R=1$
 by comparing welfare levels that comes from a constant path with ones that involve non-constant paths.
 
