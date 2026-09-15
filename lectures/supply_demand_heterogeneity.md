@@ -448,7 +448,7 @@ Consider two ways of dividing the *same* aggregate endowment $e_1 + e_2 = (3, 1.
 
 a. Compute the equilibrium price vector, allocation and marginal utilities of wealth under each distribution.
 
-    What changes and what does not?
+What changes and what does not?
 
 b. Verify that $\sum_i \mu_i$ is also the same under the two distributions, and explain why by using equation {eq}`eq:old6`.
 
@@ -553,7 +553,7 @@ a. Show that consumer $i$'s consumption is constant across the two dates if and 
 
 b. Now let the aggregate endowment grow, by setting $e_1 = (1.5, 0)^\top$ and $e_2 = (0, 2.5)^\top$.
 
-    Recompute the equilibrium.  What happens to $R$ and to the shapes of the two consumption paths?
+Recompute the equilibrium.  What happens to $R$ and to the shapes of the two consumption paths?
 
 ```
 
@@ -651,7 +651,7 @@ Return to the Arrow securities economy just computed.
 
 a. Introduce **aggregate** risk by setting $e_1 = (1.5, 0)^\top$ while leaving $e_2 = (0,1)^\top$, so that the economy-wide endowment is $1.5$ in state $1$ and $1$ in state $2$.
 
-    Recompute the equilibrium.  Is consumption still state-independent?  Does $p_1/p_2$ still equal the odds ratio?
+Recompute the equilibrium.  Is consumption still state-independent?  Does $p_1/p_2$ still equal the odds ratio?
 
 b. Explain which kind of risk a complete set of Arrow securities can eliminate and which kind it cannot.
 
@@ -849,7 +849,7 @@ a. Write a function that solves the planner's problem for arbitrary weights $\th
 
 b. Check that setting $\theta_i = 1/\mu_i$ reproduces the competitive equilibrium allocation, and that $\eta$ is proportional to $p$.
 
-    Do this both for the two-person economy in which the second good is scarce and for the Arrow securities economy.
+Do this both for the two-person economy in which the second good is scarce and for the Arrow securities economy.
 
 c. Now set equal weights $\theta_1 = \theta_2$ and describe how the planner's allocation differs from the competitive one.
 

@@ -509,7 +509,7 @@ and hence that $R = \beta^{-1}$ whenever the endowment is flat, that is, wheneve
 
 b. Let $e_2 = (1+g) e_1$ with $e_1 = 1$, $\bar b = 5$ and $\beta = 0.95$.
 
-    Compute $R$ numerically for $g \in [-0.2, 0.2]$ and plot it against $g$, marking $\beta^{-1}$ with a dashed line.
+Compute $R$ numerically for $g \in [-0.2, 0.2]$ and plot it against $g$, marking $\beta^{-1}$ with a dashed line.
 
 c. Explain, in terms of the consumer's desire to smooth consumption, why $R$ rises with $g$.
 
@@ -731,7 +731,7 @@ b. Conclude that when the endowment is the same in both states, state prices are
 
 c. Verify both claims numerically for $\lambda \in \{0.2, 0.5, 0.8\}$, first with $e = (1,1)$ and then with $e = (0.5, 1.5)$.
 
-    Explain the sign of the departure from fair odds in the second case.
+Explain the sign of the departure from fair odds in the second case.
 
 ```
 
@@ -1473,7 +1473,7 @@ a. Compute $TS$ at the competitive quantity and at the monopoly quantity, and re
 
 b. Maximize $TS$ over a fine grid of values of $x$ and check that the maximizer is the *competitive* quantity rather than the monopoly quantity.
 
-    Which welfare theorem does this illustrate?
+Which welfare theorem does this illustrate?
 
 ```
 
