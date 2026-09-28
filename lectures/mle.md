@@ -13,13 +13,23 @@ kernelspec:
 
 # Maximum Likelihood Estimation
 
+In addition to what's in Anaconda, this lecture will need the following libraries:
+
+```{code-cell} ipython3
+:tags: [hide-output]
+
+!pip install --upgrade yfinance
+```
+
 ```{code-cell} ipython3
 from scipy.stats import lognorm, pareto, expon
+from scipy.stats import t as student_t
+from scipy.stats import kurtosis
 import numpy as np
 from scipy.integrate import quad
 import matplotlib.pyplot as plt
 import pandas as pd
-from math import exp
+import yfinance as yf
 ```
 
 ## Introduction
@@ -94,7 +104,7 @@ url = 'https://raw.githubusercontent.com/QuantEcon/data-lectures/main/lectures/S
 df = pd.read_csv(url)
 df = df.dropna()
 df = df[df['year'] == 2016]
-df = df.loc[df['n_wealth'] > 1 ]   #restrcting data to net worth > 1
+df = df.loc[df['n_wealth'] > 1 ]   # restricting data to net worth > 1
 rv = df['n_wealth'].sample(n=n, random_state=1234)
 rv = rv.to_numpy() / 100_000
 sample = rv
@@ -103,14 +113,20 @@ sample = rv
 Let's histogram this sample.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Histogram of US household wealth
+    name: fig:mle-wealth-hist
+---
 fig, ax = plt.subplots()
 ax.set_xlim(-1, 20)
 density, edges = np.histogram(sample, bins=5000, density=True)
 prob = density * np.diff(edges)
-plt.stairs(prob, edges, fill=True, alpha=0.8, label=r"unit: $\$100,000$")
-plt.ylabel("prob")
-plt.xlabel("net wealth")
-plt.legend()
+ax.stairs(prob, edges, fill=True, alpha=0.8, label=r"unit: $\$100,000$")
+ax.set_ylabel("prob")
+ax.set_xlabel("net wealth")
+ax.legend()
 plt.show()
 ```
 
@@ -168,9 +184,17 @@ histogram log wealth instead of wealth, the picture starts to look something
 like a bell-shaped curve.
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Histogram of log wealth
+    name: fig:mle-log-wealth-hist
+---
 ln_sample = np.log(sample)
 fig, ax = plt.subplots()
 ax.hist(ln_sample, density=True, bins=200, histtype='stepfilled', alpha=0.8)
+ax.set_xlabel("log of net wealth")
+ax.set_ylabel("density")
 plt.show()
 ```
 
@@ -183,15 +207,15 @@ data.
 The pdf of a lognormally distributed random variable $X$ is given by:
 
 $$
-    f(x, \mu, \sigma) 
-    = \frac{1}{x}\frac{1}{\sigma \sqrt{2\pi}} 
-    \exp\left(\frac{-1}{2}\left(\frac{\ln x-\mu}{\sigma}\right)\right)^2
+    f(x; \mu, \sigma) 
+    = \frac{1}{x \sigma \sqrt{2\pi}} 
+    \exp \left( - \frac{(\ln x - \mu)^2}{2 \sigma^2} \right)
 $$
 
 For our sample $w_1, w_2, \cdots, w_n$, the [likelihood function](https://en.wikipedia.org/wiki/Likelihood_function) is given by
 
 $$
-    L(\mu, \sigma | w_i) = \prod_{i=1}^{n} f(w_i, \mu, \sigma)
+    L(\mu, \sigma) = \prod_{i=1}^{n} f(w_i; \mu, \sigma)
 $$
 
 The likelihood function can be viewed as both
@@ -203,35 +227,39 @@ Taking logs on both sides gives us the log likelihood function, which is
 
 $$
 \begin{aligned}
-    \ell(\mu, \sigma | w_i) 
-    & = \ln \left[ \prod_{i=1}^{n} f(w_i, \mu, \sigma) \right] \\
+    \ell(\mu, \sigma) 
+    & = \ln \left[ \prod_{i=1}^{n} f(w_i; \mu, \sigma) \right] \\
     & = -\sum_{i=1}^{n} \ln w_i 
         - \frac{n}{2} \ln(2\pi) - \frac{n}{2} \ln \sigma^2 - \frac{1}{2\sigma^2}
             \sum_{i=1}^n (\ln w_i - \mu)^2
 \end{aligned}
 $$
 
-To find where this function is maximised we find its partial derivatives wrt $\mu$ and $\sigma ^2$ and equate them to $0$.
+To find where this function is maximized we find its partial derivatives with respect to $\mu$ and $\sigma^2$ and set them to zero.
 
 Let's first find the maximum likelihood estimate (MLE) of $\mu$
 
 $$
-\frac{\delta \ell}{\delta \mu} 
-    = - \frac{1}{2\sigma^2} \times 2 \sum_{i=1}^n (\ln w_i - \mu) = 0 \\
-\implies \sum_{i=1}^n \ln w_i - n \mu = 0 \\
-\implies \hat{\mu} = \frac{\sum_{i=1}^n \ln w_i}{n}
+\begin{aligned}
+\frac{\partial \ell}{\partial \mu} 
+    = \frac{1}{\sigma^2} \sum_{i=1}^n (\ln w_i - \mu) = 0 
+    & \implies \sum_{i=1}^n \ln w_i - n \mu = 0 \\
+    & \implies \hat{\mu} = \frac{1}{n} \sum_{i=1}^n \ln w_i
+\end{aligned}
 $$
 
 Now let's find the MLE of $\sigma$
 
 $$
-\frac{\delta \ell}{\delta \sigma^2} 
+\begin{aligned}
+\frac{\partial \ell}{\partial \sigma^2} 
     = - \frac{n}{2\sigma^2} + \frac{1}{2\sigma^4} 
-    \sum_{i=1}^n (\ln w_i - \mu)^2 = 0 \\
-    \implies \frac{n}{2\sigma^2} = 
+    \sum_{i=1}^n (\ln w_i - \mu)^2 = 0 
+    & \implies \frac{n}{2\sigma^2} = 
     \frac{1}{2\sigma^4} \sum_{i=1}^n (\ln w_i - \mu)^2 \\
-    \implies \hat{\sigma} = 
-    \left( \frac{\sum_{i=1}^{n}(\ln w_i - \hat{\mu})^2}{n} \right)^{1/2}
+    & \implies \hat{\sigma} = 
+    \left( \frac{1}{n} \sum_{i=1}^{n}(\ln w_i - \hat{\mu})^2 \right)^{1/2}
+\end{aligned}
 $$
 
 Now that we have derived the expressions for $\hat{\mu}$ and $\hat{\sigma}$,
@@ -251,21 +279,89 @@ num = (ln_sample - μ_hat)**2
 Let's plot the lognormal pdf using the estimated parameters against our sample data.
 
 ```{code-cell} ipython3
-dist_lognorm = lognorm(σ_hat, scale = exp(μ_hat))
-x = np.linspace(0,50,10000)
+---
+mystnb:
+  figure:
+    caption: Lognormal fit to wealth
+    name: fig:mle-lognormal-fit
+---
+dist_lognorm = lognorm(σ_hat, scale=np.exp(μ_hat))
+x = np.linspace(0, 50, 10000)
 
 fig, ax = plt.subplots()
-ax.set_xlim(-1,20)
+ax.set_xlim(-1, 20)
 
 ax.hist(sample, density=True, bins=5_000, histtype='stepfilled', alpha=0.5)
-ax.plot(x, dist_lognorm.pdf(x), 'k-', lw=0.5, label='lognormal pdf')
+ax.plot(x, dist_lognorm.pdf(x), 'k-', lw=2, label='lognormal pdf')
+ax.set_xlabel("net wealth")
+ax.set_ylabel("density")
 ax.legend()
 plt.show()
 ```
 
 Our estimated lognormal distribution appears to be a reasonable fit for the overall data.
 
-We now use {eq}`eq:est_rev` to calculate total revenue.
+
+### Comparison with the method of moments
+
+Notice that $\hat{\mu}$ and $\hat{\sigma}$ are just the sample mean and sample
+standard deviation of log wealth.
+
+So, for the lognormal class, maximum likelihood gives the same answer as
+fitting a normal distribution to log wealth by the method of moments.
+
+This is *not* the same as the lognormal fit in {doc}`fitting_distributions`,
+which matches the mean and variance of wealth itself, rather than of log
+wealth.
+
+Let's compute that fit too.
+
+```{code-cell} ipython3
+def fit_lognormal_mom(sample):
+    "Lognormal fit matching the sample mean and variance of the data."
+    m, v = sample.mean(), sample.var()
+    σ_squared = np.log(1 + v / m**2)
+    μ = np.log(m) - σ_squared / 2
+    return lognorm(s=np.sqrt(σ_squared), scale=np.exp(μ))
+
+dist_lognorm_mom = fit_lognormal_mom(sample)
+```
+
+To compare the two fits we use the Kolmogorov-Smirnov statistic from
+{doc}`fitting_distributions`, which is the largest vertical gap between the
+ECDF of the data and the fitted CDF.
+
+```{code-cell} ipython3
+def ks_statistic(sample, u):
+    "Largest vertical distance between the ECDF of the sample and the CDF of u."
+    x_sorted = np.sort(sample)
+    n = len(x_sorted)
+    F = u.cdf(x_sorted)
+    above = np.arange(1, n+1) / n - F     # gap just after each jump
+    below = F - np.arange(0, n) / n       # gap just before each jump
+    return max(above.max(), below.max())
+```
+
+```{code-cell} ipython3
+pd.DataFrame({
+    'σ': [σ_hat, dist_lognorm_mom.kwds['s']],
+    'KS statistic': [ks_statistic(sample, dist_lognorm),
+                     ks_statistic(sample, dist_lognorm_mom)]},
+    index=['maximum likelihood', 'method of moments'])
+```
+
+The two methods give quite different parameters, and maximum likelihood gives
+a much closer fit.
+
+The reason is that the sample variance of wealth is dominated by a handful of
+very wealthy households, so matching it pulls the whole fitted distribution
+toward them.
+
+Maximum likelihood works with log wealth, where these households are far less
+extreme.
+
+We now use {eq}`eq:est_rev` and the maximum likelihood fit to calculate total
+revenue.
 
 We will compute the integral using numerical integration via SciPy's
 [quad](https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.quad.html)
@@ -301,7 +397,7 @@ with parameters $b$ and $x_m$.
 In this case, the maximum likelihood estimates are known to be
 
 $$
-    \hat{b} = \frac{n}{\sum_{i=1}^{n} \ln (w_i/\hat{x_m})}
+    \hat{b} = \frac{n}{\sum_{i=1}^{n} \ln (w_i/\hat{x}_m)}
     \quad \text{and} \quad
     \hat{x}_m = \min_{i} w_i
 $$
@@ -322,7 +418,7 @@ b_hat
 Now let's recompute total revenue.
 
 ```{code-cell} ipython3
-dist_pareto = pareto(b = b_hat, scale = xm_hat)
+dist_pareto = pareto(b=b_hat, scale=xm_hat)
 tr_pareto = total_revenue(dist_pareto) 
 tr_pareto
 ```
@@ -340,31 +436,42 @@ We see that choosing the right distribution is extremely important.
 Let's compare the fitted Pareto distribution to the histogram:
 
 ```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Pareto fit to wealth
+    name: fig:mle-pareto-fit
+---
 fig, ax = plt.subplots()
 ax.set_xlim(-1, 20)
-ax.set_ylim(0,1.75)
+ax.set_ylim(0, 1.75)
 
 ax.hist(sample, density=True, bins=5_000, histtype='stepfilled', alpha=0.5)
-ax.plot(x, dist_pareto.pdf(x), 'k-', lw=0.5, label='Pareto pdf')
+ax.plot(x, dist_pareto.pdf(x), 'k-', lw=2, label='Pareto pdf')
+ax.set_xlabel("net wealth")
+ax.set_ylabel("density")
 ax.legend()
 
 plt.show()
 ```
 
-We observe that in this case the fit for the Pareto distribution is not very
-good, so we can probably reject it.
+The fit is poor, and the KS statistic confirms it.
 
-## What is the best distribution?
+```{code-cell} ipython3
+ks_statistic(sample, dist_pareto), ks_statistic(sample, dist_lognorm)
+```
+
+For the sample as a whole, the lognormal distribution is clearly preferred.
+
+
+## Fitting the right tail
 
 There is no "best" distribution --- every choice we make is an assumption.
 
-All we can do is try to pick a distribution that fits the data well.
+The lognormal distribution fits the sample as a whole, but for questions about
+the richest households, what matters is the fit in the upper tail.
 
-The plots above suggested that the lognormal distribution is optimal.
-
-However when we inspect the upper tail (the richest people), the Pareto distribution may be a better fit.
-
-To see this, let's now set a minimum threshold of net worth in our dataset.
+To study the tail, let's set a minimum threshold of net worth in our dataset.
 
 We set an arbitrary threshold of $500,000 and read the data into `sample_tail`.
 
@@ -372,84 +479,202 @@ We set an arbitrary threshold of $500,000 and read the data into `sample_tail`.
 :tags: [hide-input]
 
 df_tail = df.loc[df['n_wealth'] > 500_000 ]
-df_tail.head()
 rv_tail = df_tail['n_wealth'].sample(n=10_000, random_state=4321)
 rv_tail = rv_tail.to_numpy()
 sample_tail = rv_tail/500_000
 ```
 
-Let's plot this data.
-
-```{code-cell} ipython3
-fig, ax = plt.subplots()
-ax.set_xlim(0,50)
-ax.hist(sample_tail, density=True, bins=500, histtype='stepfilled', alpha=0.8)
-plt.show()
-```
-
-Now let's try fitting some distributions to this data.
-
-
-### Lognormal distribution for the right hand tail
-
-Let's start with the lognormal distribution
-
-We estimate the parameters again and plot the density against our data.
+Let's fit a lognormal and a Pareto distribution to this data by maximum
+likelihood, using the formulas derived above.
 
 ```{code-cell} ipython3
 ln_sample_tail = np.log(sample_tail)
 μ_hat_tail = np.mean(ln_sample_tail)
-num_tail = (ln_sample_tail - μ_hat_tail)**2
-σ_hat_tail = (np.mean(num_tail))**(1/2)
-dist_lognorm_tail = lognorm(σ_hat_tail, scale = exp(μ_hat_tail))
+σ_hat_tail = np.std(ln_sample_tail)
+dist_lognorm_tail = lognorm(σ_hat_tail, scale=np.exp(μ_hat_tail))
 
-fig, ax = plt.subplots()
-ax.set_xlim(0,50)
-ax.hist(sample_tail, density=True, bins=500, histtype='stepfilled', alpha=0.5)
-ax.plot(x, dist_lognorm_tail.pdf(x), 'k-', lw=0.5, label='lognormal pdf')
-ax.legend()
-plt.show()
+xm_hat_tail = min(sample_tail)
+b_hat_tail = 1/np.mean(np.log(sample_tail/xm_hat_tail))
+dist_pareto_tail = pareto(b=b_hat_tail, scale=xm_hat_tail)
 ```
 
-While the lognormal distribution was a good fit for the entire dataset,
-it is not a good fit for the right hand tail.
+Since we care about the tail, we compare the fits with Q-Q plots, which were
+introduced in {doc}`fitting_distributions` and show clearly how a fit behaves
+at the extremes.
 
-
-### Pareto distribution for the right hand tail
-
-Let's now assume the truncated dataset has a Pareto distribution.
-
-We estimate the parameters again and plot the density against our data.
+Tail wealth spans several orders of magnitude, so we draw the plots on log
+scales.
 
 ```{code-cell} ipython3
-xm_hat_tail = min(sample_tail)
-den_tail = np.log(sample_tail/xm_hat_tail)
-b_hat_tail = 1/np.mean(den_tail)
-dist_pareto_tail = pareto(b = b_hat_tail, scale = xm_hat_tail)
+def qq_plot(sample, u, ax, **kwargs):
+    "Plot sample quantiles against the quantiles of the distribution u."
+    x_sorted = np.sort(sample)
+    n = len(x_sorted)
+    p = (np.arange(1, n+1) - 0.5) / n
+    ax.plot(u.ppf(p), x_sorted, '.', ms=3, alpha=0.6, **kwargs)
+    lo, hi = u.ppf(p[0]), u.ppf(p[-1])
+    ax.plot([lo, hi], [lo, hi], 'k--', lw=2)
+    ax.set_xlabel('fitted quantiles')
+    ax.set_ylabel('sample quantiles')
+```
 
-fig, ax = plt.subplots()
-ax.set_xlim(0, 50)
-ax.set_ylim(0,0.65)
-ax.hist(sample_tail, density=True, bins= 500, histtype='stepfilled', alpha=0.5)
-ax.plot(x, dist_pareto_tail.pdf(x), 'k-', lw=0.5, label='pareto pdf')
+```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Q-Q plots for tail wealth
+    name: fig:mle-tail-qq
+---
+fig, axes = plt.subplots(1, 2, figsize=(10, 4.5))
+for ax, u, label in zip(axes,
+                        (dist_lognorm_tail, dist_pareto_tail),
+                        ('lognormal', 'Pareto')):
+    qq_plot(sample_tail, u, ax)
+    ax.set_xscale('log')
+    ax.set_yscale('log')
+    ax.set_title(label)
+plt.tight_layout()
 plt.show()
 ```
 
-The Pareto distribution is a better fit for the right hand tail of our dataset.
+The lognormal fit bends away from the 45 degree line: it puts probability on
+wealth below the threshold, which cannot occur in this sample, and it
+underpredicts large fortunes.
 
-### So what is the best distribution?
+The Pareto fit tracks the data closely until far into the tail, up to around 20
+times the threshold, or 10 million dollars.
 
-As we said above, there is no "best" distribution --- each choice is an
-assumption.
+Beyond that point the data flatten out, because no household in our data set
+is worth more than about 50 million dollars.
 
-We just have to test what we think are reasonable distributions.
+This reflects the survey rather than the population, since the SCF does not
+capture the very wealthiest households.
 
-One test is to plot the data against the fitted distribution, as we did.
+The KS statistic also favors the Pareto distribution.
 
-There are other more rigorous tests, such as the [Kolmogorov-Smirnov test](https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test).
+```{code-cell} ipython3
+ks_statistic(sample_tail, dist_lognorm_tail), ks_statistic(sample_tail, dist_pareto_tail)
+```
 
-We omit such advanced topics (but encourage readers to study them once
-they have completed these lectures).
+So, while the lognormal distribution was a good fit for the entire dataset, the
+Pareto distribution is a better fit for the right hand tail.
+
+
+### Why not the method of moments?
+
+Here is the estimated Pareto parameter for the tail.
+
+```{code-cell} ipython3
+b_hat_tail
+```
+
+This value is below 1, which has a striking implication.
+
+A Pareto distribution with parameter $b$ has mean $b x_m / (b - 1)$ when
+$b > 1$, and infinite mean when $b \leq 1$.
+
+So the fitted distribution has no finite mean, let alone a finite variance.
+
+(We discuss distributions of this kind in {doc}`heavy_tails`.)
+
+This is a problem for the method of moments.
+
+With $x_m$ fixed, matching the population mean to the sample mean $\bar w$ gives
+
+$$
+\hat{b} = \frac{\bar w}{\bar w - x_m}
+$$
+
+which is greater than 1 for *every* data set, since $\bar w > x_m$.
+
+The method of moments therefore cannot recover a value of $b$ at or below 1,
+however much data we have.
+
+Let's see what it gives here.
+
+```{code-cell} ipython3
+w_bar_tail = np.mean(sample_tail)
+w_bar_tail / (w_bar_tail - xm_hat_tail)
+```
+
+The trouble is that the method of moments assumes the moments it matches
+exist.
+
+Maximum likelihood makes no such assumption, since it works with the density
+itself, which is well defined for every value of $b$.
+
+This is one reason why maximum likelihood is the standard method for fitting
+heavy-tailed distributions.
+
+
+## Heavy-tailed returns
+
+In {doc}`fitting_distributions` we fitted a Student's t distribution to monthly
+returns on Amazon shares, using the method of moments.
+
+We noted there that the fitted value of the degrees of freedom $\nu$ was
+unreliable, because it came from the sample kurtosis, a fourth moment.
+
+Let's fit the same class by maximum likelihood instead.
+
+```{code-cell} ipython3
+:tags: [hide-output]
+
+data = yf.download('AMZN', '2000-1-1', '2024-1-1', interval='1mo')
+prices = data['Close']['AMZN']
+returns = prices.pct_change().dropna() * 100
+```
+
+Unlike the lognormal and Pareto cases, there is no closed-form expression for
+the maximum likelihood estimates of the Student's t distribution.
+
+Instead, the `fit` method in SciPy maximizes the log likelihood numerically.
+
+```{code-cell} ipython3
+ν_mle, loc_mle, scale_mle = student_t.fit(returns)
+dist_t_mle = student_t(df=ν_mle, loc=loc_mle, scale=scale_mle)
+ν_mle
+```
+
+For comparison, here is the method of moments fit from {doc}`fitting_distributions`.
+
+```{code-cell} ipython3
+def fit_t_mom(sample):
+    m, s = sample.mean(), sample.std()
+    ν = 4 + 6 / kurtosis(sample)
+    return student_t(df=ν, loc=m, scale=s * np.sqrt((ν - 2) / ν))
+
+dist_t_mom = fit_t_mom(returns)
+dist_t_mom.kwds['df']
+```
+
+Maximum likelihood gives a noticeably smaller $\nu$, and hence heavier tails.
+
+It also gives a closer fit.
+
+```{code-cell} ipython3
+ks_statistic(returns, dist_t_mom), ks_statistic(returns, dist_t_mle)
+```
+
+The Q-Q plot confirms that the maximum likelihood fit tracks the extreme
+returns well.
+
+```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    caption: Amazon returns against a t fitted by MLE
+    name: fig:mle-qq-returns-t
+---
+fig, ax = plt.subplots()
+qq_plot(returns, dist_t_mle, ax)
+plt.show()
+```
+
+The lesson is the same as for the wealth tail: when the tails are heavy, the
+sample moments are dominated by a few extreme observations, and maximum
+likelihood makes better use of the data.
+
 
 ## Exercises
 
@@ -481,7 +706,7 @@ $$
 ```
 
 ```{code-cell} ipython3
-dist_exp = expon(scale = 1/λ_hat)
+dist_exp = expon(scale=1/λ_hat)
 tr_expo = total_revenue(dist_exp) 
 tr_expo
 ```
@@ -507,7 +732,7 @@ fig, ax = plt.subplots()
 ax.set_xlim(-1, 20)
 
 ax.hist(sample, density=True, bins=5000, histtype='stepfilled', alpha=0.5)
-ax.plot(x, dist_exp.pdf(x), 'k-', lw=0.5, label='exponential pdf')
+ax.plot(x, dist_exp.pdf(x), 'k-', lw=2, label='exponential pdf')
 ax.legend()
 
 plt.show()
