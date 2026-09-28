@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Inflation During French Revolution
+# Inflation During the French Revolution
 
 
 ## Overview
