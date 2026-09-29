@@ -122,7 +122,7 @@ maximizes $L(\theta)$.
 Let's generate some data, using a true default probability of 0.15.
 
 ```{code-cell} ipython3
-rng = np.random.default_rng(1234)
+rng = np.random.default_rng(9)
 θ_true = 0.15
 n = 20
 y = (rng.random(n) < θ_true).astype(int)
