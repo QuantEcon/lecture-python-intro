@@ -135,7 +135,7 @@ It is the most detailed source of information on the wealth of US households.
 
 ```{code-cell} ipython3
 url = ('https://github.com/QuantEcon/data-lectures/raw/main/'
-       'lectures/scf_2022_networth.csv')
+       'lectures/us_household_net_worth_2022.csv')
 scf = pd.read_csv(url)
 scf.head()
 ```
