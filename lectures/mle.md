@@ -32,7 +32,54 @@ import pandas as pd
 import yfinance as yf
 ```
 
-## Introduction
+## Overview
+
+Maximum likelihood estimation is a method for choosing the parameters of a
+statistical model.
+
+The idea is simple: among all candidate parameter values, choose the one under
+which the data we actually observed are most probable.
+
+Put differently, we treat the probability that the model assigns to the data as
+a function of the parameters, and then maximize it.
+
+This principle is one of the foundations of modern statistics.
+
+It is used to fit distributions, as in this lecture, and also regression models,
+macroeconomic models, and models in physics, biology and machine learning.
+
+(For example, training a classifier by minimizing cross-entropy loss is maximum
+likelihood estimation.)
+
+One reason for its wide use is generality: once we have a model that assigns
+probabilities to data, maximum likelihood tells us how to fit it, with no need
+to invent a new method for each model.
+
+Another is that, under fairly general conditions, maximum likelihood estimates
+converge to the true parameter values as the sample grows, and in large samples
+no other method gives more precise estimates.
+
+The idea has a long history.
+
+Daniel Bernoulli and Carl Friedrich Gauss used versions of it in the late 18th
+and early 19th centuries, and Gauss justified the method of least squares by
+showing that, when errors are normally distributed, it picks out the most
+probable parameter values.
+
+The method was developed systematically, and given its name, by Ronald Fisher
+between 1912 and 1922 {cite}`fisher1922mathematical`.
+
+{cite:t}`aldrich1997fisher` and {cite:t}`stigler2007epic` tell the story.
+
+In this lecture we apply maximum likelihood to a policy problem: estimating the
+revenue raised by a wealth tax.
+
+We also compare it with the method of moments, which we studied in
+{doc}`fitting_distributions`, and see why maximum likelihood is the standard
+choice when data have heavy tails.
+
+
+## A wealth tax
 
 Consider a situation where a policymaker is trying to estimate how much revenue
 a proposed wealth tax will raise.
