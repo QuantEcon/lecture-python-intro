@@ -1068,10 +1068,9 @@ This means that diversification doesn't help at all!
 
 The heaviness of the tail in the wealth distribution matters for taxation and redistribution policies.
 
-The same is true for the income distribution.
+For example, it helps determine {doc}`how much revenue a wealth tax will raise <wealth_tax>`.
 
-For example, the heaviness of the tail of the income distribution helps
-determine {doc}`how much revenue a given tax policy will raise <mle>`.
+The same is true for the income distribution.
 
 
 (cltail)=
