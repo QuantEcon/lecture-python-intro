@@ -15,49 +15,34 @@ kernelspec:
 
 ## Overview
 
-Maximum likelihood estimation is a method for choosing the parameters of a
-statistical model.
+Maximum likelihood estimation is one of the most important methods for choosing
+the parameters of a statistical model.
 
-The idea is simple: among all candidate parameter values, choose the one under
-which the data we actually observed are most probable.
+The basic idea is to choose the parameter values that make the data we actually
+observed most probable.
 
 Put differently, we treat the probability that the model assigns to the data as
 a function of the parameters, and then maximize it.
 
-This principle is one of the foundations of modern statistics.
+This principle is one of the foundations of modern statistics, with applications
+across all scientific domains, including machine learning.
 
-It is used to fit distributions, as in this lecture, and also regression models,
-macroeconomic models, and models in physics, biology and machine learning.
-
-(For example, training a classifier by minimizing cross-entropy loss is maximum
-likelihood estimation.)
-
-One reason for its wide use is generality: once we have a model that assigns
-probabilities to data, maximum likelihood tells us how to fit it, with no need
-to invent a new method for each model.
-
-Another is that, under fairly general conditions, maximum likelihood estimates
-converge to the true parameter values as the sample grows, and in large samples
-no other method gives more precise estimates.
-
-The idea has a long history.
-
-Daniel Bernoulli and Carl Friedrich Gauss used versions of it in the late 18th
+Daniel Bernoulli and Carl Friedrich Gauss used versions of maximum in the late 18th
 and early 19th centuries, and Gauss justified the method of least squares by
 showing that, when errors are normally distributed, it picks out the most
 probable parameter values.
 
-The method was developed systematically, and given its name, by Ronald Fisher
-between 1912 and 1922 {cite}`fisher1922mathematical`.
+The method was developed systematically by Ronald Fisher over the decade from 1912 {cite}`fisher1922mathematical`.
 
-{cite:t}`aldrich1997fisher` and {cite:t}`stigler2007epic` tell the story.
+(See {cite:t}`aldrich1997fisher` and {cite:t}`stigler2007epic` for more historical details.)
 
-In this lecture we build up the idea through a sequence of examples, check by
-simulation that maximum likelihood estimates converge to the truth, and compare
-maximum likelihood with the method of moments from {doc}`fitting_distributions`.
+This lecture provides a quick introduction to maximum likelihood, focusing on examples.
 
-We also show how to compute maximum likelihood estimates numerically when no
-formula is available, and apply this to heavy-tailed stock returns.
+We will also 
+
+* check by simulation that maximum likelihood estimates converge to the truth as more information becomes available, 
+* compare maximum likelihood with the method of moments from {doc}`fitting_distributions`, and
+* how to compute maximum likelihood estimates numerically when no formula is available.
 
 In addition to what's in Anaconda, this lecture will need the following libraries:
 
@@ -83,8 +68,11 @@ import yfinance as yf
 
 We start with an example that we will meet again in {doc}`bayes_intro`.
 
-A bank makes a series of small loans, each of which either defaults or is
-repaid.
+Since this is our first example, we will go slowly.
+
+### The model
+
+A bank makes a series of small loans, each of which either defaults or is repaid.
 
 We encode the outcome of loan $i$ as $Y_i = 1$ if it defaults and $Y_i = 0$ if
 it is repaid.
@@ -100,37 +88,60 @@ $$
 The default probability θ is unknown, and our job is to estimate it from the
 observed outcomes $y_1, \ldots, y_n$.
 
-Both cases can be written as a single expression, since
-$\mathbb{P}\{Y_i = y\} = \theta^y (1 - \theta)^{1 - y}$ for $y \in \{0, 1\}$.
-
-By independence, the probability of observing the whole sample is therefore
+Note that both cases above can be written via the single expression
 
 $$
-L(\theta)
-= \prod_{i=1}^n \theta^{y_i} (1 - \theta)^{1 - y_i}
-= \theta^k (1 - \theta)^{n - k}
+    \mathbb{P}\{Y_i = y\} = \theta^y (1 - \theta)^{1 - y}
+    \quad \text{for} \quad  y \in \{0, 1\}.
+$$
+
+(To check this, set $y = 1$ and then $y = 0$.)
+
+### The likelihood
+
+By independence, the probability distribution for the random vector
+$(Y_1,\ldots, Y_n)$ is the product of the marginals.
+
+Thus, the probability of observing the whole sample $y_1, \ldots, y_n$ is
+
+$$
+L(\theta) := \prod_{i=1}^n \theta^{y_i} (1 - \theta)^{1 - y_i}
 $$ (eq:bern_lik)
 
-where $k = \sum_i y_i$ is the number of defaults.
+The function $L$ is called the **likelihood function**.
 
-Viewed as a function of θ, with the data held fixed, $L$ is called the
-**likelihood function**.
+It takes the observed data as fixed and writes the probability of observing the
+data as a function of the parameter.
 
 The **maximum likelihood estimate** $\hat \theta$ is the value of θ that
 maximizes $L(\theta)$.
 
+In other words, it is the value of θ under which the data we actually observed
+are most probable.
+
+### Plotting the likelihood
+
 Let's generate some data, using a true default probability of 0.15.
 
 ```{code-cell} ipython3
-rng = np.random.default_rng(9)
-θ_true = 0.15
-n = 20
-y = (rng.random(n) < θ_true).astype(int)
-k = y.sum()
+seed = 21  # Arbitrarily chosen seed for the random number generator
+rng = np.random.default_rng(seed)
+θ_true = 0.15  # Set the "unknown" true parameter to 0.15
+n = 20   # Fix a relatively small sample size
+y = (rng.random(n) < θ_true).astype(int)   # Generate n independent draws
 y
 ```
 
-Now we plot the likelihood function.
+Here is a function that computes the likelihood {eq}`eq:bern_lik`, directly
+from its definition as a product.
+
+```{code-cell} ipython3
+def likelihood(θ, y):
+    return np.prod(θ**y * (1 - θ)**(1 - y))
+```
+
+Now we plot the likelihood function, by evaluating it on a grid of values
+for θ.
 
 ```{code-cell} ipython3
 ---
@@ -140,23 +151,113 @@ mystnb:
     name: fig:mle-bernoulli-lik
 ---
 θ_grid = np.linspace(0.001, 0.999, 500)
-
-def bernoulli_likelihood(θ, k, n):
-    return θ**k * (1 - θ)**(n - k)
+L_values = [likelihood(θ, y) for θ in θ_grid]
 
 fig, ax = plt.subplots()
-ax.plot(θ_grid, bernoulli_likelihood(θ_grid, k, n), lw=2)
-ax.axvline(k / n, color='k', ls='--', lw=1, label='sample mean')
+ax.plot(θ_grid, L_values, lw=2)
 ax.set_xlabel(r'$\theta$')
 ax.set_ylabel('likelihood')
-ax.legend()
 plt.show()
 ```
 
-The likelihood peaks at the sample mean $k/n$, the fraction of loans that
-defaulted.
+The likelihood is maximized at a value of θ somewhere around 0.1.
 
-This is the value of θ under which the data we observed are most probable.
+We can locate the maximizer more precisely by finding the grid point with the
+largest likelihood.
+
+```{code-cell} ipython3
+θ_grid[np.argmax(L_values)]
+```
+
+### Maximizing the likelihood with calculus
+
+Let's now find the maximizer exactly, using calculus.
+
+We could differentiate $L$ directly, but differentiating a product of $n$
+terms is awkward.
+
+It is easier to work with the logarithm of the likelihood, called the
+**log likelihood**:
+
+$$
+\ell(\theta) := \ln L(\theta)
+$$
+
+Since the logarithm is strictly increasing, $L$ and $\ell$ have the same
+maximizer.
+
+So we can maximize $\ell$ instead of $L$.
+
+The advantage is that the logarithm turns products into sums.
+
+Using $\ln (ab) = \ln a + \ln b$ and $\ln (a^b) = b \ln a$, we get
+
+$$
+\ell(\theta)
+= \sum_{i=1}^n \ln \left[ \theta^{y_i} (1 - \theta)^{1 - y_i} \right]
+= \sum_{i=1}^n \left[ y_i \ln \theta + (1 - y_i) \ln (1 - \theta) \right]
+$$
+
+Let $k := \sum_{i=1}^n y_i$ be the number of defaults.
+
+Then $\sum_{i=1}^n (1 - y_i) = n - k$ is the number of loans repaid, and
+collecting terms gives
+
+$$
+\ell(\theta) = k \ln \theta + (n - k) \ln (1 - \theta)
+$$
+
+Its derivative is
+
+$$
+\ell'(\theta) = \frac{k}{\theta} - \frac{n - k}{1 - \theta}
+$$
+
+Assuming that $0 < k < n$, we set the derivative to zero and multiply through by
+$\theta (1 - \theta)$, which gives
+
+$$
+k (1 - \theta) - (n - k) \theta = 0
+\quad \iff \quad
+k - n \theta = 0
+\quad \iff \quad
+\theta = \frac{k}{n}
+$$
+
+This point is a maximum, since the second derivative
+
+$$
+\ell''(\theta) = - \frac{k}{\theta^2} - \frac{n - k}{(1 - \theta)^2}
+$$
+
+is negative everywhere on $(0, 1)$.
+
+Hence the maximum likelihood estimate is
+
+$$
+\hat \theta = \frac{k}{n} = \frac{1}{n} \sum_{i=1}^n y_i
+$$
+
+This is the sample mean of the data, or, in other words, the fraction of loans
+that defaulted.
+
+Let's check that it agrees with the figure.
+
+```{code-cell} ipython3
+k = y.sum()
+k / n
+```
+
+This matches the grid search above, up to the spacing of the grid.
+
+Notice that the estimate is not equal to the true value 0.15.
+
+With only 20 loans, the fraction that defaulted is a noisy guide to θ.
+
+We will see {ref}`below <mle_more_data>` that the estimate improves as we
+observe more loans.
+
+### Likelihood is not probability
 
 It is important to be clear about what $L$ is.
 
@@ -168,10 +269,24 @@ and need not integrate to one.
 
 That is why we give it a different name.
 
+(mle_more_data)=
+### More data
+
 Let's see what happens to the likelihood as we observe more loans.
+
+Exponentiating our expression for $\ell$ shows that
+$L(\theta) = \theta^k (1 - \theta)^{n - k}$, which is quicker to compute
+than the product when $n$ is large.
+
+```{code-cell} ipython3
+def bernoulli_likelihood(θ, k, n):
+    return θ**k * (1 - θ)**(n - k)
+```
 
 Since the likelihood gets very small when $n$ is large, we divide each curve by
 its maximum value, so that all the curves peak at one.
+
+(We return to the problem of very small likelihoods {ref}`below <mle_numerical>`.)
 
 ```{code-cell} ipython3
 ---
@@ -200,61 +315,6 @@ With more data, fewer values of θ are consistent with what we observe.
 
 This is a first sign of the consistency of maximum likelihood, which we study
 {ref}`below <mle_consistency>`.
-
-
-## The log likelihood
-
-In practice we almost always work with the logarithm of the likelihood,
-called the **log likelihood**, rather than the likelihood itself.
-
-There are two reasons.
-
-The first is that the logarithm turns products into sums, which are easier to
-differentiate.
-
-The second is numerical.
-
-The likelihood is a product of many numbers less than one, and for large
-samples it becomes too small to represent on a computer.
-
-```{code-cell} ipython3
-n = 5_000
-y = (rng.random(n) < θ_true).astype(int)
-k = y.sum()
-bernoulli_likelihood(θ_true, k, n)
-```
-
-The true value is positive, but it is smaller than the smallest positive
-floating point number, so the computer rounds it to zero.
-
-The log likelihood has no such problem.
-
-```{code-cell} ipython3
-def bernoulli_log_likelihood(θ, k, n):
-    return k * np.log(θ) + (n - k) * np.log(1 - θ)
-
-bernoulli_log_likelihood(θ_true, k, n)
-```
-
-Since the logarithm is strictly increasing, maximizing the log likelihood gives
-the same answer as maximizing the likelihood.
-
-For the loan data, the log likelihood is
-
-$$
-\ell(\theta) = \ln L(\theta) = k \ln \theta + (n - k) \ln (1 - \theta)
-$$
-
-Setting the derivative to zero gives
-
-$$
-\frac{k}{\theta} - \frac{n - k}{1 - \theta} = 0
-\quad \implies \quad
-\hat \theta = \frac{k}{n}
-$$
-
-So the maximum likelihood estimate is the sample mean, confirming what we saw
-in the figure.
 
 
 ## More examples
@@ -356,6 +416,12 @@ $$
 \hat \sigma = \left( \frac{1}{n} \sum_{i=1}^n (x_i - \hat \mu)^2 \right)^{1/2}
 $$
 
+In other words, $\hat \mu$ is the sample mean of the data, and $\hat \sigma$
+is the sample standard deviation.
+
+(Here the sample standard deviation is computed with divisor $n$, a point we
+return to below.)
+
 Let's look at the log likelihood for the heights of US adult women, which we
 fitted with a normal distribution in {doc}`fitting_distributions`.
 
@@ -368,6 +434,10 @@ female = heights[heights['sex'] == 'female']['height_cm'].to_numpy()
 
 With two parameters, the log likelihood is a surface, which we display with a
 contour plot.
+
+We compute $\hat \mu$ and $\hat \sigma$ using NumPy's `mean` and `std`
+methods, which implement the formulas above, and mark the point
+$(\hat \mu, \hat \sigma)$ on the plot.
 
 ```{code-cell} ipython3
 ---
@@ -398,7 +468,9 @@ ax.legend()
 plt.show()
 ```
 
-The maximum sits at the sample mean and standard deviation.
+As expected, the log likelihood is maximized at $(\hat \mu, \hat \sigma)$.
+
+Here are the values.
 
 ```{code-cell} ipython3
 μ_hat, σ_hat
@@ -521,59 +593,34 @@ plt.show()
 
 As $n$ grows, the estimates concentrate on the true value.
 
-How fast do they concentrate?
+This property holds for maximum likelihood estimates in general, under
+conditions that are satisfied in most applications.
 
-The {doc}`central limit theorem <lln_clt>` suggests that the spread should
-shrink like $1/\sqrt{n}$.
-
-For this estimator it is known that, for large $n$, $\hat \alpha$ is
-approximately normal with mean α and standard deviation $\alpha / \sqrt{n}$.
-
-Let's check by standardizing the estimates and comparing them with a standard
-normal density.
-
-```{code-cell} ipython3
----
-mystnb:
-  figure:
-    caption: Standardized estimates and the standard normal
-    name: fig:mle-asymptotic-normal
----
-n = 1_000
-x = pareto_draws(α_true, (num_reps, n), rng)
-α_hats = n / np.sum(np.log(x), axis=1)
-z = (α_hats - α_true) / (α_true / np.sqrt(n))
-
-z_grid = np.linspace(-4, 4, 200)
-fig, ax = plt.subplots()
-ax.hist(z, bins=50, density=True, alpha=0.4, label='standardized estimates')
-ax.plot(z_grid, scipy.stats.norm.pdf(z_grid), lw=2, label='standard normal')
-ax.set_xlabel('standardized estimate')
-ax.set_ylabel('density')
-ax.legend()
-plt.show()
-```
-
-The fit is close.
-
-These two properties, consistency and approximate normality in large samples,
-hold for maximum likelihood estimates in general, under regularity conditions
-that are satisfied in most applications.
-
-Moreover, the spread of the approximating normal distribution is as small as
-that of any reasonable estimator, which is the sense in which maximum
-likelihood makes the best use of the data.
-
-Proofs can be found in any graduate text on statistics.
+(Proofs can be found in any graduate text on statistics.)
 
 
 (mle_vs_mom)=
 ## Maximum likelihood and the method of moments
 
-Let's now compare maximum likelihood with the method of moments for the Pareto
-distribution.
+In {doc}`fitting_distributions` we fitted distributions using the **method of
+moments**, which chooses parameters so that the moments of the fitted
+distribution (its mean, variance and so on) match the corresponding moments of
+the data.
 
-When α > 1, the Pareto distribution has mean $\alpha \bar x / (\alpha - 1)$.
+Let's compare this method with maximum likelihood for the Pareto distribution.
+
+The Pareto distribution has one unknown parameter α, so the method of moments
+uses one moment, the mean.
+
+This immediately raises a problem.
+
+As we saw in {doc}`heavy_tails`, the mean of the Pareto distribution is finite
+only when α > 1.
+
+When α ≤ 1 the mean is infinite, so there is no population mean for the sample
+mean to match, and the method of moments cannot be used.
+
+When α > 1, the mean is $\alpha \bar x / (\alpha - 1)$.
 
 Setting this equal to the sample mean $m_n = \frac{1}{n} \sum_i x_i$ and
 solving for α gives the method of moments estimate
@@ -588,26 +635,41 @@ def pareto_mom(x, x_bar=1.0):
     return m / (m - x_bar)
 ```
 
-Since every observation is at least $\bar x$, we have $m_n > \bar x$ and hence
-$\tilde \alpha > 1$ for *every* data set.
+In practice, of course, we do not know α in advance, so we do not know whether
+the method is valid.
 
-So if the true α is less than or equal to one, the method of moments can never
-recover it, however much data we have.
+The danger is that the formula can be computed for any sample, since every
+sample has a finite mean.
 
-The underlying problem is that when α ≤ 1 the mean is infinite, so there is no
-population moment for the sample mean to match.
+Moreover, since every observation is at least $\bar x$, we have
+$m_n > \bar x$, so the formula always returns a value greater than one.
 
-Even when α is a little above one, so that the mean exists, the variance is
-infinite whenever α ≤ 2.
+So if the true α is at or below one, the method of moments quietly gives an
+answer that is on the wrong side of one, suggesting that the mean is finite
+when in fact it is not.
 
-Then, as we saw in {doc}`heavy_tails`, the sample mean settles down only
-slowly, and the method of moments estimate inherits this instability.
+Even when α > 1, so that the method is valid, heavy tails cause trouble.
 
-Maximum likelihood suffers from neither problem, since it works with the
-density, which is well defined for every α > 0.
+When α ≤ 2 the variance is infinite, and, as we saw in {doc}`heavy_tails`, the
+sample mean then settles down only slowly, because it is dominated by a few very
+large draws.
 
-Let's compare the two estimators by simulation, for α = 0.8 and α = 1.5, with
-samples of size 1,000.
+The method of moments estimate inherits this instability.
+
+Maximum likelihood has neither problem.
+
+It works with the density, which is well defined for every α > 0.
+
+Also, the estimate {eq}`eq:pareto_mle` depends on the data only through the
+average of $\ln (x_i / \bar x)$, and taking logs tames the very large draws.
+
+(In fact, if $X$ is Pareto, then $\ln (X / \bar x)$ is exponentially
+distributed, which is a light-tailed distribution.)
+
+Let's compare the two estimators by simulation, with samples of size 1,000.
+
+We take α = 0.8, where the method of moments is not valid, and α = 1.5, where
+it is valid but the variance is infinite.
 
 ```{code-cell} ipython3
 ---
@@ -636,8 +698,9 @@ plt.tight_layout()
 plt.show()
 ```
 
-When α = 0.8 (left), the method of moments estimates all lie above one, far
-from the truth, while the maximum likelihood estimates are centered on it.
+When α = 0.8 (left), the method of moments estimates all lie above one, as
+predicted, far from the truth, while the maximum likelihood estimates are
+centered on it.
 
 When α = 1.5 (right), both estimators are concentrated near the truth, but
 the method of moments estimates are much more dispersed, with a long left tail
@@ -654,6 +717,7 @@ this is one reason why maximum likelihood is the standard method for fitting
 heavy-tailed distributions.
 
 
+(mle_numerical)=
 ## Numerical maximum likelihood
 
 In all the examples so far, we could find the maximizer with pencil and paper.
@@ -679,6 +743,36 @@ so we will compute it numerically.
 
 Most numerical optimization routines minimize rather than maximize, so we
 minimize the *negative* of the log likelihood.
+
+Why the log likelihood, rather than the likelihood itself?
+
+When we maximized by hand, logs made the calculus easier.
+
+For numerical work there is a second, more important reason.
+
+The likelihood is a product of $n$ densities, one for each observation, and
+with thousands of observations this product is too small to represent on a
+computer.
+
+Here is the likelihood of the house price data at a typical parameter value,
+$a = 6$ and $s = 30$.
+
+```{code-cell} ipython3
+u = scipy.stats.gamma(6, scale=30)
+np.prod(u.pdf(price))
+```
+
+The true value is positive, but it is smaller than the smallest positive
+floating point number, so the computer rounds it to zero.
+
+The log likelihood, which is a sum rather than a product, has no such problem.
+
+```{code-cell} ipython3
+np.sum(u.logpdf(price))
+```
+
+For this reason, numerical routines for maximum likelihood always work with the
+log likelihood.
 
 To keep both parameters positive, we optimize over their logarithms, which can
 take any real value.
