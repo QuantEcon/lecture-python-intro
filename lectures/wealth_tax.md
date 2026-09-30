@@ -15,11 +15,14 @@ kernelspec:
 
 ## Overview
 
-How much revenue would a tax on the wealth of the very rich raise?
+In this lecture we discuss an estimation problem that helps to illustrate the
+value of maximum likelihood methods.
 
-This question has been at the center of a lively policy debate.
+The problem is: how much revenue would a tax on the wealth of the very rich raise?
 
-In 2019, US Senator Elizabeth Warren proposed an annual tax on household net
+This question is topical.
+
+For example, in 2019, US Senator Elizabeth Warren proposed an annual tax on household net
 worth above 50 million dollars, with a higher rate above one billion dollars
 (see the [proposal](https://elizabethwarren.com/plans/ultra-millionaire-tax)).
 
@@ -34,9 +37,7 @@ disagreement concerned the number and wealth of the very richest households.
 In this lecture we estimate the revenue from a wealth tax using US household
 survey data.
 
-We will see that the obvious estimate, based directly on the survey, misses
-the part of the distribution that matters most, because the richest households
-are not in the data.
+Estimation is challenging because the richest households are under-represented in the data.
 
 To fill the gap we model the upper tail of the wealth distribution with a
 Pareto distribution, which we fit by {doc}`maximum likelihood <mle>`.
@@ -62,24 +63,25 @@ tax rates on household net worth:
 | \$50 million to \$1 billion | 2% |
 | above \$1 billion | 6% |
 
-The last two brackets follow Warren's revised proposal from November 2019,
-while the first bracket is our addition.
+We can represent this schedule as follows.
 
 Let $h(w)$ be the tax paid by a household with net worth $w$.
 
-A convenient way to write $h$ is as a sum of terms, one for each bracket
-threshold $t_k$:
+We can write $h$ as
 
 $$
-h(w) = \sum_{k=1}^{3} r_k \, (w - t_k)^+
+    h(w) = \sum_{k=1}^{3} r_k \, (w - t_k)^+
 $$ (eq:wt_tax)
 
-Here $x^+ = \max\{x, 0\}$, the thresholds are $t_1 = 10$ million,
-$t_2 = 50$ million and $t_3 = 1$ billion, and $r_k$ is the *increase* in the
-marginal rate at $t_k$.
+where
 
-So $r_1 = 0.01$, $r_2 = 0.01$ and $r_3 = 0.04$, which gives marginal rates of
-1%, 2% and 6%.
+* $x^+ = \max\{x, 0\}$,
+* the thresholds are $t_1 = 10\text{M}$, $t_2 = 50\text{M}$ and $t_3 = 1000\text{M}$, and
+* $r_1 = 0.01$, $r_2 = 0.01$ and $r_3 = 0.04$
+
+Note that each $r_k$ is the *increment* in the marginal rate at $t_k$.
+
+Here's how we represent the function in Python.
 
 ```{code-cell} ipython3
 thresholds = np.array([10e6, 50e6, 1e9])
@@ -87,40 +89,10 @@ rate_increases = np.array([0.01, 0.01, 0.04])
 
 def h(w, thresholds=thresholds, rate_increases=rate_increases):
     "Tax paid by a household with net worth w."
-    w = np.asarray(w, dtype=float)[..., None]
-    return np.sum(rate_increases * np.maximum(w - thresholds, 0), axis=-1)
+    return sum(r * np.maximum(w - t, 0)
+               for t, r in zip(thresholds, rate_increases))
 ```
 
-Let's plot the tax and the average tax rate $h(w)/w$, using a log scale for
-wealth.
-
-```{code-cell} ipython3
----
-mystnb:
-  figure:
-    caption: The tax and the average tax rate
-    name: fig:wt-schedule
----
-w_grid = np.geomspace(1e6, 1e11, 400)
-
-fig, axes = plt.subplots(1, 2, figsize=(10, 4))
-axes[0].plot(w_grid, h(w_grid), lw=2)
-axes[0].set_yscale('log')
-axes[0].set_ylim(1e4, 1e10)
-axes[0].set_ylabel('tax (US$)')
-axes[0].set_title('tax')
-axes[1].plot(w_grid, 100 * h(w_grid) / w_grid, lw=2)
-axes[1].set_ylabel('average tax rate (%)')
-axes[1].set_title('average tax rate')
-for ax in axes:
-    ax.set_xscale('log')
-    ax.set_xlabel('net worth (US$)')
-plt.tight_layout()
-plt.show()
-```
-
-The average tax rate rises steadily with wealth, approaching 6% for the very
-largest fortunes.
 
 Total revenue is the sum of $h(w)$ over all households in the country.
 
@@ -131,7 +103,7 @@ Our data come from the 2022 [Survey of Consumer
 Finances](https://www.federalreserve.gov/econres/scfindex.htm) (SCF), run by
 the Federal Reserve Board.
 
-It is the most detailed source of information on the wealth of US households.
+The data are a few years old but will be sufficient for this exercise.
 
 ```{code-cell} ipython3
 url = ('https://github.com/QuantEcon/data-lectures/raw/main/'
@@ -140,75 +112,40 @@ scf = pd.read_csv(url)
 scf.head()
 ```
 
-Each row records the net worth `networth` of a surveyed household and a
-**survey weight** `wgt`.
+Each row records the net worth `networth` of a surveyed household and a **survey weight** `wgt`.
 
 The weight is the number of US households that the row represents.
 
-Weights are needed because the SCF deliberately oversamples wealthy
-households, which it selects using tax records {cite}`bricker2017updates`.
+(The weights are used to adjust for undersampling and oversampling of different parts of the wealth distribution.)
 
-Oversampling gives the survey many more rich households than a purely random
-sample would, which makes it much more informative about the top of the
-distribution.
-
-The weights undo the oversampling, by giving each rich household a small
-weight.
-
-(You may notice that each household appears five times, with the same
-identifier `yy1`.
-
-The five rows, called *implicates*, are alternative versions of the household's
-answers that the Fed uses to fill in missing values.
-
-The weights have been scaled so that we can simply work with all rows at once.)
 
 ```{code-cell} ipython3
 w = scf['networth'].to_numpy()
-ω = scf['wgt'].to_numpy()
+λ = scf['wgt'].to_numpy()
 
-ω.sum() / 1e6     # number of US households, in millions
+λ.sum() / 1e6     # number of US households, in millions
 ```
 
-Here is the effect of the oversampling.
-
-```{code-cell} ipython3
-rich = w > 10e6
-print(f"share of rows above $10 million:       {rich.mean():.3f}")
-print(f"share of households above $10 million: {ω[rich].sum() / ω.sum():.3f}")
-```
-
-About 14% of the rows in the survey are households worth more than 10 million
-dollars, but they represent only about 1.6% of US households.
-
-The obvious estimate of total revenue replaces the sum over all households by
-the weighted sum over the survey:
+One obvious estimate of total revenue is the following weighted sum.
 
 $$
-\hat T_S = \sum_i \omega_i \, h(w_i)
+\hat T_S = \sum_i \lambda_i \, h(w_i)
 $$
 
-where $\omega_i$ is the weight of row $i$.
+Here $\lambda_i$ is the weight of row $i$.
 
-This is a sample average of $h(w)$, scaled up to the population, and is
-justified by the {doc}`law of large numbers <lln_clt>`.
 
 ```{code-cell} ipython3
-T_survey = np.sum(ω * h(w))
+T_survey = np.sum(λ * h(w))
 print(f"survey estimate: ${T_survey / 1e9:.0f} billion per year")
 ```
 
 
 ## The missing rich
 
-There is a problem with this estimate.
+By design, the SCF excludes some very rich Americans because such people would be too easy to identify.
 
-By design, the SCF excludes the people on the Forbes 400 list of the wealthiest
-Americans.
-
-In addition, the Fed removed from the public data the few survey respondents
-whose wealth would have qualified them for the list, since such people would be
-too easy to identify.
+This means that our estimate is too low.
 
 Let's count the households in the survey above various levels of wealth.
 
@@ -216,15 +153,17 @@ Let's count the households in the survey above various levels of wealth.
 levels = [10e6, 50e6, 100e6, 1e9, 2.7e9]
 pd.DataFrame({
     'survey households': [scf.loc[w > c, 'yy1'].nunique() for c in levels],
-    'US households represented': [round(ω[w > c].sum()) for c in levels]},
+    'US households represented': [round(λ[w > c].sum()) for c in levels]},
     index=['> $10M', '> $50M', '> $100M', '> $1B', '> $2.7B'])
 ```
 
 The survey contains only about twenty households above one billion dollars,
 and none above 2.7 billion dollars.
 
-2.7 billion dollars is exactly the wealth needed to make the 2022 Forbes 400
-list, whose members were worth a combined 4.0 trillion dollars
+2.7 billion dollars is exactly the wealth that was needed to make the 2022 Forbes 400
+list. 
+
+These individuals were worth a combined 4.0 trillion dollars
 ([Forbes](https://www.forbes.com/sites/chasewithorn/2022/09/27/the-2022-forbes-400-list-of-richest-americans-facts-and-figures/)).
 
 ```{code-cell} ipython3
@@ -232,18 +171,32 @@ forbes_count = 400
 forbes_cutoff = 2.7e9
 forbes_wealth = 4.0e12
 
-print(f"total wealth in the survey: ${np.sum(ω * w) / 1e12:.0f} trillion")
+print(f"total wealth in the survey: ${np.sum(λ * w) / 1e12:.0f} trillion")
 ```
 
-So the Forbes 400 hold about 3% of US household wealth, and all of it is
-missing from the survey.
+So, in 2022, the Forbes 400 held about 3% of US household wealth, and all of this wealth is missing from the survey.
 
-Under our tax, every Forbes 400 member pays the full amount on the first two
-brackets, plus 6% of their wealth above one billion dollars.
+How much tax would the Forbes 400 pay?
+
+We only know their combined wealth, not the wealth of each member, so we cannot
+simply apply $h$ to each member.
+
+But every member is worth more than one billion dollars, and above that level
+the tax is simple: a member with wealth $w$ pays $h(1\text{B})$ on their first
+billion, plus 6% of the rest.
+
+Adding this up over all members gives
+
+$$
+400 \cdot h(1\text{B}) + 0.06 \cdot (\text{combined wealth} - 400 \cdot 1\text{B})
+$$
+
+which depends only on their combined wealth.
 
 ```{code-cell} ipython3
-forbes_tax = (forbes_count * (0.01 * 40e6 + 0.02 * 950e6)
-              + 0.06 * (forbes_wealth - forbes_count * 1e9))
+tax_on_first_billion = h(1e9)                # paid in full by every member
+wealth_above_billion = forbes_wealth - forbes_count * 1e9
+forbes_tax = forbes_count * tax_on_first_billion + 0.06 * wealth_above_billion
 print(f"tax owed by the Forbes 400: ${forbes_tax / 1e9:.0f} billion per year")
 ```
 
@@ -291,9 +244,9 @@ Let's plot the counter CDF of the survey data, using the weights so that each
 row counts in proportion to the households it represents.
 
 ```{code-cell} ipython3
-def weighted_ccdf(x_grid, w, ω):
+def weighted_ccdf(x_grid, w, λ):
     "Fraction of households with wealth above each point of x_grid."
-    return np.array([ω[w > x].sum() for x in x_grid]) / ω.sum()
+    return np.array([λ[w > x].sum() for x in x_grid]) / λ.sum()
 ```
 
 ```{code-cell} ipython3
@@ -306,7 +259,7 @@ mystnb:
 x_grid = np.geomspace(1e6, 2.5e9, 300)
 
 fig, ax = plt.subplots()
-ax.loglog(x_grid, weighted_ccdf(x_grid, w, ω), lw=2, label='survey')
+ax.loglog(x_grid, weighted_ccdf(x_grid, w, λ), lw=2, label='survey')
 ax.axvline(10e6, color='k', ls=':', lw=1)
 ax.set_ylim(1e-8, 1)
 ax.set_xlabel('net worth (US$)')
@@ -338,64 +291,33 @@ $$
 
 Here we have to account for the weights.
 
-If row $i$ represents $\omega_i$ households, then it contributes $\omega_i$
+If row $i$ represents $\lambda_i$ households, then it contributes $\lambda_i$
 copies of its log density to the log likelihood of the population:
 
 $$
-\ell(\alpha) = \sum_{i: w_i > u} \omega_i \ln f(w_i; \alpha)
+\ell(\alpha) = \sum_{i: w_i > u} \lambda_i \ln f(w_i; \alpha)
 $$
 
 Repeating the calculation in {doc}`mle` with these weights gives
 
 $$
-\hat \alpha = \frac{\sum_{i: w_i > u} \omega_i}
-                  {\sum_{i: w_i > u} \omega_i \ln (w_i / u)}
+\hat \alpha = \frac{\sum_{i: w_i > u} \lambda_i}
+                  {\sum_{i: w_i > u} \lambda_i \ln (w_i / u)}
 $$
 
 ```{code-cell} ipython3
-def tail_index(u, w, ω):
+def tail_index(u, w, λ):
     "Weighted maximum likelihood estimate of the Pareto tail index above u."
     above = w > u
-    return ω[above].sum() / np.sum(ω[above] * np.log(w[above] / u))
+    return λ[above].sum() / np.sum(λ[above] * np.log(w[above] / u))
 
 u = 10e6
-α_hat = tail_index(u, w, ω)
+α_hat = tail_index(u, w, λ)
 α_hat
 ```
 
 This is close to published estimates for the United States, which are around
 1.5 {cite}`vermeulen2018fat`.
-
-How sensitive is the estimate to the choice of threshold?
-
-```{code-cell} ipython3
----
-mystnb:
-  figure:
-    caption: Estimated tail index against the threshold
-    name: fig:wt-alpha-u
----
-u_grid = np.geomspace(1e6, 100e6, 60)
-α_grid = [tail_index(v, w, ω) for v in u_grid]
-
-fig, ax = plt.subplots()
-ax.plot(u_grid, α_grid, lw=2)
-ax.axvline(u, color='k', ls=':', lw=1)
-ax.set_xscale('log')
-ax.set_xlabel('threshold $u$ (US$)')
-ax.set_ylabel(r'estimate of $\alpha$')
-plt.show()
-```
-
-With a low threshold, the estimate is close to one.
-
-This is misleading, since it treats the curved part of the distribution below
-10 million dollars as if it were Pareto.
-
-From about 10 million dollars onward, the estimate stabilizes at around 1.5.
-
-The remaining fluctuations are of the size we would expect from sampling
-variation, as you can check in {ref}`an exercise <wt_ex_bootstrap>`.
 
 
 ## The Pareto estimate of revenue
@@ -407,7 +329,7 @@ Let $N_u$ be the number of households with wealth above $u$, which we estimate
 from the survey weights.
 
 ```{code-cell} ipython3
-N_u = ω[w > u].sum()
+N_u = λ[w > u].sum()
 N_u
 ```
 
@@ -466,7 +388,7 @@ $t_{k+1}$, at the marginal rate for that bracket.
 marginal_rates = np.cumsum(rate_increases)
 upper = np.append(thresholds[1:], np.inf)
 
-survey_by_bracket = [np.sum(ω * m * np.clip(np.minimum(w, t_up) - t, 0, None))
+survey_by_bracket = [np.sum(λ * m * np.clip(np.minimum(w, t_up) - t, 0, None))
                      for t, t_up, m in zip(thresholds, upper, marginal_rates)]
 
 def excess_between(t, t_up, α, u):
@@ -533,11 +455,11 @@ mystnb:
     caption: Fitted Pareto tail and the Forbes 400
     name: fig:wt-forbes
 ---
-N = ω.sum()
+N = λ.sum()
 x_fit = np.geomspace(u, 1e11, 100)
 
 fig, ax = plt.subplots()
-ax.loglog(x_grid, weighted_ccdf(x_grid, w, ω), lw=2, label='survey')
+ax.loglog(x_grid, weighted_ccdf(x_grid, w, λ), lw=2, label='survey')
 ax.loglog(x_fit, (N_u / N) * (u / x_fit)**α_hat, 'k--', lw=2,
           label='fitted Pareto tail')
 ax.loglog(forbes_cutoff, forbes_count / N, 'o', ms=8, label='Forbes 400')
@@ -594,8 +516,9 @@ ax.legend()
 plt.show()
 ```
 
-Moving α from 1.6 to 1.4, a change well within the range of our estimates in
-{numref}`fig:wt-alpha-u`, roughly doubles estimated revenue.
+Moving α from 1.6 to 1.4, a change well within the range of sampling
+uncertainty (see {ref}`this exercise <wt_ex_bootstrap>`), roughly doubles
+estimated revenue.
 
 This sensitivity is one reason why estimates of wealth tax revenue are so
 contested.
@@ -636,7 +559,7 @@ We pass the new thresholds and rate increases to our functions.
 warren = dict(thresholds=np.array([50e6, 1e9]),
               rate_increases=np.array([0.02, 0.01]))
 
-T_s = np.sum(ω * h(w, **warren))
+T_s = np.sum(λ * h(w, **warren))
 T_p = pareto_revenue(α_hat, u, N_u, **warren)
 print(f"survey estimate: ${T_s / 1e9:.0f} billion per year")
 print(f"Pareto estimate: ${T_p / 1e9:.0f} billion per year")
@@ -685,18 +608,17 @@ households = np.array(list(rows_by_household.keys()))
 for _ in range(200):
     draw = rng.choice(households, size=len(households))
     idx = np.concatenate([rows_by_household[hh] for hh in draw])
-    w_b, ω_b = w[idx], ω[idx]
-    a = tail_index(u, w_b, ω_b)
+    w_b, λ_b = w[idx], λ[idx]
+    a = tail_index(u, w_b, λ_b)
     α_boot.append(a)
-    T_boot.append(pareto_revenue(a, u, ω_b[w_b > u].sum()))
+    T_boot.append(pareto_revenue(a, u, λ_b[w_b > u].sum()))
 
 print("90% interval for α:", np.percentile(α_boot, [5, 95]).round(2))
 print("90% interval for revenue ($ billion):",
       (np.percentile(T_boot, [5, 95]) / 1e9).round(0))
 ```
 
-The interval for α is roughly ±0.15 around the estimate, which is consistent
-with the fluctuations in {numref}`fig:wt-alpha-u`.
+The interval for α is roughly ±0.15 around the estimate.
 
 The interval for revenue is wide, reflecting the sensitivity to α discussed
 above.
@@ -742,7 +664,7 @@ where $N_c = N_u (u / c)^\alpha$ is the number of households above $c$.
 ```{code-cell} ipython3
 c = 50e6
 below = w <= c
-T_below = np.sum(ω[below] * h(w[below]))
+T_below = np.sum(λ[below] * h(w[below]))
 
 N_c = N_u * (u / c)**α_hat
 T_above = (N_c * 0.01 * (c - 10e6)
