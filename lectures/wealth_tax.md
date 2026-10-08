@@ -40,7 +40,7 @@ survey data.
 Estimation is challenging because the richest households are under-represented in the data.
 
 To fill the gap we model the upper tail of the wealth distribution with a
-Pareto distribution, which we fit by {doc}`maximum likelihood <mle>`.
+Pareto distribution, which we fit by {doc}`maximum likelihood <mle_intro>`.
 
 We will use the following imports.
 
@@ -282,7 +282,7 @@ which is also where our tax begins.
 
 ## Estimating the tail index
 
-In {doc}`mle` we found that the maximum likelihood estimate of the tail index,
+In {doc}`mle_intro` we found that the maximum likelihood estimate of the tail index,
 given observations $x_1, \ldots, x_n$ above a known threshold $u$, is
 
 $$
@@ -298,7 +298,7 @@ $$
 \ell(\alpha) = \sum_{i: w_i > u} \lambda_i \ln f(w_i; \alpha)
 $$
 
-Repeating the calculation in {doc}`mle` with these weights gives
+Repeating the calculation in {doc}`mle_intro` with these weights gives
 
 $$
 \hat \alpha = \frac{\sum_{i: w_i > u} \lambda_i}
