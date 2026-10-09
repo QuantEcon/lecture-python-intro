@@ -952,7 +952,7 @@ Averaging tends to eliminate extreme outcomes.
 One impact of heavy tails is that sample averages can be poor estimators of
 the underlying mean of the distribution.
 
-To understand this point better, recall {doc}`our earlier discussion <lln_clt>` 
+To understand this point better, recall {doc}`our earlier discussion <lln_clt_intro>` 
 of the law of large numbers, which considered IID $X_1, \ldots, X_n$ with common distribution $F$
 
 If $\mathbb E |X_i|$ is finite, then

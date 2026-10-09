@@ -140,7 +140,7 @@ This is the Monte Carlo method, which runs as follows:
 
 This average will be close to the true mean when $n$ is large.
 
-This is due to the law of large numbers, which we discussed in {doc}`lln_clt`.
+This is due to the law of large numbers, which we discussed in {doc}`lln_clt_intro`.
 
 We use the following values for $p$ and each $\mu_i$ and $\sigma_i$.
 

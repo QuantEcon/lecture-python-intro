@@ -909,7 +909,7 @@ print(f'{"":16}population mean = {u.mean():.4f}')
 ```
 
 This convergence is a version of the *law of large numbers*, which we discuss
-in {doc}`lln_clt`.
+in {doc}`lln_clt_intro`.
 
 
 ### The role of independence
@@ -973,5 +973,5 @@ What matters is that new observations keep bringing new information, which the
 example above destroys entirely.
 
 The general question of what a sample can tell us about its distribution is
-taken up in {doc}`lln_clt`.
+taken up in {doc}`lln_clt_intro`.
 ```
