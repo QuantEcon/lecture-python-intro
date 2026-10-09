@@ -45,7 +45,7 @@ make the fit as close as possible.
 This lecture is mainly about the first part.
 
 For the second we use just one technique, called the method of moments, leaving
-a fuller treatment to {doc}`mle`.
+a fuller treatment to {doc}`mle_intro`.
 
 Even so, we start with the parameters, since we have to be able to fit a class
 before we can judge it.
@@ -736,7 +736,7 @@ Our estimate of it came from the sample kurtosis, which is a fourth moment, and
 higher moments are estimated poorly precisely when the tails are heavy.
 
 Fitting this distribution by maximum likelihood instead, as we do in
-{doc}`mle`, gives $\nu \approx 3.6$ rather than $5.8$, and a smaller KS distance
+{doc}`mle_intro`, gives $\nu \approx 3.6$ rather than $5.8$, and a smaller KS distance
 again.
 
 The method of moments is simple and general, but it is not always the best use
