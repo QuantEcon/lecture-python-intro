@@ -93,7 +93,7 @@ We are interested in how $u_t$ and $e_t$ evolve over time.
 
 What long-run unemployment rate and employment rate should we expect?
 
-Do long-run outcomes depend on the initial values $(u_0, e_o)$?
+Do long-run outcomes depend on the initial values $(u_0, e_0)$?
 
 ### Visualising the long-run outcomes
 
@@ -335,7 +335,7 @@ def plot_time_paths(lm, x0=None, T=1000, ax=None):
 
         # Plot time series
         for x in x0:
-            x_ts = lm.simulate_path(x0=x)
+            x_ts = lm.simulate_path(x0=x, T=T)
 
             ax.scatter(x_ts[0, :], x_ts[1, :], s=4,)
 

@@ -141,7 +141,7 @@ We create a variable `color_mapping` to store a map between country codes and co
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-country_names = data['countrycode']
+country_names = data['countrycode'].unique()
 
 # Generate a colormap with the number of colors matching the number of countries
 colors = cm.tab20(np.linspace(0, 0.95, len(country_names)))
