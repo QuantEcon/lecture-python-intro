@@ -49,7 +49,7 @@ In addition to what's in Anaconda, this lecture will need the following librarie
 ```{code-cell} ipython3
 :tags: [hide-output]
 
-!pip install --upgrade yfinance
+!pip install yfinance
 ```
 
 We will use the following imports.
