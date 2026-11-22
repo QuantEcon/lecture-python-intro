@@ -384,7 +384,7 @@ for i in range(4):
         for ind, row in zip(indices, rows)]
 
     sheet_list = [process_df(df) for df in sheet_list]
-    df_list.append(pd.concat(sheet_list, axis=1))
+    df_list.append(pd.concat(sheet_list, axis=1, sort=True))
 
 df_aus, df_hun, df_pol, df_deu = df_list
 ```

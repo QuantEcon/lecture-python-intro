@@ -816,7 +816,7 @@ with long quiet periods in between.
 We can see this directly by counting events per month.
 
 ```{code-cell} ipython3
-monthly = times.dt.to_period('M').value_counts().sort_index()
+monthly = quakes.set_index(times).resample('MS').size()
 monthly.mean(), monthly.var()
 ```
 
