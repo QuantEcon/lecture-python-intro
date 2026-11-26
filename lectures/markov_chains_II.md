@@ -205,7 +205,7 @@ sequence of random variables is [not IID](iid_violation).
 (mc_eg1-2)=
 ### Example: ergodicity and unemployment
 
-Recall our cross-sectional interpretation of the employment/unemployment model {ref}`discussed before <mc_eg1-1>`.
+Recall our cross-sectional interpretation of the employment/unemployment model {prf:ref}`discussed before <cross-sectional-distributions>`.
 
 Assume that $\alpha \in (0,1)$ and $\beta \in (0,1)$, so that irreducibility holds.
 
