@@ -467,11 +467,13 @@ Let's begin by generating $N$ time realizations of $y$ plotting them together wi
 # Plot mean
 N = 100
 
+ys = series_process.sample_y(N, rng=rng)
+
 for i in range(N):
     col = cm.viridis(rng.random())  # Choose a random color from viridis
-    ys = series_process.sample_y(N, rng=rng)
     plt.plot(ys[i,:], lw=0.5, color=col)
-    plt.plot(μ_y, color='red')
+
+plt.plot(μ_y, color='red')
 
 plt.xlabel('t')
 plt.ylabel('y')
