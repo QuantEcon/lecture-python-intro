@@ -207,7 +207,7 @@ ax.plot(np.linspace(55, 380, 100), (50-0.9*np.linspace(55, 380, 100))/(-1.46), c
 ax.plot(np.linspace(-1, 400, 100), (60+0.16*np.linspace(-1, 400, 100))/0.83, color="r")
 ax.plot(np.linspace(250, 395, 100), (62-0.04*np.linspace(250, 395, 100))/0.33, color="b")
 
-ax.text(130, 38, r"$(1-a_{11})x_1 + a_{12}x_2 \geq d_1$", size=10)
+ax.text(130, 38, r"$(1-a_{11})x_1 - a_{12}x_2 \geq d_1$", size=10)
 ax.text(10, 105, r"$-a_{21}x_1 + (1-a_{22})x_2 \geq d_2$", size=10)
 ax.text(150, 150, r"$a_{01}x_1 +a_{02}x_2 \leq x_0$", size=10)
 
@@ -250,7 +250,7 @@ where the matrix $L = (I-A)^{-1}$ is sometimes called  a **Leontief Inverse**.
 
 
 
-To assure that the solution $X$ of {eq}`eq:inout_2` is a positive vector, the  following **Hawkins-Simon conditions** suffice:
+To assure that the solution $x$ of {eq}`eq:inout_2` is a positive vector, the  following **Hawkins-Simon conditions** suffice:
 
 $$
 \begin{aligned}
