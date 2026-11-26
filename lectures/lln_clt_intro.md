@@ -38,7 +38,7 @@ import numpy as np
 import scipy.stats as st
 ```
 
-(lln_mr)=
+(lln_mr_intro)=
 ## The law of large numbers
 
 ```{index} single: Law of Large Numbers
